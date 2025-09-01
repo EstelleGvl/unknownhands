@@ -63,43 +63,46 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Production by Century
 
-<div id="byCentury"></div>
-
 {% raw %}
 <script>
-  // Range-distributed data for centuries
-  const centuryData = {
+  // Enter your counts exactly as you have them (hyphens or en-dashes both ok)
+  const rawCenturyData = {
     "8": 39, "9": 9, "10": 7, "11": 2, "12": 108,
     "13": 25, "14": 46, "15": 828, "16": 267, "Unknown": 5,
-    "9-15": 2, "12-13": 2, "8-9": 23, "13-14": 1, "14-15": 7,
-    "15-16": 28, "15-18": 1, "16-18": 1
+    "9–15": 2, "12–13": 2, "8–9": 23, "13–14": 1, "14–15": 7,
+    "15–16": 28, "15–18": 1, "16–18": 1
   };
 
+  // We’ll plot 8th–16th; values outside this range are safely ignored
   const counts = {8:0,9:0,10:0,11:0,12:0,13:0,14:0,15:0,16:0};
 
-  function add(century, value) {
-    if (counts[century] !== undefined) counts[century] += value;
+  function add(century, value){
+    const c = Number(century);
+    if (Number.isFinite(c) && counts[c] !== undefined) counts[c] += Number(value) || 0;
   }
 
-  for (const [label, value] of Object.entries(centuryData)) {
-    if (!label.includes("-") && label !== "Unknown") {
-      add(parseInt(label), value);
-    } else if (label.includes("-")) {
-      const [start, end] = label.split("-").map(x => parseInt(x));
-      for (let c=start; c<=end; c++) add(c, value);
+  for (const [label, value] of Object.entries(rawCenturyData)) {
+    if (label.toLowerCase() === "unknown") continue;
+
+    // Normalize: remove "th", replace en/em dash with hyphen, trim
+    const norm = label.replace(/th/gi,"").replace(/[–—]/g,"-").trim();
+
+    if (norm.includes("-")) {
+      const [startStr, endStr] = norm.split("-");
+      const start = Number(startStr), end = Number(endStr);
+      if (Number.isFinite(start) && Number.isFinite(end)) {
+        for (let c = start; c <= end; c++) add(c, value);
+      }
+    } else {
+      add(norm, value);
     }
   }
 
-  const centuries = Object.keys(counts).map(c => c + "th");
-  const values = Object.values(counts);
+  const x = Object.keys(counts).map(c => `${c}th`);
+  const y = Object.values(counts);
 
   Plotly.newPlot("byCentury", [{
-    x: centuries,
-    y: values,
-    type: "bar",
-    marker: {color: "#444"},
-    text: values.map(v => v.toString()),
-    textposition: "auto"
+    x, y, type: "bar", text: y.map(v=>v.toString()), textposition: "auto"
   }], {
     title: "Manuscripts by Century of Production",
     xaxis: { title: "Century" },
@@ -108,15 +111,10 @@ These interactive charts provide an overview of current findings from *Unknown H
 </script>
 {% endraw %}
 
+
 ---
 
 ## Current Repositories (interactive map)
-
-<div id="repoMap" style="height: 520px; border-radius: 8px; margin: 1.5rem 0;"></div>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 
 {% raw %}
 <script>
@@ -128,41 +126,61 @@ These interactive charts provide an overview of current findings from *Unknown H
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
+  // Helper: get a value by trying multiple header names
+  function getField(row, names){
+    for (const n of names){
+      // exact
+      if (row[n] != null && row[n] !== "") return row[n];
+      // case-insensitive
+      const key = Object.keys(row).find(k => k.trim().toLowerCase() === n.toLowerCase());
+      if (key && row[key] != null && row[key] !== "") return row[key];
+    }
+    return null;
+  }
+
   Papa.parse(CSV_URL, {
     download: true,
     header: true,
+    skipEmptyLines: true,
     complete: function(results) {
       const rows = results.data || [];
       const bounds = [];
+      let plotted = 0;
 
       rows.forEach(r => {
-        const lat = parseFloat(r.lat);
-        const lon = parseFloat(r.lon);
-        const count = parseFloat(r.count || "0");
+        const name = getField(r, ["Holding Institution","Institution","Repository","Name"]) || "Unknown";
+        const lat  = parseFloat(getField(r, ["Latitude","lat","Lat"]));
+        const lon  = parseFloat(getField(r, ["Longitude","lon","Lng","Long","Longitud","Longitudes"]));
+        const count= parseFloat(getField(r, ["count","Count","manuscripts","Manuscripts"])) || 0;
 
-        if (Number.isFinite(lat) && Number.isFinite(lon)) {
-          const size = Math.max(6, Math.sqrt(count || 1));
-          const marker = L.circleMarker([lat, lon], {
-            radius: size,
-            color: "#222",
-            weight: 1,
-            fillColor: "#444",
-            fillOpacity: 0.75
-          }).addTo(map);
+        if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
 
-          marker.bindPopup(
-            `<strong>${r.name || "Unknown"}</strong><br>` +
-            `${r.city ? r.city + ', ' : ''}${r.country || ''}<br>` +
-            `Manuscripts: ${count || 0}`
-          );
+        const size = Math.max(6, Math.sqrt(count || 1));
+        const marker = L.circleMarker([lat, lon], {
+          radius: size,
+          color: "#222",
+          weight: 1,
+          fillColor: "#444",
+          fillOpacity: 0.75
+        }).addTo(map);
 
-          bounds.push([lat, lon]);
-        }
+        marker.bindPopup(
+          `<strong>${name}</strong><br>` +
+          `Manuscripts: ${count}`
+        );
+
+        bounds.push([lat, lon]);
+        plotted++;
       });
 
       if (bounds.length) {
         map.fitBounds(bounds, {padding: [30,30]});
+      } else {
+        console.warn("No valid points found. Check CSV headers and values:", CSV_URL);
       }
+    },
+    error: function(err) {
+      console.error("CSV load error:", err);
     }
   });
 </script>
