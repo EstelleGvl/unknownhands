@@ -106,7 +106,7 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ---
 
-## Current Repositories (interactive map)
+## Current Repositories
 
 <div id="repoMap" style="height: 520px; border-radius: 8px; margin: 1.5rem 0;"></div>
 
