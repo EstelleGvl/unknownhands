@@ -14,7 +14,7 @@ permalink: /contact/
 <br>
 
 <section class="contact-card">
-  <h2 style="text-align:center;">For inquires about the Unknown Hands project or if you want to participate, please feel free to reach out here.</h2>
+  <h2 style="text-align:center;">For inquiries, collaborations, or corrections about the Unknown Hands project, please feel free to reach out here.</h2>
   <br>
   <form id="contact-form" action="https://formspree.io/f/xyzdybkd" method="POST" novalidate>
     <div class="two-col">
