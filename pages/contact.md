@@ -7,12 +7,6 @@ permalink: /contact/
 
 {% include parallax_image.html src="/assets/img/pizan.jpg" %}
 
-
-<p style="text-align:center;">Thanks for your visit!</p>
-
-
-<br>
-
 <div class="contact-card" role="form" aria-labelledby="contact-title">
   <h2 id="contact-title">Get in touch</h2>
   <p class="contact-intro">
