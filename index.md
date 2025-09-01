@@ -74,3 +74,53 @@ Paste this block into pages/index.md (or your home layout).
   </p>
 </aside>
 {% endif %}
+
+
+
+
+{% comment %}
+Call for Papers box — ICMS 2026 (shows until the deadline)
+{% endcomment %}
+
+{% assign deadline_str = '2025-09-15 23:59:00 +0000' %}
+{% assign deadline_unix = deadline_str | date: '%s' %}
+{% assign now_unix = site.time | date: '%s' %}
+{% if now_unix < deadline_unix %}
+<aside class="cfp-box" role="note" aria-labelledby="cfp-title">
+  <h2 id="cfp-title">📣 Call for Papers — ICMS 2026 (Virtual)</h2>
+  <p>
+    <strong>Session:</strong> <em>Female Scribes in the Pre-modern World</em><br>
+    <strong>Conference:</strong> 61st International Congress on Medieval Studies, Kalamazoo<br>
+    <strong>Dates:</strong> May 14–16, 2026 &nbsp;•&nbsp; <strong>Format:</strong> Virtual
+  </p>
+
+  <p>
+    This panel examines the critical yet often unrecognized role of medieval women in manuscript production.
+    We welcome multidisciplinary approaches—codicology, palaeography, prosopography, diplomatics, epigraphy,
+    archaeology, art history, literary analysis, as well as quantitative and digital methods—across all regions and
+    languages of the medieval world (Latin, Arabic, Syriac, Hebrew, and European vernaculars).
+    Topics include identification of women scribes, their work and training; contributions highlighting female literacy
+    and multilingualism are especially encouraged.
+  </p>
+
+  <ul>
+    <li>Abstracts: ≤ 300 words</li>
+    <li>Audience: researchers, scholars, librarians, curators, students</li>
+    <li>Submission portal: Confex (see button below)</li>
+  </ul>
+
+  <p>
+    <strong>Deadline:</strong> September 15, 2025
+    {% assign days_left = deadline_unix | minus: now_unix | divided_by: 86400 %}
+    <span class="cfp-days">({{ days_left }} day{% if days_left != 1 %}s{% endif %} left)</span>
+  </p>
+
+  <p class="cfp-links">
+    <a href="https://icms.confex.com/icms/2026/prelim.cgi/Session/7492" class="cfp-button">
+      Submit via Confex
+    </a>
+    &nbsp;&nbsp;
+    <a href="/contact" class="cfp-contact">Questions? Contact us</a>
+  </p>
+</aside>
+{% endif %}
