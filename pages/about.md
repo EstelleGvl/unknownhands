@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About "Unknown Hands"
+show_title: false
 permalink: /about/
 ---
  
@@ -32,8 +32,8 @@ Uncertain fields (dates, places, identifications) carry text qualifiers and rang
 
 Many women worked across Latin and vernaculars or multiple dialects. We record:
   - languages at different descriptive levels;
-	-	known/likely dialects or script habits;
-	-	translation or adaptation roles when identifiable.
+  -	known/likely dialects or script habits;
+  -	translation or adaptation roles when identifiable.
 
 This enables analysis of literacy, training, and audience beyond a single language label.
 
@@ -51,11 +51,11 @@ We welcome corrections and additions from librarians, scholars, and communities 
   -	A growing dataset of female scribes and their production.
   -	Initial summary visualizations (counts over time, maps, etc.).
 
-Roadmap milestones and release notes are on the [Roadmap](/unknownhands/roadmap) page.
+Roadmap milestones and release notes are on the [Roadmap](/roadmap) page.
 
 # Licensing & citation
   - Site content: CC BY 4.0 (please attribute Unknown Hands and author).
-  - Data: CC BY (or CC0 for selected fields) - see the [Data](/unknownhands/data) page for details.
+  - Data: CC BY (or CC0 for selected fields) - see the [Data](/data) page for details.
 
 **Please cite as:**
 *Unknown Hands: Female Scribes in Pre-1600 Christian Europe*, ed. Estelle Guéville, v.1.1 (2025), URL.
