@@ -1,6 +1,6 @@
 ---
 layout: page
-title:
+show_title: false
 permalink: /team/
 ---
  
