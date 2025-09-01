@@ -113,56 +113,56 @@ These interactive charts provide an overview of current findings from *Unknown H
 {% raw %}
 <script>
 (() => {
-  // Guard: if Leaflet didn't load, don't crash the page
-  if (!window.L) {
-    console.warn("Leaflet not available");
-    return;
-  }
-
   const CSV_URL = "{{ '/assets/data/repositories.csv' | relative_url }}";
-  const map = L.map('repoMap', {scrollWheelZoom: false}).setView([48.5, 10], 5);
+
+  // init map
+  const map = L.map('repoMap', { scrollWheelZoom: false }).setView([48.5, 10], 5);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Plot one test point so you always see *something* while debugging
-  L.circleMarker([48.833, 2.375], {
-    radius: 10, color: "#222", weight: 1, fillColor: "#444", fillOpacity: 0.75
-  }).addTo(map).bindPopup("Test: Paris (remove once CSV loads)");
+  // helper: parse number (handles 48.833 or 48,833)
+  const num = v => {
+    if (v == null) return NaN;
+    if (typeof v !== 'string') return Number(v);
+    return Number(v.replace(/\s+/g,'').replace(',', '.'));
+  };
 
   Papa.parse(CSV_URL, {
     download: true,
     header: true,
     skipEmptyLines: true,
-    complete: ({data}) => {
+    transformHeader: h => (h || '').toString().trim().toLowerCase(), // ensures lowercased headers
+    complete: ({ data }) => {
       const bounds = [];
       let plotted = 0;
 
-      (data || []).forEach(row => {
-        // Expect EXACT headers: Holding Institution, Latitude, Longitude, count
-        const name = row["Holding Institution"] || "Unknown";
-        const lat  = parseFloat(row["Latitude"]);
-        const lon  = parseFloat(row["Longitude"]);
-        const cnt  = parseFloat(row["count"] || "0");
+      (data || []).forEach(r => {
+        const name = r['institution'] || 'Unknown';
+        const lat  = num(r['latitude']);
+        const lon  = num(r['longitude']);
+        const cnt  = num(r['count']);
 
         if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
 
-        const marker = L.circleMarker([lat, lon], {
-          radius: Math.max(6, Math.sqrt(cnt||1)),
-          color: "#222", weight: 1, fillColor: "#444", fillOpacity: 0.75
-        }).addTo(map).bindPopup(`<strong>${name}</strong><br>Manuscripts: ${cnt||0}`);
+        L.circleMarker([lat, lon], {
+          radius: Math.max(6, Math.sqrt(Number.isFinite(cnt) ? cnt : 1)),
+          color: '#222', weight: 1, fillColor: '#444', fillOpacity: 0.75
+        })
+        .addTo(map)
+        .bindPopup(`<strong>${name}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`);
 
         bounds.push([lat, lon]);
         plotted++;
       });
 
-      if (plotted > 0) {
-        map.fitBounds(bounds, {padding: [30,30]});
+      if (plotted) {
+        map.fitBounds(bounds, { padding: [30, 30] });
       } else {
-        console.warn("CSV loaded but no valid points. Check headers are exactly: Holding Institution, Latitude, Longitude, count");
+        console.warn('CSV loaded but no valid points. Check lat/long values and decimal separators.');
       }
     },
-    error: (err) => console.error("CSV load error:", err)
+    error: err => console.error('CSV load error:', err)
   });
 })();
 </script>
