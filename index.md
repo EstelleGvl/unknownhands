@@ -2,19 +2,19 @@
 layout: page
 show_title: false
   {% comment %}
-    Compact CFP banner — ICMS 2026 (shows until the deadline)
-    {% endcomment %}
-    {% assign deadline_str = '2025-09-15 23:59:00 +0000' %}
-    {% assign deadline_unix = deadline_str | date: '%s' %}
-    {% assign now_unix = site.time | date: '%s' %}
-    {% if now_unix < deadline_unix %}
-    <div class="cfp-banner" role="note">
-      📣 <strong>Call for Papers:</strong> 
-      <em>Female Scribes in the Pre-modern World</em> — ICMS 2026 (Virtual)  
-      <a href="https://icms.confex.com/icms/2026/prelim.cgi/Session/7492" class="cfp-banner-link">Submit via Confex</a>
-      <span class="cfp-banner-deadline">Deadline: Sept 15, 2025</span>
-    </div>
-    {% endif %}
+  Compact CFP banner — ICMS 2026 (shows until the deadline)
+  {% endcomment %}
+  {% assign deadline_str = '2025-09-15 23:59:00 +0000' %}
+  {% assign deadline_unix = deadline_str | date: '%s' %}
+  {% assign now_unix = site.time | date: '%s' %}
+  {% if now_unix < deadline_unix %}
+  <div class="cfp-banner" role="note">
+    📣 <strong>Call for Papers:</strong> 
+    <em>Female Scribes in the Pre-modern World</em> — ICMS 2026 (Virtual)  
+    <a href="https://icms.confex.com/icms/2026/prelim.cgi/Session/7492" class="cfp-banner-link">Submit via Confex</a>
+    <span class="cfp-banner-deadline">Deadline: Sept 15, 2025</span>
+  </div>
+  {% endif %}
 banner:
   collection: unknownhands
   pid: obj10
@@ -23,6 +23,9 @@ banner:
   height: '500px'
 ---
 
+{% comment %}
+Compact CFP banner — ICMS 2026 (shows until the deadline)
+{% endcomment %}
 
 {% assign deadline_str = '2025-09-15 23:59:00 +0000' %}
 {% assign deadline_unix = deadline_str | date: '%s' %}
