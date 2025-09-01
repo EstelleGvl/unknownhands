@@ -1,13 +1,11 @@
 ---
 layout: page
-title: Contact
+title:
 permalink: /contact/
 ---
 
 
 {% include parallax_image.html src="/assets/img/pizan.jpg" %}
-
-
 
 
 <p style="text-align:center;">Thanks for your visit!</p>
