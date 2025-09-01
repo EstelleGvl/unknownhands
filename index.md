@@ -20,4 +20,4 @@ Our goals are:
 	•	To map and visualize women’s scribal activity across Europe.
 	•	To provide resources for researchers, teachers, and the wider public.
 
-The project is in active development. Explore our [About]() page to learn more about the methods, see our [Roadmap]() for upcoming milestones, or visit the [Bibliography]() for key references on the subject of female scribes.
+The project is in active development. Explore our [About](/pages/about.md) page to learn more about the methods, see our [Roadmap](/pages/roadmap.md) for upcoming milestones, or visit the [Bibliography](/pages/bibliography.md) for key references on the subject of female scribes.
