@@ -1,8 +1,9 @@
 ---
 layout: page
-title: Credits & Contact
+show_title: false
 permalink: '/credits/'
 ---
+# Credits & Contact
 
 Unknown Hands is a project led and maintained by [Estelle Guéville](https://estellegueville.com).
 
