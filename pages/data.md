@@ -10,62 +10,6 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Production by Country
 
- 
-<div id="byCountry"></div>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-  // Raw data
-  const countryData = {
-    "Austria":72, "Belgium":92, "Crete":3, "England":19, "France":98,
-    "France or Germany":3, "Germany":660, "Germany or Switzerland":1,
-    "Italy":165, "Netherlands":106, "Portugal":26, "Spain":9, "Sweden":15,
-    "Switzerland":65, "Unknown":8
-  };
-
-  // Initialize counters
-  const countries = ["Austria","Belgium","Crete","England","France","Germany","Italy",
-    "Netherlands","Portugal","Spain","Sweden","Switzerland","Unknown"];
-  const counts = {};
-  countries.forEach(c => counts[c] = 0);
-
-  // Process entries
-  for (const [label, value] of Object.entries(countryData)) {
-    if (label.includes(" or ")) {
-      // Split into multiple countries
-      label.split(" or ").forEach(c => {
-        if (counts[c] !== undefined) counts[c] += value;
-      });
-    } else if (counts[label] !== undefined) {
-      counts[label] += value;
-    }
-  }
-
-  // Convert to arrays
-  const x = Object.values(counts);
-  const y = Object.keys(counts);
-
-  Plotly.newPlot("byCountry", [{
-    x: x,
-    y: y,
-    type: "bar",
-    orientation: "h",
-    text: x.map(v => v.toString()),
-    textposition: "auto",
-    marker: {color: "#444"}
-  }], {
-    title: "Production Location of Manuscripts (by country)",
-    xaxis: { title: "Number of Manuscripts" },
-    margin: { l: 180 }
-  });
-</script>
-
-**Notes.** Country names are modernized labels for production locales in the historical record.
-
----
-
-## Century of Production
-
-
 <div id="byCentury"></div>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
@@ -117,6 +61,7 @@ These interactive charts provide an overview of current findings from *Unknown H
     yaxis: { title: "Number of Manuscripts" }
   });
 </script>
+
 
 
 ---
