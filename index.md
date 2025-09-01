@@ -9,7 +9,6 @@ banner:
   height: '500px'
 ---
 
-
 **Welcome to *Unknown Hands*!"**
 
 *Unknown Hands* is the first large-scale project dedicated to uncovering, cataloguing, and visualizing the work of female scribes in Christian Europe before 1600. For centuries, the contributions of women to manuscript culture remained invisible or underestimated. This project seeks to bring them into focus.
