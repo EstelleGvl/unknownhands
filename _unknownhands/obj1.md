@@ -5,7 +5,7 @@ location: France, Paris
 label: Christine of Pizan writing
 _date: '15th century'
 object_type: manuscript
-current_location: Paris, Bibliothèque nationale de France
+current_location: Paris, Bibliotheque nationale de France
 source: 
 order: '00'
 layout: unknownhands_item
