@@ -94,3 +94,51 @@ demoRepos.forEach(r => {
     .bindPopup(`<strong>${r.name}</strong><br>Manuscripts: ${r.count}`);
 });
 </script>
+
+
+---
+
+
+<div id="repoMap" style="height: 520px; border-radius: 8px; margin: 1.5rem 0;"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+
+<script>
+  // Create map
+  const map = L.map('repoMap', {scrollWheelZoom: false}).setView([48.5, 10], 5);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Load CSV
+  Papa.parse("/assets/data/repositories.csv", {
+    download: true,
+    header: true,
+    complete: function(results) {
+      const bounds = [];
+      results.data.forEach(r => {
+        if (!r.lat || !r.lon) return; // skip rows without coordinates
+        const size = Math.max(6, Math.sqrt(r.count || 1));
+        const marker = L.circleMarker([parseFloat(r.lat), parseFloat(r.lon)], {
+          radius: size,
+          color: "#222",
+          weight: 1,
+          fillColor: "#444",
+          fillOpacity: 0.75
+        }).addTo(map);
+
+        marker.bindPopup(`
+          <strong>${r.name}</strong><br/>
+          ${r.city ? r.city + ', ' : ''}${r.country || ''}<br/>
+          Manuscripts: ${r.count}
+        `);
+
+        bounds.push([parseFloat(r.lat), parseFloat(r.lon)]);
+      });
+      if (bounds.length) map.fitBounds(bounds, {padding: [30,30]});
+    }
+  });
+</script>
