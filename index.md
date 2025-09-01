@@ -3,7 +3,7 @@ layout: page
 show_title: false
 banner:
   collection: unknownhands
-  pid: obj12
+  pid: obj1
   y: 25%
   clickable: yes
   height: '500px'
