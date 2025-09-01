@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Bibliography
-permalink: /bibliogrpahy/
+permalink: /bibliography/
 ---
 
 
