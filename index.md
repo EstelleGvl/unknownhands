@@ -28,6 +28,6 @@ Unknown Hands is also fostering scholarly exchange by organizing panels and work
 - International Congress on Medieval Studies (ICMS), Kalamazoo 2026
 *Female Scribes in the Pre-modern World*. 
 A session examining the often unrecognized role of medieval women in manuscript production, inviting multidisciplinary approaches across languages, regions, and disciplines.  
-📅 May 14–16, 2026 (Virtual). 
-📌 [Call for Papers – ICMS 2026](https://icms.confex.com/icms/2026/prelim.cgi/Session/7492). 
-📝 Abstract deadline: 15 September 2025. 
+📅 May 14–16, 2026 (Virtual).  
+📌 [Call for Papers – ICMS 2026](https://icms.confex.com/icms/2026/prelim.cgi/Session/7492).  
+📝 Abstract deadline: 15 September 2025.  
