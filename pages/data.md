@@ -63,6 +63,9 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Production by Century
 
+<div id="byCentury"></div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 {% raw %}
 <script>
   // Enter your counts exactly as you have them (hyphens or en-dashes both ok)
