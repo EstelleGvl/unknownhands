@@ -16,7 +16,7 @@ Unknown Hands is under active development. This roadmap shares our current progr
 | Monastic Institutions | 3,663       | ~50%         | 100%         | Ongoing cataloguing            |
 | Cultural Institutions | 177         | 100%         | 100%         | Completed                      |
 | People                | 1,022       | ~20%         | 97.5%        | Biographical data in progress  |
-| Works                 | ~1,100      | 100%         | 100%         | Classification ongoing         |
+| Texts                 | ~1,100      | 100%         | 100%         | Classification ongoing         |
 
 <div id="progress"></div>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -27,7 +27,7 @@ Unknown Hands is under active development. This roadmap shares our current progr
     "Monastic Institutions",
     "Cultural Institutions",
     "People",
-    "Works"
+    "Texts"
   ];
   const completion = [65.2, 100, 50, 100, 20, 100];
   Plotly.newPlot("progress", [{
