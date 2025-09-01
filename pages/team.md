@@ -8,6 +8,7 @@ This project is currently developed and maintained by Estelle Guéville (PhD Can
 
 # Project Director
 **Estelle Guéville, Yale University**. 
+
 Estelle Guéville is the founder and director of Unknown Hands. Her doctoral research focuses on female scribes in Christian Europe before 1600, with a particular interest in multilingualism, codicology, and the use of digital methods for manuscript studies. She has developed the first large-scale dataset of manuscripts copied by women and is building a digital infrastructure to make these contributions accessible to scholars and the public.
 
 
