@@ -13,37 +13,45 @@ permalink: /contact/
 
 <br>
 
-<section class="contact-card">
-  <h2 style="text-align:center;">For inquiries, collaborations, or corrections about the Unknown Hands project, please feel free to reach out here.</h2>
-  <br>
-  <form id="contact-form" action="https://formspree.io/f/xyzdybkd" method="POST" novalidate>
-    <div class="two-col">
-      <label>
-        First Name
+<div class="contact-card" role="form" aria-labelledby="contact-title">
+  <h2 id="contact-title">Get in touch</h2>
+  <p class="contact-intro">
+    For inquiries, collaborations, or corrections to records, use the form below.
+    Please include shelfmarks or citations where relevant.
+  </p>
+
+  <form class="contact-form" action="https://formspree.io/f/xldwlonz" method="POST">
+    <!-- Accessibility-friendly labels -->
+    <div class="form-grid">
+      <label class="form-field">
+        <span>First name</span>
         <input type="text" name="first_name" autocomplete="given-name" required>
       </label>
-      <label>
-        Last Name
+      <label class="form-field">
+        <span>Last name</span>
         <input type="text" name="last_name" autocomplete="family-name" required>
       </label>
+      <label class="form-field">
+        <span>Email</span>
+        <input type="email" name="_replyto" autocomplete="email" required>
+      </label>
+      <label class="form-field">
+        <span>Affiliation (optional)</span>
+        <input type="text" name="affiliation" autocomplete="organization">
+      </label>
+      <label class="form-field form-field--full">
+        <span>Message</span>
+        <textarea name="message" rows="6" required placeholder="What would you like to share or correct?"></textarea>
+      </label>
     </div>
-    <label>
-      Email Address
-      <input type="email" name="email" autocomplete="email" required>
+    <!-- Honeypot (spam protection) -->
+    <label class="visually-hidden">Leave this field empty
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
     </label>
-    <label>
-      Phone
-      <input type="tel" name="phone" autocomplete="tel">
-    </label>
-    <label>
-      Type your message here...
-      <textarea name="message" rows="6" required></textarea>
-    </label>
-    <!-- Anti-spam honeypot (kept hidden) -->
-    <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0">
-    <!-- Optional: set email subject in your inbox -->
-    <input type="hidden" name="_subject" value="New message from your website">
-    <button class="btn btn-primary" type="submit">Send</button>
-    <p id="form-status" class="form-status" aria-live="polite"></p>
+    <!-- After-submit redirect (optional) -->
+    <input type="hidden" name="_subject" value="[Unknown Hands] New message">
+    <input type="hidden" name="_next" value="{{ '/contact/thanks/' | relative_url }}">
+    <button type="submit" class="btn-primary">Send message</button>
+    <p class="contact-privacy">By sending this form you consent to being contacted about your message. We do not share your details.</p>
   </form>
-</section>
+</div>
