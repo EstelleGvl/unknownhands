@@ -1,9 +1,8 @@
 ---
 layout: page
-title: Bibliography
+show_title: false
 permalink: /bibliography/
 ---
-
 
 # Presentations
 
@@ -15,3 +14,8 @@ Findings from Unknown Hands have been presented at international conferences and
   - “Unknown Hands: Medieval and Early Modern Manuscripts and their Female Scribes.” International Congress on Medieval Studies, Western Michigan University. May 2024.
   - “Women in the Scriptorium: Female Manuscript Production in Pre-Modern Europe.” Race, Gender, and Sexuality Studies Colloquium, Yale University. 24 October 2023.
   - “Unknown Hands: Medieval and Early Modern Manuscripts and their Female Scribes.” Yale Medieval Lunch Colloquium, Yale University. 24 October 2023.
+
+
+# Scholarship about Female Scribes
+
+
