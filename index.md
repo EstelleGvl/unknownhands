@@ -2,7 +2,7 @@
 layout: page
 show_title: false
 banner:
-  collection: qatar
+  collection: unknownhands
   pid: obj10
   y: 25%
   clickable: yes
@@ -10,21 +10,15 @@ banner:
 ---
 
 
-*Unknown Hands* is the first project to systematically study, map, and make visible the work of female scribes in pre-1600 Christian Europe.
+**Welcome to *Unknown Hands*!"**
 
-2–3 bullets: What makes it distinctive (PU/SU model, scale of dataset, focus on uncertainty).
+*Unknown Hands* is the first large-scale project dedicated to uncovering, cataloguing, and visualizing the work of female scribes in Christian Europe before 1600. For centuries, the contributions of women to manuscript culture remained invisible or underestimated. This project seeks to bring them into focus.
 
-A line on “where we are now” (site launch, early dataset) and “what’s next” (public database, visualizations).
+Using archival research, codicology, paleography, and digital humanities methods, Unknown Hands compiles evidence of women’s involvement in book production: from explicitly named scribes to anonymous “hands” identified through palaeography and contextual study. The project introduces new models for studying manuscripts and pays particular attention to uncertainty, multilingualism, and collaborative practices.
 
+Our goals are:
+	•	To create the first open, searchable database of manuscripts copied by women.
+	•	To map and visualize women’s scribal activity across Europe.
+	•	To provide resources for researchers, teachers, and the wider public.
 
-Optional: an image or diagram for visual impact.
-
-
-
-__Wax__ is a [minimal computing](http://go-dh.github.io/mincomp/)
-
-
-### Browse the Collection
-
-#### By Item Type
-{% include collection_gallery.html facet_by='object_type' collection='qatar' %}
+The project is in active development. Explore our [About]() page to learn more about the methods, see our [Roadmap]() for upcoming milestones, or visit the [Bibliography]() for key references on the subject of female scribes.
