@@ -8,7 +8,7 @@ Unknown Hands is a project led and maintained by [Estelle Guéville](https://est
 
 It builds upon the work of [Marii Nyrop](https://marii.info/) and [Alex Gil](https://github.com/elotroalex).
 
-I welcome and encourage contributibutions. Please get in touch using the [contact page](contact).
+I welcome and encourage contributibutions. Please get in touch using the [contact page](/contact).
 
 # Licensing & citation
   - Site content: CC BY 4.0 (please attribute Unknown Hands and author).
