@@ -1,7 +1,6 @@
 ---
 layout: page
 show_title: false
-cfp: true
 banner:
   collection: unknownhands
   pid: obj10
