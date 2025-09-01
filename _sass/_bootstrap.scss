@@ -9028,3 +9028,37 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+/* Contact page */
+.contact-card{
+  border:2px solid #222;border-radius:12px;background:#fafafa;padding:1.25rem 1.5rem;margin:1rem 0 2rem;
+  box-shadow:0 1px 3px rgba(0,0,0,.06)
+}
+.contact-intro{margin:.25rem 0 1rem 0}
+.contact-form{margin-top:.5rem}
+.form-grid{
+  display:grid;gap:1rem;
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.form-field{display:flex;flex-direction:column;gap:.4rem}
+.form-field--full{grid-column:1 / -1}
+.form-field span{font-weight:600}
+.form-field input,.form-field textarea{
+  border:1px solid #bbb;border-radius:8px;padding:.6rem .75rem;font:inherit;background:#fff
+}
+.form-field input:focus,.form-field textarea:focus{outline:2px solid #222;outline-offset:1px}
+.btn-primary{
+  display:inline-block;border:1px solid #222;border-radius:8px;padding:.55rem 1rem;
+  background:#222;color:#fff;font-weight:600;cursor:pointer
+}
+.btn-primary:hover{filter:brightness(1.08)}
+.contact-privacy{margin:.75rem 0 0 0;opacity:.85;font-size:.95rem}
+.visually-hidden{
+  position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap
+}
+
+/* Mobile */
+@media (max-width: 720px){
+  .form-grid{grid-template-columns:1fr}
+}
