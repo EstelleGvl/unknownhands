@@ -103,8 +103,6 @@ menu:
         link: '/about/'
       - label: 'Team'
         link: '/team/'
-      - label: 'Credits'
-        link: '/credits/'
 #  - label: 'Exhibits'
 #    sub:
 #      - label: 'Inline Parallax Image'
@@ -129,8 +127,6 @@ menu:
 
 footer:
   links:
-    - label: 'GitHub'
-      link: 'https://github.com/minicomp/wax'
     - label: 'Credits'
       link: '/credits'
     - label: 'Wiki'
