@@ -1,16 +1,11 @@
 ---
 layout: page
 show_title: false
-banner:
-  collection: unknownhands
-  pid: obj10
-  y: 25%
-  clickable: yes
-  height: '500px'
+banner: {% comment %}
+  Compact CFP banner — ICMS 2026 (shows until the deadline)
+  {% endcomment %}
 ---
-{% comment %}
-Compact CFP banner — ICMS 2026 (shows until the deadline)
-{% endcomment %}
+
 
 {% assign deadline_str = '2025-09-15 23:59:00 +0000' %}
 {% assign deadline_unix = deadline_str | date: '%s' %}
