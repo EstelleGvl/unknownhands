@@ -121,7 +121,7 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ---
 
-## Where are the manuscripts today? (Repository Map — coming soon)
+## Where are the manuscripts today?
 
 <div id="repoMap" style="height: 420px; border-radius: 8px; overflow: hidden;"></div>
 
