@@ -4,7 +4,7 @@ show_title: false
 permalink: /data/
 ---
 
-These interactive charts provide an overview of current findings from *Unknown Hands*. They will grow as the dataset expands. Notes on scope and uncertainty are included beneath each visualization.
+These interactive charts provide an overview of current findings from *Unknown Hands*. They will grow as the dataset expands.
 
 ---
 
