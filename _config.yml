@@ -17,11 +17,11 @@
 # Feel free to change these! For more info, refer to:
 # ~> https://jekyllrb.com/docs/configuration/options/
 
-title:            'Wax'
-description:      'Minimal Exhibitions with Jekyll'
-url:              'https://minicomp.github.io'
-baseurl:          '/wax'
-copyright:        'Example copyright org, 2023'
+title:            'Unknown Hands'
+description:      'Female Scribes in Pre-Modern Europe'
+url:              'https://estellegvl.github.io'
+baseurl:          '/unknownhands'
+copyright:        'Estelle Guéville, 2025'
 logo:             '/assets/logo.png'
 default_thumb:    '/assets/default.png'
 
@@ -61,11 +61,11 @@ collections:
     output: true
   qatar: # name of collection
     output: true # makes sure pages are output as html files
-    layout: 'qatar_item' # the layout for the pages to use
+    layout: 'scribe_item' # the layout for the pages to use
     metadata:
-      source: 'qatar.csv' # path to the metadata file within `_data`
+      source: 'unknownhands.csv' # path to the metadata file within `_data`
     images:
-      source: 'raw_images/qatar' # path to the directory of images within `_data`
+      source: 'raw_images/unknownhands' # path to the directory of images within `_data`
 
 # --------------------------------------------------------------
 # SEARCH INDEX SETTINGS
