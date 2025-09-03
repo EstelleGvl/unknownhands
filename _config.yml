@@ -59,7 +59,7 @@ kramdown:
 collections:
   exhibits:
     output: true
-  qatar: # name of collection
+  unknownhands: # name of collection
     output: true # makes sure pages are output as html files
     layout: 'scribe_item' # the layout for the pages to use
     metadata:
@@ -82,12 +82,9 @@ search:
       qatar:
         content: false # whether or not to index page content
         fields: # the metadata fields to index
-          - artist
-          - location
+          - call_number
           - label
-          - _date
-          - object_type
-          - current_location
+          - folio
 
 # --------------------------------------------------------------
 # SITE MENU SETTINGS
