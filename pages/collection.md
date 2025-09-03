@@ -12,10 +12,10 @@ This site's sample collection comprises a set of objects, each of which is repre
 ## By Object Type
 
 ### Manuscripts
-{% include collection_gallery.html facet_by='object_type' only='manuscript' collection='qatar' %}
+{% include collection_gallery.html facet_by='object_type' only='manuscript' collection='unknownhands' %}
 ### Portraits
-{% include collection_gallery.html facet_by='object_type' only='portrait' collection='qatar' %}
+{% include collection_gallery.html facet_by='object_type' only='portrait' collection='unknownhands' %}
 ### Maps
-{% include collection_gallery.html facet_by='object_type' only='map' collection='qatar' %}
+{% include collection_gallery.html facet_by='object_type' only='map' collection='unknownhands' %}
 ### Panels
-{% include collection_gallery.html facet_by='object_type' only='panel' collection='qatar' %}
+{% include collection_gallery.html facet_by='object_type' only='panel' collection='unknownhands' %}
