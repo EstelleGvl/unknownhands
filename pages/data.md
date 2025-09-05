@@ -108,96 +108,138 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Current Repositories
 
-<div id="repoMap" style="height: 520px; border-radius: 8px; margin: 1.5rem 0;"></div>
+<!-- Full-width map -->
+<div id="repoMap" style="width:100%; height:520px; border-radius:8px; margin:1.5rem 0;"></div>
 
+<!-- Leaflet + plugins -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- MarkerCluster -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+<!-- PapaParse -->
 <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- Leaflet Search -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 <script>
 (() => {
-  if (!window.L || !window.Papa) { console.warn("Leaflet or PapaParse missing"); return; }
-
   const CSV_URL = "{{ '/assets/data/repositories.csv' | relative_url }}";
-  console.log("[Map] CSV_URL:", CSV_URL);
 
+  // Init map
   const map = L.map('repoMap', { scrollWheelZoom: false }).setView([48.5, 10], 5);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
+  // Cluster group
+  const clusterGroup = L.markerClusterGroup();
+  map.addLayer(clusterGroup);
+
+  // Helpers
   const toNum = v => {
     if (v == null) return NaN;
     if (typeof v !== 'string') return Number(v);
     return Number(v.replace(/\s+/g,'').replace(',', '.'));
   };
 
-  // Fetch the CSV as text first (so we can log it if needed)
+  // Color scale by count
+  const getColor = c => {
+    return c > 50 ? '#800026' :
+           c > 20 ? '#BD0026' :
+           c > 10 ? '#E31A1C' :
+           c > 5  ? '#FC4E2A' :
+           c > 1  ? '#FD8D3C' :
+                    '#FEB24C';
+  };
+
+  // Load CSV
   fetch(CSV_URL, { cache: "no-store" })
-    .then(r => {
-      console.log("[CSV] status:", r.status, r.statusText);
-      if (!r.ok) throw new Error("Failed to load CSV: " + r.status);
-      return r.text();
-    })
+    .then(r => r.text())
     .then(txt => {
-      console.log("[CSV] preview:", txt.slice(0, 200).replace(/\n/g, "\\n"));
       Papa.parse(txt, {
         header: true,
         skipEmptyLines: true,
-        dynamicTyping: false,
-        // Let Papa auto-detect delimiter (tabs/commas); the file has tabs, but this is safer.
         delimiter: "",
         transformHeader: h => (h || '').toString().replace(/^\uFEFF/, '').trim().toLowerCase(),
-        complete: ({ data, meta, errors }) => {
-          if (errors && errors.length) console.warn("[CSV] parse warnings:", errors.slice(0,3));
-          console.log("[CSV] fields:", meta.fields, "rows:", data?.length ?? 0);
-
-          const rows = Array.isArray(data) ? data : [];
+        complete: ({ data }) => {
           const bounds = [];
           let plotted = 0;
 
-          rows.forEach(r => {
+          data.forEach(r => {
             const name = (r['institution'] ?? '').toString().trim();
             const lat  = toNum(r['latitude']);
             const lon  = toNum(r['longitude']);
             const cnt  = toNum(r['count']);
 
-            if (!Number.isFinite(lat) || !Number.isFinite(lon)) return; // skip rows without coords
+            if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
 
-            L.circleMarker([lat, lon], {
+            const marker = L.circleMarker([lat, lon], {
               radius: Math.max(6, Math.sqrt(Number.isFinite(cnt) ? cnt : 1)),
-              color: '#222',
+              color: '#333',
               weight: 1,
-              fillColor: '#444',
-              fillOpacity: 0.75
+              fillColor: getColor(cnt),
+              fillOpacity: 0.8
             })
-            .addTo(map)
             .bindPopup(`<strong>${name || 'Unknown'}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`);
 
+            clusterGroup.addLayer(marker);
             bounds.push([lat, lon]);
             plotted++;
           });
 
-          console.log("[Map] markers plotted:", plotted);
-          if (plotted) {
-            map.fitBounds(bounds, { padding: [30, 30] });
-          } else {
-            console.warn("CSV loaded but no valid points. Open this URL directly to verify:", CSV_URL);
-            // Optional: visual hint for users if nothing plots
-            const msg = L.control({ position: 'topright' });
-            msg.onAdd = function () {
-              const div = L.DomUtil.create('div', 'leaflet-bar');
-              div.style.padding = '8px';
-              div.style.background = 'white';
-              div.textContent = 'No points to display.';
-              return div;
-            };
-            msg.addTo(map);
-          }
+          if (plotted) map.fitBounds(bounds, { padding: [30, 30] });
         }
       });
-    })
-    .catch(err => console.error("[CSV] load error:", err));
+    });
+
+  // Legend
+  const legend = L.control({ position: 'bottomright' });
+  legend.onAdd = function (map) {
+    const div = L.DomUtil.create('div', 'info legend');
+    const grades = [0, 1, 5, 10, 20, 50];
+    let labels = [];
+    for (let i = 0; i < grades.length; i++) {
+      div.innerHTML +=
+        '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+    div.innerHTML = "<strong>Manuscripts</strong><br>" + div.innerHTML;
+    return div;
+  };
+  legend.addTo(map);
+
+  // Simple search by institution name
+  const searchControl = L.Control.geocoder({
+    defaultMarkGeocode: false
+  })
+  .on('markgeocode', function(e) {
+    map.fitBounds(e.geocode.bbox);
+  })
+  .addTo(map);
 })();
 </script>
+
+<style>
+/* Make legend look nicer */
+.info.legend {
+  background: white;
+  padding: 8px;
+  font: 12px/1.4 "Helvetica Neue", Arial, sans-serif;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  border-radius: 4px;
+}
+.info.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 6px;
+  opacity: 0.8;
+}
+</style>
