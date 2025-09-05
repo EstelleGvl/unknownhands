@@ -11,8 +11,8 @@ Unknown Hands is a research project that identifies, documents, and visualizes t
 # Why this project?
 
 Women’s contributions to manuscript culture are substantially understudied. Names are missing; attributions are uneven; descriptions are lacunary, multilingual work is often invisible in catalogues. Unknown Hands addresses this gap by:
-  - consolidating evidence across libraries, regions, and languages;
-  - modeling uncertainty explicitly rather than smoothing it away;
+  - consolidating evidence across libraries, regions, and languages.
+  - modeling uncertainty explicitly rather than smoothing it away.
   - cataloguing for both human and machine reading.
   - publishing a searchable open dataset and visualizations that make patterns legible at scale.
   - connecting communities of scholars, curators and students working on gender studies and female production to keep developing the dataset and develop collaborations.
@@ -41,8 +41,8 @@ We encode the strength of evidence for each attribution so users can filter and 
 Uncertain fields (dates, places, identifications) carry text qualifiers and ranges to account for uncertainty.
 
 Many women worked across Latin and vernaculars or multiple dialects. We record:
-  - languages at different descriptive levels;
-  -	known/likely dialects or script habits;
+  - languages at different descriptive levels.
+  -	known/likely dialects or script habits.
   -	translation or adaptation roles when identifiable.
 
 This enables analysis of literacy, training, and audience beyond a single language label.
