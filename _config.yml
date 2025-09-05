@@ -134,8 +134,9 @@ footer:
       link: 'https://minicomp.github.io/wiki/wax/'
   logos:
     - img: '/img/sticker.webp'
-  cite: 
-    Please cite as  
-    *Unknown Hands. Female Scribes in Pre-modern Europe*, ed. Estelle Guéville, v.1.1 (2025), URL.
-
+      fallback: '/img/sticker.png'   # optional, used only when img ends with .webp
+      alt: 'Christine of Pizan writing'
+  cite: |
+    **Please cite as:**
+    *Unknown Hands: Female Scribes in Pre-1600 Christian Europe*, ed. Estelle Guéville, v.1.1 (2025), URL.
 # FIN
