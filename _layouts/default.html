@@ -6,10 +6,14 @@
     <time datetime='{{ 'now' | date: '%Y-%m-%d %H:%M' }}'></time>
     {% include header.html %}
 
-
     {% if page.banner %}
-      {% assign b = page.banner %}
-      {% include parallax_image.html collection=b.collection pid=b.pid y=b.y height=b.height image=b.image clickable=b.clickable %}
+      {% include parallax_image.html
+        image=page.banner.image
+        y=page.banner.y
+        clickable=page.banner.clickable
+        link=page.banner.link
+        height=page.banner.height
+        caption=page.banner.caption %}
     {% endif %}
 
     <div id='wax-main'>
@@ -23,3 +27,4 @@
     <script type='text/javascript' async defer src='{{ "/assets/popper.min.js" | absolute_url }}'></script>
   </body>
 </html>
+ 

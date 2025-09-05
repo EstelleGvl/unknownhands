@@ -2,12 +2,19 @@
 layout: page
 show_title: false
 banner:
-  collection: unknownhands
-  pid: obj1
+  image: "BnF, Bibliotheque de l'Arsenal, Ms. 3142.jpg"
   y: 25%
   clickable: yes
   height: '500px'
+  caption:
 ---
+
+
+    {% if page.banner %}
+      {% assign b = page.banner %}
+      {% include parallax_image.html collection=b.collection pid=b.pid y=b.y height=b.height image=b.image clickable=b.clickable %}
+    {% endif %}
+
 
 # Welcome to *Unknown Hands*!
 
