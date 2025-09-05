@@ -15,13 +15,19 @@ banner:
 
 Using archival research, codicology, paleography, and digital humanities methods, Unknown Hands compiles evidence of women’s involvement in book production: from explicitly named scribes to anonymous “hands” identified through palaeography and contextual study. The project introduces new models for studying manuscripts and pays particular attention to uncertainty, multilingualism, and collaborative practices.
 
-Our goals are:
+**Our goals are:**
 	•	To create the first open, searchable database of manuscripts copied by women.
 	•	To map and visualize women’s scribal activity across Europe.
 	•	To provide resources for researchers, teachers, and the wider public.
 
+**What’s available now**
+  -	A beta site with project overview and early exemples.
+  -	Initial summary visualizations and data (counts over time, maps, etc.).
+  - Key references
+
 The project is in active development. Explore our [About](/pages/about.md) page to learn more about the methods, see our [Roadmap](/pages/roadmap.md) for upcoming milestones, or visit the [Bibliography](/pages/bibliography.md) for key references on the subject of female scribes.
 
+<br>
 
 {% comment %}
 Call for Papers box — ICMS 2026 (shows until the deadline)

@@ -15,13 +15,11 @@ Women’s contributions to manuscript culture are substantially undercounted. Na
   - modeling uncertainty explicitly rather than smoothing it away;
   - publishing a searchable dataset and visualizations that make patterns legible at scale.
 
-# Scope
+# Scope & curation
   - **Geography & period:** Christian Europe, pre-1600 (monastic and lay contexts).
   - **Materials:** Manuscripts and fragments; documentary items when they witness scribal labor.
   - **Inclusions:** Named female scribes; anonymous hands plausibly attributable to women; collaborative production where women’s roles can be argued from evidence.
   - **Exclusions:** Hebrew, Arabic, Syriac and other non-Western European languages for now (by design, due to language coverage and project scale); printed books except where directly tied to manuscript copying practices.
-
-# Data sources & curation
 
 Data are compiled from catalogues, archival descriptions, published scholarship, institutional records, and first-hand examination where possible. Each claim includes:
   -	citation(s) and, where feasible, page/folio references;
