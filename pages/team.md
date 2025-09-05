@@ -40,5 +40,6 @@ This project has been supported by fellowships, awards, and grants, including:
 
 
 <a href="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}">
-  <img src="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}" alt="Christine de Pizan at her desk"/>
+  <img src="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}" alt="Christine de Pizan at her desk" caption='St. Birgitta at the writing desk	Nuremberg, Stadtbibliothek, Cent. VI 43f, f. 326v'/>
 </a>
+
