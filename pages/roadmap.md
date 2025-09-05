@@ -11,7 +11,8 @@ Unknown Hands is under active development. This roadmap shares our current progr
 
 | Category              | Total found | % Catalogued | % in Heurist | Notes                          |
 |-----------------------|-------------|--------------|--------------|--------------------------------|
-| Scribal Units      | 1,537       | 65.2%        | 0%           | Data entry ongoing             |
+| Scribal Units      | 1,537       | 65.2%        | 100%           | Data entry ongoing             |
+| Production Units      | TBD       | TBD        | ~5%           | Data entry ongoing             |
 | Manuscripts           | 1,142       | 100%         | 100%         | Completed                      |
 | Monastic Institutions | 3,663       | ~50%         | 100%         | Ongoing cataloguing            |
 | Cultural Institutions | 177         | 100%         | 100%         | Completed                      |
@@ -23,6 +24,7 @@ Unknown Hands is under active development. This roadmap shares our current progr
 <script>
   const categories = [
     "Scribal Units",
+    "Production Units",
     "Manuscripts",
     "Monastic Institutions",
     "Cultural Institutions",
@@ -48,9 +50,9 @@ Unknown Hands is under active development. This roadmap shares our current progr
 
 # Milestones
 ## Fall 2025 (Now – Dec 2025)
-  - Continue data entry for Production Units, People, and Monastic Institutions.
-  - Finalize relationships in the Heurist database.
-  Complete planned research trips (Belgium, Netherlands, France).
+  - Continue data entry for Scribal Units, Production Units, People, and Monastic Institutions.  
+  - Finalize relationships in the Heurist database.  
+  - Complete planned research trips (Belgium, Netherlands, France).  
   - **Goal:** core dataset entry completed by December 2025.
 
 ## Spring 2026

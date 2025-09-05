@@ -12,17 +12,17 @@ banner:
 
 *Unknown Hands* is the first large-scale project dedicated to uncovering, cataloguing, and visualizing the work of female scribes in Christian Europe before 1600. For centuries, the contributions of women to manuscript culture remained invisible or underestimated. This project seeks to bring them into focus.
 
-Using archival research, codicology, paleography, and digital humanities methods, Unknown Hands compiles evidence of women’s involvement in book production: from explicitly named scribes to anonymous “hands” identified through palaeography and contextual study. The project introduces new models for studying manuscripts and pays particular attention to uncertainty, multilingualism, and collaborative practices.
+Using archival research, codicology, paleography, and digital humanities methods, *Unknown Hands* compiles evidence of women’s involvement in book production: from explicitly named scribes to anonymous “hands” identified through palaeography and contextual study. The project introduces new models for studying manuscripts and pays particular attention to gender, multilingualism, and collaborative practices.
 
 **Our goals are:**
   - To create the first open, searchable database of manuscripts copied by women.  
-  - To map and visualize women’s scribal activity across Europe.  
+  - To map and visualize women’s scribal activity across Western Europe.  
   - To provide resources for researchers, teachers, and the wider public.  
 
 **What’s available now**
-  -	A beta site with project overview and early exemples.
+  -	A beta site with project overview, roadmap, and initial examples.
   -	Initial summary visualizations and data (counts over time, maps, etc.).
-  - Key references
+  - Key references to study pre-modern female scribes.
 
 The project is in active development. Explore our [About](/pages/about.md) page to learn more about the methods, see our [Roadmap](/pages/roadmap.md) for upcoming milestones, or visit the [Bibliography](/pages/bibliography.md) for key references on the subject of female scribes.
 
