@@ -54,7 +54,7 @@ Data not included at this point includes:
   - Detailed information about textual variants.
 
 
-# Ethics & care
+# Ethics & Care
 Unknown Hands is directed by Estelle Guéville (Yale University) with the support of colleagues and friends in manuscript studies and digital humanities. See the [Team page](/team) for advisors, collaborators, and acknowledgments.
 
 We aim to represent people’s work accurately and respectfully. When records include sensitive details or contested attributions, we document the basis, allow for disagreement, and respond to takedown/correction requests. [Contact us](/contact) for concerns.
@@ -65,7 +65,7 @@ We aim to represent people’s work accurately and respectfully. When records in
 **Please cite as:**
 *Unknown Hands: Female Scribes in Pre-1600 Christian Europe*, ed. Estelle Guéville, v.1.1 (2025), URL.
 
-# Get involved
+# Get Involved
   - Share corrections or new evidence.
   -	Contribute records from your collection.
   -	Collaborate on case studies, teaching modules, or visualization ideas.
