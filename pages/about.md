@@ -45,14 +45,6 @@ Many women worked across Latin and vernaculars or multiple dialects. We record:
 
 This enables analysis of literacy, training, and audience beyond a single language label.
 
-
-# What’s available now
-  -	A beta site with project overview and early exempla.
-  -	A growing dataset of female scribes and their production.
-  -	Initial summary visualizations (counts over time, maps, etc.).
-
-Roadmap milestones and release notes are on the [Roadmap](/roadmap) page.
-
 # Ethics & care
 Unknown Hands is directed by Estelle Guéville (Yale University) with advice from colleagues in manuscript studies and digital humanities. See the [Team page](/team) for advisors, collaborators, and acknowledgments.
 
