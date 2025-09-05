@@ -1,10 +1,7 @@
 <nav id='wax-header' class='navbar navbar-expand-lg navbar-light'>
  <div class='wax-inline-container'>
-    <a class='navbar-brand d-flex align-items-center' href="{{ '/' | absolute_url }}" title='Home'>
-      {% if site.logo %}
-        <img src="{{ site.logo | absolute_url }}" alt="{{ site.title }}" class="site-logo mr-2">
-      {% endif %}
-      <span class="site-title">{{ site.title }}</span>
+    <a class='navbar-brand' href="{{ '/' | absolute_url }}" title='Home'>
+      {{ site.title | newline_to_br }}
     </a>
 
     <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#wax-header-navbar' aria-controls='wax-header-navbar' aria-expanded='false' aria-label='navigation'>
