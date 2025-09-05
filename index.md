@@ -6,7 +6,7 @@ banner:
   y: "25%"
   clickable: yes
   height: '500px'
-  caption: "BnFArsenalms3142Marie of France writing at her desk	BnF, Bibliotheque de l'Arsenal, Ms. 3142	f. 256r"
+  caption: "Marie of France writing at her desk.	BnF, Bibliothèque de l'Arsenal, Ms. 3142, f. 256r"
 ---
 
 # Welcome to *Unknown Hands*!
