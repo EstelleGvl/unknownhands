@@ -1,10 +1,14 @@
 ---
 layout: page
 show_title: false
+banner:
+  image: "pizan.jpg"
+  y: "50%"
+  clickable: yes
+  height: '500px'
+  caption: "Christine of Pizan writing at her desk. BnF, français 603, f. 81v"
 permalink: /contact/
 ---
-
-{% include parallax_image.html image='pizan.jpg' y='50%' clickable='true' link='/about/' caption='Christine of Pizan writing at her desk. BnF, français 603,	f. 81v' %}
 
 <div class="contact-card" role="form" aria-labelledby="contact-title">
   <h2 id="contact-title">Get in touch</h2>
