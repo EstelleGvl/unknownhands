@@ -108,84 +108,96 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Current Repositories
 
-<!-- Map container -->
 <div id="repoMap" style="height: 520px; border-radius: 8px; margin: 1.5rem 0;"></div>
 
-<!-- 1) Load Leaflet + PapaParse (if not already included site-wide) -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 
-<!-- 2) Map script (NO RAW tag so Liquid resolves the CSV path) -->
 <script>
 (() => {
   if (!window.L || !window.Papa) { console.warn("Leaflet or PapaParse missing"); return; }
 
   const CSV_URL = "{{ '/assets/data/repositories.csv' | relative_url }}";
+  console.log("[Map] CSV_URL:", CSV_URL);
 
-  // Init map
   const map = L.map('repoMap', { scrollWheelZoom: false }).setView([48.5, 10], 5);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Helpers
   const toNum = v => {
     if (v == null) return NaN;
     if (typeof v !== 'string') return Number(v);
     return Number(v.replace(/\s+/g,'').replace(',', '.'));
   };
 
-  Papa.parse(CSV_URL, {
-    download: true,
-    header: true,
-    skipEmptyLines: true,
-    dynamicTyping: false,
-    delimiter: "\t",                         // <-- TSV
-    transformHeader: h => (h || '').toString().replace(/^\uFEFF/, '').trim().toLowerCase(),
-    complete: ({ data, meta, errors }) => {
-      if (errors && errors.length) console.warn("[CSV] parse warnings:", errors.slice(0,3));
-      console.log("[CSV] fields:", meta.fields, "rows:", data?.length ?? 0);
+  // Fetch the CSV as text first (so we can log it if needed)
+  fetch(CSV_URL, { cache: "no-store" })
+    .then(r => {
+      console.log("[CSV] status:", r.status, r.statusText);
+      if (!r.ok) throw new Error("Failed to load CSV: " + r.status);
+      return r.text();
+    })
+    .then(txt => {
+      console.log("[CSV] preview:", txt.slice(0, 200).replace(/\n/g, "\\n"));
+      Papa.parse(txt, {
+        header: true,
+        skipEmptyLines: true,
+        dynamicTyping: false,
+        // Let Papa auto-detect delimiter (tabs/commas); the file has tabs, but this is safer.
+        delimiter: "",
+        transformHeader: h => (h || '').toString().replace(/^\uFEFF/, '').trim().toLowerCase(),
+        complete: ({ data, meta, errors }) => {
+          if (errors && errors.length) console.warn("[CSV] parse warnings:", errors.slice(0,3));
+          console.log("[CSV] fields:", meta.fields, "rows:", data?.length ?? 0);
 
-      const rows = Array.isArray(data) ? data : [];
-      const bounds = [];
-      let plotted = 0;
+          const rows = Array.isArray(data) ? data : [];
+          const bounds = [];
+          let plotted = 0;
 
-      rows.forEach((r) => {
-        const name = (r['institution'] ?? '').toString().trim();
-        const lat  = toNum(r['latitude']);
-        const lon  = toNum(r['longitude']);
-        const cnt  = toNum(r['count']);
+          rows.forEach(r => {
+            const name = (r['institution'] ?? '').toString().trim();
+            const lat  = toNum(r['latitude']);
+            const lon  = toNum(r['longitude']);
+            const cnt  = toNum(r['count']);
 
-        // Skip rows without coordinates (e.g., "Unknown")
-        if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+            if (!Number.isFinite(lat) || !Number.isFinite(lon)) return; // skip rows without coords
 
-        L.circleMarker([lat, lon], {
-          radius: Math.max(6, Math.sqrt(Number.isFinite(cnt) ? cnt : 1)),
-          color: '#222',
-          weight: 1,
-          fillColor: '#444',
-          fillOpacity: 0.75
-        })
-        .addTo(map)
-        .bindPopup(`<strong>${name || 'Unknown'}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`);
+            L.circleMarker([lat, lon], {
+              radius: Math.max(6, Math.sqrt(Number.isFinite(cnt) ? cnt : 1)),
+              color: '#222',
+              weight: 1,
+              fillColor: '#444',
+              fillOpacity: 0.75
+            })
+            .addTo(map)
+            .bindPopup(`<strong>${name || 'Unknown'}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`);
 
-        bounds.push([lat, lon]);
-        plotted++;
+            bounds.push([lat, lon]);
+            plotted++;
+          });
+
+          console.log("[Map] markers plotted:", plotted);
+          if (plotted) {
+            map.fitBounds(bounds, { padding: [30, 30] });
+          } else {
+            console.warn("CSV loaded but no valid points. Open this URL directly to verify:", CSV_URL);
+            // Optional: visual hint for users if nothing plots
+            const msg = L.control({ position: 'topright' });
+            msg.onAdd = function () {
+              const div = L.DomUtil.create('div', 'leaflet-bar');
+              div.style.padding = '8px';
+              div.style.background = 'white';
+              div.textContent = 'No points to display.';
+              return div;
+            };
+            msg.addTo(map);
+          }
+        }
       });
-
-      console.log("[Map] markers plotted:", plotted);
-      if (plotted) {
-        map.fitBounds(bounds, { padding: [30, 30] });
-      } else {
-        console.warn("CSV loaded but no valid points. Check:", CSV_URL);
-      }
-    },
-    error: err => console.error("[CSV] load error:", err)
-  });
+    })
+    .catch(err => console.error("[CSV] load error:", err));
 })();
 </script>
