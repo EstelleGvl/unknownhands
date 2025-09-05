@@ -9107,3 +9107,15 @@ a.text-dark:hover, a.text-dark:focus {
 .bib { list-style: none; padding-left: 0; }
 .bib-item { margin: 0 0 0.75rem 0; }
 .bib-item em { font-style: italic; }
+
+.full-bleed {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;            /* full viewport width */
+}
+
+#wax-content, .wax-inline-container { overflow: visible; } /* ensure no clipping */
+#repoMap { width: 100%; }  /* map fills the full-bleed container */

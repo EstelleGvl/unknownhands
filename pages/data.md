@@ -108,8 +108,9 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Current Repositories
 
-<!-- Full-width map -->
-<div id="repoMap" style="width:100%; height:520px; border-radius:8px; margin:1.5rem 0;"></div>
+<div class="full-bleed">
+  <div id="repoMap" style="height:520px; border-radius:8px; margin:1.5rem 0;"></div>
+</div>
 
 <!-- Leaflet + plugins -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -134,39 +135,39 @@ These interactive charts provide an overview of current findings from *Unknown H
   // Init map
   const map = L.map('repoMap', { scrollWheelZoom: false }).setView([48.5, 10], 5);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap contributors'
+    maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   // Cluster group
   const clusterGroup = L.markerClusterGroup();
   map.addLayer(clusterGroup);
 
-  // Helpers
+  // ---- Shared bins + colors (exact match for markers & legend) ----
+  const BINS   = [1, 5, 10, 20, 50]; // upper bounds of each bin (last bin is >50)
+  const COLORS = ['#FEB24C', '#FD8D3C', '#FC4E2A', '#E31A1C', '#BD0026', '#800026'];
+
+  const getBinIndex = (c) => {
+    if (!Number.isFinite(c)) return 0;
+    for (let i = 0; i < BINS.length; i++) {
+      if (c <= BINS[i]) return i;
+    }
+    return COLORS.length - 1; // > last bin
+  };
+  const getColor = (c) => COLORS[getBinIndex(c)];
+
+  // Helper
   const toNum = v => {
     if (v == null) return NaN;
     if (typeof v !== 'string') return Number(v);
     return Number(v.replace(/\s+/g,'').replace(',', '.'));
   };
 
-  // Color scale by count
-  const getColor = c => {
-    return c > 50 ? '#800026' :
-           c > 20 ? '#BD0026' :
-           c > 10 ? '#E31A1C' :
-           c > 5  ? '#FC4E2A' :
-           c > 1  ? '#FD8D3C' :
-                    '#FEB24C';
-  };
-
-  // Load CSV
+  // Load data
   fetch(CSV_URL, { cache: "no-store" })
     .then(r => r.text())
     .then(txt => {
       Papa.parse(txt, {
-        header: true,
-        skipEmptyLines: true,
-        delimiter: "",
+        header: true, skipEmptyLines: true, delimiter: "",
         transformHeader: h => (h || '').toString().replace(/^\uFEFF/, '').trim().toLowerCase(),
         complete: ({ data }) => {
           const bounds = [];
@@ -185,9 +186,10 @@ These interactive charts provide an overview of current findings from *Unknown H
               color: '#333',
               weight: 1,
               fillColor: getColor(cnt),
-              fillOpacity: 0.8
-            })
-            .bindPopup(`<strong>${name || 'Unknown'}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`);
+              fillOpacity: 0.85
+            }).bindPopup(
+              `<strong>${name || 'Unknown'}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`
+            );
 
             clusterGroup.addLayer(marker);
             bounds.push([lat, lon]);
@@ -199,35 +201,33 @@ These interactive charts provide an overview of current findings from *Unknown H
       });
     });
 
-  // Legend
+  // Legend (uses the same COLORS and BINS)
   const legend = L.control({ position: 'bottomright' });
-  legend.onAdd = function (map) {
+  legend.onAdd = function () {
     const div = L.DomUtil.create('div', 'info legend');
-    const grades = [0, 1, 5, 10, 20, 50];
-    let labels = [];
-    for (let i = 0; i < grades.length; i++) {
-      div.innerHTML +=
-        '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-    }
-    div.innerHTML = "<strong>Manuscripts</strong><br>" + div.innerHTML;
+    let html = "<strong>Manuscripts</strong><br>";
+    // Build ranges from bins
+    const ranges = [
+      `0–${BINS[0]}`,
+      ...BINS.slice(0, -1).map((b, i) => `${BINS[i] + 1}–${BINS[i + 1]}`),
+      `${BINS[BINS.length - 1] + 1}+`
+    ];
+    ranges.forEach((label, i) => {
+      html += `<i style="background:${COLORS[i]}"></i> ${label}<br>`;
+    });
+    div.innerHTML = html;
     return div;
   };
   legend.addTo(map);
 
-  // Simple search by institution name
-  const searchControl = L.Control.geocoder({
-    defaultMarkGeocode: false
-  })
-  .on('markgeocode', function(e) {
-    map.fitBounds(e.geocode.bbox);
-  })
-  .addTo(map);
+  // Optional: Geocoder search (kept as-is)
+  const searchControl = L.Control.geocoder({ defaultMarkGeocode: false })
+    .on('markgeocode', function(e) { map.fitBounds(e.geocode.bbox); })
+    .addTo(map);
 })();
 </script>
 
 <style>
-/* Make legend look nicer */
 .info.legend {
   background: white;
   padding: 8px;
@@ -236,10 +236,8 @@ These interactive charts provide an overview of current findings from *Unknown H
   border-radius: 4px;
 }
 .info.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin-right: 6px;
-  opacity: 0.8;
+  width: 18px; height: 18px;
+  float: left; margin-right: 6px;
+  opacity: 0.85;
 }
 </style>
