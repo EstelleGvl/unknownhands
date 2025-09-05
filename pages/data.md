@@ -108,12 +108,20 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 ## Current Repositories
 
+<!-- Map container -->
 <div id="repoMap" style="height: 520px; border-radius: 8px; margin: 1.5rem 0;"></div>
 
-{% raw %}
+<!-- 1) Load Leaflet + PapaParse (if not already included site-wide) -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- 2) Map script (NO {% raw %} so Liquid resolves the CSV path) -->
 <script>
 (() => {
-  // Make sure Leaflet & Papa are loaded
   if (!window.L || !window.Papa) { console.warn("Leaflet or PapaParse missing"); return; }
 
   const CSV_URL = "{{ '/assets/data/repositories.csv' | relative_url }}";
@@ -121,7 +129,8 @@ These interactive charts provide an overview of current findings from *Unknown H
   // Init map
   const map = L.map('repoMap', { scrollWheelZoom: false }).setView([48.5, 10], 5);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
   // Helpers
@@ -136,6 +145,7 @@ These interactive charts provide an overview of current findings from *Unknown H
     header: true,
     skipEmptyLines: true,
     dynamicTyping: false,
+    delimiter: "\t",                         // <-- TSV!
     transformHeader: h => (h || '').toString().replace(/^\uFEFF/, '').trim().toLowerCase(),
     complete: ({ data, meta, errors }) => {
       if (errors && errors.length) console.warn("[CSV] parse warnings:", errors.slice(0,3));
@@ -145,19 +155,21 @@ These interactive charts provide an overview of current findings from *Unknown H
       const bounds = [];
       let plotted = 0;
 
-      rows.forEach((r, i) => {
-        // headers per your sample
+      rows.forEach((r) => {
         const name = (r['institution'] ?? '').toString().trim();
         const lat  = toNum(r['latitude']);
         const lon  = toNum(r['longitude']);
         const cnt  = toNum(r['count']);
 
-        // Skip rows without coordinates
+        // Skip rows without coordinates (e.g., "Unknown")
         if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
 
         L.circleMarker([lat, lon], {
           radius: Math.max(6, Math.sqrt(Number.isFinite(cnt) ? cnt : 1)),
-          color: '#222', weight: 1, fillColor: '#444', fillOpacity: 0.75
+          color: '#222',
+          weight: 1,
+          fillColor: '#444',
+          fillOpacity: 0.75
         })
         .addTo(map)
         .bindPopup(`<strong>${name || 'Unknown'}</strong><br>Manuscripts: ${Number.isFinite(cnt) ? cnt : 0}`);
@@ -170,11 +182,10 @@ These interactive charts provide an overview of current findings from *Unknown H
       if (plotted) {
         map.fitBounds(bounds, { padding: [30, 30] });
       } else {
-        console.warn("CSV loaded but no valid points. Open the CSV URL in a new tab to verify:", CSV_URL);
+        console.warn("CSV loaded but no valid points. Check:", CSV_URL);
       }
     },
     error: err => console.error("[CSV] load error:", err)
   });
 })();
 </script>
-{% endraw %}
