@@ -119,7 +119,7 @@ These interactive charts provide an overview of current findings from *Unknown H
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 
-<!-- 2) Map script (NO {% raw %} so Liquid resolves the CSV path) -->
+<!-- 2) Map script (NO RAW tag so Liquid resolves the CSV path) -->
 <script>
 (() => {
   if (!window.L || !window.Papa) { console.warn("Leaflet or PapaParse missing"); return; }
@@ -145,7 +145,7 @@ These interactive charts provide an overview of current findings from *Unknown H
     header: true,
     skipEmptyLines: true,
     dynamicTyping: false,
-    delimiter: "\t",                         // <-- TSV!
+    delimiter: "\t",                         // <-- TSV
     transformHeader: h => (h || '').toString().replace(/^\uFEFF/, '').trim().toLowerCase(),
     complete: ({ data, meta, errors }) => {
       if (errors && errors.length) console.warn("[CSV] parse warnings:", errors.slice(0,3));
