@@ -2,27 +2,10 @@
   <div class='wax-inline-container'>
     <div class='row align-items-center'>
 
-      <!-- Site title / description / copyright + logos -->
+      <!-- Site title / description / copyright -->
       <div class='col-12 col-md-3'>
         <p class='footer-title'>{{ site.title }}</p>
         <p class='footer-description'>{{ site.description }}</p>
-
-        {% if site.footer.logos %}
-          <div class="footer-logos">
-            {% for logo in site.footer.logos %}
-              {%- assign ext = logo.img | split: '.' | last | downcase -%}
-              {%- if ext == 'webp' and logo.fallback -%}
-                <picture>
-                  <source srcset="{{ logo.img | absolute_url }}" type="image/webp">
-                  <img src="{{ logo.fallback | absolute_url }}" alt="{{ logo.alt | default: site.title }}" class="footer-logo">
-                </picture>
-              {%- else -%}
-                <img src="{{ logo.img | absolute_url }}" alt="{{ logo.alt | default: site.title }}" class="footer-logo">
-              {%- endif -%}
-            {% endfor %}
-          </div>
-        {% endif %}
-
         <p class='footer-copyright'>
           {% if site.copyright and site.copyright.size > 0 %}
             &copy; {{ site.copyright }}<br>
@@ -30,7 +13,7 @@
         </p>
       </div>
 
-      <!-- Links -->
+      <!-- Links + logo -->
       <div class='col-12 col-md-3'>
         <p class='footer-title'>Links</p>
         <p class='footer-links'>
@@ -38,6 +21,16 @@
             <a href='{{ item.link | absolute_url }}'>{{ item.label }}</a>{% unless forloop.last %} / {% endunless %}
           {% endfor %}
         </p>
+
+        {% if site.footer.logos %}
+          <div class="footer-logos">
+            {% for logo in site.footer.logos %}
+              <img src="{{ logo.img | absolute_url }}" 
+                   alt="{{ logo.alt | default: site.title }}" 
+                   class="footer-logo">
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
 
       <!-- Citation (wider) -->
