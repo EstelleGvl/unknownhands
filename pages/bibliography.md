@@ -16,7 +16,7 @@ Findings from Unknown Hands have been presented at international conferences and
   - Guéville, Estelle.“Unknown Hands: Medieval and Early Modern Manuscripts and their Female Scribes.” Yale Medieval Lunch Colloquium, Yale University. 24 October 2023.
 
 
-# Scholarship about Female Scribes and Women's Literacy
+# Select Bibliography - Female Scribes and Women's Literacy
 
 <ul class="bib">
 {% for ref in site.data.bibliography %}
