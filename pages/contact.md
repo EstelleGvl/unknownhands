@@ -4,7 +4,7 @@ show_title: false
 permalink: /contact/
 ---
 
-{% include parallax_image.html collection='unknownhands' pid='obj1' y='50%' clickable='true' %}
+{% include parallax_image.html image='pizan.jpg' y='50%' clickable='true' link='/about/' caption='Christine of Pizan writing at her desk' %}
 
 <div class="contact-card" role="form" aria-labelledby="contact-title">
   <h2 id="contact-title">Get in touch</h2>

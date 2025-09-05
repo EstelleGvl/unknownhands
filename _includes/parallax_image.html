@@ -1,8 +1,7 @@
 {% if include.image %}
-  {% assign image = include.image %}
+  {% assign image = '/img/' | append: include.image %}
 {% else %}
-  {% assign item  = site[include.collection] | where: 'pid', include.pid | first %}
-  {% assign image = item.full %}
+  {% assign image = '/img/default.jpg' %}
 {% endif %}
 
 {%- capture style -%}
@@ -17,18 +16,18 @@
 {%- endcapture -%}
 
 {%- capture onclick -%}
-{% if include.clickable %}
-  onclick="window.location='{{ item.url | absolute_url }}'; return false;"
+{% if include.clickable and include.link %}
+  onclick="window.location='{{ include.link | absolute_url }}'; return false;"
 {% endif %}
 {%- endcapture -%}
 
 <div class='wax-parallax full-width {% if page.banner %}top-banner{% else %}inline-parallax{% endif %}'>
   <div class='parallax-image' style="{{ style | strip }}" {{ onclick | strip }}></div>
 
-  {% if item.label %}
+  {% if include.caption %}
   <div class='parallax-caption'>
     <div class='wax-inline-container'>
-      Above: <a href='{{ item.url | absolute_url }}'>{{ item.label }}</a>
+      Above: {{ include.caption }}
     </div>
   </div>
   {% endif %}

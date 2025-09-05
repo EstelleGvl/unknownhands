@@ -1,29 +1,31 @@
-FROM ruby:2.7.2
+FROM ruby:2.7.8-bullseye
 
-MAINTAINER Andrew Woods <awoods01@gmail.com>
+LABEL maintainer="Estelle <you@example.com>"
 
-# Install apt dependencies
-RUN apt-get update -y
-RUN apt-get install -y --no-install-recommends \
-                       build-essential \
-                       software-properties-common \
-                       git \
-                       ghostscript \
-                       imagemagick \
-                       libvips \
-                       locales \
+# ▶ Force Ruby platform so Bundler compiles native gems (avoids musl prebuilds)
+ENV BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_FORCE_RUBY_PLATFORM=1
+
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends \
+      build-essential \
+      git \
+      curl \
+      ca-certificates \
+      nodejs \
+      npm \
+      pkg-config \
+      libffi-dev \        # ▶ needed to compile the ffi gem
     && rm -rf /var/lib/apt/lists/*
 
-# Add imagemagick PDF fix
-RUN sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+WORKDIR /app
+COPY Gemfile Gemfile.lock *.gemspec ./
 
-# Set up locales
-RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
+# Match the lockfile’s Bundler version
+RUN gem install bundler:1.17.2
 
-RUN mkdir /wax
-COPY Gemfile* *.gemspec /wax/
-WORKDIR /wax
-RUN bundle
+# ▶ Use the pinned bundler
+RUN bundle _1.17.2_ install --jobs 4 --retry 3
 
-EXPOSE 4000
+# Copy the rest
+COPY . .
