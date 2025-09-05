@@ -2,7 +2,7 @@
 layout: page
 show_title: false
 banner:
-  image: "BnF, Bibliotheque de l'Arsenal, Ms. 3142.jpg"
+  image: "BnFArsenalms3142.jpg"
   y: "25%"
   clickable: yes
   height: '500px'
