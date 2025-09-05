@@ -24,7 +24,7 @@ Over the course of development, *Unknown Hands* has been shaped by the input of 
   - [Dr. Melissa Moreton](https://www.ias.edu/scholars/melissa-moreton) who provided material about the Italian production.
   - [Dr. David Joseph Wrisley](https://nyuad.nyu.edu/en/academics/divisions/arts-and-humanities/faculty/david-wrisley.html) and [Dr. Lauren Tilton](https://rhetoric.richmond.edu/faculty/ltilton/) who advised on the DH parts of the project.
 
-We are grateful for the informal collaborations, conversations, and shared expertise that continue to enrich the project.
+We are also grateful for all the other informal collaborations, conversations, and shared expertise that continue to enrich the project on a daily basis.
 
 
 # Support and Recognition
