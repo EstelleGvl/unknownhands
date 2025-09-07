@@ -63,7 +63,7 @@ We aim to represent people’s work accurately and respectfully. When records in
 - Data: CC BY (or CC0 for selected fields) - see the [Data](/data) page for details.
 
 **Please cite as:**
-*Unknown Hands: Female Scribes in Pre-1600 Christian Europe*, ed. Estelle Guéville, v.1.1 (2025), URL.
+*Unknown Hands: Female Scribes in Pre-Modern Europe*, ed. Estelle Guéville, v.1.1 (2025), https://estellegueville.com/unknownhands.
 
 # Get Involved
   - Share corrections or new evidence.
