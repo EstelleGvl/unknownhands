@@ -24,7 +24,6 @@ Unknown Hands is under active development. This roadmap shares our current progr
 <script>
   const categories = [
     "Scribal Units",
-    "Production Units",
     "Manuscripts",
     "Monastic Institutions",
     "Cultural Institutions",
