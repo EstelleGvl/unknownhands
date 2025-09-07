@@ -110,10 +110,14 @@ menu:
     link: '/data/'
   - label: 'Roadmap'
     link: '/roadmap/'
-  - label: 'Bibliography'
+  - label: 'References'
     link: '/bibliography/'
   - label: 'Contact'
-    link: '/contact/'
+    sub: 
+      - label: "Participate"
+        link: "/participate/"
+      - label: "Contact Us"
+        link: '/contact/'
 #  - label: 'Browse'
 #    link: '/collection/'
 #  - label: 'Search'

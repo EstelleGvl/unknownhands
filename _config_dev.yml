@@ -1,0 +1,6 @@
+# _config_dev.yml
+url: "http://127.0.0.1:4000"
+baseurl: ""      # keep empty for local
+sass:
+  sourcemap: always
+  style: expanded

@@ -9119,3 +9119,51 @@ a.text-dark:hover, a.text-dark:focus {
 
 #wax-content, .wax-inline-container { overflow: visible; } /* ensure no clipping */
 #repoMap { width: 100%; }  /* map fills the full-bleed container */
+
+/* ===== UH header/nav visibility fix ===== */
+
+/* Make header a proper stacking context above the banner */
+header.site-header,
+header[role="banner"],
+.masthead {
+  position: relative;
+  z-index: 100;          /* sits over the banner image */
+  background: #fff;      /* ensure second line stays readable */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;       /* allow a second line when tight */
+  height: auto !important;   /* no fixed heights */
+  overflow: visible !important;
+}
+
+/* Brand: don’t let it expand */
+.site-title, .site-logo, .brand { flex: 0 0 auto; margin: 0; }
+
+/* Nav container can shrink and wrap; never clip children */
+.site-nav, .primary-nav, .nav {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: visible !important;
+}
+
+/* The list of links may wrap to a new line */
+.site-nav ul, .primary-nav ul, .nav ul {
+  display: flex;
+  flex-wrap: wrap;            /* <— key */
+  gap: clamp(12px, 2vw, 28px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: normal !important; /* undo any nowrap */
+}
+
+/* Ensure dropdowns aren’t clipping */
+.site-nav li, .primary-nav li, .nav li { position: relative; overflow: visible; }
+.site-nav .dropdown, .primary-nav .dropdown, .nav .dropdown { z-index: 1000; }
+
+/* If header is fixed in your theme, give the page some top padding so the second line isn’t hidden */
+body.has-fixed-header { padding-top: 80px; }

@@ -80,3 +80,24 @@ Paste this block into pages/index.md (or your home layout).
 </aside>
 {% endif %}
 
+{% comment %}
+Join the Network box — always visible
+{% endcomment %}
+<aside class="cfp-box" role="note" aria-labelledby="join-title" style="
+  border: 2px solid #222; border-radius: 12px; padding: 1rem 1.25rem;
+  background:#fafafa; margin: 2rem 0; box-shadow: 0 1px 3px rgba(0,0,0,.06);">
+  <h2 id="join-title" style="margin:0 0 .25rem 0;">🤝 Join the <em>Unknown Hands</em> Network</h2>
+  <p style="margin:.5rem 0 1rem 0;">
+    Help shape the project’s next phases: receive updates, suggest corrections, join working groups,
+    or propose collaborations. Open to scholars, students, librarians, curators, and interested partners.
+  </p>
+  <p style="margin:0;">
+    <a href="{{ '/participate/' | relative_url }}"
+       style="display:inline-block; padding:.6rem 1rem; border:1px solid #222; border-radius:8px;
+              text-decoration:none; font-weight:600;">
+      Sign up to participate
+    </a>
+    &nbsp;&nbsp;
+    <a href="{{ '/contact/' | relative_url }}" style="text-decoration:underline;">Questions? Contact us</a>
+  </p>
+</aside>

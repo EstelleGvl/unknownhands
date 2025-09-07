@@ -6,7 +6,8 @@ permalink: /about/
  
 Unknown Hands is a research project that identifies, documents, and visualizes the work of female scribes in Christian Europe before 1600. It brings together codicology, paleography, and digital humanities to collate evidence that has long been scattered or overlooked. The result is a growing, open resource for researchers, librarians, and the wider public.
 
-<img src="{{ '/img/Laon,BM,Ms.423,f.79v.png' | relative_url }}" alt="Colophon of Dulcia">
+<img src="{{ '/img/Laon,BM,Ms.423,f.79v.png' | relative_url }}" alt="Colophon of Dulcia" caption="Laon,BM,Ms.423,f.79v">
+
 
 # Why this project?
 
