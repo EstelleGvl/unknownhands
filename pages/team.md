@@ -32,8 +32,8 @@ This project has been supported by fellowships, awards, and grants, including:
   - [MacMillan International Dissertation Research Fellowship](https://macmillan.yale.edu/), Yale University (2025)
   - [Bourse Mark Pigott – Humanités Numériques](https://www.bnf.fr/fr/appel-chercheurs-associes-2025-2026), Bibliothèque nationale de France (2025)
   - [International Center of Medieval Art (ICMA) Student Travel Grant](https://www.medievalart.org/) (2025)
-  - Latin American and Iberian Studies Summer Travel Grant (2025)
-  - Max Kade Summer Study & Travel Award (2025)
+  - Latin American and Iberian Studies Summer Travel Grant, Yale University (2025)
+  - Max Kade Summer Study & Travel Award, Yale University (2025)
   - [Sterling Prize Fellowship](https://gsas.yale.edu/funding-aid/internal-fellowships/sterling-prize-fellowship), Yale University (2022–24)
   - MacMillan Center Pre-Dissertation Research Fellowship, Yale University (2022)
 
