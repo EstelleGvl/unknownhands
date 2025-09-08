@@ -60,8 +60,8 @@ Unknown Hands is directed by Estelle Guéville (Yale University) with the suppor
 
 We aim to represent people’s work accurately and respectfully. When records include sensitive details or contested attributions, we document the basis, allow for disagreement, and respond to takedown/correction requests. [Contact us](/contact) for concerns.
 
-- Site content: CC BY 4.0 (please attribute Unknown Hands and author: Estele Guéville).
-- Data: CC BY (or CC0 for selected fields) - see the [Data](/data) page for details.
+- Site content: [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) (please attribute Unknown Hands and author: Estelle Guéville).
+- Data: [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 **Please cite as:**
 *Unknown Hands: Female Scribes in Pre-Modern Europe*, ed. Estelle Guéville, v.1.1 (2025), https://estellegueville.com/unknownhands.
