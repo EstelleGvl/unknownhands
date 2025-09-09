@@ -1,6 +1,12 @@
 ---
 layout: page
 show_title: false
+banner:
+  image: "pizan.jpg"
+  y: "50%"
+  clickable: yes
+  height: '500px'
+  caption: "Christine of Pizan writing at her desk. BnF, français 603, f. 81v"
 permalink: /bibliography/
 ---
 
