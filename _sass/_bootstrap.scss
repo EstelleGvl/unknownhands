@@ -9167,3 +9167,46 @@ header[role="banner"],
 
 /* If header is fixed in your theme, give the page some top padding so the second line isn’t hidden */
 body.has-fixed-header { padding-top: 80px; }
+
+
+/* Logo wall */
+.logo-wall {
+  margin: 2rem 0 3rem;
+}
+.logo-wall h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px 26px;
+  align-items: center;
+}
+.logo-grid a {
+  display: block;
+  padding: 10px 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.logo-grid a:hover,
+.logo-grid a:focus {
+  transform: translateY(-2px);
+  border-color: #ddd;
+  box-shadow: 0 4px 18px rgba(0,0,0,.06);
+}
+.logo-grid img {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 52px;       /* normalize heights */
+  object-fit: contain;
+  height: auto;
+}
+.logo-note {
+  margin-top: .75rem;
+  font-size: .9rem;
+  color: #666;
+}

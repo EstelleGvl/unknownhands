@@ -30,7 +30,16 @@ Over the course of development, *Unknown Hands* has been shaped by the input of 
   - [Dr. Melissa Moreton](https://www.ias.edu/scholars/melissa-moreton) who provided material about the Italian production.
   - [Dr. David Joseph Wrisley](https://nyuad.nyu.edu/en/academics/divisions/arts-and-humanities/faculty/david-wrisley.html) and [Dr. Lauren Tilton](https://rhetoric.richmond.edu/faculty/ltilton/) who advised on the DH parts of the project.
 
-We are also grateful for all the other informal collaborations, conversations, and shared expertise that continue to enrich the project on a daily basis.
+We are also grateful for all the other informal collaborations, conversations, and shared expertise that continue to enrich the project on a daily basis.  
+
+
+<a href="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}" style="display:block; text-align:center;">
+  <img src="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}"
+       alt="Christine de Pizan at her desk"
+       style="max-width:300px; height:auto; margin:0 auto; display:block;" 
+       caption='St. Birgitta at the writing desk, Nuremberg, Stadtbibliothek, Cent. VI 43f, f. 326v'/>   
+</a>
+  
 
 
 # Support and Recognition
@@ -44,11 +53,45 @@ This project has been supported by fellowships, awards, and grants, including:
   - MacMillan Center Pre-Dissertation Research Fellowship, Yale University (2022)
 
 
-<a href="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}" style="display:block; text-align:center;">
-  <img src="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}"
-       alt="Christine de Pizan at her desk"
-       style="max-width:300px; height:auto; margin:0 auto; display:block;" 
-       caption='St. Birgitta at the writing desk, Nuremberg, Stadtbibliothek, Cent. VI 43f, f. 326v'/>   
-</a>
 
+<div class="logo-wall" aria-labelledby="affiliations">
+  <h2 id="affiliations">Affiliations</h2>
+  <div class="logo-grid">
+    <a href="https://www.yale.edu/" target="_blank" rel="noopener">
+      <img src="/img/logos/yale.png" alt="Logo of Yale University" loading="lazy">
+    </a>
+    <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
+      <img src="/assets/img/logos/bnf.png" alt="Logo of Bibliothèque nationale de France" loading="lazy">
+    </a>
+    <a href="https://lamop.pantheonsorbonne.fr/" target="_blank" rel="noopener">
+      <img src="/assets/img/logos/lamop.png" alt="Logo of LAMOP" loading="lazy">
+    </a>
+  </div>
+</div>
 
+<div class="logo-wall" aria-labelledby="funding">
+  <h2 id="funding">Funding & Fellowships</h2>
+  <div class="logo-grid">
+      <a href="https://medieval.yale.edu/" target="_blank" rel="noopener">
+      <img src="/assets/img/logos/medievalstudies.png" alt="Logo of Yale Medieval Studies" loading="lazy">
+    </a>
+    <a href="https://macmillan.yale.edu/" target="_blank" rel="noopener">
+      <img src="/assets/img/logos/macmillan.png" alt="Logo of Yale MacMillan Center" loading="lazy">
+    </a>
+    <a href="https://www.medievalart.org/" target="_blank" rel="noopener">
+      <img src="/assets/img/logos/icma.webp" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy">
+    </a>
+    <!-- Add more funders as needed -->
+  </div>
+</div>
+
+<div class="logo-wall" aria-labelledby="partners">
+  <h2 id="partners">Data & Project Partners</h2>
+  <div class="logo-grid">
+    <a href="https://hmml.org/" target="_blank" rel="noopener">
+      <img src="/assets/img/logos/hmml.svg" alt="Logo of HMML" loading="lazy">
+    </a>
+    <!-- Example partner logos -->
+  </div>
+  <p class="logo-note">Logos are trademarks of their respective owners and are used here for identification and acknowledgment only.</p>
+</div>
