@@ -61,10 +61,10 @@ This project has been supported by fellowships, awards, and grants, including:
       <img src="/img/logos/yale.png" alt="Logo of Yale University" loading="lazy">
     </a>
     <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
-      <img src="/assets/img/logos/bnf.png" alt="Logo of Bibliothèque nationale de France" loading="lazy">
+      <img src="/img/logos/bnf.png" alt="Logo of Bibliothèque nationale de France" loading="lazy">
     </a>
     <a href="https://lamop.pantheonsorbonne.fr/" target="_blank" rel="noopener">
-      <img src="/assets/img/logos/lamop.png" alt="Logo of LAMOP" loading="lazy">
+      <img src="/img/logos/lamop.png" alt="Logo of LAMOP" loading="lazy">
     </a>
   </div>
 </div>
@@ -73,13 +73,13 @@ This project has been supported by fellowships, awards, and grants, including:
   <h2 id="funding">Funding & Fellowships</h2>
   <div class="logo-grid">
       <a href="https://medieval.yale.edu/" target="_blank" rel="noopener">
-      <img src="/assets/img/logos/medievalstudies.png" alt="Logo of Yale Medieval Studies" loading="lazy">
+      <img src="/img/logos/medievalstudies.png" alt="Logo of Yale Medieval Studies" loading="lazy">
     </a>
     <a href="https://macmillan.yale.edu/" target="_blank" rel="noopener">
-      <img src="/assets/img/logos/macmillan.png" alt="Logo of Yale MacMillan Center" loading="lazy">
+      <img src="/img/logos/macmillan.png" alt="Logo of Yale MacMillan Center" loading="lazy">
     </a>
     <a href="https://www.medievalart.org/" target="_blank" rel="noopener">
-      <img src="/assets/img/logos/icma.webp" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy">
+      <img src="/img/logos/icma.webp" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy">
     </a>
     <!-- Add more funders as needed -->
   </div>
@@ -89,7 +89,7 @@ This project has been supported by fellowships, awards, and grants, including:
   <h2 id="partners">Data & Project Partners</h2>
   <div class="logo-grid">
     <a href="https://hmml.org/" target="_blank" rel="noopener">
-      <img src="/assets/img/logos/hmml.svg" alt="Logo of HMML" loading="lazy">
+      <img src="/img/logos/hmml.png" alt="Logo of HMML" loading="lazy">
     </a>
     <!-- Example partner logos -->
   </div>
