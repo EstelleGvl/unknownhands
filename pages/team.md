@@ -83,6 +83,7 @@ This project has been supported by fellowships, awards, and grants, including:
     </a>
     <a href="https://www.medievalart.org/" target="_blank" rel="noopener">
       <img src="{{ '/img/logos/icma.webp' | relative_url }}" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy" width="220" height="80">
+    </a>
     <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
       <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
     </a>
