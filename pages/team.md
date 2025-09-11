@@ -58,13 +58,13 @@ This project has been supported by fellowships, awards, and grants, including:
   <h2 id="affiliations">Affiliations</h2>
   <div class="logo-grid">
     <a href="https://www.yale.edu/" target="_blank" rel="noopener">
-      <img src="/img/logos/yale.png" alt="Logo of Yale University" loading="lazy">
+      <img src="{{ '/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
     </a>
     <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
-      <img src="/img/logos/bnf.png" alt="Logo of Bibliothèque nationale de France" loading="lazy">
+      <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
     </a>
     <a href="https://lamop.pantheonsorbonne.fr/" target="_blank" rel="noopener">
-      <img src="/img/logos/lamop.png" alt="Logo of LAMOP" loading="lazy">
+      <img src="{{ '/img/logos/lamop.png' | relative_url }}" alt="Logo of LAMOP" loading="lazy" width="220" height="80">
     </a>
   </div>
 </div>
@@ -72,16 +72,15 @@ This project has been supported by fellowships, awards, and grants, including:
 <div class="logo-wall" aria-labelledby="funding">
   <h2 id="funding">Funding & Fellowships</h2>
   <div class="logo-grid">
-      <a href="https://medieval.yale.edu/" target="_blank" rel="noopener">
-      <img src="/img/logos/medievalstudies.png" alt="Logo of Yale Medieval Studies" loading="lazy">
+    <a href="https://medieval.yale.edu/" target="_blank" rel="noopener">
+      <img src="{{ '/img/logos/medievalstudies.png' | relative_url }}" alt="Logo of Yale Medieval Studies" loading="lazy" width="220" height="80">
     </a>
     <a href="https://macmillan.yale.edu/" target="_blank" rel="noopener">
-      <img src="/img/logos/macmillan.png" alt="Logo of Yale MacMillan Center" loading="lazy">
+      <img src="{{ '/img/logos/macmillan.png' | relative_url }}" alt="Logo of the Yale MacMillan Center" loading="lazy" width="220" height="80">
     </a>
     <a href="https://www.medievalart.org/" target="_blank" rel="noopener">
-      <img src="/img/logos/icma.webp" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy">
+      <img src="{{ '/img/logos/icma.webp' | relative_url }}" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy" width="220" height="80">
     </a>
-    <!-- Add more funders as needed -->
   </div>
 </div>
 
@@ -89,9 +88,8 @@ This project has been supported by fellowships, awards, and grants, including:
   <h2 id="partners">Data & Project Partners</h2>
   <div class="logo-grid">
     <a href="https://hmml.org/" target="_blank" rel="noopener">
-      <img src="/img/logos/hmml.png" alt="Logo of HMML" loading="lazy">
+      <img src="{{ '/img/logos/hmml.png' | relative_url }}" alt="Logo of HMML" loading="lazy" width="220" height="80">
     </a>
-    <!-- Example partner logos -->
   </div>
   <p class="logo-note">Logos are trademarks of their respective owners and are used here for identification and acknowledgment only.</p>
 </div>
