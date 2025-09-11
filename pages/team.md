@@ -102,5 +102,7 @@ This project has been supported by fellowships, awards, and grants, including:
       <img src="{{ '/img/logos/hmml.png' | relative_url }}" alt="Logo of HMML" loading="lazy" width="220" height="80">
     </a>
   </div>
-  <p class="logo-note">Logos are trademarks of their respective owners and are used here for identification and acknowledgment only.</p>
 </div>
+
+
+<p class="logo-note">Logos are trademarks of their respective owners and are used here for identification and acknowledgment only.</p>
