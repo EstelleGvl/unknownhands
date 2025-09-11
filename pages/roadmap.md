@@ -75,10 +75,10 @@ Unknown Hands is under active development. This roadmap shares our current progr
 
 
 ## Future Developments
-  - Additional research on Western Europe and integration of manuscripts whose attribution to a female scribe is considered “low probability.”
-	- Expansion of linguistic and cultural coverage: integration of additional European vernaculars as well as extra-European traditions (Arabic, Hebrew, Syriac, Coptic, etc.).
-	- Development of the international scholarly network to foster collaboration, data sharing, and cross-corpus comparison.
-	- Integration of new research axes: illuminations and artistic description, stylistic and iconographic analysis, materials and techniques.
-  - Increased interoperability: implementing APIs or standardized exports (IIIF, TEI, Linked Open Data) to connect Unknown Hands with other international databases.
-	- Institutional partnerships: establishing agreements with libraries and museums to enrich the database through official deposits or collaborative cataloging.
+  - Additional research on Western Europe and integration of manuscripts whose attribution to a female scribe is considered “low probability.”  
+  - Expansion of linguistic and cultural coverage: integration of additional European vernaculars as well as extra-European traditions (Arabic, Hebrew, Syriac, Coptic, etc.).  
+  - Development of the international scholarly network to foster collaboration, data sharing, and cross-corpus comparison.  
+  - Integration of new research axes: illuminations and artistic description, stylistic and iconographic analysis, materials and techniques.  
+  - Increased interoperability: implementing APIs or standardized exports (IIIF, TEI, Linked Open Data) to connect Unknown Hands with other international databases.  
+  - Institutional partnerships: establishing agreements with libraries and museums to enrich the database through official deposits or collaborative cataloging.  
   - Advanced quantitative analysis: developing statistical and AI models to estimate unidentified scribes or to compare networks of female and male production.
