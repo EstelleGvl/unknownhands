@@ -60,16 +60,17 @@ Unknown Hands is under active development. This roadmap shares our current progr
   - Complete planned research trips (Belgium, Netherlands, France).  
   - **Goal:** core dataset entry completed by December 2025.
 
-## Spring 2026
+## First Trimester 2026
   - Release first public dataset snapshot (CSV/JSON exports).
   - Launch a beta browse page with sample records.
   - Add visualizations
 
-## Fall 2026
+## Second Trimester 2026
   - Integrate IIIF manifests for selected manuscripts (via Mirador).
   - Release full searchable interface linked to the Heurist database.
   - Publish advanced visualizations (maps, timelines, network graphs).
+  - Organize workshop/panels on digital approaches to female scribes.
 
-## 2027
+## Fall 2026
   - Develop teaching resources (assignments, case studies).
   - Organize workshop/panels on digital approaches to female scribes.
