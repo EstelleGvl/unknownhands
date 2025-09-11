@@ -72,6 +72,9 @@ This project has been supported by fellowships, awards, and grants, including:
 <div class="logo-wall" aria-labelledby="funding">
   <h2 id="funding">Funding & Fellowships</h2>
   <div class="logo-grid">
+    <a href="https://www.yale.edu/" target="_blank" rel="noopener">
+      <img src="{{ '/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
+    </a>
     <a href="https://medieval.yale.edu/" target="_blank" rel="noopener">
       <img src="{{ '/img/logos/medievalstudies.png' | relative_url }}" alt="Logo of Yale Medieval Studies" loading="lazy" width="220" height="80">
     </a>
@@ -80,6 +83,11 @@ This project has been supported by fellowships, awards, and grants, including:
     </a>
     <a href="https://www.medievalart.org/" target="_blank" rel="noopener">
       <img src="{{ '/img/logos/icma.webp' | relative_url }}" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy" width="220" height="80">
+      <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
+      <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
+      <a href="https://german.yale.edu/academics/undergraduate-program/language-program/study-abroad/external-summer-programs" target="_blank" rel="noopener">
+      <img src="{{ '/img/logos/maxkade.webp' | relative_url }}" alt="Logo of Max Kade foundation" loading="lazy" width="220" height="80">
+    </a>
     </a>
   </div>
 </div>
