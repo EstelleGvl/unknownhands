@@ -102,6 +102,9 @@ This project has been supported by fellowships, awards, and grants, including:
     <a href="https://hmml.org/" target="_blank" rel="noopener">
       <img src="{{ '/img/logos/hmml.png' | relative_url }}" alt="Logo of HMML" loading="lazy" width="220" height="80">
     </a>
+    <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
+      <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
+    </a>
   </div>
 </div>
 
