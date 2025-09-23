@@ -28,6 +28,7 @@ Over the course of development, *Unknown Hands* has been shaped by the input of 
   - [Dr. Mercedes Pérez Vidal](https://uam.academia.edu/MercedesPerezVidal), who helped enrich the Spanish production.
   - [Dr. Paula Cardoso](https://novaresearch.unl.pt/en/persons/paula-cardoso), who helped enrich the Portuguese production she studied in her PhD dissertation entitled *Art, Reform and Female Agency in the Portuguese Dominican Nunneries: Nuns as Producers and Patrons of Illuminated Manuscripts (c. 1460-1560)*
   - [Dr. Melissa Moreton](https://www.ias.edu/scholars/melissa-moreton) who provided material about the Italian production.
+  - [Montserrat Cabré i Pairet](https://web.unican.es/portal-investigador/personal-investigador/detalle-investigador?i=7C450C1157B94557) who helped enrich the Spanish production.
   - [Dr. David Joseph Wrisley](https://nyuad.nyu.edu/en/academics/divisions/arts-and-humanities/faculty/david-wrisley.html) and [Dr. Lauren Tilton](https://rhetoric.richmond.edu/faculty/ltilton/) who advised on the DH parts of the project.
 
 We are also grateful for all the other informal collaborations, conversations, and shared expertise that continue to enrich the project on a daily basis.  
