@@ -10,7 +10,7 @@ banner:
 permalink: /team/
 ---
  
-This project is currently developed and maintained by [Estelle Guéville](https://estellegueville.com) (Yale University) with the advice and support of colleagues and friends in manuscript studies and digital humanities.
+This project is currently developed and maintained by [Estelle Guéville](https://estellegueville.com) (Yale University) with the advice and support of colleagues in manuscript studies and digital humanities.
 
 # Project Director
 [Estelle Guéville](https://estellegueville.com) is the founder and director of *Unknown Hands*. She is a historian of the medieval book, with a career spanning museums, libraries, and universities. Her research explores manuscripts, scribal practices, illumination, gender, and cultural exchange, often through the lens of digital humanities and quantitative analysis. Her work includes textual analysis (distant reading, handwritten text recognition, stylometry), visual analysis (neural networks, image processing, feature detection), and spatial approaches (GIS, mapping). Her doctoral research focuses on female scribes in Christian Europe before 1600, with a particular interest in multilingualism, codicology, and the use of digital methods for manuscript studies. She has developed the first large-scale dataset of manuscripts copied by women and is building a digital infrastructure to make these contributions accessible to scholars and the public. She has published in several peer-reviewed journals, and her co-authored book with Dr. Wrisley, *Medieval Manuscripts and the Computational Humanities : Big Data, Scribes, and the “Paris Bible,”* is under contract with Arc Humanities Press. 

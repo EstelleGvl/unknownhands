@@ -62,7 +62,7 @@ Data not included at this point includes:
 
 
 # Ethics & Care
-Unknown Hands is directed by Estelle Guéville (Yale University) with the support of colleagues and friends in manuscript studies and digital humanities. See the [Team page](/team) for advisors, collaborators, and acknowledgments.
+Unknown Hands is directed by Estelle Guéville (Yale University) with the support of colleagues in manuscript studies and digital humanities. See the [Team page](/team) for advisors, collaborators, and acknowledgments.
 
 We aim to represent people’s work accurately and respectfully. When records include sensitive details or contested attributions, we document the basis, allow for disagreement, and respond to takedown/correction requests. [Contact us](/contact) for concerns.
 
