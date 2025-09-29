@@ -97,17 +97,4 @@ This project has been supported by fellowships, awards, and grants, including:
   </div>
 </div>
 
-<div class="logo-wall" aria-labelledby="partners">
-  <h2 id="partners">Data & Project Partners</h2>
-  <div class="logo-grid">
-    <a href="https://hmml.org/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/hmml.png' | relative_url }}" alt="Logo of HMML" loading="lazy" width="220" height="80">
-    </a>
-    <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
-    </a>
-  </div>
-</div>
-
-
 <p class="logo-note">Logos are trademarks of their respective owners and are used here for identification and acknowledgment only.</p>
