@@ -110,8 +110,12 @@ menu:
     link: '/data/'
   - label: 'Roadmap'
     link: '/roadmap/'
-  - label: 'References'
-    link: '/bibliography/'
+  - Resources:
+    sub: 
+      - label: 'Publications'
+        link: '/publications/'
+      - label: 'Bibliography'
+        link: '/bibliography/'
   - label: 'Contact'
     sub: 
       - label: "Participate"
