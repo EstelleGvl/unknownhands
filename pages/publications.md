@@ -7,7 +7,7 @@ banner:
   clickable: yes
   height: '500px'
   caption: "Christine of Pizan writing at her desk. BnF, français 603, f. 81v"
-permalink: /bibliography/
+permalink: /publications/
 ---
 
 # Presentations
