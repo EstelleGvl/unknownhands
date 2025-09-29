@@ -106,10 +106,12 @@ menu:
 #        link: '/exhibits/a/'
 #      - label: 'Inline Image References'
 #        link: '/exhibits/b/'
-  - label: 'Data'
-    link: '/data/'
-  - label: 'Roadmap'
-    link: '/roadmap/'
+  - label: 'Data & Roadmap'
+    sub:
+      - label: 'Data'
+        link: '/data/'
+      - label: 'Roadmap'
+        link: '/roadmap/'
   - label: 'Resources'
     sub: 
       - label: 'Publications'
