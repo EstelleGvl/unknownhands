@@ -29,7 +29,7 @@ Over the course of development, *Unknown Hands* has been shaped by the input of 
   - [Dr. Paula Cardoso](https://novaresearch.unl.pt/en/persons/paula-cardoso), who helped enrich the Portuguese production she studied in her PhD dissertation entitled *Art, Reform and Female Agency in the Portuguese Dominican Nunneries: Nuns as Producers and Patrons of Illuminated Manuscripts (c. 1460-1560)*
   - [Dr. Melissa Moreton](https://www.ias.edu/scholars/melissa-moreton) who provided material about the Italian production.
 
-We also want to acknowledge [Dr. David Joseph Wrisley](https://nyuad.nyu.edu/en/academics/divisions/arts-and-humanities/faculty/david-wrisley.html) and [Dr. Lauren Tilton](https://rhetoric.richmond.edu/faculty/ltilton/), [Dr. Laura Miles](https://www4.uib.no/en/find-employees/Laura.Saetveit.Miles), [Dr. Montserrat Cabré i Pairet](https://web.unican.es/portal-investigador/personal-investigador/detalle-investigador?i=7C450C1157B94557) for their support. 
+We also want to acknowledge [Dr. David Joseph Wrisley](https://nyuad.nyu.edu/en/academics/divisions/arts-and-humanities/faculty/david-wrisley.html), [Dr. Lauren Tilton](https://rhetoric.richmond.edu/faculty/ltilton/), [Dr. Laura Miles](https://www4.uib.no/en/find-employees/Laura.Saetveit.Miles), and [Dr. Montserrat Cabré i Pairet](https://web.unican.es/portal-investigador/personal-investigador/detalle-investigador?i=7C450C1157B94557) for their support. 
 
 We are also grateful for all the other informal collaborations, conversations, and shared expertise that continue to enrich the project on a daily basis.  
 
