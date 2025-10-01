@@ -77,6 +77,6 @@ We aim to represent people’s work accurately and respectfully. When records in
   -	Contribute records from your collection.
   -	Collaborate on case studies, teaching modules, or visualization ideas.
 
- We aim to develop collaborations and we welcome participation of scholars working on subjects beyond the scope of this project. Feel free to share with us data about languages not currently included in the dataset.
+ We aim to develop collaborations and we welcome participation of scholars working on subjects beyond the scope of this project. Feel free to share with us data about languages and periods not currently included in the dataset.
 
 See [Contact](/contact) for how to reach us and [Participate](/participate) to get involved in the project.
