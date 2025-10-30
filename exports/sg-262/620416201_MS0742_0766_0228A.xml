@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+  <Metadata>
+	<Creator>escriptorium</Creator>
+	<Created>2025-10-15T20:24:36.543455+00:00</Created>
+        <LastChange>2025-10-15T20:24:36.543472+00:00</LastChange>
+
+  </Metadata>
+  <Page imageFilename="620416201_MS0742_0766_0228A.jpg" imageWidth="3104" imageHeight="4140">
+
+    
+    <TextRegion id="eSc_textblock_181c250a"  custom="structure {type:text;}">
+      <Coords points="1086,1297 1440,1334 1596,1442 1516,1460 1458,1552 1267,1552 1191,1591 1237,1766 1228,1938 1173,2187 1028,2389 789,2518 561,2555 543,2511 625,2401 807,2327 1012,2132 984,1987 938,1929 938,1683 809,1672 706,1580 598,1561 570,1515 579,1370 625,1324 807,1343 1086,1297"/>
+      
+      
+      <TextLine id="eSc_line_136be1b6" custom="structure {type:default;}">
+        <Coords points="655,1485 655,1540 729,1591 731,1591 734,1591 736,1593 906,1593 906,1591 908,1591 911,1591 991,1534 998,1529 1120,1504 1182,1506 1210,1527 1212,1527 1214,1527 1217,1527 1219,1527 1251,1511 1320,1522 1323,1522 1325,1522 1362,1506 1419,1534 1433,1538 1435,1538 1438,1538 1472,1531 1472,1485 1472,1442 1421,1442 1417,1437 1302,1384 1300,1384 1191,1384 1189,1384 1187,1384 1184,1384 1184,1386 1143,1423 1136,1430 1092,1442 904,1442 888,1426 888,1423 885,1423 883,1423 881,1423 878,1423 876,1423 867,1432 839,1407 816,1386 816,1384 814,1384 812,1384 809,1384 807,1384 743,1403 729,1405 722,1400 699,1389 697,1389 694,1389 655,1396 655,1485"/>
+        <Baseline points="655,1485 1472,1485"/>
+        <TextEquiv conf="0.9881653027100996">
+          <Unicode>il peuillet</Unicode>
+        </TextEquiv>
+      </TextLine>
+
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_26191dc7"  custom="structure {type:text;}">
+      <Coords points="1951,680 2038,754 2029,844 2001,871 1829,871 1820,736 1951,680"/>
+      
+    </TextRegion>
+    
+
+    
+  </Page>
+</PcGts>

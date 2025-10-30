@@ -5,9 +5,15 @@
     {{ site.title }}{% if page.label %} | {{ page.label }}{% elsif page.title %} | {{ page.title }}{% endif %}
   </title>
 
-  <link rel='canonical' href='{{ page.url | absolute_url }}'/>
-  <link rel='icon' type='image/png' href="{{ 'img/logo.png' | absolute_url }}">
-  <link rel='stylesheet' href="{{ '/assets/styles.css' | absolute_url }}"/>
+  <!-- canonical should be absolute -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
 
-  <script type='text/javascript' src="{{ '/assets/jquery-3.2.1.min.js' | absolute_url }}"></script>
+  <!-- internal assets should be relative -->
+  <link rel="icon" type="image/png" href="{{ '/img/logo.png' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
+
+  <script src="{{ '/assets/jquery-3.2.1.min.js' | relative_url }}"></script>
+  <!-- Mirador 3 via unpkg CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/mirador@3/dist/mirador.min.css">
+  <script src="https://unpkg.com/mirador@3/dist/mirador.min.js"></script>
 </head>

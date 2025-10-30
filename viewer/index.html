@@ -1,0 +1,277 @@
+---
+layout: page
+permalink: /viewer/
+title: Viewer
+show_title: false
+---
+
+<link rel="stylesheet" href="https://unpkg.com/mirador@3.3.0/dist/mirador.min.css">
+<script src="https://unpkg.com/mirador@3.3.0/dist/mirador.min.js"></script>
+
+<style>
+  :root { --viewer-pad: 8vw; }
+
+  .viewer-fullwidth{
+    width:100vw;
+    max-width:100vw;
+    margin-left:50%;
+    transform:translateX(-50%);
+    padding:0 var(--viewer-pad);
+  }
+
+  /* Main container */
+  .viewer-wrap{
+    display:grid;
+    grid-template-columns: 1fr 10px 620px; /* Mirador | splitter | transcription */
+    gap:0;
+    max-width:95vw;         /* same feel as Explore page */
+    margin:0 auto;
+    min-height: calc(100vh - 180px);
+    border:1px solid #eee;
+    border-radius:.75rem;
+    overflow:hidden;
+    background:#fff;
+  }
+
+  /* Mirador cell */
+  #mirador, #text-pane{ min-width:0; min-height:640px; }
+  #mirador{ position:relative; z-index:1; }
+  #mirador > div{ height:100%; }
+
+  /* Splitter */
+  .splitter{
+    cursor: col-resize;
+    background: repeating-linear-gradient(
+      90deg, #f4f4f4, #f4f4f4 1px, #ffffff 1px, #ffffff 3px
+    );
+  }
+
+  /* Sidebar */
+  #text-pane{
+    position:relative;
+    z-index:2;
+    border-left:1px solid #eee;
+    padding:.9rem 1rem;
+    background:#fff;
+    overflow:auto;
+    width:620px;        /* initial width */
+    min-width:420px;
+  }
+
+  .toolbar{ display:flex; gap:.5rem; align-items:center; margin-bottom:.5rem; }
+  .chip{ border:1px solid #ddd; background:#fff; padding:.3rem .7rem; border-radius:999px; cursor:pointer; }
+  .chip.is-on{ background:#e9f3ff; border-color:#b3d6ff; }
+  .tiny{ font-size:.9rem; }
+  .muted{ color:#666; }
+  .line{ padding:.15rem .2rem; border-radius:.35rem; line-height:1.35; }
+  .line:hover{ background:#fff7e6; }
+
+  /* Mobile stacking */
+  @media (max-width: 980px){
+    .viewer-fullwidth{ padding:0 4vw; }
+    .viewer-wrap{ grid-template-columns: 1fr; }
+    #splitter{ display:none; }
+    #text-pane{
+      border-left:none; border-top:1px solid #eee;
+      width:auto; min-width:0; height:45vh;
+    }
+  }
+</style>
+
+<div class="viewer-fullwidth">
+  <div class="viewer-wrap" id="viewer-wrap">
+    <div id="mirador" aria-label="IIIF Viewer"></div>
+    <div id="splitter" class="splitter" aria-hidden="true"></div>
+    <aside id="text-pane" aria-label="Transcription">
+      <div class="toolbar">
+        <strong>Transcription</strong>
+        <button id="btn-show-bboxes" class="chip tiny" type="button">Show regions</button>
+      </div>
+      <div id="text-status" class="muted tiny">Loading…</div>
+      <div id="text-content"></div>
+    </aside>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const wrap = document.getElementById('viewer-wrap');
+  const splitter = document.getElementById('splitter');
+  const sidebar = document.getElementById('text-pane');
+
+  if (wrap && splitter && sidebar) {
+    let dragging = false;
+    let startX = 0;
+    let startSidebar = 0;
+
+    function px(n){ return `${Math.round(n)}px`; }
+
+    splitter.addEventListener('mousedown', (e)=>{
+      dragging = true;
+      startX = e.clientX;
+      startSidebar = sidebar.getBoundingClientRect().width;
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = 'col-resize';
+    });
+
+    window.addEventListener('mousemove', (e)=>{
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      let w = startSidebar - dx;                   // drag splitter left/right
+      const max = Math.max(420, window.innerWidth - 520); // keep image pane usable
+      if (w < 360) w = 360;
+      if (w > max) w = max;
+      // re-define grid columns on the fly: [auto] [splitter] [sidebar]
+      wrap.style.gridTemplateColumns = `1fr 8px ${px(w)}`;
+      sidebar.style.width = px(w);
+    });
+
+    window.addEventListener('mouseup', ()=>{
+      if (!dragging) return;
+      dragging = false;
+      document.body.style.userSelect = '';
+      document.body.style.cursor = '';
+    });
+
+    // Safety: if theme scripts resize things, enforce a sensible grid
+    const enforce = ()=> {
+      const current = sidebar.getBoundingClientRect().width;
+      if (current < 40){
+        const w = Math.max(420, Math.min(560, Math.round(window.innerWidth * 0.32)));
+        wrap.style.gridTemplateColumns = `1fr 8px ${px(w)}`;
+        sidebar.style.width = px(w);
+      }
+    };
+    setTimeout(enforce, 300);
+    setTimeout(enforce, 1200);
+    window.addEventListener('resize', enforce);
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  const params     = new URLSearchParams(location.search);
+  const manifest   = params.get('manifest') || '';
+  const mappingUrl = params.get('annos')    || '';
+
+  const $status    = document.getElementById('text-status');
+  const $content   = document.getElementById('text-content');
+  const $btnBoxes  = document.getElementById('btn-show-bboxes');
+
+  if (!manifest)  $status.textContent = 'Missing ?manifest=… URL parameter.';
+  if (!mappingUrl)$status.textContent = 'Missing ?annos=… URL parameter (mapping.json).';
+
+  /* 1) Start Mirador inside the left grid cell */
+  const mir = Mirador.viewer({
+    id: 'mirador',
+    windows: [{ loadedManifest: manifest }],
+    workspaceControlPanel: { enabled:false },
+    selectedTheme: 'light',
+  });
+  window.__mir = mir; // for quick console checks
+
+  /* 2) Load mapping and build canvasId -> AP path map */
+  const byCanvas = new Map();
+  let mappingArr = [];
+  const apCache  = new Map();
+
+  const normalize = (s) => {
+    try{ const u=new URL(s, location.href); u.hash=''; u.search=''; return u.toString().replace(/\/+$/,''); }
+    catch{ return String(s).replace(/[?#].*$/, '').replace(/\/+$/,''); }
+  };
+
+  fetch(mappingUrl)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(j => {
+      if (!j || !Array.isArray(j.items)) throw new Error('Bad mapping.json');
+      mappingArr = j.items.slice();
+      j.items.forEach(it => byCanvas.set(normalize(it.canvas), it.annotationPage));
+      $status.textContent = 'Ready.';
+      const c = currentCanvasId(); if (c) renderText(c);
+    })
+    .catch(err => {
+      console.error('mapping load failed', err);
+      $status.textContent = 'Could not load mapping.json';
+    });
+
+  /* 3) Helpers to read current canvas from Mirador state */
+  function currentCanvasId(){
+    const s = mir.store.getState();
+    const wId = s.windows && Object.keys(s.windows)[0];
+    if (!wId) return null;
+    const v = s.windows[wId]?.visibleCanvases;
+    return (Array.isArray(v) && v.length) ? v[0] : null;
+  }
+  function currentCanvasIndex(){
+    const s = mir.store.getState();
+    const wId = s.windows && Object.keys(s.windows)[0];
+    const i = s.windows[wId]?.canvasIndex;
+    return Number.isFinite(i) ? i : 0;
+  }
+
+  /* 4) Render transcription for the current canvas */
+  let showBoxes = false;
+  $btnBoxes.addEventListener('click', ()=>{
+    showBoxes = !showBoxes;
+    $btnBoxes.classList.toggle('is-on', showBoxes);
+    const c = currentCanvasId(); if (c) renderText(c);
+  });
+
+  async function renderText(canvasId){
+    const key = normalize(canvasId);
+    let apRel = byCanvas.get(key) || byCanvas.get(canvasId);
+
+    // Fallback: index alignment (keeps sidebar populated even if IDs don’t match)
+    if (!apRel && mappingArr.length){
+      const idx = Math.min(Math.max(currentCanvasIndex(), 0), mappingArr.length-1);
+      apRel = mappingArr[idx]?.annotationPage;
+    }
+
+    if (!apRel){ $status.textContent = 'No transcription for this page.'; $content.innerHTML=''; return; }
+
+    $status.textContent = 'Loading transcription…';
+    const base = new URL(mappingUrl, location.href);
+    const apUrl = new URL(apRel, base).toString();
+
+    try{
+      const ap = apCache.has(apUrl) ? apCache.get(apUrl) : await (await fetch(apUrl)).json();
+      apCache.set(apUrl, ap);
+      const items = Array.isArray(ap.items) ? ap.items : [];
+      if (!items.length){ $status.textContent = 'No items in annotation page.'; $content.innerHTML=''; return; }
+
+      const parseXYWH = (sel='') => { const m=/xywh=(\d+),(\d+),(\d+),(\d+)/.exec(sel); return m ? {x:+m[1],y:+m[2],w:+m[3],h:+m[4]} : null; };
+      const rows = items.map(it=>{
+        const sel = it?.target?.selector?.value || '';
+        const box = parseXYWH(sel);
+        const txt = (it?.body?.value || '').trim();
+        return { txt, box };
+      }).filter(r=>r.txt);
+
+      rows.sort((a,b)=>(a.box?.y||0)-(b.box?.y||0) || (a.box?.x||0)-(b.box?.x||0));
+
+      const esc = s => String(s).replace(/[&<>"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      $status.textContent = `${rows.length} line${rows.length===1?'':'s'}`;
+      $content.innerHTML = rows.map(r=>{
+        const pos = (r.box && showBoxes) ? ` <span class="muted tiny">[${r.box.x},${r.box.y},${r.box.w},${r.box.h}]</span>` : '';
+        return `<div class="line">${esc(r.txt)}${pos}</div>`;
+      }).join('');
+    }catch(e){
+      console.error('AP fetch failed', apUrl, e);
+      $status.textContent = 'Could not load transcription.'; $content.innerHTML='';
+    }
+  }
+
+  // Re-render on canvas change
+  let lastC = null;
+  mir.store.subscribe(()=>{
+    const c = currentCanvasId();
+    if (c && c !== lastC){ lastC=c; renderText(c); }
+  });
+
+  // First render kick (after Mirador finishes first layout)
+  setTimeout(()=>{ const c=currentCanvasId(); if (c) renderText(c); }, 700);
+})();
+</script>

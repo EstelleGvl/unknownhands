@@ -1,0 +1,180 @@
+---
+layout: none
+permalink: /viewer/raw.html
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Viewer — Unknown Hands</title>
+
+<link rel="stylesheet" href="https://unpkg.com/mirador@3.3.0/dist/mirador.min.css">
+<script src="https://unpkg.com/mirador@3.3.0/dist/mirador.min.js"></script>
+
+<style>
+  html,body { height:100%; margin:0; }
+  *, *::before, *::after { box-sizing:border-box; }
+
+  .split { display:flex; height:100%; width:100%; }
+
+  /* LEFT = Mirador, fenced inside its pane */
+  #left { flex:1 1 auto; min-width:0; position:relative; overflow:hidden; background:#f7f7f7; }
+  #mirador {
+    width:100% !important; height:100% !important;
+    max-width:100% !important; max-height:100% !important;
+    position:relative;
+  }
+
+  /* RIGHT = transcription */
+  #right { flex:0 0 460px; max-width:460px; min-width:320px;
+           overflow:auto; border-left:1px solid #e6e6e6; background:#fff; padding:.75rem .9rem; }
+  .toolbar{ display:flex; gap:.5rem; align-items:center; margin-bottom:.5rem; }
+  .chip{ border:1px solid #ddd; background:#fff; padding:.25rem .6rem; border-radius:999px; cursor:pointer; }
+  .chip.is-on{ background:#e9f3ff; border-color:#b3d6ff; }
+  .tiny{ font-size:.85rem; color:#666; }
+  .line{ padding:.15rem .2rem; border-radius:.35rem; }
+  .line:hover{ background:#fff7e6; }
+
+  @media (max-width: 700px){
+    .split{ flex-direction:column; }
+    #right{ flex:0 0 auto; height:45vh; max-width:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="split">
+    <div id="left"><div id="mirador"></div></div>
+    <aside id="right" aria-label="Transcription">
+      <div class="toolbar">
+        <strong>Transcription</strong>
+        <button id="btn-show-bboxes" class="chip tiny">Show regions</button>
+      </div>
+      <div id="text-status" class="tiny">Loading…</div>
+      <div id="text-content"></div>
+    </aside>
+  </div>
+
+<script>
+(function(){
+  // ------- Inputs -------
+  const qs = new URLSearchParams(location.search);
+  const manifestUrl = qs.get('manifest') || '';
+  const mappingUrl  = qs.get('annos')    || '';
+
+  const $status = document.getElementById('text-status');
+  const $content = document.getElementById('text-content');
+  const $btnBBoxes = document.getElementById('btn-show-bboxes');
+
+  if (!manifestUrl) $status.textContent = 'Missing ?manifest=…';
+  if (!mappingUrl)  $status.textContent = 'Missing ?annos=… (mapping.json)';
+
+  // ------- Mirador (left pane) -------
+  const mirador = Mirador.viewer({
+    id: 'mirador',
+    windows: [{ loadedManifest: manifestUrl }],
+    workspaceControlPanel: { enabled:false },
+    selectedTheme: 'light'
+  });
+
+  // ------- mapping.json -> canvasId -> annotationPage -------
+  const canvasToAP = new Map();
+  let mappingArray = [];         // preserve order for index fallback
+  const apCache = new Map();     // AP url -> parsed JSON
+
+  const norm = (s) => {
+    if (!s) return '';
+    try { const u = new URL(s, location.href); u.hash=''; u.search=''; return u.toString().replace(/\/+$/,''); }
+    catch { return String(s).replace(/[?#].*$/, '').replace(/\/+$/,''); }
+  };
+
+  let showBoxes = false;
+  $btnBBoxes.addEventListener('click', ()=>{
+    showBoxes = !showBoxes;
+    $btnBBoxes.classList.toggle('is-on', showBoxes);
+    const c = currentCanvasId(); if (c) renderCanvasText(c);
+  });
+
+  fetch(mappingUrl)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(j => {
+      if (!j || !Array.isArray(j.items)) throw new Error('Bad mapping.json');
+      mappingArray = j.items.slice();
+      j.items.forEach(it => canvasToAP.set(norm(it.canvas), it.annotationPage));
+      $status.textContent = 'Ready.';
+      const c = currentCanvasId(); if (c) renderCanvasText(c);
+    })
+    .catch(e => { console.error('mapping load failed', e); $status.textContent = 'Could not load mapping.json'; });
+
+  function currentCanvasId(){
+    const s = mirador.store.getState();
+    const wId = s.windows && Object.keys(s.windows)[0];
+    if (!wId) return null;
+    const v = s.windows[wId]?.visibleCanvases;
+    return (Array.isArray(v) && v.length) ? v[0] : null;
+  }
+  function currentCanvasIndex(){
+    const s = mirador.store.getState();
+    const wId = s.windows && Object.keys(s.windows)[0];
+    if (!wId) return 0;
+    const idx = s.windows[wId]?.canvasIndex;
+    return Number.isFinite(idx) ? idx : 0;
+  }
+
+  async function renderCanvasText(canvasId){
+    // 1) find AP for this canvas
+    const key = norm(canvasId);
+    let apRel = canvasToAP.get(key) || canvasToAP.get(canvasId);
+    if (!apRel && mappingArray.length){
+      const i = Math.min(Math.max(currentCanvasIndex(),0), mappingArray.length-1);
+      apRel = mappingArray[i]?.annotationPage; // index fallback
+    }
+    if (!apRel){ $status.textContent = 'No transcription for this page.'; $content.innerHTML=''; return; }
+
+    // 2) fetch AP (resolve relative to mapping.json URL)
+    const base = new URL(mappingUrl, location.href);
+    const apUrl = new URL(apRel, base).toString();
+
+    let ap;
+    try{
+      ap = apCache.has(apUrl) ? apCache.get(apUrl) : (await (await fetch(apUrl)).json());
+      apCache.set(apUrl, ap);
+    }catch(err){
+      console.error('AP fetch failed', apUrl, err);
+      $status.textContent = 'Could not load transcription.'; $content.innerHTML=''; return;
+    }
+
+    // 3) render lines in rough reading order (by y, then x from xywh)
+    const items = Array.isArray(ap.items) ? ap.items : [];
+    const parseXYWH = sel => { const m=/xywh=(\d+),(\d+),(\d+),(\d+)/.exec(sel||''); return m?{x:+m[1],y:+m[2],w:+m[3],h:+m[4]}:null; };
+
+    const rows = items.map(it=>{
+      const text = (it?.body?.value || '').trim();
+      const box  = parseXYWH(it?.target?.selector?.value || '');
+      return text ? {text, box} : null;
+    }).filter(Boolean);
+
+    rows.sort((a,b)=> (a.box?.y||0)-(b.box?.y||0) || (a.box?.x||0)-(b.box?.x||0));
+
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    $status.textContent = `${rows.length} line${rows.length===1?'':'s'}`;
+    $content.innerHTML = rows.map(r=>{
+      const pos = (r.box && showBoxes) ? ` <span class="tiny">[${r.box.x},${r.box.y},${r.box.w},${r.box.h}]</span>` : '';
+      return `<div class="line">${esc(r.text)}${pos}</div>`;
+    }).join('');
+  }
+
+  // re-render on page change
+  let last = null;
+  mirador.store.subscribe(()=>{
+    const c = currentCanvasId();
+    if (c && c !== last){ last = c; renderCanvasText(c); }
+  });
+
+  // kick once
+  setTimeout(()=>{ const c = currentCanvasId(); if (c) renderCanvasText(c); }, 600);
+})();
+</script>
+</body>
+</html>

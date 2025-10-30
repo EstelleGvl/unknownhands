@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+  <Metadata>
+	<Creator>escriptorium</Creator>
+	<Created>2025-10-15T20:24:36.483652+00:00</Created>
+        <LastChange>2025-10-15T20:24:36.483670+00:00</LastChange>
+
+  </Metadata>
+  <Page imageFilename="620416201_MS0742_0766_0226B.jpg" imageWidth="3104" imageHeight="4140">
+
+    
+    <TextRegion id="eSc_textblock_f09714d7"  custom="structure {type:text;}">
+      <Coords points="2091,2833 2284,2852 2220,3015 2130,3024 2109,2950 1976,2941 1985,2852 2091,2833"/>
+      
+      
+      <TextLine id="eSc_line_7137dec7" custom="structure {type:default;}">
+        <Coords points="2261,2852 2238,2847 2238,2865 2238,2902 2271,2900 2271,2865 2271,2852 2261,2852"/>
+        <Baseline points="2238,2865 2271,2865"/>
+        <TextEquiv conf="0.8511511087417603">
+          <Unicode>2</Unicode>
+        </TextEquiv>
+      </TextLine>
+
+      
+      
+      <TextLine id="eSc_line_da3fdb24" custom="structure {type:default;}">
+        <Coords points="1997,2955 2047,2946 2045,2918 2040,2872 1990,2870 1994,2923 1997,2955"/>
+        <Baseline points="1994,2923 2045,2918"/>
+        <TextEquiv conf="0.996577799320221">
+          <Unicode>2</Unicode>
+        </TextEquiv>
+      </TextLine>
+
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_7bfed847"  custom="structure {type:text;}">
+      <Coords points="2029,2410 2119,2410 2156,2426 2084,2481 1994,2426 2029,2410"/>
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_1851ba3c"  custom="structure {type:text;}">
+      <Coords points="2100,1931 2202,1931 2211,1948 2040,1957 2100,1931"/>
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_dbcd0019"  custom="structure {type:text;}">
+      <Coords points="1916,2419 1937,2419 1937,2426 1912,2426 1916,2419"/>
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_cb8674e8"  custom="structure {type:text;}">
+      <Coords points="2128,2576 2137,2576 2137,2582 2121,2582 2128,2576"/>
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_e3d04e4c"  custom="structure {type:text;}">
+      <Coords points="2266,2088 2294,2088 2312,2122 2241,2122 2266,2088"/>
+      
+    </TextRegion>
+    
+    <TextRegion id="eSc_textblock_a2e32582"  custom="structure {type:text;}">
+      <Coords points="2349,2106 2367,2106 2376,2132 2351,2132 2349,2106"/>
+      
+    </TextRegion>
+    
+
+    
+  </Page>
+</PcGts>

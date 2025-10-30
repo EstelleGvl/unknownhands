@@ -1,23 +1,20 @@
-{% if include.image %}
-  {% assign image = '/img/' | append: include.image %}
-{% else %}
-  {% assign image = '/img/default.jpg' %}
-{% endif %}
+{%- comment -%} Normalize image path + use relative URLs {%- endcomment -%}
+{%- assign src = include.image | to_s | default: 'default.jpg' -%}
+{%- if src == '' -%}{% assign src = 'default.jpg' %}{%- endif -%}
+{%- if src | slice: 0, 1 != '/' -%}
+  {%- assign src = '/img/' | append: src -%}
+{%- endif -%}
 
 {%- capture style -%}
-  background-image: url('{{ image | absolute_url }}');
+  background-image: url('{{ src | relative_url }}');
   background-position: 0% {{ include.y | default: '15%' }};
-  {% if include.clickable %}
-  cursor: pointer;
-  {% endif %}
-  {% if include.height %}
-  height: {{ include.height }} !important;
-  {% endif %}
+  {% if include.clickable %}cursor: pointer;{% endif %}
+  {% if include.height %}height: {{ include.height }} !important;{% endif %}
 {%- endcapture -%}
 
 {%- capture onclick -%}
 {% if include.clickable and include.link %}
-  onclick="window.location='{{ include.link | absolute_url }}'; return false;"
+  onclick="window.location='{{ include.link | relative_url }}'; return false;"
 {% endif %}
 {%- endcapture -%}
 

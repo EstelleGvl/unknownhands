@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2019-07-15/pagecontent.xsd">
+  <Metadata>
+	<Creator>escriptorium</Creator>
+	<Created>2025-10-15T20:23:59.084292+00:00</Created>
+        <LastChange>2025-10-15T20:23:59.084315+00:00</LastChange>
+
+  </Metadata>
+  <Page imageFilename="620416201_MS0742_0766_0003B.jpg" imageWidth="3104" imageHeight="4140">
+
+    
+    <TextRegion id="eSc_textblock_0ab2462c"  custom="structure {type:text;}">
+      <Coords points="2820,736 2883,772 2892,963 2791,1074 1589,1037 1589,892 1645,800 2450,791 2754,772 2820,736"/>
+      
+      
+      <TextLine id="eSc_line_48f9a387" custom="structure {type:default;}">
+        <Coords points="2020,972 2020,993 2063,986 2063,972 2063,896 2020,892 2020,972"/>
+        <Baseline points="2020,972 2063,972"/>
+        <TextEquiv conf="0.999210000038147">
+          <Unicode>2</Unicode>
+        </TextEquiv>
+      </TextLine>
+
+      
+    </TextRegion>
+    
+
+    
+  </Page>
+</PcGts>

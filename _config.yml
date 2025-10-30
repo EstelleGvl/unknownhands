@@ -33,7 +33,7 @@ default_thumb:    '/assets/sticker.png'
 permalink: 'pretty'
 sass:
   style: compressed
-exclude: ["Gemfile*", "*.gemspec", "Rakefile", "vendor", "spec", "README.md", "LICENSE.txt", "Docker*"]
+exclude: ["Gemfile*", "*.gemspec", "Rakefile", "vendor", "spec", "README.md", "LICENSE.txt", "Docker*", "scripts"]
 webrick:
   headers:
     'Access-Control-Allow-Origin': '*'
@@ -106,11 +106,13 @@ menu:
 #        link: '/exhibits/a/'
 #      - label: 'Inline Image References'
 #        link: '/exhibits/b/'
-  - label: 'Project'
+  - label: 'Explore'
     sub:
+#      - label: 'Explore the Database'
+#        link: '/explore-database/'    
       - label: 'Data'
         link: '/data/'
-      - label: 'Roadmap'
+#      - label: 'Roadmap'
         link: '/roadmap/'
   - label: 'Resources'
     sub: 
@@ -150,3 +152,17 @@ footer:
     **Please cite as:**  
     *Unknown Hands: Female Scribes in Pre-Modern Europe*, ed. Estelle Guéville, v.1.1 (2025), https://estellegueville.com/unknownhands.
 # FIN
+
+
+# _config.yml
+heurist:
+  su_json: /assets/data/scribal_units.json
+  ms_json: /assets/data/manuscripts.json
+  pu_json: /assets/data/production_units.json
+  holding_json: /assets/data/holding_institutions.json
+  monastic_json: /assets/data/monastic_institutions.json
+  people_json: /assets/data/historical_people.json
+  texts_json: /assets/data/texts.json
+  relations_json: /assets/data/relationships.json
+
+iiif_proxy: "/.netlify/functions/iiif?url="
