@@ -560,13 +560,11 @@ show_title: false
                 <label style="display: flex; flex-direction: column; gap: 0.25rem; font-weight: 500; font-size: 0.875rem;">
                   📊 Analysis Type:
                   <select id="codic-analysis-type" style="padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
-                    <option value="gender-size">Gender vs Size</option>
-                    <option value="gender-material">Gender vs Material</option>
-                    <option value="material-size">Material vs Size</option>
-                    <option value="size-date">Size vs Date</option>
-                    <option value="quire-correlation">Quire Features Correlation</option>
-                    <option value="text-materiality">Text Type vs Materiality</option>
-                    <option value="collaboration-features">Collaboration vs Features</option>
+                    <option value="material-size">Material vs Size (with Geography/Date)</option>
+                    <option value="size-date">Size vs Date (with Geography)</option>
+                    <option value="quire-patterns">Quire Patterns (vs Size/Date/Material/Country)</option>
+                    <option value="column-patterns">Column Patterns (vs Size/Date/Material/Country)</option>
+                    <option value="margin-ratio">Margin Ratio (Codex Size vs Justification)</option>
                     <option value="custom">Custom Multi-Variable</option>
                   </select>
                 </label>
@@ -6577,10 +6575,10 @@ function buildTemporalChart(list) {
 
 // Codicological Analysis - Quantitative codicology with statistical tests
 function buildCodicologicalAnalysis(mount, list) {
-  const analysisType = document.getElementById('codic-analysis-type')?.value || 'gender-size';
+  const analysisType = document.getElementById('codic-analysis-type')?.value || 'material-size';
   const vizType = document.getElementById('codic-viz-type')?.value || 'scatter';
   
-  // Filter to only manuscripts and scribal units (main codicological entities)
+  // Filter to relevant entity types
   const msRecords = list.filter(r => r.rty === 'ms');
   const suRecords = list.filter(r => r.rty === 'su');
   const puRecords = list.filter(r => r.rty === 'pu');
@@ -6588,29 +6586,23 @@ function buildCodicologicalAnalysis(mount, list) {
   let html = '';
   
   switch (analysisType) {
-    case 'gender-size':
-      html = analyzeGenderVsSize(msRecords, suRecords, vizType);
-      break;
-    case 'gender-material':
-      html = analyzeGenderVsMaterial(msRecords, suRecords, vizType);
-      break;
     case 'material-size':
-      html = analyzeMaterialVsSize(msRecords, vizType);
+      html = analyzeMaterialVsSize(msRecords, puRecords, vizType);
       break;
     case 'size-date':
-      html = analyzeSizeVsDate(msRecords, vizType);
+      html = analyzeSizeVsDate(msRecords, puRecords, vizType);
       break;
-    case 'quire-correlation':
-      html = analyzeQuireCorrelations(msRecords, vizType);
+    case 'quire-patterns':
+      html = analyzeQuirePatterns(msRecords, puRecords, vizType);
       break;
-    case 'text-materiality':
-      html = analyzeTextVsMateriality(msRecords, suRecords, vizType);
+    case 'column-patterns':
+      html = analyzeColumnPatterns(msRecords, puRecords, vizType);
       break;
-    case 'collaboration-features':
-      html = analyzeCollaborationVsFeatures(msRecords, suRecords, puRecords, vizType);
+    case 'margin-ratio':
+      html = analyzeMarginRatio(msRecords, puRecords, vizType);
       break;
     case 'custom':
-      html = analyzeCustomVariables(msRecords, suRecords, vizType);
+      html = analyzeCustomVariables(msRecords, puRecords, vizType);
       break;
     default:
       html = '<div style="padding: 2rem; text-align: center; color: #666;">Select an analysis type</div>';
@@ -6619,20 +6611,32 @@ function buildCodicologicalAnalysis(mount, list) {
   mount.innerHTML = html;
 }
 
-// Helper function to extract numeric value from size string (e.g., "305 × 215 mm" → 305) or codex height field
+// Helper function to calculate manuscript size as height + width
 function extractSize(rec) {
-  // Try to get Codex height field directly
+  // Get Codex height and Codex width fields
   let height = getVal(rec, 'Codex height');
+  let width = getVal(rec, 'Codex width');
+  
+  // Parse height
+  let heightNum = null;
   if (height && height !== '—') {
-    const num = parseFloat(height);
-    if (!isNaN(num)) return num;
+    heightNum = parseFloat(height);
+    if (isNaN(heightNum)) heightNum = null;
   }
   
-  // Fallback to parsing size string
-  const sizeStr = getVal(rec, 'Size');
-  if (!sizeStr) return null;
-  const match = String(sizeStr).match(/(\d+)/);
-  return match ? parseInt(match[1]) : null;
+  // Parse width
+  let widthNum = null;
+  if (width && width !== '—') {
+    widthNum = parseFloat(width);
+    if (isNaN(widthNum)) widthNum = null;
+  }
+  
+  // Calculate size as height + width
+  if (heightNum !== null && widthNum !== null) {
+    return heightNum + widthNum;
+  }
+  
+  return null;
 }
 
 // Helper function to extract width from size string or codex width field
@@ -6661,108 +6665,65 @@ function extractDate(rec) {
   return match ? parseInt(match[1]) : null;
 }
 
-// Analysis: Gender vs Size
-function analyzeGenderVsSize(msRecords, suRecords, vizType) {
-  // Need to: MS → PU → SU → HP (via relationship) → Gender
-  const dataPoints = [];
-  
-  console.log('analyzeGenderVsSize - Starting analysis');
-  console.log('Total SU records:', suRecords.length);
-  console.log('Total MS records:', msRecords.length);
-  
-  // For each MS, get its size, then find PUs, then SUs, then HP gender via relationships
-  msRecords.forEach(ms => {
-    const size = extractSize(ms);
-    if (!size) return;
-    
-    const msId = String(ms.rec_ID);
-    const msTitle = MAP.ms?.title(ms) || 'Untitled';
-    
-    // Find PUs for this MS
-    const pus = (INBOUND.pu?.[msId] || []);
-    
-    pus.forEach(puId => {
-      // Find SUs for this PU
-      const sus = (INBOUND.su?.[puId] || []);
-      
-      sus.forEach(suId => {
-        const su = IDX.su?.[suId];
-        if (!su) return;
-        
-        // Find HP via relationships where SU is "scribe of" HP
-        const rels = REL_INDEX.su?.[suId] || [];
-        rels.forEach(rel => {
-          if (rel.type === 'hp') {
-            const hp = IDX.hp?.[rel.id];
-            if (hp) {
-              const gender = getGenderFromHP(hp);
-              if (gender) {
-                dataPoints.push({ gender, size, msTitle, suTitle: MAP.su?.title(su) || 'Untitled' });
-                console.log('Added datapoint:', gender, size, msTitle);
-              }
-            }
-          }
-        });
-      });
-    });
-  });
-  
-  console.log('Total data points collected:', dataPoints.length);
-  
-  if (dataPoints.length === 0) {
-    return `
-      <div style="padding: 2rem; text-align: center; color: #666;">
-        <h3>No data available for gender vs size analysis</h3>
-        <p>Debug info:</p>
-        <ul style="text-align: left; display: inline-block;">
-          <li>Scribal Units: ${suRecords.length}</li>
-          <li>Manuscripts: ${msRecords.length}</li>
-          <li>Data points found: ${dataPoints.length}</li>
-          <li>Check browser console for details</li>
-        </ul>
-      </div>
-    `;
-  }
-  
-  // Calculate statistics by gender
-  const byGender = {};
-  dataPoints.forEach(d => {
-    if (!byGender[d.gender]) byGender[d.gender] = [];
-    byGender[d.gender].push(d.size);
-  });
-  
-  const stats = {};
-  Object.entries(byGender).forEach(([gender, sizes]) => {
-    const mean = sizes.reduce((a, b) => a + b, 0) / sizes.length;
-    const sorted = [...sizes].sort((a, b) => a - b);
-    const median = sorted[Math.floor(sorted.length / 2)];
-    const min = Math.min(...sizes);
-    const max = Math.max(...sizes);
-    stats[gender] = { mean, median, min, max, n: sizes.length };
-  });
-  
-  if (vizType === 'stats') {
-    return buildStatsTable('Gender vs Manuscript Size', stats, 'mm');
-  } else if (vizType === 'box') {
-    return buildBoxPlot('Gender vs Manuscript Size (Height)', byGender, 'Gender', 'Size (mm)');
-  } else if (vizType === 'scatter') {
-    return buildScatterPlot('Gender vs Manuscript Size', dataPoints, 'gender', 'size', 'Gender', 'Size (mm)', null);
-  } else if (vizType === 'bar') {
-    return buildBarChart('Average Manuscript Size by Gender', Object.entries(stats).map(([g, s]) => ({ category: g, value: s.mean })), 'mm');
-  }
-  
-  return '<div>Visualization type not supported for this analysis</div>';
+// Helper function to extract country/geography
+function extractCountry(rec) {
+  // Can be in PU or MS
+  const country = getVal(rec, 'PU country') || getVal(rec, 'Country');
+  return country && country !== '—' ? country : null;
 }
 
-// Helper to extract gender from HP
-function getGenderFromHP(hp) {
-  const details = hp.details || [];
-  for (const d of details) {
-    if (d.fieldName === 'Gender' && d.termLabel) {
-      return d.termLabel;
-    }
+// Helper function to extract justification (text block) height from PU
+function extractJustificationHeight(pu) {
+  const just = getVal(pu, 'Text block height');
+  if (!just || just === '—') return null;
+  const num = parseFloat(just);
+  return !isNaN(num) ? num : null;
+}
+
+// Helper function to extract justification (text block) width from PU
+function extractJustificationWidth(pu) {
+  const just = getVal(pu, 'Text block width');
+  if (!just || just === '—') return null;
+  const num = parseFloat(just);
+  return !isNaN(num) ? num : null;
+}
+
+// Helper function to calculate margin ratio (codex size vs justification size)
+function calculateMarginRatio(ms, pu) {
+  // Get codex height and width
+  const codexHeight = getVal(ms, 'Codex height');
+  const codexWidth = getVal(ms, 'Codex width');
+  
+  let codexH = null, codexW = null;
+  if (codexHeight && codexHeight !== '—') {
+    codexH = parseFloat(codexHeight);
+    if (isNaN(codexH)) codexH = null;
   }
-  return null;
+  if (codexWidth && codexWidth !== '—') {
+    codexW = parseFloat(codexWidth);
+    if (isNaN(codexW)) codexW = null;
+  }
+  
+  // Get justification (text block) height and width
+  const justHeight = extractJustificationHeight(pu);
+  const justWidth = extractJustificationWidth(pu);
+  
+  if (!codexH || !codexW || !justHeight || !justWidth) return null;
+  
+  // Calculate sizes (height + width)
+  const codexSize = codexH + codexW;
+  const justSize = justHeight + justWidth;
+  
+  // Return ratio of margins (percentage of total dimensions that are margins)
+  return ((codexSize - justSize) / codexSize * 100);
+}
+
+// Helper function to extract number of columns from PU
+function extractColumns(pu) {
+  const cols = getVal(pu, 'Number of Columns');
+  if (!cols) return null;
+  const num = parseInt(cols);
+  return !isNaN(num) ? num : null;
 }
 
 // Helper to extract material from PU
@@ -6776,115 +6737,42 @@ function getMaterialFromPU(pu) {
   return null;
 }
 
-// Analysis: Gender vs Material
-function analyzeGenderVsMaterial(msRecords, suRecords, vizType) {
-  // Need: PU → Material, and PU → SU → HP (via relationship) → Gender
-  const dataPoints = [];
-  
-  console.log('analyzeGenderVsMaterial - Starting analysis');
-  
-  // For each PU, get material, then find SUs and their HP gender
-  const puRecords = Object.values(IDX.pu || {});
-  
-  puRecords.forEach(pu => {
-    const material = getMaterialFromPU(pu);
-    if (!material) return;
-    
-    const puId = String(pu.rec_ID);
-    
-    // Find SUs for this PU
-    const sus = (INBOUND.su?.[puId] || []);
-    
-    sus.forEach(suId => {
-      const su = IDX.su?.[suId];
-      if (!su) return;
-      
-      // Find HP via relationships
-      const rels = REL_INDEX.su?.[suId] || [];
-      rels.forEach(rel => {
-        if (rel.type === 'hp') {
-          const hp = IDX.hp?.[rel.id];
-          if (hp) {
-            const gender = getGenderFromHP(hp);
-            if (gender) {
-              dataPoints.push({ gender, material });
-              console.log('Added datapoint:', gender, material);
-            }
-          }
-        }
-      });
-    });
-  });
-  
-  console.log('Total data points collected:', dataPoints.length);
-  
-  if (dataPoints.length === 0) {
-    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for gender vs material analysis</div>';
-  }
-  
-  // Count combinations
-  const counts = {};
-  dataPoints.forEach(d => {
-    const key = `${d.gender}|${d.material}`;
-    counts[key] = (counts[key] || 0) + 1;
-  });
-  
-  // Calculate percentages by gender
-  const genderTotals = {};
-  dataPoints.forEach(d => {
-    genderTotals[d.gender] = (genderTotals[d.gender] || 0) + 1;
-  });
-  
-  const percentages = {};
-  Object.entries(counts).forEach(([key, count]) => {
-    const [gender, material] = key.split('|');
-    if (!percentages[gender]) percentages[gender] = {};
-    percentages[gender][material] = (count / genderTotals[gender] * 100).toFixed(1);
-  });
-  
-  if (vizType === 'heatmap') {
-    return buildHeatmap('Gender vs Material (%)', percentages);
-  } else {
-    // Build stacked bar chart
-    return buildStackedBar('Material Distribution by Gender', percentages, genderTotals);
-  }
-}
+// ========== CODICOLOGICAL ANALYSIS FUNCTIONS ==========
 
-// Analysis: Material vs Size
-function analyzeMaterialVsSize(msRecords, vizType) {
+// Analysis 1: Material vs Size (with Geography/Date patterns)
+function analyzeMaterialVsSize(msRecords, puRecords, vizType) {
   const dataPoints = [];
   
-  // Get PU records and link them to MS size
-  const puRecords = DATA.pu || [];
-  
-  puRecords.forEach(pu => {
-    // Get material from PU
-    let material = null;
-    (pu.details || []).forEach(d => {
-      if (d.fieldName === 'Material' && d.termLabel) {
-        material = d.termLabel;
+  // For each MS, get size, then find PUs to get material, date, country
+  msRecords.forEach(ms => {
+    const size = extractSize(ms);
+    if (!size) return;
+    
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled';
+    
+    // Find PUs that reference this MS
+    const puRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'pu');
+    
+    puRefs.forEach(ref => {
+      const pu = IDX.pu?.[ref.fromId];
+      if (!pu) return;
+      
+      const material = getMaterialFromPU(pu);
+      const date = extractDate(pu);
+      const country = extractCountry(pu);
+      
+      if (material) {
+        dataPoints.push({ 
+          material, 
+          size, 
+          date,
+          country,
+          msTitle,
+          century: date ? Math.floor(date / 100) * 100 : null
+        });
       }
     });
-    
-    if (!material || material === '—') return;
-    
-    // Find linked MS
-    let msId = null;
-    (pu.details || []).forEach(d => {
-      if (d.fieldName === 'Manuscript' && d.value && typeof d.value === 'object' && d.value.id) {
-        msId = String(d.value.id);
-      }
-    });
-    
-    if (msId) {
-      const ms = IDX.ms?.[msId];
-      if (ms) {
-        const size = extractSize(ms);
-        if (size) {
-          dataPoints.push({ material, size, msTitle: MAP.ms?.title(ms) || 'Untitled' });
-        }
-      }
-    }
   });
   
   if (dataPoints.length === 0) {
@@ -6903,43 +6791,1084 @@ function analyzeMaterialVsSize(msRecords, vizType) {
     const mean = sizes.reduce((a, b) => a + b, 0) / sizes.length;
     const sorted = [...sizes].sort((a, b) => a - b);
     const median = sorted[Math.floor(sorted.length / 2)];
-    const min = Math.min(...sizes);
-    const max = Math.max(...sizes);
-    stats[material] = { mean, median, min, max, n: sizes.length };
+    stats[material] = { mean, median, min: Math.min(...sizes), max: Math.max(...sizes), n: sizes.length };
   });
   
+  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Material vs Size Analysis</h3>';
+  html += `<p style="font-size: 0.875rem; color: #666;">Total data points: ${dataPoints.length}</p></div>`;
+  
   if (vizType === 'stats') {
-    return buildStatsTable('Material vs Manuscript Size', stats, 'mm');
+    html += buildStatsTable('Manuscript Size by Material', stats, 'mm');
   } else if (vizType === 'box') {
-    return buildBoxPlot('Material vs Manuscript Size (Height)', byMaterial, 'Material', 'Size (mm)');
+    html += buildBoxPlot('Material vs Manuscript Size', byMaterial, 'Material', 'Size (mm)');
   } else if (vizType === 'scatter') {
-    return buildScatterPlot('Material vs Manuscript Size', dataPoints, 'material', 'size', 'Material', 'Size (mm)', null);
+    html += buildScatterPlot('Material vs Size (colored by century)', dataPoints, 'material', 'size', 'Material', 'Size (mm)', 'century');
   } else if (vizType === 'bar') {
-    return buildBarChart('Average Manuscript Size by Material', Object.entries(stats).map(([m, s]) => ({ category: m, value: s.mean })), 'mm');
+    html += buildBarChart('Average Manuscript Size by Material', Object.entries(stats).map(([m, s]) => ({ category: m, value: s.mean })), 'mm');
+  }
+  
+  // Add geographic breakdown
+  if (vizType === 'stats') {
+    html += '<div style="margin-top: 2rem;"><h4>Geographic Patterns</h4>';
+    const byCountry = {};
+    dataPoints.filter(d => d.country).forEach(d => {
+      const key = `${d.country}|${d.material}`;
+      if (!byCountry[key]) byCountry[key] = [];
+      byCountry[key].push(d.size);
+    });
+    
+    const countryStats = {};
+    Object.entries(byCountry).forEach(([key, sizes]) => {
+      const mean = sizes.reduce((a, b) => a + b, 0) / sizes.length;
+      countryStats[key] = { mean, n: sizes.length };
+    });
+    
+    const topPatterns = Object.entries(countryStats)
+      .sort((a, b) => b[1].n - a[1].n)
+      .slice(0, 10)
+      .map(([key, s]) => {
+        const [country, material] = key.split('|');
+        return { category: `${country} (${material})`, value: s.mean, count: s.n };
+      });
+    
+    html += '<p style="font-size: 0.875rem;">Average size by country and material (top 10 combinations):</p>';
+    html += '<table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">';
+    html += '<tr style="background: linear-gradient(135deg, #d4af37 0%, #f0d36e 100%); color: #333;"><th style="padding: 0.5rem; text-align: left;">Location & Material</th><th style="padding: 0.5rem;">Avg Size (mm)</th><th style="padding: 0.5rem;">Count</th></tr>';
+    topPatterns.forEach(p => {
+      html += `<tr style="border-bottom: 1px solid #dee2e6;"><td style="padding: 0.5rem;">${p.category}</td><td style="padding: 0.5rem; text-align: center;">${p.value.toFixed(1)}</td><td style="padding: 0.5rem; text-align: center;">${p.count}</td></tr>`;
+    });
+    html += '</table></div>';
+  }
+  
+  return html;
+}
+
+// Analysis 2: Size vs Date (with Geography)
+function analyzeSizeVsDate(msRecords, puRecords, vizType) {
+  const dataPoints = [];
+  
+  // For each MS, get size, then find PUs for dating and geography
+  msRecords.forEach(ms => {
+    const size = extractSize(ms);
+    if (!size) return;
+    
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled';
+    
+    // Find PUs that reference this MS
+    const puRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'pu');
+    
+    puRefs.forEach(ref => {
+      const pu = IDX.pu?.[ref.fromId];
+      if (!pu) return;
+      
+      const date = extractDate(pu);
+      const country = extractCountry(pu);
+      
+      if (date) {
+        dataPoints.push({ 
+          date, 
+          size, 
+          country,
+          msTitle,
+          century: Math.floor(date / 100) * 100
+        });
+      }
+    });
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for size vs date analysis</div>';
+  }
+  
+  // Group by century
+  const byCentury = {};
+  dataPoints.forEach(d => {
+    const century = d.century;
+    if (!byCentury[century]) byCentury[century] = [];
+    byCentury[century].push(d.size);
+  });
+  
+  const stats = {};
+  Object.entries(byCentury).forEach(([century, sizes]) => {
+    const mean = sizes.reduce((a, b) => a + b, 0) / sizes.length;
+    const sorted = [...sizes].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats[`${century}s`] = { mean, median, min: Math.min(...sizes), max: Math.max(...sizes), n: sizes.length };
+  });
+  
+  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Size vs Date Analysis</h3>';
+  html += `<p style="font-size: 0.875rem; color: #666;">Total data points: ${dataPoints.length}</p></div>`;
+  
+  if (vizType === 'stats') {
+    html += buildStatsTable('Manuscript Size by Century', stats, 'mm');
+  } else if (vizType === 'box') {
+    html += buildBoxPlot('Manuscript Size by Century', byCentury, 'Century', 'Size (mm)');
+  } else if (vizType === 'scatter') {
+    html += buildScatterPlot('Size vs Date (colored by country)', dataPoints, 'date', 'size', 'Year', 'Size (mm)', 'country');
+  } else if (vizType === 'bar') {
+    html += buildBarChart('Average Manuscript Size by Century', Object.entries(stats).map(([c, s]) => ({ category: c, value: s.mean })), 'mm');
+  }
+  
+  return html;
+}
+
+// Analysis 3: Quire Patterns
+function analyzeQuirePatterns(msRecords, puRecords, vizType) {
+  const dataPoints = [];
+  
+  // For each MS, get size, then check PUs for quire features
+  msRecords.forEach(ms => {
+    const size = extractSize(ms);
+    if (!size) return;
+    
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled';
+    
+    // Find PUs that reference this MS
+    const puRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'pu');
+    
+    puRefs.forEach(ref => {
+      const pu = IDX.pu?.[ref.fromId];
+      if (!pu) return;
+      
+      const date = extractDate(pu);
+      const country = extractCountry(pu);
+      const material = getMaterialFromPU(pu);
+      
+      // Check quire features
+      let hasCatchwords = false;
+      let hasSignatures = false;
+      let quireType = null;
+      
+      (pu.details || []).forEach(d => {
+        if (d.fieldName === 'catchwords' && d.value) {
+          hasCatchwords = String(d.value).toLowerCase() === 'true';
+        }
+        if (d.fieldName === 'signatures' && d.value) {
+          hasSignatures = String(d.value).toLowerCase() === 'true';
+        }
+        if (d.fieldName === 'Quire types' && d.termLabel) {
+          quireType = d.termLabel;
+        }
+      });
+      
+      if (hasCatchwords !== null || hasSignatures !== null || quireType) {
+        dataPoints.push({
+          size,
+          date,
+          country,
+          material,
+          hasCatchwords,
+          hasSignatures,
+          quireType: quireType || 'Unknown',
+          msTitle,
+          century: date ? Math.floor(date / 100) * 100 : null
+        });
+      }
+    });
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No quire pattern data available</div>';
+  }
+  
+  // Analyze catchwords vs size
+  const withCatchwords = dataPoints.filter(d => d.hasCatchwords).map(d => d.size);
+  const withoutCatchwords = dataPoints.filter(d => !d.hasCatchwords).map(d => d.size);
+  
+  const stats = {};
+  if (withCatchwords.length > 0) {
+    const mean = withCatchwords.reduce((a, b) => a + b, 0) / withCatchwords.length;
+    const sorted = [...withCatchwords].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats['With Catchwords'] = { mean, median, min: Math.min(...withCatchwords), max: Math.max(...withCatchwords), n: withCatchwords.length };
+  }
+  if (withoutCatchwords.length > 0) {
+    const mean = withoutCatchwords.reduce((a, b) => a + b, 0) / withoutCatchwords.length;
+    const sorted = [...withoutCatchwords].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats['Without Catchwords'] = { mean, median, min: Math.min(...withoutCatchwords), max: Math.max(...withoutCatchwords), n: withoutCatchwords.length };
+  }
+  
+  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Quire Patterns Analysis</h3>';
+  html += `<p style="font-size: 0.875rem; color: #666;">Total data points: ${dataPoints.length}</p></div>`;
+  
+  if (vizType === 'stats') {
+    html += buildStatsTable('Catchwords vs Manuscript Size', stats, 'mm');
+  } else if (vizType === 'box') {
+    html += buildBoxPlot('Catchwords vs Size', { 'With Catchwords': withCatchwords, 'Without Catchwords': withoutCatchwords }, 'Catchwords', 'Size (mm)');
+  } else if (vizType === 'scatter') {
+    html += buildScatterPlot('Quire Features vs Size', dataPoints, 'century', 'size', 'Century', 'Size (mm)', 'hasCatchwords');
+  } else if (vizType === 'bar') {
+    html += buildBarChart('Average Size: Catchwords', Object.entries(stats).map(([c, s]) => ({ category: c, value: s.mean })), 'mm');
+  }
+  
+  return html;
+}
+
+// Analysis 4: Column Patterns
+function analyzeColumnPatterns(msRecords, puRecords, vizType) {
+  const dataPoints = [];
+  
+  // For each MS, get size, then check PUs for column info
+  msRecords.forEach(ms => {
+    const size = extractSize(ms);
+    if (!size) return;
+    
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled';
+    
+    // Find PUs that reference this MS
+    const puRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'pu');
+    
+    puRefs.forEach(ref => {
+      const pu = IDX.pu?.[ref.fromId];
+      if (!pu) return;
+      
+      const columns = extractColumns(pu);
+      const date = extractDate(pu);
+      const country = extractCountry(pu);
+      const material = getMaterialFromPU(pu);
+      
+      if (columns) {
+        dataPoints.push({
+          columns,
+          size,
+          date,
+          country,
+          material,
+          msTitle,
+          century: date ? Math.floor(date / 100) * 100 : null
+        });
+      }
+    });
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No column pattern data available</div>';
+  }
+  
+  // Group by number of columns
+  const byColumns = {};
+  dataPoints.forEach(d => {
+    const key = `${d.columns} column${d.columns > 1 ? 's' : ''}`;
+    if (!byColumns[key]) byColumns[key] = [];
+    byColumns[key].push(d.size);
+  });
+  
+  const stats = {};
+  Object.entries(byColumns).forEach(([cols, sizes]) => {
+    const mean = sizes.reduce((a, b) => a + b, 0) / sizes.length;
+    const sorted = [...sizes].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats[cols] = { mean, median, min: Math.min(...sizes), max: Math.max(...sizes), n: sizes.length };
+  });
+  
+  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Column Patterns Analysis</h3>';
+  html += `<p style="font-size: 0.875rem; color: #666;">Total data points: ${dataPoints.length}</p></div>`;
+  
+  if (vizType === 'stats') {
+    html += buildStatsTable('Manuscript Size by Column Count', stats, 'mm');
+  } else if (vizType === 'box') {
+    html += buildBoxPlot('Columns vs Size', byColumns, 'Columns', 'Size (mm)');
+  } else if (vizType === 'scatter') {
+    html += buildScatterPlot('Columns vs Size (colored by material)', dataPoints, 'columns', 'size', 'Number of Columns', 'Size (mm)', 'material');
+  } else if (vizType === 'bar') {
+    html += buildBarChart('Average Size by Column Count', Object.entries(stats).map(([c, s]) => ({ category: c, value: s.mean })), 'mm');
+  }
+  
+  return html;
+}
+
+// Analysis 5: Margin Ratio (Codex Size vs Justification)
+function analyzeMarginRatio(msRecords, puRecords, vizType) {
+  const dataPoints = [];
+  
+  // For each MS, calculate margin ratio using PU justification data
+  msRecords.forEach(ms => {
+    const size = extractSize(ms);
+    if (!size) return;
+    
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled';
+    
+    // Find PUs that reference this MS
+    const puRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'pu');
+    
+    puRefs.forEach(ref => {
+      const pu = IDX.pu?.[ref.fromId];
+      if (!pu) return;
+      
+      const marginRatio = calculateMarginRatio(ms, pu);
+      const date = extractDate(pu);
+      const country = extractCountry(pu);
+      const material = getMaterialFromPU(pu);
+      
+      if (marginRatio !== null) {
+        dataPoints.push({
+          marginRatio,
+          size,
+          date,
+          country,
+          material,
+          msTitle,
+          century: date ? Math.floor(date / 100) * 100 : null
+        });
+      }
+    });
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No margin ratio data available (requires both codex dimensions and justification measurements)</div>';
+  }
+  
+  // Calculate overall statistics
+  const ratios = dataPoints.map(d => d.marginRatio);
+  const mean = ratios.reduce((a, b) => a + b, 0) / ratios.length;
+  const sorted = [...ratios].sort((a, b) => a - b);
+  const median = sorted[Math.floor(sorted.length / 2)];
+  
+  const stats = {
+    'Overall': { mean, median, min: Math.min(...ratios), max: Math.max(...ratios), n: ratios.length }
+  };
+  
+  // Group by material if available
+  const byMaterial = {};
+  dataPoints.filter(d => d.material).forEach(d => {
+    if (!byMaterial[d.material]) byMaterial[d.material] = [];
+    byMaterial[d.material].push(d.marginRatio);
+  });
+  
+  Object.entries(byMaterial).forEach(([material, ratios]) => {
+    const mean = ratios.reduce((a, b) => a + b, 0) / ratios.length;
+    const sorted = [...ratios].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats[material] = { mean, median, min: Math.min(...ratios), max: Math.max(...ratios), n: ratios.length };
+  });
+  
+  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Margin Ratio Analysis</h3>';
+  html += `<p style="font-size: 0.875rem; color: #666;">Margin ratio = (Codex area - Justification area) / Codex area × 100%<br>Total data points: ${dataPoints.length}</p></div>`;
+  
+  if (vizType === 'stats') {
+    html += buildStatsTable('Margin Ratio by Material', stats, '%');
+  } else if (vizType === 'box') {
+    html += buildBoxPlot('Margin Ratio by Material', byMaterial, 'Material', 'Margin Ratio (%)');
+  } else if (vizType === 'scatter') {
+    html += buildScatterPlot('Margin Ratio vs Size (colored by century)', dataPoints, 'size', 'marginRatio', 'Size (mm)', 'Margin Ratio (%)', 'century');
+  } else if (vizType === 'bar') {
+    html += buildBarChart('Average Margin Ratio by Material', Object.entries(stats).filter(([k]) => k !== 'Overall').map(([m, s]) => ({ category: m, value: s.mean })), '%');
+  }
+  
+  return html;
+}
+
+// Analysis 6: Custom Multi-Variable
+function analyzeCustomVariables(msRecords, puRecords, vizType) {
+  // Get custom variable selections
+  const xVar = document.getElementById('codic-x-var')?.value || 'size';
+  const yVar = document.getElementById('codic-y-var')?.value || 'date';
+  const colorVar = document.getElementById('codic-color-var')?.value || 'none';
+  
+  const dataPoints = [];
+  
+  // Helper to extract value by variable name
+  function extractValue(ms, pu, varName) {
+    if (varName === 'size') return extractSize(ms);
+    if (varName === 'width') return extractWidth(ms);
+    if (varName === 'folios') {
+      const folios = getVal(ms, 'Number of Folios');
+      return folios ? parseInt(folios) : null;
+    }
+    if (varName === 'date') return pu ? extractDate(pu) : null;
+    if (varName === 'justification-height') return pu ? extractJustificationHeight(pu) : null;
+    if (varName === 'justification-width') return pu ? extractJustificationWidth(pu) : null;
+    if (varName === 'columns') return pu ? extractColumns(pu) : null;
+    if (varName === 'material') return pu ? getMaterialFromPU(pu) : null;
+    if (varName === 'country') return pu ? extractCountry(pu) : null;
+    return null;
+  }
+  
+  msRecords.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    const pus = (INBOUND.pu?.[msId] || []);
+    
+    if (pus.length > 0) {
+      pus.forEach(puId => {
+        const pu = IDX.pu?.[puId];
+        const xVal = extractValue(ms, pu, xVar);
+        const yVal = extractValue(ms, pu, yVar);
+        const colorVal = colorVar !== 'none' ? extractValue(ms, pu, colorVar) : null;
+        
+        if (xVal !== null && yVal !== null) {
+          dataPoints.push({
+            x: xVal,
+            y: yVal,
+            color: colorVal,
+            title: MAP.ms?.title(ms) || 'Untitled'
+          });
+        }
+      });
+    } else {
+      // MS without PU - try without PU data
+      const xVal = extractValue(ms, null, xVar);
+      const yVal = extractValue(ms, null, yVar);
+      const colorVal = colorVar !== 'none' ? extractValue(ms, null, colorVar) : null;
+      
+      if (xVal !== null && yVal !== null) {
+        dataPoints.push({
+          x: xVal,
+          y: yVal,
+          color: colorVal,
+          title: MAP.ms?.title(ms) || 'Untitled'
+        });
+      }
+    }
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for selected variables</div>';
+  }
+  
+  // Get variable labels
+  const varLabels = {
+    size: 'Height (mm)',
+    width: 'Width (mm)',
+    date: 'Year',
+    folios: 'Number of Folios',
+    material: 'Material',
+    columns: 'Columns',
+    country: 'Country',
+    'justification-height': 'Justification Height (mm)',
+    'justification-width': 'Justification Width (mm)'
+  };
+  
+  const xLabel = varLabels[xVar] || xVar;
+  const yLabel = varLabels[yVar] || yVar;
+  
+  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Custom Multi-Variable Analysis</h3>';
+  html += `<p style="font-size: 0.875rem; color: #666;">Total data points: ${dataPoints.length}</p></div>`;
+  
+  if (vizType === 'scatter') {
+    html += buildScatterPlot(`${xLabel} vs ${yLabel}`, dataPoints, 'x', 'y', xLabel, yLabel, colorVar !== 'none' ? 'color' : null);
+  } else if (vizType === 'stats') {
+    // Group by color variable if present
+    if (colorVar !== 'none' && colorVar) {
+      const byColor = {};
+      dataPoints.forEach(d => {
+        const key = String(d.color || 'Unknown');
+        if (!byColor[key]) byColor[key] = [];
+        byColor[key].push(d.y);
+      });
+      
+      const stats = {};
+      Object.entries(byColor).forEach(([color, values]) => {
+        const mean = values.reduce((a, b) => a + b, 0) / values.length;
+        const sorted = [...values].sort((a, b) => a - b);
+        const median = sorted[Math.floor(sorted.length / 2)];
+        stats[color] = { 
+          mean, median, 
+          min: Math.min(...values), 
+          max: Math.max(...values), 
+          n: values.length 
+        };
+      });
+      
+      html += buildStatsTable(`${yLabel} by ${varLabels[colorVar] || colorVar}`, stats, '');
+    } else {
+      html += '<div style="padding: 1rem; background: #f8f9fa; border-radius: 0.25rem;">Select a "Color By" variable to see grouped statistics</div>';
+    }
+  } else {
+    html += '<div>Visualization type not fully supported for custom variables. Try scatter plot or stats table.</div>';
+  }
+  
+  return html;
+}
+
+// ========== VISUALIZATION HELPER FUNCTIONS ==========
+
+// Visualization helper: Stats Table
+function buildStatsTable(title, stats, unit) {
+  const rows = Object.entries(stats).map(([category, s]) => `
+    <tr>
+      <td style="padding: 0.5rem; font-weight: 600; border-bottom: 1px solid #dee2e6;">${category}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.n}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.mean.toFixed(1)} ${unit}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.median} ${unit}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.min} ${unit}</td>
+      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.max} ${unit}</td>
+    </tr>
+  `).join('');
+  
+  return `
+    <div style="padding: 1.5rem;">
+      <h3 style="margin-bottom: 1rem;">${title}</h3>
+      <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 0.5rem; overflow: hidden;">
+        <thead style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white;">
+          <tr>
+            <th style="padding: 0.75rem; text-align: left;">Category</th>
+            <th style="padding: 0.75rem; text-align: right;">N</th>
+            <th style="padding: 0.75rem; text-align: right;">Mean</th>
+            <th style="padding: 0.75rem; text-align: right;">Median</th>
+            <th style="padding: 0.75rem; text-align: right;">Min</th>
+            <th style="padding: 0.75rem; text-align: right;">Max</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+// Visualization helper: Box Plot
+function buildBoxPlot(title, dataByCategory, xLabel, yLabel) {
+  const categories = Object.keys(dataByCategory);
+  const maxValue = Math.max(...categories.flatMap(c => dataByCategory[c]));
+  
+  const boxes = categories.map(category => {
+    const values = [...dataByCategory[category]].sort((a, b) => a - b);
+    const n = values.length;
+    const q1 = values[Math.floor(n * 0.25)];
+    const median = values[Math.floor(n * 0.5)];
+    const q3 = values[Math.floor(n * 0.75)];
+    const min = values[0];
+    const max = values[n - 1];
+    
+    const scale = 300 / maxValue;
+    
+    return `
+      <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
+        <div style="position: relative; width: 60px; height: 320px; margin-bottom: 0.5rem;">
+          <div style="position: absolute; left: 28px; top: ${320 - max * scale}px; height: ${(max - min) * scale}px; width: 2px; background: #666;"></div>
+          <div style="position: absolute; left: 10px; top: ${320 - q3 * scale}px; width: 40px; height: ${(q3 - q1) * scale}px; background: rgba(212, 175, 55, 0.3); border: 2px solid #d4af37;"></div>
+          <div style="position: absolute; left: 8px; top: ${320 - median * scale}px; width: 44px; height: 3px; background: #e74c3c;"></div>
+          <div style="position: absolute; left: 24px; top: ${320 - max * scale - 5}px; width: 10px; height: 2px; background: #666;"></div>
+          <div style="position: absolute; left: 24px; top: ${320 - min * scale - 1}px; width: 10px; height: 2px; background: #666;"></div>
+        </div>
+        <div style="font-size: 0.8rem; font-weight: 600; text-align: center;">${category}</div>
+        <div style="font-size: 0.7rem; color: #666;">n=${values.length}</div>
+      </div>
+    `;
+  }).join('');
+  
+  return `
+    <div style="padding: 1.5rem;">
+      <h3 style="margin-bottom: 0.5rem;">${title}</h3>
+      <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem;">Box shows Q1-Q3 range (IQR), red line is median, whiskers extend to min/max</p>
+      <div style="display: flex; gap: 2rem; justify-content: center; align-items: flex-end; padding: 1rem; background: #f8f9fa; border-radius: 0.5rem;">
+        ${boxes}
+      </div>
+      <div style="text-align: center; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">${yLabel}</div>
+    </div>
+  `;
+}
+
+// Visualization helper: Scatter Plot
+function buildScatterPlot(title, dataPoints, xVar, yVar, xLabel, yLabel, colorVar) {
+  const xValues = dataPoints.map(d => d[xVar]);
+  const yValues = dataPoints.map(d => d[yVar]);
+  const xMin = Math.min(...yValues);
+  const xMax = Math.max(...yValues);
+  const yMin = Math.min(...yValues.filter(v => v !== null));
+  const yMax = Math.max(...yValues.filter(v => v !== null));
+  
+  const width = 600;
+  const height = 400;
+  const padding = 40;
+  
+  const xScale = (width - 2 * padding) / (xMax - xMin);
+  const yScale = (height - 2 * padding) / (yMax - yMin);
+  
+  const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6'];
+  const colorMap = {};
+  let colorIndex = 0;
+  
+  const points = dataPoints.map(d => {
+    let color = '#d4af37';
+    if (colorVar && d[colorVar]) {
+      if (!colorMap[d[colorVar]]) {
+        colorMap[d[colorVar]] = colors[colorIndex % colors.length];
+        colorIndex++;
+      }
+      color = colorMap[d[colorVar]];
+    }
+    
+    return `<circle cx="${padding + (d[yVar] - yMin) * yScale}" cy="${height - padding - (d[yVar] - yMin) * yScale}" r="4" fill="${color}" fill-opacity="0.6" stroke="white" stroke-width="1"><title>${d.msTitle || ''}: ${d[yVar]}</title></circle>`;
+  }).join('');
+  
+  return `
+    <div style="padding: 1.5rem;">
+      <h3 style="margin-bottom: 1rem;">${title}</h3>
+      <svg width="${width}" height="${height}" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="#ccc" stroke-width="2"/>
+        <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" stroke="#ccc" stroke-width="2"/>
+        ${points}
+        <text x="${width / 2}" y="${height - 5}" text-anchor="middle" font-size="12" fill="#666">${yLabel}</text>
+        <text x="10" y="${height / 2}" text-anchor="middle" font-size="12" fill="#666" transform="rotate(-90, 10, ${height / 2})">${yLabel}</text>
+      </svg>
+      <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">n=${dataPoints.length} manuscripts</p>
+    </div>
+  `;
+}
+
+// Visualization helper: Bar Chart
+function buildBarChart(title, data, unit) {
+  const maxValue = Math.max(...data.map(d => d.value));
+  
+  const bars = data.map(d => {
+    const width = (d.value / maxValue * 100);
+    return `
+      <div style="margin-bottom: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+          <span style="font-weight: 600; font-size: 0.875rem;">${d.category}</span>
+          <span style="font-size: 0.875rem; color: #666;">${d.value.toFixed(1)} ${unit}</span>
+        </div>
+        <div style="background: #e0e0e0; height: 2rem; border-radius: 0.25rem; overflow: hidden;">
+          <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); height: 100%; width: ${width}%;"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  return `
+    <div style="padding: 1.5rem;">
+      <h3 style="margin-bottom: 1rem;">${title}</h3>
+      <div>${bars}</div>
+    </div>
+  `;
+}
+
+// Visualization helper: Heatmap
+function buildHeatmap(title, data) {
+  // data format: { row1: { col1: value, col2: value }, row2: { col1: value } }
+  const rows = Object.keys(data);
+  const cols = new Set();
+  rows.forEach(row => {
+    Object.keys(data[row]).forEach(col => cols.add(col));
+  });
+  const colsArray = Array.from(cols);
+  
+  // Find max value for color scaling
+  let maxVal = 0;
+  rows.forEach(row => {
+    Object.values(data[row]).forEach(val => {
+      maxVal = Math.max(maxVal, parseFloat(val) || 0);
+    });
+  });
+  
+  const cellWidth = 120;
+  const cellHeight = 40;
+  
+  let html = `
+    <div style="padding: 1.5rem;">
+      <h3 style="margin-bottom: 1rem;">${title}</h3>
+      <div style="overflow-x: auto;">
+        <table style="border-collapse: collapse; margin: 1rem 0;">
+          <thead>
+            <tr>
+              <th style="padding: 0.5rem; border: 1px solid #ddd; background: #f8f9fa; min-width: 120px;">Category</th>
+  `;
+  
+  colsArray.forEach(col => {
+    html += `<th style="padding: 0.5rem; border: 1px solid #ddd; background: #f8f9fa; min-width: ${cellWidth}px;">${col}</th>`;
+  });
+  
+  html += '</tr></thead><tbody>';
+  
+  rows.forEach(row => {
+    html += `<tr><td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">${row}</td>`;
+    colsArray.forEach(col => {
+      const val = data[row][col] || 0;
+      const intensity = maxVal > 0 ? (parseFloat(val) / maxVal) : 0;
+      const bgColor = `rgba(218, 165, 32, ${intensity * 0.7 + 0.1})`; // Gold gradient
+      html += `<td style="padding: 0.5rem; border: 1px solid #ddd; background: ${bgColor}; text-align: center;">${val}${typeof val === 'string' && val.includes('.') ? '%' : ''}</td>`;
+    });
+    html += '</tr>';
+  });
+  
+  html += '</tbody></table></div></div>';
+  
+  return html;
+}
+
+// Visualization helper: Stacked Bar
+function buildStackedBar(title, data, totals) {
+  // Analyze correlations between quire features (catchwords, signatures, type) and other features
+  const dataPoints = [];
+  
+  msRecords.forEach(ms => {
+    const size = extractSize(ms);
+    const msId = String(ms.rec_ID);
+    
+    // Find PUs for this MS to get quire features
+    const pus = (INBOUND.pu?.[msId] || []);
+    
+    pus.forEach(puId => {
+      const pu = IDX.pu?.[puId];
+      if (!pu) return;
+      
+      const date = extractDate(pu);
+      const puDetails = pu.details || [];
+      
+      let hasCatchwords = false;
+      let hasSignatures = false;
+      let quireType = null;
+      
+      puDetails.forEach(d => {
+        if (d.fieldName === 'catchwords' && d.value) {
+          hasCatchwords = String(d.value).toUpperCase() === 'TRUE';
+        }
+        if (d.fieldName === 'signatures' && d.value) {
+          hasSignatures = String(d.value).toUpperCase() === 'TRUE';
+        }
+        if (d.fieldName === 'Quire types' && d.termLabel) {
+          quireType = d.termLabel;
+        }
+      });
+      
+      if (size) {
+        dataPoints.push({
+          title: MAP.ms?.title(ms) || 'Untitled',
+          size,
+          date,
+          hasCatchwords,
+          hasSignatures,
+          quireType: quireType || 'Unknown'
+        });
+      }
+    });
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No manuscript data with quire features available</div>';
+  }
+  
+  // Analyze catchwords vs size
+  const withCatchwords = dataPoints.filter(d => d.hasCatchwords).map(d => d.size);
+  const withoutCatchwords = dataPoints.filter(d => !d.hasCatchwords).map(d => d.size);
+  
+  const stats = {};
+  if (withCatchwords.length > 0) {
+    const mean = withCatchwords.reduce((a, b) => a + b, 0) / withCatchwords.length;
+    const sorted = [...withCatchwords].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats['With Catchwords'] = { mean, median, min: Math.min(...withCatchwords), max: Math.max(...withCatchwords), n: withCatchwords.length };
+  }
+  if (withoutCatchwords.length > 0) {
+    const mean = withoutCatchwords.reduce((a, b) => a + b, 0) / withoutCatchwords.length;
+    const sorted = [...withoutCatchwords].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats['Without Catchwords'] = { mean, median, min: Math.min(...withoutCatchwords), max: Math.max(...withoutCatchwords), n: withoutCatchwords.length };
+  }
+  
+  if (vizType === 'stats') {
+    return buildStatsTable('Catchwords vs Manuscript Size', stats, 'mm');
+  } else if (vizType === 'box') {
+    return buildBoxPlot('Catchwords vs Manuscript Size', { 
+      'With Catchwords': withCatchwords, 
+      'Without Catchwords': withoutCatchwords 
+    }, 'Catchwords', 'Size (mm)');
+  } else if (vizType === 'bar') {
+    return buildBarChart('Average Size: Catchwords', Object.entries(stats).map(([c, s]) => ({ category: c, value: s.mean })), 'mm');
   }
   
   return '<div>Visualization type not supported</div>';
 }
 
-// Placeholder functions for other analyses (to be implemented)
-function analyzeSizeVsDate(msRecords, vizType) {
-  return '<div style="padding: 2rem; text-align: center; color: #666;">Size vs Date analysis - Coming soon</div>';
-}
-
-function analyzeQuireCorrelations(msRecords, vizType) {
-  return '<div style="padding: 2rem; text-align: center; color: #666;">Quire correlation analysis - Coming soon</div>';
-}
-
 function analyzeTextVsMateriality(msRecords, suRecords, vizType) {
-  return '<div style="padding: 2rem; text-align: center; color: #666;">Text vs Materiality analysis - Coming soon</div>';
+  // Analyze relationship between text type/genre and material features
+  const dataPoints = [];
+  
+  suRecords.forEach(su => {
+    const suId = String(su.rec_ID);
+    
+    // Find texts related to this SU
+    const rels = REL_INDEX.bySource[suId] || [];
+    rels.forEach(rel => {
+      const relType = getVal(rel, 'Relationship type');
+      if (relType === 'contains text') {
+        const tgt = getRes(rel, 'Target record');
+        if (tgt && tgt.type === 'txt') {
+          const text = IDX.txt?.[String(tgt.id)];
+          if (text) {
+            // Get genre from text
+            const textDetails = text.details || [];
+            let genre = null;
+            textDetails.forEach(d => {
+              if (d.fieldName === 'Genre' && d.termLabel) {
+                genre = d.termLabel;
+              }
+            });
+            
+            // Get material from PU
+            const puRels = REL_INDEX.byTarget[suId] || [];
+            puRels.forEach(puRel => {
+              const puSrc = getRes(puRel, 'Source record');
+              if (puSrc && puSrc.type === 'pu') {
+                const pu = IDX.pu?.[String(puSrc.id)];
+                if (pu) {
+                  const material = getMaterialFromPU(pu);
+                  if (genre && material) {
+                    dataPoints.push({ 
+                      genre, 
+                      material,
+                      textTitle: MAP.txt?.title(text) || 'Untitled',
+                      suTitle: MAP.su?.title(su) || 'Untitled'
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
+      }
+    });
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for text vs materiality analysis</div>';
+  }
+  
+  // Count combinations
+  const counts = {};
+  dataPoints.forEach(d => {
+    const key = `${d.genre}|${d.material}`;
+    counts[key] = (counts[key] || 0) + 1;
+  });
+  
+  // Calculate percentages by genre
+  const genreTotals = {};
+  dataPoints.forEach(d => {
+    genreTotals[d.genre] = (genreTotals[d.genre] || 0) + 1;
+  });
+  
+  const data = [];
+  Object.entries(counts).forEach(([key, count]) => {
+    const [genre, material] = key.split('|');
+    const percentage = (count / genreTotals[genre] * 100).toFixed(1);
+    data.push({ category: `${genre} - ${material}`, value: parseFloat(percentage) });
+  });
+  
+  if (vizType === 'bar') {
+    return buildBarChart('Text Genre vs Material (%)', data, '%');
+  } else if (vizType === 'heatmap') {
+    const percentages = {};
+    Object.entries(counts).forEach(([key, count]) => {
+      const [genre, material] = key.split('|');
+      if (!percentages[genre]) percentages[genre] = {};
+      percentages[genre][material] = (count / genreTotals[genre] * 100).toFixed(1);
+    });
+    return buildHeatmap('Text Genre vs Material (%)', percentages);
+  }
+  
+  return '<div>Visualization type not supported</div>';
 }
 
 function analyzeCollaborationVsFeatures(msRecords, suRecords, puRecords, vizType) {
-  return '<div style="padding: 2rem; text-align: center; color: #666;">Collaboration vs Features analysis - Coming soon</div>';
+  // Analyze manuscripts with multiple scribes
+  const dataPoints = [];
+  
+  msRecords.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    const size = extractSize(ms);
+    
+    // Find SUs for this MS
+    const allSUs = suRecords.filter(su => {
+      const msRef = getRes(su, 'Manuscript');
+      return msRef && String(msRef.id) === msId;
+    });
+    
+    // Get unique genders
+    const genders = new Set();
+    allSUs.forEach(su => {
+      const gender = getVal(su, 'Gender');
+      if (gender) genders.add(gender);
+    });
+    
+    // Get materials from PUs
+    const pus = (INBOUND.pu?.[msId] || []);
+    const materials = new Set();
+    
+    pus.forEach(puId => {
+      const pu = IDX.pu?.[puId];
+      if (pu) {
+        const material = getMaterialFromPU(pu);
+        if (material) materials.add(material);
+      }
+    });
+    
+    if (allSUs.length > 0 && size) {
+      dataPoints.push({
+        title: MAP.ms?.title(ms) || 'Untitled',
+        scribeCount: allSUs.length,
+        isCollaborative: allSUs.length > 1,
+        size,
+        materials: Array.from(materials),
+        genderMix: genders.size > 1
+      });
+    }
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No manuscript collaboration data available</div>';
+  }
+  
+  // Analyze collaborative vs single scribe
+  const collaborative = dataPoints.filter(d => d.isCollaborative).map(d => d.size);
+  const singleScribe = dataPoints.filter(d => !d.isCollaborative).map(d => d.size);
+  
+  const stats = {};
+  if (collaborative.length > 0) {
+    const mean = collaborative.reduce((a, b) => a + b, 0) / collaborative.length;
+    const sorted = [...collaborative].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats['Collaborative (Multiple Scribes)'] = { 
+      mean, median, 
+      min: Math.min(...collaborative), 
+      max: Math.max(...collaborative), 
+      n: collaborative.length 
+    };
+  }
+  if (singleScribe.length > 0) {
+    const mean = singleScribe.reduce((a, b) => a + b, 0) / singleScribe.length;
+    const sorted = [...singleScribe].sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    stats['Single Scribe'] = { 
+      mean, median, 
+      min: Math.min(...singleScribe), 
+      max: Math.max(...singleScribe), 
+      n: singleScribe.length 
+    };
+  }
+  
+  if (vizType === 'stats') {
+    return buildStatsTable('Collaboration vs Manuscript Size', stats, 'mm');
+  } else if (vizType === 'box') {
+    return buildBoxPlot('Collaboration vs Size', {
+      'Collaborative': collaborative,
+      'Single Scribe': singleScribe
+    }, 'Type', 'Size (mm)');
+  } else if (vizType === 'bar') {
+    return buildBarChart('Average Size by Collaboration Type', Object.entries(stats).map(([c, s]) => ({ category: c, value: s.mean })), 'mm');
+  } else if (vizType === 'scatter') {
+    return buildScatterPlot('Scribe Count vs Size', dataPoints, 'scribeCount', 'size', 'Number of Scribes', 'Size (mm)', null);
+  }
+  
+  return '<div>Visualization type not supported</div>';
 }
 
 function analyzeCustomVariables(msRecords, suRecords, vizType) {
-  return '<div style="padding: 2rem; text-align: center; color: #666;">Custom multi-variable analysis - Coming soon</div>';
+  // Get custom variable selections
+  const xVar = document.getElementById('codic-x-var')?.value || 'size';
+  const yVar = document.getElementById('codic-y-var')?.value || 'date';
+  const colorVar = document.getElementById('codic-color-var')?.value || 'none';
+  
+  const dataPoints = [];
+  
+  // Helper to extract value by variable name
+  function extractValue(rec, varName) {
+    if (varName === 'size') return extractSize(rec);
+    if (varName === 'width') return extractWidth(rec);
+    if (varName === 'date') return extractDate(rec);
+    if (varName === 'folios') {
+      const details = rec.details || [];
+      for (const d of details) {
+        if (d.fieldName === 'Number of folios' && d.value) {
+          return parseFloat(d.value);
+        }
+      }
+    }
+    if (varName === 'material') {
+      // For MS, find PU materials
+      if (rec.details) {
+        const msId = String(rec.rec_ID);
+        const pus = (INBOUND.pu?.[msId] || []);
+        const materials = [];
+        pus.forEach(puId => {
+          const pu = IDX.pu?.[puId];
+          if (pu) {
+            const mat = getMaterialFromPU(pu);
+            if (mat) materials.push(mat);
+          }
+        });
+        return materials.length > 0 ? materials[0] : null;
+      }
+    }
+    if (varName === 'columns') {
+      const details = rec.details || [];
+      for (const d of details) {
+        if (d.fieldName === 'Number of columns' && d.value) {
+          return parseFloat(d.value);
+        }
+      }
+    }
+    return null;
+  }
+  
+  msRecords.forEach(ms => {
+    const xVal = extractValue(ms, xVar);
+    const yVal = extractValue(ms, yVar);
+    const colorVal = colorVar !== 'none' ? extractValue(ms, colorVar) : null;
+    
+    if (xVal !== null && yVal !== null) {
+      dataPoints.push({
+        x: xVal,
+        y: yVal,
+        color: colorVal,
+        title: MAP.ms?.title(ms) || 'Untitled'
+      });
+    }
+  });
+  
+  if (dataPoints.length === 0) {
+    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for selected variables</div>';
+  }
+  
+  // Get variable labels
+  const varLabels = {
+    size: 'Height (mm)',
+    width: 'Width (mm)',
+    date: 'Year',
+    folios: 'Number of Folios',
+    material: 'Material',
+    columns: 'Columns'
+  };
+  
+  const xLabel = varLabels[xVar] || xVar;
+  const yLabel = varLabels[yVar] || yVar;
+  
+  if (vizType === 'scatter') {
+    return buildScatterPlot(`${xLabel} vs ${yLabel}`, dataPoints, 'x', 'y', xLabel, yLabel, colorVar !== 'none' ? 'color' : null);
+  } else if (vizType === 'stats') {
+    // Group by color variable if present
+    if (colorVar !== 'none' && colorVar) {
+      const byColor = {};
+      dataPoints.forEach(d => {
+        const colorKey = String(d.color || 'Unknown');
+        if (!byColor[colorKey]) byColor[colorKey] = [];
+        byColor[colorKey].push(d.y);
+      });
+      
+      const stats = {};
+      Object.entries(byColor).forEach(([color, values]) => {
+        const mean = values.reduce((a, b) => a + b, 0) / values.length;
+        const sorted = [...values].sort((a, b) => a - b);
+        const median = sorted[Math.floor(sorted.length / 2)];
+        stats[color] = { 
+          mean, median, 
+          min: Math.min(...values), 
+          max: Math.max(...values), 
+          n: values.length 
+        };
+      });
+      
+      return buildStatsTable(`${yLabel} by ${varLabels[colorVar]}`, stats, '');
+    }
+  }
+  
+  return '<div>Visualization type not supported for this configuration</div>';
 }
 
 // Visualization helper: Stats Table
@@ -7097,24 +8026,115 @@ function buildBarChart(title, data, unit) {
 
 // Visualization helper: Heatmap
 function buildHeatmap(title, data) {
-  return `
+  // data format: { row1: { col1: value, col2: value }, row2: { col1: value } }
+  const rows = Object.keys(data);
+  const cols = new Set();
+  rows.forEach(row => {
+    Object.keys(data[row]).forEach(col => cols.add(col));
+  });
+  const colsArray = Array.from(cols);
+  
+  // Find max value for color scaling
+  let maxVal = 0;
+  rows.forEach(row => {
+    Object.values(data[row]).forEach(val => {
+      maxVal = Math.max(maxVal, parseFloat(val) || 0);
+    });
+  });
+  
+  const cellWidth = 120;
+  const cellHeight = 40;
+  
+  let html = `
     <div style="padding: 1.5rem;">
       <h3 style="margin-bottom: 1rem;">${title}</h3>
-      <p style="color: #666;">Heatmap visualization coming soon</p>
-      <pre>${JSON.stringify(data, null, 2)}</pre>
-    </div>
+      <div style="overflow-x: auto;">
+        <table style="border-collapse: collapse; margin: 1rem 0;">
+          <thead>
+            <tr>
+              <th style="padding: 0.5rem; border: 1px solid #ddd; background: #f8f9fa; min-width: 120px;">Category</th>
   `;
+  
+  colsArray.forEach(col => {
+    html += `<th style="padding: 0.5rem; border: 1px solid #ddd; background: #f8f9fa; min-width: ${cellWidth}px;">${col}</th>`;
+  });
+  
+  html += '</tr></thead><tbody>';
+  
+  rows.forEach(row => {
+    html += `<tr><td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">${row}</td>`;
+    colsArray.forEach(col => {
+      const val = data[row][col] || 0;
+      const intensity = maxVal > 0 ? (parseFloat(val) / maxVal) : 0;
+      const bgColor = `rgba(218, 165, 32, ${intensity * 0.7 + 0.1})`; // Gold gradient
+      html += `<td style="padding: 0.5rem; border: 1px solid #ddd; background: ${bgColor}; text-align: center;">${val}${typeof val === 'string' && val.includes('.') ? '%' : ''}</td>`;
+    });
+    html += '</tr>';
+  });
+  
+  html += '</tbody></table></div></div>';
+  return html;
 }
 
 // Visualization helper: Stacked Bar
 function buildStackedBar(title, data, totals) {
-  return `
+  // data format: { category1: { subcategory1: count, subcategory2: count }, ... }
+  // totals: { category1: total, category2: total, ... }
+  
+  const categories = Object.keys(data);
+  const subCategories = new Set();
+  categories.forEach(cat => {
+    Object.keys(data[cat]).forEach(sub => subCategories.add(sub));
+  });
+  const subCatsArray = Array.from(subCategories);
+  
+  // Color palette for subcategories
+  const colors = [
+    'rgba(218, 165, 32, 0.8)',   // Gold
+    'rgba(184, 134, 11, 0.8)',   // Dark gold
+    'rgba(255, 215, 0, 0.8)',    // Light gold
+    'rgba(169, 169, 169, 0.8)',  // Gray
+    'rgba(128, 128, 128, 0.8)'   // Dark gray
+  ];
+  
+  let html = `
     <div style="padding: 1.5rem;">
       <h3 style="margin-bottom: 1rem;">${title}</h3>
-      <p style="color: #666;">Stacked bar visualization coming soon</p>
-      <pre>${JSON.stringify(data, null, 2)}</pre>
-    </div>
   `;
+  
+  // Legend
+  html += '<div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">';
+  subCatsArray.forEach((sub, idx) => {
+    const color = colors[idx % colors.length];
+    html += `<div style="display: flex; align-items: center; gap: 0.3rem;">
+      <div style="width: 20px; height: 20px; background: ${color}; border: 1px solid #ccc;"></div>
+      <span>${sub}</span>
+    </div>`;
+  });
+  html += '</div>';
+  
+  // Bars
+  categories.forEach(cat => {
+    const total = totals[cat] || 0;
+    html += `<div style="margin-bottom: 1rem;">
+      <div style="margin-bottom: 0.3rem; font-weight: bold;">${cat} (n=${total})</div>
+      <div style="display: flex; height: 30px; border: 1px solid #ddd; overflow: hidden;">
+    `;
+    
+    subCatsArray.forEach((sub, idx) => {
+      const count = data[cat][sub] || 0;
+      const percentage = total > 0 ? (count / total * 100) : 0;
+      const color = colors[idx % colors.length];
+      if (percentage > 0) {
+        html += `<div style="width: ${percentage}%; background: ${color}; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold;" title="${sub}: ${count} (${percentage.toFixed(1)}%)">${percentage.toFixed(1)}%</div>`;
+      }
+    });
+    
+    html += '</div></div>';
+  });
+  
+  html += '</div>';
+  return html;
 }
 
 // Sankey Diagram - Entity Flow Visualization
