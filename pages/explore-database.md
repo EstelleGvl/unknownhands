@@ -8621,19 +8621,20 @@ function buildHierarchicalTree(mount, list) {
     
     if (!msId) return; // Skip SUs without manuscript connection
     
-    // Find PU that this SU relates to (via relationships)
-    let puId = null;
+    // Find ALL PUs that this SU relates to (via relationships)
+    const puIds = [];
     const suRels = [...(REL_INDEX.bySource?.[suId] || []), ...(REL_INDEX.byTarget?.[suId] || [])];
     for (const rel of suRels) {
       const src = getRes(rel, 'Source record');
       const tgt = getRes(rel, 'Target record');
       const otherId = String(src?.id) === suId ? String(tgt?.id) : String(src?.id);
       
-      if (IDX.pu?.[otherId]) {
-        puId = otherId;
-        break; // Take first PU found
+      if (IDX.pu?.[otherId] && !puIds.includes(otherId)) {
+        puIds.push(otherId); // Collect ALL PUs (not just first)
       }
     }
+    
+    if (puIds.length === 0) return; // Skip SUs without PU connection
     
     // Create manuscript node if it doesn't exist
     if (!tree[msId]) {
@@ -8646,8 +8647,9 @@ function buildHierarchicalTree(mount, list) {
       };
     }
     
-    if (puId) {
-      // SU has a PU - add PU to tree if not exists
+    // Add this SU to ALL of its PUs
+    puIds.forEach(puId => {
+      // Add PU to tree if not exists
       if (!tree[msId].children[puId]) {
         const pu = IDX.pu[puId];
         const puTitle = pu ? (MAP.pu?.title(pu) || 'Untitled PU') : 'Untitled PU';
@@ -8658,26 +8660,13 @@ function buildHierarchicalTree(mount, list) {
         };
       }
       
-      // Add SU to PU
+      // Add SU to this PU (will be added to multiple PUs if it spans them)
       tree[msId].children[puId].children[suId] = {
         type: 'su',
-        title: suTitle
+        title: suTitle,
+        allPUs: puIds // Store all PUs this SU belongs to for cross-PU detection
       };
-    } else {
-      // SU has no PU - create a special "Unassigned PU" node
-      const unassignedKey = `unassigned-${msId}`;
-      if (!tree[msId].children[unassignedKey]) {
-        tree[msId].children[unassignedKey] = {
-          type: 'pu',
-          title: 'Unassigned Production Unit',
-          children: {}
-        };
-      }
-      tree[msId].children[unassignedKey].children[suId] = {
-        type: 'su',
-        title: suTitle
-      };
-    }
+    });
   });
   
   // Also add PUs that have no SUs (directly connected to MS via pointer)
@@ -8879,12 +8868,41 @@ function buildHierarchicalTree(mount, list) {
         return otherMS ? otherMS.title : 'Unknown MS';
       });
       
-      const suHTML = Object.entries(pu.children).map(([suId, su], suIdx) => `
-        <div style="margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: #fffbea; border-left: 3px solid #f4d03f; margin-top: 0.5rem; border-radius: 0.375rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-          <span style="font-size: 0.85rem; color: #999; font-weight: 600;">SU #${suIdx + 1}</span>
-          <span style="font-weight: 600; font-size: 0.875rem; color: #333;">📝 ${su.title}</span>
-        </div>
-      `).join('');
+      const suHTML = Object.entries(pu.children).map(([suId, su], suIdx) => {
+        // Check if this SU spans multiple PUs
+        const suPUs = su.allPUs || [];
+        const isCrossPUSU = suPUs.length > 1;
+        const otherPUs = suPUs.filter(id => id !== puId);
+        
+        // Get titles of other PUs containing this SU
+        const otherPUTitles = otherPUs.map(otherId => {
+          const otherPU = ms.children[otherId];
+          return otherPU ? otherPU.title : 'Unknown PU';
+        });
+        
+        // Special styling for cross-PU SUs (orange/amber gradient)
+        const suStyle = isCrossPUSU
+          ? 'margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 3px dashed #ff9800; border-right: 3px dashed #ff9800; margin-top: 0.5rem; border-radius: 0.375rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 6px rgba(255,152,0,0.3); position: relative;'
+          : 'margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: #fffbea; border-left: 3px solid #f4d03f; margin-top: 0.5rem; border-radius: 0.375rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);';
+        
+        const crossPUIndicator = isCrossPUSU
+          ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #ff9800; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">
+               🔗 SPANS ${suPUs.length} PUs
+             </div>
+             <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,152,0,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #e65100; width: 100%;">
+               <strong>⚠️ Cross-PU Scribal Unit:</strong> This scribal unit also appears in:<br/>
+               ${otherPUTitles.map(t => `<span style="margin-left: 1rem;">→ ${t}</span>`).join('<br/>')}
+             </div>`
+          : '';
+        
+        return `
+          <div style="${suStyle}">
+            <span style="font-size: 0.85rem; color: #999; font-weight: 600;">SU #${suIdx + 1}</span>
+            <span style="font-weight: 600; font-size: 0.875rem; color: #333;">📝 ${su.title}</span>
+            ${crossPUIndicator}
+          </div>
+        `;
+      }).join('');
       
       // Special styling for cross-MS PUs
       const puStyle = isCrossMSPU 
