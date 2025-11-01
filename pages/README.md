@@ -17,9 +17,10 @@ This folder contains documentation for the Unknown Hands project.
 - Getting started with the platform
 - Complete guide to Browse & Search
 - Map, Timeline, and Network visualizations
-- Analytics tools (Paleographic, Gender, Codicological)
+- Analytics tools (Paleographic, Gender, Codicological, Multilingualism, Colophon Analysis)
 - IIIF Viewer tutorial
 - Transcription search
+- Export features
 - Tips, tricks and FAQ
 
 **Use this when:** You want to learn how to use the Explore Database page and other interactive features.
@@ -52,4 +53,4 @@ This folder contains documentation for the Unknown Hands project.
 
 ---
 
-*Last updated: October 2025*
+*Last updated: November 2025*

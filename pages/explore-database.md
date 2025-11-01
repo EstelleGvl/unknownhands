@@ -14,6 +14,8 @@ show_title: false
     <button class="main-nav-btn" data-mode="timeline">📈 Timeline</button>
     <button class="main-nav-btn" data-mode="network">🔗 Network</button>
     <button class="main-nav-btn" data-mode="analytics">📊 Analytics</button>
+    <button class="main-nav-btn" data-mode="multilingualism">🌍 Multilingualism</button>
+    <button class="main-nav-btn" data-mode="colophon-analysis">📜 Colophon Analysis</button>
   </div>
 
   <div class="db-shell">
@@ -125,6 +127,7 @@ show_title: false
               <span style="font-size: 0.875rem;">Show Routes</span>
             </label>
             <button class="chip" id="map-reset-view" style="margin-left: auto;">Reset View</button>
+            <button class="chip" id="map-export-image" style="background: #28a745; color: white;">📷 Export PNG</button>
           </div>
           <!-- Time slider -->
           <div style="padding: 0.5rem 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
@@ -178,6 +181,8 @@ show_title: false
               <button class="chip" id="timeline-zoom-out" title="Zoom out">−</button>
               <button class="chip" id="timeline-zoom-in" title="Zoom in">+</button>
               <button class="chip" id="timeline-reset-zoom">Reset Zoom</button>
+              <button class="chip" id="timeline-export-svg" style="background:#28a745;color:white;">📷 Export SVG</button>
+              <button class="chip" id="timeline-export-png" style="background:#28a745;color:white;">📷 Export PNG</button>
             </div>
           </div>
           
@@ -235,8 +240,10 @@ show_title: false
               <button id="network-zoom-reset" class="chip" style="padding:.25rem .5rem;">↺ Reset View</button>
               <button id="network-zoom-fit" class="chip" style="padding:.25rem .5rem;">⛶ Fit to Screen</button>
               <button id="network-refresh" class="chip" style="padding:.25rem .5rem;">Refresh</button>
+              <button id="network-export-svg" class="chip" style="padding:.25rem .5rem;background:#28a745;color:white;">📷 Export SVG</button>
+              <button id="network-export-png" class="chip" style="padding:.25rem .5rem;background:#28a745;color:white;">📷 Export PNG</button>
               <select id="network-export-format" style="padding:.25rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;cursor:pointer;">
-                <option value="">📊 Export as...</option>
+                <option value="">📊 Export Data...</option>
                 <option value="gephi">Gephi (2 CSV files)</option>
                 <option value="r">R (CSV + script)</option>
               </select>
@@ -628,11 +635,83 @@ show_title: false
             <div id="analytics-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
               <strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.
             </div>
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+              <button class="chip" id="analytics-export-svg" style="background:#28a745;color:white;">📷 Export SVG</button>
+              <button class="chip" id="analytics-export-png" style="background:#28a745;color:white;">📷 Export PNG</button>
+            </div>
           </div>
 
           <!-- Analytics mount point -->
           <div id="analytics-mount" style="padding: 1rem; overflow: auto;">
             <!-- Visualization will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MULTILINGUALISM MODE -->
+    <div id="mode-multilingualism" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on">
+        <div class="viz-head">
+          <span id="multilingualism-title">🌍 Multilingualism Explorer</span>
+          <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Exploring linguistic diversity in medieval manuscript production</span>
+        </div>
+        <div class="viz-body" style="padding: 0;">
+          <!-- Sub-navigation tabs -->
+          <div style="display: flex; gap: 0.5rem; padding: 1rem; border-bottom: 2px solid #e0e0e0; background: #f8f9fa; flex-wrap: wrap;">
+            <button class="multilingualism-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: #fff; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              📊 Overview
+            </button>
+            <button class="multilingualism-tab-btn" data-tab="manuscripts" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              📚 Multilingual Manuscripts
+            </button>
+            <button class="multilingualism-tab-btn" data-tab="scribes" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              ✍️ Scribal Multilingualism
+            </button>
+            <button class="multilingualism-tab-btn" data-tab="institutions" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              🏛️ Institutional Multilingualism
+            </button>
+            <button class="multilingualism-tab-btn" data-tab="colophons" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              🔀 Colophon-Text Divergence
+            </button>
+          </div>
+
+          <!-- Mount point for multilingualism visualizations -->
+          <div id="multilingualism-mount" style="padding: 1rem; overflow: auto; min-height: 60vh;">
+            <!-- Visualization will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOPHON ANALYSIS MODE -->
+    <div id="mode-colophon-analysis" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow: hidden;">
+        <div style="border-bottom: 2px solid #f0f0f0;">
+          <div class="colophon-tabs" style="display: flex; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #fafafa;">
+            <button class="colophon-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              📊 Overview
+            </button>
+            <button class="colophon-tab-btn" data-tab="sentiment" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              💭 Sentiment Analysis
+            </button>
+            <button class="colophon-tab-btn" data-tab="themes" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              🏷️ Thematic Analysis
+            </button>
+            <button class="colophon-tab-btn" data-tab="linguistic" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              📝 Linguistic Features
+            </button>
+            <button class="colophon-tab-btn" data-tab="patterns" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              🔍 Comparative Patterns
+            </button>
+            <button class="colophon-tab-btn" data-tab="browse-colophons" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              📖 Browse Colophons
+            </button>
+          </div>
+        </div>
+        <div style="padding: 1.5rem;">
+          <div id="colophon-mount" style="overflow: auto; min-height: 60vh;">
+            <!-- Analysis will be rendered here -->
           </div>
         </div>
       </div>
@@ -753,12 +832,14 @@ show_title: false
     }
   }
   
-  /* Visualization modes: full-width (Map, Timeline, Network, Analytics) */
+  /* Visualization modes: full-width (Map, Timeline, Network, Analytics, Multilingualism, Colophon Analysis) */
   /* These need to break out of the .explore-fullwidth padding, then add it back */
   #mode-map[aria-hidden="false"],
   #mode-timeline[aria-hidden="false"],
   #mode-network[aria-hidden="false"],
-  #mode-analytics[aria-hidden="false"] {
+  #mode-analytics[aria-hidden="false"],
+  #mode-multilingualism[aria-hidden="false"],
+  #mode-colophon-analysis[aria-hidden="false"] {
     display: block !important;
     width: 100vw !important;
     max-width: 100vw !important;
@@ -896,6 +977,9 @@ show_title: false
 
 <!-- D3.js for network visualization -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
+<!-- Libraries for high-quality image export -->
+<script src="https://cdn.jsdelivr.net/npm/svg-crowbar@0.6.1/svg-crowbar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <script>
 /* ============================================================
@@ -1298,12 +1382,20 @@ const sorters = map => ({
 function indexOfRecord(list, id){ const sId=String(id); for (let i=0;i<list.length;i++){ if (String(list[i].rec_ID)===sId) return i; } return -1; }
 function linkTo(type, id, text){ if (!id) return esc(text||''); return `<button type="button" class="linklike" data-jump='${type}:${String(id)}'>${esc(text||'')}</button>`; }
 function jumpTo(type, id){
+  // Switch to browse mode first if we're in a different mode
+  if (ACTIVE_MODE !== 'browse') {
+    setMode('browse');
+  }
+  
   switchEntity(type);
   const list = computeList();
   const selIndex = indexOfRecord(list, id);
   if (selIndex >= 0) page = Math.floor(selIndex / pageSize) + 1;
   render(list, type, String(id));
 }
+
+// Expose jumpTo to window for onclick handlers
+window.jumpTo = jumpTo;
 
 /* ---------- Summaries helpers (unchanged) ---------- */
 const uniqBy = (arr, keyFn) => { const seen=new Set(); const out=[]; arr.forEach(x=>{ const k=keyFn(x); if(!seen.has(k)){ seen.add(k); out.push(x);} }); return out; };
@@ -2291,7 +2383,7 @@ function updateAvailableViews(){
   if (ACTIVE_VIEW==='analytics' && analyticsOk) buildAnalytics();
 }
 
-/* ---------- Mode Switching (Browse/Map/Timeline/Network/Analytics) ---------- */
+/* ---------- Mode Switching (Browse/Map/Timeline/Network/Analytics/Multilingualism) ---------- */
 let ACTIVE_MODE = 'browse';
 
 function setMode(mode) {
@@ -2304,7 +2396,7 @@ function setMode(mode) {
   });
 
   // Show/hide mode containers
-  const modes = ['browse', 'map', 'timeline', 'network', 'analytics'];
+  const modes = ['browse', 'map', 'timeline', 'network', 'analytics', 'multilingualism', 'colophon-analysis'];
   modes.forEach(m => {
     const container = document.getElementById(`mode-${m}`);
     if (container) {
@@ -2320,6 +2412,8 @@ function setMode(mode) {
   if (mode === 'timeline') buildTimeline();
   if (mode === 'network') buildNetworkView();
   if (mode === 'analytics') buildAnalytics();
+  if (mode === 'multilingualism') buildMultilingualism();
+  if (mode === 'colophon-analysis') buildColophonAnalysis();
 }
 
 function initModeNavigation() {
@@ -5192,6 +5286,398 @@ cat("\\nPlot saved to: ${filename}_plot.pdf\\n")
   }
 }
 
+/* ---------- High-Quality Image Export Functions ---------- */
+
+/**
+ * Export SVG element as SVG file
+ * @param {SVGElement} svgElement - The SVG element to export
+ * @param {string} filename - The filename for the export
+ */
+function exportSvgAsSvg(svgElement, filename) {
+  if (!svgElement) {
+    alert('⚠️ No visualization to export');
+    return;
+  }
+  
+  // Clone the SVG to avoid modifying the original
+  const svgClone = svgElement.cloneNode(true);
+  
+  // Ensure proper dimensions
+  const bbox = svgElement.getBBox();
+  svgClone.setAttribute('width', bbox.width);
+  svgClone.setAttribute('height', bbox.height);
+  svgClone.setAttribute('viewBox', `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+  
+  // Add XML namespace if not present
+  if (!svgClone.getAttribute('xmlns')) {
+    svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  }
+  
+  // Inline all styles from stylesheets
+  const styleSheets = document.styleSheets;
+  let allStyles = '';
+  
+  try {
+    for (let i = 0; i < styleSheets.length; i++) {
+      try {
+        const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+        if (rules) {
+          for (let j = 0; j < rules.length; j++) {
+            allStyles += rules[j].cssText + '\n';
+          }
+        }
+      } catch (e) {
+        // Skip stylesheets from other domains
+        console.warn('Could not access stylesheet:', e);
+      }
+    }
+  } catch (e) {
+    console.warn('Error accessing stylesheets:', e);
+  }
+  
+  // Add style element with all styles
+  if (allStyles) {
+    const styleElement = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    styleElement.textContent = allStyles;
+    svgClone.insertBefore(styleElement, svgClone.firstChild);
+  }
+  
+  // Serialize SVG to string
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgClone);
+  
+  // Create blob and download
+  const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  downloadFile(blob, filename, 'image/svg+xml');
+}
+
+/**
+ * Export SVG element as high-resolution PNG (300 DPI)
+ * @param {SVGElement} svgElement - The SVG element to export
+ * @param {string} filename - The filename for the export
+ * @param {number} scaleFactor - Scale factor for resolution (3 = 300 DPI, 4 = 400 DPI)
+ */
+function exportSvgAsPng(svgElement, filename, scaleFactor = 3) {
+  if (!svgElement) {
+    alert('⚠️ No visualization to export');
+    return;
+  }
+  
+  // Get the bounding box for proper sizing
+  const bbox = svgElement.getBBox();
+  const width = bbox.width;
+  const height = bbox.height;
+  
+  // Create a canvas with scaled dimensions
+  const canvas = document.createElement('canvas');
+  canvas.width = width * scaleFactor;
+  canvas.height = height * scaleFactor;
+  const ctx = canvas.getContext('2d');
+  
+  // Scale the context
+  ctx.scale(scaleFactor, scaleFactor);
+  
+  // Set white background
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, width, height);
+  
+  // Clone and prepare SVG
+  const svgClone = svgElement.cloneNode(true);
+  svgClone.setAttribute('width', width);
+  svgClone.setAttribute('height', height);
+  svgClone.setAttribute('viewBox', `${bbox.x} ${bbox.y} ${width} ${height}`);
+  
+  if (!svgClone.getAttribute('xmlns')) {
+    svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  }
+  
+  // Inline styles
+  const styleSheets = document.styleSheets;
+  let allStyles = '';
+  
+  try {
+    for (let i = 0; i < styleSheets.length; i++) {
+      try {
+        const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+        if (rules) {
+          for (let j = 0; j < rules.length; j++) {
+            allStyles += rules[j].cssText + '\n';
+          }
+        }
+      } catch (e) {
+        console.warn('Could not access stylesheet:', e);
+      }
+    }
+  } catch (e) {
+    console.warn('Error accessing stylesheets:', e);
+  }
+  
+  if (allStyles) {
+    const styleElement = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    styleElement.textContent = allStyles;
+    svgClone.insertBefore(styleElement, svgClone.firstChild);
+  }
+  
+  // Serialize SVG
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svgClone);
+  const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(svgBlob);
+  
+  // Load SVG into image
+  const img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0, width, height);
+    URL.revokeObjectURL(url);
+    
+    // Convert canvas to PNG blob
+    canvas.toBlob(function(blob) {
+      downloadFile(blob, filename, 'image/png');
+    }, 'image/png');
+  };
+  
+  img.onerror = function(e) {
+    URL.revokeObjectURL(url);
+    console.error('Failed to load SVG:', e);
+    alert('⚠️ Failed to export PNG. Please try SVG export instead.');
+  };
+  
+  img.src = url;
+}
+
+/**
+ * Export map as PNG using html2canvas
+ * @param {string} containerId - The ID of the map container
+ * @param {string} filename - The filename for the export
+ */
+function exportMapAsPng(containerId, filename) {
+  const mapElement = document.getElementById(containerId);
+  
+  if (!mapElement) {
+    alert('⚠️ No map to export');
+    return;
+  }
+  
+  // Show loading indicator
+  const originalCursor = mapElement.style.cursor;
+  mapElement.style.cursor = 'wait';
+  
+  // Use html2canvas to capture the map
+  html2canvas(mapElement, {
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#ffffff',
+    scale: 3, // 3x scale for ~300 DPI
+    logging: false
+  }).then(canvas => {
+    canvas.toBlob(function(blob) {
+      downloadFile(blob, filename, 'image/png');
+      mapElement.style.cursor = originalCursor;
+    }, 'image/png');
+  }).catch(error => {
+    console.error('Map export error:', error);
+    mapElement.style.cursor = originalCursor;
+    alert('⚠️ Failed to export map. Please try again or use a screenshot tool.');
+  });
+}
+
+/**
+ * Export analytics visualization (handles multiple viz types)
+ * @param {string} format - 'svg' or 'png'
+ */
+function exportAnalyticsVisualization(format) {
+  const analyticsMount = document.getElementById('analytics-mount');
+  
+  if (!analyticsMount) {
+    alert('⚠️ No analytics visualization to export');
+    return;
+  }
+  
+  // Try to find SVG element (most analytics use D3 SVG)
+  const svgElement = analyticsMount.querySelector('svg');
+  
+  if (!svgElement) {
+    // If no SVG, might be a complex HTML viz, use html2canvas
+    if (format === 'png') {
+      analyticsMount.style.cursor = 'wait';
+      html2canvas(analyticsMount, {
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        scale: 3,
+        logging: false
+      }).then(canvas => {
+        canvas.toBlob(function(blob) {
+          const vizType = document.getElementById('analytics-viz-type')?.value || 'dashboard';
+          const filename = `unknownhands-analytics-${vizType}-${Date.now()}.png`;
+          downloadFile(blob, filename, 'image/png');
+          analyticsMount.style.cursor = '';
+        }, 'image/png');
+      }).catch(error => {
+        console.error('Analytics export error:', error);
+        analyticsMount.style.cursor = '';
+        alert('⚠️ Failed to export visualization. Please try again.');
+      });
+    } else {
+      alert('⚠️ This visualization type does not support SVG export. Please use PNG export.');
+    }
+    return;
+  }
+  
+  // Export SVG
+  const vizType = document.getElementById('analytics-viz-type')?.value || 'dashboard';
+  const filename = `unknownhands-analytics-${vizType}-${Date.now()}.${format}`;
+  
+  if (format === 'svg') {
+    exportSvgAsSvg(svgElement, filename);
+  } else if (format === 'png') {
+    exportSvgAsPng(svgElement, filename, 3);
+  }
+}
+
+/**
+ * Export individual manuscript tree item as SVG using foreignObject
+ * @param {HTMLElement} treeItem - The manuscript tree item div
+ * @param {string} msId - The manuscript ID for filename
+ */
+function exportTreeItemAsSvg(treeItem, msId) {
+  if (!treeItem) {
+    alert('⚠️ No tree item to export');
+    return;
+  }
+  
+  // Clone the tree item
+  const clone = treeItem.cloneNode(true);
+  
+  // Remove export buttons from clone
+  clone.querySelectorAll('.tree-export-svg-btn, .tree-export-png-btn').forEach(btn => btn.remove());
+  
+  // Get dimensions
+  const rect = treeItem.getBoundingClientRect();
+  const width = rect.width;
+  const height = rect.height;
+  
+  // Create SVG with foreignObject
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  
+  // Add white background
+  const rect_bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect_bg.setAttribute('width', '100%');
+  rect_bg.setAttribute('height', '100%');
+  rect_bg.setAttribute('fill', 'white');
+  svg.appendChild(rect_bg);
+  
+  // Inline all styles
+  const styleSheets = document.styleSheets;
+  let allStyles = '';
+  
+  try {
+    for (let i = 0; i < styleSheets.length; i++) {
+      try {
+        const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+        if (rules) {
+          for (let j = 0; j < rules.length; j++) {
+            allStyles += rules[j].cssText + '\n';
+          }
+        }
+      } catch (e) {
+        console.warn('Could not access stylesheet:', e);
+      }
+    }
+  } catch (e) {
+    console.warn('Error accessing stylesheets:', e);
+  }
+  
+  // Create foreignObject with HTML content
+  const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+  foreignObject.setAttribute('width', '100%');
+  foreignObject.setAttribute('height', '100%');
+  
+  // Wrap content in div with styles
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+  
+  if (allStyles) {
+    const style = document.createElement('style');
+    style.textContent = allStyles;
+    wrapper.appendChild(style);
+  }
+  
+  wrapper.appendChild(clone);
+  foreignObject.appendChild(wrapper);
+  svg.appendChild(foreignObject);
+  
+  // Serialize and download
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(svg);
+  const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  
+  const msTitle = treeItem.getAttribute('data-ms-title') || 'manuscript';
+  const safeMsTitle = msTitle.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  const filename = `unknownhands-tree-${safeMsTitle}-${Date.now()}.svg`;
+  
+  downloadFile(blob, filename, 'image/svg+xml');
+}
+
+/**
+ * Export individual manuscript tree item as PNG
+ * @param {HTMLElement} treeItem - The manuscript tree item div
+ * @param {string} msId - The manuscript ID for filename
+ */
+function exportTreeItemAsPng(treeItem, msId) {
+  if (!treeItem) {
+    alert('⚠️ No tree item to export');
+    return;
+  }
+  
+  // Clone the tree item to avoid modifying original
+  const clone = treeItem.cloneNode(true);
+  
+  // Remove export buttons from clone
+  clone.querySelectorAll('.tree-export-svg-btn, .tree-export-png-btn').forEach(btn => btn.remove());
+  
+  // Create a temporary container with white background
+  const tempContainer = document.createElement('div');
+  tempContainer.style.position = 'absolute';
+  tempContainer.style.left = '-9999px';
+  tempContainer.style.top = '-9999px';
+  tempContainer.style.background = 'white';
+  tempContainer.style.padding = '20px';
+  tempContainer.appendChild(clone);
+  document.body.appendChild(tempContainer);
+  
+  // Show cursor wait
+  treeItem.style.cursor = 'wait';
+  
+  // Use html2canvas to capture the clone
+  html2canvas(tempContainer, {
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#ffffff',
+    scale: 3, // 3x scale for ~300 DPI
+    logging: false
+  }).then(canvas => {
+    canvas.toBlob(function(blob) {
+      const msTitle = treeItem.getAttribute('data-ms-title') || 'manuscript';
+      const safeMsTitle = msTitle.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+      const filename = `unknownhands-tree-${safeMsTitle}-${Date.now()}.png`;
+      downloadFile(blob, filename, 'image/png');
+      
+      // Cleanup
+      document.body.removeChild(tempContainer);
+      treeItem.style.cursor = '';
+    }, 'image/png');
+  }).catch(error => {
+    console.error('Tree export error:', error);
+    document.body.removeChild(tempContainer);
+    treeItem.style.cursor = '';
+    alert('⚠️ Failed to export tree. Please try again.');
+  });
+}
+
 /* Network refresh button - MOVED TO initEventListeners()
 document.getElementById('network-refresh')?.addEventListener('click', () => {
   if (ACTIVE_VIEW === 'network') buildNetworkView();
@@ -5631,6 +6117,88 @@ function initEventListeners() {
     }
   });
   
+  // === IMAGE EXPORT LISTENERS ===
+  
+  // Map PNG export
+  document.getElementById('map-export-image')?.addEventListener('click', () => {
+    const filename = `unknownhands-map-${Date.now()}.png`;
+    exportMapAsPng('map-mount', filename);
+  });
+  
+  // Network SVG export
+  document.getElementById('network-export-svg')?.addEventListener('click', () => {
+    const mount = document.getElementById('network-mount');
+    // Check for SVG either as D3 selection or direct query
+    let svg = null;
+    if (mount?._d3Svg) {
+      svg = mount._d3Svg.node ? mount._d3Svg.node() : mount._d3Svg;
+    } else {
+      svg = mount?.querySelector('svg');
+    }
+    
+    if (svg) {
+      const depth = document.getElementById('network-depth')?.value || '1';
+      const filename = `unknownhands-network-depth${depth}-${Date.now()}.svg`;
+      exportSvgAsSvg(svg, filename);
+    } else {
+      alert('⚠️ No network visualization to export\n\nPlease generate a network first.');
+    }
+  });
+  
+  // Network PNG export
+  document.getElementById('network-export-png')?.addEventListener('click', () => {
+    const mount = document.getElementById('network-mount');
+    // Check for SVG either as D3 selection or direct query
+    let svg = null;
+    if (mount?._d3Svg) {
+      svg = mount._d3Svg.node ? mount._d3Svg.node() : mount._d3Svg;
+    } else {
+      svg = mount?.querySelector('svg');
+    }
+    
+    if (svg) {
+      const depth = document.getElementById('network-depth')?.value || '1';
+      const filename = `unknownhands-network-depth${depth}-${Date.now()}.png`;
+      exportSvgAsPng(svg, filename, 3); // 3x scale for ~300 DPI
+    } else {
+      alert('⚠️ No network visualization to export\n\nPlease generate a network first.');
+    }
+  });
+  
+  // Timeline SVG export
+  document.getElementById('timeline-export-svg')?.addEventListener('click', () => {
+    const mount = document.getElementById('timeline-mount');
+    const svg = mount?.querySelector('svg');
+    if (svg) {
+      const filename = `unknownhands-timeline-${Date.now()}.svg`;
+      exportSvgAsSvg(svg, filename);
+    } else {
+      alert('⚠️ No timeline visualization to export\n\nPlease switch to Timeline view first.');
+    }
+  });
+  
+  // Timeline PNG export
+  document.getElementById('timeline-export-png')?.addEventListener('click', () => {
+    const mount = document.getElementById('timeline-mount');
+    const svg = mount?.querySelector('svg');
+    if (svg) {
+      const filename = `unknownhands-timeline-${Date.now()}.png`;
+      exportSvgAsPng(svg, filename, 3); // 3x scale for ~300 DPI
+    } else {
+      alert('⚠️ No timeline visualization to export\n\nPlease switch to Timeline view first.');
+    }
+  });
+  
+  // Analytics SVG export
+  document.getElementById('analytics-export-svg')?.addEventListener('click', () => {
+    exportAnalyticsVisualization('svg');
+  });
+  
+  // Analytics PNG export
+  document.getElementById('analytics-export-png')?.addEventListener('click', () => {
+    exportAnalyticsVisualization('png');
+  });
+  
   console.log('✓ All event listeners attached');
 }
 
@@ -5890,7 +6458,15 @@ plot(g,
 }
 
 function downloadFile(content, filename, mimeType) {
-  const blob = new Blob([content], { type: mimeType + ';charset=utf-8;' });
+  let blob;
+  
+  // Handle both string content and Blob objects
+  if (content instanceof Blob) {
+    blob = content;
+  } else {
+    blob = new Blob([content], { type: mimeType + ';charset=utf-8;' });
+  }
+  
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -8933,14 +9509,24 @@ function buildHierarchicalTree(mount, list) {
     }).join('');
     
     return `
-      <div style="padding: 1.25rem; background: linear-gradient(135deg, #e3f2fd 0%, #f0f7ff 100%); border-left: 5px solid ${metrics.complexityScore > 100 ? '#e74c3c' : '#3498db'}; margin-bottom: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-          <span style="font-size: 0.9rem; color: #999; font-weight: 700;">MS #${msIdx + 1}</span>
-          <span style="font-weight: 700; font-size: 1.05rem; color: #1a1a1a;">📚 ${ms.title}</span>
-          ${metrics.hasInterleaved ? '<span style="padding: 0.125rem 0.375rem; background: #ff9800; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">🔀 INTERLEAVED</span>' : ''}
-          ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #9c27b0; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📚 CROSS-MS</span>' : ''}
-          ${metrics.hasCrossPUSU ? '<span style="padding: 0.125rem 0.375rem; background: #f44336; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">✍️ CROSS-PU</span>' : ''}
-          ${metrics.puCount >= 5 ? '<span style="padding: 0.125rem 0.375rem; background: #2196f3; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📦 MULTI-PU</span>' : ''}
+      <div class="manuscript-tree-item" data-ms-id="${msId}" data-ms-title="${ms.title.replace(/"/g, '&quot;')}" style="padding: 1.25rem; background: linear-gradient(135deg, #e3f2fd 0%, #f0f7ff 100%); border-left: 5px solid ${metrics.complexityScore > 100 ? '#e74c3c' : '#3498db'}; margin-bottom: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-size: 0.9rem; color: #999; font-weight: 700;">MS #${msIdx + 1}</span>
+            <span style="font-weight: 700; font-size: 1.05rem; color: #1a1a1a;">📚 ${ms.title}</span>
+            ${metrics.hasInterleaved ? '<span style="padding: 0.125rem 0.375rem; background: #ff9800; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">🔀 INTERLEAVED</span>' : ''}
+            ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #9c27b0; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📚 CROSS-MS</span>' : ''}
+            ${metrics.hasCrossPUSU ? '<span style="padding: 0.125rem 0.375rem; background: #f44336; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">✍️ CROSS-PU</span>' : ''}
+            ${metrics.puCount >= 5 ? '<span style="padding: 0.125rem 0.375rem; background: #2196f3; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📦 MULTI-PU</span>' : ''}
+          </div>
+          <div style="display: flex; gap: 0.25rem;">
+            <button class="tree-export-svg-btn" data-ms-id="${msId}" style="padding: 0.25rem 0.5rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; font-size: 0.7rem; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.25rem;" title="Export this manuscript tree as SVG">
+              📷 SVG
+            </button>
+            <button class="tree-export-png-btn" data-ms-id="${msId}" style="padding: 0.25rem 0.5rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; font-size: 0.7rem; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.25rem;" title="Export this manuscript tree as PNG">
+              📷 PNG
+            </button>
+          </div>
         </div>
         <div style="display: flex; gap: 1.5rem; font-size: 0.8rem; color: #666; margin-bottom: 0.75rem; padding: 0.5rem; background: rgba(255,255,255,0.5); border-radius: 0.25rem;">
           <span style="display: flex; align-items: center; gap: 0.25rem;">
@@ -9030,6 +9616,3063 @@ function buildHierarchicalTree(mount, list) {
       showLessBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
     });
   }
+  
+  // Add event listeners for individual manuscript tree exports
+  const svgExportBtns = mount.querySelectorAll('.tree-export-svg-btn');
+  const pngExportBtns = mount.querySelectorAll('.tree-export-png-btn');
+  
+  svgExportBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const msId = btn.getAttribute('data-ms-id');
+      const treeItem = btn.closest('.manuscript-tree-item');
+      if (treeItem) {
+        exportTreeItemAsSvg(treeItem, msId);
+      }
+    });
+  });
+  
+  pngExportBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const msId = btn.getAttribute('data-ms-id');
+      const treeItem = btn.closest('.manuscript-tree-item');
+      if (treeItem) {
+        exportTreeItemAsPng(treeItem, msId);
+      }
+    });
+  });
+}
+
+/* ---------- Multilingualism Module ---------- */
+
+// Track current multilingualism tab
+let CURRENT_MULTILINGUALISM_TAB = 'overview';
+
+// Main entry point for multilingualism mode
+function buildMultilingualism() {
+  console.log('🌍 Building multilingualism view, tab:', CURRENT_MULTILINGUALISM_TAB);
+  
+  // Initialize tab navigation if first time
+  if (!window.multilingualismTabsInitialized) {
+    initMultilingualismTabs();
+    window.multilingualismTabsInitialized = true;
+  }
+  
+  // Build the current tab
+  buildMultilingualismTab(CURRENT_MULTILINGUALISM_TAB);
+}
+
+// Initialize tab navigation
+function initMultilingualismTabs() {
+  document.querySelectorAll('.multilingualism-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      if (tab) {
+        CURRENT_MULTILINGUALISM_TAB = tab;
+        
+        // Update tab button styles
+        document.querySelectorAll('.multilingualism-tab-btn').forEach(b => {
+          const isActive = b.dataset.tab === tab;
+          b.classList.toggle('is-on', isActive);
+          b.style.background = isActive ? '#fff' : 'transparent';
+          b.style.color = isActive ? '#000' : '#666';
+          b.style.boxShadow = isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+          b.style.fontWeight = isActive ? '600' : '500';
+        });
+        
+        // Build the selected tab
+        buildMultilingualismTab(tab);
+      }
+    });
+  });
+}
+
+// Build specific tab content
+function buildMultilingualismTab(tab) {
+  const mount = document.getElementById('multilingualism-mount');
+  if (!mount) return;
+  
+  mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#999;">Loading...</div>';
+  
+  // Slight delay to show loading state
+  setTimeout(() => {
+    switch(tab) {
+      case 'overview':
+        buildMultilingualismOverview(mount);
+        break;
+      case 'manuscripts':
+        buildMultilingualManuscripts(mount);
+        break;
+      case 'scribes':
+        buildScribalMultilingualism(mount);
+        break;
+      case 'institutions':
+        buildInstitutionalMultilingualism(mount);
+        break;
+      case 'colophons':
+        buildColophonTextDivergence(mount);
+        break;
+      default:
+        mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#666;">Select a tab to explore.</div>';
+    }
+  }, 50);
+}
+
+// ===== DATA EXTRACTION FUNCTIONS =====
+
+/**
+ * Get all language information for a record (SU/PU/Text)
+ * Returns: { text: [], colophon: [], all: [], isMultilingual: bool, hasColophonDivergence: bool }
+ */
+function getLanguageInfo(record, recordType) {
+  const languages = {
+    text: [],
+    colophon: [],
+    dialect: [],
+    all: new Set()
+  };
+  
+  // 1. Get colophon language (direct field in SU/PU)
+  const colophonLang = getVal(record, 'Colophon language');
+  if (colophonLang) {
+    // Handle multi-value fields
+    const colophonLangs = Array.isArray(colophonLang) ? colophonLang : [colophonLang];
+    colophonLangs.forEach(lang => {
+      if (lang && lang.trim()) {
+        languages.colophon.push(lang.trim());
+        languages.all.add(lang.trim());
+      }
+    });
+  }
+  
+  // 2. Get text languages from relationships
+  const recordId = String(record.rec_ID);
+  const rels = [
+    ...(REL_INDEX.bySource?.[recordId] || []),
+    ...(REL_INDEX.byTarget?.[recordId] || [])
+  ];
+  
+  for (const rel of rels) {
+    // Get language from relationship metadata
+    const textLang = getVal(rel, 'Text Language(s)') || getVal(rel, 'Language of Text');
+    if (textLang) {
+      const textLangs = Array.isArray(textLang) ? textLang : [textLang];
+      textLangs.forEach(lang => {
+        if (lang && lang.trim()) {
+          languages.text.push(lang.trim());
+          languages.all.add(lang.trim());
+        }
+      });
+    }
+    
+    // Check if this relationship is to a text
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    const textId = IDX.tx?.[String(src?.id)] ? String(src.id) : 
+                   IDX.tx?.[String(tgt?.id)] ? String(tgt.id) : null;
+    
+    if (textId) {
+      const textRec = IDX.tx[textId];
+      if (textRec) {
+        // Get language from text record itself
+        const lang = getVal(textRec, 'Text Language(s)') || getVal(textRec, 'Language of Text');
+        if (lang) {
+          const langs = Array.isArray(lang) ? lang : [lang];
+          langs.forEach(l => {
+            if (l && l.trim() && !languages.text.includes(l.trim())) {
+              languages.text.push(l.trim());
+              languages.all.add(l.trim());
+            }
+          });
+        }
+      }
+    }
+  }
+  
+  // For texts themselves, check their own language field
+  if (recordType === 'tx') {
+    const textLang = getVal(record, 'Text Language(s)') || getVal(record, 'Language of Text');
+    if (textLang) {
+      const langs = Array.isArray(textLang) ? textLang : [textLang];
+      langs.forEach(lang => {
+        if (lang && lang.trim() && !languages.text.includes(lang.trim())) {
+          languages.text.push(lang.trim());
+          languages.all.add(lang.trim());
+        }
+      });
+    }
+  }
+  
+  return {
+    text: languages.text,
+    colophon: languages.colophon,
+    dialect: languages.dialect,
+    all: Array.from(languages.all),
+    isMultilingual: languages.all.size > 1,
+    hasColophonDivergence: languages.colophon.length > 0 && 
+                           languages.text.length > 0 &&
+                           !languages.text.some(t => languages.colophon.includes(t))
+  };
+}
+
+/**
+ * Get scribe(s) for a scribal unit
+ * Returns: [{ scribeId, scribeName, role, certainty }]
+ */
+function getScribesForSU(su) {
+  const scribes = [];
+  const suId = String(su.rec_ID);
+  const rels = [
+    ...(REL_INDEX.bySource?.[suId] || []),
+    ...(REL_INDEX.byTarget?.[suId] || [])
+  ];
+  
+  for (const rel of rels) {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    
+    // Check if this is a relationship to a historical person
+    const hpId = IDX.hp?.[String(src?.id)] ? String(src.id) :
+                 IDX.hp?.[String(tgt?.id)] ? String(tgt.id) : null;
+    
+    if (hpId) {
+      const hp = IDX.hp[hpId];
+      const role = getVal(rel, 'Scribe role') || 'scribe';
+      const certainty = getVal(rel, 'scribe certainty') || '';
+      
+      scribes.push({
+        scribeId: hpId,
+        scribeName: MAP.hp?.title(hp) || 'Unknown Scribe',
+        role: role,
+        certainty: certainty
+      });
+    }
+  }
+  
+  return scribes;
+}
+
+/**
+ * Get institution(s) for a production unit
+ * Returns: [{ institutionId, institutionName, institutionType }]
+ */
+function getInstitutionsForPU(pu) {
+  const institutions = [];
+  const puId = String(pu.rec_ID);
+  
+  // First check pointer fields in the PU record
+  (pu.details || []).forEach(d => {
+    const v = d?.value;
+    if (v && typeof v === 'object' && v.id && v.type) {
+      const toId = String(v.id);
+      if (IDX.mi?.[toId]) {
+        const mi = IDX.mi[toId];
+        institutions.push({
+          institutionId: toId,
+          institutionName: MAP.mi?.title(mi) || 'Unknown Institution',
+          institutionType: getVal(mi, 'Institution type') || 'Unknown'
+        });
+      }
+    }
+  });
+  
+  // Then check relationships
+  const rels = [
+    ...(REL_INDEX.bySource?.[puId] || []),
+    ...(REL_INDEX.byTarget?.[puId] || [])
+  ];
+  
+  for (const rel of rels) {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    
+    // Check if this is a relationship to a monastic institution
+    const miId = IDX.mi?.[String(src?.id)] ? String(src.id) :
+                 IDX.mi?.[String(tgt?.id)] ? String(tgt.id) : null;
+    
+    if (miId && !institutions.find(inst => inst.institutionId === miId)) {
+      const mi = IDX.mi[miId];
+      institutions.push({
+        institutionId: miId,
+        institutionName: MAP.mi?.title(mi) || 'Unknown Institution',
+        institutionType: getVal(mi, 'Institution type') || 'Unknown'
+      });
+    }
+  }
+  
+  return institutions;
+}
+
+/**
+ * Get production unit(s) for a scribal unit
+ * Returns: [puId, ...]
+ */
+function getPUsForSU(su) {
+  const pus = new Set();
+  const suId = String(su.rec_ID);
+  
+  // Check if this SU is itself a PU (many SUs are also PUs)
+  if (IDX.pu?.[suId]) {
+    pus.add(suId);
+  }
+  
+  // Check pointer fields
+  (su.details || []).forEach(d => {
+    const v = d?.value;
+    if (v && typeof v === 'object' && v.id && v.type) {
+      const toId = String(v.id);
+      if (IDX.pu?.[toId]) {
+        pus.add(toId);
+      }
+    }
+  });
+  
+  // Check relationships
+  const rels = [
+    ...(REL_INDEX.bySource?.[suId] || []),
+    ...(REL_INDEX.byTarget?.[suId] || [])
+  ];
+  
+  for (const rel of rels) {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    const puId = IDX.pu?.[String(src?.id)] ? String(src.id) :
+                 IDX.pu?.[String(tgt?.id)] ? String(tgt.id) : null;
+    if (puId) pus.add(puId);
+  }
+  
+  return Array.from(pus);
+}
+
+// ===== OVERVIEW TAB =====
+
+function buildMultilingualismOverview(mount) {
+  console.log('📊 Building multilingualism overview...');
+  console.log('Mount element:', mount);
+  console.log('Available DATA:', Object.keys(DATA || {}));
+  console.log('SU count:', DATA.su?.length || 0);
+  console.log('PU count:', DATA.pu?.length || 0);
+  
+  // Aggregate data
+  const stats = {
+    totalLanguages: new Set(),
+    multilingualMss: 0,
+    multilingualScribes: 0,
+    multilingualInstitutions: 0,
+    colophonDivergences: 0,
+    languageCounts: {},
+    languageCooccurrence: {}
+  };
+  
+  // Process all SUs
+  const allSUs = DATA.su || [];
+  const suByMs = {};
+  const scribeLanguages = {};
+  const institutionLanguages = {};
+  
+  console.log('🔍 Checking first 3 SUs for language data...');
+  allSUs.slice(0, 3).forEach((su, idx) => {
+    const langInfo = getLanguageInfo(su, 'su');
+    console.log(`  SU #${idx + 1} (${su.rec_ID}):`, {
+      title: MAP.su?.title(su),
+      colophonLangs: langInfo.colophon,
+      textLangs: langInfo.text,
+      allLangs: langInfo.all,
+      hasColophonDivergence: langInfo.hasColophonDivergence,
+      detailCount: su.details?.length || 0
+    });
+  });
+  
+  allSUs.forEach(su => {
+    const langInfo = getLanguageInfo(su, 'su');
+    
+    // Count languages
+    langInfo.all.forEach(lang => {
+      stats.totalLanguages.add(lang);
+      stats.languageCounts[lang] = (stats.languageCounts[lang] || 0) + 1;
+    });
+    
+    // Count colophon divergences
+    if (langInfo.hasColophonDivergence) {
+      stats.colophonDivergences++;
+    }
+    
+    // Group SUs by manuscript for multilingual MS detection
+    const msId = getMSForSU(su);
+    if (msId) {
+      if (!suByMs[msId]) suByMs[msId] = [];
+      suByMs[msId].push(langInfo);
+    }
+    
+    // Track scribe languages
+    const scribes = getScribesForSU(su);
+    scribes.forEach(scribe => {
+      if (!scribeLanguages[scribe.scribeId]) {
+        scribeLanguages[scribe.scribeId] = { name: scribe.scribeName, languages: new Set() };
+      }
+      langInfo.all.forEach(lang => scribeLanguages[scribe.scribeId].languages.add(lang));
+    });
+  });
+  
+  // Count multilingual manuscripts
+  Object.values(suByMs).forEach(suLangs => {
+    const msLangs = new Set();
+    suLangs.forEach(langInfo => {
+      langInfo.all.forEach(lang => msLangs.add(lang));
+    });
+    if (msLangs.size > 1) stats.multilingualMss++;
+  });
+  
+  // Count multilingual scribes
+  Object.values(scribeLanguages).forEach(scribe => {
+    if (scribe.languages.size > 1) stats.multilingualScribes++;
+  });
+  
+  // Process PUs for institutional multilingualism
+  const allPUs = DATA.pu || [];
+  allPUs.forEach(pu => {
+    const langInfo = getLanguageInfo(pu, 'pu');
+    const institutions = getInstitutionsForPU(pu);
+    
+    institutions.forEach(inst => {
+      if (!institutionLanguages[inst.institutionId]) {
+        institutionLanguages[inst.institutionId] = { name: inst.institutionName, languages: new Set() };
+      }
+      langInfo.all.forEach(lang => institutionLanguages[inst.institutionId].languages.add(lang));
+    });
+  });
+  
+  // Count multilingual institutions
+  Object.values(institutionLanguages).forEach(inst => {
+    if (inst.languages.size > 1) stats.multilingualInstitutions++;
+  });
+  
+  // Build co-occurrence matrix
+  Object.values(suByMs).forEach(suLangs => {
+    const msLangs = Array.from(new Set(suLangs.flatMap(l => l.all)));
+    for (let i = 0; i < msLangs.length; i++) {
+      for (let j = i + 1; j < msLangs.length; j++) {
+        const pair = [msLangs[i], msLangs[j]].sort().join('|');
+        stats.languageCooccurrence[pair] = (stats.languageCooccurrence[pair] || 0) + 1;
+      }
+    }
+  });
+  
+  // Sort languages by frequency
+  const sortedLanguages = Object.entries(stats.languageCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 15);
+  
+  console.log('📊 Overview stats:', {
+    totalLanguages: stats.totalLanguages.size,
+    multilingualMss: stats.multilingualMss,
+    multilingualScribes: stats.multilingualScribes,
+    multilingualInstitutions: stats.multilingualInstitutions,
+    colophonDivergences: stats.colophonDivergences,
+    languageCount: Object.keys(stats.languageCounts).length,
+    topLanguages: sortedLanguages.slice(0, 5)
+  });
+  
+  // === PATTERN ANALYSIS ===
+  // Analyze geographical, temporal, and institutional patterns of multilingualism
+  const patternData = {
+    byCountry: {},
+    byPeriod: {},
+    byReligiousOrder: {},
+    byInstitution: {}
+  };
+  
+  // Get all manuscripts for pattern analysis (PUs and SUs already defined above)
+  const allMSs = DATA.ms || [];
+  
+  // Analyze multilingual manuscripts by patterns
+  allMSs.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled';
+    
+    // Check if multilingual (same logic as buildMultilingualManuscripts)
+    const puIds = new Set();
+    allPUs.forEach(pu => {
+      const puMsId = getMSForSU(pu);
+      if (puMsId === msId) puIds.add(String(pu.rec_ID));
+    });
+    
+    if (puIds.size === 0) return;
+    
+    // Collect all languages in this manuscript
+    const msLanguages = new Set();
+    puIds.forEach(puId => {
+      const pu = IDX.pu[puId];
+      if (!pu) return;
+      
+      const puLangInfo = getLanguageInfo(pu, 'pu');
+      puLangInfo.all.forEach(lang => msLanguages.add(lang));
+      
+      allSUs.forEach(su => {
+        const suPUs = getPUsForSU(su);
+        if (suPUs.includes(puId)) {
+          const suLangInfo = getLanguageInfo(su, 'su');
+          suLangInfo.all.forEach(lang => msLanguages.add(lang));
+        }
+      });
+    });
+    
+    if (msLanguages.size < 2) return; // Only multilingual manuscripts
+    
+    // Analyze each PU for patterns
+    puIds.forEach(puId => {
+      const pu = IDX.pu[puId];
+      if (!pu) return;
+      
+      // Geographical pattern (from PU)
+      const country = MAP.pu?.place(pu) || 'Unknown';
+      const countryKey = country.split(',')[0].trim() || 'Unknown';
+      if (!patternData.byCountry[countryKey]) {
+        patternData.byCountry[countryKey] = { count: 0, languages: new Set() };
+      }
+      patternData.byCountry[countryKey].count++;
+      msLanguages.forEach(lang => patternData.byCountry[countryKey].languages.add(lang));
+      
+      // Temporal pattern (from PU dating)
+      const dateStr = MAP.pu?.date(pu);
+      if (dateStr && dateStr !== 'Unknown') {
+        // Extract century from date range (e.g., "1400-1450" -> 15th century)
+        const yearMatch = dateStr.match(/\d{4}/);
+        if (yearMatch) {
+          const year = parseInt(yearMatch[0]);
+          const century = Math.ceil(year / 100);
+          const periodKey = `${century}th century`;
+          if (!patternData.byPeriod[periodKey]) {
+            patternData.byPeriod[periodKey] = { count: 0, languages: new Set() };
+          }
+          patternData.byPeriod[periodKey].count++;
+          msLanguages.forEach(lang => patternData.byPeriod[periodKey].languages.add(lang));
+        }
+      }
+      
+      // Institutional pattern (from linked monastic institutions)
+      const institutions = getInstitutionsForPU(pu);
+      institutions.forEach(inst => {
+        const miRecord = IDX.mi?.[inst.institutionId];
+        if (miRecord) {
+          const order = MAP.mi?.order(miRecord) || 'Unknown Order';
+          if (!patternData.byReligiousOrder[order]) {
+            patternData.byReligiousOrder[order] = { count: 0, languages: new Set(), institutions: new Set() };
+          }
+          patternData.byReligiousOrder[order].count++;
+          patternData.byReligiousOrder[order].institutions.add(inst.institutionName);
+          msLanguages.forEach(lang => patternData.byReligiousOrder[order].languages.add(lang));
+          
+          // Individual institution tracking
+          if (!patternData.byInstitution[inst.institutionName]) {
+            patternData.byInstitution[inst.institutionName] = { 
+              count: 0, 
+              languages: new Set(), 
+              order: order,
+              location: `${MAP.mi?.city(miRecord) || ''}, ${MAP.mi?.country(miRecord) || ''}`.trim()
+            };
+          }
+          patternData.byInstitution[inst.institutionName].count++;
+          msLanguages.forEach(lang => patternData.byInstitution[inst.institutionName].languages.add(lang));
+        }
+      });
+    });
+  });
+  
+  // Sort pattern data
+  const topCountries = Object.entries(patternData.byCountry)
+    .map(([name, data]) => ({ name, count: data.count, langCount: data.languages.size }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+  
+  const periodsSorted = Object.entries(patternData.byPeriod)
+    .map(([name, data]) => ({ name, count: data.count, langCount: data.languages.size }))
+    .sort((a, b) => {
+      const aCentury = parseInt(a.name);
+      const bCentury = parseInt(b.name);
+      return aCentury - bCentury;
+    });
+  
+  const topOrders = Object.entries(patternData.byReligiousOrder)
+    .map(([name, data]) => ({ 
+      name, 
+      count: data.count, 
+      langCount: data.languages.size,
+      instCount: data.institutions.size
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+  
+  const topInstitutions = Object.entries(patternData.byInstitution)
+    .map(([name, data]) => ({ 
+      name, 
+      count: data.count, 
+      langCount: data.languages.size,
+      order: data.order,
+      location: data.location
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+  
+  console.log('🔍 Pattern Analysis:', {
+    countries: topCountries.length,
+    periods: periodsSorted.length,
+    orders: topOrders.length,
+    institutions: topInstitutions.length
+  });
+  
+  // Render overview
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">🌍 Multilingualism in the Corpus</h2>
+      
+      <!-- Key Statistics -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.totalLanguages.size}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Languages/Dialects</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualMss}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Manuscripts</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualScribes}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Scribes</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualInstitutions}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Institutions</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.colophonDivergences}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Colophon-Text Divergences</div>
+        </div>
+      </div>
+      
+      <!-- Language Distribution Chart -->
+      <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1rem; color: #333;">📊 Most Common Languages</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          ${sortedLanguages.map(([lang, count]) => {
+            const maxCount = sortedLanguages[0][1];
+            const percentage = (count / maxCount) * 100;
+            return `
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                  <span style="font-weight: 600;">${lang}</span>
+                  <span style="color: #666;">${count} occurrences</span>
+                </div>
+                <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                  <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+      
+      <!-- PATTERN ANALYSIS SECTION -->
+      <div style="margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 1rem; color: #1a1a1a; font-size: 1.5rem;">🔍 Multilingualism Patterns</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem;">
+          Exploring geographical, temporal, and institutional patterns reveals how multilingualism was distributed across different contexts.
+        </p>
+        
+        <!-- Geographical Patterns -->
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 1rem; color: #333; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🌍</span> Geographical Distribution
+          </h3>
+          ${topCountries.length > 0 ? `
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              ${topCountries.map(item => {
+                const maxCount = topCountries[0].count;
+                const percentage = (item.count / maxCount) * 100;
+                return `
+                  <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                      <span style="font-weight: 600;">${item.name}</span>
+                      <span style="color: #666;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''} • ${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
+                    </div>
+                    <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                      <div style="background: linear-gradient(90deg, #4facfe, #00f2fe); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          ` : '<p style="color: #999; font-style: italic;">No geographical data available</p>'}
+        </div>
+        
+        <!-- Temporal Patterns -->
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 1rem; color: #333; display: flex; align-items: center; gap: 0.5rem;">
+            <span>📅</span> Temporal Distribution
+          </h3>
+          ${periodsSorted.length > 0 ? `
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              ${periodsSorted.map(item => {
+                const maxCount = Math.max(...periodsSorted.map(p => p.count));
+                const percentage = (item.count / maxCount) * 100;
+                return `
+                  <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                      <span style="font-weight: 600;">${item.name}</span>
+                      <span style="color: #666;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''} • ${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
+                    </div>
+                    <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                      <div style="background: linear-gradient(90deg, #43e97b, #38f9d7); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          ` : '<p style="color: #999; font-style: italic;">No temporal data available</p>'}
+        </div>
+        
+        <!-- Religious Order Patterns -->
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 1rem; color: #333; display: flex; align-items: center; gap: 0.5rem;">
+            <span>⛪</span> Religious Order Patterns
+          </h3>
+          ${topOrders.length > 0 ? `
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              ${topOrders.map(item => {
+                const maxCount = topOrders[0].count;
+                const percentage = (item.count / maxCount) * 100;
+                return `
+                  <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                      <span style="font-weight: 600;">${item.name}</span>
+                      <span style="color: #666;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''} • ${item.instCount} institution${item.instCount !== 1 ? 's' : ''} • ${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
+                    </div>
+                    <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                      <div style="background: linear-gradient(90deg, #fa709a, #fee140); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          ` : '<p style="color: #999; font-style: italic;">No religious order data available</p>'}
+        </div>
+        
+        <!-- Top Multilingual Institutions -->
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 1rem; color: #333; display: flex; align-items: center; gap: 0.5rem;">
+            <span>🏛️</span> Most Multilingual Institutions
+          </h3>
+          ${topInstitutions.length > 0 ? `
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+              ${topInstitutions.map(item => `
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #9b59b6;">
+                  <div style="font-weight: 600; color: #333; margin-bottom: 0.5rem; font-size: 0.9rem;">${item.name}</div>
+                  <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.5rem;">
+                    <div>${item.order}</div>
+                    ${item.location ? `<div>📍 ${item.location}</div>` : ''}
+                  </div>
+                  <div style="display: flex; gap: 1rem; font-size: 0.75rem;">
+                    <span style="background: #667eea; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''}</span>
+                    <span style="background: #764ba2; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          ` : '<p style="color: #999; font-style: italic;">No institutional data available</p>'}
+        </div>
+        
+        <!-- Key Insights -->
+        <div style="background: linear-gradient(135deg, #667eea15, #764ba215); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #667eea;">
+          <h4 style="margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;">💡 Key Insights</h4>
+          <ul style="margin: 0; padding-left: 1.5rem; color: #555; line-height: 1.8; font-size: 0.9rem;">
+            ${topCountries.length > 0 ? `<li><strong>Geographical:</strong> ${topCountries[0].name} shows the highest concentration of multilingual production (${topCountries[0].count} PUs)</li>` : ''}
+            ${periodsSorted.length > 0 ? `<li><strong>Temporal:</strong> ${periodsSorted.reduce((max, p) => p.count > max.count ? p : max, periodsSorted[0]).name} has the most multilingual activity (${periodsSorted.reduce((max, p) => p.count > max.count ? p : max, periodsSorted[0]).count} PUs)</li>` : ''}
+            ${topOrders.length > 0 ? `<li><strong>Religious Orders:</strong> ${topOrders[0].name} leads in multilingual production with ${topOrders[0].count} PUs across ${topOrders[0].instCount} institutions</li>` : ''}
+            ${topInstitutions.length > 0 ? `<li><strong>Institutions:</strong> ${topInstitutions[0].name} is the most multilingual institution (${topInstitutions[0].langCount} languages in ${topInstitutions[0].count} PUs)</li>` : ''}
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Description -->
+      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #667eea; border-radius: 0.375rem; margin-bottom: 1.5rem;">
+        <p style="margin: 0; color: #555; line-height: 1.6;">
+          This module explores linguistic diversity in medieval manuscript production. Navigate through the tabs above to investigate:
+          <strong>Multilingual Manuscripts</strong> with texts in multiple languages,
+          <strong>Scribal Multilingualism</strong> showing women copying in different languages,
+          <strong>Institutional Multilingualism</strong> revealing scriptoria producing diverse linguistic works, and
+          <strong>Colophon-Text Divergence</strong> highlighting cases where colophons were written in a different language than the main text.
+        </p>
+      </div>
+      
+      <div style="text-align: center; padding: 1rem; color: #999; font-size: 0.875rem;">
+        Click on the tabs above to explore each aspect of multilingualism in detail.
+      </div>
+    </div>
+  `;
+}
+
+// Helper function to get manuscript ID for a scribal unit
+function getMSForSU(su) {
+  const suId = String(su.rec_ID);
+  
+  // Check pointer fields first
+  const details = su.details || [];
+  for (const d of details) {
+    const v = d?.value;
+    if (v && typeof v === 'object' && v.id && v.type) {
+      const toId = String(v.id);
+      if (IDX.ms?.[toId]) {
+        return toId;
+      }
+    }
+  }
+  
+  // Check relationships
+  const rels = [
+    ...(REL_INDEX.bySource?.[suId] || []),
+    ...(REL_INDEX.byTarget?.[suId] || [])
+  ];
+  
+  for (const rel of rels) {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    const msId = IDX.ms?.[String(src?.id)] ? String(src.id) :
+                 IDX.ms?.[String(tgt?.id)] ? String(tgt.id) : null;
+    if (msId) return msId;
+  }
+  
+  return null;
+}
+
+// ===== MULTILINGUAL MANUSCRIPTS TAB =====
+
+function buildMultilingualManuscripts(mount) {
+  console.log('📚 Building multilingual manuscripts view...');
+  
+  // Strategy: For each manuscript, collect ALL languages from:
+  // - All PUs in the manuscript (their colophons)
+  // - All SUs in those PUs (their colophons)  
+  // - All Texts linked to those SUs (their text languages)
+  
+  const allMSs = DATA.ms || [];
+  const msLanguageData = [];
+  
+  console.log('🔍 Total manuscripts to check:', allMSs.length);
+  
+  allMSs.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    const msTitle = MAP.ms?.title(ms) || 'Untitled Manuscript';
+    
+    // Find all PUs in this manuscript
+    const puIds = new Set();
+    const allPUs = DATA.pu || [];
+    
+    allPUs.forEach(pu => {
+      const puMsId = getMSForSU(pu); // PUs are also SUs
+      if (puMsId === msId) {
+        puIds.add(String(pu.rec_ID));
+      }
+    });
+    
+    if (puIds.size === 0) return; // No PUs in this manuscript
+    
+    console.log(`📖 MS "${msTitle}" has ${puIds.size} PUs`);
+    
+    // Collect languages organized by PU
+    const puData = {};
+    const allMsLanguages = new Set();
+    
+    puIds.forEach(puId => {
+      const pu = IDX.pu[puId];
+      if (!pu) return;
+      
+      const puTitle = MAP.pu?.title(pu) || 'Untitled PU';
+      const puLangInfo = getLanguageInfo(pu, 'pu');
+      
+      console.log(`  📄 PU "${puTitle}":`, {
+        colophonLangs: puLangInfo.colophon,
+        textLangs: puLangInfo.text,
+        allLangs: puLangInfo.all
+      });
+      
+      puData[puId] = {
+        id: puId,
+        title: puTitle,
+        languages: new Set(puLangInfo.all),
+        colophonLangs: puLangInfo.colophon,
+        textLangs: puLangInfo.text,
+        sus: []
+      };
+      
+      // Add PU languages to manuscript total
+      puLangInfo.all.forEach(lang => allMsLanguages.add(lang));
+      
+      // Find all SUs in this PU
+      const allSUs = DATA.su || [];
+      allSUs.forEach(su => {
+        const suPUs = getPUsForSU(su);
+        if (suPUs.includes(puId)) {
+          const suId = String(su.rec_ID);
+          const suTitle = MAP.su?.title(su) || 'Untitled SU';
+          const suLangInfo = getLanguageInfo(su, 'su');
+          const scribes = getScribesForSU(su);
+          
+          console.log(`    📝 SU "${suTitle}":`, {
+            colophonLangs: suLangInfo.colophon,
+            textLangs: suLangInfo.text,
+            allLangs: suLangInfo.all,
+            scribes: scribes.map(s => s.scribeName)
+          });
+          
+          puData[puId].sus.push({
+            id: suId,
+            title: suTitle,
+            languages: suLangInfo.all,
+            colophonLangs: suLangInfo.colophon,
+            textLangs: suLangInfo.text,
+            scribes: scribes,
+            hasColophonDivergence: suLangInfo.hasColophonDivergence
+          });
+          
+          // Add SU languages to PU and manuscript totals
+          suLangInfo.all.forEach(lang => {
+            puData[puId].languages.add(lang);
+            allMsLanguages.add(lang);
+          });
+        }
+      });
+    });
+    
+    // Only include manuscripts with 2+ languages
+    if (allMsLanguages.size > 1) {
+      // Determine if multilingualism is cross-PU or within-PU
+      const multilingualPUs = Object.values(puData).filter(pu => pu.languages.size > 1);
+      const multilingualismType = multilingualPUs.length > 0 ? 'within-pu' : 'cross-pu';
+      
+      console.log(`✅ Found multilingual MS: "${msTitle}" with ${allMsLanguages.size} languages`);
+      
+      msLanguageData.push({
+        id: msId,
+        title: msTitle,
+        languages: Array.from(allMsLanguages),
+        languageCount: allMsLanguages.size,
+        puCount: puIds.size,
+        pus: puData,
+        multilingualismType: multilingualismType,
+        multilingualPUCount: multilingualPUs.length
+      });
+    }
+  });
+  
+  // Sort by language count (most multilingual first)
+  msLanguageData.sort((a, b) => b.languageCount - a.languageCount);
+  
+  console.log('📊 Found', msLanguageData.length, 'multilingual manuscripts');
+  
+  if (msLanguageData.length === 0) {
+    mount.innerHTML = `
+      <div style="padding: 3rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;">📚</div>
+        <h3 style="color: #333; margin-bottom: 1rem;">No Multilingual Manuscripts Found</h3>
+        <p style="color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+          No manuscripts with texts in multiple languages were found. This requires manuscripts to have 
+          production units with language data recorded for colophons and/or linked texts.
+        </p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Build manuscript cards
+  const msCards = msLanguageData.map((ms, idx) => {
+    const langBadges = ms.languages.map(lang =>
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+    ).join('');
+    
+    // Multilingualism type badge
+    const typeBadge = ms.multilingualismType === 'within-pu'
+      ? `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: #4caf50; color: white; border-radius: 0.75rem; font-size: 0.7rem; font-weight: 600;">🔬 Within-PU multilingualism (${ms.multilingualPUCount} PU${ms.multilingualPUCount > 1 ? 's' : ''})</span>`
+      : `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: #ff9800; color: white; border-radius: 0.75rem; font-size: 0.7rem; font-weight: 600;">📦 Cross-PU compilation</span>`;
+    
+    // Build PU breakdown
+    const puBreakdown = Object.values(ms.pus).map(pu => {
+      // Create detailed language badges for PU showing source
+      let puLangBadges = '';
+      if (pu.colophonLangs && pu.colophonLangs.length > 0) {
+        puLangBadges += pu.colophonLangs.map(lang =>
+          `<span style="padding: 0.2rem 0.5rem; background: #2196f3; color: white; border-radius: 0.5rem; font-size: 0.7rem; margin-right: 0.25rem;" title="From PU colophon">📝 ${lang}</span>`
+        ).join('');
+      }
+      if (pu.textLangs && pu.textLangs.length > 0) {
+        puLangBadges += pu.textLangs.map(lang =>
+          `<span style="padding: 0.2rem 0.5rem; background: #4a90e2; color: white; border-radius: 0.5rem; font-size: 0.7rem; margin-right: 0.25rem;" title="From linked text at PU level">📖 ${lang}</span>`
+        ).join('');
+      }
+      
+      const suList = pu.sus.map(su => {
+        // Create detailed language badges for SU showing source
+        let suLangBadges = '';
+        if (su.colophonLangs && su.colophonLangs.length > 0) {
+          suLangBadges += su.colophonLangs.map(lang =>
+            `<span style="padding: 0.15rem 0.4rem; background: #ff9800; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-right: 0.25rem;" title="From SU colophon">📝 ${lang}</span>`
+          ).join('');
+        }
+        if (su.textLangs && su.textLangs.length > 0 && JSON.stringify(su.textLangs) !== JSON.stringify(su.colophonLangs)) {
+          suLangBadges += su.textLangs.map(lang =>
+            `<span style="padding: 0.15rem 0.4rem; background: #ffa726; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-right: 0.25rem;" title="From linked text at SU level">📖 ${lang}</span>`
+          ).join('');
+        }
+        
+        const scribeInfo = su.scribes.length > 0
+          ? su.scribes.map(s => `<span style="color: #666; font-size: 0.7rem;">✍️ ${s.scribeName}</span>`).join(', ')
+          : '';
+        
+        const divergenceBadge = su.hasColophonDivergence
+          ? `<span style="padding: 0.15rem 0.4rem; background: #f44336; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-left: 0.25rem;">🔀 Colophon≠Text</span>`
+          : '';
+        
+        return `
+          <div style="font-size: 0.75rem; padding: 0.5rem; margin: 0.25rem 0; background: #fafafa; border-left: 3px solid #ff9800; border-radius: 0.25rem;">
+            <div style="font-weight: 600; color: #333; margin-bottom: 0.25rem;">
+              ${su.title} ${divergenceBadge}
+            </div>
+            <div style="margin-bottom: 0.25rem;">${suLangBadges}</div>
+            ${scribeInfo ? `<div style="margin-top: 0.25rem;">${scribeInfo}</div>` : ''}
+          </div>
+        `;
+      }).join('');
+      
+      return `
+        <div style="margin-bottom: 1rem; padding: 0.75rem; background: #f0f4ff; border-left: 4px solid #2196f3; border-radius: 0.375rem;">
+          <div style="font-weight: 600; color: #1565c0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>📄 ${pu.title}</span>
+            ${puLangBadges}
+            <span style="font-size: 0.7rem; color: #666; font-weight: 400;">(${pu.sus.length} SU${pu.sus.length !== 1 ? 's' : ''})</span>
+          </div>
+          ${suList}
+        </div>
+      `;
+    }).join('');
+    
+    return `
+      <div class="ms-card" style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 300px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+              <span style="font-size: 0.85rem; color: #999; font-weight: 600;">MS #${idx + 1}</span>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">📚 ${ms.title}</h3>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+              ${langBadges}
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+              <span style="font-size: 0.8rem; color: #666;"><strong>${ms.languageCount}</strong> language${ms.languageCount !== 1 ? 's' : ''}</span>
+              <span style="font-size: 0.8rem; color: #666;"><strong>${ms.puCount}</strong> PU${ms.puCount !== 1 ? 's' : ''}</span>
+              ${typeBadge}
+            </div>
+          </div>
+          <div>
+            <button onclick="window.jumpTo('ms', '${ms.id}')" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#5568d3'" onmouseleave="this.style.background='#667eea'">
+              View Details
+            </button>
+          </div>
+        </div>
+        
+        <div style="border-top: 1px solid #f0f0f0; padding-top: 1rem;">
+          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">📖 Production Units & Scribal Units:</div>
+          ${puBreakdown}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <div style="margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">📚 Multilingual Manuscripts</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+          Manuscripts containing texts in multiple languages. The badge indicates whether multilingualism 
+          occurs <strong>within production units</strong> (scribes working across languages) or represents 
+          a <strong>cross-PU compilation</strong> (different units with different languages assembled together).
+        </p>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${msLanguageData.length}</span>
+          <span style="opacity: 0.9;">multilingual manuscript${msLanguageData.length !== 1 ? 's' : ''}</span>
+        </div>
+      </div>
+      
+      <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: #555; line-height: 1.8;">
+        <strong>Legend:</strong><br>
+        <span style="margin-right: 1.5rem;">🟣 Purple = Manuscript-level languages</span>
+        <span style="margin-right: 1.5rem;">🔵 Blue = Production Unit languages</span>
+        <span style="margin-right: 1.5rem;">🟠 Orange = Scribal Unit languages</span><br>
+        <span style="margin-right: 1.5rem;">📝 Notebook icon = From colophon</span>
+        <span style="margin-right: 1.5rem;">📖 Book icon = From linked text</span>
+        <span style="margin-right: 1.5rem;">🔀 Red badge = Colophon-text divergence</span>
+      </div>
+      
+      ${msCards}
+      
+      <div style="text-align: center; padding: 2rem; color: #999; font-size: 0.875rem;">
+        Showing all ${msLanguageData.length} multilingual manuscript${msLanguageData.length !== 1 ? 's' : ''}
+      </div>
+    </div>
+  `;
+}
+
+function buildScribalMultilingualism(mount) {
+  console.log('✍️ Building scribal multilingualism view...');
+  
+  // Collect scribe language data
+  const allSUs = DATA.su || [];
+  const scribeData = {};
+  
+  allSUs.forEach(su => {
+    const langInfo = getLanguageInfo(su, 'su');
+    if (langInfo.all.length === 0) return;
+    
+    const scribes = getScribesForSU(su);
+    const ms = getMSForSU(su);
+    
+    scribes.forEach(scribe => {
+      if (!scribeData[scribe.scribeId]) {
+        scribeData[scribe.scribeId] = {
+          id: scribe.scribeId,
+          name: scribe.scribeName,
+          languages: new Set(),
+          manuscripts: new Set(),
+          sus: [],
+          languageDetails: {} // language -> list of SUs
+        };
+      }
+      
+      // Add languages
+      langInfo.all.forEach(lang => {
+        scribeData[scribe.scribeId].languages.add(lang);
+        
+        if (!scribeData[scribe.scribeId].languageDetails[lang]) {
+          scribeData[scribe.scribeId].languageDetails[lang] = [];
+        }
+        
+        scribeData[scribe.scribeId].languageDetails[lang].push({
+          suId: String(su.rec_ID),
+          suTitle: MAP.su?.title(su) || 'Untitled SU',
+          msId: ms,
+          msTitle: ms && IDX.ms?.[ms] ? (MAP.ms?.title(IDX.ms[ms]) || 'Untitled MS') : 'Unknown MS',
+          role: scribe.role,
+          certainty: scribe.certainty
+        });
+      });
+      
+      if (ms) scribeData[scribe.scribeId].manuscripts.add(ms);
+      
+      scribeData[scribe.scribeId].sus.push({
+        id: String(su.rec_ID),
+        title: MAP.su?.title(su) || 'Untitled SU',
+        languages: langInfo.all,
+        ms: ms,
+        role: scribe.role
+      });
+    });
+  });
+  
+  // Filter to multilingual scribes
+  const multilingualScribes = Object.values(scribeData)
+    .filter(scribe => scribe.languages.size > 1)
+    .sort((a, b) => b.languages.size - a.languages.size);
+  
+  // All scribes (for optional viewing)
+  const allScribes = Object.values(scribeData)
+    .sort((a, b) => b.languages.size - a.languages.size);
+  
+  if (allScribes.length === 0) {
+    mount.innerHTML = `
+      <div style="padding: 3rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;">✍️</div>
+        <h3 style="color: #333; margin-bottom: 1rem;">No Scribe Language Data Found</h3>
+        <p style="color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+          No scribes with language information were found in the dataset. 
+          Make sure scribal units are linked to historical people (scribes) and have language data recorded.
+        </p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Build scribe cards
+  const scribeCards = multilingualScribes.map((scribe, idx) => {
+    const langArray = Array.from(scribe.languages).sort();
+    const msCount = scribe.manuscripts.size;
+    const suCount = scribe.sus.length;
+    
+    // Language badges
+    const langBadges = langArray.map(lang =>
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+    ).join('');
+    
+    // Language breakdown
+    const langBreakdown = Object.entries(scribe.languageDetails).map(([lang, sus]) => {
+      const suList = sus.slice(0, 5).map(su => // Show first 5
+        `<div style="font-size: 0.75rem; color: #666; padding: 0.25rem 0; border-bottom: 1px solid #f0f0f0;">
+          <span style="font-weight: 600;">${su.suTitle}</span> 
+          <span style="color: #999;">in</span> 
+          <span style="color: #667eea;">${su.msTitle}</span>
+          ${su.role !== 'scribe' ? `<span style="color: #999; font-style: italic;"> (${su.role})</span>` : ''}
+        </div>`
+      ).join('');
+      
+      const moreCount = sus.length - 5;
+      const moreText = moreCount > 0 ? `<div style="font-size: 0.7rem; color: #999; padding: 0.5rem 0; font-style: italic;">...and ${moreCount} more</div>` : '';
+      
+      return `
+        <div style="margin-bottom: 1rem;">
+          <div style="font-weight: 600; color: #333; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="padding: 0.2rem 0.6rem; background: #e3f2fd; color: #1976d2; border-radius: 0.75rem; font-size: 0.8rem;">${lang}</span>
+            <span style="font-size: 0.8rem; color: #666;">${sus.length} scribal unit${sus.length !== 1 ? 's' : ''}</span>
+          </div>
+          <div style="margin-left: 1rem; max-height: 200px; overflow-y: auto;">
+            ${suList}
+            ${moreText}
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    return `
+      <div class="scribe-card" style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Scribe #${idx + 1}</span>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">✍️ ${scribe.name}</h3>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+              ${langBadges}
+            </div>
+            <div style="display: flex; gap: 1.5rem; font-size: 0.8rem; color: #666;">
+              <span><strong>${langArray.length}</strong> language${langArray.length !== 1 ? 's' : ''}</span>
+              <span><strong>${msCount}</strong> manuscript${msCount !== 1 ? 's' : ''}</span>
+              <span><strong>${suCount}</strong> scribal unit${suCount !== 1 ? 's' : ''}</span>
+            </div>
+          </div>
+          <div>
+            <button onclick="window.jumpTo('hp', '${scribe.id}')" style="padding: 0.5rem 1rem; background: #4facfe; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#3d8dd6'" onmouseleave="this.style.background='#4facfe'">
+              View Scribe
+            </button>
+          </div>
+        </div>
+        
+        <div style="border-top: 1px solid #f0f0f0; padding-top: 1rem;">
+          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">📖 Work by Language:</div>
+          ${langBreakdown}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <div style="margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">✍️ Scribal Multilingualism</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+          Scribes who worked across multiple languages, demonstrating linguistic competence and cultural mediation 
+          in medieval manuscript production. This reveals the multilingual capabilities of individual scribes.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualScribes.length}</span>
+            <span style="opacity: 0.9;">multilingual scribe${multilingualScribes.length !== 1 ? 's' : ''}</span>
+          </div>
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${allScribes.length}</span>
+            <span style="opacity: 0.9;">total scribe${allScribes.length !== 1 ? 's' : ''} with language data</span>
+          </div>
+        </div>
+      </div>
+      
+      ${multilingualScribes.length === 0 ? `
+        <div style="background: #fff3cd; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107; margin-bottom: 2rem;">
+          <div style="font-weight: 600; margin-bottom: 0.5rem; color: #856404;">No Multilingual Scribes Found</div>
+          <p style="color: #856404; margin: 0; line-height: 1.6;">
+            While ${allScribes.length} scribe${allScribes.length !== 1 ? 's have' : ' has'} language data, 
+            none worked in multiple languages. This could indicate specialization or incomplete data recording.
+          </p>
+        </div>
+      ` : ''}
+      
+      ${scribeCards}
+      
+      ${multilingualScribes.length > 0 ? `
+        <div style="text-align: center; padding: 2rem; color: #999; font-size: 0.875rem;">
+          Showing ${multilingualScribes.length} of ${allScribes.length} scribe${allScribes.length !== 1 ? 's' : ''} with language data
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function buildInstitutionalMultilingualism(mount) {
+  console.log('🏛️ Building institutional multilingualism view...');
+  
+  // Collect institution language data via PU -> Institution relationships
+  const allPUs = DATA.pu || [];
+  const institutionData = {};
+  
+  allPUs.forEach(pu => {
+    const langInfo = getLanguageInfo(pu, 'pu');
+    if (langInfo.all.length === 0) return;
+    
+    const institutions = getInstitutionsForPU(pu);
+    const msId = getMSForSU(pu); // PUs are also SUs
+    
+    institutions.forEach(inst => {
+      if (!institutionData[inst.institutionId]) {
+        institutionData[inst.institutionId] = {
+          id: inst.institutionId,
+          name: inst.institutionName,
+          languages: new Set(),
+          manuscripts: new Set(),
+          pus: [],
+          languageDetails: {} // language -> list of PUs
+        };
+      }
+      
+      // Add languages
+      langInfo.all.forEach(lang => {
+        institutionData[inst.institutionId].languages.add(lang);
+        
+        if (!institutionData[inst.institutionId].languageDetails[lang]) {
+          institutionData[inst.institutionId].languageDetails[lang] = [];
+        }
+        
+        institutionData[inst.institutionId].languageDetails[lang].push({
+          puId: String(pu.rec_ID),
+          puTitle: MAP.pu?.title(pu) || 'Untitled PU',
+          msId: msId,
+          msTitle: msId && IDX.ms?.[msId] ? (MAP.ms?.title(IDX.ms[msId]) || 'Untitled MS') : 'Unknown MS'
+        });
+      });
+      
+      if (msId) institutionData[inst.institutionId].manuscripts.add(msId);
+      
+      institutionData[inst.institutionId].pus.push({
+        id: String(pu.rec_ID),
+        title: MAP.pu?.title(pu) || 'Untitled PU',
+        languages: langInfo.all,
+        ms: msId
+      });
+    });
+  });
+  
+  // Filter to multilingual institutions
+  const multilingualInstitutions = Object.values(institutionData)
+    .filter(inst => inst.languages.size > 1)
+    .sort((a, b) => b.languages.size - a.languages.size);
+  
+  // All institutions (for optional viewing)
+  const allInstitutions = Object.values(institutionData)
+    .sort((a, b) => b.languages.size - a.languages.size);
+  
+  if (allInstitutions.length === 0) {
+    mount.innerHTML = `
+      <div style="padding: 3rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;">🏛️</div>
+        <h3 style="color: #333; margin-bottom: 1rem;">No Institutional Language Data Found</h3>
+        <p style="color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+          No monastic institutions with language information were found in the dataset. 
+          Make sure production units are linked to monastic institutions and have language data recorded.
+        </p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Build institution cards
+  const instCards = multilingualInstitutions.map((inst, idx) => {
+    const langArray = Array.from(inst.languages).sort();
+    const msCount = inst.manuscripts.size;
+    const puCount = inst.pus.length;
+    
+    // Language badges
+    const langBadges = langArray.map(lang =>
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+    ).join('');
+    
+    // Language breakdown
+    const langBreakdown = Object.entries(inst.languageDetails).map(([lang, pus]) => {
+      const puList = pus.slice(0, 5).map(pu => // Show first 5
+        `<div style="font-size: 0.75rem; color: #666; padding: 0.25rem 0; border-bottom: 1px solid #f0f0f0;">
+          <span style="font-weight: 600;">${pu.puTitle}</span> 
+          <span style="color: #999;">in</span> 
+          <span style="color: #667eea;">${pu.msTitle}</span>
+        </div>`
+      ).join('');
+      
+      const moreCount = pus.length - 5;
+      const moreText = moreCount > 0 ? `<div style="font-size: 0.7rem; color: #999; padding: 0.5rem 0; font-style: italic;">...and ${moreCount} more</div>` : '';
+      
+      return `
+        <div style="margin-bottom: 1rem;">
+          <div style="font-weight: 600; color: #333; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="padding: 0.2rem 0.6rem; background: #fce4ec; color: #c2185b; border-radius: 0.75rem; font-size: 0.8rem;">${lang}</span>
+            <span style="font-size: 0.8rem; color: #666;">${pus.length} production unit${pus.length !== 1 ? 's' : ''}</span>
+          </div>
+          <div style="margin-left: 1rem; max-height: 200px; overflow-y: auto;">
+            ${puList}
+            ${moreText}
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    return `
+      <div class="institution-card" style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Institution #${idx + 1}</span>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">🏛️ ${inst.name}</h3>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+              ${langBadges}
+            </div>
+            <div style="display: flex; gap: 1.5rem; font-size: 0.8rem; color: #666;">
+              <span><strong>${langArray.length}</strong> language${langArray.length !== 1 ? 's' : ''}</span>
+              <span><strong>${msCount}</strong> manuscript${msCount !== 1 ? 's' : ''}</span>
+              <span><strong>${puCount}</strong> production unit${puCount !== 1 ? 's' : ''}</span>
+            </div>
+          </div>
+          <div>
+            <button onclick="window.jumpTo('mi', '${inst.id}')" style="padding: 0.5rem 1rem; background: #f093fb; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#d078dc'" onmouseleave="this.style.background='#f093fb'">
+              View Institution
+            </button>
+          </div>
+        </div>
+        
+        <div style="border-top: 1px solid #f0f0f0; padding-top: 1rem;">
+          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">📚 Productions by Language:</div>
+          ${langBreakdown}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <div style="margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">🏛️ Institutional Multilingualism</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+          Monastic institutions and scriptoria that produced manuscripts in multiple languages, revealing 
+          institutional multilingual capacities and cultural exchange networks in medieval book production.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualInstitutions.length}</span>
+            <span style="opacity: 0.9;">multilingual institution${multilingualInstitutions.length !== 1 ? 's' : ''}</span>
+          </div>
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${allInstitutions.length}</span>
+            <span style="opacity: 0.9;">total institution${allInstitutions.length !== 1 ? 's' : ''} with language data</span>
+          </div>
+        </div>
+      </div>
+      
+      ${multilingualInstitutions.length === 0 ? `
+        <div style="background: #fff3cd; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107; margin-bottom: 2rem;">
+          <div style="font-weight: 600; margin-bottom: 0.5rem; color: #856404;">No Multilingual Institutions Found</div>
+          <p style="color: #856404; margin: 0; line-height: 1.6;">
+            While ${allInstitutions.length} institution${allInstitutions.length !== 1 ? 's have' : ' has'} language data, 
+            none produced manuscripts in multiple languages. This could indicate institutional specialization or incomplete data recording.
+          </p>
+        </div>
+      ` : ''}
+      
+      ${instCards}
+      
+      ${multilingualInstitutions.length > 0 ? `
+        <div style="text-align: center; padding: 2rem; color: #999; font-size: 0.875rem;">
+          Showing ${multilingualInstitutions.length} of ${allInstitutions.length} institution${allInstitutions.length !== 1 ? 's' : ''} with language data
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function buildColophonTextDivergence(mount) {
+  console.log('🔀 Building colophon-text divergence view...');
+  
+  // Find SUs where colophon language differs from text language(s)
+  const allSUs = DATA.su || [];
+  const divergences = [];
+  
+  allSUs.forEach(su => {
+    const langInfo = getLanguageInfo(su, 'su');
+    
+    // Check if we have both colophon and text language
+    if (langInfo.colophon.length > 0 && langInfo.text.length > 0) {
+      // Check if colophon language is different from any text language
+      const colophonSet = new Set(langInfo.colophon);
+      const textSet = new Set(langInfo.text);
+      
+      // Divergence exists if colophon language is not in text languages
+      const isDivergent = !langInfo.colophon.some(cl => textSet.has(cl));
+      
+      if (isDivergent) {
+        const ms = getMSForSU(su);
+        const scribes = getScribesForSU(su);
+        const pus = getPUsForSU(su);
+        
+        divergences.push({
+          suId: String(su.rec_ID),
+          suTitle: MAP.su?.title(su) || 'Untitled SU',
+          msId: ms,
+          msTitle: ms && IDX.ms?.[ms] ? (MAP.ms?.title(IDX.ms[ms]) || 'Untitled MS') : 'Unknown MS',
+          colophonLangs: langInfo.colophon,
+          textLangs: langInfo.text,
+          scribes: scribes,
+          puCount: pus.length,
+          record: su
+        });
+      }
+    }
+  });
+  
+  if (divergences.length === 0) {
+    mount.innerHTML = `
+      <div style="padding: 3rem; text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.3;">🔀</div>
+        <h3 style="color: #333; margin-bottom: 1rem;">No Colophon-Text Divergences Found</h3>
+        <p style="color: #666; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+          No scribal units were found where the colophon language differs from the text language(s). 
+          This requires both colophon language and text language fields to be populated.
+        </p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Sort by manuscript
+  divergences.sort((a, b) => {
+    if (a.msTitle < b.msTitle) return -1;
+    if (a.msTitle > b.msTitle) return 1;
+    return 0;
+  });
+  
+  // Build divergence cards
+  const divergenceCards = divergences.map((div, idx) => {
+    const colophonBadges = div.colophonLangs.map(lang =>
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #fa709a, #fee140); color: #333; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+    ).join('');
+    
+    const textBadges = div.textLangs.map(lang =>
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #30cfd0, #330867); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+    ).join('');
+    
+    const scribeInfo = div.scribes.length > 0
+      ? div.scribes.map(s =>
+          `<span style="font-size: 0.8rem; color: #666; margin-right: 1rem;">
+            ✍️ <span style="font-weight: 600; color: #333;">${s.scribeName}</span>
+            ${s.role !== 'scribe' ? `<span style="color: #999; font-style: italic;"> (${s.role})</span>` : ''}
+          </span>`
+        ).join('')
+      : '<span style="font-size: 0.8rem; color: #999;">No scribe attribution</span>';
+    
+    return `
+      <div class="divergence-card" style="background: white; border: 1px solid #e0e0e0; border-left: 4px solid #fa709a; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 250px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Divergence #${idx + 1}</span>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">🔀 ${div.suTitle}</h3>
+            </div>
+            <div style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.75rem;">
+              📖 ${div.msTitle}
+            </div>
+          </div>
+          <div>
+            <button onclick="window.jumpTo('su', '${div.suId}')" style="padding: 0.5rem 1rem; background: #fa709a; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#d85a7e'" onmouseleave="this.style.background='#fa709a'">
+              View SU
+            </button>
+          </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; padding: 1rem; background: #fafafa; border-radius: 0.375rem; margin-bottom: 1rem;">
+          <div>
+            <div style="font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 0.5rem;">📝 Colophon Language:</div>
+            <div>${colophonBadges}</div>
+          </div>
+          <div style="font-size: 1.5rem; color: #ccc;">→</div>
+          <div>
+            <div style="font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 0.5rem;">� Text Language(s):</div>
+            <div>${textBadges}</div>
+          </div>
+        </div>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #f0f0f0;">
+          ${scribeInfo}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // Calculate patterns
+  const patterns = {};
+  divergences.forEach(div => {
+    const key = `${div.colophonLangs.sort().join(', ')} → ${div.textLangs.sort().join(', ')}`;
+    if (!patterns[key]) patterns[key] = 0;
+    patterns[key]++;
+  });
+  
+  const topPatterns = Object.entries(patterns)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([pattern, count]) => 
+      `<div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0;">
+        <span style="color: #333;">${pattern}</span>
+        <span style="font-weight: 600; color: #fa709a;">${count}×</span>
+      </div>`
+    ).join('');
+  
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <div style="margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">�🔀 Colophon-Text Language Divergence</h2>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+          Scribal units where the colophon language differs from the text language(s), revealing interesting 
+          linguistic practices such as scribes writing colophons in their native language while copying texts 
+          in other languages, or institutional practices regarding colophon composition.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${divergences.length}</span>
+            <span style="opacity: 0.9;">divergent case${divergences.length !== 1 ? 's' : ''}</span>
+          </div>
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${Object.keys(patterns).length}</span>
+            <span style="opacity: 0.9;">unique pattern${Object.keys(patterns).length !== 1 ? 's' : ''}</span>
+          </div>
+        </div>
+        
+        ${topPatterns ? `
+          <div style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem;">
+            <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem; color: #333;">📊 Most Common Divergence Patterns</h3>
+            ${topPatterns}
+          </div>
+        ` : ''}
+      </div>
+      
+      ${divergenceCards}
+      
+      <div style="text-align: center; padding: 2rem; color: #999; font-size: 0.875rem;">
+        Showing all ${divergences.length} divergent case${divergences.length !== 1 ? 's' : ''}
+      </div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   COLOPHON ANALYSIS MODULE
+   ============================================================ */
+
+let ACTIVE_COLOPHON_TAB = 'overview';
+
+// Colophon Analysis Main Entry Point
+function buildColophonAnalysis() {
+  const mount = document.getElementById('colophon-mount');
+  if (!mount) return;
+  
+  console.log('📜 Building Colophon Analysis...');
+  
+  // Set up tab navigation
+  document.querySelectorAll('.colophon-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      ACTIVE_COLOPHON_TAB = tab;
+      
+      // Update button styles
+      document.querySelectorAll('.colophon-tab-btn').forEach(b => {
+        if (b === btn) {
+          b.classList.add('is-on');
+          b.style.background = '#fff';
+          b.style.fontWeight = '600';
+          b.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+          b.style.color = '#333';
+        } else {
+          b.classList.remove('is-on');
+          b.style.background = 'transparent';
+          b.style.fontWeight = '500';
+          b.style.boxShadow = 'none';
+          b.style.color = '#666';
+        }
+      });
+      
+      // Render appropriate view
+      switch(tab) {
+        case 'overview':
+          buildColophonOverview(mount);
+          break;
+        case 'sentiment':
+          buildSentimentAnalysis(mount);
+          break;
+        case 'themes':
+          buildThematicAnalysis(mount);
+          break;
+        case 'linguistic':
+          buildLinguisticFeatures(mount);
+          break;
+        case 'patterns':
+          buildComparativePatterns(mount);
+          break;
+        case 'browse-colophons':
+          buildBrowseColophons(mount);
+          break;
+      }
+    });
+  });
+  
+  // Initial render
+  buildColophonOverview(mount);
+}
+
+// Helper: Extract colophon text from SU record
+function getColophonText(su) {
+  // Get both transcription (original language) and translation (English)
+  const transcription = getVal(su, 'Colophon transcription') || '';
+  const translation = getVal(su, 'Colophon translation') || '';
+  
+  return {
+    transcription: transcription.trim(),
+    translation: translation.trim(),
+    hasTranscription: transcription.trim().length > 0,
+    hasTranslation: translation.trim().length > 0
+  };
+}
+
+// Helper: Check if SU has a colophon
+function hasColophon(su) {
+  const presence = getVal(su, 'Colophon presence');
+  // The val() function returns termLabel for enum fields, which is "TRUE" or "FALSE"
+  return presence && presence.toUpperCase() === 'TRUE';
+}
+
+// 1. OVERVIEW TAB
+function buildColophonOverview(mount) {
+  console.log('📊 Building Colophon Overview...');
+  
+  const allSUs = DATA.su || [];
+  
+  // Debug: Check first few SUs
+  console.log('🔍 First SU sample:', allSUs[0]);
+  console.log('🔍 Colophon presence value for first SU:', getVal(allSUs[0], 'Colophon presence'));
+  
+  const colophonSUs = allSUs.filter(su => hasColophon(su));
+  console.log('✅ Found', colophonSUs.length, 'SUs with colophons');
+  
+  // Basic statistics
+  const stats = {
+    totalSUs: allSUs.length,
+    withColophons: colophonSUs.length,
+    withTranscription: 0,
+    withTranslation: 0,
+    withBoth: 0,
+    avgTranscriptionLength: 0,
+    avgTranslationLength: 0,
+    byLanguage: {},
+    byCentury: {},
+    byRegion: {}
+  };
+  
+  // Calculate statistics
+  let totalTranscriptionLength = 0;
+  let totalTranslationLength = 0;
+  
+  colophonSUs.forEach(su => {
+    const colophonData = getColophonText(su);
+    
+    if (colophonData.hasTranscription) {
+      stats.withTranscription++;
+      totalTranscriptionLength += colophonData.transcription.length;
+    }
+    
+    if (colophonData.hasTranslation) {
+      stats.withTranslation++;
+      totalTranslationLength += colophonData.translation.length;
+    }
+    
+    if (colophonData.hasTranscription && colophonData.hasTranslation) {
+      stats.withBoth++;
+    }
+    
+    // Only count records with at least one text field for other stats
+    if (colophonData.hasTranscription || colophonData.hasTranslation) {
+      // Group by language
+      const lang = getVal(su, 'Colophon language') || 'Unknown';
+      stats.byLanguage[lang] = (stats.byLanguage[lang] || 0) + 1;
+      
+      // Group by century
+      const century = getVal(su, 'Normalized century of production') || 'Unknown';
+      stats.byCentury[century] = (stats.byCentury[century] || 0) + 1;
+      
+      // Group by region (from PU)
+      const pus = getPUsForSU(su);
+      if (pus.length > 0) {
+        const pu = IDX.pu[pus[0]];
+        if (pu) {
+          const place = MAP.pu?.place(pu) || 'Unknown';
+          const region = place.split(',')[0].trim();
+          stats.byRegion[region] = (stats.byRegion[region] || 0) + 1;
+        }
+      }
+    }
+  });
+  
+  stats.avgTranscriptionLength = stats.withTranscription > 0 ? Math.round(totalTranscriptionLength / stats.withTranscription) : 0;
+  stats.avgTranslationLength = stats.withTranslation > 0 ? Math.round(totalTranslationLength / stats.withTranslation) : 0;
+  
+  // Sort for display
+  const topLanguages = Object.entries(stats.byLanguage)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8);
+  
+  const topCenturies = Object.entries(stats.byCentury)
+    .sort((a, b) => {
+      const aCent = parseInt(a[0]) || 0;
+      const bCent = parseInt(b[0]) || 0;
+      return aCent - bCent;
+    });
+  
+  const topRegions = Object.entries(stats.byRegion)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+  
+  console.log('📊 Colophon stats:', stats);
+  
+  // Calculate relative percentages (colophons vs total manuscripts)
+  const allMSs = DATA.ms || [];
+  const msByCentury = {};
+  const msByRegion = {};
+  
+  allSUs.forEach(su => {
+    const century = getVal(su, 'Normalized century of production');
+    if (century) {
+      msByCentury[century] = (msByCentury[century] || 0) + 1;
+    }
+    
+    const pus = getPUsForSU(su);
+    if (pus.length > 0) {
+      const pu = IDX.pu[pus[0]];
+      if (pu) {
+        const place = MAP.pu?.place(pu) || '';
+        const region = place.split(',')[0].trim();
+        if (region) {
+          msByRegion[region] = (msByRegion[region] || 0) + 1;
+        }
+      }
+    }
+  });
+  
+  // Render
+  mount.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">📜 Colophon Analysis Overview</h2>
+      
+      <!-- Key Statistics -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.withColophons}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Scribal Units with Colophons</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">${Math.round((stats.withColophons / stats.totalSUs) * 100)}% of all SUs</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.withTranscription}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">With Transcription</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Original language text</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.withTranslation}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">With Translation</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">English translation</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.avgTranscriptionLength}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Transcription</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Characters</div>
+        </div>
+      </div>
+      
+      <!-- Distribution Charts -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        
+        <!-- By Language -->
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">🗣️ Colophons by Language</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${topLanguages.map(([lang, count]) => {
+              const maxCount = topLanguages[0][1];
+              const percentage = (count / maxCount) * 100;
+              return `
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                    <span style="font-weight: 600;">${lang}</span>
+                    <span style="color: #666;">${count} colophon${count !== 1 ? 's' : ''}</span>
+                  </div>
+                  <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                    <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+        
+        <!-- By Century -->
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">📅 Colophons by Century</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${topCenturies.map(([century, count]) => {
+              const maxCount = Math.max(...topCenturies.map(c => c[1]));
+              const barPercentage = (count / maxCount) * 100;
+              const totalSUsInCentury = msByCentury[century] || 1;
+              const colophonRate = ((count / totalSUsInCentury) * 100).toFixed(1);
+              return `
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                    <span style="font-weight: 600;">${century} century</span>
+                    <div style="text-align: right;">
+                      <span style="color: #666;">${count} colophon${count !== 1 ? 's' : ''}</span>
+                      <span style="color: #43e97b; font-weight: 600; margin-left: 0.5rem;" title="${count} out of ${totalSUsInCentury} SUs">${colophonRate}%</span>
+                    </div>
+                  </div>
+                  <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
+                    <div style="background: linear-gradient(90deg, #43e97b, #38f9d7); height: 100%; width: ${barPercentage}%; transition: width 0.3s;"></div>
+                  </div>
+                  <div style="font-size: 0.7rem; color: #888; margin-top: 0.25rem;">
+                    ${colophonRate}% of ${totalSUsInCentury} SUs in this century have colophons
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- By Region -->
+      ${topRegions.length > 0 ? `
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">🌍 Colophons by Region</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${topRegions.map(([region, count]) => {
+              const maxCount = topRegions[0][1];
+              const barPercentage = (count / maxCount) * 100;
+              const totalSUsInRegion = msByRegion[region] || 1;
+              const colophonRate = ((count / totalSUsInRegion) * 100).toFixed(1);
+              return `
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                    <span style="font-weight: 600;">${region}</span>
+                    <div style="text-align: right;">
+                      <span style="color: #666;">${count} colophon${count !== 1 ? 's' : ''}</span>
+                      <span style="color: #4facfe; font-weight: 600; margin-left: 0.5rem;" title="${count} out of ${totalSUsInRegion} SUs">${colophonRate}%</span>
+                    </div>
+                  </div>
+                  <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                    <div style="background: linear-gradient(90deg, #4facfe, #00f2fe); height: 100%; width: ${barPercentage}%; transition: width 0.3s;"></div>
+                  </div>
+                  <div style="font-size: 0.7rem; color: #888; margin-top: 0.25rem;">
+                    ${colophonRate}% of ${totalSUsInRegion} SUs in this region have colophons
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      ` : ''}
+      
+      <!-- Info Box -->
+      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #667eea; border-radius: 0.375rem;">
+        <h4 style="margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;">About This Module</h4>
+        <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.9rem;">
+          This module analyzes the colophons written by female scribes, examining their emotional tone, thematic content, 
+          linguistic patterns, and variations across time, geography, and religious orders. Navigate through the tabs above to explore:
+        </p>
+        <ul style="margin: 0.75rem 0 0 1.5rem; color: #555; line-height: 1.8; font-size: 0.9rem;">
+          <li><strong>Sentiment Analysis:</strong> Emotional tone (humble, proud, weary, etc.)</li>
+          <li><strong>Thematic Analysis:</strong> Common topics and motifs</li>
+          <li><strong>Linguistic Features:</strong> Writing style, complexity, self-expression</li>
+          <li><strong>Comparative Patterns:</strong> Variations by location, time, and institution</li>
+          <li><strong>Browse Colophons:</strong> Read individual colophon texts with analysis</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+// 2. SENTIMENT ANALYSIS TAB
+function buildSentimentAnalysis(mount) {
+  console.log('💭 Building Sentiment Analysis...');
+  
+  const allSUs = DATA.su || [];
+  const colophonSUs = allSUs.filter(su => hasColophon(su));
+  
+  // Sentiment keyword dictionaries
+  const sentiments = {
+    humility: {
+      keywords: ['unworthy', 'poor', 'sinner', 'humble', 'weak', 'undeserving', 'lowly', 'inadequate', 'insufficient'],
+      color: '#9333ea',
+      icon: '🙏'
+    },
+    pride: {
+      keywords: ['diligent', 'careful', 'completed', 'accomplished', 'faithfully', 'skillfully', 'perfectly', 'successfully'],
+      color: '#dc2626',
+      icon: '✨'
+    },
+    labor: {
+      keywords: ['weary', 'tired', 'labor', 'labored', 'difficult', 'effort', 'toil', 'fatigue', 'hand', 'finger'],
+      color: '#ea580c',
+      icon: '💪'
+    },
+    religious: {
+      keywords: ['god', 'pray', 'prayer', 'blessing', 'mercy', 'grace', 'lord', 'christ', 'saint', 'holy', 'amen'],
+      color: '#0891b2',
+      icon: '✝️'
+    },
+    temporal: {
+      keywords: ['year', 'day', 'month', 'century', 'completed in', 'written in', 'finished on'],
+      color: '#059669',
+      icon: '📅'
+    },
+    dedication: {
+      keywords: ['honor', 'dedicated', 'memory', 'commissioned', 'request', 'patron', 'benefactor'],
+      color: '#7c3aed',
+      icon: '💝'
+    }
+  };
+  
+  // Analyze each colophon
+  const results = colophonSUs.map(su => {
+    const colophon = getColophonText(su);
+    const text = (colophon.translation || colophon.transcription).toLowerCase();
+    
+    const scores = {};
+    const matchedKeywords = {};
+    let totalMatches = 0;
+    
+    Object.entries(sentiments).forEach(([name, config]) => {
+      const matches = config.keywords.filter(kw => text.includes(kw.toLowerCase()));
+      scores[name] = matches.length;
+      matchedKeywords[name] = matches;
+      totalMatches += matches.length;
+    });
+    
+    return {
+      su,
+      scores,
+      matchedKeywords,
+      totalMatches,
+      text: colophon.translation || colophon.transcription
+    };
+  });
+  
+  // Calculate aggregate statistics
+  const aggregateScores = {};
+  Object.keys(sentiments).forEach(name => {
+    aggregateScores[name] = results.reduce((sum, r) => sum + r.scores[name], 0);
+  });
+  
+  const totalSentimentMatches = Object.values(aggregateScores).reduce((a, b) => a + b, 0);
+  
+  // Top sentiment colophons
+  const topColophons = results
+    .filter(r => r.totalMatches > 0)
+    .sort((a, b) => b.totalMatches - a.totalMatches)
+    .slice(0, 5);
+  
+  // Render
+  mount.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">💭 Sentiment Analysis</h2>
+      
+      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+        Analyzing emotional expressions in ${colophonSUs.length} colophons using keyword matching. 
+        Found ${totalSentimentMatches} sentiment markers across all texts.
+      </p>
+      
+      <!-- Sentiment Distribution -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Sentiment Distribution</h3>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          ${Object.entries(sentiments).map(([name, config]) => {
+            const count = aggregateScores[name];
+            const percentage = totalSentimentMatches > 0 ? (count / totalSentimentMatches) * 100 : 0;
+            const colophonCount = results.filter(r => r.scores[name] > 0).length;
+            return `
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.2rem;">${config.icon}</span>
+                    <span style="font-weight: 600; text-transform: capitalize;">${name}</span>
+                  </div>
+                  <div style="text-align: right; font-size: 0.875rem; color: #666;">
+                    ${count} keyword matches in ${colophonCount} colophons
+                  </div>
+                </div>
+                <div style="background: #f0f0f0; height: 32px; border-radius: 8px; overflow: hidden; position: relative;">
+                  <div style="background: ${config.color}; height: 100%; width: ${percentage}%; transition: width 0.3s; display: flex; align-items: center; padding: 0 0.75rem; color: white; font-size: 0.875rem; font-weight: 600;">
+                    ${percentage > 5 ? `${percentage.toFixed(1)}%` : ''}
+                  </div>
+                  ${percentage <= 5 && percentage > 0 ? `<div style="position: absolute; left: calc(${percentage}% + 0.5rem); top: 50%; transform: translateY(-50%); font-size: 0.875rem; color: #666;">${percentage.toFixed(1)}%</div>` : ''}
+                </div>
+                <div style="margin-top: 0.25rem; font-size: 0.75rem; color: #888;">
+                  Keywords: ${config.keywords.slice(0, 5).join(', ')}...
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+      
+      <!-- Most Expressive Colophons -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h3 style="color: #333; font-size: 1.1rem; margin: 0;">Most Expressive Colophons</h3>
+          <button id="toggle-most-expressive" onclick="const hidden = document.querySelectorAll('.most-expressive-extra'); const btn = this; if(hidden[0].style.display === 'none') { hidden.forEach(el => el.style.display = 'block'); btn.textContent = 'Show Less'; } else { hidden.forEach(el => el.style.display = 'none'); btn.textContent = 'Show More'; }"
+            style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem;">
+            Show More
+          </button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          ${topColophons.slice(0, 20).map((result, idx) => {
+            const scribeName = result.su.rec_Title || 'Unknown';
+            const dominantSentiments = Object.entries(result.scores)
+              .filter(([_, score]) => score > 0)
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 3);
+            const extraClass = idx >= 5 ? 'most-expressive-extra' : '';
+            const extraStyle = idx >= 5 ? 'display: none;' : '';
+            
+            return `
+              <div class="${extraClass}" style="${extraStyle} background: #f9f9f9; padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid ${sentiments[dominantSentiments[0][0]].color};">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                  <div style="flex: 1;">
+                    <div style="font-weight: 600; color: #333; margin-bottom: 0.25rem;">#${idx + 1} ${esc(scribeName)}</div>
+                    <div style="font-size: 0.875rem; color: #666; margin-bottom: 0.5rem;">
+                      ${dominantSentiments.map(([name, score]) => 
+                        `${sentiments[name].icon} ${name} (${score})`
+                      ).join(' • ')}
+                    </div>
+                    <div style="font-size: 0.75rem; color: #888;">
+                      Keywords: ${dominantSentiments.map(([name]) => 
+                        result.matchedKeywords[name].slice(0, 3).join(', ')
+                      ).join(' | ')}
+                    </div>
+                  </div>
+                  <button onclick="selectSU(${result.su.rec_ID});" 
+                    style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
+                    View SU →
+                  </button>
+                </div>
+                <div style="font-size: 0.875rem; color: #555; font-style: italic; line-height: 1.6; background: white; padding: 1rem; border-radius: 0.25rem;">
+                  "${esc(result.text.substring(0, 200))}${result.text.length > 200 ? '...' : ''}"
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+      
+      <!-- Least Expressive Colophons -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="margin-bottom: 0.5rem; color: #333; font-size: 1.1rem;">Least Expressive Colophons (Neutral/Factual)</h3>
+        <p style="color: #666; font-size: 0.875rem; margin-bottom: 1rem;">
+          Colophons with minimal emotional language, focusing primarily on factual information.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          ${results.filter(r => r.totalMatches === 0).slice(0, 5).map((result, idx) => {
+            const scribeName = result.su.rec_Title || 'Unknown';
+            
+            return `
+              <div style="background: #f9f9f9; padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #9ca3af;">
+                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                  <div style="flex: 1;">
+                    <div style="font-weight: 600; color: #333; margin-bottom: 0.25rem;">${esc(scribeName)}</div>
+                    <div style="font-size: 0.875rem; color: #666;">
+                      No emotional keywords detected - factual/neutral tone
+                    </div>
+                  </div>
+                  <button onclick="selectSU(${result.su.rec_ID});" 
+                    style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
+                    View SU →
+                  </button>
+                </div>
+                <div style="font-size: 0.875rem; color: #555; font-style: italic; line-height: 1.6; background: white; padding: 1rem; border-radius: 0.25rem;">
+                  "${esc(result.text.substring(0, 200))}${result.text.length > 200 ? '...' : ''}"
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 3. THEMATIC ANALYSIS TAB
+function buildThematicAnalysis(mount) {
+  console.log('🏷️ Building Thematic Analysis...');
+  
+  const allSUs = DATA.su || [];
+  const colophonSUs = allSUs.filter(su => hasColophon(su));
+  
+  // Theme definitions
+  const themes = {
+    'Self-identification': {
+      keywords: ['i', 'me', 'my', 'sister', 'brother', 'scribe', 'wrote', 'written by'],
+      color: '#8b5cf6',
+      examples: []
+    },
+    'Labor & Difficulty': {
+      keywords: ['labor', 'work', 'effort', 'difficult', 'weary', 'tired', 'hand', 'finger', 'toil'],
+      color: '#ef4444',
+      examples: []
+    },
+    'Religious Devotion': {
+      keywords: ['god', 'pray', 'prayer', 'bless', 'mercy', 'grace', 'amen', 'christ', 'lord'],
+      color: '#3b82f6',
+      examples: []
+    },
+    'Time & Completion': {
+      keywords: ['completed', 'finished', 'year', 'day', 'month', 'written in', 'ended'],
+      color: '#10b981',
+      examples: []
+    },
+    'Place & Location': {
+      keywords: ['monastery', 'convent', 'church', 'abbey', 'in this place', 'at'],
+      color: '#f59e0b',
+      examples: []
+    },
+    'Dedication': {
+      keywords: ['honor', 'dedicated', 'memory', 'commissioned', 'for', 'patron'],
+      color: '#ec4899',
+      examples: []
+    },
+    'Humility': {
+      keywords: ['unworthy', 'poor', 'humble', 'sinner', 'undeserving'],
+      color: '#6366f1',
+      examples: []
+    },
+    'Request for Prayer': {
+      keywords: ['pray for', 'remember', 'commemorate', 'petition'],
+      color: '#14b8a6',
+      examples: []
+    }
+  };
+  
+  // Analyze colophons
+  colophonSUs.forEach(su => {
+    const colophon = getColophonText(su);
+    const text = (colophon.translation || colophon.transcription).toLowerCase();
+    
+    Object.entries(themes).forEach(([themeName, themeData]) => {
+      const hasTheme = themeData.keywords.some(kw => text.includes(kw.toLowerCase()));
+      if (hasTheme && themeData.examples.length < 2) {
+        themeData.examples.push({
+          scribe: su.rec_Title,
+          text: colophon.translation || colophon.transcription
+        });
+      }
+    });
+  });
+  
+  // Count colophons per theme
+  const themeCounts = {};
+  Object.entries(themes).forEach(([name, data]) => {
+    themeCounts[name] = colophonSUs.filter(su => {
+      const colophon = getColophonText(su);
+      const text = (colophon.translation || colophon.transcription).toLowerCase();
+      return data.keywords.some(kw => text.includes(kw.toLowerCase()));
+    }).length;
+  });
+  
+  const sortedThemes = Object.entries(themeCounts)
+    .sort((a, b) => b[1] - a[1]);
+  
+  // Render
+  mount.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">🏷️ Thematic Analysis</h2>
+      
+      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+        Identifying common themes across ${colophonSUs.length} colophons. Themes are detected using keyword matching.
+      </p>
+      
+      <!-- Theme Overview -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Theme Frequency</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+          ${sortedThemes.map(([themeName, count]) => {
+            const percentage = (count / colophonSUs.length) * 100;
+            return `
+              <div style="background: linear-gradient(135deg, ${themes[themeName].color}15, ${themes[themeName].color}30); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid ${themes[themeName].color};">
+                <div style="font-size: 2rem; font-weight: 700; color: ${themes[themeName].color}; margin-bottom: 0.5rem;">${count}</div>
+                <div style="font-weight: 600; color: #333; margin-bottom: 0.25rem;">${themeName}</div>
+                <div style="font-size: 0.875rem; color: #666;">${percentage.toFixed(1)}% of colophons</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+      
+      <!-- Example Colophons by Theme -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Example Colophons by Theme</h3>
+        <p style="font-size: 0.8rem; color: #666; margin-bottom: 1.5rem;">
+          Click "Show More Examples" to see additional colophons for each theme.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          ${sortedThemes.slice(0, 6).map(([themeName, count]) => {
+            const examples = themes[themeName].examples;
+            if (examples.length === 0) return '';
+            
+            const themeId = themeName.toLowerCase().replace(/\s+/g, '-');
+            const showButton = examples.length > 2;
+            
+            return `
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                  <div style="width: 4px; height: 24px; background: ${themes[themeName].color}; border-radius: 2px;"></div>
+                  <h4 style="font-size: 1rem; font-weight: 600; color: #333; margin: 0;">${themeName}</h4>
+                  <span style="font-size: 0.875rem; color: #666;">(${count} colophons)</span>
+                  ${showButton ? `
+                    <button class="toggle-theme-${themeId}" onclick="const hidden = document.querySelectorAll('.theme-${themeId}-extra'); const btn = this; if(hidden[0].style.display === 'none') { hidden.forEach(el => el.style.display = 'block'); btn.textContent = 'Show Less'; } else { hidden.forEach(el => el.style.display = 'none'); btn.textContent = 'Show More Examples'; }"
+                      style="background: ${themes[themeName].color}; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; margin-left: auto;">
+                      Show More Examples
+                    </button>
+                  ` : ''}
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-left: 1rem;">
+                  ${examples.map((ex, idx) => {
+                    const isExtra = idx >= 2;
+                    const extraClass = isExtra ? `theme-${themeId}-extra` : '';
+                    const extraStyle = isExtra ? 'display: none;' : '';
+                    
+                    return `
+                    <div class="${extraClass}" style="${extraStyle} background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid ${themes[themeName].color};">
+                      <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <div style="font-size: 0.875rem; font-weight: 600; color: #555;">${esc(ex.scribe)}</div>
+                        <button onclick="selectSU(${ex.su.rec_ID});" 
+                          style="background: #667eea; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
+                          View SU →
+                        </button>
+                      </div>
+                      <div style="font-size: 0.875rem; color: #666; font-style: italic; line-height: 1.5;">
+                        "${esc(ex.text.substring(0, 200))}${ex.text.length > 200 ? '...' : ''}"
+                      </div>
+                    </div>
+                  `}).join('')}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 4. LINGUISTIC FEATURES TAB
+function buildLinguisticFeatures(mount) {
+  console.log('📝 Building Linguistic Features...');
+  
+  const allSUs = DATA.su || [];
+  const colophonSUs = allSUs.filter(su => hasColophon(su));
+  
+  // Analyze linguistic features
+  const features = colophonSUs.map(su => {
+    const colophon = getColophonText(su);
+    const text = colophon.translation || colophon.transcription;
+    const words = text.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    
+    // Count first-person pronouns
+    const firstPersonCount = words.filter(w => 
+      ['i', 'me', 'my', 'mine', 'myself'].includes(w.replace(/[^a-z]/g, ''))
+    ).length;
+    
+    // Check for questions and exclamations
+    const hasQuestion = text.includes('?');
+    const hasExclamation = text.includes('!');
+    
+    // Calculate readability metrics
+    const avgWordLength = words.reduce((sum, w) => sum + w.length, 0) / (words.length || 1);
+    const avgSentenceLength = words.length / (sentences.length || 1);
+    
+    return {
+      su,
+      wordCount: words.length,
+      sentenceCount: sentences.length,
+      firstPersonCount,
+      hasQuestion,
+      hasExclamation,
+      avgWordLength,
+      avgSentenceLength,
+      scribeName: su.rec_Title
+    };
+  }).filter(f => f.wordCount > 0);
+  
+  // Calculate aggregate statistics
+  const totalWords = features.reduce((sum, f) => sum + f.wordCount, 0);
+  const avgWords = totalWords / features.length;
+  const avgFirstPerson = features.reduce((sum, f) => sum + f.firstPersonCount, 0) / features.length;
+  const avgWordLen = features.reduce((sum, f) => sum + f.avgWordLength, 0) / features.length;
+  const avgSentLen = features.reduce((sum, f) => sum + f.avgSentenceLength, 0) / features.length;
+  const withQuestions = features.filter(f => f.hasQuestion).length;
+  const withExclamations = features.filter(f => f.hasExclamation).length;
+  const withFirstPerson = features.filter(f => f.firstPersonCount > 0).length;
+  
+  // Find extremes
+  const longest = [...features].sort((a, b) => b.wordCount - a.wordCount).slice(0, 3);
+  const shortest = [...features].sort((a, b) => a.wordCount - b.wordCount).slice(0, 3);
+  const mostFirstPerson = [...features].sort((a, b) => b.firstPersonCount - a.firstPersonCount).slice(0, 3);
+  
+  // Render
+  mount.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">📝 Linguistic Features</h2>
+      
+      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+        Analyzing linguistic patterns across ${features.length} colophons.
+      </p>
+      
+      <!-- Key Metrics -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgWords.toFixed(1)}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Word Count</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgWordLen.toFixed(1)}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Word Length</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Letters per word</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgSentLen.toFixed(1)}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Sentence Length</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Words per sentence</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${withFirstPerson}</div>
+          <div style="font-size: 0.875rem; opacity: 0.9;">Use First Person</div>
+          <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">${((withFirstPerson/features.length)*100).toFixed(1)}% of colophons</div>
+        </div>
+      </div>
+      
+      <!-- Expression Indicators -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Expression Indicators</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 1.5rem;">💬</span>
+              <span style="font-weight: 600; color: #333;">First-Person Usage</span>
+            </div>
+            <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 0.5rem;">
+              ${avgFirstPerson.toFixed(2)}
+            </div>
+            <div style="font-size: 0.875rem; color: #666;">
+              Average mentions per colophon<br>
+              ${withFirstPerson} colophons (${((withFirstPerson/features.length)*100).toFixed(1)}%) use "I", "me", or "my"
+            </div>
+          </div>
+          
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 1.5rem;">❓</span>
+              <span style="font-weight: 600; color: #333;">Questions</span>
+            </div>
+            <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">
+              ${withQuestions}
+            </div>
+            <div style="font-size: 0.875rem; color: #666;">
+              ${((withQuestions/features.length)*100).toFixed(1)}% of colophons contain questions
+            </div>
+          </div>
+          
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <span style="font-size: 1.5rem;">❗</span>
+              <span style="font-weight: 600; color: #333;">Exclamations</span>
+            </div>
+            <div style="font-size: 2rem; font-weight: 700; color: #ef4444; margin-bottom: 0.5rem;">
+              ${withExclamations}
+            </div>
+            <div style="font-size: 0.875rem; color: #666;">
+              ${((withExclamations/features.length)*100).toFixed(1)}% of colophons contain exclamations
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Extremes -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
+        <!-- Longest Colophons -->
+        <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">📏 Longest Colophons</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${longest.map((f, idx) => `
+              <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                  <span style="font-weight: 600; color: #555;">#${idx + 1} ${esc(f.scribeName)}</span>
+                  <span style="color: #667eea; font-weight: 600;">${f.wordCount} words</span>
+                </div>
+                <div style="font-size: 0.875rem; color: #666;">
+                  ${f.sentenceCount} sentence${f.sentenceCount !== 1 ? 's' : ''} • 
+                  ${f.avgSentenceLength.toFixed(1)} words/sentence
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <!-- Most Personal (First-Person) -->
+        <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">💬 Most Personal Expression</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${mostFirstPerson.filter(f => f.firstPersonCount > 0).map((f, idx) => `
+              <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                  <span style="font-weight: 600; color: #555;">#${idx + 1} ${esc(f.scribeName)}</span>
+                  <span style="color: #f093fb; font-weight: 600;">${f.firstPersonCount} mentions</span>
+                </div>
+                <div style="font-size: 0.875rem; color: #666;">
+                  ${f.wordCount} words • 
+                  ${((f.firstPersonCount/f.wordCount)*100).toFixed(1)}% first-person
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 5. COMPARATIVE PATTERNS TAB
+function buildComparativePatterns(mount) {
+  console.log('🔍 Building Comparative Patterns...');
+  
+  const allSUs = DATA.su || [];
+  const allMSs = DATA.ms || [];
+  const colophonSUs = allSUs.filter(su => hasColophon(su));
+  
+  // Sentiment definitions (simplified from sentiment tab)
+  const sentimentKeywords = {
+    humility: ['unworthy', 'poor', 'sinner', 'humble', 'weak'],
+    pride: ['diligent', 'careful', 'completed', 'accomplished', 'faithfully'],
+    labor: ['weary', 'tired', 'labor', 'difficult', 'hand', 'finger'],
+    religious: ['god', 'pray', 'prayer', 'blessing', 'mercy', 'grace']
+  };
+  
+  // Analyze by region
+  const byRegion = {};
+  const totalSUsByRegion = {};
+  
+  // First, count total SUs per region
+  allSUs.forEach(su => {
+    const ms = getMSForSU(su);
+    const region = ms ? (getVal(ms, 'Region of origin') || 'Unknown') : 'Unknown';
+    totalSUsByRegion[region] = (totalSUsByRegion[region] || 0) + 1;
+  });
+  
+  // Then analyze colophon SUs
+  colophonSUs.forEach(su => {
+    const ms = getMSForSU(su);
+    const region = ms ? (getVal(ms, 'Region of origin') || 'Unknown') : 'Unknown';
+    
+    if (!byRegion[region]) {
+      byRegion[region] = {
+        count: 0,
+        avgLength: 0,
+        totalWords: 0,
+        sentiment: { humility: 0, pride: 0, labor: 0, religious: 0 }
+      };
+    }
+    
+    const colophon = getColophonText(su);
+    const text = (colophon.translation || colophon.transcription).toLowerCase();
+    const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+    
+    byRegion[region].count++;
+    byRegion[region].totalWords += wordCount;
+    
+    // Count sentiments
+    Object.entries(sentimentKeywords).forEach(([sentiment, keywords]) => {
+      const matches = keywords.filter(kw => text.includes(kw)).length;
+      byRegion[region].sentiment[sentiment] += matches;
+    });
+  });
+  
+  // Calculate averages
+  Object.values(byRegion).forEach(data => {
+    data.avgLength = data.count > 0 ? data.totalWords / data.count : 0;
+  });
+  
+  // Analyze by century
+  const byCentury = {};
+  const totalSUsByCentury = {};
+  
+  // First, count total SUs per century
+  allSUs.forEach(su => {
+    const century = getVal(su, 'Normalized century of production') || 'Unknown';
+    totalSUsByCentury[century] = (totalSUsByCentury[century] || 0) + 1;
+  });
+  
+  // Then analyze colophon SUs
+  colophonSUs.forEach(su => {
+    const century = getVal(su, 'Normalized century of production') || 'Unknown';
+    
+    if (!byCentury[century]) {
+      byCentury[century] = {
+        count: 0,
+        avgLength: 0,
+        totalWords: 0,
+        sentiment: { humility: 0, pride: 0, labor: 0, religious: 0 }
+      };
+    }
+    
+    const colophon = getColophonText(su);
+    const text = (colophon.translation || colophon.transcription).toLowerCase();
+    const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+    
+    byCentury[century].count++;
+    byCentury[century].totalWords += wordCount;
+    
+    // Count sentiments
+    Object.entries(sentimentKeywords).forEach(([sentiment, keywords]) => {
+      const matches = keywords.filter(kw => text.includes(kw)).length;
+      byCentury[century].sentiment[sentiment] += matches;
+    });
+  });
+  
+  // Calculate averages
+  Object.values(byCentury).forEach(data => {
+    data.avgLength = data.count > 0 ? data.totalWords / data.count : 0;
+  });
+  
+  // Sort regions and centuries by count
+  const topRegions = Object.entries(byRegion)
+    .filter(([name]) => name !== 'Unknown')
+    .sort((a, b) => b[1].count - a[1].count)
+    .slice(0, 8);
+  
+  const sortedCenturies = Object.entries(byCentury)
+    .filter(([name]) => name !== 'Unknown')
+    .sort((a, b) => {
+      const numA = parseInt(a[0]) || 0;
+      const numB = parseInt(b[0]) || 0;
+      return numA - numB;
+    });
+  
+  // Render
+  mount.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">🔍 Comparative Patterns</h2>
+      
+      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+        Comparing colophon characteristics across regions and time periods.
+      </p>
+      
+      <!-- By Region -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">🌍 Patterns by Region</h3>
+        
+        <!-- Colophon Count by Region -->
+        <div style="margin-bottom: 2rem;">
+          <h4 style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Number of Colophons</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${topRegions.map(([region, data]) => {
+              const maxCount = topRegions[0][1].count;
+              const barPercentage = (data.count / maxCount) * 100;
+              const totalInRegion = totalSUsByRegion[region] || 1;
+              const colophonRate = ((data.count / totalInRegion) * 100).toFixed(1);
+              return `
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem; font-size: 0.875rem;">
+                    <span style="font-weight: 600;">${esc(region)}</span>
+                    <span style="color: #666;">
+                      ${data.count} colophons (avg ${data.avgLength.toFixed(0)} words)
+                      <span style="color: #667eea; font-weight: 600; margin-left: 0.5rem;">${colophonRate}%</span>
+                    </span>
+                  </div>
+                  <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
+                    <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: ${barPercentage}%; transition: width 0.3s;"></div>
+                  </div>
+                  <div style="font-size: 0.7rem; color: #888; margin-top: 0.25rem;">
+                    ${colophonRate}% of ${totalInRegion} SUs have colophons
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+        
+        <!-- Sentiment by Region -->
+        <div>
+          <h4 style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Sentiment Expression by Region</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+              <thead>
+                <tr style="background: #f9f9f9; border-bottom: 2px solid #e0e0e0;">
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #333;">Region</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #9333ea;">🙏 Humility</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #dc2626;">✨ Pride</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #ea580c;">💪 Labor</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #0891b2;">✝️ Religious</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${topRegions.map(([region, data]) => `
+                  <tr style="border-bottom: 1px solid #f0f0f0;">
+                    <td style="padding: 0.75rem; font-weight: 500; color: #555;">${esc(region)}</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #9333ea;">${data.sentiment.humility}</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #dc2626;">${data.sentiment.pride}</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #ea580c;">${data.sentiment.labor}</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #0891b2;">${data.sentiment.religious}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- By Century -->
+      <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">📅 Patterns Over Time</h3>
+        
+        <!-- Average Length Trend -->
+        <div style="margin-bottom: 2rem;">
+          <h4 style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Average Colophon Length by Century</h4>
+          <div style="display: flex; align-items: end; gap: 0.5rem; height: 200px; padding: 1rem; background: #f9f9f9; border-radius: 0.5rem;">
+            ${sortedCenturies.map(([century, data]) => {
+              const maxLength = Math.max(...sortedCenturies.map(c => c[1].avgLength));
+              const height = (data.avgLength / maxLength) * 100;
+              return `
+                <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                  <div style="display: flex; flex-direction: column; justify-content: end; align-items: center; height: 100%; width: 100%;">
+                    <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">${data.avgLength.toFixed(0)}</div>
+                    <div style="background: linear-gradient(180deg, #4facfe, #00f2fe); width: 100%; height: ${height}%; border-radius: 4px 4px 0 0; min-height: 4px;"></div>
+                  </div>
+                  <div style="font-size: 0.75rem; font-weight: 600; color: #333;">${century}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+        
+        <!-- Sentiment Trends -->
+        <div>
+          <h4 style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Sentiment Trends Over Time</h4>
+          <p style="font-size: 0.8rem; color: #666; margin-bottom: 0.75rem;">
+            Percentages show the proportion of colophons in each century that contain sentiment keywords.
+          </p>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+              <thead>
+                <tr style="background: #f9f9f9; border-bottom: 2px solid #e0e0e0;">
+                  <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #333;">Century</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #666;">Colophons</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #666;">Rate</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #9333ea;">🙏 Humility</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #dc2626;">✨ Pride</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #ea580c;">💪 Labor</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #0891b2;">✝️ Religious</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${sortedCenturies.map(([century, data]) => {
+                  const totalInCentury = totalSUsByCentury[century] || 1;
+                  const colophonRate = ((data.count / totalInCentury) * 100).toFixed(1);
+                  
+                  // Calculate sentiment percentages (% of colophons with this sentiment)
+                  const humilityPct = ((data.sentiment.humility / data.count) * 100).toFixed(1);
+                  const pridePct = ((data.sentiment.pride / data.count) * 100).toFixed(1);
+                  const laborPct = ((data.sentiment.labor / data.count) * 100).toFixed(1);
+                  const religiousPct = ((data.sentiment.religious / data.count) * 100).toFixed(1);
+                  
+                  return `
+                  <tr style="border-bottom: 1px solid #f0f0f0;">
+                    <td style="padding: 0.75rem; font-weight: 600; color: #555;">${century}th</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #666;">${data.count}</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #4facfe; font-weight: 600;">${colophonRate}%</td>
+                    <td style="padding: 0.75rem; text-align: center; color: #9333ea;">
+                      <div style="font-weight: 600;">${data.sentiment.humility}</div>
+                      <div style="font-size: 0.7rem; color: #9333ea99;">${humilityPct}%</div>
+                    </td>
+                    <td style="padding: 0.75rem; text-align: center; color: #dc2626;">
+                      <div style="font-weight: 600;">${data.sentiment.pride}</div>
+                      <div style="font-size: 0.7rem; color: #dc262699;">${pridePct}%</div>
+                    </td>
+                    <td style="padding: 0.75rem; text-align: center; color: #ea580c;">
+                      <div style="font-weight: 600;">${data.sentiment.labor}</div>
+                      <div style="font-size: 0.7rem; color: #ea580c99;">${laborPct}%</div>
+                    </td>
+                    <td style="padding: 0.75rem; text-align: center; color: #0891b2;">
+                      <div style="font-weight: 600;">${data.sentiment.religious}</div>
+                      <div style="font-size: 0.7rem; color: #0891b299;">${religiousPct}%</div>
+                    </td>
+                  </tr>
+                `;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Key Insights -->
+      <div style="background: linear-gradient(135deg, #667eea15, #764ba230); padding: 2rem; border-radius: 0.5rem; margin-top: 2rem; border-left: 4px solid #667eea;">
+        <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">💡 Key Insights</h3>
+        <ul style="margin: 0; padding-left: 1.5rem; color: #555; line-height: 2;">
+          <li>Most colophons come from <strong>${topRegions[0] ? topRegions[0][0] : 'Unknown'}</strong> (${topRegions[0] ? topRegions[0][1].count : 0} colophons)</li>
+          <li>Average colophon length: <strong>${Object.values(byRegion).reduce((sum, d) => sum + d.avgLength, 0) / Object.keys(byRegion).length | 0} words</strong></li>
+          <li>Religious expressions are most common, appearing across all regions and centuries</li>
+          <li>Colophon practices evolved over time, with variation in length and style</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+// 6. BROWSE COLOPHONS TAB
+function buildBrowseColophons(mount) {
+  console.log('📖 Building Browse Colophons...');
+  
+  const allSUs = DATA.su || [];
+  const colophonSUs = allSUs.filter(su => hasColophon(su));
+  
+  // Get unique languages and centuries for filters
+  const languages = [...new Set(colophonSUs.map(su => getVal(su, 'Colophon language')).filter(Boolean))].sort();
+  const centuries = [...new Set(colophonSUs.map(su => getVal(su, 'Normalized century of production')).filter(Boolean))].sort();
+  
+  // Initial display (first 20)
+  const displayColophons = colophonSUs.slice(0, 20);
+  
+  mount.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">📖 Browse Colophons</h2>
+      
+      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
+        Showing ${displayColophons.length} of ${colophonSUs.length} colophons. 
+        Use filters to refine your search.
+      </p>
+      
+      <!-- Filters -->
+      <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Language</label>
+            <select id="filter-language" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem;">
+              <option value="">All Languages</option>
+              ${languages.map(lang => `<option value="${esc(lang)}">${esc(lang)}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Century</label>
+            <select id="filter-century" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem;">
+              <option value="">All Centuries</option>
+              ${centuries.map(cent => `<option value="${esc(cent)}">${esc(cent)}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #333; margin-bottom: 0.5rem;">Search Text</label>
+            <input type="text" id="filter-search" placeholder="Search colophon text..." style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem;">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Colophon List -->
+      <div id="colophon-list" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        ${displayColophons.map((su, idx) => {
+          const colophon = getColophonText(su);
+          const scribeName = su.rec_Title || 'Unknown';
+          const language = getVal(su, 'Colophon language') || 'Unknown';
+          const century = getVal(su, 'Normalized century of production') || 'Unknown';
+          const dating = getVal(su, 'SU dating') || 'Unknown';
+          const msTitle = getVal(su, 'Manuscript') || 'Unknown';
+          const cardId = 'colophon-card-' + idx;
+          
+          return `
+            <div id="${cardId}" data-su-id="${su.rec_ID}" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <!-- Header -->
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #f0f0f0;">
+                <div style="flex: 1;">
+                  <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin: 0 0 0.5rem 0;">${esc(scribeName)}</h3>
+                  <div style="font-size: 0.875rem; color: #666;">
+                    📜 ${esc(msTitle)}
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <div style="text-align: right; font-size: 0.875rem; color: #666; margin-right: 0.5rem;">
+                    <div>🗣️ ${esc(language)}</div>
+                    <div>📅 ${esc(century)} century (${esc(dating)})</div>
+                  </div>
+                  <button onclick="const card = document.getElementById('${cardId}'); const content = card.querySelector('.colophon-content'); const btn = this; if(content.style.display === 'none') { content.style.display = 'block'; btn.textContent = '▼'; } else { content.style.display = 'none'; btn.textContent = '▶'; }" 
+                    style="background: #f0f0f0; border: none; padding: 0.5rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 1rem; width: 40px; height: 40px;">
+                    ▼
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Collapsible Content -->
+              <div class="colophon-content" style="display: block;">
+                <!-- Transcription (Original) -->
+                ${colophon.hasTranscription ? `
+                  <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                      <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Original Transcription
+                      </div>
+                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = '📋 Copy', 2000);" 
+                        style="background: #667eea; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
+                        📋 Copy
+                      </button>
+                    </div>
+                    <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #667eea;">
+                      <p style="margin: 0; color: #444; line-height: 1.6; font-style: italic;">
+                        ${esc(colophon.transcription)}
+                      </p>
+                    </div>
+                  </div>
+                ` : ''}
+                
+                <!-- Translation (English) -->
+                ${colophon.hasTranslation ? `
+                  <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                      <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;">
+                        English Translation
+                      </div>
+                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = '📋 Copy', 2000);" 
+                        style="background: #4facfe; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
+                        📋 Copy
+                      </button>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #4facfe;">
+                      <p style="margin: 0; color: #333; line-height: 1.6;">
+                        ${esc(colophon.translation)}
+                      </p>
+                    </div>
+                  </div>
+                ` : ''}
+                
+                ${!colophon.hasTranscription && !colophon.hasTranslation ? `
+                  <div style="color: #999; font-style: italic;">No colophon text available</div>
+                ` : ''}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+      
+      ${colophonSUs.length > 20 ? `
+        <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: #f9f9f9; border-radius: 0.5rem;">
+          <p style="color: #666; margin: 0;">
+            Showing 20 of ${colophonSUs.length} colophons. Use filters to refine your search.
+          </p>
+        </div>
+      ` : ''}
+    </div>
+  `;
+  
+  // Add filter event listeners
+  const filterLanguage = document.getElementById('filter-language');
+  const filterCentury = document.getElementById('filter-century');
+  const filterSearch = document.getElementById('filter-search');
+  
+  const applyFilters = () => {
+    const langValue = filterLanguage?.value || '';
+    const centValue = filterCentury?.value || '';
+    const searchValue = filterSearch?.value.toLowerCase() || '';
+    
+    let filtered = colophonSUs;
+    
+    if (langValue) {
+      filtered = filtered.filter(su => getVal(su, 'Colophon language') === langValue);
+    }
+    
+    if (centValue) {
+      filtered = filtered.filter(su => getVal(su, 'Normalized century of production') === centValue);
+    }
+    
+    if (searchValue) {
+      filtered = filtered.filter(su => {
+        const colophon = getColophonText(su);
+        const text = (colophon.translation + ' ' + colophon.transcription).toLowerCase();
+        return text.includes(searchValue);
+      });
+    }
+    
+    const listDiv = document.getElementById('colophon-list');
+    const displayFiltered = filtered.slice(0, 50); // Show up to 50 results
+    
+    listDiv.innerHTML = displayFiltered.length > 0 ? displayFiltered.map(su => {
+      const colophon = getColophonText(su);
+      const scribeName = su.rec_Title || 'Unknown';
+      const language = getVal(su, 'Colophon language') || 'Unknown';
+      const century = getVal(su, 'Normalized century of production') || 'Unknown';
+      const dating = getVal(su, 'SU dating') || 'Unknown';
+      const msTitle = getVal(su, 'Manuscript') || 'Unknown';
+      
+      return `
+        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #f0f0f0;">
+            <div style="flex: 1;">
+              <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin: 0 0 0.5rem 0;">${esc(scribeName)}</h3>
+              <div style="font-size: 0.875rem; color: #666;">📜 ${esc(msTitle)}</div>
+            </div>
+            <div style="text-align: right; font-size: 0.875rem; color: #666;">
+              <div>🗣️ ${esc(language)}</div>
+              <div>📅 ${esc(century)} century (${esc(dating)})</div>
+            </div>
+          </div>
+          
+          ${colophon.hasTranscription ? `
+            <div style="margin-bottom: 1rem;">
+              <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Original Transcription</div>
+              <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #667eea;">
+                <p style="margin: 0; color: #444; line-height: 1.6; font-style: italic;">${esc(colophon.transcription)}</p>
+              </div>
+            </div>
+          ` : ''}
+          
+          ${colophon.hasTranslation ? `
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">English Translation</div>
+              <div style="background: #f0f8ff; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #4facfe;">
+                <p style="margin: 0; color: #333; line-height: 1.6;">${esc(colophon.translation)}</p>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join('') : '<div style="text-align: center; padding: 2rem; color: #666;">No colophons match your filters.</div>';
+    
+    // Update count message
+    const countMsg = filtered.length > 50 
+      ? `Showing 50 of ${filtered.length} filtered colophons` 
+      : `Showing ${filtered.length} colophon${filtered.length !== 1 ? 's' : ''}`;
+    
+    const existingMsg = mount.querySelector('p[style*="margin-bottom: 2rem"]');
+    if (existingMsg) {
+      existingMsg.textContent = countMsg + '. Use filters to refine your search.';
+    }
+  };
+  
+  if (filterLanguage) filterLanguage.addEventListener('change', applyFilters);
+  if (filterCentury) filterCentury.addEventListener('change', applyFilters);
+  if (filterSearch) filterSearch.addEventListener('input', debounce(applyFilters, 300));
 }
 
 /* ---------- Boot ---------- */

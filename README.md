@@ -445,7 +445,7 @@ Director of the *Unknown Hands* project.
 - **Click Nodes:** View record details
 - **Filters:** Show/hide relationship types
 
-#### Analytics Mode (3 Modules)
+#### Analytics Mode (5 Modules)
 
 **Paleographic Analysis**
 - Script distribution across time periods
@@ -466,6 +466,27 @@ Director of the *Unknown Hands* project.
 - Margin Ratio: Codex size vs. writing space ratio
 - Custom Analysis: User-defined variable comparisons
 
+**Multilingualism Module** *(NEW)*
+- Overview: Distribution of languages across manuscripts and scribal units
+- Manuscripts Tab: Language patterns per manuscript with filtering
+- Scribes Tab: Language attribution at scribal unit level (colophon vs. text language)
+- Institutions Tab: Linguistic diversity by monastic institution
+- Colophon-Text Divergence: Analysis of cases where colophon and text languages differ
+- Pattern Analysis: Geographical, temporal, and religious order correlations
+- Icons: 📝 (colophon language) and 📖 (text language) for clear attribution
+
+**Colophon Analysis Module** *(NEW)*
+- Overview: Statistical summary of colophon presence and characteristics
+- Sentiment Analysis: Emotional tone detection (humility, pride, labor, religious, temporal, dedication)
+  - Most/Least Expressive Colophons with expandable lists
+  - Matched keyword display for transparency
+  - "View SU" buttons for quick navigation
+- Thematic Analysis: 8 themes (religious devotion, scribal identity, labor & completion, temporal markers, institutional context, dedication & patronage, personal expression, mistakes & corrections)
+  - Expandable example colophons per theme
+- Linguistic Features: Word count, sentence complexity, first-person usage analysis
+- Comparative Patterns: Regional and temporal variations with sentiment percentages
+- Browse Colophons: Filterable colophon viewer with expand/collapse cards and copy-to-clipboard functionality
+
 **Visualization Types:**
 - Statistics tables (mean, median, min, max)
 - Box plots (distribution comparisons)
@@ -473,6 +494,15 @@ Director of the *Unknown Hands* project.
 - Bar charts (averages)
 - Heatmaps (cross-tabulations)
 - Stacked bar charts (proportions)
+- Sentiment distribution charts
+- Language distribution pie/bar charts
+- Interactive expandable lists
+
+**Export Capabilities:**
+- Export visualizations as high-quality PNG (300 DPI)
+- Export statistical data as CSV
+- Export network graphs as SVG
+- Copy colophon texts to clipboard
 
 ### 5.2 IIIF Viewer
 
@@ -712,4 +742,4 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ---
 
-*Last updated: October 2025*
+*Last updated: November 2025*

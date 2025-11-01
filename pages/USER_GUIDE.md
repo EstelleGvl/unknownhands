@@ -19,6 +19,11 @@ show_title: false
 4. [Timeline Analysis](#4-timeline-analysis)
 5. [Network Explorer](#5-network-explorer)
 6. [Analytics Tools](#6-analytics-tools)
+   - [6.1 Paleographic Analysis](#61-paleographic-analysis)
+   - [6.2 Gender Analysis](#62-gender-analysis)
+   - [6.3 Codicological Analysis](#63-codicological-analysis)
+   - [6.4 Multilingualism Module](#64-multilingualism-module-new)
+   - [6.5 Colophon Analysis Module](#65-colophon-analysis-module-new)
 7. [IIIF Viewer](#7-iiif-viewer)
 8. [Search Transcriptions](#8-search-transcriptions)
 9. [Tips & Tricks](#9-tips--tricks)
@@ -379,7 +384,9 @@ While viewing map:
 
 **1. Paleographic Analysis** — Script patterns  
 **2. Gender Analysis** — Gender in scribal production  
-**3. Codicological Analysis** — Material features (NEW)
+**3. Codicological Analysis** — Material features
+**4. Multilingualism Module** — Language patterns and diversity *(NEW)*
+**5. Colophon Analysis** — Sentiment and thematic analysis of colophons *(NEW)*
 
 ---
 
@@ -548,6 +555,235 @@ While viewing map:
 - Material, date, country
 - Columns, folios
 - Text block dimensions
+
+---
+
+### 6.4 Multilingualism Module *(NEW)*
+
+**Purpose:** Explore language patterns across manuscripts, scribal units, and institutions
+
+**5 Tab Interface:**
+
+#### Overview Tab
+- **Total Language Count:** Number of unique languages in the database
+- **Language Distribution:** Top languages with manuscript/SU counts
+- **Key Statistics:** Overall linguistic diversity metrics
+- **Visualization:** Bar chart showing language frequency
+
+**Use this to:** Get a quick overview of linguistic diversity in the collection
+
+#### Manuscripts Tab
+- **Language Patterns per Manuscript:** See which languages appear in each manuscript
+- **Filtering Options:**
+  - Filter by language (dropdown)
+  - Filter by century
+  - Filter by region
+  - Text search
+- **Display:** Shows manuscript title, languages, century, region
+- **Sort:** By manuscript name or number of languages
+
+**Use this to:** Find multilingual manuscripts or manuscripts in specific languages
+
+#### Scribes Tab
+- **Language Attribution at SU Level:**
+  - 📝 = Colophon language (language of scribe's note)
+  - 📖 = Text language (language of main content)
+- **Shows:** Scribal units with their attributed languages
+- **Distinction:** See when colophon and text languages differ
+- **Filters:** Language, century, region, text search
+
+**Use this to:** Identify scribes who worked in multiple languages or switched languages between colophon and text
+
+#### Institutions Tab
+- **Linguistic Diversity by Monastery/Convent:**
+  - See which institutions had multilingual production
+  - Count of unique languages per institution
+- **Display:** Institution name, location, languages, SU count
+- **Sort:** By name or language diversity
+
+**Use this to:** Find centers of multilingual manuscript production
+
+#### Colophon-Text Divergence Tab
+- **Specialized Analysis:** Cases where colophon language ≠ text language
+- **Shows:** Scribes who wrote notes in one language but copied texts in another
+- **Examples:** Latin text with vernacular colophon, vice versa
+- **Context:** Century, region, institution information
+
+**Use this to:** Study language choices and code-switching in medieval scribal practice
+
+**Pattern Analysis Features:**
+- Geographical patterns (which regions were more multilingual?)
+- Temporal patterns (did multilingualism increase/decrease over time?)
+- Religious order correlations (which orders produced multilingual MSS?)
+
+**Example Questions:**
+- Were manuscripts from Italy more multilingual than those from Germany?
+- Did multilingualism increase in the 15th century?
+- Which monasteries had the most linguistic diversity?
+- How common was it for scribes to use different languages in colophons vs. texts?
+
+---
+
+### 6.5 Colophon Analysis Module *(NEW)*
+
+**Purpose:** Analyze the content, sentiment, and themes of scribal colophons
+
+**What is a Colophon?**
+A colophon is a note written by the scribe, typically at the end of a manuscript, providing information about the copying process, the scribe, the date, requests for prayers, expressions of emotion, etc.
+
+**6 Tab Interface:**
+
+#### Overview Tab
+- **Colophon Statistics:**
+  - Total number of colophons in database
+  - Percentage of scribal units with colophons
+  - Average colophon length
+- **Distribution by Century:** Colophon rates over time (with percentages)
+- **Distribution by Region:** Geographic patterns of colophon presence
+- **Key Insights:** Where and when were colophons most common?
+
+**Use this to:** Understand overall colophon prevalence patterns
+
+#### Sentiment Analysis Tab
+- **Emotional Tone Detection:** 6 sentiment categories
+  - 🙏 Humility (unworthy, poor, sinner, humble, weak)
+  - ✨ Pride (diligent, careful, completed, accomplished)
+  - 💪 Labor (weary, tired, labor, difficult, hand, finger)
+  - ✝️ Religious (god, pray, prayer, blessing, mercy)
+  - ⏰ Temporal (finished, completed, ended, year, day)
+  - 💝 Dedication (patron, gift, love, honor)
+  
+- **Most Expressive Colophons:**
+  - Initially shows 5 colophons with highest emotional content
+  - "Show More" expands to 20 colophons
+  - Each shows matched keywords for transparency
+  - "View SU" button for quick navigation to full record
+  
+- **Least Expressive Colophons:**
+  - Shows colophons with minimal emotional language
+  - Identifies neutral/factual colophons (dates, names only)
+  - Useful for contrasting scribal expression styles
+  
+- **Sentiment Distribution:** Visual breakdown of sentiment frequency
+- **Matched Keywords Display:** See exactly which words triggered each sentiment
+
+**Use this to:** 
+- Find emotionally expressive colophons
+- Compare scribal attitudes and emotions
+- Identify patterns in emotional expression
+- Study scribal self-representation
+
+#### Thematic Analysis Tab
+- **8 Major Themes:**
+  1. Religious Devotion — References to God, prayers, blessings
+  2. Scribal Identity — Name, role, self-description
+  3. Labor & Completion — Work process, finishing statements
+  4. Temporal Markers — Dates, times, feast days
+  5. Institutional Context — Monastery, scriptorium mentions
+  6. Dedication & Patronage — Patrons, recipients, gifts
+  7. Personal Expression — Emotions, thoughts, experiences
+  8. Mistakes & Corrections — Apologies, error acknowledgments
+
+- **Theme Distribution Chart:** Visual overview of theme frequency
+- **Example Colophons by Theme:**
+  - Shows 2 examples per theme initially
+  - "Show More Examples" expands to show all examples
+  - Each example includes "View SU" button
+  - Examples preserve original colophon text (up to 200 characters)
+
+**Use this to:**
+- Find colophons about specific topics
+- Study what scribes chose to document
+- Compare thematic emphasis across time/geography
+
+#### Linguistic Features Tab
+- **Word Count Analysis:**
+  - Average words per colophon
+  - Longest/shortest colophons
+  - Distribution visualization
+  
+- **Sentence Complexity:**
+  - Average sentence length
+  - Average word length
+  
+- **First-Person Usage:**
+  - Frequency of "I", "me", "my" pronouns
+  - Most personal colophons
+  - Percentage of colophons using first person
+  
+- **Questions & Exclamations:**
+  - Colophons with rhetorical questions
+  - Colophons with exclamatory statements
+
+**Use this to:**
+- Compare colophon length and complexity
+- Study personal vs. impersonal expression
+- Find particularly detailed or brief colophons
+
+#### Comparative Patterns Tab
+- **By Region:**
+  - Colophon rates by geographic area
+  - Sentiment distribution by region
+  - Average length by location
+  - Compare 8 top regions
+  
+- **By Century:**
+  - Temporal trends in colophon characteristics
+  - Average length over time
+  - Sentiment changes across centuries
+  - **Sentiment Percentages:** Shows what % of colophons in each century contain each sentiment type
+  
+- **Trends Over Time Table:**
+  - Century-by-century breakdown
+  - Colophon count and rate (% of all SUs)
+  - Sentiment counts with percentages
+  - Format: "15 mentions (23.5%)" showing both absolute and relative frequency
+
+**Use this to:**
+- Identify regional scribal practices
+- Track changes in colophon style over time
+- Compare sentiment expression across contexts
+- Find patterns in colophon conventions
+
+#### Browse Colophons Tab
+- **Filterable Colophon Viewer:**
+  - Filter by language (Latin, vernacular, etc.)
+  - Filter by century
+  - Text search across all colophons
+  
+- **Display Features:**
+  - Expandable cards (▶/▼ toggle)
+  - Shows transcription (original language)
+  - Shows translation (English)
+  - Copy-to-clipboard buttons for both
+  - "View SU" button for full record
+  - Displays manuscript context
+  
+- **Results:**
+  - Shows 20 colophons initially
+  - Can expand to 50 with filters
+  - Real-time filtering updates
+
+**Use this to:**
+- Read colophons in detail
+- Find specific colophon texts
+- Copy colophon text for citation
+- Browse colophons by language or period
+
+**Example Research Questions:**
+- Which regions had the most humble colophons?
+- Did colophon length increase over time?
+- Were 15th-century colophons more personal than 13th-century ones?
+- What percentage of colophons express labor/fatigue?
+- Which scribes wrote the longest colophons?
+- How did religious sentiment vary by century?
+
+**Export Features:**
+- Copy any colophon text to clipboard (for citation)
+- Export filtered results as needed through main Browse mode
+- All visualizations can be exported as high-quality images
+
+---
 - And more...
 
 ---
@@ -817,6 +1053,46 @@ Click **"Search Transcriptions"** in main navigation
 - Include in publications
 - Cite specific subsets of data
 
+### Exporting Data and Visualizations
+
+**CSV Export:**
+- Available in Browse mode for filtered results
+- Click "Export CSV" button in top-right
+- Downloads current filtered dataset
+- Includes all fields for selected entity type
+- Repeat for each entity type if needed
+
+**High-Quality Image Export:**
+- Available in Map, Timeline, Network, and Analytics modes
+- Click "Export" button (usually top-right of visualization)
+- Exports as PNG at 300 DPI (publication quality)
+- Useful for presentations and publications
+- **Available for:**
+  - Map views (all 8 map types)
+  - Timeline charts
+  - Network graphs (SVG format)
+  - All analytics visualizations
+  - Hierarchical tree views (per-manuscript export)
+
+**Copy Colophon Text:**
+- In Colophon Analysis Browse tab
+- Each colophon has "📋 Copy" buttons
+- Separate buttons for transcription and translation
+- Click to copy to clipboard
+- Paste into your documents for citation
+- Button shows "✓ Copied!" confirmation
+
+**Statistical Dashboard Export:**
+- Export statistical summaries from Analytics tabs
+- Useful for recording analysis parameters
+- Can be imported into other tools (Excel, R, etc.)
+
+**Best Practices:**
+- Export filtered datasets to focus on your research corpus
+- Use high-DPI exports for publications
+- Keep track of filter parameters used for reproducibility
+- Cite Unknown Hands database in your work (see Credits page)
+
 ---
 
 ## 10. Frequently Asked Questions
@@ -875,7 +1151,7 @@ A: Currently, data is available via CSV export and JSON files. We're exploring A
 ### Feature Questions
 
 **Q: Can I save my analyses?**
-A: Currently, you can export results as CSV. Saved analysis workspaces are planned for future release.
+A: Currently, you can export results as CSV and visualizations as high-quality images. Saved analysis workspaces are planned for future release.
 
 **Q: Can I upload my own manuscripts?**
 A: Not directly through the website. Contact the team if you have data to contribute.
@@ -885,6 +1161,24 @@ A: Yes! We're continuously developing new analytical tools based on user feedbac
 
 **Q: Can I compare two manuscripts side-by-side?**
 A: In the Viewer, use split-screen mode. In Analytics, filter to your manuscripts and compare statistics.
+
+**Q: What is sentiment analysis in colophons?**
+A: Our sentiment analysis uses keyword matching to detect emotional tones in colophon texts. It identifies 6 categories (humility, pride, labor, religious, temporal, dedication) and shows which keywords were matched for transparency.
+
+**Q: How accurate is the colophon sentiment analysis?**
+A: The analysis is keyword-based and designed for exploratory research. It identifies potential emotional content but should be verified by reading the full colophon text. All matched keywords are displayed for transparency.
+
+**Q: What does 📝 and 📖 mean in the Multilingualism module?**
+A: 📝 indicates colophon language (the language of the scribe's note), while 📖 indicates text language (the language of the main content being copied). This distinction helps identify code-switching.
+
+**Q: How do I export a visualization for my publication?**
+A: Click the "Export" button on any visualization. It will download as a high-quality PNG (300 DPI) suitable for publication. Available for maps, timelines, networks, and all analytics charts.
+
+**Q: Can I see the raw colophon text?**
+A: Yes! Use the Colophon Analysis module's "Browse Colophons" tab. Each colophon shows both the original transcription and English translation, with copy-to-clipboard buttons for citation.
+
+**Q: Why do some colophons show as "Least Expressive"?**
+A: These are colophons with minimal emotional language, typically containing only factual information (names, dates, places). They represent a more neutral scribal voice compared to emotionally expressive colophons.
 
 ---
 
@@ -913,6 +1207,6 @@ This platform is the result of collaboration between medievalists, digital human
 
 ---
 
-*Unknown Hands User Guide v1.0*  
-*Last updated: October 2025*  
+*Unknown Hands User Guide v2.0*  
+*Last updated: November 2025*  
 *Estelle Guéville, Yale University*
