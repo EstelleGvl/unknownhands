@@ -2110,7 +2110,20 @@ function showDetails(rec, type){
     html += `<div class="section"><div>${esc(dt)}${hT ? ' — '+linkTo('hi', hId, hT) : ''}</div></div>`;
     const manifestUrl = MAP.ms.iiifManifest(rec);
     if (manifestUrl){
-      const viewerHref = `${BASE}/viewer/?manifest=${encodeURIComponent(manifestUrl)}`;
+      // Extract slug from manifest URL (e.g., "irht-fr1dgmfio4zw" from "ark:/63955/fr1dgmfio4zw")
+      let slug = '';
+      const arkMatch = manifestUrl.match(/ark:\/\d+\/([^\/]+)/);
+      if (arkMatch) {
+        slug = 'irht-' + arkMatch[1];
+      }
+      
+      // Build viewer URL with manifest and optionally transcriptions
+      let viewerHref = `${BASE}/viewer/?manifest=${encodeURIComponent(manifestUrl)}`;
+      if (slug) {
+        const annosPath = `${BASE}/data/transcriptions/${slug}/mapping.json`;
+        viewerHref += `&annos=${encodeURIComponent(annosPath)}`;
+      }
+      
       html += `<div style="margin:.5rem 0 1rem;">
         <a class="chip" href="${viewerHref}" target="_blank" rel="noopener">Open in Mirador (new tab)</a>
         <a class="chip" href="${esc(manifestUrl)}" target="_blank" rel="noopener">Open manifest JSON</a>

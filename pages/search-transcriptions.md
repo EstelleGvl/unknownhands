@@ -87,8 +87,15 @@ show_title: false
 
     $status.textContent = `${rows.length} match${rows.length===1?'':'es'}`;
     $hits.innerHTML = rows.slice(0, 200).map(d=>{
-      // build viewer link: /viewer/{slug}/?canvas=...&line=...
-      const href = `{{ site.baseurl | default: "" }}/viewer/${d.slug}/?canvas=${encodeURIComponent(d.canvas)}&line=${encodeURIComponent(d.line_id)}`;
+      // Reconstruct manifest URL from slug
+      // slug format: "irht-fr1dgmfio4zw" -> manifest: "https://api.irht.cnrs.fr/ark:/63955/fr1dgmfio4zw/manifest.json"
+      const arkId = d.slug.replace(/^irht-/, '');
+      const manifestUrl = `https://api.irht.cnrs.fr/ark:/63955/${arkId}/manifest.json`;
+      const annosPath = `{{ site.baseurl | default: "" }}/data/transcriptions/${d.slug}/mapping.json`;
+      
+      // Build viewer URL with all required parameters
+      const href = `{{ site.baseurl | default: "" }}/viewer/?manifest=${encodeURIComponent(manifestUrl)}&annos=${encodeURIComponent(annosPath)}&canvas=${encodeURIComponent(d.canvas)}&line=${encodeURIComponent(d.line_id)}`;
+      
       return `
         <article class="db-card">
           <div class="db-body">

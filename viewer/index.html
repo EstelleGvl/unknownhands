@@ -12,11 +12,13 @@ show_title: false
   :root { --viewer-pad: 8vw; }
 
   .viewer-fullwidth{
-    width:100vw;
-    max-width:100vw;
-    margin-left:50%;
-    transform:translateX(-50%);
-    padding:0 var(--viewer-pad);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 0 var(--viewer-pad);
   }
 
   /* Main container */
@@ -86,6 +88,8 @@ show_title: false
       <div class="toolbar">
         <strong>Transcription</strong>
         <button id="btn-show-bboxes" class="chip tiny" type="button">Show regions</button>
+        <a id="btn-database" href="#" class="chip tiny" style="text-decoration:none; display:none;">📖 Database</a>
+        <a href="{{ site.baseurl | default: '' }}/search-transcriptions/" class="chip tiny" style="text-decoration:none; margin-left:auto;">🔍 Search</a>
       </div>
       <div id="text-status" class="muted tiny">Loading…</div>
       <div id="text-content"></div>
@@ -156,21 +160,50 @@ show_title: false
   const params     = new URLSearchParams(location.search);
   const manifest   = params.get('manifest') || '';
   const mappingUrl = params.get('annos')    || '';
+  const targetCanvas = params.get('canvas') || '';  // for deep linking from search
+  const targetLine   = params.get('line')   || '';  // highlight specific line
 
   const $status    = document.getElementById('text-status');
   const $content   = document.getElementById('text-content');
   const $btnBoxes  = document.getElementById('btn-show-bboxes');
+  const $btnDatabase = document.getElementById('btn-database');
 
-  if (!manifest)  $status.textContent = 'Missing ?manifest=… URL parameter.';
-  if (!mappingUrl)$status.textContent = 'Missing ?annos=… URL parameter (mapping.json).';
+  // Set up database link if we can extract manuscript slug from manifest URL
+  if (manifest && $btnDatabase) {
+    // Try to extract ARK ID from manifest URL
+    // Format: https://api.irht.cnrs.fr/ark:/63955/{ark_id}/manifest.json
+    const arkMatch = manifest.match(/ark:\/\d+\/([^\/]+)/);
+    if (arkMatch) {
+      const arkId = arkMatch[1];
+      const slug = 'irht-' + arkId;
+      const baseUrl = '{{ site.baseurl | default: "" }}';
+      // Link to database with manuscript filter
+      $btnDatabase.href = `${baseUrl}/data/?type=ms&q=${encodeURIComponent(slug)}`;
+      $btnDatabase.style.display = 'inline-block';
+    }
+  }
+
+  if (!manifest) {
+    $status.textContent = 'Missing ?manifest=… URL parameter.';
+  } else if (!mappingUrl) {
+    $status.textContent = 'No transcriptions available for this manuscript.';
+    $btnBoxes.style.display = 'none';
+  }
 
   /* 1) Start Mirador inside the left grid cell */
-  const mir = Mirador.viewer({
+  const miradorConfig = {
     id: 'mirador',
     windows: [{ loadedManifest: manifest }],
     workspaceControlPanel: { enabled:false },
     selectedTheme: 'light',
-  });
+  };
+  
+  // If canvas is specified, open directly to that canvas
+  if (targetCanvas) {
+    miradorConfig.windows[0].canvasId = targetCanvas;
+  }
+  
+  const mir = Mirador.viewer(miradorConfig);
   window.__mir = mir; // for quick console checks
 
   /* 2) Load mapping and build canvasId -> AP path map */
@@ -183,27 +216,30 @@ show_title: false
     catch{ return String(s).replace(/[?#].*$/, '').replace(/\/+$/,''); }
   };
 
-  fetch(mappingUrl)
-    .then(r => r.ok ? r.json() : Promise.reject(r.status))
-    .then(j => {
-      if (!j || !Array.isArray(j.items)) throw new Error('Bad mapping.json');
-      mappingArr = j.items.slice();
-      j.items.forEach(it => byCanvas.set(normalize(it.canvas), it.annotationPage));
-      $status.textContent = 'Ready.';
-      const c = currentCanvasId(); if (c) renderText(c);
-    })
-    .catch(err => {
-      console.error('mapping load failed', err);
-      $status.textContent = 'Could not load mapping.json';
-    });
+  // Only load mapping if URL parameter is provided
+  if (mappingUrl) {
+    fetch(mappingUrl)
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(j => {
+        if (!j || !Array.isArray(j.items)) throw new Error('Bad mapping.json');
+        mappingArr = j.items.slice();
+        j.items.forEach(it => byCanvas.set(normalize(it.canvas), it.annotationPage));
+        $status.textContent = 'Ready.';
+        const c = currentCanvasId(); if (c) renderText(c);
+      })
+      .catch(err => {
+        console.error('mapping load failed', err);
+        $status.textContent = 'Could not load mapping.json';
+      });
+  }
 
   /* 3) Helpers to read current canvas from Mirador state */
-  function currentCanvasId(){
+  function currentCanvasIds(){
     const s = mir.store.getState();
     const wId = s.windows && Object.keys(s.windows)[0];
-    if (!wId) return null;
+    if (!wId) return [];
     const v = s.windows[wId]?.visibleCanvases;
-    return (Array.isArray(v) && v.length) ? v[0] : null;
+    return (Array.isArray(v) && v.length) ? v : [];
   }
   function currentCanvasIndex(){
     const s = mir.store.getState();
@@ -212,66 +248,104 @@ show_title: false
     return Number.isFinite(i) ? i : 0;
   }
 
-  /* 4) Render transcription for the current canvas */
+  /* 4) Render transcription for the current canvas(es) */
   let showBoxes = false;
   $btnBoxes.addEventListener('click', ()=>{
     showBoxes = !showBoxes;
     $btnBoxes.classList.toggle('is-on', showBoxes);
-    const c = currentCanvasId(); if (c) renderText(c);
+    const canvases = currentCanvasIds();
+    if (canvases.length) renderAllText(canvases);
   });
 
-  async function renderText(canvasId){
-    const key = normalize(canvasId);
-    let apRel = byCanvas.get(key) || byCanvas.get(canvasId);
-
-    // Fallback: index alignment (keeps sidebar populated even if IDs don’t match)
-    if (!apRel && mappingArr.length){
-      const idx = Math.min(Math.max(currentCanvasIndex(), 0), mappingArr.length-1);
-      apRel = mappingArr[idx]?.annotationPage;
+  async function renderAllText(canvasIds){
+    if (!canvasIds.length) {
+      $status.textContent = 'No page selected.';
+      $content.innerHTML = '';
+      return;
     }
 
-    if (!apRel){ $status.textContent = 'No transcription for this page.'; $content.innerHTML=''; return; }
+    $status.textContent = 'Loading transcriptions…';
+    const allRows = [];
+    
+    for (const canvasId of canvasIds) {
+      const key = normalize(canvasId);
+      let apRel = byCanvas.get(key) || byCanvas.get(canvasId);
 
-    $status.textContent = 'Loading transcription…';
-    const base = new URL(mappingUrl, location.href);
-    const apUrl = new URL(apRel, base).toString();
+      // Fallback: index alignment
+      if (!apRel && mappingArr.length){
+        const idx = Math.min(Math.max(currentCanvasIndex(), 0), mappingArr.length-1);
+        apRel = mappingArr[idx]?.annotationPage;
+      }
 
-    try{
-      const ap = apCache.has(apUrl) ? apCache.get(apUrl) : await (await fetch(apUrl)).json();
-      apCache.set(apUrl, ap);
-      const items = Array.isArray(ap.items) ? ap.items : [];
-      if (!items.length){ $status.textContent = 'No items in annotation page.'; $content.innerHTML=''; return; }
+      if (!apRel) continue;
 
-      const parseXYWH = (sel='') => { const m=/xywh=(\d+),(\d+),(\d+),(\d+)/.exec(sel); return m ? {x:+m[1],y:+m[2],w:+m[3],h:+m[4]} : null; };
-      const rows = items.map(it=>{
-        const sel = it?.target?.selector?.value || '';
-        const box = parseXYWH(sel);
-        const txt = (it?.body?.value || '').trim();
-        return { txt, box };
-      }).filter(r=>r.txt);
+      try {
+        const base = new URL(mappingUrl, location.href);
+        const apUrl = new URL(apRel, base).toString();
+        const ap = apCache.has(apUrl) ? apCache.get(apUrl) : await (await fetch(apUrl)).json();
+        apCache.set(apUrl, ap);
+        
+        const items = Array.isArray(ap.items) ? ap.items : [];
+        const parseXYWH = (sel='') => { const m=/xywh=(\d+),(\d+),(\d+),(\d+)/.exec(sel); return m ? {x:+m[1],y:+m[2],w:+m[3],h:+m[4]} : null; };
+        
+        const rows = items.map(it=>{
+          const sel = it?.target?.selector?.value || '';
+          const box = parseXYWH(sel);
+          const txt = (it?.body?.value || '').trim();
+          return { txt, box, canvasId };
+        }).filter(r=>r.txt);
 
-      rows.sort((a,b)=>(a.box?.y||0)-(b.box?.y||0) || (a.box?.x||0)-(b.box?.x||0));
+        rows.sort((a,b)=>(a.box?.y||0)-(b.box?.y||0) || (a.box?.x||0)-(b.box?.x||0));
+        allRows.push(...rows);
+      } catch(e) {
+        console.error('AP fetch failed', apRel, e);
+      }
+    }
 
-      const esc = s => String(s).replace(/[&<>"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-      $status.textContent = `${rows.length} line${rows.length===1?'':'s'}`;
-      $content.innerHTML = rows.map(r=>{
-        const pos = (r.box && showBoxes) ? ` <span class="muted tiny">[${r.box.x},${r.box.y},${r.box.w},${r.box.h}]</span>` : '';
-        return `<div class="line">${esc(r.txt)}${pos}</div>`;
-      }).join('');
-    }catch(e){
-      console.error('AP fetch failed', apUrl, e);
-      $status.textContent = 'Could not load transcription.'; $content.innerHTML='';
+    if (!allRows.length) {
+      $status.textContent = 'No transcription for this page.';
+      $content.innerHTML = '';
+      return;
+    }
+
+    const esc = s => String(s).replace(/[&<>"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    $status.textContent = `${allRows.length} line${allRows.length===1?'':'s'}`;
+    
+    $content.innerHTML = allRows.map((r, idx)=>{
+      const lineId = `line-${idx}`;
+      const isTarget = targetLine && lineId === targetLine;
+      const highlightClass = isTarget ? ' style="background:#fff4cc; font-weight:bold;"' : '';
+      const pos = (r.box && showBoxes) ? ` <span class="muted tiny">[${r.box.x},${r.box.y},${r.box.w},${r.box.h}]</span>` : '';
+      return `<div class="line" id="${lineId}"${highlightClass}>${esc(r.txt)}${pos}</div>`;
+    }).join('');
+    
+    // Scroll to highlighted line if specified
+    if (targetLine) {
+      setTimeout(() => {
+        const lineElem = document.getElementById(targetLine);
+        if (lineElem) {
+          lineElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
     }
   }
 
   // Re-render on canvas change
-  let lastC = null;
+  let lastCanvases = [];
   mir.store.subscribe(()=>{
-    const c = currentCanvasId();
-    if (c && c !== lastC){ lastC=c; renderText(c); }
+    const canvases = currentCanvasIds();
+    const canvasStr = canvases.join(',');
+    const lastStr = lastCanvases.join(',');
+    if (canvasStr !== lastStr) {
+      lastCanvases = canvases;
+      renderAllText(canvases);
+    }
   });
 
   // First render kick (after Mirador finishes first layout)
-  setTimeout(()=>{ const c=currentCanvasId(); if (c) renderText(c); }, 700);
+  setTimeout(()=>{ 
+    const canvases = currentCanvasIds(); 
+    if (canvases.length) renderAllText(canvases); 
+  }, 700);
 })();
 </script>
