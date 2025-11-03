@@ -155,3 +155,121 @@ if (!manifest) {
 - ⏳ Update scripts to output to new data structure
 - ⏳ Rebuild search index with new paths
 - ⏳ Add UX enhancements (click line to zoom, export transcription, etc.)
+
+---
+
+## Update - November 3, 2025
+
+### 7. ✅ Two-Page Viewing Support
+**Problem**: When Mirador shows 2 pages side-by-side (book view), transcription sidebar only showed text from the first page.
+
+**Solution**: 
+- Created `currentCanvasIds()` function to get ALL visible canvases from Mirador state
+- Created `renderAllText(canvasIds)` function to fetch and combine annotations from multiple pages
+- Transcriptions now display for all visible pages with position indicators
+
+**Fix in `viewer/index.html` (lines 217-310)**:
+```javascript
+function currentCanvasIds(){
+  const s = mir.store.getState();
+  const wId = s.windows && Object.keys(s.windows)[0];
+  if (!wId) return [];
+  const v = s.windows[wId]?.visibleCanvases;
+  return (Array.isArray(v) && v.length) ? v : [];
+}
+
+async function renderAllText(canvasIds){
+  // Fetches and combines transcriptions from all visible pages
+  // Adds position indicators like "(left)" and "(right)"
+}
+```
+
+**Result**: Transcription sidebar now correctly shows text from both pages in book view
+
+### 8. ✅ Added Search Button to Viewer
+**Problem**: No way to navigate from viewer to search transcriptions page.
+
+**Solution**: Added 🔍 Search button to viewer toolbar that links to `/search-transcriptions/`
+
+**Fix in `viewer/index.html` (line 88)**:
+```html
+<a href="{{ site.baseurl }}/search-transcriptions/" class="chip tiny" 
+   style="text-decoration:none; margin-left:auto;">🔍 Search</a>
+```
+
+**Result**: Users can now search transcriptions from the viewer
+
+### 9. ✅ Added Database Button to Viewer  
+**Problem**: No way to navigate from viewer back to the full manuscript entry in the database.
+
+**Solution**: Added 📖 Database button that extracts the manuscript slug from the manifest URL and links back to explore-database with proper parameters.
+
+**Fix in `viewer/index.html` (lines 165-183)**:
+```javascript
+// Extract slug from manifest ARK ID
+const arkMatch = manifest.match(/ark:\/\d+\/([^\/]+)/);
+if (arkMatch) {
+  const slug = 'irht-' + arkMatch[1];
+  // Link to explore-database with slug parameter
+  $btnDatabase.href = `${baseUrl}/explore-database/?type=ms&slug=${encodeURIComponent(slug)}`;
+  $btnDatabase.style.display = 'inline-block';
+}
+```
+
+**Fix in `pages/explore-database.md` (lines 12726-12749)**:
+Added URL parameter handling to automatically navigate to a specific manuscript when loaded with `?type=ms&slug=irht-xxxxx`:
+
+```javascript
+// Check for URL parameters to auto-navigate to a specific record
+const params = new URLSearchParams(window.location.search);
+const slugParam = params.get('slug');
+const typeParam = params.get('type') || 'ms';
+
+if (slugParam && typeParam === 'ms') {
+  // Search for manuscript with matching ARK ID in manifest URL
+  const manuscripts = Object.values(IDX.ms || {});
+  for (const ms of manuscripts) {
+    const manifestUrl = MAP.ms.iiifManifest(ms);
+    if (manifestUrl) {
+      const arkMatch = manifestUrl.match(/ark:\/\d+\/([^\/]+)/);
+      if (arkMatch) {
+        const msSlug = 'irht-' + arkMatch[1];
+        if (msSlug === slugParam) {
+          // Found it! Jump to this manuscript
+          setTimeout(() => jumpTo('ms', String(ms.rec_ID)), 100);
+          break;
+        }
+      }
+    }
+  }
+}
+```
+
+**Result**: Complete circular navigation workflow:
+- Database → "Open in Mirador" → Viewer ✅
+- Viewer → "🔍 Search" → Search page ✅
+- Viewer → "📖 Database" → Database entry ✅
+- Search results → Viewer (with line highlighting) ✅
+
+### Updated URLs
+
+**Database Link from Viewer:**
+```
+/explore-database/?type=ms&slug=irht-fr1dgmfio4zw
+```
+
+When explore-database loads, it automatically:
+1. Switches to browse mode
+2. Switches to manuscripts (ms) entity type  
+3. Searches for the manuscript with matching slug in its manifest URL
+4. Jumps to that manuscript and displays its details
+
+## Complete Workflow Now Available
+
+Users can now seamlessly navigate between:
+- **Explore Database** → View full manuscript metadata and holdings
+- **Mirador Viewer** → Browse images with synchronized transcriptions
+- **Search Transcriptions** → Find specific text across all manuscripts
+- **Back to Database** → Return to see related manuscripts, production units, etc.
+
+All with proper deep linking, parameter passing, and state management!

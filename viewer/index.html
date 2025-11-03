@@ -177,8 +177,8 @@ show_title: false
       const arkId = arkMatch[1];
       const slug = 'irht-' + arkId;
       const baseUrl = '{{ site.baseurl | default: "" }}';
-      // Link to database with manuscript filter
-      $btnDatabase.href = `${baseUrl}/data/?type=ms&q=${encodeURIComponent(slug)}`;
+      // Link to explore-database with slug parameter
+      $btnDatabase.href = `${baseUrl}/explore-database/?type=ms&slug=${encodeURIComponent(slug)}`;
       $btnDatabase.style.display = 'inline-block';
     }
   }

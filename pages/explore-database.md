@@ -11781,7 +11781,7 @@ function buildSentimentAnalysis(mount) {
                       ).join(' | ')}
                     </div>
                   </div>
-                  <button onclick="selectSU(${result.su.rec_ID});" 
+                  <button onclick="window.jumpTo('su', '${result.su.rec_ID}');" 
                     style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
                     View SU →
                   </button>
@@ -11814,7 +11814,7 @@ function buildSentimentAnalysis(mount) {
                       No emotional keywords detected - factual/neutral tone
                     </div>
                   </div>
-                  <button onclick="selectSU(${result.su.rec_ID});" 
+                  <button onclick="window.jumpTo('su', '${result.su.rec_ID}');" 
                     style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
                     View SU →
                   </button>
@@ -11974,7 +11974,7 @@ function buildThematicAnalysis(mount) {
                     <div class="${extraClass}" style="${extraStyle} background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid ${themes[themeName].color};">
                       <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
                         <div style="font-size: 0.875rem; font-weight: 600; color: #555;">${esc(ex.scribe)}</div>
-                        <button onclick="selectSU(${ex.su.rec_ID});" 
+                        <button onclick="window.jumpTo('su', '${ex.su.rec_ID}');" 
                           style="background: #667eea; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
                           View SU →
                         </button>
@@ -12722,6 +12722,31 @@ async function boot(){
   $status.textContent='';
   
   console.log('✨ Boot complete! Page ready.');
+  
+  // Check for URL parameters to auto-navigate to a specific record
+  const params = new URLSearchParams(window.location.search);
+  const slugParam = params.get('slug');
+  const typeParam = params.get('type') || 'ms';
+  
+  if (slugParam && typeParam === 'ms') {
+    // Search for manuscript with matching ARK ID in manifest URL
+    const manuscripts = Object.values(IDX.ms || {});
+    for (const ms of manuscripts) {
+      const manifestUrl = MAP.ms.iiifManifest(ms);
+      if (manifestUrl) {
+        const arkMatch = manifestUrl.match(/ark:\/\d+\/([^\/]+)/);
+        if (arkMatch) {
+          const msSlug = 'irht-' + arkMatch[1];
+          if (msSlug === slugParam) {
+            // Found it! Jump to this manuscript
+            console.log('📖 Auto-navigating to manuscript:', ms.rec_ID);
+            setTimeout(() => jumpTo('ms', String(ms.rec_ID)), 100);
+            break;
+          }
+        }
+      }
+    }
+  }
 }
 boot();
 
