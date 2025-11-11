@@ -966,40 +966,65 @@ Click **"Search Transcriptions"** in main navigation
 **Wildcards** (if supported):
 - `*` for multiple characters: `tran*` finds "transcription", "translation"
 
+### Comparing Transcriptions
+
+**Side-by-Side Comparison Feature:**
+
+The transcription search includes a comparison tool for analyzing multiple results together.
+
+**How to Use:**
+
+1. **Select Results:**
+   - Each search result has a checkbox in the top-right corner
+   - Check 2 or more results you want to compare
+   - Selection count updates in real-time (e.g., "3 selected")
+
+2. **Compare:**
+   - Click **"Compare Selected"** button (enabled when 2+ selected)
+   - Modal window opens showing all selected results side-by-side
+   - Each result displays:
+     - Manuscript title
+     - Page number
+     - Full transcription line
+     - Context lines (if "Show context" was enabled before searching)
+
+3. **Analyze:**
+   - Scroll through the grid to examine differences
+   - Results displayed in responsive columns
+   - Easy comparison of spelling, abbreviations, and text variations
+
+4. **Clear Selection:**
+   - Click **"Clear Selection"** to uncheck all and start over
+   - Click **"Close"** in modal to return to results
+
+**Best Practices:**
+- **Enable "Show context"** before searching to see surrounding lines in comparison
+- **Group by manuscript** first, then select one result from each manuscript
+- **Select 2-6 results** for optimal readability
+- Compare same phrase across different manuscripts to study:
+  - Spelling variations (e.g., "nostre dame" vs "notre dame")
+  - Regional differences
+  - Textual transmission
+  - Paleographic patterns
+
+**Example Workflow:**
+```
+1. Search: "dieu" with "Show context" enabled
+2. Enable "Group by manuscript"
+3. Select one result from 3-4 different manuscripts
+4. Click "Compare Selected"
+5. Analyze differences in context and spelling
+6. Take notes or screenshots
+7. Clear selection and search for another term
+```
+
 ### Exporting Search Results
 
-- Click "Export" button
+**Export Options:**
+- Click **"Export"** button above results
 - Downloads CSV with all matching lines
-- Use for text analysis projects
-
-### Comparing Manuscripts *(NEW)*
-
-**Select manuscripts for comparison:**
-
-1. **Checkbox selection:**
-   - Each search result has a checkbox
-   - Check manuscripts you want to compare
-   - Counter shows how many selected (e.g., "2 manuscripts selected")
-
-2. **View selection:**
-   - Selected manuscripts highlighted
-   - Can select from different search results
-   - Checkbox remembers your selections
-
-3. **Clear selection:**
-   - Click "Clear Selection" button
-   - Removes all selected manuscripts
-   - Start fresh comparison
-
-**Using comparison:**
-- Compare transcription styles across manuscripts
-- Export selected manuscripts only
-- Track manuscripts of interest during research session
-
-**Tips:**
-- Maximum recommended: 5-10 manuscripts for meaningful comparison
-- Selection persists while on search page
-- Refresh page to reset selection
+- Includes manuscript metadata and page numbers
+- Use for text analysis, concordances, or further research
 
 ---
 
@@ -1090,19 +1115,113 @@ Click **"Search Transcriptions"** in main navigation
 
 ### Exporting Data and Visualizations
 
-**CSV Export:**
-- Available in Browse mode for filtered results
-- Click "Export CSV" button in top-right
-- Downloads current filtered dataset
-- Includes all fields for selected entity type
-- Repeat for each entity type if needed
+The platform provides multiple export options for data and visualizations suitable for research, presentations, and publications.
 
-**High-Quality Image Export:**
-- Available in Map, Timeline, Network, and Analytics modes
-- Click "Export" button (usually top-right of visualization)
-- Exports as PNG at 300 DPI (publication quality)
-- Useful for presentations and publications
-- **Available for:**
+#### CSV Data Export
+
+**Browse Mode:**
+- Click **"Export CSV"** button (top-right)
+- Downloads filtered results as spreadsheet
+- Includes all metadata fields for selected entity type
+- Opens in Excel, Google Sheets, or any CSV reader
+
+**What's Included:**
+- All visible columns
+- All filtered records (not just current page)
+- Clean, structured data ready for analysis
+- Column headers for easy reference
+
+**Use Cases:**
+- Statistical analysis in R, Python, SPSS
+- Create custom visualizations
+- Build research datasets
+- Cite specific subsets in publications
+
+#### High-Resolution Image Export
+
+**Publication-Quality Exports:**
+All visualizations support high-resolution export at ~300 DPI minimum, suitable for academic publications and presentations.
+
+**Available Formats:**
+- **PNG** — High-resolution raster image (300 DPI)
+- **SVG** — Scalable vector graphics (where applicable)
+
+**Export by Tab:**
+
+1. **Map Visualizations:**
+   - Click **"📷 Export PNG"** button
+   - Captures entire map with all markers and layers
+   - Filename: `unknownhands-map-{timestamp}.png`
+   - **Resolution:** 3x scale (~300 DPI)
+
+2. **Analytics Dashboard:**
+   - Click **"📥 Export as Image"** button
+   - Captures current statistical visualization
+   - Filename: `unknownhands-analytics-{timestamp}.png`
+   - **Resolution:** 3x scale (~300 DPI)
+
+3. **Codicology Analysis:**
+   - Click **"📥 Export as Image"** button
+   - Exports scatter plots, box plots, bar charts, etc.
+   - Filename: `unknownhands-codicology-{timestamp}.png`
+   - **Resolution:** 3x scale (~300 DPI)
+   - **Comparison mode:** Export entire comparison grid
+
+4. **Hierarchical Tree:**
+   - Click **"📥 Export as Image"** button
+   - Captures full tree structure
+   - Filename: `unknownhands-tree-{timestamp}.png`
+   - **Resolution:** 3x scale (~300 DPI)
+
+5. **Network Visualization:**
+   - **SVG export:** Click **"📷 Export SVG"** (vector format, infinitely scalable)
+   - **PNG export:** Click **"📷 Export PNG"** (raster format, 300 DPI)
+   - Filename: `unknownhands-network-{timestamp}.{svg|png}`
+   - **Additional:** Data export dropdown for Gephi or R formats
+
+**Tips for Best Quality:**
+- **For journal articles:** Use PNG exports (widely accepted, high quality)
+- **For editing in Illustrator/Inkscape:** Use SVG exports (fully editable vectors)
+- **For presentations:** PNG exports work perfectly
+- **For web use:** PNG exports are ready to use
+- All exports have transparent or white backgrounds
+
+#### Text Export
+
+**Colophon Transcriptions:**
+- In Colophon Analysis Browse tab
+- Click **"📋"** copy-to-clipboard button
+- Copies transcription or translation
+- Paste directly into your research notes or documents
+
+**Transcription Search Results:**
+- Export search results as CSV
+- Includes manuscript name, page, line number, and full text
+- Export filtered datasets to focus on your research corpus
+
+#### Multi-Format Export Strategy
+
+**For Research Papers:**
+1. Export filtered CSV data from Browse mode
+2. Create custom visualizations in R/Python
+3. Export high-res PNGs from platform for supplementary figures
+4. Cite data subsets with bookmarked URLs
+
+**For Presentations:**
+1. Export PNG images from all visualization tabs
+2. Use in PowerPoint/Keynote at full quality
+3. No need to resize (already high resolution)
+
+**For Posters:**
+1. Export SVG from Network (edit in Illustrator if needed)
+2. Export PNG from Maps, Trees, Codicology
+3. All exports meet 300 DPI minimum for printing
+
+**Technical Details:**
+- **PNG Resolution:** 3x scale factor (~300 DPI at typical display sizes)
+- **SVG:** True vector format (no resolution limit)
+- **Browser Compatibility:** Works in Chrome, Firefox, Safari, Edge
+- **File Sizes:** PNGs typically 500KB-5MB depending on visualization complexity
   - Map views (all 8 map types)
   - Timeline charts
   - Network graphs (SVG format)
