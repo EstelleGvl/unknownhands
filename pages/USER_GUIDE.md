@@ -15,19 +15,17 @@ show_title: false
 
 1. [Getting Started](#1-getting-started)
 2. [Browse & Search](#2-browse--search)
-3. [Map Visualizations](#3-map-visualizations)
-4. [Timeline Analysis](#4-timeline-analysis)
-5. [Network Explorer](#5-network-explorer)
-6. [Analytics Tools](#6-analytics-tools)
-   - [6.1 Paleographic Analysis](#61-paleographic-analysis)
-   - [6.2 Gender Analysis](#62-gender-analysis)
-   - [6.3 Codicological Analysis](#63-codicological-analysis)
-   - [6.4 Multilingualism Module](#64-multilingualism-module-new)
-   - [6.5 Colophon Analysis Module](#65-colophon-analysis-module-new)
-7. [IIIF Viewer](#7-iiif-viewer)
-8. [Search Transcriptions](#8-search-transcriptions)
-9. [Tips & Tricks](#9-tips--tricks)
-10. [FAQ](#10-frequently-asked-questions)
+3. [Analytics Tools](#3-analytics-tools)
+4. [Map Visualizations](#4-map-visualizations)
+5. [Codicological Analysis](#5-codicological-analysis)
+6. [Hierarchical Tree Explorer](#6-hierarchical-tree-explorer)
+7. [Network Explorer](#7-network-explorer)
+8. [Multilingualism Analysis](#8-multilingualism-analysis)
+9. [Colophon Analysis](#9-colophon-analysis)
+10. [IIIF Viewer & Mirador](#10-iiif-viewer--mirador)
+11. [Search Transcriptions](#11-search-transcriptions)
+12. [Tips & Tricks](#12-tips--tricks)
+13. [FAQ](#13-frequently-asked-questions)
 
 ---
 
@@ -163,6 +161,19 @@ Filters appear on the left side and change based on record type.
 - Use for your own analysis
 - Import into statistical software
 
+### Searching by Relationships
+
+The database now includes **relationship data** that is fully searchable:
+
+**What Are Relationships?**
+- Connections between entities in the database
+- Examples: scribes working at institutions, manuscripts produced at locations, texts contained in manuscripts
+
+**How to Use:**
+- Relationship data is automatically included in full-text searches
+- When you search, results include records with matching relationship metadata
+- Use the Network Explorer tab for visual exploration of relationships
+
 ### Pagination
 
 **Bottom of record list:**
@@ -172,7 +183,36 @@ Filters appear on the left side and change based on record type.
 
 ---
 
-## 3. Map Visualizations
+## 3. Analytics Tools
+
+### Accessing Analytics Mode
+
+1. In **Explore Database**, click **Analytics** tab (top navigation)
+2. View loads showing the Statistical Dashboard
+
+### Statistical Dashboard
+
+**Purpose:**
+- Quantitative overview of the entire corpus
+- Record counts by entity type
+- Date ranges and temporal distribution
+- Key attributes and characteristics
+
+**Features:**
+- **Entity Filter:** Select specific entity types (Manuscripts, Scribal Units, etc.) or view all
+- **Interactive Visualizations:** Statistical charts and graphs
+- **Export:** Save dashboard as image (PNG) for presentations or publications
+
+**Use Cases:**
+- Understanding corpus composition
+- Identifying temporal patterns
+- Finding gaps in the data
+- Dataset completeness analysis
+- Identifying trends across entity types
+
+---
+
+## 4. Map Visualizations
 
 ### Accessing Map Mode
 
@@ -183,9 +223,9 @@ Filters appear on the left side and change based on record type.
 
 **Map View Selector** (top of map):
 
-**8 Different Views:**
+**6 Different Views:**
 
-1. **Manuscripts - Current Location**
+1. **Manuscripts - Current Location (Holdings)**
    - Where manuscripts are held today
    - Shows holding institutions
    - Use to find MSS near you
@@ -195,30 +235,23 @@ Filters appear on the left side and change based on record type.
    - Historical geography
    - See production centers
 
-3. **Production Units - All Locations**
+3. **Manuscripts - Movement (Production → Current)** ⭐ NEW
+   - Visualizes manuscript movement from production location to current holding
+   - Shows historical migration patterns
+   - Arrows connect origin to current location
+   - Helps understand manuscript circulation and collection history
+
+4. **Production Units - All Locations**
    - All PU geographic data
    - Country, city, monastery
 
-4. **Production Units - By Monastery**
+5. **Production Units - By Monastery**
    - Groups PUs by monastic institution
    - See which monasteries were productive
 
-5. **Monastic Institutions**
+6. **Monastic Institutions**
    - All monasteries and convents
    - Historical religious centers
-
-6. **Holding Institutions**
-   - Libraries, archives, museums
-   - Plan research trips
-
-7. **Historical People**
-   - Locations associated with scribes/patrons
-   - Where known, residence or activity location
-
-8. **Combined View**
-   - All entity types on one map
-   - Color-coded by type
-   - Overview of entire database
 
 ### Using the Map
 
@@ -239,81 +272,184 @@ Filters appear on the left side and change based on record type.
 - **Zoom to Fit** — Shows all markers
 - **Layers** — Toggle different data overlays
 
-### Exporting Map Data
+### Exporting Maps
 
-While viewing map:
-1. Click **"Export CSV"** (if available)
-2. Downloads records currently visible on map
-3. Includes coordinates
+**Export as Image:**
+1. Click **"📷 Export PNG"** button (top right of map)
+2. High-resolution PNG image downloads
+3. Use in presentations, publications, or reports
 
 ---
 
-## 4. Timeline Analysis
+## 5. Codicological Analysis
 
-### Accessing Timeline Mode
+### Accessing Codicology Mode
 
-1. Click **Timeline** tab in Explore Database
-2. Timeline visualization loads
+1. In **Explore Database**, click **Codicology** tab (top navigation)
+2. View loads showing codicological analysis tools
 
-### Choosing Timeline Views
+### What is Codicological Analysis?
 
-**Timeline View Selector:**
+Explore relationships between manuscript physical features through interactive visualizations. Analyze correlations, distributions, and patterns across the corpus by selecting any two variables.
 
-**4 Timeline Types:**
+### Quick Start Presets
 
-1. **Manuscripts Timeline**
-   - Distribution of manuscripts by century
-   - Based on dating in MS records
+**Try These Combinations:**
+- **📏 Material vs Size** — See how parchment and paper manuscripts differ in dimensions
+- **📅 Date vs Folios** — Explore temporal changes in manuscript length
+- **📚 Quire Type vs Material** — Analyze structural variations by material
 
-2. **Production Units Timeline**
-   - When manuscripts were produced
-   - More precise than MS dates
-   - Uses terminus post quem and ante quem
+Click preset buttons to quickly load interesting analyses, or select variables manually.
 
-3. **Scribal Units Timeline**
-   - Scribal activity over time
-   - Shows peak production periods
+### Selecting Variables
 
-4. **Combined Timeline**
-   - All dated records together
-   - Color-coded by entity type
-   - See overall temporal patterns
+**Three-Step Process:**
 
-### Reading the Timeline
+1. **X-Axis Variable** — Choose from:
+   - **📏 Dimensions:** Height, Width, Justification measurements, Margin ratio
+   - **📖 Structure:** Folios, Columns, Lines per page, Quires
+   - **📅 Temporal:** Date, Century
+   - **📝 Categorical:** Material, Quire type, Ruling type, Script type, Binding type
 
-**Bar Chart:**
-- **X-axis** — Centuries (e.g., 1200, 1300, 1400)
-- **Y-axis** — Number of records
-- **Bar height** — More records = taller bar
-- **Colors** — Different entities (in combined view)
+2. **Y-Axis Variable** — Same options as X-axis
+
+3. **Color/Group By** (optional) — Add a third dimension:
+   - **👤 People & Gender:** Gender, Scribe name
+   - **🏛️ Production Context:** Material, Origin country/region, Monastery type
+   - **📚 Physical Features:** Quire type, Catchwords, Signatures, Watermark, Ruling type, Columns
+   - **📜 Content:** Has colophon, Language, Script type, Decoration
+   - **🤝 Collaboration:** Collaboration type, Multiple scribes
+
+### Filtering Data
+
+**Active Filters Panel:**
+- **📅 Century:** Select one or more centuries (hold Cmd/Ctrl for multiple)
+- **📄 Material:** Filter by Parchment, Paper, or both
+- **🌍 Region:** Select specific geographic regions
+
+**Filter Status:** Shows how many manuscripts match your criteria
+
+**Clear Filters:** Click ✨ Clear Filters button to reset
+
+### Visualization Types
+
+Choose from multiple visualization methods:
+
+1. **Scatter Plot** — Best for continuous variables (height vs width, date vs folios)
+   - See correlations and outliers
+   - Color points by grouping variable
+
+2. **Box Plot** — Compare distributions across categories
+   - Shows median, quartiles, and outliers
+   - Good for comparing groups
+
+3. **Bar Chart** — Count occurrences of categorical variables
+   - Compare frequencies
+   - See which combinations are most common
+
+4. **🔗 Correlation Analysis** — Statistical relationships
+   - Quantify strength of relationships
+   - Identify significant patterns
+
+5. **Statistical Summary** — Descriptive statistics
+   - Mean, median, standard deviation
+   - Range and quartile values
+
+### Comparison Feature
+
+**Build Multi-Panel Comparisons:**
+
+1. Configure your first analysis (variables, filters, viz type)
+2. Click **"➕ Add to Comparison"**
+3. Configure additional analyses
+4. Click **"👁️ View Comparisons"** to see all side-by-side
+5. Export combined view as image
+
+**Use Cases:**
+- Compare same variables across different centuries
+- Test multiple hypotheses simultaneously
+- Create comprehensive publication figures
+
+### Exporting
+
+**Export as Image:**
+- Click **"📥 Export as Image"** button
+- High-resolution PNG downloads
+- Include in papers, presentations, or reports
+
+---
+
+## 6. Hierarchical Tree Explorer
+
+### Accessing Hierarchical Tree Mode
+
+1. In **Explore Database**, click **🌳 Hierarchical Tree** tab (top navigation)
+2. Interactive tree visualization loads
+
+### What is the Hierarchical Tree?
+
+Explore the complete structural hierarchy of manuscripts, showing relationships between:
+- **Manuscripts** (top level)
+- **Production Units** (sections of manuscripts)
+- **Scribal Units** (individual scribes' work)
+- **Texts** (content within units)
+
+This visualization reveals the complex internal structure of medieval manuscripts and how scribes collaborated.
+
+### Searching Manuscripts
+
+**Search Bar:**
+1. Type manuscript title, shelfmark, or ID
+2. Results highlight matching manuscripts in the tree
+3. Click **"Clear"** to reset search
+
+### Filtering by Structure
+
+**🎯 Filter by Structure Panel:**
+
+Check boxes to show only manuscripts with specific characteristics:
+
+- **📖 3+ Production Units** — Complex composite manuscripts
+- **🔀 Interleaved Units** — Non-sequential PU arrangements
+- **📚 PUs Across Multiple MSS** — Production units spanning multiple manuscripts
+- **✍️ SUs Across Multiple PUs** — Scribes working across production units
+
+**Use Cases:**
+- Find manuscripts with complex codicological history
+- Identify collaboration patterns
+- Study manuscript assembly practices
+
+### Sorting Options
+
+**📊 Sort by:**
+- **Alphabetical** (default) — Manuscript titles A-Z
+- **Production Units (Most)** — Manuscripts with most PUs first
+- **Scribal Units (Most)** — Manuscripts with most SUs first
+- **Structural Complexity (Highest)** — Most intricate hierarchies first
+
+### Reading the Tree
+
+**Tree Structure:**
+- **Top level:** Manuscript names
+- **Second level:** Production Units (sections)
+- **Third level:** Scribal Units (scribes)
+- **Fourth level:** Texts (content)
 
 **Interactions:**
-- **Hover over bar** — See exact count and century
-- **Click bar** — Filters records to that century
-- **Click again** — Deselects filter
+- **Click nodes** to expand/collapse
+- **Hover** for quick details
+- **Navigate** through nested structures
 
-### Analyzing Temporal Patterns
+### Exporting
 
-**Questions to explore:**
-- Which centuries were most productive?
-- Are there growth or decline periods?
-- Do different regions have different peaks?
-- How does script usage change over time?
-
-**Combining with filters:**
-1. Select timeline
-2. Apply geographic or material filters (left panel)
-3. See how patterns change
-4. Example: "Timeline of parchment MSS in France"
-
-### Exporting Timeline Data
-
-- Click **"Export"** to download century counts
-- Use for creating publication figures
+**Export as Image:**
+- Click **"📥 Export as Image"** button
+- Exports current tree view as PNG
+- Useful for presenting manuscript structure
 
 ---
 
-## 5. Network Explorer
+## 7. Network Explorer
 
 ### Accessing Network Mode
 
@@ -371,461 +507,331 @@ While viewing map:
 - Isolated nodes = unique records
 - Dense areas = production centers
 
----
+### Searching by Relationships
 
-## 6. Analytics Tools
+The Network mode includes a **Relationships** filter that allows you to explore connections between entities. Relationship data is indexed and searchable, making it easy to find records based on their connections to other entities.
 
-### Accessing Analytics Mode
+### Exporting Network Visualizations
 
-1. Click **Analytics** tab
-2. Choose an analysis module
+**Export Options:**
+- **📷 Export SVG** — Vector format, scalable without quality loss, ideal for publications
+- **📷 Export PNG** — Raster image format, good for presentations and web use
 
-### Three Analysis Modules
-
-**1. Paleographic Analysis** — Script patterns  
-**2. Gender Analysis** — Gender in scribal production  
-**3. Codicological Analysis** — Material features
-**4. Multilingualism Module** — Language patterns and diversity *(NEW)*
-**5. Colophon Analysis** — Sentiment and thematic analysis of colophons *(NEW)*
+Click the appropriate export button to download your current network view.
 
 ---
 
-### 6.1 Paleographic Analysis
+## 8. Multilingualism Analysis
 
-**Purpose:** Analyze script types across time, geography, and gender
+### Accessing Multilingualism Mode
 
-**How to Use:**
+1. In **Explore Database**, click **🌍 Multilingualism** tab (top navigation)
+2. View loads showing the Multilingualism Explorer
 
-1. **Select Analysis Type:**
-   - Script Distribution Over Time
-   - Script vs. Geography
-   - Script vs. Gender
-   - Script Diversity by Region
+### What is Multilingualism Analysis?
 
-2. **Choose Visualization:**
-   - **Stats Table** — Mean, median, min, max
-   - **Bar Chart** — Average values
-   - **Heatmap** — Cross-tabulation
-   - **Stacked Bar** — Proportions
+Explore language patterns and linguistic diversity across manuscripts, scribal units, and institutions. Examine how scribes worked with multiple languages and when they code-switched between languages in colophons versus texts.
 
-3. **Click "Run Analysis"**
+### Five Analysis Tabs
 
-**Example Questions:**
-- Which scripts were most common in the 14th century?
-- Did female scribes use different scripts than male scribes?
-- What scripts were popular in Italy vs. Germany?
+#### 1. 📊 Overview Tab
 
----
+**Purpose:** Get a quick snapshot of linguistic diversity
 
-### 6.2 Gender Analysis
-
-**Purpose:** Examine gender patterns in manuscript production
-
-**Analysis Types:**
-
-1. **Gender Distribution**
-   - How many records have female vs. male vs. unknown gender
-   - Overall statistics
-
-2. **Gender vs. Geography**
-   - Where were female scribes active?
-   - Regional gender patterns
-
-3. **Gender vs. Script**
-   - Did women use certain scripts more?
-   - Script preferences by gender
-
-4. **Gender Over Time**
-   - Temporal patterns in female scribal production
-   - When was female scribal activity highest?
-
-**How to Use:**
-1. Select analysis type
-2. Choose visualization
-3. Run analysis
-4. Interpret results
-
-**Visualizations:**
-- **Bar charts** — Compare categories
-- **Scatter plots** — Show correlations
-- **Heatmaps** — Cross-tabulations (e.g., gender × region)
-
-**Important Note:**
-- Gender attributions based on historical evidence
-- Certainty levels indicated when available
-- "Unknown" = insufficient evidence
-
----
-
-### 6.3 Codicological Analysis (NEW)
-
-**Purpose:** Analyze physical manuscript features
-
-**6 Analysis Types:**
-
-#### 1. Material vs. Size
-- Compare manuscript dimensions for parchment, paper, and mixed materials
-- See geographic and temporal patterns
-- **Question:** Were parchment MSS larger than paper MSS?
-
-**How to Use:**
-1. Select "Material vs Size"
-2. Choose visualization:
-   - **Stats** — Average sizes by material
-   - **Box Plot** — Size distributions
-   - **Scatter Plot** — Size vs. material (colored by century)
-   - **Bar Chart** — Mean sizes
-3. View geographic breakdown table (in Stats view)
-
-#### 2. Size vs. Date
-- Track manuscript size changes over time
-- Grouped by century
-- See if manuscripts got larger or smaller
-
-**How to Use:**
-1. Select "Size vs Date"
-2. Choose visualization
-3. See century patterns
-4. Geographic filters affect results
-
-**Question to explore:** Did manuscript sizes increase in the 15th century?
-
-#### 3. Quire Patterns
-- Analyze catchwords and signatures (quire markers)
-- Correlate with size, date, material, geography
-
-**What are catchwords/signatures?**
-- Catchwords: First words of next page written at bottom
-- Signatures: Letters/numbers marking quire order
-- Both help binders assemble manuscripts correctly
-
-**How to Use:**
-1. Select "Quire Patterns"
-2. Compare MSS with vs. without catchwords
-3. See size differences
-4. View temporal/geographic patterns
-
-#### 4. Column Patterns
-- Number of columns vs. manuscript features
-- Single vs. multi-column layouts
-
-**How to Use:**
-1. Select "Column Patterns"
-2. Analyze columns vs:
-   - Size (larger MSS more columns?)
-   - Date (column trends over time)
-   - Material
-   - Geography
-
-#### 5. Margin Ratio
-- **NEW CALCULATION:** Compares manuscript size to writing area
-- Formula: (Codex size - Text block size) / Codex size × 100%
-- Higher % = more margin space
-- Size = height + width (sum of dimensions)
-
-**What it shows:**
-- How much space was left for margins
-- Ratio of written vs. unwritten area
-- Variation by material, date, location
-
-**How to Use:**
-1. Select "Margin Ratio"
-2. View statistics (mean, median, range)
-3. Compare by material or century
-4. Scatter plots show correlations
-
-**Interpretation:**
-- High ratio (e.g., 40%) = large margins (luxury MSS?)
-- Low ratio (e.g., 10%) = text filled page (utilitarian?)
-
-#### 6. Custom Analysis
-- Choose your own variables for X and Y axes
-- Explore relationships not covered by preset analyses
-- Advanced users can create custom queries
-
-**How to Use:**
-1. Select "Custom Multi-Variable Analysis"
-2. Choose X-axis variable (dropdown)
-3. Choose Y-axis variable (dropdown)
-4. Select visualization type
-5. Run analysis
-
-**Variables include:**
-- Size, height, width
-- Material, date, country
-- Columns, folios
-- Text block dimensions
-
----
-
-### 6.4 Multilingualism Module *(NEW)*
-
-**Purpose:** Explore language patterns across manuscripts, scribal units, and institutions
-
-**5 Tab Interface:**
-
-#### Overview Tab
+**Features:**
 - **Total Language Count:** Number of unique languages in the database
 - **Language Distribution:** Top languages with manuscript/SU counts
 - **Key Statistics:** Overall linguistic diversity metrics
 - **Visualization:** Bar chart showing language frequency
 
-**Use this to:** Get a quick overview of linguistic diversity in the collection
+**Use this to:** Understand the overall linguistic composition of the collection
 
-#### Manuscripts Tab
-- **Language Patterns per Manuscript:** See which languages appear in each manuscript
+#### 2. 📚 Multilingual Manuscripts Tab
+
+**Purpose:** Find and analyze manuscripts containing multiple languages
+
+**Features:**
+- View all multilingual manuscripts in the database
+- See which languages appear in each manuscript
 - **Filtering Options:**
-  - Filter by language (dropdown)
+  - Filter by specific language (dropdown)
   - Filter by century
   - Filter by region
-  - Text search
-- **Display:** Shows manuscript title, languages, century, region
+  - Text search for manuscript names
+- **Display:** Manuscript title, languages present, century, region
 - **Sort:** By manuscript name or number of languages
 
-**Use this to:** Find multilingual manuscripts or manuscripts in specific languages
+**Use this to:**
+- Find manuscripts in specific languages
+- Identify the most linguistically diverse manuscripts
+- Study language combinations (e.g., Latin + vernacular)
 
-#### Scribes Tab
-- **Language Attribution at SU Level:**
-  - 📝 = Colophon language (language of scribe's note)
-  - 📖 = Text language (language of main content)
-- **Shows:** Scribal units with their attributed languages
-- **Distinction:** See when colophon and text languages differ
+#### 3. ✍️ Scribal Multilingualism Tab
+
+**Purpose:** Examine language use at the scribal unit level
+
+**Key Distinction:**
+- 📝 **Colophon language** — Language of the scribe's note/signature
+- 📖 **Text language** — Language of the main content copied
+
+**Features:**
+- Shows scribal units with their attributed languages
+- Distinguish between colophon and text languages
 - **Filters:** Language, century, region, text search
+- Identify scribes who worked in multiple languages
 
-**Use this to:** Identify scribes who worked in multiple languages or switched languages between colophon and text
+**Use this to:**
+- Find scribes who worked in multiple languages
+- Identify cases where colophon language differs from text language
+- Study individual scribal linguistic abilities
 
-#### Institutions Tab
-- **Linguistic Diversity by Monastery/Convent:**
-  - See which institutions had multilingual production
-  - Count of unique languages per institution
-- **Display:** Institution name, location, languages, SU count
-- **Sort:** By name or language diversity
+#### 4. 🏛️ Institutional Multilingualism Tab
 
-**Use this to:** Find centers of multilingual manuscript production
+**Purpose:** Analyze linguistic diversity by monastery/convent
 
-#### Colophon-Text Divergence Tab
-- **Specialized Analysis:** Cases where colophon language ≠ text language
-- **Shows:** Scribes who wrote notes in one language but copied texts in another
-- **Examples:** Latin text with vernacular colophon, vice versa
-- **Context:** Century, region, institution information
+**Features:**
+- See which institutions had multilingual production
+- Count of unique languages per institution
+- **Display:** Institution name, location, languages used, SU count
+- **Sort:** By name or language diversity score
 
-**Use this to:** Study language choices and code-switching in medieval scribal practice
+**Use this to:**
+- Find centers of multilingual manuscript production
+- Compare linguistic diversity across religious institutions
+- Identify regional patterns in institutional multilingualism
 
-**Pattern Analysis Features:**
-- Geographical patterns (which regions were more multilingual?)
-- Temporal patterns (did multilingualism increase/decrease over time?)
-- Religious order correlations (which orders produced multilingual MSS?)
+#### 5. 🔀 Colophon-Text Divergence Tab
 
-**Example Questions:**
+**Purpose:** Specialized analysis of language code-switching
+
+**What It Shows:**
+- Cases where **colophon language ≠ text language**
+- Scribes who wrote notes in one language but copied texts in another
+- Examples: Latin text with vernacular colophon, or vice versa
+
+**Features:**
+- List of all divergent cases
+- Context: Century, region, institution
+- Percentage of colophons showing divergence
+- Regional and temporal patterns
+
+**Use this to:**
+- Study language choices and code-switching in medieval scribal practice
+- Understand when scribes used vernacular vs. Latin
+- Identify patterns in scribal language selection
+
+### Example Research Questions
+
 - Were manuscripts from Italy more multilingual than those from Germany?
 - Did multilingualism increase in the 15th century?
 - Which monasteries had the most linguistic diversity?
 - How common was it for scribes to use different languages in colophons vs. texts?
+- Which language combinations were most common?
+- Were certain religious orders more linguistically diverse?
 
 ---
 
-### 6.5 Colophon Analysis Module *(NEW)*
+## 9. Colophon Analysis
 
-**Purpose:** Analyze the content, sentiment, and themes of scribal colophons
+### Accessing Colophon Analysis Mode
 
-**What is a Colophon?**
-A colophon is a note written by the scribe, typically at the end of a manuscript, providing information about the copying process, the scribe, the date, requests for prayers, expressions of emotion, etc.
+1. In **Explore Database**, click **📜 Colophon Analysis** tab (top navigation)
+2. View loads showing the Colophon Analysis interface
 
-**6 Tab Interface:**
+### What is a Colophon?
 
-#### Overview Tab
-- **Colophon Statistics:**
-  - Total number of colophons in database
-  - Percentage of scribal units with colophons
-  - Average colophon length
-- **Distribution by Century:** Colophon rates over time (with percentages)
-- **Distribution by Region:** Geographic patterns of colophon presence
-- **Key Insights:** Where and when were colophons most common?
+A colophon is a note written by the scribe, typically at the end of a manuscript section, providing information about:
+- The copying process
+- The scribe's name and identity
+- The date of completion
+- Requests for prayers
+- Expressions of emotion (fatigue, pride, humility)
+- Dedication to patrons
 
-**Use this to:** Understand overall colophon prevalence patterns
+Colophons are invaluable for understanding medieval scribal culture and self-expression.
 
-#### Sentiment Analysis Tab
-- **Emotional Tone Detection:** 6 sentiment categories
-  - 🙏 Humility (unworthy, poor, sinner, humble, weak)
-  - ✨ Pride (diligent, careful, completed, accomplished)
-  - 💪 Labor (weary, tired, labor, difficult, hand, finger)
-  - ✝️ Religious (god, pray, prayer, blessing, mercy)
-  - ⏰ Temporal (finished, completed, ended, year, day)
-  - 💝 Dedication (patron, gift, love, honor)
-  
-- **Most Expressive Colophons:**
-  - Initially shows 5 colophons with highest emotional content
-  - "Show More" expands to 20 colophons
-  - Each shows matched keywords for transparency
-  - "View SU" button for quick navigation to full record
-  
-- **Least Expressive Colophons:**
-  - Shows colophons with minimal emotional language
-  - Identifies neutral/factual colophons (dates, names only)
-  - Useful for contrasting scribal expression styles
-  
+### Six Analysis Tabs
+
+#### 1. 📊 Overview Tab
+
+**Purpose:** Understand overall colophon prevalence patterns
+
+**Statistics Provided:**
+- **Total Colophons:** Number of colophons in the database
+- **Colophon Rate:** Percentage of scribal units with colophons
+- **Average Length:** Mean colophon length (words)
+
+**Geographic & Temporal Distribution:**
+- **By Century:** Colophon rates over time (shows when colophons were most common)
+- **By Region:** Geographic patterns (where colophons were most prevalent)
+
+**Key Insights:**
+- Which periods had more colophons?
+- Which regions had stronger colophon traditions?
+
+**Use this to:** Get a quantitative overview of colophon presence across the corpus
+
+#### 2. 💭 Sentiment Analysis Tab
+
+**Purpose:** Detect emotional tone and attitudes in colophons
+
+**Six Sentiment Categories:**
+- 🙏 **Humility** — unworthy, poor, sinner, humble, weak
+- ✨ **Pride** — diligent, careful, completed, accomplished
+- 💪 **Labor** — weary, tired, labor, difficult, hand, finger
+- ✝️ **Religious** — god, pray, prayer, blessing, mercy
+- ⏰ **Temporal** — finished, completed, ended, year, day
+- 💝 **Dedication** — patron, gift, love, honor
+
+**Features:**
+- **Most Expressive Colophons:** Shows colophons with highest emotional content (expandable from 5 to 20)
+- **Least Expressive Colophons:** Shows neutral/factual colophons (dates, names only)
 - **Sentiment Distribution:** Visual breakdown of sentiment frequency
 - **Matched Keywords Display:** See exactly which words triggered each sentiment
+- **"View SU" Button:** Quick navigation to full scribal unit record
 
-**Use this to:** 
+**Use this to:**
 - Find emotionally expressive colophons
 - Compare scribal attitudes and emotions
-- Identify patterns in emotional expression
-- Study scribal self-representation
+- Identify patterns in how scribes represented themselves
+- Study regional or temporal variations in emotional expression
 
-#### Thematic Analysis Tab
-- **8 Major Themes:**
-  1. Religious Devotion — References to God, prayers, blessings
-  2. Scribal Identity — Name, role, self-description
-  3. Labor & Completion — Work process, finishing statements
-  4. Temporal Markers — Dates, times, feast days
-  5. Institutional Context — Monastery, scriptorium mentions
-  6. Dedication & Patronage — Patrons, recipients, gifts
-  7. Personal Expression — Emotions, thoughts, experiences
-  8. Mistakes & Corrections — Apologies, error acknowledgments
+#### 3. 🏷️ Thematic Analysis Tab
 
+**Purpose:** Identify major topics and themes in colophons
+
+**Eight Major Themes:**
+1. **Religious Devotion** — References to God, prayers, blessings
+2. **Scribal Identity** — Name, role, self-description
+3. **Labor & Completion** — Work process, finishing statements
+4. **Temporal Markers** — Dates, times, feast days
+5. **Institutional Context** — Monastery, scriptorium mentions
+6. **Dedication & Patronage** — Patrons, recipients, gifts
+7. **Personal Expression** — Emotions, thoughts, experiences
+8. **Mistakes & Corrections** — Apologies, error acknowledgments
+
+**Features:**
 - **Theme Distribution Chart:** Visual overview of theme frequency
-- **Example Colophons by Theme:**
-  - Shows 2 examples per theme initially
-  - "Show More Examples" expands to show all examples
-  - Each example includes "View SU" button
-  - Examples preserve original colophon text (up to 200 characters)
+- **Example Colophons by Theme:** Shows 2-20 examples per theme (expandable)
+- **"View SU" Buttons:** Navigate to full records
+- **Original Text Preserved:** Up to 200 characters shown
 
 **Use this to:**
 - Find colophons about specific topics
 - Study what scribes chose to document
-- Compare thematic emphasis across time/geography
+- Compare thematic emphasis across time and geography
+- Identify common colophon conventions
 
-#### Linguistic Features Tab
-- **Word Count Analysis:**
-  - Average words per colophon
-  - Longest/shortest colophons
-  - Distribution visualization
-  
-- **Sentence Complexity:**
-  - Average sentence length
-  - Average word length
-  
-- **First-Person Usage:**
-  - Frequency of "I", "me", "my" pronouns
-  - Most personal colophons
-  - Percentage of colophons using first person
-  
-- **Questions & Exclamations:**
-  - Colophons with rhetorical questions
-  - Colophons with exclamatory statements
+#### 4. 📝 Linguistic Features Tab
+
+**Purpose:** Analyze colophon length, complexity, and style
+
+**Analyses Provided:**
+
+**Word Count Analysis:**
+- Average words per colophon
+- Longest and shortest colophons
+- Distribution visualization
+
+**Sentence Complexity:**
+- Average sentence length
+- Average word length
+- Complexity metrics
+
+**First-Person Usage:**
+- Frequency of "I", "me", "my" pronouns
+- Most personal colophons
+- Percentage of colophons using first person
+
+**Questions & Exclamations:**
+- Colophons with rhetorical questions
+- Colophons with exclamatory statements
+- Emotional intensity markers
 
 **Use this to:**
-- Compare colophon length and complexity
-- Study personal vs. impersonal expression
+- Compare colophon length and complexity over time
+- Study personal vs. impersonal expression styles
 - Find particularly detailed or brief colophons
+- Identify regional linguistic patterns
 
-#### Comparative Patterns Tab
-- **By Region:**
-  - Colophon rates by geographic area
-  - Sentiment distribution by region
-  - Average length by location
-  - Compare 8 top regions
-  
-- **By Century:**
-  - Temporal trends in colophon characteristics
-  - Average length over time
-  - Sentiment changes across centuries
-  - **Sentiment Percentages:** Shows what % of colophons in each century contain each sentiment type
-  
-- **Trends Over Time Table:**
-  - Century-by-century breakdown
-  - Colophon count and rate (% of all SUs)
-  - Sentiment counts with percentages
-  - Format: "15 mentions (23.5%)" showing both absolute and relative frequency
+#### 5. 🔍 Comparative Patterns Tab
+
+**Purpose:** Compare colophon characteristics across regions and centuries
+
+**By Region:**
+- Colophon rates by geographic area (8 top regions)
+- Sentiment distribution by region
+- Average length by location
+- Regional comparison charts
+
+**By Century:**
+- Temporal trends in colophon characteristics
+- Average length over time
+- Sentiment changes across centuries
+- **Sentiment Percentages:** Shows what % of colophons in each century contain each sentiment type
+
+**Trends Over Time Table:**
+- Century-by-century breakdown
+- Colophon count and rate (% of all SUs)
+- Sentiment counts with percentages
+- Format: "15 mentions (23.5%)" showing both absolute and relative frequency
 
 **Use this to:**
 - Identify regional scribal practices
 - Track changes in colophon style over time
 - Compare sentiment expression across contexts
 - Find patterns in colophon conventions
+- Answer questions like: "Did 15th-century colophons express more labor/fatigue than 13th-century ones?"
 
-#### Browse Colophons Tab
-- **Filterable Colophon Viewer:**
-  - Filter by language (Latin, vernacular, etc.)
-  - Filter by century
-  - Text search across all colophons
-  
-- **Display Features:**
-  - Expandable cards (▶/▼ toggle)
-  - Shows transcription (original language)
-  - Shows translation (English)
-  - Copy-to-clipboard buttons for both
-  - "View SU" button for full record
-  - Displays manuscript context
-  
-- **Results:**
-  - Shows 20 colophons initially
-  - Can expand to 50 with filters
-  - Real-time filtering updates
+#### 6. 📖 Browse Colophons Tab
+
+**Purpose:** Read, search, and filter colophons in detail
+
+**Filterable Colophon Viewer:**
+- Filter by language (Latin, vernacular, etc.)
+- Filter by century
+- Text search across all colophons
+- Real-time filtering updates
+
+**Display Features:**
+- **Expandable Cards:** ▶/▼ toggle to expand/collapse
+- **Original Transcription:** Shows colophon in original language
+- **English Translation:** Shows translated text
+- **Copy-to-Clipboard Buttons:** For both transcription and translation
+- **"View SU" Button:** Navigate to full scribal unit record
+- **Manuscript Context:** Shows manuscript information
+
+**Results:**
+- Shows 20 colophons initially
+- Can expand to 50 with filters
+- Responsive filtering
 
 **Use this to:**
 - Read colophons in detail
 - Find specific colophon texts
-- Copy colophon text for citation
+- Copy colophon text for citation in your research
 - Browse colophons by language or period
+- Collect examples for analysis
 
-**Example Research Questions:**
+### Example Research Questions
+
 - Which regions had the most humble colophons?
 - Did colophon length increase over time?
 - Were 15th-century colophons more personal than 13th-century ones?
 - What percentage of colophons express labor/fatigue?
 - Which scribes wrote the longest colophons?
-- How did religious sentiment vary by century?
+- How did religious sentiment vary by century and region?
+- Are there gender differences in colophon expression?
 
-**Export Features:**
-- Copy any colophon text to clipboard (for citation)
-- Export filtered results as needed through main Browse mode
-- All visualizations can be exported as high-quality images
+### Export Features
 
----
-- And more...
-
----
-
-### General Analytics Tips
-
-**For All Analyses:**
-
-1. **Read the data points count** — Shows how many records have the needed data
-2. **Try different visualizations** — Each shows different aspects
-3. **Use filters** — Narrow to specific time periods or regions
-4. **Export results** — Some analyses allow CSV export
-5. **Cross-reference** — Compare multiple analyses to find patterns
-
-**Understanding Visualizations:**
-
-**Stats Tables:**
-- Mean = average
-- Median = middle value
-- Min/Max = range
-- N = count of records
-
-**Box Plots:**
-- Box = middle 50% of values (Q1 to Q3)
-- Line in box = median
-- Whiskers = min/max (excluding outliers)
-- Good for comparing distributions
-
-**Scatter Plots:**
-- Each dot = one record
-- Position = X and Y values
-- Color = third variable (e.g., century)
-- Look for clusters, trends, outliers
-
-**Heatmaps:**
-- Color intensity = frequency or value
-- Darker = more records or higher value
-- Good for cross-tabulations
+- **Copy to Clipboard:** Any colophon text (transcription or translation)
+- **Visualizations:** All charts can be exported as images
+- **Filtered Results:** Export through main Browse mode for CSV
 
 ---
 
-## 7. IIIF Viewer
+## 10. IIIF Viewer & Mirador
 
 ### What is the IIIF Viewer?
 
@@ -841,8 +847,8 @@ View high-resolution manuscript images with synchronized transcriptions. Uses **
 
 2. **From database:**
    - Browse manuscripts
-   - Click record with images
-   - Click "View in IIIF Viewer" link
+   - Click manuscript record with images
+   - Click "Open in Mirador (new tab)" button
 
 ### Viewer Interface
 
@@ -910,7 +916,7 @@ View high-resolution manuscript images with synchronized transcriptions. Uses **
 
 ---
 
-## 8. Search Transcriptions
+## 11. Search Transcriptions
 
 ### Accessing Transcription Search
 
@@ -966,9 +972,38 @@ Click **"Search Transcriptions"** in main navigation
 - Downloads CSV with all matching lines
 - Use for text analysis projects
 
+### Comparing Manuscripts *(NEW)*
+
+**Select manuscripts for comparison:**
+
+1. **Checkbox selection:**
+   - Each search result has a checkbox
+   - Check manuscripts you want to compare
+   - Counter shows how many selected (e.g., "2 manuscripts selected")
+
+2. **View selection:**
+   - Selected manuscripts highlighted
+   - Can select from different search results
+   - Checkbox remembers your selections
+
+3. **Clear selection:**
+   - Click "Clear Selection" button
+   - Removes all selected manuscripts
+   - Start fresh comparison
+
+**Using comparison:**
+- Compare transcription styles across manuscripts
+- Export selected manuscripts only
+- Track manuscripts of interest during research session
+
+**Tips:**
+- Maximum recommended: 5-10 manuscripts for meaningful comparison
+- Selection persists while on search page
+- Refresh page to reset selection
+
 ---
 
-## 9. Tips & Tricks
+## 12. Tips & Tricks
 
 ### Power User Techniques
 
@@ -1095,7 +1130,7 @@ Click **"Search Transcriptions"** in main navigation
 
 ---
 
-## 10. Frequently Asked Questions
+## 13. Frequently Asked Questions
 
 ### General Questions
 

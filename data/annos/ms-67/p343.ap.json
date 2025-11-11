@@ -1,0 +1,108 @@
+{
+  "id": "data/annos/ms-67/p343.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": ".",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1642,1070,35,92"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "AUIPSM MOR",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=489,1187,769,217"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ATFLTAEARTEAA",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1445,1152,1178,210"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "BER SCI PET RI",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=801,1429,679,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pastisuisceribus ciboque sumto",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1520,2689,881,142"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "setus demranta",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221942",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2094,2956,444,132"
+        }
+      }
+    }
+  ]
+}

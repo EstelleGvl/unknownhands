@@ -1,0 +1,618 @@
+{
+  "id": "data/annos/ms-65/p409.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uoenire quia festiuitas est sc̃orũ martyrũ. Crastinũ ad ipsam mensã conuemamus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=297,523,2506,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Explicit ex posino psalmoru deati agus t̃i. Alxxiusqualma",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,623,2643,140"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "INciprt depsalmolxxxi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=444,708,1266,135"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "salmus ipsi a saphoctogesimus primus: psalmo huic.titulum sicut aliis qui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=456,808,2275,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "similiter prȩnotantur. uel nomen eius hominis indidit a quo scriptus est.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=444,903,2289,114"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uel eiusdẽ nominis interprȩtatio ut ad synagogã quod est a saph eius intelle",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=369,988,2379,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gentia referatur : prȩsertim quia hoo primus eius uersus ad signat: sic enĩ coepit:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=292,1080,2469,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Sstetii INSinacoga deorũ : quos deos: absit ut intellegamus deos",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=461,1175,2322,124"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gentiũ siue idola siue aliquam praeter homines caelestẽ terrestrẽ quȩ creaturã",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=444,1267,2401,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Cũ paulo post huno uersum idẽ iste psalmus adserat . & quos deos intellegi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,1359,2282,118"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uelit inquorũ synagoga stetit ds̃ apertius exprimat ubi ait : Ego dixi di estis &",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,1447,2464,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "filii altissimi omnes : Vos autẽ sicut homines monemini & sicut unus de principib:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=269,1544,2519,112"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cadetis. In horũ ergo synagoga filiorũ altissimi dequibus idem altissimus per esaiam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=269,1631,2512,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dicit. filios genui & ex altaui ipsi autẽ me spreuerunt. Stecio đs: insynagoga popu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=274,1726,2472,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lorũ israhel accipimus. quia & ipsorũ propriȩ synagoga dici sol& quã uis & ecclesia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,1818,2481,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dicta sit: nostrã uero a postoli nũquam synagogã dixerunt. sed semꝑ ec clesiam siue",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,1908,2481,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "discernendi causa siue quod inter congregationẽnde synagoga & conuocationẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,2000,2548,128"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "unde ecclesia nomen accepit dist& aliquid quod scilic& congregari & pecora solent",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,2095,2563,123"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "adque ipsa propriȩ quorũ & greges propriȩ dicimus. Conuooari autẽ magis est",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=269,2190,2449,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "utentium ratione sicut sunt homines: Vnde expersona ipsius asaph in alio psalmo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=249,2285,2566,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "canitur. quasi pecus factus sum apud te &ego semꝑ tecum : Cum utique quam uis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=264,2375,2514,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uni uerođo manoipatus uideretur. pro magnis tamen ac summis bonis ab illo car",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,2467,2541,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nalia terrena temporalia requirebant: Inuenimus &iam eos saepe filios appellatos.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=274,2557,2526,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Non ea gratia quȩ ad nouum testamentũ pertin& sed illa que aduetus: quia & ipsa",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,2647,2476,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gratia est qua elegit abraham. & ex eius carne tam magnũ populum propagauit :",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,2739,2509,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Qua nondũ natum iacob dilexit esau autẽ odio habuit : qua liberauit ex aegrpto.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,2829,2497,137"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qua in terra promissionis eiectis gentib: introduxit: Nisi enĩ & ipsi essex gratia. non",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,2926,2484,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "utique de nobis quibus non adterrenũ sed ad regna caelorũ capiscendũ. Data est po",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,3011,2461,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "testas filios đi fieri In eodem mox euangelio diceretur. quod accipimus gratiam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,3101,2449,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pro gratia. id est protestamenti ueteris promissionibus. testamenti noui ꝓmissio",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,3193,2462,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nes: Liqu& igitur quantũ ex istimo inqua deorum srnagoga steterit đs De inceps",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,3285,2494,135"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "requirendũ est utrum patrẽ anfilium an spm̃ scm̃ an ipsam trinitatẽ accipere",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=274,3380,2444,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "debeamus Sitens",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=284,3455,624,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "oRU Irupedio autẽ ds̃ dis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1687,3483,1064,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cerdete quia & singuli qui que ds & ipsa trinitas unus đs. Nonquidem",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=269,3550,2424,157"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "235",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277017",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=3043,254,129,107"
+        }
+      }
+    }
+  ]
+}

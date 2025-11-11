@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-423/p101.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/101#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "1XU",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/101",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2026,182,272,98"
+        }
+      }
+    }
+  ]
+}

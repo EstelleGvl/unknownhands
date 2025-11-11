@@ -1,0 +1,74 @@
+{
+  "id": "data/annos/ms-67/p306.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ods",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=489,1501,155,145"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "64",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1680,648,167,152"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "eet Iec dese.eeb",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=521,2193,80,711"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=983,2831,237,103"
+        }
+      }
+    }
+  ]
+}

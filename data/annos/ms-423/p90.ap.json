@@ -1,0 +1,57 @@
+{
+  "id": "data/annos/ms-423/p90.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "UILIE DE LAON",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1008,415,713,93"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "BIBLIOTNEOUE COMMUNALE",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=986,925,748,94"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lo .423",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1095,1114,639,220"
+        }
+      }
+    }
+  ]
+}

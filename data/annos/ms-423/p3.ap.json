@@ -1,0 +1,618 @@
+{
+  "id": "data/annos/ms-423/p3.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xliiii. gbbocue .",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1012,279,1157,162"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lacobis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2235,303,381,162"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "XLIIII",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1006,400,374,126"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sos homos.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1432,437,516,105"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lo ouinii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2266,437,360,111"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "XLUiiii.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=999,511,514,145"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ceus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1594,548,249,112"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "UXII philappus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2042,570,692,116"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ios. XIII. ghomos",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1754,671,927,118"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ii.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1098,830,113,94"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mal achioisIIII. bercholo.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1434,763,1332,126"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "noighon .LU. motheus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1450,859,1292,129"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nos. .xiII. lacobus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1598,957,1153,114"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iorddo.II. luqus. lesobi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1441,1043,1347,129"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "O",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1428,1165,107,101"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "icis. Lxxiiiii meghias.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1653,1154,1100,127"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "LUT.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1025,1231,230,126"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "locharios. Lxxxuiiiii. symongsele",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1415,1246,1384,146"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gobi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1476,1371,245,98"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lucus. su",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2325,1368,461,138"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uIni",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1095,1462,186,108"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cresꝑuerl. Licdx i mapeus. sau",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,1476,1376,113"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I esdros. l. ocii banebe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1340,1570,1346,139"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "L. IX.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1058,1672,215,136"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gorobabelxoxni Cymotlifes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1417,1683,1389,138"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "XX",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2134,1821,125,83"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "i. cya",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2386,1797,230,116"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "XII. Iu dig.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1063,1878,783,122"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": ".XIII. morchabei. Se pli. ccpiaile",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1082,1930,1682,171"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "srem. capigulza. denouo ersaxi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1100,2072,1656,127"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "II. isaehorior. &elisaibeth.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1334,2191,1196,124"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I lohonnis bapgisgu.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1327,2298,1035,116"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "l.cxlli. murice.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1106,2394,807,120"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "CXUIII. Symonpegrus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1119,2492,1092,123"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "EMUIII Paulus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1115,2599,875,132"
+        }
+      }
+    },
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "MIIIII cuodrecis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1203,2737,931,136"
+        }
+      }
+    }
+  ]
+}

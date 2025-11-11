@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-67/p332.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221931#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Beatus uent̃ quite portaui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221931",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2488,464,684,137"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,992 @@
+{
+  "id": "data/annos/ms-67/p150.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uiscodis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=52,818,152,107"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "que orat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=52,898,177,114"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "MIDEN",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=62,988,160,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "VS EGO",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=59,1165,170,142"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qua",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=87,1282,137,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "t. NEal",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=79,1379,160,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "modo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=84,1467,145,102"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "domun",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=89,1556,150,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "perhi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=89,1649,153,104"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "quia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=92,1744,145,97"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "es num",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=82,1836,145,90"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Io ciet",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=104,1908,123,90"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iti noua",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=104,2008,130,100"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mas",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=114,2088,85,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pergrrid",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=92,2193,127,109"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "auteni",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=39,2280,178,92"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "t illibi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=99,2362,123,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "in aepti",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=79,2467,130,102"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ipsi i",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=112,2549,92,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nigenae",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=64,2642,135,119"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ero cis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=82,2739,127,97"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "quorum autem conuersatio incaelis est. inquantum hic conuersantur",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=439,893,2264,95"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "profecto peregrinantur. p&ant itaque neabscondantur ab eis manda",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=439,965,2292,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ta dĩ perque ab hoc in colatu liberentur diligendo đm cumquo in a&ernu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,1055,2335,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "erunt & diligendo proximum ut illic sit ubi &ipsi erunt: inquilinus ego",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,1147,2317,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sum interra ne abscondas ame mandata tua. Corcupiuig ani",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=434,1235,2327,107"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ma mea desiderare iusnipicaniones quas i",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=436,1322,2267,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ocilru gempore",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=439,1422,879,104"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "laudabilis est ista concupiscentia non damnabilis. nonde hac dictum est.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,1489,2327,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "non concupiscit aduersus sp̃m. debac autem bona concupiscentia qua",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=439,1586,2264,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "concupiscit sp̃s aduersus carnem. quere ubi scriptum sit &inuenies:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,1686,2247,107"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Concupiscentia itaque sapientiae deducit ad regnum & multa alia rep",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=419,1763,2322,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "periuntur bone concupiscentiae testimonia. sed hoc sane inter est quod",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,1848,2344,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nontac&ur quid concupiscatur quando bona commemoratur concupis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,1936,2307,109"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "centia. Cum autem non additur quid concupiscatur sedsola ponitur.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2030,2282,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nonnisi mala intellegitur sicut in hoc quod comme moraui concupiscen",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2115,2339,113"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-37",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tia inquit sapientiae deducit ad regnum. a tuero apostolus quod po",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2205,2289,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-38",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "suit concupiscentiam nesciebam nisi lex dicer&. Non concupisces. non",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,2295,2267,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-39",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "utique addit. cuius rei concupiscentiam. Certum est enim non intellegi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,2382,2320,113"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-40",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cumita dicitur nisi malam concupiscentiam. Quidergo huius anima",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2467,2244,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-41",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "concupiuit. desiderare inquit iustificationes tuas in omni tempore. Credo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2554,2364,118"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-42",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nondumeas desiderabat quando concupiuit desiderare iustificationes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,2652,2282,107"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-43",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "autem facta sunt iusta idest opera iustitiae quocirea qñm recte concu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2742,2299,92"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-44",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "piscuntur. iustificationes đi recte concupiscitur concupiscentia iustifica",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2826,2309,100"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-45",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tionum di. & quidest ista concupiscentia nisi bona dilectio. cum autem",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,2906,2282,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-46",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dicitur diligenda est. quid aliud dicitur quam concupiscenda est. hoc enim",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=434,2994,2324,119"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-47",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "alio modo dici potest sirecte diliguntur iustificationes dđi recte diligitur",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=436,3083,2357,118"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-48",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dilectio iustificationum đi . An aliud est concupiscere. aliud desiderare.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,3166,2297,104"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-49",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Non quo nonsit concupiscentia desiderium sed quia non omnis concupiscen",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=426,3258,2332,107"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-50",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tia desiderium est. Concupiscuntur enim & quaehabentur & quae non ha",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=426,3343,2332,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-51",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "bentur: Nam concupiscendo fruitur homo rebus quas hab&. desideran",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,3428,2307,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-52",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "do autem absentia concupiscit. desiderium ergo quidest: nisi rerum ab",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=429,3515,2304,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-53",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sentium concupiscentia. sed đi iustificationes absentes esse quomodo pos",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=431,3607,2305,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-54",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sunt : nisi quando nesciuntur : An &quando sciuntur & nonfiunt absen",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=436,3685,2300,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-55",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tes habendi̧ sunt. Nam quid sunt iustificationes : nisi opera iusta. non uerba",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=439,3777,2396,137"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-56",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "D",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=102,2986,72,30"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-57",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "116",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2938,626,115,100"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749#anno-58",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "e",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221749",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=117,3028,72,85"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-423/p167.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/167#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "L",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/167",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2139,214,59,39"
+        }
+      }
+    }
+  ]
+}

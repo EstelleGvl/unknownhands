@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-65/p1.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/276609#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/276609",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2491,893,115,144"
+        }
+      }
+    }
+  ]
+}

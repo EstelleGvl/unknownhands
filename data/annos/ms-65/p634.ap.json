@@ -1,0 +1,601 @@
+{
+  "id": "data/annos/ms-65/p634.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gentes praedicatum est cornelio. Credidit cornelios baptizatus est. baptitati",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=289,578,2442,172"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ant & illi qui cum cornelio erant sed ut baptizarentur: quidest factũ scitis non",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=232,698,2469,152"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "quidem hoc usque ꝑuenit lector. Sed tamen ali qui recordantur & quinon re",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,780,2474,173"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cordantur audiant ame breuiter: mis sus est angelus ad cornelium Angelus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,873,2482,164"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "corneliũ misit ad p&rum. P&rus uenit ad corneliũ & quia degentib: erat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,970,2407,165"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cornelius &ipse & quicum illo erant non erant circumcisi nedubitarent ergo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=222,1085,2471,137"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "illi tradere euangeliũ non circum cisis ante quã baptitar&ur ipse cornelius",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=224,1162,2479,160"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& illi qui cum illo erant uenit sp̃s sc̃s & impleuit illos & coeperunt loquilinguis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=227,1272,2546,152"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "innullum autẽ ceciderat sp̃s sc̃s : nisi quifuerat baptizatus. In isto autẽ ante",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=232,1374,2469,147"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "baptismum cecidit. poss& enim p&rus dubitare utrum in circumcisus bap",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=232,1474,2464,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tiz ar&. Uenit sp̃s sc̃s coeperunt loqui linguis donatũ est donũ inuisibile",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=232,1561,2411,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& tulit dubitationẽ desa cramento uisibilibaptizati sunt omnes & habes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=234,1649,2444,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ibi scriptũ. Audierunt autẽ a postoli & quierant iniudaea. fratres qnm̃",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=247,1741,2394,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& gentes receperunt uerbum đĩ & dicebant đm. hoc est quod hic comme",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=237,1836,2436,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "morat. Audiuit &iocundata est sion. & exulta uerunt filiae iudae: Quid",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=242,1928,2419,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "audiuit & iocundata est quare ceperunt & gentes uerbũ đĩ. unus paries",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=239,2023,2397,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uenerat sed angulus nondum uenerat sion. Ipse ec clesia quae erat iniuda a",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=234,2113,2474,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "propriȩ hic nominata est. audiuit & iocundata est sion & exulta uerunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=239,2210,2389,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "filiae iudae: sic scriptũ est. Audierunt a postoli & querebant iudxea fratres",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=242,2297,2459,135"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uidere : Sinon ex ultauerunt filixe iudxe : Quid audierunt quia & gentes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=239,2395,2432,137"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "receperunt uerbũ đi. ubi illi dixit. iste psalmus. ANuNta uerunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=244,2480,2517,147"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "celiiusnciã eius er uidenunt ocs populi glorãeius",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=242,2574,2506,140"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et quia gentes crediderunt a quibus colebantur idola secutus ait.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=242,2667,2274,142"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "conpundan turomnes qui adorant simalacra",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=247,2764,2371,137"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qui glioriannur ins culptilisus suis audiurt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=249,2846,2344,140"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et iocundata est sion. eit exultaueñ pilixe iudae.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=252,2934,2496,134"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Postea quidem de circum cisis calomniari uoluerunt p&ro & dixerunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=262,3011,2351,160"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "illi quare intrastiadgentiles in circumcisos & manducasticum eis . Ille autẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=259,3108,2479,160"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "reddidit eis rationẽ. Quomodo cum orar& de monstratus est ei. ille discus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=262,3203,2496,150"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pendens quat tuor lineis. discus ille qui habebat omnia conimalia & signifi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=267,3300,2424,145"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cabat omnes gentes. Ideo autẽ quat tuor lineis pendebat quia quat tuor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=262,3390,2426,140"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "partae sunt orbis unde futuri populi erant . & ideo quat uuor euangelia prae",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=269,3480,2454,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dicant xp̃m ut gratia ipsius ad omnes quat tuor partes orbis pertinere",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=262,3567,2399,143"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "intellecatur quia ergo tale uisum de monstratũ fuerat peero indicauit.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,3662,2339,175"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "26",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/276608/canvas/277239",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=3108,406,94,105"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1366 @@
+{
+  "id": "data/annos/clm-22016/p111.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=505,219,38,90"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ueteres dicta sit emath Et fuit ter",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=596,187,909,77"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "offir euila iobab. Harũ gentiũ po",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1613,204,864,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "minus chanane& asydone donee ue",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=605,253,908,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "steriora nomina inuenire. n potui.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1611,270,823,100"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nias ingerara usq adgazam ꝑgen",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=605,326,887,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sed usq inp̾sens ꝗͥa ꝓcul. a nobis funt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1618,336,859,107"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tibus sodomã et gomorrã et ad amã",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=605,400,900,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uel ita uocant᷑ utprimũ. uel quȩ immu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1616,415,895,105"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et seborm usq ad lecem. Quia cȩterȩ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=605,494,883,81"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tata s̃ ignorant᷑. P osseder̃ aũ acofene",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1618,488,878,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ciuitates sẏdon uidlicet et gerara et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=609,560,889,94"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "fluuio omnẽ indiȩ regionẽ quȩ uocat᷑",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1613,564,851,107"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sodoma et gomorra et adama et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=611,641,836,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ieria. lx̾. Et mortuus ẽ aran ante pa",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1620,645,859,88"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "seborm notȩ s om̃ib. hoc tantũ ad no",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=607,711,891,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "trẽ suũ interra qua natus ẽ in regione",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1613,720,892,109"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tandũ uidet᷑. qđ lece ipsa sit quȩ nunꝰ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=607,790,928,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "chaldeoꝵ. Peo qđ legim in regione chal",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1620,799,893,100"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "callirhoe dicit᷑. ubi aque calide pro",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=614,880,897,89"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "deoꝵ. in hebreo habet in ur chesdim. id",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1620,878,868,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rumpentes inmare mortuũ destuuas.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=611,948,919,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ẽ in igne chalde&. Tradunt aũ hebrei",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1622,957,891,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "LUII.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=368,1048,145,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Filii sem. elam et assur et arfarat ẽt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=592,1025,893,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "exhac occasione. istimodi fabulã. qđ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1620,1029,863,100"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ludim et aram. Hi abcufrate fluuio",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=609,1099,891,101"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "abrahã inignẽ missus sit qͥa ignẽ ad",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1622,1106,863,106"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "partẽ asiȩ usq ad indicũ oceanũ te",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=614,1187,901,94"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "orare noluerit quẽ chaldei colunt. et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1616,1193,874,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nent. Est aut̃ elam a quo elamite",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=614,1264,882,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dĩ aurilio liberat de idolatrie igne",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1622,1268,893,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "principes ꝑsidis. De assur ante iã di",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=614,1345,912,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ꝓfugerit. qđ insequentibꝰ scribit᷑ egres",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1616,1340,903,105"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ctũ. ẽ qđ ninũ urbẽ ẽdiderit. Arfaxat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=616,1413,933,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sum ẽẽ tharan cũ sobole sua de regio",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1620,1421,855,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-37",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "aqͦ chaldei. ludim aqͦ lidia. aram. aquo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=618,1490,904,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-38",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ne chaldeoꝵ ꝓeo qđ inhebreo habetur",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1622,1498,880,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-39",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "syri. quorũ metropolis ẽ damascus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=620,1573,891,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-40",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "de incendio chaldeoꝵ. et hoc cẽ qđ nunc",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1630,1571,898,93"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-41",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "luiii.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=428,1664,128,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-42",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Filii aram. hus et ul et gether et mes.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=601,1647,929,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-43",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dicit᷑ mortuus ẽ aran ante ẽspectũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1630,1654,832,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-44",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Nus trachonitidis et damasci c̃ditor.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=601,1730,897,90"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-45",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "thare patris sui int̃ra natuutatis suę",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1630,1726,881,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-46",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "int̃palestinã et coeden syriã tenuit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=624,1811,881,84"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-47",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "inigne chaldeoꝵ. qđ iudelicet ignem",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1628,1803,866,89"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-48",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "principatũ. a qͦ septuag̃ intp̃tes in li",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=620,1884,893,94"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-49",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nolens adorare igne c̃sumptus sit. lx ii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1628,1877,917,101"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-50",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "bro iob ubr inhebreo seribit᷑ terra hus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=624,1961,911,79"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-51",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Loquit᷑ aũ posita dñs ad abraham.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1622,1952,876,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-52",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "regionẽ ausitidẽ quasi usttidẽ trans",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=626,2035,894,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-53",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ego sũ qͥ eduri te de igne chaldeorũ.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1633,2033,893,85"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-54",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuler̃: U aqͦ armenii. Gother a quo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=628,2123,917,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-55",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et sumpser̃ abraha et nachor sibi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1630,2106,885,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-56",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "a carnanil seu carii. Porro mes ꝓ quo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=635,2193,910,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-57",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "urores. Nom̃ uroris abrahã sarai.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1637,2189,855,91"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-58",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lax int̃p̃tes mosoch dixer̃ qͥ nunc uocans",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=633,2265,912,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-59",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& nom̃ uxoris nachor melcha filia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1637,2261,846,90"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-60",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "UIII",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=464,2361,96,107"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-61",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "meones. Arfarat geñ sela. et sela genuit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=633,2338,919,102"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-62",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "aran. Pat̃ aũt melchȩ. ipse ẽ pat̃ iescȩ.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1652,2332,885,100"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-63",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "heher: Eaheber nati s̃ duo filii. nom̃",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=643,2417,868,77"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-64",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Aram filiꝰ thare frãt abraħa et nachor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1618,2410,880,101"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-65",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uni falech. qͥa indiebꝰ ers diuisa ẽ t̃ra.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=648,2481,904,100"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-66",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "duas filias geñ. melchã et sarai cog",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1652,2481,838,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-67",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et nom̃ fris eiꝰ iectan. Neber aqͦ he",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=645,2560,892,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-68",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nom̃to iescã ayonia oũ equibus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1648,2555,799,88"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-69",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "brei uaticinio quodã filio suo falech",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=650,2636,885,90"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-70",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "melchã accepit urorẽ nachor & sarai",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1648,2630,884,92"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-71",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nom̃ imposuit qͥ int̃pretat᷑ diuisio. ab",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=648,2705,865,91"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-72",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "abrahã. Necdũ quippet int̃patruos",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1652,2705,850,89"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-73",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "eo qđ indieh eiꝰ lingue inbabylone",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=652,2779,878,96"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-74",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& fratrũ filias nupuę fuerant. lege",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1641,2775,864,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-75",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "diuisȩ sint. Ir Iectan geñ helmodath",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=652,2854,872,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-76",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ꝓhibitȩ. quȩ in primis hominib dĩa",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1637,2845,889,109"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-77",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et salef et asermoth. et iare et adurã",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=658,2935,870,81"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-78",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "int̃fr̃s et sorores initg s loiaiui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1648,2924,867,102"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-79",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et uz al et decla ebal abima hel. seba",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=660,3012,894,110"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111#anno-80",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Erat aũ abrahã. septuag̃ qͥnꝙ annox",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00034225/canvas/111",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1598,2994,915,133"
+        }
+      }
+    }
+  ]
+}

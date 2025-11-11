@@ -1,0 +1,618 @@
+{
+  "id": "data/annos/ms-67/p216.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mea ibi requiesco quantum nos amat đs fratres utquia nos requiescimus se dicat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,865,2451,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "requiescere. ibi ergo sedicit requiescere quia nos in illo requiem habemus. Hic MN",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,950,2504,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "habitabo qum pre elegi eam. Uiduam eius Beueni",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,1040,2506,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cens benedicam epaupenes saguraho paMIBUS.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,1135,2584,124"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Omnis anima quae intellegit se desertam omni auxilio nisi solius đi. Uidua est",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,1220,2504,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ergo tota ecclesia una uidua est siue inuiris. siue infeminis siuȩ in coniugatis siue",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,1319,2533,118"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "inmaritatis feminis. siue in aduliscentulis. siue insenibus siue in uirginibus. omnis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,1409,2516,97"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ecclesia una uidua est. sed deserta in hoc saeculo. si sentit illud. sinouit induitatẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,1484,2516,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "suam. tunc enim auxilium presto est illis sicut ait apostolus. describens uiduas",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=284,1581,2529,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "scãs. quaeautem uere uidua est inquit & desolata sperauit indnm &persistit inpre.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=287,1674,2576,112"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cibus &obsecrationibus noete ac die. ibi &iam subiecit. Quae autem indiliciis agit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,1756,2576,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uiuens mortua est. Unde ergo uidua ecclesia quia non hab& auxilium aliunde",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,1848,2472,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nis solius di. Ipsa est illa uidua fratres mei in euangelio quae indesmenter in terpel",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,1931,2568,112"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lat iudicem iniquum. Quia si iudex iniquitatis audiui eam tedio uictus quanto ma",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,2035,2513,93"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": ".",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2820,2050,18,73"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gis đs auditurus est pauperes eius saturabo panibus. Fratres simus pauperes &",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,2130,2496,113"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tunc saturabimur panibus. multi presumentes desaeculo & superbi xp̃iani sunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,2205,2486,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "adorant xp̃m sed non saturantur. Saturati enim sunt &adorant in superbia sua.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=287,2297,2561,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ideo manducant sed non saturantur. & quid deillis dictum est inpsalmo. manduca",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=299,2382,2496,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uerunt & adorauerunt omnes diuites terre. adorant xp̃m uenerantur supplicant:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=284,2487,2569,97"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xp̃o saturantur. pauperes autem qui sunt humiles corde quantum plus esuriunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,2567,2499,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tanto plus manducant . Quia dealibus scriptum est. Beati quiesuriunt &siciunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,2652,2546,119"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iufcitiam qũm ipsi saturabuntur. Deipsis ergo dicit psalnus. & pauperes eius sa",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,2746,2506,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "turabo panibus. &unde saturati sunt pauperes fratres. haec saturitas ds en.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,2839,2494,102"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ipse est panis irtlac nobis fier& discendit adterram &ait suis. Ego sum panis ui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=287,2936,2481,87"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uus quidecaelo discendi. isto ergo pane fratres saciantur pauperes eius. Sacea",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=287,3013,2556,108"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "doges eius irduam saluiare. Et sci eius exul gano",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=292,3088,2479,108"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ne exulgaduria: Quis est salutaris noster : nisi xp̃s noster. quid est",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=289,3178,2457,112"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sacerdotes eius induam salutare : quod quod in xp̃o baptizati estis xp̃m induiftis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,3275,2479,108"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& sc̃ĩ eius exultatione exultabunt. unde exultabunt qui induti sunt salutare.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,3363,2474,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "suscitabo cornu dauid. ut dexp̃o praesumatur. ipsa erit altitudo dauid. Cornu enim",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=277,3450,2558,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "signicat altitudinem. & qualem altitudinem non carnalem . Ideo omnia ossa carne",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,3540,2551,112"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "inuoluta sunt. cornu excidit carnem altitudo spiritalis cornus est . quaeautom al",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=282,3617,2474,113"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "titudo spiritalis est : nisi dexp̃o presumere. uideamus quisequitur. paraui lucem",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=279,3707,2477,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xp̃o meo. Quae est lucerna iam nostis dm̃ uerba de iohanne . Ille erat lucerna",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=287,3792,2391,145"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "140",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221815",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2855,638,133,90"
+        }
+      }
+    }
+  ]
+}

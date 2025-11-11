@@ -1,52 +1,116 @@
-# 🕯 Unknown Hands — Technical Documentation# 🕯 Unknown Hands — Technical Architecture Overview
+# 🕯 Unknown Hands — Technical Documentation
 
-
-
-> **Unknown Hands** is a digital humanities research platform for documenting, analyzing, and visualizing the work of pre-modern female scribes (before 1600). The platform integrates structured metadata, IIIF-compliant manuscript images, machine-readable transcriptions, and interactive data exploration tools.> *Unknown Hands* is a digital research and publication ecosystem designed to document, analyze, and visualize the work of pre-modern female scribes (before 1600).  
-
-> It integrates structured metadata (Heurist), manuscript images and IIIF manifests, machine-readable transcriptions, and searchable interfaces.
-
----
+> *Unknown Hands* is a digital research and publication ecosystem designed to document, analyze, and visualize the work of pre-modern female scribes (before 1600).  
+> It integrates structured metadata (Heurist), IIIF-compliant manuscript images, machine-readable transcriptions, and interactive data exploration tools.
 
 ---
 
 ## Table of Contents
 
-## 1. System Overview
+1. [System Architecture](#1-system-architecture)
+2. [Technology Stack](#2-technology-stack)
+3. [Data Pipeline](#3-data-pipeline)
+4. [Transcription System](#4-transcription-system)
+5. [Website Structure](#5-website-structure)
+6. [Key Features](#6-key-features)
+7. [Development Setup](#7-development-setup)
+8. [Standards & Interoperability](#8-standards--interoperability)
+9. [Deployment](#9-deployment)
 
-1. [System Architecture](#1-system-architecture)    +---------------------------+
+**📖 For detailed transcription workflow, see [TRANSCRIPTION_GUIDE.md](./TRANSCRIPTION_GUIDE.md)**
 
-2. [Technology Stack](#2-technology-stack)    |        Heurist DB         |
+---
 
-3. [Data Pipeline](#3-data-pipeline)    | (research data model)     |
+## ✨ Recent Updates (November 2025)
 
-4. [Website Structure](#4-website-structure)    |  - Scribal Units          |
+### Interface Reorganization
 
-5. [Key Features](#5-key-features)    |  - Production Units       |
+The Explore Database has undergone a major structural reorganization:
 
-6. [Development Setup](#6-development-setup)    |  - Manuscripts            |
+**New Main Navigation Tabs** (8 total):
+1. 🔍 **Browse & Search** — Faceted search with CSV export
+2. 📊 **Analytics** — Statistical dashboard
+3. 🗺️ **Map** — Geographic visualizations with movement tracking
+4. 📖 **Codicology** — Physical manuscript feature analysis (formerly in Analytics)
+5. 🌳 **Hierarchical Tree** — Manuscript structure explorer (formerly in Analytics)
+6. 🔗 **Network** — Relationship visualization
+7. 🌍 **Multilingualism** — Language pattern analysis
+8. 📜 **Colophon Analysis** — Sentiment and thematic analysis
 
-7. [Standards & Interoperability](#7-standards--interoperability)    +------------+--------------+
+**Key Changes**:
+- **Timeline visualization removed** — Temporal analysis now in Analytics dashboard
+- **Codicology elevated to main tab** — Now includes filtering, presets, comparison tools, and export
+- **Hierarchical Tree elevated to main tab** — Enhanced with search, structural filters, and sorting
+- **Multilingualism tab added** — 5 sub-tabs exploring linguistic diversity across manuscripts, scribes, and institutions
+- **Colophon Analysis tab added** — 6 sub-tabs for sentiment, themes, linguistic features, and browsing colophons
+- **Relationships integrated** — Fully searchable relationship data indexed throughout
 
-8. [Deployment](#8-deployment)                 |
+**Map Enhancements**:
+- **New visualization**: "Manuscripts - Movement (Production → Current)" shows manuscript migration patterns
+- Streamlined view selector with 6 focused options
+- PNG export functionality
 
-       CSV/JSON Export
+**Export Capabilities Expanded**:
+- **Browse**: Export filtered results as CSV
+- **Analytics**: Export dashboard as PNG
+- **Map**: Export visualization as PNG
+- **Codicology**: Export analyses as PNG, comparison views supported
+- **Hierarchical Tree**: Export tree structure as PNG
+- **Network**: Export as SVG or PNG
 
----                 ↓
+### Transcription System Enhancements
+- **Unified Transcription Linking**: Created `manifest-annos-map.json` mapping system
+  - All 230+ manuscripts now automatically link to transcriptions in viewer
+  - Supports both legacy (`data/transcriptions/`) and new (`data/annos/`) structures
+  - Eliminates hard-coded slug extraction logic
+- **Search Performance**: Implemented lazy loading for 31MB search corpus
+  - Corpus loads on-demand instead of page load
+  - Prevents blocking of initial page render
+  - Added loading indicators and status messages
 
-    +---------------------------+
+### Database & Viewer Improvements
+- **Explore Database Page**:
+  - Removed hard-coded IRHT/ARK-only transcription logic
+  - Now uses manifest-annos-map for universal transcription support
+  - Added 4 new manuscripts with full transcription integration:
+    * Laon, Bibliothèque municipale, Ms.423 (181 pages)
+    * Cologne, Erzbischöfliche Diözesan- und Dombibliothek, Ms. 65 (708 pages)
+    * Cologne, Erzbischöfliche Diözesan- und Dombibliothek, Ms. 67 (378 pages)
+    * Munich, Bayerische Staatsbibliothek, Clm 22016 (327 pages)
 
-## 1. System Architecture    |    Python Data Pipeline    |
+- **Mirador Viewer**:
+  - Fixed transcription display for all manuscript sources
+  - Dynamic annotation loading via manifest-annos-map
+  - Search functionality within viewer for manuscript selection
 
-    |---------------------------|
+### Search Transcriptions Page
+- **Bug Fixes**:
+  - Fixed null reference errors from thumbnail feature removal
+  - Fixed comparison counter stuck at 0 (ID mismatch bug)
+  - Fixed "Clear Selection" button always disabled
+- **Functionality**:
+  - Comparison feature now fully operational
+  - Export functionality working
+  - Lazy initialization prevents race conditions
 
-```    | setup_manuscripts.py      | → creates folders, manifest registry
+### Documentation
+- **Consolidated transcription documentation** into `TRANSCRIPTION_GUIDE.md`
+- **Marked 7 outdated docs** as superseded
+- **Renamed** `pages/README.md` → `pages/documentation.md` (clearer purpose)
+- **Updated main README** with transcription system architecture
 
-┌─────────────────────────────────────────────────────────────┐    | pagexml_to_iiif.py        | → converts PAGE-XML → IIIF Annotation JSON
+### New Scripts
+- `scripts/generate_manifest_map.py`: Generates manifest-to-annotations mapping from manifests.yml
+- `scripts/pagexml_to_iiif.py`: Already existed, now documented and understood
 
-│                      DATA SOURCES                            │    | build_search_index.py     | → builds full-text search index
+---
 
-├─────────────────────────────────────────────────────────────┤    +------------+--------------+
+## 1. System Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      DATA SOURCES                            │
+├─────────────────────────────────────────────────────────────┤
 
 │  Heurist Database          eScriptorium         IIIF APIs    │                 |
 
@@ -322,9 +386,177 @@ Director of the *Unknown Hands* project.
 
 ---
 
-## 4. Website Structure
+## 4. Transcription System
 
-### 4.1 Page Types
+The platform provides full-text searchable transcriptions of manuscript pages, integrated with the IIIF viewer.
+
+### 4.1 Workflow Overview
+
+```
+1. Transcribe in eScriptorium → Export PAGE-XML
+2. Convert PAGE-XML → IIIF Annotations (pagexml_to_iiif.py)
+3. Build search index (build_transcription_corpus.py)
+4. View in Mirador + Search across all manuscripts
+```
+
+### 4.2 Data Structure
+
+```
+data/
+├── annos/                    # Annotation storage
+│   ├── ms-423/              # One folder per manuscript (slug)
+│   │   ├── p1.ap.json       # Page 1 annotations
+│   │   ├── p2.ap.json       # Page 2 annotations
+│   │   ├── ...
+│   │   └── mapping.json     # Canvas → Annotation mapping
+│   ├── ms-65/
+│   └── ...
+│
+├── transcriptions/           # Alternative location (Arras manuscript)
+│   └── irht-fr1dgmfio4zw/
+│       ├── annotations/
+│       │   ├── p1.json
+│       │   └── ...
+│       └── mapping.json
+│
+├── manifests.yml             # Manuscript registry (slug → manifest URL → annos path)
+├── manuscripts.csv           # Manuscript metadata
+└── manifest-annos-map.json   # Generated: manifest URL → annos path (for viewer)
+
+assets/search/
+└── transcriptions.json       # Full-text search index (31MB, 88K+ lines)
+```
+
+### 4.3 File Formats
+
+**Annotation Page (`p1.ap.json`)**:
+```json
+{
+  "id": "data/annos/ms-423/p1.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://...canvas/1#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Transcribed text here",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://...canvas/1",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1205,726,1556,101"
+        }
+      }
+    }
+  ]
+}
+```
+
+**Mapping File (`mapping.json`)**:
+```json
+{
+  "manifest": "https://institution.org/iiif/manifest",
+  "items": [
+    {
+      "canvas": "https://institution.org/iiif/canvas/1",
+      "annotationPage": "/data/annos/ms-423/p1.ap.json"
+    }
+  ]
+}
+```
+
+### 4.4 Adding New Transcriptions
+
+**Prerequisites:**
+1. Manuscript is in `data/manuscripts.csv` with IIIF manifest URL
+2. Pre-existing empty folder in `data/annos/<slug>/`
+3. PAGE-XML export from eScriptorium
+
+**Steps:**
+
+1. **Find the correct slug**:
+   ```bash
+   ls data/annos/ | grep -i "<manuscript-name>"
+   ```
+
+2. **Get manifest URL from manuscripts.csv**:
+   ```bash
+   grep "<manuscript-name>" data/manuscripts.csv
+   ```
+
+3. **Convert PAGE-XML to IIIF annotations**:
+   ```bash
+   python scripts/pagexml_to_iiif.py \
+     <MANIFEST_URL> \
+     <PATH_TO_PAGEXML_FOLDER> \
+     ./data/annos \
+     <SLUG>
+   ```
+   
+   Example:
+   ```bash
+   python scripts/pagexml_to_iiif.py \
+     https://bibliotheque-numerique.ville-laon.fr/iiif/1465/manifest \
+     ~/Downloads/LaonBibliothequemunicipaleMs423/ \
+     ./data/annos \
+     ms-423
+   ```
+
+4. **Fix paths in annotation files** (if needed):
+   ```bash
+   find data/annos/<slug> -name "*.ap.json" -exec sed -i '' 's|wrong-path|correct-path|g' {} \;
+   ```
+
+5. **Rebuild search index**:
+   ```bash
+   python scripts/build_transcription_corpus.py
+   ```
+   This creates `assets/search/transcriptions.json` with all transcriptions.
+
+6. **Update manifest map** (for viewer links):
+   ```bash
+   python scripts/generate_manifest_map.py
+   ```
+   This creates `data/manifest-annos-map.json`.
+
+7. **Rebuild Jekyll site**:
+   ```bash
+   bundle exec jekyll build
+   ```
+
+### 4.5 Search Implementation
+
+- **Frontend**: `/pages/search-transcriptions.md` with Lunr.js for full-text search
+- **Index**: `assets/search/transcriptions.json` (pre-built, loaded on first search)
+- **Features**: Fuzzy search (0-2 edits), sort by relevance/manuscript/folio, group by manuscript, export results
+- **Performance**: Lazy loading (31MB index only loads when user searches), suitable for ~230 manuscripts
+
+### 4.6 Viewer Integration
+
+The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
+
+1. **Database page** generates viewer links with `annos` parameter:
+   ```
+   /viewer/?manifest=<MANIFEST_URL>&annos=/data/annos/ms-423/mapping.json
+   ```
+
+2. **Viewer loads** manifest and mapping.json
+
+3. **For each canvas**, viewer fetches the corresponding annotation page
+
+4. **Transcriptions overlay** on images with coordinates from xywh selectors
+
+**Configuration**: `data/manifest-annos-map.json` maps all manifest URLs to their annotation paths, loaded by both database and viewer pages.
+
+---
+
+## 5. Website Structure
+
+### 5.1 Page Types
 
 #### Static Content Pages (Markdown)
 - `/pages/about.md` → About the project

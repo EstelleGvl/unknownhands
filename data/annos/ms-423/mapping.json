@@ -1,4 +1,717 @@
 {
-  "type": "Mapping",
-  "items": []
+  "manifest": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/manifest",
+  "items": [
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/1",
+      "annotationPage": "/data/annos/ms-423/p1.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/2",
+      "annotationPage": "/data/annos/ms-423/p2.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/3",
+      "annotationPage": "/data/annos/ms-423/p3.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/4",
+      "annotationPage": "/data/annos/ms-423/p4.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/5",
+      "annotationPage": "/data/annos/ms-423/p5.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/6",
+      "annotationPage": "/data/annos/ms-423/p6.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/7",
+      "annotationPage": "/data/annos/ms-423/p7.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/8",
+      "annotationPage": "/data/annos/ms-423/p8.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/9",
+      "annotationPage": "/data/annos/ms-423/p9.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/10",
+      "annotationPage": "/data/annos/ms-423/p10.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/11",
+      "annotationPage": "/data/annos/ms-423/p11.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/12",
+      "annotationPage": "/data/annos/ms-423/p12.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/13",
+      "annotationPage": "/data/annos/ms-423/p13.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/14",
+      "annotationPage": "/data/annos/ms-423/p14.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/15",
+      "annotationPage": "/data/annos/ms-423/p15.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/16",
+      "annotationPage": "/data/annos/ms-423/p16.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/17",
+      "annotationPage": "/data/annos/ms-423/p17.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/18",
+      "annotationPage": "/data/annos/ms-423/p18.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/19",
+      "annotationPage": "/data/annos/ms-423/p19.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/20",
+      "annotationPage": "/data/annos/ms-423/p20.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/21",
+      "annotationPage": "/data/annos/ms-423/p21.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/22",
+      "annotationPage": "/data/annos/ms-423/p22.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/23",
+      "annotationPage": "/data/annos/ms-423/p23.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/24",
+      "annotationPage": "/data/annos/ms-423/p24.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/25",
+      "annotationPage": "/data/annos/ms-423/p25.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/26",
+      "annotationPage": "/data/annos/ms-423/p26.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/27",
+      "annotationPage": "/data/annos/ms-423/p27.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/28",
+      "annotationPage": "/data/annos/ms-423/p28.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/29",
+      "annotationPage": "/data/annos/ms-423/p29.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/30",
+      "annotationPage": "/data/annos/ms-423/p30.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/31",
+      "annotationPage": "/data/annos/ms-423/p31.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/32",
+      "annotationPage": "/data/annos/ms-423/p32.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/33",
+      "annotationPage": "/data/annos/ms-423/p33.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/34",
+      "annotationPage": "/data/annos/ms-423/p34.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/35",
+      "annotationPage": "/data/annos/ms-423/p35.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/36",
+      "annotationPage": "/data/annos/ms-423/p36.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/37",
+      "annotationPage": "/data/annos/ms-423/p37.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/38",
+      "annotationPage": "/data/annos/ms-423/p38.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/39",
+      "annotationPage": "/data/annos/ms-423/p39.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/40",
+      "annotationPage": "/data/annos/ms-423/p40.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/41",
+      "annotationPage": "/data/annos/ms-423/p41.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/42",
+      "annotationPage": "/data/annos/ms-423/p42.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/43",
+      "annotationPage": "/data/annos/ms-423/p43.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/44",
+      "annotationPage": "/data/annos/ms-423/p44.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/45",
+      "annotationPage": "/data/annos/ms-423/p45.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/46",
+      "annotationPage": "/data/annos/ms-423/p46.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/47",
+      "annotationPage": "/data/annos/ms-423/p47.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/48",
+      "annotationPage": "/data/annos/ms-423/p48.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/49",
+      "annotationPage": "/data/annos/ms-423/p49.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/50",
+      "annotationPage": "/data/annos/ms-423/p50.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/51",
+      "annotationPage": "/data/annos/ms-423/p51.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/52",
+      "annotationPage": "/data/annos/ms-423/p52.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/53",
+      "annotationPage": "/data/annos/ms-423/p53.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/54",
+      "annotationPage": "/data/annos/ms-423/p54.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/55",
+      "annotationPage": "/data/annos/ms-423/p55.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/56",
+      "annotationPage": "/data/annos/ms-423/p56.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/57",
+      "annotationPage": "/data/annos/ms-423/p57.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/58",
+      "annotationPage": "/data/annos/ms-423/p58.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/59",
+      "annotationPage": "/data/annos/ms-423/p59.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/60",
+      "annotationPage": "/data/annos/ms-423/p60.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/61",
+      "annotationPage": "/data/annos/ms-423/p61.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/62",
+      "annotationPage": "/data/annos/ms-423/p62.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/63",
+      "annotationPage": "/data/annos/ms-423/p63.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/64",
+      "annotationPage": "/data/annos/ms-423/p64.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/65",
+      "annotationPage": "/data/annos/ms-423/p65.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/66",
+      "annotationPage": "/data/annos/ms-423/p66.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/67",
+      "annotationPage": "/data/annos/ms-423/p67.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/68",
+      "annotationPage": "/data/annos/ms-423/p68.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/69",
+      "annotationPage": "/data/annos/ms-423/p69.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/70",
+      "annotationPage": "/data/annos/ms-423/p70.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/71",
+      "annotationPage": "/data/annos/ms-423/p71.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/72",
+      "annotationPage": "/data/annos/ms-423/p72.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/73",
+      "annotationPage": "/data/annos/ms-423/p73.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/74",
+      "annotationPage": "/data/annos/ms-423/p74.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/75",
+      "annotationPage": "/data/annos/ms-423/p75.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/76",
+      "annotationPage": "/data/annos/ms-423/p76.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/77",
+      "annotationPage": "/data/annos/ms-423/p77.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/78",
+      "annotationPage": "/data/annos/ms-423/p78.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/79",
+      "annotationPage": "/data/annos/ms-423/p79.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/80",
+      "annotationPage": "/data/annos/ms-423/p80.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/81",
+      "annotationPage": "/data/annos/ms-423/p81.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/82",
+      "annotationPage": "/data/annos/ms-423/p82.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/83",
+      "annotationPage": "/data/annos/ms-423/p83.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/84",
+      "annotationPage": "/data/annos/ms-423/p84.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/85",
+      "annotationPage": "/data/annos/ms-423/p85.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/86",
+      "annotationPage": "/data/annos/ms-423/p86.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/87",
+      "annotationPage": "/data/annos/ms-423/p87.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/88",
+      "annotationPage": "/data/annos/ms-423/p88.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/89",
+      "annotationPage": "/data/annos/ms-423/p89.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/90",
+      "annotationPage": "/data/annos/ms-423/p90.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/91",
+      "annotationPage": "/data/annos/ms-423/p91.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/92",
+      "annotationPage": "/data/annos/ms-423/p92.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/93",
+      "annotationPage": "/data/annos/ms-423/p93.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/94",
+      "annotationPage": "/data/annos/ms-423/p94.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/95",
+      "annotationPage": "/data/annos/ms-423/p95.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/96",
+      "annotationPage": "/data/annos/ms-423/p96.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/97",
+      "annotationPage": "/data/annos/ms-423/p97.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/98",
+      "annotationPage": "/data/annos/ms-423/p98.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/99",
+      "annotationPage": "/data/annos/ms-423/p99.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/100",
+      "annotationPage": "/data/annos/ms-423/p100.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/101",
+      "annotationPage": "/data/annos/ms-423/p101.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/102",
+      "annotationPage": "/data/annos/ms-423/p102.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/103",
+      "annotationPage": "/data/annos/ms-423/p103.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/104",
+      "annotationPage": "/data/annos/ms-423/p104.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/105",
+      "annotationPage": "/data/annos/ms-423/p105.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/106",
+      "annotationPage": "/data/annos/ms-423/p106.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/107",
+      "annotationPage": "/data/annos/ms-423/p107.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/108",
+      "annotationPage": "/data/annos/ms-423/p108.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/109",
+      "annotationPage": "/data/annos/ms-423/p109.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/110",
+      "annotationPage": "/data/annos/ms-423/p110.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/111",
+      "annotationPage": "/data/annos/ms-423/p111.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/112",
+      "annotationPage": "/data/annos/ms-423/p112.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/113",
+      "annotationPage": "/data/annos/ms-423/p113.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/114",
+      "annotationPage": "/data/annos/ms-423/p114.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/115",
+      "annotationPage": "/data/annos/ms-423/p115.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/116",
+      "annotationPage": "/data/annos/ms-423/p116.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/117",
+      "annotationPage": "/data/annos/ms-423/p117.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/118",
+      "annotationPage": "/data/annos/ms-423/p118.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/119",
+      "annotationPage": "/data/annos/ms-423/p119.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/120",
+      "annotationPage": "/data/annos/ms-423/p120.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/121",
+      "annotationPage": "/data/annos/ms-423/p121.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/122",
+      "annotationPage": "/data/annos/ms-423/p122.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/123",
+      "annotationPage": "/data/annos/ms-423/p123.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/124",
+      "annotationPage": "/data/annos/ms-423/p124.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/125",
+      "annotationPage": "/data/annos/ms-423/p125.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/126",
+      "annotationPage": "/data/annos/ms-423/p126.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/127",
+      "annotationPage": "/data/annos/ms-423/p127.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/128",
+      "annotationPage": "/data/annos/ms-423/p128.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/129",
+      "annotationPage": "/data/annos/ms-423/p129.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/130",
+      "annotationPage": "/data/annos/ms-423/p130.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/131",
+      "annotationPage": "/data/annos/ms-423/p131.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/132",
+      "annotationPage": "/data/annos/ms-423/p132.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/133",
+      "annotationPage": "/data/annos/ms-423/p133.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/134",
+      "annotationPage": "/data/annos/ms-423/p134.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/135",
+      "annotationPage": "/data/annos/ms-423/p135.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/136",
+      "annotationPage": "/data/annos/ms-423/p136.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/137",
+      "annotationPage": "/data/annos/ms-423/p137.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/138",
+      "annotationPage": "/data/annos/ms-423/p138.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/139",
+      "annotationPage": "/data/annos/ms-423/p139.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/140",
+      "annotationPage": "/data/annos/ms-423/p140.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/141",
+      "annotationPage": "/data/annos/ms-423/p141.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/142",
+      "annotationPage": "/data/annos/ms-423/p142.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/143",
+      "annotationPage": "/data/annos/ms-423/p143.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/144",
+      "annotationPage": "/data/annos/ms-423/p144.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/145",
+      "annotationPage": "/data/annos/ms-423/p145.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/146",
+      "annotationPage": "/data/annos/ms-423/p146.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/147",
+      "annotationPage": "/data/annos/ms-423/p147.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/148",
+      "annotationPage": "/data/annos/ms-423/p148.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/149",
+      "annotationPage": "/data/annos/ms-423/p149.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/150",
+      "annotationPage": "/data/annos/ms-423/p150.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/151",
+      "annotationPage": "/data/annos/ms-423/p151.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/152",
+      "annotationPage": "/data/annos/ms-423/p152.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/153",
+      "annotationPage": "/data/annos/ms-423/p153.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/154",
+      "annotationPage": "/data/annos/ms-423/p154.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/155",
+      "annotationPage": "/data/annos/ms-423/p155.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/156",
+      "annotationPage": "/data/annos/ms-423/p156.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/157",
+      "annotationPage": "/data/annos/ms-423/p157.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/158",
+      "annotationPage": "/data/annos/ms-423/p158.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/159",
+      "annotationPage": "/data/annos/ms-423/p159.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/160",
+      "annotationPage": "/data/annos/ms-423/p160.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/161",
+      "annotationPage": "/data/annos/ms-423/p161.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/162",
+      "annotationPage": "/data/annos/ms-423/p162.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/163",
+      "annotationPage": "/data/annos/ms-423/p163.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/164",
+      "annotationPage": "/data/annos/ms-423/p164.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/165",
+      "annotationPage": "/data/annos/ms-423/p165.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/166",
+      "annotationPage": "/data/annos/ms-423/p166.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/167",
+      "annotationPage": "/data/annos/ms-423/p167.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/168",
+      "annotationPage": "/data/annos/ms-423/p168.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/169",
+      "annotationPage": "/data/annos/ms-423/p169.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/170",
+      "annotationPage": "/data/annos/ms-423/p170.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/171",
+      "annotationPage": "/data/annos/ms-423/p171.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/172",
+      "annotationPage": "/data/annos/ms-423/p172.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/173",
+      "annotationPage": "/data/annos/ms-423/p173.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/174",
+      "annotationPage": "/data/annos/ms-423/p174.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/175",
+      "annotationPage": "/data/annos/ms-423/p175.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/176",
+      "annotationPage": "/data/annos/ms-423/p176.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/177",
+      "annotationPage": "/data/annos/ms-423/p177.ap.json"
+    },
+    {
+      "canvas": "https://bibliotheque-numerique.ville-laon.fr/iiif/1465/canvas/178",
+      "annotationPage": "/data/annos/ms-423/p178.ap.json"
+    }
+  ]
 }

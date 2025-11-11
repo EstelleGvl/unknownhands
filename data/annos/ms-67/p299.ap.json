@@ -1,0 +1,40 @@
+{
+  "id": "data/annos/ms-67/p299.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221898#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "XXIII",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221898",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1932,3717,559,180"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221898#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "agnes scrips.t.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/221601/canvas/221898",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1849,3907,427,124"
+        }
+      }
+    }
+  ]
+}

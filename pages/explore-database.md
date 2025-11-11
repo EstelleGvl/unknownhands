@@ -1224,6 +1224,16 @@ const TX_ENDPOINT = "{{ site.heurist.texts_json | default: '/data/texts.json' | 
 const REL_ENDPOINT = "/assets/data/relationships.json";
 const BASE = "{{ site.baseurl | default: '' }}";
 
+/* ---------- Load manifest-annos map ---------- */
+let manifestAnnosMap = {};
+fetch(`${BASE}/data/manifest-annos-map.json`)
+  .then(r => r.ok ? r.json() : {})
+  .then(map => {
+    manifestAnnosMap = map;
+    console.log('Loaded manifest-annos map:', Object.keys(map).length, 'entries');
+  })
+  .catch(err => console.warn('Could not load manifest-annos map:', err));
+
 /* ---------- DOM ---------- */
 const $mount   = document.getElementById('facet-mount');
 const $results = document.getElementById('db-results');
@@ -2570,18 +2580,12 @@ function showDetails(rec, type){
     html += `<div class="section"><div>${esc(dt)}${hT ? ' — '+linkTo('hi', hId, hT) : ''}</div></div>`;
     const manifestUrl = MAP.ms.iiifManifest(rec);
     if (manifestUrl){
-      // Extract slug from manifest URL (e.g., "irht-fr1dgmfio4zw" from "ark:/63955/fr1dgmfio4zw")
-      let slug = '';
-      const arkMatch = manifestUrl.match(/ark:\/\d+\/([^\/]+)/);
-      if (arkMatch) {
-        slug = 'irht-' + arkMatch[1];
-      }
-      
-      // Build viewer URL with manifest and optionally transcriptions
+      // Build viewer URL with manifest
       let viewerHref = `${BASE}/viewer/?manifest=${encodeURIComponent(manifestUrl)}`;
-      if (slug) {
-        const annosPath = `${BASE}/data/transcriptions/${slug}/mapping.json`;
-        viewerHref += `&annos=${encodeURIComponent(annosPath)}`;
+      
+      // Add transcriptions if available in the map
+      if (manifestAnnosMap[manifestUrl]) {
+        viewerHref += `&annos=${encodeURIComponent(BASE + manifestAnnosMap[manifestUrl])}`;
       }
       
       html += `<div style="margin:.5rem 0 1rem;">

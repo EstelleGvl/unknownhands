@@ -430,12 +430,24 @@ show_title: false
   const $manuscriptCount = document.getElementById('manuscript-count');
   
   let manuscriptsData = [];
+  let manifestAnnosMap = {};
   const baseUrl = '{{ site.baseurl | default: "" }}';
   const currentManifest = new URLSearchParams(location.search).get('manifest');
   
   // Load manuscript data from the data/manuscripts.csv file
   async function loadManuscripts() {
     try {
+      // Load manifest-annos map first
+      try {
+        const mapResponse = await fetch(`${baseUrl}/data/manifest-annos-map.json`);
+        if (mapResponse.ok) {
+          manifestAnnosMap = await mapResponse.json();
+          console.log('Loaded manifest-annos map:', Object.keys(manifestAnnosMap).length, 'entries');
+        }
+      } catch (err) {
+        console.warn('Could not load manifest-annos map:', err);
+      }
+      
       // Load from the data directory CSV file (web-accessible)
       const response = await fetch(`${baseUrl}/data/manuscripts.csv`);
       if (!response.ok) {
@@ -532,20 +544,14 @@ show_title: false
     const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     
     // Build the IIIF mapping URL if it exists
-    // Try to derive slug from manifest URL
     const getAnnosParam = (ms) => {
       if (!ms.manifest) return '';
       
-      // For IRHT manifests, extract ARK ID
-      const arkMatch = ms.manifest.match(/ark:\/\d+\/([^\/]+)/);
-      if (arkMatch) {
-        const arkId = arkMatch[1];
-        const slug = 'irht-' + arkId;
-        return `&annos=${baseUrl}/data/transcriptions/${slug}/mapping.json`;
+      // Check the manifest-annos map
+      if (manifestAnnosMap[ms.manifest]) {
+        return `&annos=${baseUrl}${manifestAnnosMap[ms.manifest]}`;
       }
       
-      // For other manifests, we can't easily determine the slug
-      // Just return the manifest URL without annos
       return '';
     };
     
