@@ -78,9 +78,80 @@ show_title: false
       width:auto; min-width:0; height:45vh;
     }
   }
+
+  /* Manuscript Search Bar */
+  .manuscript-search-bar {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  .manuscript-search-bar input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    font-size: 0.9rem;
+  }
+  .manuscript-search-bar input:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  }
+  .search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.375rem;
+    margin-top: 0.25rem;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: none;
+  }
+  .search-results-dropdown.is-open {
+    display: block;
+  }
+  .search-result-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .search-result-item:hover {
+    background: #f9f9f9;
+  }
+  .search-result-item.is-current {
+    background: #e9f3ff;
+    border-left: 3px solid #0066cc;
+    font-weight: 600;
+  }
 </style>
 
 <div class="viewer-fullwidth">
+  <!-- Manuscript Search Bar (above viewer) -->
+  <div class="manuscript-search-bar">
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+      <span style="font-weight: 600; color: #555;">🔍</span>
+      <span style="font-weight: 600; color: #555;">Search Digitized Manuscripts</span>
+      <span id="manuscript-count" class="muted tiny" style="margin-left: auto;"></span>
+    </div>
+    <div style="position: relative;">
+      <input 
+        type="text" 
+        id="manuscript-search-input" 
+        placeholder="Type to search manuscripts with IIIF digitizations..." 
+      />
+      <div id="search-results-dropdown" class="search-results-dropdown"></div>
+    </div>
+  </div>
+  
   <div class="viewer-wrap" id="viewer-wrap">
     <div id="mirador" aria-label="IIIF Viewer"></div>
     <div id="splitter" class="splitter" aria-hidden="true"></div>
@@ -89,8 +160,9 @@ show_title: false
         <strong>Transcription</strong>
         <button id="btn-show-bboxes" class="chip tiny" type="button">Show regions</button>
         <a id="btn-database" href="#" class="chip tiny" style="text-decoration:none; display:none;">📖 Database</a>
-        <a href="{{ site.baseurl | default: '' }}/search-transcriptions/" class="chip tiny" style="text-decoration:none; margin-left:auto;">🔍 Search</a>
+        <a href="{{ site.baseurl | default: '' }}/search-transcriptions/" class="chip tiny" style="text-decoration:none; margin-left:auto;">🔍 Search Text</a>
       </div>
+      
       <div id="text-status" class="muted tiny">Loading…</div>
       <div id="text-content"></div>
     </aside>
@@ -225,7 +297,7 @@ show_title: false
         mappingArr = j.items.slice();
         j.items.forEach(it => byCanvas.set(normalize(it.canvas), it.annotationPage));
         $status.textContent = 'Ready.';
-        const c = currentCanvasId(); if (c) renderText(c);
+        const c = currentCanvasIds(); if (c.length) renderAllText(c);
       })
       .catch(err => {
         console.error('mapping load failed', err);
@@ -347,5 +419,186 @@ show_title: false
     const canvases = currentCanvasIds(); 
     if (canvases.length) renderAllText(canvases); 
   }, 700);
+})();
+</script>
+
+<!-- Manuscript Navigation Script -->
+<script>
+(function(){
+  const $searchInput = document.getElementById('manuscript-search-input');
+  const $searchResults = document.getElementById('search-results-dropdown');
+  const $manuscriptCount = document.getElementById('manuscript-count');
+  
+  let manuscriptsData = [];
+  const baseUrl = '{{ site.baseurl | default: "" }}';
+  const currentManifest = new URLSearchParams(location.search).get('manifest');
+  
+  // Load manuscript data from the data/manuscripts.csv file
+  async function loadManuscripts() {
+    try {
+      // Load from the data directory CSV file (web-accessible)
+      const response = await fetch(`${baseUrl}/data/manuscripts.csv`);
+      if (!response.ok) {
+        throw new Error('Failed to load manuscripts');
+      }
+      
+      const csvText = await response.text();
+      const lines = csvText.split('\n').filter(line => line.trim());
+      
+      // Parse CSV header
+      const headers = parseCSVLine(lines[0]);
+      
+      // Find column indices
+      const titleIdx = headers.indexOf('Title');
+      const manifestIdx = headers.indexOf('IIIF Manifest Link(s)');
+      const idIdx = headers.indexOf('rec_ID');
+      
+      if (titleIdx === -1 || manifestIdx === -1) {
+        throw new Error('Required columns not found in CSV');
+      }
+      
+      // Parse data rows
+      manuscriptsData = lines.slice(1).map(line => {
+        const cols = parseCSVLine(line);
+        return {
+          title: cols[titleIdx] || 'Untitled',
+          manifest: cols[manifestIdx] || '',
+          id: cols[idIdx] || ''
+        };
+      }).filter(ms => {
+        // Only include manuscripts with IIIF manifests
+        return ms.manifest && ms.manifest.trim() !== '';
+      });
+      
+      $manuscriptCount.textContent = `${manuscriptsData.length} manuscripts available`;
+      console.log('Loaded manuscripts:', manuscriptsData.length);
+    } catch (error) {
+      console.error('Error loading manuscripts:', error);
+      $manuscriptCount.textContent = 'Error loading data';
+    }
+  }
+  
+  // Simple CSV parser that handles quoted fields
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+      
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          // Escaped quote
+          current += '"';
+          i++; // Skip next quote
+        } else {
+          // Toggle quote mode
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        // Field separator
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    
+    // Add last field
+    result.push(current.trim());
+    return result;
+  }
+  
+  // Search and display results
+  function performSearch(query) {
+    if (!query) {
+      $searchResults.innerHTML = '';
+      $searchResults.classList.remove('is-open');
+      return;
+    }
+    
+    const filtered = manuscriptsData.filter(ms => 
+      ms.title.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    if (filtered.length === 0) {
+      $searchResults.innerHTML = '<div style="padding:1rem; color:#666; text-align:center;">No manuscripts found</div>';
+      $searchResults.classList.add('is-open');
+      return;
+    }
+    
+    const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    
+    // Build the IIIF mapping URL if it exists
+    // Try to derive slug from manifest URL
+    const getAnnosParam = (ms) => {
+      if (!ms.manifest) return '';
+      
+      // For IRHT manifests, extract ARK ID
+      const arkMatch = ms.manifest.match(/ark:\/\d+\/([^\/]+)/);
+      if (arkMatch) {
+        const arkId = arkMatch[1];
+        const slug = 'irht-' + arkId;
+        return `&annos=${baseUrl}/data/transcriptions/${slug}/mapping.json`;
+      }
+      
+      // For other manifests, we can't easily determine the slug
+      // Just return the manifest URL without annos
+      return '';
+    };
+    
+    $searchResults.innerHTML = filtered.slice(0, 30).map(ms => {
+      const viewerUrl = `${baseUrl}/viewer/?manifest=${encodeURIComponent(ms.manifest)}${getAnnosParam(ms)}`;
+      const isCurrent = currentManifest === ms.manifest;
+      const currentClass = isCurrent ? ' is-current' : '';
+      
+      return `
+        <a href="${viewerUrl}" class="search-result-item${currentClass}" style="display:block; text-decoration:none; color:#333;">
+          <div style="font-weight:${isCurrent ? '600' : '500'};">
+            ${isCurrent ? '▶ ' : ''}${esc(ms.title)}
+          </div>
+          ${isCurrent ? '<div style="font-size:0.75rem; color:#0066cc; margin-top:0.25rem;">Currently viewing</div>' : ''}
+        </a>
+      `;
+    }).join('');
+    
+    $searchResults.classList.add('is-open');
+  }
+  
+  // Event listeners
+  $searchInput.addEventListener('input', (e) => {
+    performSearch(e.target.value.trim());
+  });
+  
+  $searchInput.addEventListener('focus', () => {
+    if ($searchInput.value.trim()) {
+      performSearch($searchInput.value.trim());
+    }
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!$searchInput.contains(e.target) && !$searchResults.contains(e.target)) {
+      $searchResults.classList.remove('is-open');
+    }
+  });
+  
+  // Allow Enter key to open first result
+  $searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const firstLink = $searchResults.querySelector('a');
+      if (firstLink) {
+        window.location.href = firstLink.href;
+      }
+    } else if (e.key === 'Escape') {
+      $searchResults.classList.remove('is-open');
+      $searchInput.blur();
+    }
+  });
+  
+  // Load manuscripts on page load
+  loadManuscripts();
 })();
 </script>

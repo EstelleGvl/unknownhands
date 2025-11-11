@@ -10,10 +10,11 @@ show_title: false
   <!-- Main Navigation Tabs -->
   <div class="main-nav-tabs" id="main-nav-tabs" aria-label="Main Navigation">
     <button class="main-nav-btn is-on" data-mode="browse">🔍 Browse & Search</button>
-    <button class="main-nav-btn" data-mode="map">🗺️ Map</button>
-    <button class="main-nav-btn" data-mode="timeline">📈 Timeline</button>
-    <button class="main-nav-btn" data-mode="network">🔗 Network</button>
     <button class="main-nav-btn" data-mode="analytics">📊 Analytics</button>
+    <button class="main-nav-btn" data-mode="map">🗺️ Map</button>
+    <button class="main-nav-btn" data-mode="codicology">� Codicology</button>
+    <button class="main-nav-btn" data-mode="tree">🌳 Hierarchical Tree</button>
+    <button class="main-nav-btn" data-mode="network">� Network</button>
     <button class="main-nav-btn" data-mode="multilingualism">🌍 Multilingualism</button>
     <button class="main-nav-btn" data-mode="colophon-analysis">📜 Colophon Analysis</button>
   </div>
@@ -39,9 +40,9 @@ show_title: false
         <div id="facet-mount"></div>
       </aside>
 
-      <!-- MAIN (center) -->
-      <section class="db-main">
-        <!-- Controls -->
+      <!-- MAIN (center) + VIZ (right) wrapper for controls and content -->
+      <div class="db-main-viz-wrapper">
+        <!-- Controls - now spanning both middle and right panels -->
         <div class="db-controls">
           <input id="db-search" type="search" placeholder="Search…" aria-label="Search records" />
           <select id="db-field" aria-label="Search field">
@@ -64,22 +65,25 @@ show_title: false
           <button id="btn-export" class="chip" type="button">Export CSV</button>
         </div>
 
-        <!-- Results list -->
-        <div id="pane-results" class="db-results-wrap">
-          <div id="db-status" class="db-status" role="status" aria-live="polite"></div>
-          <div id="db-results" class="db-grid"></div>
-          <div id="db-pager" class="db-pager" hidden>
-            <button id="db-prev" disabled>Previous</button>
-            <span id="db-page">Page 1 / 1</span>
-            <button id="db-next" disabled>Next</button>
+        <!-- MAIN (center) -->
+        <section class="db-main">
+          <!-- Results list -->
+          <div id="pane-results" class="db-results-wrap">
+            <div id="db-status" class="db-status" role="status" aria-live="polite"></div>
+            <div id="db-results" class="db-grid"></div>
+            <div id="db-pager" class="db-pager" hidden>
+              <button id="db-prev" disabled>Previous</button>
+              <span id="db-page">Page 1 / 1</span>
+              <button id="db-next" disabled>Next</button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- DETAILS (right) -->
-      <aside id="db-viz" class="db-viz">
-        <div id="details-wrap"></div>
-      </aside>
+        <!-- DETAILS (right) -->
+        <aside id="db-viz" class="db-viz">
+          <div id="details-wrap"></div>
+        </aside>
+      </div>
     </div>
 
     <!-- MAP MODE -->
@@ -97,11 +101,10 @@ show_title: false
               <select id="map-view-selector" style="flex: 1; padding: 0.25rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; background: white;">
                 <option value="ms-current">Manuscripts - Current Location (Holdings)</option>
                 <option value="ms-production">Manuscripts - Production Location</option>
+                <option value="ms-movement">Manuscripts - Movement (Production → Current)</option>
                 <option value="pu-location">Production Units - All Locations</option>
                 <option value="pu-monastery">Production Units - By Monastery</option>
                 <option value="mi-all">Monastic Institutions</option>
-                <option value="scribes-female">Female Scribes - Work Locations</option>
-                <option value="scribes-all">All Scribes - Work Locations</option>
               </select>
             </label>
             <div id="map-view-hint" style="font-size: 0.75rem; color: #666; margin-top: 0.25rem;">
@@ -109,12 +112,12 @@ show_title: false
             </div>
           </div>
           <!-- Map controls -->
-          <div style="padding: 0.5rem 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+          <div id="map-controls" style="padding: 0.5rem 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
             <label style="display: flex; align-items: center; gap: 0.25rem; margin: 0;">
               <input type="checkbox" id="map-show-clusters" checked>
               <span style="font-size: 0.875rem;">Clustering</span>
             </label>
-            <label style="display: flex; align-items: center; gap: 0.25rem; margin: 0;">
+            <label id="map-control-connections" style="display: flex; align-items: center; gap: 0.25rem; margin: 0;">
               <input type="checkbox" id="map-show-connections">
               <span style="font-size: 0.875rem;">Connection Lines</span>
             </label>
@@ -122,7 +125,7 @@ show_title: false
               <input type="checkbox" id="map-show-heatmap">
               <span style="font-size: 0.875rem;">Heatmap</span>
             </label>
-            <label style="display: flex; align-items: center; gap: 0.25rem; margin: 0;">
+            <label id="map-control-routes" style="display: flex; align-items: center; gap: 0.25rem; margin: 0;">
               <input type="checkbox" id="map-show-routes">
               <span style="font-size: 0.875rem;">Show Routes</span>
             </label>
@@ -130,7 +133,7 @@ show_title: false
             <button class="chip" id="map-export-image" style="background: #28a745; color: white;">📷 Export PNG</button>
           </div>
           <!-- Time slider -->
-          <div style="padding: 0.5rem 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+          <div id="map-time-controls" style="padding: 0.5rem 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
               <label style="font-size: 0.875rem; font-weight: 500; margin: 0;">Time Period:</label>
               <span id="map-time-range" style="font-size: 0.875rem; color: #666;">All dates</span>
@@ -139,6 +142,13 @@ show_title: false
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <input type="range" id="map-time-start" min="800" max="1600" value="800" step="10" style="flex: 1;">
               <input type="range" id="map-time-end" min="800" max="1600" value="1600" step="10" style="flex: 1;">
+            </div>
+          </div>
+          <!-- Color Legend -->
+          <div id="map-legend" style="padding: 0.5rem 0.75rem; background: #f9fafb; border-bottom: 1px solid #dee2e6; font-size: 0.8rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <span style="font-weight: 600; color: #666;">Legend:</span>
+            <div id="map-legend-items" style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <!-- Will be populated by JavaScript -->
             </div>
           </div>
           <div id="map-mount"></div>
@@ -489,26 +499,13 @@ show_title: false
     <div id="mode-analytics" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span>📊 Analytics Dashboard</span>
+          <span>📊 Statistical Dashboard</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Statistical insights across the entire database</span>
         </div>
         <div class="viz-body" style="padding: 0;">
           <!-- Analytics controls -->
           <div style="padding: 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
-            <div style="display: flex; gap: 0.75rem; margin-bottom: 0.5rem;">
-              <label style="display: flex; align-items: center; gap: 0.5rem; margin: 0; font-weight: 500; font-size: 0.875rem; flex: 1;">
-                Visualization Type:
-                <select id="analytics-viz-type" style="flex: 1; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; background: white; font-size: 0.875rem;">
-                  <option value="dashboard">Statistical Dashboard</option>
-                  <option value="codicology">Codicological Analysis</option>
-                  <option value="sankey">Sankey Diagram (Entity Flows)</option>
-                  <option value="matrix">Matrix Visualization (Connection Grid)</option>
-                  <option value="chord">Chord Diagram (Circular Relationships)</option>
-                  <option value="tree">Hierarchical Tree (Entity Structure)</option>
-                </select>
-              </label>
-            </div>
-            <!-- Entity filter (only visible for Statistical Dashboard) -->
+            <!-- Entity filter -->
             <div id="entity-filter-panel" style="margin-bottom: 0.5rem;">
               <label style="display: block; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.875rem;">
                 📊 Filter by Entity Type:
@@ -524,125 +521,317 @@ show_title: false
                 </select>
               </label>
             </div>
-            <!-- Tree search panel (only visible when tree is selected) -->
-            <div id="tree-search-panel" style="display: none; margin-bottom: 0.5rem; padding: 0.75rem; background: white; border: 1px solid #dee2e6; border-radius: 0.25rem;">
-              <div style="display: flex; gap: 0.75rem; margin-bottom: 0.5rem;">
-                <label style="display: flex; align-items: center; gap: 0.5rem; margin: 0; font-weight: 500; font-size: 0.875rem; flex: 2;">
-                  🔍 Search:
-                  <input type="text" id="tree-manuscript-search" placeholder="Type manuscript title or shelfmark..." style="flex: 1; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
-                  <button id="tree-search-clear" style="padding: 0.375rem 0.75rem; background: #6c757d; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem;">Clear</button>
-                </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; margin: 0; font-weight: 500; font-size: 0.875rem; flex: 1;">
-                  📊 Sort by:
-                  <select id="tree-sort-select" style="flex: 1; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
-                    <option value="default">Title (A-Z)</option>
-                    <option value="most-pus">Most Production Units</option>
-                    <option value="most-sus">Most Scribal Units</option>
-                    <option value="most-complex">Most Complex Structure</option>
-                  </select>
-                </label>
-              </div>
-              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; cursor: pointer;">
-                  <input type="checkbox" id="tree-filter-interleaved" style="cursor: pointer;">
-                  🔀 Interleaved Units
-                </label>
-                <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; cursor: pointer;">
-                  <input type="checkbox" id="tree-filter-cross-ms-pu" style="cursor: pointer;">
-                  📚 PUs Across Multiple MSS
-                </label>
-                <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; cursor: pointer;">
-                  <input type="checkbox" id="tree-filter-cross-pu-su" style="cursor: pointer;">
-                  ✍️ SUs Across Multiple PUs
-                </label>
-                <label style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; cursor: pointer;">
-                  <input type="checkbox" id="tree-filter-multi-pu" style="cursor: pointer;">
-                  📖 3+ Production Units
-                </label>
-              </div>
-            </div>
-            <!-- Codicological Analysis panel (only visible when codicology is selected) -->
-            <div id="codicology-panel" style="display: none; margin-bottom: 0.5rem; padding: 0.75rem; background: white; border: 1px solid #dee2e6; border-radius: 0.25rem;">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
-                <label style="display: flex; flex-direction: column; gap: 0.25rem; font-weight: 500; font-size: 0.875rem;">
-                  📊 Analysis Type:
-                  <select id="codic-analysis-type" style="padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
-                    <option value="material-size">Material vs Size (with Geography/Date)</option>
-                    <option value="size-date">Size vs Date (with Geography)</option>
-                    <option value="quire-patterns">Quire Patterns (vs Size/Date/Material/Country)</option>
-                    <option value="column-patterns">Column Patterns (vs Size/Date/Material/Country)</option>
-                    <option value="margin-ratio">Margin Ratio (Codex Size vs Justification)</option>
-                    <option value="custom">Custom Multi-Variable</option>
-                  </select>
-                </label>
-                <label style="display: flex; flex-direction: column; gap: 0.25rem; font-weight: 500; font-size: 0.875rem;">
-                  📈 Visualization:
-                  <select id="codic-viz-type" style="padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
-                    <option value="scatter">Scatter Plot</option>
-                    <option value="box">Box Plot</option>
-                    <option value="bar">Bar Chart</option>
-                    <option value="heatmap">Correlation Heatmap</option>
-                    <option value="stats">Statistical Summary</option>
-                  </select>
-                </label>
-              </div>
-              <div id="codic-custom-panel" style="display: none; margin-top: 0.75rem; padding: 0.75rem; background: #f8f9fa; border-radius: 0.25rem;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
-                  <label style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.75rem;">
-                    X-Axis Variable:
-                    <select id="codic-x-var" style="padding: 0.25rem 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem;">
-                      <option value="size">Size (Height)</option>
-                      <option value="width">Width</option>
-                      <option value="folios">Folios</option>
-                      <option value="date">Date</option>
-                      <option value="justification-height">Justification Height</option>
-                      <option value="justification-width">Justification Width</option>
-                      <option value="columns">Number of Columns</option>
-                    </select>
-                  </label>
-                  <label style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.75rem;">
-                    Y-Axis Variable:
-                    <select id="codic-y-var" style="padding: 0.25rem 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem;">
-                      <option value="size">Size (Height)</option>
-                      <option value="width">Width</option>
-                      <option value="folios">Folios</option>
-                      <option value="date">Date</option>
-                      <option value="justification-height">Justification Height</option>
-                      <option value="justification-width">Justification Width</option>
-                      <option value="columns">Number of Columns</option>
-                    </select>
-                  </label>
-                </div>
-                <label style="display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.75rem;">
-                  Color By:
-                  <select id="codic-color-var" style="padding: 0.25rem 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem;">
-                    <option value="none">None</option>
-                    <option value="gender">Gender</option>
-                    <option value="material">Material</option>
-                    <option value="quire-type">Quire Type</option>
-                    <option value="catchwords">Has Catchwords</option>
-                    <option value="signatures">Has Signatures</option>
-                    <option value="colophon">Has Colophon</option>
-                    <option value="watermark">Has Watermark</option>
-                    <option value="ruling">Ruling Type</option>
-                    <option value="collaboration">Collaboration Type</option>
-                    <option value="language">Language</option>
-                    <option value="origin">Origin</option>
-                  </select>
-                </label>
-              </div>
-            </div>
             <div id="analytics-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
               <strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
-              <button class="chip" id="analytics-export-svg" style="background:#28a745;color:white;">📷 Export SVG</button>
-              <button class="chip" id="analytics-export-png" style="background:#28a745;color:white;">📷 Export PNG</button>
+              <button class="chip" id="analytics-export-png" style="background:#28a745;color:white;">📥 Export as Image</button>
             </div>
           </div>
 
           <!-- Analytics mount point -->
           <div id="analytics-mount" style="padding: 1rem; overflow: auto;">
+            <!-- Visualization will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODICOLOGY MODE -->
+    <div id="mode-codicology" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on">
+        <div class="viz-head">
+          <span>📖 Codicological Analysis</span>
+          <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Manuscript structure and production analysis</span>
+        </div>
+        <div class="viz-body" style="padding: 0;">
+          <!-- Codicology controls -->
+          <div style="padding: 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+            <!-- Codicological Analysis controls -->
+            <div style="margin-bottom: 0.75rem; padding: 1rem; background: white; border: 1px solid #dee2e6; border-radius: 0.375rem;">
+              <!-- Quick Start Presets -->
+              <div style="margin-bottom: 1rem; padding: 0.75rem; background: #f0f7ff; border-radius: 0.25rem; border-left: 3px solid #2196F3;">
+                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #1565c0;">💡 Quick Start - Try These Combinations:</div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button class="codic-preset-btn chip" data-preset="material-size" style="background: #e3f2fd; border: 1px solid #90caf9; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
+                    📏 Material vs Size
+                  </button>
+                  <button class="codic-preset-btn chip" data-preset="date-folios" style="background: #e3f2fd; border: 1px solid #90caf9; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
+                    📅 Date vs Folios
+                  </button>
+                  <button class="codic-preset-btn chip" data-preset="quire-material" style="background: #e3f2fd; border: 1px solid #90caf9; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
+                    📚 Quire Type vs Material
+                  </button>
+                  <button class="codic-preset-btn chip" data-preset="clear" style="background: #fff; border: 1px solid #ddd; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
+                    ✨ Clear Selection
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filters Section -->
+              <div style="margin-bottom: 1rem; padding: 0.75rem; background: #fff3cd; border-radius: 0.25rem; border-left: 3px solid #ffc107;">
+                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #856404;">🔍 Active Filters</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <div>
+                    <label style="display: block; font-size: 0.75rem; margin-bottom: 0.25rem; color: #666;"> Century:</label>
+                    <select id="codic-filter-century" multiple style="width: 100%; padding: 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem; min-height: 60px;">
+                      <option value="8">8th c.</option>
+                      <option value="9">9th c.</option>
+                      <option value="10">10th c.</option>
+                      <option value="11">11th c.</option>
+                      <option value="12">12th c.</option>
+                      <option value="13">13th c.</option>
+                      <option value="14">14th c.</option>
+                      <option value="15">15th c.</option>
+                      <option value="16">16th c.</option>
+                    </select>
+                    <div style="font-size: 0.65rem; color: #666; margin-top: 0.25rem;">Hold Cmd/Ctrl to select multiple</div>
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 0.75rem; margin-bottom: 0.25rem; color: #666;">� Material:</label>
+                    <select id="codic-filter-material" multiple style="width: 100%; padding: 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem; min-height: 60px;">
+                      <option value="parchment">Parchment</option>
+                      <option value="paper">Paper</option>
+                    </select>
+                    <div style="font-size: 0.65rem; color: #666; margin-top: 0.25rem;">Hold Cmd/Ctrl to select multiple</div>
+                  </div>
+                  <div>
+                    <label style="display: block; font-size: 0.75rem; margin-bottom: 0.25rem; color: #666;">🌍 Region:</label>
+                    <select id="codic-filter-region" multiple style="width: 100%; padding: 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem; min-height: 60px;">
+                      <option value="Austria">Austria</option>
+                      <option value="Belgium">Belgium</option>
+                      <option value="England">England</option>
+                      <option value="France">France</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Netherlands">Netherlands</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Switzerland">Switzerland</option>
+                    </select>
+                    <div style="font-size: 0.65rem; color: #666; margin-top: 0.25rem;">Hold Cmd/Ctrl to select multiple</div>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div id="codic-filter-status" style="font-size: 0.75rem; color: #856404;"></div>
+                  <button id="codic-clear-filters-btn" style="padding: 0.25rem 0.75rem; background: #fff; border: 1px solid #ffc107; border-radius: 0.25rem; font-size: 0.75rem; cursor: pointer; color: #856404;">
+                    ✨ Clear Filters
+                  </button>
+                </div>
+              </div>
+
+              <!-- Variable Selection -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
+                  📊 X-Axis Variable:
+                  <select id="codic-x-var" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
+                    <option value="">-- Select Variable --</option>
+                    <optgroup label="📏 Dimensions">
+                      <option value="height">Height (mm)</option>
+                      <option value="width">Width (mm)</option>
+                      <option value="combined-size">Combined Size (Height + Width, mm)</option>
+                      <option value="justification-height">Justification Height (mm)</option>
+                      <option value="justification-width">Justification Width (mm)</option>
+                      <option value="margin-ratio">Margin Ratio</option>
+                    </optgroup>
+                    <optgroup label="📖 Structure">
+                      <option value="folios">Number of Folios</option>
+                      <option value="columns">Number of Columns</option>
+                      <option value="lines-per-page">Lines per Page</option>
+                      <option value="quires">Number of Quires</option>
+                    </optgroup>
+                    <optgroup label="📅 Temporal">
+                      <option value="date">Date (Year)</option>
+                      <option value="century">Century</option>
+                    </optgroup>
+                    <optgroup label="📝 Categorical">
+                      <option value="material">Material</option>
+                      <option value="quire-type">Quire Type</option>
+                      <option value="ruling-type">Ruling Type</option>
+                      <option value="script-type">Script Type</option>
+                      <option value="binding-type">Binding Type</option>
+                    </optgroup>
+                  </select>
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
+                  📈 Y-Axis Variable:
+                  <select id="codic-y-var" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
+                    <option value="">-- Select Variable --</option>
+                    <optgroup label="📏 Dimensions">
+                      <option value="height">Height (mm)</option>
+                      <option value="width">Width (mm)</option>
+                      <option value="combined-size">Combined Size (Height + Width, mm)</option>
+                      <option value="justification-height">Justification Height (mm)</option>
+                      <option value="justification-width">Justification Width (mm)</option>
+                      <option value="margin-ratio">Margin Ratio</option>
+                    </optgroup>
+                    <optgroup label="📖 Structure">
+                      <option value="folios">Number of Folios</option>
+                      <option value="columns">Number of Columns</option>
+                      <option value="lines-per-page">Lines per Page</option>
+                      <option value="quires">Number of Quires</option>
+                    </optgroup>
+                    <optgroup label="📅 Temporal">
+                      <option value="date">Date (Year)</option>
+                      <option value="century">Century</option>
+                    </optgroup>
+                    <optgroup label="📝 Categorical">
+                      <option value="material">Material</option>
+                      <option value="quire-type">Quire Type</option>
+                      <option value="ruling-type">Ruling Type</option>
+                      <option value="script-type">Script Type</option>
+                      <option value="binding-type">Binding Type</option>
+                    </optgroup>
+                  </select>
+                </label>
+              </div>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
+                  🎨 Color/Group By:
+                  <select id="codic-color-var" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
+                    <option value="none">None</option>
+                    <optgroup label="👤 People & Gender">
+                      <option value="gender">Gender</option>
+                      <option value="scribe-name">Scribe Name</option>
+                    </optgroup>
+                    <optgroup label="🏛️ Production Context">
+                      <option value="material">Material</option>
+                      <option value="origin-country">Origin Country</option>
+                      <option value="origin-region">Origin Region</option>
+                      <option value="monastery-type">Monastery Type</option>
+                    </optgroup>
+                    <optgroup label="📚 Physical Features">
+                      <option value="quire-type">Quire Type</option>
+                      <option value="catchwords">Has Catchwords</option>
+                      <option value="signatures">Has Signatures</option>
+                      <option value="watermark">Has Watermark</option>
+                      <option value="ruling-type">Ruling Type</option>
+                      <option value="columns">Number of Columns</option>
+                    </optgroup>
+                    <optgroup label="📜 Content">
+                      <option value="has-colophon">Has Colophon</option>
+                      <option value="language">Language</option>
+                      <option value="script-type">Script Type</option>
+                      <option value="decoration">Has Decoration</option>
+                    </optgroup>
+                    <optgroup label="🤝 Collaboration">
+                      <option value="collaboration-type">Collaboration Type</option>
+                      <option value="multiple-scribes">Multiple Scribes</option>
+                    </optgroup>
+                  </select>
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
+                  📊 Visualization Type:
+                  <select id="codic-viz-type" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
+                    <option value="scatter">Scatter Plot</option>
+                    <option value="box">Box Plot</option>
+                    <option value="bar">Bar Chart</option>
+                    <option value="correlation">🔗 Correlation Analysis</option>
+                    <option value="stats">Statistical Summary</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div id="codicology-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
+              <strong>Codicological Analysis:</strong> Explore relationships between manuscript physical features. Select any two variables to analyze correlations, distributions, and patterns across the corpus.
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="chip" id="codicology-add-comparison" style="background:#17a2b8;color:white;">
+                  ➕ Add to Comparison
+                </button>
+                <button class="chip" id="codicology-view-comparison" style="background:#6c757d;color:white;display:none;">
+                  👁️ View Comparisons (<span id="comparison-count">0</span>)
+                </button>
+                <button class="chip" id="codicology-clear-comparison" style="background:#dc3545;color:white;display:none;">
+                  🗑️ Clear Comparisons
+                </button>
+              </div>
+              <button class="chip" id="codicology-export-png" style="background:#28a745;color:white;">📥 Export as Image</button>
+            </div>
+          </div>
+
+          <!-- Codicology mount point -->
+          <div id="codicology-mount" style="padding: 1rem; overflow: auto;">
+            <!-- Visualization will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIERARCHICAL TREE MODE -->
+    <div id="mode-tree" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on">
+        <div class="viz-head">
+          <span>🌳 Hierarchical Tree</span>
+          <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Manuscript structure and entity relationships</span>
+        </div>
+        <div class="viz-body" style="padding: 0;">
+          <!-- Tree controls -->
+          <div style="padding: 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+            <!-- Tree search panel -->
+            <div style="margin-bottom: 0.5rem; padding: 0.75rem; background: white; border: 1px solid #dee2e6; border-radius: 0.25rem;">
+              <!-- Search Bar -->
+              <div style="margin-bottom: 0.75rem;">
+                <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: #333;">
+                  🔍 Search Manuscripts
+                </label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="text" id="tree-manuscript-search" placeholder="Type manuscript title, shelfmark, or ID..." style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
+                  <button id="tree-search-clear" style="padding: 0.5rem 1rem; background: #6c757d; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap;">Clear</button>
+                </div>
+              </div>
+              
+              <!-- Filter Section -->
+              <div style="margin-bottom: 0.75rem; padding: 0.75rem; background: #f8f9fa; border-radius: 0.25rem;">
+                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #333;">
+                  🎯 Filter by Structure
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-multi-pu" style="cursor: pointer;">
+                    <span>📖 3+ Production Units</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-interleaved" style="cursor: pointer;">
+                    <span>🔀 Interleaved Units</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-cross-ms-pu" style="cursor: pointer;">
+                    <span>📚 PUs Across Multiple MSS</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-cross-pu-su" style="cursor: pointer;">
+                    <span>✍️ SUs Across Multiple PUs</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Sort Section -->
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label style="font-weight: 600; font-size: 0.875rem; color: #333; white-space: nowrap;">
+                  📊 Sort by:
+                </label>
+                <select id="tree-sort-select" style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
+                  <option value="default">Alphabetical</option>
+                  <option value="most-pus">Production Units (Most)</option>
+                  <option value="most-sus">Scribal Units (Most)</option>
+                  <option value="most-complex">Structural Complexity (Highest)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="tree-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
+              <strong>Hierarchical Tree:</strong> Explore the complete structural hierarchy of manuscripts showing relationships between manuscripts, production units, scribal units, and texts in an interactive tree visualization.
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+              <button class="chip" id="tree-export-png" style="background:#28a745;color:white;">📥 Export as Image</button>
+            </div>
+          </div>
+
+          <!-- Tree mount point -->
+          <div id="tree-mount" style="padding: 1rem; overflow: auto;">
             <!-- Visualization will be rendered here -->
           </div>
         </div>
@@ -715,10 +904,8 @@ show_title: false
           </div>
         </div>
       </div>
-    </div>
-
-  </div>
-</div>
+  </div> <!-- /db-shell -->
+</div> <!-- /explore-fullwidth -->
 
 <!-- CSV dialog -->
 <dialog id="csv-dialog" style="max-width:680px;border:1px solid #ddd;border-radius:.75rem;padding:1rem;">
@@ -794,10 +981,10 @@ show_title: false
     border-color: #dee2e6;
   }
   .main-nav-btn.is-on {
-    background: #667eea;
+    background: #d4af37;
     color: white;
-    border-color: #667eea;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    border-color: #d4af37;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
   }
 
   /* === Mode Containers === */
@@ -806,26 +993,64 @@ show_title: false
   }
   
   /* Browse mode: 3-column layout (facets | results | details) */
-  /* Facets=280px | Results=flexible | Details=2x Results width */
+  /* Facets=280px | Main+Viz wrapper=flexible (spans both middle and right columns) */
   #mode-browse[aria-hidden="false"] {
     display: grid;
-    grid-template-columns: 280px minmax(400px, 1fr) minmax(800px, 2fr);
+    grid-template-columns: 280px 1fr;
     gap: 2rem;
     align-items: start;
+  }
+  
+  /* Main+Viz wrapper contains controls (spanning full width) and then a 2-column layout */
+  .db-main-viz-wrapper {
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr) minmax(800px, 2fr);
+    gap: 2rem;
+    grid-template-rows: auto 1fr;
+  }
+  
+  /* Controls now span the full width of the main+viz area */
+  .db-main-viz-wrapper .db-controls {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  
+  /* Below controls: side-by-side main results and viz panels */
+  .db-main-viz-wrapper > .db-main {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .db-main-viz-wrapper > .db-viz {
+    grid-column: 2;
+    grid-row: 2;
   }
   
   /* Responsive: stack on smaller screens */
   @media (max-width: 1400px) {
     #mode-browse[aria-hidden="false"] {
-      grid-template-columns: 1fr 1fr 2fr;
+      gap: 1.5rem;
+    }
+    .db-main-viz-wrapper {
       gap: 1.5rem;
     }
   }
   
   @media (max-width: 1200px) {
     #mode-browse[aria-hidden="false"] {
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 1fr;
       gap: 1rem;
+    }
+    .db-facets {
+      max-width: 100%;
+    }
+    .db-main-viz-wrapper {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .db-main-viz-wrapper > .db-viz {
+      grid-column: 1;
+      grid-row: 3;
     }
     #db-viz {
       display: none; /* Hide details on smaller screens, or make it a modal */
@@ -838,6 +1063,8 @@ show_title: false
   #mode-timeline[aria-hidden="false"],
   #mode-network[aria-hidden="false"],
   #mode-analytics[aria-hidden="false"],
+  #mode-codicology[aria-hidden="false"],
+  #mode-tree[aria-hidden="false"],
   #mode-multilingualism[aria-hidden="false"],
   #mode-colophon-analysis[aria-hidden="false"] {
     display: block !important;
@@ -1039,7 +1266,20 @@ const val = d => { if (!d) return ''; if (d.termLabel) return d.termLabel; if (d
 const getVal = (rec, field) => val(getDetail(rec, field));
 const getRes = (rec, field) => { const d=getDetail(rec,field); return d&&d.value&&d.value.id? d.value : null; };
 const esc = s => (s??'').toString().replace(/[&<>"]/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const flat = rec => { const bits=[rec.rec_Title||'']; (rec.details||[]).forEach(d=>{ if (d.termLabel) bits.push(d.termLabel); if (typeof d.value==='string') bits.push(d.value); if (d.value && typeof d.value==='object' && d.value.title) bits.push(d.value.title); }); return bits.join(' ').toLowerCase(); };
+const flat = rec => { 
+  const bits=[rec.rec_Title||'']; 
+  (rec.details||[]).forEach(d=>{ 
+    if (d.termLabel) bits.push(d.termLabel); 
+    if (typeof d.value==='string') bits.push(d.value); 
+    if (d.value && typeof d.value==='object' && d.value.title) bits.push(d.value.title); 
+  }); 
+  // Include relationship metadata in searchable text
+  if (rec.rec_ID) {
+    const relText = getRelationshipSearchText(rec.rec_ID);
+    if (relText) bits.push(relText);
+  }
+  return bits.join(' ').toLowerCase(); 
+};
 const debounce=(fn,ms)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};
 // All details for a field name
 const getDetailsAll = (rec, name) => (rec?.details || []).filter(d => d.fieldName === name);
@@ -1114,6 +1354,76 @@ function indexRelationships(){
   });
 }
 
+/* ---------- Relationship metadata extraction ---------- */
+/**
+ * Get all relationships (incoming and outgoing) for a record
+ * @param {string} recId - Record ID
+ * @returns {Array} Array of relationship objects
+ */
+function getRecordRelationships(recId) {
+  const id = String(recId);
+  const outgoing = REL_INDEX.bySource[id] || [];
+  const incoming = REL_INDEX.byTarget[id] || [];
+  return [...outgoing, ...incoming];
+}
+
+/**
+ * Extract searchable text from all relationships for a record
+ * This includes: scribe certainty, role, language, folio info, etc.
+ * @param {string} recId - Record ID
+ * @returns {string} Space-separated string of all relationship metadata
+ */
+function getRelationshipSearchText(recId) {
+  const rels = getRecordRelationships(recId);
+  const texts = [];
+  
+  rels.forEach(rel => {
+    // Extract all relevant metadata fields from relationships
+    const fields = [
+      'scribe certainty',
+      'Scribe role',
+      'Function of Copying',
+      'Scribe Comments',
+      'Production info',
+      'Folio range in PU',
+      'Folio range',
+      'Text Language(s)',
+      'Text(s) comments',
+      'Expression',
+      'Style',
+      'Relationship type',
+      'Attribution status',
+      'Confidence level'
+    ];
+    
+    fields.forEach(field => {
+      const val = getVal(rel, field);
+      if (val) texts.push(String(val));
+    });
+  });
+  
+  return texts.join(' ').toLowerCase();
+}
+
+/**
+ * Get specific relationship metadata values for filtering
+ * For example: all languages used in texts related to this entity
+ * @param {string} recId - Record ID
+ * @param {string} fieldName - Name of the field to extract from relationships
+ * @returns {Array} Array of unique values
+ */
+function getRelationshipValues(recId, fieldName) {
+  const rels = getRecordRelationships(recId);
+  const values = new Set();
+  
+  rels.forEach(rel => {
+    const vals = getValsAll(rel, fieldName);
+    vals.forEach(v => values.add(v));
+  });
+  
+  return Array.from(values);
+}
+
 /* ---------- Facets config ---------- */
 const FACETS = {
   su: [
@@ -1122,6 +1432,10 @@ const FACETS = {
     { key:'post', label:'Terminus post quem', type:'year-range', field:'Normalized terminus post quem' },
     { key:'ante', label:'Terminus ante quem', type:'year-range', field:'Normalized terminus ante quem' },
     { key:'script', label:'Normalized script(s)', type:'enum-multi', field:'Normalised script(s)' },
+    { key:'scribe_certainty', label:'🔗 Scribe certainty (from relationships)', type:'relationship-enum-multi', field:'scribe certainty' },
+    { key:'scribe_role', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
+    { key:'function_copying', label:'🔗 Function of copying (from relationships)', type:'relationship-enum-multi', field:'Function of Copying' },
+    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
     { key:'colophon_presence', label:'Colophon presence', type:'enum', field:'Colophon presence' },
     { key:'colophon_language', label:'Colophon language', type:'enum-multi', field:'Colophon language' },
     { key:'manuscript', label:'Manuscript', type:'resource', field:'Manuscript' },
@@ -1133,6 +1447,8 @@ const FACETS = {
     { key:'holding', label:'Holding Institution', type:'resource', field:'Holding Institution' },
     { key:'callno', label:'Call number', type:'text', field:'Call number' },
     { key:'ms_date', label:'Ms Dating (YYYY ok)', type:'year-range', field:'Ms Dating' },
+    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
     { key:'digit_status', label:'Digitization Status', type:'enum', field:'Digitization Status' },
     { key:'digit_type',   label:'Digitization Type', type:'enum', field:'Digitization Type' },
     { key:'iiif_status',  label:'IIIF Status', type:'enum', field:'IIIF Status' },
@@ -1147,6 +1463,11 @@ const FACETS = {
     { key:'century', label:'Century', type:'century', field:'Normalized century of production' },
     { key:'post',    label:'Post quem', type:'year-range', field:'Normalized terminus post quem' },
     { key:'ante',    label:'Ante quem', type:'year-range', field:'Normalized terminus ante quem' },
+    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'scribe_certainty_rel', label:'🔗 Scribe certainty (from relationships)', type:'relationship-enum-multi', field:'scribe certainty' },
+    { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
+    { key:'expression_rel', label:'🔗 Expression (from relationships)', type:'relationship-enum-multi', field:'Expression' },
+    { key:'style_rel', label:'🔗 Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
     { key:'colophon_presence', label:'Colophon presence', type:'enum-search', field:'Colophon presence' },
     { key:'colophon_language', label:'Colophon language', type:'enum-multi', field:'Colophon language' },
     { key:'Watermark', label:'Watermark Present', type:'enum-search', field:'Watermark Present' },
@@ -1176,13 +1497,16 @@ const FACETS = {
     { key:'gender',  label:'Gender', type:'enum', field:'Gender' },
     { key:'gcert',   label:'Gender certainty', type:'enum', field:'Gender certainty' },
     { key:'ptype',   label:'Person type', type:'enum', field:'Person type' },
-     { key:'activity',   label:'Century of Activity', type:'century', field:'Century of Activity' },
+    { key:'activity',   label:'Century of Activity', type:'century', field:'Century of Activity' },
+    { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
   ],
   tx: [
     { key:'genre',   label:'Genre', type:'enum', field:'Genre' },
     { key:'subgenre',label:'Subgenre', type:'enum-search', field:'Subgenre' },
     { key:'ntitle',  label:'Normalized Title', type:'enum-search', field:'Normalized Title' },
     { key:'author',  label:'Author', type:'enum-search', field:'Creator' },
+    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'expression_rel', label:'🔗 Expression (from relationships)', type:'relationship-enum-multi', field:'Expression' },
   ],
 };
 
@@ -1279,6 +1603,28 @@ function buildFacets(records, config, prevState = {}) {
         });
       box.appendChild(wrap);
 
+    } else if (f.type==='relationship-enum-multi') {
+      // Build facets from relationship metadata
+      const counts = {};
+      records.forEach(r => {
+        const values = getRelationshipValues(r.rec_ID, f.field);
+        values.forEach(v => {
+          if (!v || v === '—') return;
+          counts[v] = (counts[v] || 0) + 1;
+        });
+      });
+      const wrap = document.createElement('div'); wrap.className='check-list';
+      Object.keys(counts)
+        .sort()
+        .forEach(v=>{
+          const lab=document.createElement('label'); lab.className='check-item';
+          const cb=document.createElement('input'); cb.type='checkbox'; cb.dataset.fkey=f.key; cb.value=v;
+          if (prevState[f.key]?.values?.has(v)) cb.checked=true;
+          lab.appendChild(cb); lab.append(` ${v} (${counts[v]||0})`);
+          wrap.appendChild(lab);
+        });
+      box.appendChild(wrap);
+
     } else if (f.type==='year-range' || f.type==='num-range') {
       const vals = records.map(r=>{
         if (f.type==='year-range') return firstYear(getVal(r,f.field));
@@ -1306,7 +1652,7 @@ function readFacetState(config){
     if (f.type==='enum'){
       const onChips=[...document.querySelectorAll(`.chip[data-fkey="${f.key}"].is-on`)].map(n=>n.dataset.value);
       st[f.key]={type:f.type, values:new Set(onChips)};
-    } else if (f.type==='enum-multi' || f.type==='century'){
+    } else if (f.type==='enum-multi' || f.type==='century' || f.type==='relationship-enum-multi'){
       const onCbs=[...document.querySelectorAll(`input[type="checkbox"][data-fkey="${f.key}"]:checked`)].map(n=>n.value);
       st[f.key]={type:f.type, values:new Set(onCbs)};
     } else if (f.type==='year-range' || f.type==='num-range'){
@@ -1331,6 +1677,11 @@ function applyFacets(list, config){
         const values = (f.type==='century')
           ? getValsAll(rec, 'Normalized century of production')
           : getValsAll(rec, f.field);
+        // if there are selected values, the record must have at least one of them
+        if (s.values.size && !values.some(v => s.values.has(v))) return false;
+      } else if (f.type==='relationship-enum-multi'){
+        // Filter based on relationship metadata
+        const values = getRelationshipValues(rec.rec_ID, f.field);
         // if there are selected values, the record must have at least one of them
         if (s.values.size && !values.some(v => s.values.has(v))) return false;
       } else if (f.type==='year-range'){
@@ -2039,6 +2390,69 @@ function renderRelationships(rec, type) {
   
   let html = '';
   
+  // Add relationship metadata summary section
+  const allRels = [...outgoing, ...incoming];
+  if (allRels.length > 0) {
+    // Collect unique values from relationship metadata
+    const metadataSummary = {
+      certainties: new Set(),
+      roles: new Set(),
+      languages: new Set(),
+      functions: new Set(),
+      expressions: new Set(),
+      styles: new Set()
+    };
+    
+    allRels.forEach(r => {
+      const certainty = getVal(r, 'scribe certainty');
+      if (certainty) metadataSummary.certainties.add(certainty);
+      
+      const role = getVal(r, 'Scribe role');
+      if (role) metadataSummary.roles.add(role);
+      
+      const langs = getValsAll(r, 'Text Language(s)');
+      langs.forEach(l => metadataSummary.languages.add(l));
+      
+      const func = getVal(r, 'Function of Copying');
+      if (func) metadataSummary.functions.add(func);
+      
+      const expr = getVal(r, 'Expression');
+      if (expr) metadataSummary.expressions.add(expr);
+      
+      const style = getVal(r, 'Style');
+      if (style) metadataSummary.styles.add(style);
+    });
+    
+    // Display metadata summary if we have any
+    const hasMetadata = [...Object.values(metadataSummary)].some(s => s.size > 0);
+    if (hasMetadata) {
+      html += '<div class="section" style="background:#f8f9fa;padding:.75rem;border-radius:.5rem;margin-bottom:1rem">';
+      html += '<strong style="color:#667;">🔗 Relationship Metadata Summary</strong>';
+      html += '<div style="margin-top:.5rem;font-size:.9rem">';
+      
+      if (metadataSummary.certainties.size > 0) {
+        html += `<div style="margin:.25rem 0"><strong>Scribe certainty:</strong> ${Array.from(metadataSummary.certainties).map(esc).join(', ')}</div>`;
+      }
+      if (metadataSummary.roles.size > 0) {
+        html += `<div style="margin:.25rem 0"><strong>Scribe roles:</strong> ${Array.from(metadataSummary.roles).map(esc).join(', ')}</div>`;
+      }
+      if (metadataSummary.languages.size > 0) {
+        html += `<div style="margin:.25rem 0"><strong>Text languages:</strong> ${Array.from(metadataSummary.languages).map(esc).join(', ')}</div>`;
+      }
+      if (metadataSummary.functions.size > 0) {
+        html += `<div style="margin:.25rem 0"><strong>Copying functions:</strong> ${Array.from(metadataSummary.functions).map(esc).join(', ')}</div>`;
+      }
+      if (metadataSummary.expressions.size > 0) {
+        html += `<div style="margin:.25rem 0"><strong>Expressions:</strong> ${Array.from(metadataSummary.expressions).map(esc).join(', ')}</div>`;
+      }
+      if (metadataSummary.styles.size > 0) {
+        html += `<div style="margin:.25rem 0"><strong>Styles:</strong> ${Array.from(metadataSummary.styles).map(esc).join(', ')}</div>`;
+      }
+      
+      html += '</div></div>';
+    }
+  }
+  
   // Outgoing relationships (this record → other records)
   if (outgoing.length) {
     html += '<div class="section"><strong>Relationships</strong>';
@@ -2054,9 +2468,32 @@ function renderRelationships(rec, type) {
         if (!tgtRec) return;
         html += `<div style="margin-left:1rem">${linkTo(tgtType, tgt.id, MAP[tgtType].title(tgtRec))}`;
         
-        // Add metadata if present
-        const meta = getRelationshipMetadata(r);
-        if (meta) html += ` <span class="muted" style="font-size:.9rem">(${esc(meta)})</span>`;
+        // Add detailed metadata if present
+        const metaParts = [];
+        const certainty = getVal(r, 'scribe certainty');
+        if (certainty) metaParts.push(`certainty: ${certainty}`);
+        
+        const role = getVal(r, 'Scribe role');
+        if (role) metaParts.push(`role: ${role}`);
+        
+        const func = getVal(r, 'Function of Copying');
+        if (func) metaParts.push(`function: ${func}`);
+        
+        const folioRange = getVal(r, 'Folio range in PU') || getVal(r, 'Folio range');
+        if (folioRange) metaParts.push(`folios: ${folioRange}`);
+        
+        const textLang = getVal(r, 'Text Language(s)');
+        if (textLang) metaParts.push(`language: ${textLang}`);
+        
+        const expression = getVal(r, 'Expression');
+        if (expression) metaParts.push(`expression: ${expression}`);
+        
+        const style = getVal(r, 'Style');
+        if (style) metaParts.push(`style: ${style}`);
+        
+        if (metaParts.length > 0) {
+          html += ` <span class="muted" style="font-size:.85rem;display:block;margin-left:1.5rem;margin-top:.25rem">${esc(metaParts.join(' | '))}</span>`;
+        }
         html += `</div>`;
       });
       html += '</div>';
@@ -2079,9 +2516,32 @@ function renderRelationships(rec, type) {
         if (!srcRec) return;
         html += `<div style="margin-left:1rem">${linkTo(srcType, src.id, MAP[srcType].title(srcRec))}`;
         
-        // Add metadata if present
-        const meta = getRelationshipMetadata(r);
-        if (meta) html += ` <span class="muted" style="font-size:.9rem">(${esc(meta)})</span>`;
+        // Add detailed metadata if present
+        const metaParts = [];
+        const certainty = getVal(r, 'scribe certainty');
+        if (certainty) metaParts.push(`certainty: ${certainty}`);
+        
+        const role = getVal(r, 'Scribe role');
+        if (role) metaParts.push(`role: ${role}`);
+        
+        const func = getVal(r, 'Function of Copying');
+        if (func) metaParts.push(`function: ${func}`);
+        
+        const folioRange = getVal(r, 'Folio range in PU') || getVal(r, 'Folio range');
+        if (folioRange) metaParts.push(`folios: ${folioRange}`);
+        
+        const textLang = getVal(r, 'Text Language(s)');
+        if (textLang) metaParts.push(`language: ${textLang}`);
+        
+        const expression = getVal(r, 'Expression');
+        if (expression) metaParts.push(`expression: ${expression}`);
+        
+        const style = getVal(r, 'Style');
+        if (style) metaParts.push(`style: ${style}`);
+        
+        if (metaParts.length > 0) {
+          html += ` <span class="muted" style="font-size:.85rem;display:block;margin-left:1.5rem;margin-top:.25rem">${esc(metaParts.join(' | '))}</span>`;
+        }
         html += `</div>`;
       });
       html += '</div>';
@@ -2409,7 +2869,7 @@ function setMode(mode) {
   });
 
   // Show/hide mode containers
-  const modes = ['browse', 'map', 'timeline', 'network', 'analytics', 'multilingualism', 'colophon-analysis'];
+  const modes = ['browse', 'map', 'timeline', 'network', 'analytics', 'codicology', 'tree', 'multilingualism', 'colophon-analysis'];
   modes.forEach(m => {
     const container = document.getElementById(`mode-${m}`);
     if (container) {
@@ -2425,6 +2885,8 @@ function setMode(mode) {
   if (mode === 'timeline') buildTimeline();
   if (mode === 'network') buildNetworkView();
   if (mode === 'analytics') buildAnalytics();
+  if (mode === 'codicology') buildCodicology();
+  if (mode === 'tree') buildHierarchicalTree();
   if (mode === 'multilingualism') buildMultilingualism();
   if (mode === 'colophon-analysis') buildColophonAnalysis();
 }
@@ -2534,6 +2996,7 @@ let MAP_CONNECTIONS_LAYER = null;
 let MAP_ROUTES_LAYER = null;
 let MAP_MARKERS_DATA = []; // Store marker data for filtering
 let MAP_CURRENT_VIEW = 'ms-current'; // Current map view
+let MAP_CONTROLS_INITIALIZED = false; // Flag to prevent duplicate event listeners
 
 // Suggest appropriate map view based on current entity
 function getSuggestedMapView(entity) {
@@ -2541,12 +3004,65 @@ function getSuggestedMapView(entity) {
     'ms': 'ms-current',          // Manuscripts → Current Location
     'pu': 'pu-location',         // Production Units → All Locations
     'mi': 'mi-all',              // Monastic Institutions → All
-    'su': 'scribes-all',         // Scribal Units → All Scribes
+    'su': 'ms-current',          // Scribal Units → default to manuscripts
     'hi': 'ms-current',          // Holding Institutions → show manuscripts there
     'hp': 'ms-current',          // Historical People → default to manuscripts
     'tx': 'ms-current'           // Texts → default to manuscripts
   };
   return suggestions[entity] || 'ms-current';
+}
+
+// Update map controls visibility and legend based on view type
+function updateMapControls(viewType) {
+  // Show/hide connection lines and routes (only for movement views)
+  const isMovementView = viewType === 'ms-movement';
+  const connectionsControl = document.getElementById('map-control-connections');
+  const routesControl = document.getElementById('map-control-routes');
+  const connectionsCheckbox = document.getElementById('map-show-connections');
+  
+  if (connectionsControl) {
+    connectionsControl.style.display = isMovementView ? 'flex' : 'none';
+    // Auto-enable connections for movement view
+    if (isMovementView && connectionsCheckbox) {
+      connectionsCheckbox.checked = true;
+    }
+  }
+  if (routesControl) {
+    routesControl.style.display = isMovementView ? 'flex' : 'none';
+  }
+  
+  // Show/hide time controls (only for production views)
+  const isProductionView = viewType === 'ms-production' || viewType === 'pu-location' || viewType === 'pu-monastery';
+  const timeControls = document.getElementById('map-time-controls');
+  
+  if (timeControls) {
+    timeControls.style.display = isProductionView ? 'block' : 'none';
+  }
+  
+  // Update legend
+  const legendItems = document.getElementById('map-legend-items');
+  if (legendItems) {
+    let html = '';
+    
+    // Define legend based on view type
+    if (viewType === 'ms-current' || viewType === 'ms-production') {
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#3388ff;"></span> Manuscript</div>';
+    } else if (viewType === 'ms-movement') {
+      html += '<div style="display:flex;align-items:center;gap:0.5rem;">';
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#10b981;"></span> Production location</div>';
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:20px;height:3px;background:#ec4899;"></span> Movement</div>';
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ef4444;"></span> Current location</div>';
+      html += '</div>';
+    } else if (viewType === 'pu-location') {
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff7800;"></span> Production Unit</div>';
+    } else if (viewType === 'pu-monastery') {
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#c026d3;"></span> Monastery (with PUs)</div>';
+    } else if (viewType === 'mi-all') {
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#9333ea;"></span> Monastic Institution</div>';
+    }
+    
+    legendItems.innerHTML = html;
+  }
 }
 
 async function buildMap(){
@@ -2561,11 +3077,15 @@ async function buildMap(){
   }
   
   MAP_CURRENT_VIEW = viewSelector?.value || 'ms-current';
+  
+  // Update controls and legend for this view
+  updateMapControls(MAP_CURRENT_VIEW);
 
   // Update title based on view
   const viewTitles = {
     'ms-current': 'Map — Manuscripts by Current Location (Holdings)',
     'ms-production': 'Map — Manuscripts by Production Location',
+    'ms-movement': 'Map — Manuscript Movement (Production → Current)',
     'pu-location': 'Map — Production Units (All Locations)',
     'pu-monastery': 'Map — Production Units by Monastery',
     'mi-all': 'Map — Monastic Institutions',
@@ -2611,8 +3131,11 @@ async function buildMap(){
   // Initial render
   renderMapLayers();
   
-  // Setup event handlers
-  setupMapControls();
+  // Setup event handlers (only once)
+  if (!MAP_CONTROLS_INITIALIZED) {
+    setupMapControls();
+    MAP_CONTROLS_INITIALIZED = true;
+  }
   
   // Fit bounds
   if (MAP_MARKERS_DATA.length) {
@@ -2662,23 +3185,66 @@ function collectMapData(viewType) {
       break;
       
     case 'ms-production':
-      // Manuscripts by production location
+      // Manuscripts by their ACTUAL production location (not fallback)
       DATA.ms.forEach(rec => {
         const prodPt = coordsFromProduction(rec);
-        const holdPt = coordsFromHoldingInstitution(rec);
-        const pt = prodPt || holdPt;
-        if (!pt) return;
+        if (!prodPt) return; // Only show manuscripts with actual production location
         
         const year = getYear(getDetail(rec,'Normalized terminus post quem')?.value) || 
                      getYear(getDetail(rec,'Normalized terminus ante quem')?.value);
         const id = String(rec.rec_ID);
         const title = (MAP.ms.title(rec) || 'Untitled').replace(/"/g,'&quot;');
         
+        // Get production location name
+        const msId = String(rec.rec_ID);
+        const pus = DATA.pu.filter(p => String(getRes(p,'Manuscript')?.id) === msId);
+        const puCountry = pus.length > 0 ? getVal(pus[0], 'PU country') : null;
+        const puCity = pus.length > 0 ? getVal(pus[0], 'PU City') : null;
+        const prodLocation = [puCity, puCountry].filter(Boolean).join(', ') || 'Production location';
+        
         markers.push({
-          rec, pt, prodPt, holdPt, year, id, title,
+          rec, pt: prodPt, prodPt, year, id, title,
           entity: 'ms',
-          subtitle: prodPt ? 'Production location' : 'Holding location (fallback)',
+          subtitle: prodLocation,
           category: 'manuscript'
+        });
+      });
+      break;
+      
+    case 'ms-movement':
+      // Manuscript movement: production → current location
+      DATA.ms.forEach(rec => {
+        const prodPt = coordsFromProduction(rec);
+        const holdPt = coordsFromHoldingInstitution(rec);
+        
+        // Only show if we have BOTH locations and they're DIFFERENT
+        if (!prodPt || !holdPt) return;
+        if (Math.abs(prodPt.lat - holdPt.lat) < 0.01 && Math.abs(prodPt.lng - holdPt.lng) < 0.01) return;
+        
+        const year = getYear(getDetail(rec,'Normalized terminus post quem')?.value) || 
+                     getYear(getDetail(rec,'Normalized terminus ante quem')?.value);
+        const id = String(rec.rec_ID);
+        const title = (MAP.ms.title(rec) || 'Untitled').replace(/"/g,'&quot;');
+        
+        // Get location names
+        const msId = String(rec.rec_ID);
+        const pus = DATA.pu.filter(p => String(getRes(p,'Manuscript')?.id) === msId);
+        const puCountry = pus.length > 0 ? getVal(pus[0], 'PU country') : null;
+        const puCity = pus.length > 0 ? getVal(pus[0], 'PU City') : null;
+        const prodLocation = [puCity, puCountry].filter(Boolean).join(', ') || 'Production';
+        
+        const hiRes = getRes(rec,'Holding Institution');
+        const hi = hiRes?.id ? IDX.hi[String(hiRes.id)] : null;
+        const hiCountry = hi ? getVal(hi, 'Country') : null;
+        const hiCity = hi ? getVal(hi, 'City') : null;
+        const currentLocation = [hiCity, hiCountry].filter(Boolean).join(', ') || 'Current location';
+        
+        markers.push({
+          rec, pt: prodPt, prodPt, holdPt, year, id, title,
+          entity: 'ms',
+          subtitle: `${prodLocation} → ${currentLocation}`,
+          movement: { from: prodLocation, to: currentLocation },
+          category: 'manuscript-movement'
         });
       });
       break;
@@ -2785,103 +3351,6 @@ function collectMapData(viewType) {
         });
       });
       break;
-      
-    case 'scribes-female':
-    case 'scribes-all':
-      // Scribes by their work locations (via manuscripts)
-      const filterFemale = (viewType === 'scribes-female');
-      const scribeLocations = {};
-      
-      DATA.su.forEach(su => {
-        // Filter by gender if needed
-        if (filterFemale) {
-          const gender = getDetail(su,'Gender')?.value;
-          if (!gender || !String(gender).toLowerCase().includes('female')) return;
-        }
-        
-        const suId = String(su.rec_ID);
-        const suTitle = (MAP.su?.title(su) || 'Unnamed Scribe').replace(/"/g,'&quot;');
-        
-        // Find manuscripts this scribe worked on via relationships
-        const relatedManuscripts = [];
-        
-        // Check relationships where SU is source or target
-        const sourceRels = REL_INDEX.bySource[suId] || [];
-        const targetRels = REL_INDEX.byTarget[suId] || [];
-        
-        [...sourceRels, ...targetRels].forEach(rel => {
-          const sourceId = String(getRes(rel, 'Source record')?.id);
-          const targetId = String(getRes(rel, 'Target record')?.id);
-          
-          // Check if either end is a manuscript
-          if (sourceId !== suId && IDX.ms[sourceId]) {
-            relatedManuscripts.push(IDX.ms[sourceId]);
-          }
-          if (targetId !== suId && IDX.ms[targetId]) {
-            relatedManuscripts.push(IDX.ms[targetId]);
-          }
-        });
-        
-        // Also check pointer fields in manuscripts pointing to this SU
-        DATA.ms.forEach(ms => {
-          const details = ms.details || [];
-          details.forEach(d => {
-            if (d.value && typeof d.value === 'object' && String(d.value.id) === suId) {
-              if (!relatedManuscripts.some(m => String(m.rec_ID) === String(ms.rec_ID))) {
-                relatedManuscripts.push(ms);
-              }
-            }
-          });
-        });
-        
-        // For each manuscript, get its location(s)
-        relatedManuscripts.forEach(ms => {
-          const prodPt = coordsFromProduction(ms);
-          const holdPt = coordsFromHoldingInstitution(ms);
-          const pts = [];
-          if (prodPt) pts.push({pt: prodPt, type: 'production', ms});
-          if (holdPt && (!prodPt || (prodPt.lat !== holdPt.lat || prodPt.lng !== holdPt.lng))) {
-            pts.push({pt: holdPt, type: 'holding', ms});
-          }
-          
-          pts.forEach(({pt, type, ms}) => {
-            const key = `${suId}-${pt.lat.toFixed(4)}-${pt.lng.toFixed(4)}`;
-            if (!scribeLocations[key]) {
-              scribeLocations[key] = {
-                su,
-                pt,
-                manuscripts: [],
-                title: suTitle,
-                id: suId,
-                locationType: type
-              };
-            }
-            if (!scribeLocations[key].manuscripts.some(m => String(m.rec_ID) === String(ms.rec_ID))) {
-              scribeLocations[key].manuscripts.push(ms);
-            }
-          });
-        });
-      });
-      
-      // Convert to markers
-      Object.values(scribeLocations).forEach(loc => {
-        const gender = getDetail(loc.su,'Gender')?.value || 'Unknown';
-        const msCount = loc.manuscripts.length;
-        markers.push({
-          rec: loc.su,
-          pt: loc.pt,
-          year: null, // Scribes don't have dates directly
-          id: loc.id,
-          title: loc.title,
-          entity: 'su',
-          subtitle: `${msCount} manuscript${msCount !== 1 ? 's' : ''} (${loc.locationType})`,
-          gender,
-          manuscriptCount: msCount,
-          manuscripts: loc.manuscripts,
-          category: 'scribe'
-        });
-      });
-      break;
   }
   
   return markers;
@@ -2891,9 +3360,10 @@ function collectMapData(viewType) {
 function getMarkerColor(category) {
   const colors = {
     'manuscript': '#3388ff',      // Blue
+    'manuscript-movement': '#ec4899', // Pink (for movement visualization)
     'production': '#ff7800',      // Orange
-    'monastery': '#9333ea',       // Purple
-    'monastery-pu': '#c026d3',    // Magenta
+    'monastery': '#d4af37',       // Gold
+    'monastery-pu': '#c4941f',    // Dark Gold
     'scribe': '#10b981'           // Green
   };
   return colors[category] || '#3388ff';
@@ -2909,6 +3379,15 @@ function createMarkerPopup(m) {
   }
   
   // Add category-specific info
+  if (m.category === 'manuscript-movement') {
+    if (m.productionLocation) {
+      html += `<div style="font-size:0.875rem;margin-bottom:.25rem"><strong>Production:</strong> ${m.productionLocation}</div>`;
+    }
+    if (m.currentLocation) {
+      html += `<div style="font-size:0.875rem;margin-bottom:.25rem"><strong>Current:</strong> ${m.currentLocation}</div>`;
+    }
+  }
+  
   if (m.category === 'monastery-pu' && m.puCount) {
     html += `<div style="font-size:0.875rem;margin-bottom:.25rem">Production Units at this monastery:</div>`;
     html += `<div style="max-height:150px;overflow-y:auto;margin-bottom:.5rem">`;
@@ -3042,7 +3521,48 @@ function renderMapLayers() {
     MAP_CONNECTIONS_LAYER = L.featureGroup();
     
     filtered.forEach(m => {
-      // Manuscripts: production → holding
+      // Manuscript Movement: production → current location (show as curved arc)
+      if (MAP_CURRENT_VIEW === 'ms-movement' && m.prodPt && m.holdPt) {
+        // Draw line from production to current
+        const line = L.polyline(
+          [[m.prodPt.lat, m.prodPt.lng], [m.holdPt.lat, m.holdPt.lng]],
+          {color: '#ec4899', weight: 3, opacity: 0.8}
+        );
+        line.bindPopup(`<div style="min-width:220px">
+          <div style="font-weight:600;margin-bottom:.5rem">${m.title}</div>
+          <div style="font-size:0.875rem;color:#666;margin-bottom:.25rem">
+            <strong>From:</strong> ${m.movement.from}
+          </div>
+          <div style="font-size:0.875rem;color:#666;">
+            <strong>To:</strong> ${m.movement.to}
+          </div>
+        </div>`);
+        MAP_CONNECTIONS_LAYER.addLayer(line);
+        
+        // Add small markers at both ends
+        const startMarker = L.circleMarker([m.prodPt.lat, m.prodPt.lng], {
+          radius: 5,
+          fillColor: '#10b981',
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.9
+        }).bindPopup(`<strong>Production:</strong> ${m.movement.from}`);
+        
+        const endMarker = L.circleMarker([m.holdPt.lat, m.holdPt.lng], {
+          radius: 5,
+          fillColor: '#ef4444',
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.9
+        }).bindPopup(`<strong>Current location:</strong> ${m.movement.to}`);
+        
+        MAP_CONNECTIONS_LAYER.addLayer(startMarker);
+        MAP_CONNECTIONS_LAYER.addLayer(endMarker);
+      }
+      
+      // Manuscripts production view: production → holding
       if (MAP_CURRENT_VIEW === 'ms-production' && m.prodPt && m.holdPt) {
         const line = L.polyline(
           [[m.prodPt.lat, m.prodPt.lng], [m.holdPt.lat, m.holdPt.lng]],
@@ -4404,7 +4924,7 @@ function buildSubsetNetwork(subsetType) {
         <h3 style="margin-top:0;">📊 ${subset.label}</h3>
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:0.5rem;padding:1rem;margin:1rem 0;">
           <div style="font-size:0.875rem;color:#666;margin-bottom:0.5rem;">Network Statistics:</div>
-          <div style="font-size:2rem;font-weight:700;color:#667eea;margin-bottom:0.25rem;">${totalNodes.toLocaleString()}</div>
+          <div style="font-size:2rem;font-weight:700;color:#d4af37;margin-bottom:0.25rem;">${totalNodes.toLocaleString()}</div>
           <div style="font-size:0.875rem;color:#666;">total entities in this network</div>
         </div>
         
@@ -4434,7 +4954,7 @@ function buildSubsetNetwork(subsetType) {
               </div>
             </button>
             
-            <button id="network-search-mode-btn" class="chip" style="padding:0.75rem;text-align:left;background:#667eea;color:white;display:flex;align-items:center;gap:0.5rem;width:100%;">
+            <button id="network-search-mode-btn" class="chip" style="padding:0.75rem;text-align:left;background:#d4af37;color:white;display:flex;align-items:center;gap:0.5rem;width:100%;">
               <span style="font-size:1.2rem;">🔍</span>
               <div style="flex:1;">
                 <div style="font-weight:600;">Search & Explore</div>
@@ -5506,33 +6026,28 @@ function exportAnalyticsVisualization(format) {
     return;
   }
   
+  // Check if there's actual content
+  if (!analyticsMount.innerHTML.trim()) {
+    alert('⚠️ No visualization content to export. Please generate a visualization first.');
+    return;
+  }
+  
+  // Check if element has dimensions
+  const rect = analyticsMount.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) {
+    alert('⚠️ Visualization has no visible dimensions. Please ensure the visualization is properly rendered.');
+    return;
+  }
+  
   // Try to find SVG element (most analytics use D3 SVG)
   const svgElement = analyticsMount.querySelector('svg');
   
   if (!svgElement) {
-    // If no SVG, might be a complex HTML viz, use html2canvas
+    // If no SVG, use html2canvas for HTML content
     if (format === 'png') {
-      analyticsMount.style.cursor = 'wait';
-      html2canvas(analyticsMount, {
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        scale: 3,
-        logging: false
-      }).then(canvas => {
-        canvas.toBlob(function(blob) {
-          const vizType = document.getElementById('analytics-viz-type')?.value || 'dashboard';
-          const filename = `unknownhands-analytics-${vizType}-${Date.now()}.png`;
-          downloadFile(blob, filename, 'image/png');
-          analyticsMount.style.cursor = '';
-        }, 'image/png');
-      }).catch(error => {
-        console.error('Analytics export error:', error);
-        analyticsMount.style.cursor = '';
-        alert('⚠️ Failed to export visualization. Please try again.');
-      });
+      alert('⚠️ HTML-based visualizations cannot be exported automatically. Please use your browser\'s screenshot tool (Cmd+Shift+4 on Mac, or right-click > "Save image as" in some browsers).');
     } else {
-      alert('⚠️ This visualization type does not support SVG export. Please use PNG export.');
+      alert('⚠️ This visualization type does not support SVG export. Please use PNG export or screenshot tool.');
     }
     return;
   }
@@ -6202,11 +6717,6 @@ function initEventListeners() {
     }
   });
   
-  // Analytics SVG export
-  document.getElementById('analytics-export-svg')?.addEventListener('click', () => {
-    exportAnalyticsVisualization('svg');
-  });
-  
   // Analytics PNG export
   document.getElementById('analytics-export-png')?.addEventListener('click', () => {
     exportAnalyticsVisualization('png');
@@ -6497,13 +7007,6 @@ function buildAnalytics(){
   const mount = document.getElementById('analytics-mount');
   if (!mount) return;
   
-  const vizType = document.getElementById('analytics-viz-type')?.value || 'dashboard';
-  
-  // Reset tree display count when switching away from tree view
-  if (vizType !== 'tree' && window.treeDisplayCount) {
-    window.treeDisplayCount = 10;
-  }
-  
   // Always use all entities for analytics visualizations
   let list = [];
   Object.keys(DATA).forEach(entityType => {
@@ -6514,75 +7017,74 @@ function buildAnalytics(){
     }
   });
 
-  // Show/hide tree search panel
-  const treeSearchPanel = document.getElementById('tree-search-panel');
-  if (treeSearchPanel) {
-    treeSearchPanel.style.display = vizType === 'tree' ? 'block' : 'none';
+  // Clear mount
+  mount.innerHTML = '';
+
+  // Build statistical dashboard
+  buildStatisticalDashboard(mount, list);
+}
+
+function buildCodicology(){
+  const mount = document.getElementById('codicology-mount');
+  if (!mount) return;
+  
+  // Always use all entities for codicology
+  let list = [];
+  Object.keys(DATA).forEach(entityType => {
+    if (DATA[entityType] && Array.isArray(DATA[entityType])) {
+      DATA[entityType].forEach(record => {
+        list.push({ ...record, rty: entityType }); // Ensure rty is set
+      });
+    }
+  });
+
+  // Populate region filter dropdown if not already populated
+  const regionFilter = document.getElementById('codic-filter-region');
+  if (regionFilter && regionFilter.options.length === 1) { // Only has "All Regions"
+    const msRecords = list.filter(r => r.rty === 'ms');
+    const countries = new Set();
+    msRecords.forEach(ms => {
+      const country = getVal(ms, 'Country of production (verbatim)');
+      if (country && country !== '—') {
+        countries.add(country);
+      }
+    });
+    
+    // Sort and add options
+    Array.from(countries).sort().forEach(country => {
+      const option = document.createElement('option');
+      option.value = country;
+      option.textContent = country;
+      regionFilter.appendChild(option);
+    });
   }
 
   // Clear mount
   mount.innerHTML = '';
 
-  // Build selected visualization
-  switch (vizType) {
-    case 'dashboard':
-      buildStatisticalDashboard(mount, list);
-      break;
-    case 'codicology':
-      buildCodicologicalAnalysis(mount, list);
-      break;
-    case 'sankey':
-      buildSankeyDiagram(mount, list);
-      break;
-    case 'matrix':
-      buildMatrixVisualization(mount, list);
-      break;
-    case 'chord':
-      buildChordDiagram(mount, list);
-      break;
-    case 'tree':
-      buildHierarchicalTree(mount, list);
-      break;
-  }
+  // Build codicological analysis
+  buildCodicologicalAnalysis(mount, list);
 }
 
-// Update description text when visualization type changes
-const analyticsVizSelect = document.getElementById('analytics-viz-type');
-const analyticsDescription = document.getElementById('analytics-description');
-const entityFilterPanel = document.getElementById('entity-filter-panel');
-const treeSearchPanel = document.getElementById('tree-search-panel');
-
-if (analyticsVizSelect && analyticsDescription) {
-  analyticsVizSelect.addEventListener('change', () => {
-    const vizType = analyticsVizSelect.value;
-    const descriptions = {
-      dashboard: '<strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.',
-      codicology: '<strong>Codicological Analysis:</strong> Quantitative analysis of manuscript physical features including size, material, quire structure, ruling, and scribal practices. Explore correlations between variables like gender and size, material and dimensions, catchwords and quire types, etc. Statistical tests help identify significant patterns in manuscript production practices across different contexts.',
-      sankey: '<strong>Sankey Diagram:</strong> Visualizes relationship flows between entity types, showing how different entities connect throughout the corpus (e.g., Manuscripts → Production Units → Scribal Units → Historical People). Flow width represents connection frequency. Reveals collaboration patterns, manuscript production networks, and entity co-occurrence. Top 15 flows displayed, with filtering by relationship type.',
-      matrix: '<strong>Matrix Visualization:</strong> Heatmap displaying connection density between all entity type pairs. Color intensity indicates relationship strength. Useful for identifying highly connected entity types, discovering unexpected relationships, and understanding the overall network structure of the corpus. Reveals which entity types most frequently connect.',
-      chord: '<strong>Chord Diagram:</strong> Circular visualization highlighting proportional entity connections across the corpus. Arc size represents total connections per entity type. Shows network centrality and relative importance of each entity type in the relationship network. Helps identify hub entities and connection distribution patterns.',
-      tree: '<strong>Hierarchical Tree:</strong> Displays manuscript structure hierarchy (Manuscripts → Production Units → Scribal Units) showing physical codicological relationships. Reveals composite manuscript structure, production unit organization, and scribal hand distribution. Useful for understanding manuscript complexity and codicological makeup. Search for specific manuscripts or view all with "Show More".'
-    };
-    analyticsDescription.innerHTML = descriptions[vizType] || '';
-    
-    // Show/hide entity filter (only for dashboard)
-    if (entityFilterPanel) {
-      entityFilterPanel.style.display = (vizType === 'dashboard') ? 'block' : 'none';
+function buildHierarchicalTree(){
+  const mount = document.getElementById('tree-mount');
+  if (!mount) return;
+  
+  // Always use all entities for tree
+  let list = [];
+  Object.keys(DATA).forEach(entityType => {
+    if (DATA[entityType] && Array.isArray(DATA[entityType])) {
+      DATA[entityType].forEach(record => {
+        list.push({ ...record, rty: entityType }); // Ensure rty is set
+      });
     }
-    
-    // Show/hide codicology panel (only for codicology)
-    const codicologyPanel = document.getElementById('codicology-panel');
-    if (codicologyPanel) {
-      codicologyPanel.style.display = (vizType === 'codicology') ? 'block' : 'none';
-    }
-    
-    // Show/hide tree search (only for tree)
-    if (treeSearchPanel) {
-      treeSearchPanel.style.display = (vizType === 'tree') ? 'block' : 'none';
-    }
-    
-    buildAnalytics();
   });
+
+  // Clear mount
+  mount.innerHTML = '';
+
+  // Build hierarchical tree visualization
+  buildHierarchicalTreeVisualization(mount, list);
 }
 
 // Entity filter for statistical dashboard
@@ -6604,7 +7106,7 @@ const treeFilterMultiPU = document.getElementById('tree-filter-multi-pu');
 
 if (treeSearchInput) {
   treeSearchInput.addEventListener('input', () => {
-    buildAnalytics();
+    buildHierarchicalTree();
   });
 }
 
@@ -6612,14 +7114,14 @@ if (treeSearchClear) {
   treeSearchClear.addEventListener('click', () => {
     if (treeSearchInput) {
       treeSearchInput.value = '';
-      buildAnalytics();
+      buildHierarchicalTree();
     }
   });
 }
 
 if (treeSortSelect) {
   treeSortSelect.addEventListener('change', () => {
-    buildAnalytics();
+    buildHierarchicalTree();
   });
 }
 
@@ -6627,41 +7129,511 @@ if (treeSortSelect) {
 [treeFilterInterleaved, treeFilterCrossMSPU, treeFilterCrossPUSU, treeFilterMultiPU].forEach(checkbox => {
   if (checkbox) {
     checkbox.addEventListener('change', () => {
-      buildAnalytics();
+      buildHierarchicalTree();
     });
   }
 });
 
 // Codicological analysis controls
-const codicAnalysisType = document.getElementById('codic-analysis-type');
 const codicVizType = document.getElementById('codic-viz-type');
-const codicCustomPanel = document.getElementById('codic-custom-panel');
+const codicXVar = document.getElementById('codic-x-var');
+const codicYVar = document.getElementById('codic-y-var');
+const codicColorVar = document.getElementById('codic-color-var');
 
-if (codicAnalysisType) {
-  codicAnalysisType.addEventListener('change', (e) => {
-    // Show/hide custom panel
-    if (codicCustomPanel) {
-      codicCustomPanel.style.display = (e.target.value === 'custom') ? 'block' : 'none';
+// Research question preset buttons
+document.querySelectorAll('.codic-research-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const preset = e.currentTarget.dataset.preset;
+    
+    if (preset === 'gender-size') {
+      // Gender vs Size: Are female-copied MSs smaller?
+      if (codicXVar) codicXVar.value = 'gender';
+      if (codicYVar) codicYVar.value = 'combined-size';
+      if (codicColorVar) codicColorVar.value = 'material';
+      if (codicVizType) codicVizType.value = 'box';
+    } else if (preset === 'material-size') {
+      // Material vs Size: Parchment smaller due to cost?
+      if (codicXVar) codicXVar.value = 'material';
+      if (codicYVar) codicYVar.value = 'combined-size';
+      if (codicColorVar) codicColorVar.value = 'century';
+      if (codicVizType) codicVizType.value = 'box';
+    } else if (preset === 'material-timeline') {
+      // Material Over Time: Paper adoption patterns
+      if (codicXVar) codicXVar.value = 'date';
+      if (codicYVar) codicYVar.value = 'combined-size';
+      if (codicColorVar) codicColorVar.value = 'material';
+      if (codicVizType) codicVizType.value = 'scatter';
+    } else if (preset === 'decoration-material') {
+      // Decoration by Material: Parchment more decorated?
+      if (codicXVar) codicXVar.value = 'material';
+      if (codicYVar) codicYVar.value = 'combined-size';
+      if (codicColorVar) codicColorVar.value = 'decoration';
+      if (codicVizType) codicVizType.value = 'box';
     }
-    buildAnalytics();
+    
+    buildCodicology();
+  });
+});
+
+// Old preset button functionality (kept for backward compatibility)
+document.querySelectorAll('.codic-preset-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const preset = e.target.dataset.preset;
+    const vizTypeSelect = document.getElementById('codic-viz-type');
+    
+    if (preset === 'clear') {
+      // Clear all selections
+      if (codicXVar) codicXVar.value = '';
+      if (codicYVar) codicYVar.value = '';
+      if (codicColorVar) codicColorVar.value = 'none';
+      if (vizTypeSelect) vizTypeSelect.value = 'scatter';
+    } else if (preset === 'material-size') {
+      // Material (categorical) vs Height (numeric) - use BOX PLOT
+      if (codicXVar) codicXVar.value = 'material';
+      if (codicYVar) codicYVar.value = 'combined-size';
+      if (codicColorVar) codicColorVar.value = 'gender';
+      if (vizTypeSelect) vizTypeSelect.value = 'box';
+    } else if (preset === 'date-folios') {
+      // Date (numeric) vs Folios (numeric) - use SCATTER PLOT
+      if (codicXVar) codicXVar.value = 'date';
+      if (codicYVar) codicYVar.value = 'folios';
+      if (codicColorVar) codicColorVar.value = 'material';
+      if (vizTypeSelect) vizTypeSelect.value = 'scatter';
+    } else if (preset === 'quire-material') {
+      // Material (categorical) distribution - use BAR CHART
+      if (codicXVar) codicXVar.value = 'material';
+      if (codicYVar) codicYVar.value = 'folios';
+      if (codicColorVar) codicColorVar.value = 'century';
+      if (vizTypeSelect) vizTypeSelect.value = 'bar';
+    }
+    
+    // Update variable options for the new viz type
+    updateVariableOptionsForVizType();
+    buildCodicology();
+  });
+});
+
+// Clear filters button
+const clearFiltersBtn = document.getElementById('codic-clear-filters-btn');
+if (clearFiltersBtn) {
+  clearFiltersBtn.addEventListener('click', () => {
+    const centuryFilter = document.getElementById('codic-filter-century');
+    const materialFilter = document.getElementById('codic-filter-material');
+    const regionFilter = document.getElementById('codic-filter-region');
+    
+    // Clear multi-select dropdowns
+    if (centuryFilter) {
+      Array.from(centuryFilter.options).forEach(opt => opt.selected = false);
+    }
+    if (materialFilter) {
+      Array.from(materialFilter.options).forEach(opt => opt.selected = false);
+    }
+    if (regionFilter) {
+      Array.from(regionFilter.options).forEach(opt => opt.selected = false);
+    }
+    
+    buildCodicology();
+  });
+}
+
+// Filter change listeners
+['codic-filter-century', 'codic-filter-material', 'codic-filter-region'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('change', () => {
+      buildCodicology();
+    });
+  }
+});
+
+// Codicology export button
+const codicologyExportBtn = document.getElementById('codicology-export-png');
+if (codicologyExportBtn) {
+  codicologyExportBtn.addEventListener('click', async () => {
+    const mount = document.getElementById('codicology-mount');
+    if (!mount) return;
+    
+    // Import html2canvas dynamically if not already loaded
+    if (typeof html2canvas === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      document.head.appendChild(script);
+      await new Promise(resolve => script.onload = resolve);
+    }
+    
+    try {
+      const canvas = await html2canvas(mount, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true
+      });
+      
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = 'codicology-analysis.png';
+      link.href = dataURL;
+      link.click();
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert('Export failed. Please try again.');
+    }
+  });
+}
+
+// Individual card export buttons (delegated event listener)
+document.addEventListener('click', async (e) => {
+  if (e.target.classList.contains('export-card-btn')) {
+    const card = e.target.closest('.analysis-card');
+    if (!card) return;
+    
+    // Import html2canvas if needed
+    if (typeof html2canvas === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      document.head.appendChild(script);
+      await new Promise(resolve => script.onload = resolve);
+    }
+    
+    try {
+      const canvas = await html2canvas(card, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true
+      });
+      
+      const cardId = card.getAttribute('data-card-id') || 'card';
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = `codicology-${cardId}.png`;
+      link.href = dataURL;
+      link.click();
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert('Export failed. Please try again.');
+    }
+  }
+});
+
+// Analytics export button
+const analyticsExportBtn = document.getElementById('analytics-export-png');
+if (analyticsExportBtn) {
+  analyticsExportBtn.addEventListener('click', async () => {
+    const mount = document.getElementById('analytics-mount');
+    if (!mount) return;
+    
+    if (typeof html2canvas === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      document.head.appendChild(script);
+      await new Promise(resolve => script.onload = resolve);
+    }
+    
+    try {
+      const canvas = await html2canvas(mount, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        logging: false,
+        useCORS: true
+      });
+      
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = 'analytics-dashboard.png';
+      link.href = dataURL;
+      link.click();
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert('Export failed. Please try again.');
+    }
+  });
+}
+
+// Comparison mode storage
+const COMPARISONS = [];
+
+// Add to comparison button
+const addComparisonBtn = document.getElementById('codicology-add-comparison');
+const viewComparisonBtn = document.getElementById('codicology-view-comparison');
+const clearComparisonBtn = document.getElementById('codicology-clear-comparison');
+const comparisonCountSpan = document.getElementById('comparison-count');
+
+if (addComparisonBtn) {
+  addComparisonBtn.addEventListener('click', () => {
+    const xVar = document.getElementById('codic-x-var')?.value;
+    const yVar = document.getElementById('codic-y-var')?.value;
+    const colorVar = document.getElementById('codic-color-var')?.value;
+    const vizType = document.getElementById('codic-viz-type')?.value;
+    
+    if (!xVar || !yVar) {
+      alert('Please select X and Y variables first');
+      return;
+    }
+    
+    // Capture current state
+    const mount = document.getElementById('codicology-mount');
+    const html = mount ? mount.innerHTML : '';
+    
+    // Get active filters (handle multi-select)
+    const centurySelect = document.getElementById('codic-filter-century');
+    const materialSelect = document.getElementById('codic-filter-material');
+    const regionSelect = document.getElementById('codic-filter-region');
+    
+    const filters = {
+      centuries: centurySelect ? Array.from(centurySelect.selectedOptions).map(o => o.text) : [],
+      materials: materialSelect ? Array.from(materialSelect.selectedOptions).map(o => o.text) : [],
+      regions: regionSelect ? Array.from(regionSelect.selectedOptions).map(o => o.text) : []
+    };
+    
+    COMPARISONS.push({
+      id: Date.now(),
+      xVar, yVar, colorVar, vizType,
+      filters,
+      html,
+      timestamp: new Date().toLocaleTimeString()
+    });
+    
+    // Update UI
+    if (comparisonCountSpan) comparisonCountSpan.textContent = COMPARISONS.length;
+    if (viewComparisonBtn) viewComparisonBtn.style.display = 'inline-block';
+    if (clearComparisonBtn) clearComparisonBtn.style.display = 'inline-block';
+    
+    alert(`✓ Analysis added to comparison (${COMPARISONS.length} total)`);
+  });
+}
+
+if (viewComparisonBtn) {
+  viewComparisonBtn.addEventListener('click', () => {
+    const mount = document.getElementById('codicology-mount');
+    if (!mount || COMPARISONS.length === 0) return;
+    
+    const varLabels = {
+      'height': 'Height', 'width': 'Width', 'combined-size': 'Size',
+      'material': 'Material', 'gender': 'Gender', 'date': 'Date',
+      'century': 'Century', 'folios': 'Folios'
+    };
+    
+    const comparisonHTML = `
+      <div style="padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <h2 style="margin: 0;">📊 Comparison View</h2>
+          <button onclick="buildCodicology()" style="padding: 0.5rem 1rem; background: #6c757d; color: white; border: none; border-radius: 0.25rem; cursor: pointer;">
+            ← Back to Analysis
+          </button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 1.5rem;">
+          ${COMPARISONS.map((comp, idx) => {
+            // Build filter description for multi-select
+            const filterParts = [];
+            if (comp.filters.dateMin || comp.filters.dateMax) {
+              filterParts.push(`Date: ${comp.filters.dateMin || '?'}-${comp.filters.dateMax || '?'}`);
+            }
+            if (comp.filters.centuries && comp.filters.centuries.length > 0) {
+              filterParts.push(`Century: ${comp.filters.centuries.join(', ')}`);
+            }
+            if (comp.filters.genders && comp.filters.genders.length > 0) {
+              filterParts.push(`Gender: ${comp.filters.genders.join(', ')}`);
+            }
+            if (comp.filters.materials && comp.filters.materials.length > 0) {
+              filterParts.push(`Material: ${comp.filters.materials.join(', ')}`);
+            }
+            if (comp.filters.region) {
+              filterParts.push(`Region: ${comp.filters.region}`);
+            }
+            const filterDesc = filterParts.length > 0 ? filterParts.join(' | ') : 'No filters';
+            
+            return `
+              <div style="border: 2px solid #dee2e6; border-radius: 0.5rem; overflow: hidden;">
+                <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem;">
+                  <div style="font-weight: 600; font-size: 1.1rem;">Set ${String.fromCharCode(65 + idx)} - ${comp.timestamp}</div>
+                  <div style="font-size: 0.875rem; margin-top: 0.25rem; opacity: 0.9;">
+                    ${varLabels[comp.xVar] || comp.xVar} vs ${varLabels[comp.yVar] || comp.yVar}
+                    ${comp.colorVar && comp.colorVar !== 'none' ? ` (by ${varLabels[comp.colorVar] || comp.colorVar})` : ''}
+                  </div>
+                  <div style="font-size: 0.75rem; margin-top: 0.5rem; opacity: 0.8;">
+                    Filters: ${filterDesc}
+                  </div>
+                </div>
+                <div style="padding: 1rem; background: white;">
+                  ${comp.html}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+    
+    mount.innerHTML = comparisonHTML;
+  });
+}
+
+if (clearComparisonBtn) {
+  clearComparisonBtn.addEventListener('click', () => {
+    if (confirm('Clear all saved comparisons?')) {
+      COMPARISONS.length = 0;
+      if (comparisonCountSpan) comparisonCountSpan.textContent = '0';
+      if (viewComparisonBtn) viewComparisonBtn.style.display = 'none';
+      if (clearComparisonBtn) clearComparisonBtn.style.display = 'none';
+      alert('✓ Comparisons cleared');
+    }
   });
 }
 
 if (codicVizType) {
   codicVizType.addEventListener('change', () => {
-    buildAnalytics();
+    updateVariableOptionsForVizType();
+    buildCodicology();
   });
 }
 
-// Custom variable selectors
-['codic-x-var', 'codic-y-var', 'codic-color-var'].forEach(id => {
-  const select = document.getElementById(id);
+// Variable selectors
+[codicXVar, codicYVar, codicColorVar].forEach(select => {
   if (select) {
     select.addEventListener('change', () => {
-      buildAnalytics();
+      buildCodicology();
     });
   }
 });
+
+// Smart variable filtering based on visualization type
+function updateVariableOptionsForVizType() {
+  const vizType = document.getElementById('codic-viz-type')?.value;
+  const xVarSelect = document.getElementById('codic-x-var');
+  const yVarSelect = document.getElementById('codic-y-var');
+  const colorVarSelect = document.getElementById('codic-color-var');
+  
+  if (!vizType || !xVarSelect || !yVarSelect) return;
+  
+  // Categorize variables by type
+  const numericVars = ['height', 'width', 'combined-size', 'justification-height', 'justification-width', 
+                       'margin-ratio', 'folios', 'columns', 'lines-per-page', 'quires', 'date', 'century'];
+  const categoricalVars = ['material', 'quire-type', 'ruling-type', 'script-type', 'binding-type', 
+                           'gender', 'scribe-name', 'origin-country', 'origin-region', 'monastery-type',
+                           'catchwords', 'signatures', 'watermark', 'ruling-type', 'decoration',
+                           'has-colophon', 'language', 'collaboration-type', 'multiple-scribes'];
+  
+  // Get current selections
+  const currentX = xVarSelect.value;
+  const currentY = yVarSelect.value;
+  const currentColor = colorVarSelect?.value;
+  
+  // Rules for each visualization type
+  let xAllowed, yAllowed, colorAllowed;
+  
+  switch(vizType) {
+    case 'scatter':
+      // Scatter: Both X and Y must be numeric
+      xAllowed = numericVars;
+      yAllowed = numericVars;
+      colorAllowed = categoricalVars;
+      break;
+      
+    case 'box':
+      // Box plot: X can be categorical, Y must be numeric
+      xAllowed = [...categoricalVars, ...numericVars];
+      yAllowed = numericVars;
+      colorAllowed = categoricalVars;
+      break;
+      
+    case 'bar':
+      // Bar chart: X typically categorical, Y can be count or numeric
+      xAllowed = [...categoricalVars, ...numericVars];
+      yAllowed = [...numericVars, ...categoricalVars];
+      colorAllowed = categoricalVars;
+      break;
+      
+    case 'correlation':
+      // Correlation: Both must be numeric
+      xAllowed = numericVars;
+      yAllowed = numericVars;
+      colorAllowed = categoricalVars;
+      break;
+      
+    case 'stats':
+      // Stats table: flexible
+      xAllowed = [...categoricalVars, ...numericVars];
+      yAllowed = numericVars;
+      colorAllowed = categoricalVars;
+      break;
+      
+    default:
+      // Default: allow all
+      xAllowed = [...numericVars, ...categoricalVars];
+      yAllowed = [...numericVars, ...categoricalVars];
+      colorAllowed = categoricalVars;
+  }
+  
+  // Filter options in dropdowns
+  filterSelectOptions(xVarSelect, xAllowed, currentX);
+  filterSelectOptions(yVarSelect, yAllowed, currentY);
+  if (colorVarSelect) filterSelectOptions(colorVarSelect, colorAllowed, currentColor, true);
+  
+  // Add helpful message
+  updateVizTypeHelp(vizType);
+}
+
+function filterSelectOptions(select, allowedVars, currentValue, isColorVar = false) {
+  const allOptions = Array.from(select.querySelectorAll('option'));
+  
+  allOptions.forEach(option => {
+    const value = option.value;
+    
+    // Always show empty/none options
+    if (!value || value === '' || value === 'none') {
+      option.style.display = '';
+      option.disabled = false;
+      return;
+    }
+    
+    // Check if this variable is allowed
+    if (allowedVars.includes(value)) {
+      option.style.display = '';
+      option.disabled = false;
+    } else {
+      option.style.display = 'none';
+      option.disabled = true;
+      
+      // If current selection is now invalid, clear it
+      if (value === currentValue) {
+        select.value = isColorVar ? 'none' : '';
+      }
+    }
+  });
+  
+  // Also handle optgroups
+  const optgroups = select.querySelectorAll('optgroup');
+  optgroups.forEach(group => {
+    const visibleOptions = Array.from(group.querySelectorAll('option')).filter(
+      opt => opt.style.display !== 'none'
+    );
+    // Hide optgroup if all its options are hidden
+    group.style.display = visibleOptions.length > 0 ? '' : 'none';
+  });
+}
+
+function updateVizTypeHelp(vizType) {
+  const helpDiv = document.getElementById('codicology-description');
+  if (!helpDiv) return;
+  
+  const helpTexts = {
+    'scatter': '<strong>Scatter Plot:</strong> Shows relationship between two numeric variables. Best for exploring correlations. <em>Requires: numeric X and Y</em>',
+    'box': '<strong>Box Plot:</strong> Compares distribution of a numeric variable across categories. Shows median, quartiles, and outliers. <em>Requires: numeric Y</em>',
+    'bar': '<strong>Bar Chart:</strong> Compares counts or averages across categories. <em>Works with: categorical or numeric variables</em>',
+    'correlation': '<strong>Correlation Analysis:</strong> Calculates Pearson correlation coefficient between two numeric variables. <em>Requires: numeric X and Y</em>',
+    'stats': '<strong>Statistical Summary:</strong> Displays mean, median, min, max for groups. <em>Requires: numeric Y</em>'
+  };
+  
+  if (helpTexts[vizType]) {
+    helpDiv.innerHTML = helpTexts[vizType];
+  }
+}
+
+// Initialize on page load
+if (codicVizType) {
+  updateVariableOptionsForVizType();
+}
 
 // Statistical Dashboard
 function buildStatisticalDashboard(mount, list) {
@@ -7164,43 +8136,699 @@ function buildTemporalChart(list) {
 
 // Codicological Analysis - Quantitative codicology with statistical tests
 function buildCodicologicalAnalysis(mount, list) {
-  const analysisType = document.getElementById('codic-analysis-type')?.value || 'material-size';
+  // Get selected variables from dropdowns
+  const xVar = document.getElementById('codic-x-var')?.value || '';
+  const yVar = document.getElementById('codic-y-var')?.value || '';
+  const colorVar = document.getElementById('codic-color-var')?.value || 'none';
   const vizType = document.getElementById('codic-viz-type')?.value || 'scatter';
   
+  // Check if variables are selected
+  if (!xVar || !yVar) {
+    mount.innerHTML = `
+      <div style="padding: 4rem 2rem; text-align: center; color: #666;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+        <h3 style="color: #999; font-weight: 500;">Select Variables to Begin Analysis</h3>
+        <p style="margin-top: 0.5rem;">Choose X and Y axis variables from the dropdowns above to explore codicological patterns.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">💡 Try the Quick Analysis presets for research questions!</p>
+      </div>
+    `;
+    return;
+  }
+  
   // Filter to relevant entity types
-  const msRecords = list.filter(r => r.rty === 'ms');
+  let msRecords = list.filter(r => r.rty === 'ms');
   const suRecords = list.filter(r => r.rty === 'su');
   const puRecords = list.filter(r => r.rty === 'pu');
   
-  let html = '';
+  // Apply filters
+  let filterCount = 0;
+  let filteredOut = 0;
+  const originalCount = msRecords.length;
   
-  switch (analysisType) {
-    case 'material-size':
-      html = analyzeMaterialVsSize(msRecords, puRecords, vizType);
-      break;
-    case 'size-date':
-      html = analyzeSizeVsDate(msRecords, puRecords, vizType);
-      break;
-    case 'quire-patterns':
-      html = analyzeQuirePatterns(msRecords, puRecords, vizType);
-      break;
-    case 'column-patterns':
-      html = analyzeColumnPatterns(msRecords, puRecords, vizType);
-      break;
-    case 'margin-ratio':
-      html = analyzeMarginRatio(msRecords, puRecords, vizType);
-      break;
-    case 'custom':
-      html = analyzeCustomVariables(msRecords, puRecords, vizType);
-      break;
-    default:
-      html = '<div style="padding: 2rem; text-align: center; color: #666;">Select an analysis type</div>';
+  // Century filter (multi-select)
+  const centurySelect = document.getElementById('codic-filter-century');
+  const selectedCenturies = centurySelect ? Array.from(centurySelect.selectedOptions).map(opt => parseInt(opt.value)) : [];
+  
+  if (selectedCenturies.length > 0) {
+    // Define century ranges
+    const centuryRanges = {
+      8: [700, 799],
+      9: [800, 899],
+      10: [900, 999],
+      11: [1000, 1099],
+      12: [1100, 1199],
+      13: [1200, 1299],
+      14: [1300, 1399],
+      15: [1400, 1499],
+      16: [1500, 1599]
+    };
+    
+    msRecords = msRecords.filter(ms => {
+      const dateStr = getVal(ms, 'Date (single or range)');
+      if (!dateStr || dateStr === '—') return false;
+      
+      const matches = dateStr.match(/(\d{3,4})/g);
+      if (!matches) return false;
+      
+      // Check if ANY year in the date range falls within ANY selected century
+      for (const match of matches) {
+        const year = parseInt(match);
+        if (isNaN(year)) continue;
+        
+        for (const targetCentury of selectedCenturies) {
+          const [minYear, maxYear] = centuryRanges[targetCentury] || [0, 0];
+          if (year >= minYear && year <= maxYear) {
+            return true;
+          }
+        }
+      }
+      return false;
+    });
+    filterCount++;
   }
+  
+  // Gender filter (multi-select)
+  const genderSelect = document.getElementById('codic-filter-gender');
+  const selectedGenders = genderSelect ? Array.from(genderSelect.selectedOptions).map(opt => opt.value) : [];
+  
+  if (selectedGenders.length > 0) {
+    const filteredMSIds = new Set();
+    suRecords.forEach(su => {
+      const gender = getVal(su, 'Scribe gender');
+      if (gender && selectedGenders.some(g => gender.includes(g))) {
+        // Find which MS this SU belongs to
+        const msPointers = (su.details || []).filter(d => 
+          d?.value && typeof d.value === 'object' && d.value.type === 'ms'
+        );
+        msPointers.forEach(ptr => {
+          if (ptr.value.id) filteredMSIds.add(String(ptr.value.id));
+        });
+      }
+    });
+    
+    if (filteredMSIds.size > 0) {
+      msRecords = msRecords.filter(ms => filteredMSIds.has(String(ms.rec_ID)));
+      filterCount++;
+    }
+  }
+  
+  // Material filter (multi-select)
+  const materialSelect = document.getElementById('codic-filter-material');
+  const selectedMaterials = materialSelect ? Array.from(materialSelect.selectedOptions).map(opt => opt.value) : [];
+  
+  if (selectedMaterials.length > 0) {
+    const filteredMSIds = new Set();
+    puRecords.forEach(pu => {
+      const material = getVal(pu, 'Material');
+      if (material && selectedMaterials.some(m => material.includes(m))) {
+        // Find which MS this PU belongs to
+        const msPointers = (pu.details || []).filter(d => 
+          d?.value && typeof d.value === 'object' && d.value.type === 'ms'
+        );
+        msPointers.forEach(ptr => {
+          if (ptr.value.id) filteredMSIds.add(String(ptr.value.id));
+        });
+      }
+    });
+    
+    if (filteredMSIds.size > 0) {
+      msRecords = msRecords.filter(ms => filteredMSIds.has(String(ms.rec_ID)));
+      filterCount++;
+    }
+  }
+  
+  // Region filter (multi-select)
+  const regionSelect = document.getElementById('codic-filter-region');
+  const selectedRegions = regionSelect ? Array.from(regionSelect.selectedOptions).map(opt => opt.value) : [];
+  
+  if (selectedRegions.length > 0) {
+    msRecords = msRecords.filter(ms => {
+      const country = getVal(ms, 'Country of production (verbatim)');
+      return country && selectedRegions.some(region => country.includes(region));
+    });
+    filterCount++;
+  }
+  
+  filteredOut = originalCount - msRecords.length;
+  
+  // Update filter status
+  const filterStatus = document.getElementById('codic-filter-status');
+  if (filterStatus && filterCount > 0) {
+    filterStatus.innerHTML = `✓ ${filterCount} filter(s) active: ${msRecords.length} manuscripts (${filteredOut} filtered out)`;
+    filterStatus.style.color = '#2196F3';
+    filterStatus.style.fontWeight = '600';
+  } else if (filterStatus) {
+    filterStatus.innerHTML = '';
+  }
+  
+  // Build EXPLORATORY analysis with multiple views
+  const html = buildExploratoryAnalysis(msRecords, puRecords, suRecords, xVar, yVar, colorVar, vizType);
   
   mount.innerHTML = html;
 }
 
-// Helper function to calculate manuscript size as height + width
+// NEW: Exploratory analysis with multiple cards
+function buildExploratoryAnalysis(msRecords, puRecords, suRecords, xVar, yVar, colorVar, vizType) {
+  // Extract data points once and reuse
+  const dataPoints = extractDataPoints(msRecords, puRecords, suRecords, xVar, yVar, colorVar);
+  
+  // Generate Key Insights
+  const insights = generateKeyInsights(dataPoints, xVar, yVar, colorVar);
+  
+  // Build main visualization
+  const mainViz = analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, colorVar, vizType);
+  
+  // Build summary statistics card
+  const summaryCard = buildSummaryStatisticsCard(dataPoints, xVar, yVar, colorVar);
+  
+  // Build breakdown by key dimensions card
+  const breakdownCard = buildBreakdownCard(msRecords, puRecords, suRecords, xVar, yVar, colorVar);
+  
+  return `
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      ${insights ? `
+      <div class="analysis-card" data-card-id="key-insights" style="position: relative;">
+        <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
+          📥 Export Insights
+        </button>
+        ${insights}
+      </div>
+      ` : ''}
+      <div class="analysis-card" data-card-id="main-viz" style="position: relative;">
+        <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
+          📥 Export Chart
+        </button>
+        ${mainViz}
+      </div>
+      <div class="analysis-card" data-card-id="summary-stats" style="position: relative;">
+        <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
+          📥 Export Stats
+        </button>
+        ${summaryCard}
+      </div>
+      <div class="analysis-card" data-card-id="breakdown" style="position: relative;">
+        <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
+          📥 Export Breakdown
+        </button>
+        ${breakdownCard}
+      </div>
+    </div>
+  `;
+}
+
+// Generate AI-style key insights
+function generateKeyInsights(dataPoints, xVar, yVar, colorVar) {
+  if (dataPoints.length < 10) return null;
+  
+  const insights = [];
+  const varLabels = {
+    'height': 'Height',
+    'width': 'Width',
+    'combined-size': 'Size',
+    'folios': 'Folios',
+    'material': 'Material',
+    'gender': 'Gender',
+    'date': 'Date',
+    'century': 'Century',
+    'decoration': 'Decoration',
+    'origin-country': 'Country'
+  };
+  
+  const yLabel = varLabels[yVar] || yVar;
+  const xLabel = varLabels[xVar] || xVar;
+  
+  // Determine grouping variable (color if set, otherwise X if categorical)
+  const groupVar = (colorVar && colorVar !== 'none') ? colorVar : xVar;
+  const groupLabel = varLabels[groupVar] || groupVar;
+  
+  // Group data
+  const groups = {};
+  dataPoints.forEach(d => {
+    const key = String((colorVar && colorVar !== 'none') ? d.color : d.x);
+    if (!groups[key]) groups[key] = [];
+    if (typeof d.y === 'number') groups[key].push(d.y);
+  });
+  
+  const groupNames = Object.keys(groups).filter(k => groups[k].length > 0);
+  
+  // Only generate insights if we have 2-5 groups with enough data
+  if (groupNames.length >= 2 && groupNames.length <= 5) {
+    // Calculate averages for each group
+    const groupAvgs = {};
+    Object.entries(groups).forEach(([name, values]) => {
+      if (values.length > 0) {
+        groupAvgs[name] = values.reduce((a, b) => a + b, 0) / values.length;
+      }
+    });
+    
+    // Find largest difference
+    const sorted = Object.entries(groupAvgs).sort((a, b) => b[1] - a[1]);
+    if (sorted.length >= 2) {
+      const highest = sorted[0];
+      const lowest = sorted[sorted.length - 1];
+      const diff = highest[1] - lowest[1];
+      const pctDiff = Math.abs((diff / lowest[1]) * 100).toFixed(0);
+      
+      insights.push({
+        icon: '📊',
+        type: 'comparison',
+        text: `<strong>${highest[0]}</strong> manuscripts have ${pctDiff}% ${diff > 0 ? 'larger' : 'smaller'} ${yLabel.toLowerCase()} on average than <strong>${lowest[0]}</strong> (${highest[1].toFixed(0)} vs ${lowest[1].toFixed(0)})`,
+        impact: pctDiff > 20 ? 'high' : pctDiff > 10 ? 'medium' : 'low'
+      });
+    }
+    
+    // Check for material preferences (if material is involved)
+    if (xVar === 'material' || colorVar === 'material') {
+      const parchment = groups['Parchment'] || groups['parchment'] || [];
+      const paper = groups['Paper'] || groups['paper'] || [];
+      
+      if (parchment.length > 0 && paper.length > 0) {
+        const parchAvg = parchment.reduce((a, b) => a + b, 0) / parchment.length;
+        const paperAvg = paper.reduce((a, b) => a + b, 0) / paper.length;
+        const materialDiff = Math.abs((paperAvg - parchAvg) / Math.min(paperAvg, parchAvg) * 100).toFixed(0);
+        
+        insights.push({
+          icon: '📜',
+          type: 'material',
+          text: `${parchAvg < paperAvg ? 'Parchment' : 'Paper'} manuscripts are <strong>${materialDiff}% smaller</strong> than ${parchAvg < paperAvg ? 'paper' : 'parchment'} (avg ${parchAvg.toFixed(0)} vs ${paperAvg.toFixed(0)} mm) - ${parchAvg < paperAvg ? 'consistent with cost-saving hypothesis' : 'interesting pattern to explore'}`,
+          impact: materialDiff > 15 ? 'high' : 'medium'
+        });
+      }
+    }
+    
+    // Check for gender patterns
+    if (xVar === 'gender' || colorVar === 'gender') {
+      const female = groups['female'] || groups['Female'] || [];
+      const male = groups['male'] || groups['Male'] || [];
+      
+      if (female.length > 0 && male.length > 0) {
+        const femaleAvg = female.reduce((a, b) => a + b, 0) / female.length;
+        const maleAvg = male.reduce((a, b) => a + b, 0) / male.length;
+        const genderDiff = Math.abs((maleAvg - femaleAvg) / Math.min(maleAvg, femaleAvg) * 100).toFixed(0);
+        
+        insights.push({
+          icon: '👤',
+          type: 'gender',
+          text: `Manuscripts by <strong>${femaleAvg < maleAvg ? 'female' : 'male'} scribes</strong> are ${genderDiff}% smaller on average (${femaleAvg.toFixed(0)} vs ${maleAvg.toFixed(0)} mm) - sample: ${female.length} female, ${male.length} male`,
+          impact: genderDiff > 15 ? 'high' : 'medium'
+        });
+      }
+    }
+  }
+  
+  // Temporal trends if date/century involved
+  if (xVar === 'century' || xVar === 'date') {
+    const temporal = dataPoints.filter(d => typeof d.x === 'number' && typeof d.y === 'number');
+    if (temporal.length > 20) {
+      // Simple linear regression
+      const n = temporal.length;
+      const sumX = temporal.reduce((sum, d) => sum + d.x, 0);
+      const sumY = temporal.reduce((sum, d) => sum + d.y, 0);
+      const sumXY = temporal.reduce((sum, d) => sum + d.x * d.y, 0);
+      const sumX2 = temporal.reduce((sum, d) => sum + d.x * d.x, 0);
+      
+      const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+      
+      if (Math.abs(slope) > 0.1) {
+        const direction = slope > 0 ? 'increasing' : 'decreasing';
+        const change = Math.abs(slope * 100).toFixed(1);
+        insights.push({
+          icon: '📈',
+          type: 'trend',
+          text: `${yLabel} is <strong>${direction}</strong> over time (${change} mm per century on average)`,
+          impact: Math.abs(slope) > 2 ? 'high' : 'medium'
+        });
+      }
+    }
+  }
+  
+  // Sample size insight
+  insights.push({
+    icon: '📐',
+    type: 'sample',
+    text: `Analysis based on <strong>${dataPoints.length} data points</strong> from the corpus`,
+    impact: 'low'
+  });
+  
+  if (insights.length === 0) return null;
+  
+  return `
+    <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <h3 style="margin: 0 0 1rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+        💡 Key Findings
+      </h3>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        ${insights.map(insight => `
+          <div style="background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 0.375rem; border-left: 4px solid ${
+            insight.impact === 'high' ? '#ffd700' : insight.impact === 'medium' ? '#90caf9' : 'rgba(255,255,255,0.3)'
+          };">
+            <div style="display: flex; align-items: start; gap: 0.75rem;">
+              <span style="font-size: 1.5rem;">${insight.icon}</span>
+              <div style="flex: 1; line-height: 1.6;">${insight.text}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.875rem; opacity: 0.9;">
+        💭 These insights are automatically generated from statistical patterns in your data. Always verify with domain knowledge.
+      </div>
+    </div>
+  `;
+}
+
+// Extract data points (shared helper)
+function extractDataPoints(msRecords, puRecords, suRecords, xVar, yVar, colorVar) {
+  const dataPoints = [];
+  
+  // Helper to extract value by variable name (full version)
+  function extractValue(ms, pu, varName) {
+    if (!varName || varName === 'none') return null;
+    
+    // Dimensional variables
+    if (varName === 'height') return extractHeight(ms);
+    if (varName === 'width') return extractWidth(ms);
+    if (varName === 'combined-size') return extractSize(ms);
+    if (varName === 'justification-height') return pu ? extractJustificationHeight(pu) : null;
+    if (varName === 'justification-width') return pu ? extractJustificationWidth(pu) : null;
+    if (varName === 'margin-ratio') return pu ? calculateMarginRatio(ms, pu) : null;
+    
+    // Structural variables
+    if (varName === 'folios') {
+      const folios = getVal(ms, 'Number of folios');
+      return folios ? parseInt(folios) : null;
+    }
+    if (varName === 'columns') return pu ? extractColumns(pu) : null;
+    if (varName === 'lines-per-page') {
+      const lines = pu ? getVal(pu, 'Lines per page') : null;
+      return lines ? parseInt(lines) : null;
+    }
+    if (varName === 'quires') {
+      const quires = pu ? getVal(pu, 'Number of quires') : null;
+      return quires ? parseInt(quires) : null;
+    }
+    
+    // Temporal variables
+    if (varName === 'date') return pu ? extractDate(pu) : null;
+    if (varName === 'century') {
+      const date = pu ? extractDate(pu) : null;
+      return date ? Math.floor(date / 100) + 1 : null;
+    }
+    
+    // Categorical variables
+    if (varName === 'material') return pu ? getMaterialFromPU(pu) : null;
+    if (varName === 'quire-type') return pu ? getVal(pu, 'Quire type') : null;
+    if (varName === 'ruling-type') return pu ? getVal(pu, 'Ruling type') : null;
+    if (varName === 'script-type') {
+      const msId = String(ms.rec_ID);
+      const suRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'su');
+      if (suRefs.length > 0) {
+        const su = IDX.su?.[suRefs[0].fromId];
+        return su ? getVal(su, 'Normalised script(s)') : null;
+      }
+      return null;
+    }
+    if (varName === 'binding-type') return getVal(ms, 'Binding type');
+    if (varName === 'gender') {
+      const msId = String(ms.rec_ID);
+      const suRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'su');
+      if (suRefs.length > 0) {
+        const su = IDX.su?.[suRefs[0].fromId];
+        return su ? getVal(su, 'Scribe gender') : null;
+      }
+      return null;
+    }
+    if (varName === 'decoration') return getVal(ms, 'Decoration');
+    
+    return null;
+  }
+  
+  msRecords.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    
+    // Find PUs that belong to this MS by checking PU.details for MS pointers
+    const relatedPUs = puRecords.filter(pu => {
+      const msPointers = (pu.details || []).filter(d => 
+        d?.value && typeof d.value === 'object' && d.value.type === 'ms'
+      );
+      return msPointers.some(ptr => String(ptr.value.id) === msId);
+    });
+    
+    if (relatedPUs.length > 0) {
+      relatedPUs.forEach(pu => {
+        const xVal = extractValue(ms, pu, xVar);
+        const yVal = extractValue(ms, pu, yVar);
+        const colorVal = extractValue(ms, pu, colorVar) || 'Unknown';
+        
+        if (xVal !== null && yVal !== null) {
+          dataPoints.push({
+            x: xVal,
+            y: yVal,
+            color: colorVal,
+            msTitle: MAP.ms?.title(ms) || 'Unknown',
+            title: MAP.ms?.title(ms) || 'Unknown'
+          });
+        }
+      });
+    }
+  });
+  
+  return dataPoints;
+}
+
+// Generic value extractor (kept for compatibility)
+function getCodicologicalValue(ms, pu, varName) {
+  if (!varName || varName === 'none') return null;
+  
+  // Dimensional variables
+  if (varName === 'height') return extractHeight(ms);
+  if (varName === 'width') return extractWidth(ms);
+  if (varName === 'combined-size') return extractSize(ms);
+  if (varName === 'justification-height') return pu ? extractJustificationHeight(pu) : null;
+  if (varName === 'justification-width') return pu ? extractJustificationWidth(pu) : null;
+  
+  // Structural variables
+  if (varName === 'folios') {
+    const folios = getVal(ms, 'Number of folios');
+    return folios ? parseInt(folios) : null;
+  }
+  if (varName === 'columns') return pu ? extractColumns(pu) : null;
+  if (varName === 'lines-per-page') {
+    const lines = pu ? getVal(pu, 'Lines per page') : null;
+    return lines ? parseInt(lines) : null;
+  }
+  
+  // Temporal variables
+  if (varName === 'date') return pu ? extractDate(pu) : null;
+  if (varName === 'century') {
+    const date = pu ? extractDate(pu) : null;
+    return date ? Math.floor(date / 100) + 1 : null;
+  }
+  
+  // Categorical variables
+  if (varName === 'material') return pu ? getMaterialFromPU(pu) : null;
+  if (varName === 'gender') {
+    const msId = String(ms.rec_ID);
+    const suRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'su');
+    if (suRefs.length > 0) {
+      const su = IDX.su?.[suRefs[0].fromId];
+      if (su) {
+        return getVal(su, 'Scribe gender') || 'Unknown';
+      }
+    }
+    return 'Unknown';
+  }
+  if (varName === 'decoration') return getVal(ms, 'Decoration') || 'No';
+  if (varName === 'binding-type') return getVal(ms, 'Binding type') || 'Unknown';
+  
+  return null;
+}
+
+// Summary statistics card
+function buildSummaryStatisticsCard(dataPoints, xVar, yVar, colorVar) {
+  if (dataPoints.length === 0) {
+    return '';
+  }
+  
+  // Calculate statistics
+  const yValues = dataPoints.map(d => d.y).filter(v => typeof v === 'number');
+  const xValues = dataPoints.map(d => d.x).filter(v => typeof v === 'number');
+  
+  let stats = {};
+  if (yValues.length > 0) {
+    const sorted = [...yValues].sort((a, b) => a - b);
+    const mean = yValues.reduce((a, b) => a + b, 0) / yValues.length;
+    const median = sorted[Math.floor(sorted.length / 2)];
+    const min = Math.min(...yValues);
+    const max = Math.max(...yValues);
+    const stdDev = Math.sqrt(yValues.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / yValues.length);
+    
+    stats = { n: yValues.length, mean, median, min, max, stdDev };
+  }
+  
+  // Group by color/category
+  const byCategory = {};
+  dataPoints.forEach(d => {
+    const cat = String(d.color || d.x || 'Unknown');
+    if (!byCategory[cat]) byCategory[cat] = [];
+    if (typeof d.y === 'number') {
+      byCategory[cat].push(d.y);
+    }
+  });
+  
+  const varLabels = {
+    'height': 'Height',
+    'width': 'Width',
+    'combined-size': 'Combined Size',
+    'folios': 'Folios',
+    'material': 'Material',
+    'gender': 'Gender',
+    'date': 'Date',
+    'century': 'Century'
+  };
+  
+  const yLabel = varLabels[yVar] || yVar;
+  const categories = Object.keys(byCategory).slice(0, 5);
+  
+  return `
+    <div style="background: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: #333;">📈 Summary Statistics</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        <div style="padding: 1rem; background: #f8f9fa; border-radius: 0.375rem; border-left: 3px solid #2196F3;">
+          <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">Sample Size</div>
+          <div style="font-size: 1.5rem; font-weight: bold; color: #2196F3;">${stats.n || 0}</div>
+        </div>
+        ${stats.mean ? `
+        <div style="padding: 1rem; background: #f8f9fa; border-radius: 0.375rem; border-left: 3px solid #4caf50;">
+          <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">Mean ${yLabel}</div>
+          <div style="font-size: 1.5rem; font-weight: bold; color: #4caf50;">${stats.mean.toFixed(1)}</div>
+        </div>
+        <div style="padding: 1rem; background: #f8f9fa; border-radius: 0.375rem; border-left: 3px solid #ff9800;">
+          <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">Median ${yLabel}</div>
+          <div style="font-size: 1.5rem; font-weight: bold; color: #ff9800;">${stats.median.toFixed(1)}</div>
+        </div>
+        <div style="padding: 1rem; background: #f8f9fa; border-radius: 0.375rem; border-left: 3px solid #c4941f;">
+          <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">Std Dev</div>
+          <div style="font-size: 1.5rem; font-weight: bold; color: #c4941f;">${stats.stdDev.toFixed(1)}</div>
+        </div>
+        <div style="padding: 1rem; background: #f8f9fa; border-radius: 0.375rem; border-left: 3px solid #f44336;">
+          <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">Range</div>
+          <div style="font-size: 1.25rem; font-weight: bold; color: #f44336;">${stats.min.toFixed(0)} - ${stats.max.toFixed(0)}</div>
+        </div>
+        ` : ''}
+      </div>
+      ${categories.length > 0 ? `
+        <div style="border-top: 1px solid #dee2e6; padding-top: 1rem;">
+          <div style="font-weight: 600; margin-bottom: 0.75rem; font-size: 0.9rem;">By Category (Top 5):</div>
+          ${categories.map(cat => {
+            const vals = byCategory[cat].filter(v => typeof v === 'number');
+            const catMean = vals.length > 0 ? vals.reduce((a,b) => a+b, 0) / vals.length : 0;
+            return `
+              <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: #f8f9fa; margin-bottom: 0.5rem; border-radius: 0.25rem;">
+                <span style="font-weight: 500;">${cat}</span>
+                <span style="color: #666;">n=${vals.length}, avg=${catMean.toFixed(1)}</span>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+// Breakdown by key dimensions
+function buildBreakdownCard(msRecords, puRecords, suRecords, xVar, yVar, colorVar) {
+  if (msRecords.length === 0) return '';
+  
+  // Build mini-analyses for common breakdowns
+  const centuries = {};
+  const materials = {};
+  const genders = {};
+  
+  msRecords.forEach(ms => {
+    // Century
+    const dateStr = getVal(ms, 'Date (single or range)');
+    if (dateStr) {
+      const matches = dateStr.match(/(\d{3,4})/g);
+      if (matches) {
+        const year = parseInt(matches[0]);
+        const century = Math.floor(year / 100) + 1;
+        centuries[`${century}th c.`] = (centuries[`${century}th c.`] || 0) + 1;
+      }
+    }
+    
+    // Material
+    const msId = String(ms.rec_ID);
+    const puRefs = (INBOUND.ms?.[msId] || []).filter(ref => ref.fromType === 'pu');
+    puRefs.forEach(ref => {
+      const pu = IDX.pu?.[ref.fromId];
+      if (pu) {
+        const material = getVal(pu, 'Material');
+        if (material) {
+          materials[material] = (materials[material] || 0) + 1;
+        }
+      }
+    });
+  });
+  
+  // Gender from SUs
+  suRecords.forEach(su => {
+    const gender = getVal(su, 'Scribe gender');
+    if (gender) {
+      genders[gender] = (genders[gender] || 0) + 1;
+    }
+  });
+  
+  return `
+    <div style="background: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: #333;">🔍 Dataset Breakdown</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+        ${Object.keys(centuries).length > 0 ? `
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">📅 By Century</div>
+            ${Object.entries(centuries).sort((a,b) => b[1] - a[1]).slice(0, 5).map(([c, count]) => `
+              <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem;">
+                <span>${c}</span>
+                <span style="color: #2196F3; font-weight: 600;">${count}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+        ${Object.keys(materials).length > 0 ? `
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">📜 By Material</div>
+            ${Object.entries(materials).sort((a,b) => b[1] - a[1]).map(([m, count]) => `
+              <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem;">
+                <span>${m}</span>
+                <span style="color: #ff9800; font-weight: 600;">${count}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+        ${Object.keys(genders).length > 0 ? `
+          <div>
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">👤 By Gender</div>
+            ${Object.entries(genders).sort((a,b) => b[1] - a[1]).map(([g, count]) => `
+              <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem;">
+                <span>${g}</span>
+                <span style="color: #c4941f; font-weight: 600;">${count}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+// Helper function to extract height only
+function extractHeight(rec) {
+  const height = getVal(rec, 'Codex height');
+  if (!height || height === '—') return null;
+  const num = parseFloat(height);
+  return !isNaN(num) ? num : null;
+}
+
+// Helper function to calculate manuscript combined size as height + width
 function extractSize(rec) {
   // Get Codex height and Codex width fields
   let height = getVal(rec, 'Codex height');
@@ -7228,20 +8856,13 @@ function extractSize(rec) {
   return null;
 }
 
-// Helper function to extract width from size string or codex width field
+// Helper function to extract width from codex width field
 function extractWidth(rec) {
-  // Try to get Codex width field directly
-  let width = getVal(rec, 'Codex width');
-  if (width && width !== '—') {
-    const num = parseFloat(width);
-    if (!isNaN(num)) return num;
-  }
-  
-  // Fallback to parsing size string
-  const sizeStr = getVal(rec, 'Size');
-  if (!sizeStr) return null;
-  const match = String(sizeStr).match(/×\s*(\d+)/);
-  return match ? parseInt(match[1]) : null;
+  // Get Codex width field directly
+  const width = getVal(rec, 'Codex width');
+  if (!width || width === '—') return null;
+  const num = parseFloat(width);
+  return !isNaN(num) ? num : null;
 }
 
 // Helper function to extract date
@@ -7752,128 +9373,6 @@ function analyzeMarginRatio(msRecords, puRecords, vizType) {
   return html;
 }
 
-// Analysis 6: Custom Multi-Variable
-function analyzeCustomVariables(msRecords, puRecords, vizType) {
-  // Get custom variable selections
-  const xVar = document.getElementById('codic-x-var')?.value || 'size';
-  const yVar = document.getElementById('codic-y-var')?.value || 'date';
-  const colorVar = document.getElementById('codic-color-var')?.value || 'none';
-  
-  const dataPoints = [];
-  
-  // Helper to extract value by variable name
-  function extractValue(ms, pu, varName) {
-    if (varName === 'size') return extractSize(ms);
-    if (varName === 'width') return extractWidth(ms);
-    if (varName === 'folios') {
-      const folios = getVal(ms, 'Number of Folios');
-      return folios ? parseInt(folios) : null;
-    }
-    if (varName === 'date') return pu ? extractDate(pu) : null;
-    if (varName === 'justification-height') return pu ? extractJustificationHeight(pu) : null;
-    if (varName === 'justification-width') return pu ? extractJustificationWidth(pu) : null;
-    if (varName === 'columns') return pu ? extractColumns(pu) : null;
-    if (varName === 'material') return pu ? getMaterialFromPU(pu) : null;
-    if (varName === 'country') return pu ? extractCountry(pu) : null;
-    return null;
-  }
-  
-  msRecords.forEach(ms => {
-    const msId = String(ms.rec_ID);
-    const pus = (INBOUND.pu?.[msId] || []);
-    
-    if (pus.length > 0) {
-      pus.forEach(puId => {
-        const pu = IDX.pu?.[puId];
-        const xVal = extractValue(ms, pu, xVar);
-        const yVal = extractValue(ms, pu, yVar);
-        const colorVal = colorVar !== 'none' ? extractValue(ms, pu, colorVar) : null;
-        
-        if (xVal !== null && yVal !== null) {
-          dataPoints.push({
-            x: xVal,
-            y: yVal,
-            color: colorVal,
-            title: MAP.ms?.title(ms) || 'Untitled'
-          });
-        }
-      });
-    } else {
-      // MS without PU - try without PU data
-      const xVal = extractValue(ms, null, xVar);
-      const yVal = extractValue(ms, null, yVar);
-      const colorVal = colorVar !== 'none' ? extractValue(ms, null, colorVar) : null;
-      
-      if (xVal !== null && yVal !== null) {
-        dataPoints.push({
-          x: xVal,
-          y: yVal,
-          color: colorVal,
-          title: MAP.ms?.title(ms) || 'Untitled'
-        });
-      }
-    }
-  });
-  
-  if (dataPoints.length === 0) {
-    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for selected variables</div>';
-  }
-  
-  // Get variable labels
-  const varLabels = {
-    size: 'Height (mm)',
-    width: 'Width (mm)',
-    date: 'Year',
-    folios: 'Number of Folios',
-    material: 'Material',
-    columns: 'Columns',
-    country: 'Country',
-    'justification-height': 'Justification Height (mm)',
-    'justification-width': 'Justification Width (mm)'
-  };
-  
-  const xLabel = varLabels[xVar] || xVar;
-  const yLabel = varLabels[yVar] || yVar;
-  
-  let html = '<div style="margin-bottom: 1rem;"><h3 style="color: #856404;">Custom Multi-Variable Analysis</h3>';
-  html += `<p style="font-size: 0.875rem; color: #666;">Total data points: ${dataPoints.length}</p></div>`;
-  
-  if (vizType === 'scatter') {
-    html += buildScatterPlot(`${xLabel} vs ${yLabel}`, dataPoints, 'x', 'y', xLabel, yLabel, colorVar !== 'none' ? 'color' : null);
-  } else if (vizType === 'stats') {
-    // Group by color variable if present
-    if (colorVar !== 'none' && colorVar) {
-      const byColor = {};
-      dataPoints.forEach(d => {
-        const key = String(d.color || 'Unknown');
-        if (!byColor[key]) byColor[key] = [];
-        byColor[key].push(d.y);
-      });
-      
-      const stats = {};
-      Object.entries(byColor).forEach(([color, values]) => {
-        const mean = values.reduce((a, b) => a + b, 0) / values.length;
-        const sorted = [...values].sort((a, b) => a - b);
-        const median = sorted[Math.floor(sorted.length / 2)];
-        stats[color] = { 
-          mean, median, 
-          min: Math.min(...values), 
-          max: Math.max(...values), 
-          n: values.length 
-        };
-      });
-      
-      html += buildStatsTable(`${yLabel} by ${varLabels[colorVar] || colorVar}`, stats, '');
-    } else {
-      html += '<div style="padding: 1rem; background: #f8f9fa; border-radius: 0.25rem;">Select a "Color By" variable to see grouped statistics</div>';
-    }
-  } else {
-    html += '<div>Visualization type not fully supported for custom variables. Try scatter plot or stats table.</div>';
-  }
-  
-  return html;
-}
-
 // ========== VISUALIZATION HELPER FUNCTIONS ==========
 
 // Visualization helper: Stats Table
@@ -7956,25 +9455,41 @@ function buildBoxPlot(title, dataByCategory, xLabel, yLabel) {
 
 // Visualization helper: Scatter Plot
 function buildScatterPlot(title, dataPoints, xVar, yVar, xLabel, yLabel, colorVar) {
-  const xValues = dataPoints.map(d => d[xVar]);
-  const yValues = dataPoints.map(d => d[yVar]);
-  const xMin = Math.min(...yValues);
-  const xMax = Math.max(...yValues);
-  const yMin = Math.min(...yValues.filter(v => v !== null));
-  const yMax = Math.max(...yValues.filter(v => v !== null));
+  // Check if variables are numeric
+  const xValues = dataPoints.map(d => d[xVar]).filter(v => v !== null && typeof v === 'number');
+  const yValues = dataPoints.map(d => d[yVar]).filter(v => v !== null && typeof v === 'number');
+  
+  if (xValues.length === 0 || yValues.length === 0) {
+    return `
+      <div style="padding: 2rem; text-align: center; color: #666;">
+        <p>⚠️ Cannot create scatter plot: one or both variables are not numeric</p>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem;">Try using a box plot or bar chart for categorical variables</p>
+      </div>
+    `;
+  }
+  
+  const xMin = Math.min(...xValues);
+  const xMax = Math.max(...xValues);
+  const yMin = Math.min(...yValues);
+  const yMax = Math.max(...yValues);
   
   const width = 600;
   const height = 400;
-  const padding = 40;
+  const padding = 60;
   
   const xScale = (width - 2 * padding) / (xMax - xMin);
   const yScale = (height - 2 * padding) / (yMax - yMin);
   
-  const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6'];
+  const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#e67e22', '#34495e'];
   const colorMap = {};
   let colorIndex = 0;
   
-  const points = dataPoints.map(d => {
+  const validPoints = dataPoints.filter(d => 
+    d[xVar] !== null && typeof d[xVar] === 'number' && 
+    d[yVar] !== null && typeof d[yVar] === 'number'
+  );
+  
+  const points = validPoints.map(d => {
     let color = '#d4af37';
     if (colorVar && d[colorVar]) {
       if (!colorMap[d[colorVar]]) {
@@ -7984,8 +9499,23 @@ function buildScatterPlot(title, dataPoints, xVar, yVar, xLabel, yLabel, colorVa
       color = colorMap[d[colorVar]];
     }
     
-    return `<circle cx="${padding + (d[yVar] - yMin) * yScale}" cy="${height - padding - (d[yVar] - yMin) * yScale}" r="4" fill="${color}" fill-opacity="0.6" stroke="white" stroke-width="1"><title>${d.msTitle || ''}: ${d[yVar]}</title></circle>`;
+    return `<circle cx="${padding + (d[xVar] - xMin) * xScale}" cy="${height - padding - (d[yVar] - yMin) * yScale}" r="4" fill="${color}" fill-opacity="0.6" stroke="white" stroke-width="1"><title>${d.msTitle || d.title || ''}: ${xLabel}=${d[xVar]}, ${yLabel}=${d[yVar]}</title></circle>`;
   }).join('');
+  
+  // Create legend if color variable is used
+  let legend = '';
+  if (colorVar && Object.keys(colorMap).length > 0) {
+    const legendItems = Object.entries(colorMap).map(([key, color]) => 
+      `<div style="display: flex; align-items: center; margin: 0.25rem 0;">
+        <div style="width: 12px; height: 12px; background: ${color}; border-radius: 50%; margin-right: 0.5rem;"></div>
+        <span style="font-size: 0.875rem;">${key}</span>
+      </div>`
+    ).join('');
+    legend = `<div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 0.5rem;">
+      <div style="font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;">Legend:</div>
+      ${legendItems}
+    </div>`;
+  }
   
   return `
     <div style="padding: 1.5rem;">
@@ -7994,10 +9524,11 @@ function buildScatterPlot(title, dataPoints, xVar, yVar, xLabel, yLabel, colorVa
         <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="#ccc" stroke-width="2"/>
         <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" stroke="#ccc" stroke-width="2"/>
         ${points}
-        <text x="${width / 2}" y="${height - 5}" text-anchor="middle" font-size="12" fill="#666">${yLabel}</text>
-        <text x="10" y="${height / 2}" text-anchor="middle" font-size="12" fill="#666" transform="rotate(-90, 10, ${height / 2})">${yLabel}</text>
+        <text x="${width / 2}" y="${height - 10}" text-anchor="middle" font-size="12" fill="#666">${xLabel}</text>
+        <text x="15" y="${height / 2}" text-anchor="middle" font-size="12" fill="#666" transform="rotate(-90, 15, ${height / 2})">${yLabel}</text>
       </svg>
-      <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">n=${dataPoints.length} manuscripts</p>
+      <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">n=${validPoints.length} manuscripts</p>
+      ${legend}
     </div>
   `;
 }
@@ -8348,91 +9879,292 @@ function analyzeCollaborationVsFeatures(msRecords, suRecords, puRecords, vizType
   return '<div>Visualization type not supported</div>';
 }
 
-function analyzeCustomVariables(msRecords, suRecords, vizType) {
-  // Get custom variable selections
-  const xVar = document.getElementById('codic-x-var')?.value || 'size';
-  const yVar = document.getElementById('codic-y-var')?.value || 'date';
-  const colorVar = document.getElementById('codic-color-var')?.value || 'none';
-  
+function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, colorVar, vizType) {
   const dataPoints = [];
   
+  // Debug: Check input data
+  console.log('🔍 analyzeCustomVariables called:', {
+    msCount: msRecords.length,
+    puCount: puRecords.length,
+    suCount: suRecords.length,
+    xVar, yVar, colorVar, vizType
+  });
+  
   // Helper to extract value by variable name
-  function extractValue(rec, varName) {
-    if (varName === 'size') return extractSize(rec);
-    if (varName === 'width') return extractWidth(rec);
-    if (varName === 'date') return extractDate(rec);
+  function extractValue(ms, pu, varName) {
+    // Dimensional variables
+    if (varName === 'height') return extractHeight(ms);
+    if (varName === 'width') return extractWidth(ms);
+    if (varName === 'combined-size') return extractSize(ms);
+    if (varName === 'justification-height') return pu ? extractJustificationHeight(pu) : null;
+    if (varName === 'justification-width') return pu ? extractJustificationWidth(pu) : null;
+    if (varName === 'margin-ratio') return pu ? calculateMarginRatio(ms, pu) : null;
+    
+    // Structural variables
     if (varName === 'folios') {
-      const details = rec.details || [];
-      for (const d of details) {
-        if (d.fieldName === 'Number of folios' && d.value) {
-          return parseFloat(d.value);
-        }
-      }
+      const folios = getVal(ms, 'Number of folios');
+      return folios ? parseInt(folios) : null;
     }
-    if (varName === 'material') {
-      // For MS, find PU materials
-      if (rec.details) {
-        const msId = String(rec.rec_ID);
-        const pus = (INBOUND.pu?.[msId] || []);
-        const materials = [];
-        pus.forEach(puId => {
-          const pu = IDX.pu?.[puId];
-          if (pu) {
-            const mat = getMaterialFromPU(pu);
-            if (mat) materials.push(mat);
-          }
-        });
-        return materials.length > 0 ? materials[0] : null;
-      }
+    if (varName === 'columns') return pu ? extractColumns(pu) : null;
+    if (varName === 'lines-per-page') {
+      const lines = pu ? getVal(pu, 'Lines per page') : null;
+      return lines ? parseInt(lines) : null;
     }
-    if (varName === 'columns') {
-      const details = rec.details || [];
-      for (const d of details) {
-        if (d.fieldName === 'Number of columns' && d.value) {
-          return parseFloat(d.value);
-        }
-      }
+    if (varName === 'quires') {
+      const quires = pu ? getVal(pu, 'Number of quires') : null;
+      return quires ? parseInt(quires) : null;
     }
+    
+    // Temporal variables
+    if (varName === 'date') return pu ? extractDate(pu) : null;
+    if (varName === 'century') {
+      const date = pu ? extractDate(pu) : null;
+      return date ? Math.floor(date / 100) + 1 : null;
+    }
+    
+    // Categorical variables
+    if (varName === 'material') return pu ? getMaterialFromPU(pu) : null;
+    if (varName === 'quire-type') return pu ? getVal(pu, 'Quire type') : null;
+    if (varName === 'ruling-type') return pu ? getVal(pu, 'Ruling type') : null;
+    if (varName === 'script-type') {
+      // Get from related SU
+      const msId = String(ms.rec_ID);
+      const sus = (INBOUND.su?.[msId] || []);
+      if (sus.length > 0) {
+        const suId = sus[0];
+        const su = IDX.su?.[suId];
+        return su ? getVal(su, 'Normalised script(s)') : null;
+      }
+      return null;
+    }
+    if (varName === 'binding-type') return getVal(ms, 'Binding type');
+    
     return null;
   }
   
-  msRecords.forEach(ms => {
-    const xVal = extractValue(ms, xVar);
-    const yVal = extractValue(ms, yVar);
-    const colorVal = colorVar !== 'none' ? extractValue(ms, colorVar) : null;
+  // Helper for color/group variables (can return multiple values)
+  function extractColorValue(ms, pu, varName) {
+    if (varName === 'none') return 'All';
     
-    if (xVal !== null && yVal !== null) {
-      dataPoints.push({
-        x: xVal,
-        y: yVal,
-        color: colorVal,
-        title: MAP.ms?.title(ms) || 'Untitled'
+    // People & Gender
+    if (varName === 'gender') {
+      const msId = String(ms.rec_ID);
+      const sus = (INBOUND.su?.[msId] || []);
+      const genders = new Set();
+      sus.forEach(suId => {
+        const su = IDX.su?.[suId];
+        if (su) {
+          const hpIds = (OUTBOUND.su?.[suId] || []).filter(targetId => {
+            const target = getRecordById(targetId);
+            return target && target.rty === 'hp';
+          });
+          hpIds.forEach(hpId => {
+            const hp = IDX.hp?.[hpId];
+            if (hp) {
+              const gender = getVal(hp, 'Gender');
+              if (gender) genders.add(gender);
+            }
+          });
+        }
       });
+      return genders.size > 0 ? Array.from(genders).join(', ') : 'Unknown';
     }
+    
+    if (varName === 'scribe-name') {
+      const msId = String(ms.rec_ID);
+      const sus = (INBOUND.su?.[msId] || []);
+      if (sus.length > 0) {
+        const suId = sus[0];
+        const su = IDX.su?.[suId];
+        return su ? (MAP.su?.title(su) || 'Unknown') : 'Unknown';
+      }
+      return 'Unknown';
+    }
+    
+    // Production Context
+    if (varName === 'origin-country') return pu ? extractCountry(pu) : 'Unknown';
+    if (varName === 'origin-region') return pu ? getVal(pu, 'Production unit location') : 'Unknown';
+    if (varName === 'monastery-type') {
+      const puId = pu ? String(pu.rec_ID) : null;
+      if (puId) {
+        const miIds = (OUTBOUND.pu?.[puId] || []).filter(targetId => {
+          const target = getRecordById(targetId);
+          return target && target.rty === 'mi';
+        });
+        if (miIds.length > 0) {
+          const mi = IDX.mi?.[miIds[0]];
+          return mi ? getVal(mi, 'Type of monastery') : 'Unknown';
+        }
+      }
+      return 'Unknown';
+    }
+    
+    // Physical Features
+    if (varName === 'catchwords') return pu ? (getVal(pu, 'Catchwords') || 'No') : 'Unknown';
+    if (varName === 'signatures') return pu ? (getVal(pu, 'Signatures') || 'No') : 'Unknown';
+    if (varName === 'watermark') return getVal(ms, 'Watermark') || 'No';
+    if (varName === 'decoration') return getVal(ms, 'Decoration') || 'No';
+    
+    // Content
+    if (varName === 'has-colophon') {
+      const msId = String(ms.rec_ID);
+      const sus = (INBOUND.su?.[msId] || []);
+      let hasColophon = false;
+      sus.forEach(suId => {
+        const su = IDX.su?.[suId];
+        if (su && getVal(su, 'Colophon')) hasColophon = true;
+      });
+      return hasColophon ? 'Yes' : 'No';
+    }
+    if (varName === 'language') {
+      const msId = String(ms.rec_ID);
+      const sus = (INBOUND.su?.[msId] || []);
+      const langs = new Set();
+      sus.forEach(suId => {
+        const su = IDX.su?.[suId];
+        if (su) {
+          const lang = getVal(su, 'Colophon language');
+          if (lang) langs.add(lang);
+        }
+      });
+      return langs.size > 0 ? Array.from(langs).join(', ') : 'Unknown';
+    }
+    
+    // Collaboration
+    if (varName === 'collaboration-type') return pu ? getVal(pu, 'Collaboration type') : 'Unknown';
+    if (varName === 'multiple-scribes') {
+      const msId = String(ms.rec_ID);
+      const sus = (INBOUND.su?.[msId] || []);
+      return sus.length > 1 ? 'Yes' : 'No';
+    }
+    
+    // Use the basic extract function for other variables
+    return extractValue(ms, pu, varName) || 'Unknown';
+  }
+  
+  // Instead of iterating MS→PU, iterate PU→MS (simpler and more reliable)
+  puRecords.forEach(pu => {
+    // Find which MS this PU belongs to
+    const msPointers = (pu.details || []).filter(d => 
+      d?.value && typeof d.value === 'object' && d.value.type === 'ms'
+    );
+    
+    msPointers.forEach(ptr => {
+      const msId = String(ptr.value.id);
+      const ms = msRecords.find(m => String(m.rec_ID) === msId);
+      
+      if (ms) {
+        const xVal = extractValue(ms, pu, xVar);
+        const yVal = extractValue(ms, pu, yVar);
+        const colorVal = extractColorValue(ms, pu, colorVar);
+        
+        // Debug logging (first record only)
+        if (dataPoints.length === 0) {
+          console.log('🔍 Debug first extraction:', {
+            msId,
+            puId: pu.rec_ID,
+            xVar, xVal,
+            yVar, yVal,
+            colorVar, colorVal,
+            msTitle: MAP.ms?.title(ms),
+            puHasDetails: !!pu.details,
+            puDetailsLength: pu.details?.length
+          });
+        }
+        
+        if (xVal !== null && yVal !== null) {
+          dataPoints.push({
+            x: xVal,
+            y: yVal,
+            color: colorVal,
+            title: MAP.ms?.title(ms) || 'Untitled'
+          });
+        }
+      }
+    });
   });
   
+  console.log(`📊 Codicology: Found ${dataPoints.length} data points for ${xVar} vs ${yVar}`);
+  
   if (dataPoints.length === 0) {
-    return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for selected variables</div>';
+    return `
+      <div style="padding: 3rem 2rem; text-align: center; color: #666;">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+        <h3 style="color: #999; font-weight: 500;">No Data Available</h3>
+        <p style="margin-top: 0.5rem;">No manuscripts have values for the selected variable combination.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #888;">Try different variables or check the data completeness.</p>
+      </div>
+    `;
   }
   
   // Get variable labels
   const varLabels = {
-    size: 'Height (mm)',
-    width: 'Width (mm)',
-    date: 'Year',
-    folios: 'Number of Folios',
-    material: 'Material',
-    columns: 'Columns'
+    'height': 'Height (mm)',
+    'width': 'Width (mm)',
+    'combined-size': 'Combined Size (Height + Width, mm)',
+    'justification-height': 'Justification Height (mm)',
+    'justification-width': 'Justification Width (mm)',
+    'margin-ratio': 'Margin Ratio',
+    'folios': 'Number of folios',
+    'columns': 'Number of Columns',
+    'lines-per-page': 'Lines per Page',
+    'quires': 'Number of Quires',
+    'date': 'Year',
+    'century': 'Century',
+    'material': 'Material',
+    'quire-type': 'Quire Type',
+    'ruling-type': 'Ruling Type',
+    'script-type': 'Script Type',
+    'binding-type': 'Binding Type'
   };
   
   const xLabel = varLabels[xVar] || xVar;
   const yLabel = varLabels[yVar] || yVar;
+  const colorLabel = varLabels[colorVar] || colorVar;
   
+  // Build visualization based on type
   if (vizType === 'scatter') {
     return buildScatterPlot(`${xLabel} vs ${yLabel}`, dataPoints, 'x', 'y', xLabel, yLabel, colorVar !== 'none' ? 'color' : null);
+  } else if (vizType === 'box') {
+    // Box plot: group Y values by categories
+    // If color variable is set, use it for grouping
+    // Otherwise, use X variable for grouping (if categorical)
+    const groupBy = colorVar !== 'none' ? 'color' : 'x';
+    const groupLabel = colorVar !== 'none' ? colorLabel : xLabel;
+    
+    const byCategory = {};
+    dataPoints.forEach(d => {
+      const key = String(d[groupBy] || 'Unknown');
+      if (!byCategory[key]) byCategory[key] = [];
+      byCategory[key].push(d.y);
+    });
+    
+    if (Object.keys(byCategory).length === 0) {
+      return '<div style="padding: 2rem; text-align: center; color: #666;">No data available for box plot</div>';
+    }
+    
+    return buildBoxPlot(`${yLabel} by ${groupLabel}`, byCategory, groupLabel, yLabel);
+  } else if (vizType === 'bar') {
+    // Count by color variable or X variable (if categorical)
+    const groupBy = colorVar !== 'none' ? 'color' : 'x';
+    const groupLabel = colorVar !== 'none' ? colorLabel : xLabel;
+    
+    const counts = {};
+    dataPoints.forEach(d => {
+      const key = String(d[groupBy] || 'Unknown');
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    
+    // Convert counts object to array format for buildBarChart
+    const barData = Object.keys(counts).map(key => ({
+      category: key,
+      value: counts[key]
+    }));
+    
+    return buildBarChart(`Count by ${groupLabel}`, barData, 'manuscripts');
   } else if (vizType === 'stats') {
-    // Group by color variable if present
-    if (colorVar !== 'none' && colorVar) {
+    // Statistical summary
+    if (colorVar !== 'none') {
       const byColor = {};
       dataPoints.forEach(d => {
         const colorKey = String(d.color || 'Unknown');
@@ -8453,11 +10185,113 @@ function analyzeCustomVariables(msRecords, suRecords, vizType) {
         };
       });
       
-      return buildStatsTable(`${yLabel} by ${varLabels[colorVar]}`, stats, '');
+      return buildStatsTable(`${yLabel} by ${colorLabel}`, stats, '');
+    } else {
+      // Overall statistics
+      const yValues = dataPoints.map(d => d.y);
+      const mean = yValues.reduce((a, b) => a + b, 0) / yValues.length;
+      const sorted = [...yValues].sort((a, b) => a - b);
+      const median = sorted[Math.floor(sorted.length / 2)];
+      const stats = {
+        'All Records': {
+          mean, median,
+          min: Math.min(...yValues),
+          max: Math.max(...yValues),
+          n: yValues.length
+        }
+      };
+      return buildStatsTable(`${yLabel} Statistics`, stats, '');
     }
+  } else if (vizType === 'correlation') {
+    // Correlation analysis between x and y
+    if (!dataPoints.length || dataPoints.length < 3) {
+      return '<div style="padding: 2rem; text-align: center; color: #666;">Not enough data points for correlation analysis (minimum 3 required)</div>';
+    }
+    
+    // Calculate Pearson correlation coefficient
+    const validPoints = dataPoints.filter(d => d.x !== null && d.y !== null && !isNaN(d.x) && !isNaN(d.y));
+    const n = validPoints.length;
+    
+    if (n < 3) {
+      return '<div style="padding: 2rem; text-align: center; color: #666;">Not enough valid numeric data points for correlation</div>';
+    }
+    
+    const xVals = validPoints.map(d => d.x);
+    const yVals = validPoints.map(d => d.y);
+    
+    const xMean = xVals.reduce((a, b) => a + b, 0) / n;
+    const yMean = yVals.reduce((a, b) => a + b, 0) / n;
+    
+    let numerator = 0;
+    let xDenominator = 0;
+    let yDenominator = 0;
+    
+    for (let i = 0; i < n; i++) {
+      const xDiff = xVals[i] - xMean;
+      const yDiff = yVals[i] - yMean;
+      numerator += xDiff * yDiff;
+      xDenominator += xDiff * xDiff;
+      yDenominator += yDiff * yDiff;
+    }
+    
+    const correlation = numerator / Math.sqrt(xDenominator * yDenominator);
+    const correlationPercent = (correlation * 100).toFixed(1);
+    
+    // Interpret correlation strength
+    let strength = '';
+    let strengthColor = '';
+    const absCorr = Math.abs(correlation);
+    if (absCorr >= 0.7) {
+      strength = 'Strong';
+      strengthColor = '#d32f2f';
+    } else if (absCorr >= 0.4) {
+      strength = 'Moderate';
+      strengthColor = '#f57c00';
+    } else if (absCorr >= 0.2) {
+      strength = 'Weak';
+      strengthColor = '#fbc02d';
+    } else {
+      strength = 'Very Weak / None';
+      strengthColor = '#757575';
+    }
+    
+    const direction = correlation > 0 ? 'Positive' : 'Negative';
+    
+    return `
+      <div style="padding: 2rem;">
+        <h3 style="margin-bottom: 1.5rem;">Correlation Analysis: ${xLabel} vs ${yLabel}</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); padding: 1.5rem; border-radius: 0.5rem; color: white;">
+            <div style="font-size: 0.875rem; opacity: 0.9; margin-bottom: 0.5rem;">Correlation Coefficient (r)</div>
+            <div style="font-size: 2.5rem; font-weight: bold;">${correlation.toFixed(3)}</div>
+            <div style="font-size: 0.875rem; opacity: 0.9; margin-top: 0.5rem;">${correlationPercent}%</div>
+          </div>
+          <div style="border: 2px solid ${strengthColor}; padding: 1.5rem; border-radius: 0.5rem;">
+            <div style="font-size: 0.875rem; color: #666; margin-bottom: 0.5rem;">Relationship Strength</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: ${strengthColor};">${strength}</div>
+            <div style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">${direction} correlation</div>
+          </div>
+        </div>
+        <div style="background: #f5f5f5; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #2196F3;">
+          <div style="font-weight: 600; margin-bottom: 0.5rem;">📊 Sample Size: ${n} manuscripts</div>
+          <div style="font-size: 0.875rem; color: #666; line-height: 1.6;">
+            <strong>Interpretation:</strong> ${
+              absCorr >= 0.7 
+                ? `There is a <strong>strong ${direction.toLowerCase()} relationship</strong> between ${xLabel} and ${yLabel}. ${correlation > 0 ? 'As one increases, the other tends to increase significantly.' : 'As one increases, the other tends to decrease significantly.'}`
+                : absCorr >= 0.4
+                ? `There is a <strong>moderate ${direction.toLowerCase()} relationship</strong> between ${xLabel} and ${yLabel}. ${correlation > 0 ? 'They tend to increase together.' : 'They tend to vary in opposite directions.'}`
+                : absCorr >= 0.2
+                ? `There is a <strong>weak ${direction.toLowerCase()} relationship</strong> between ${xLabel} and ${yLabel}.`
+                : 'There is <strong>little to no linear relationship</strong> between these variables.'
+            }
+          </div>
+        </div>
+        ${buildScatterPlot(`${xLabel} vs ${yLabel} (r = ${correlation.toFixed(3)})`, validPoints, 'x', 'y', xLabel, yLabel, colorVar !== 'none' ? 'color' : null)}
+      </div>
+    `;
   }
   
-  return '<div>Visualization type not supported for this configuration</div>';
+  return '<div style="padding: 2rem; text-align: center; color: #666;">Visualization type not supported for this configuration</div>';
 }
 
 // Visualization helper: Stats Table
@@ -8538,653 +10372,9 @@ function buildBoxPlot(title, dataByCategory, xLabel, yLabel) {
   `;
 }
 
-// Visualization helper: Scatter Plot
-function buildScatterPlot(title, dataPoints, xVar, yVar, xLabel, yLabel, colorVar) {
-  const xValues = dataPoints.map(d => d[xVar]);
-  const yValues = dataPoints.map(d => d[yVar]);
-  const xMin = Math.min(...yValues);
-  const xMax = Math.max(...yValues);
-  const yMin = Math.min(...yValues.filter(v => v !== null));
-  const yMax = Math.max(...yValues.filter(v => v !== null));
-  
-  const width = 600;
-  const height = 400;
-  const padding = 40;
-  
-  const xScale = (width - 2 * padding) / (xMax - xMin);
-  const yScale = (height - 2 * padding) / (yMax - yMin);
-  
-  const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6'];
-  const colorMap = {};
-  let colorIndex = 0;
-  
-  const points = dataPoints.map(d => {
-    let color = '#d4af37';
-    if (colorVar && d[colorVar]) {
-      if (!colorMap[d[colorVar]]) {
-        colorMap[d[colorVar]] = colors[colorIndex % colors.length];
-        colorIndex++;
-      }
-      color = colorMap[d[colorVar]];
-    }
-    
-    return `<circle cx="${padding + (d[yVar] - yMin) * yScale}" cy="${height - padding - (d[yVar] - yMin) * yScale}" r="4" fill="${color}" fill-opacity="0.6" stroke="white" stroke-width="1"><title>${d.msTitle || ''}: ${d[yVar]}</title></circle>`;
-  }).join('');
-  
-  return `
-    <div style="padding: 1.5rem;">
-      <h3 style="margin-bottom: 1rem;">${title}</h3>
-      <svg width="${width}" height="${height}" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="#ccc" stroke-width="2"/>
-        <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" stroke="#ccc" stroke-width="2"/>
-        ${points}
-        <text x="${width / 2}" y="${height - 5}" text-anchor="middle" font-size="12" fill="#666">${yLabel}</text>
-        <text x="10" y="${height / 2}" text-anchor="middle" font-size="12" fill="#666" transform="rotate(-90, 10, ${height / 2})">${yLabel}</text>
-      </svg>
-      <p style="font-size: 0.875rem; color: #666; margin-top: 0.5rem;">n=${dataPoints.length} manuscripts</p>
-    </div>
-  `;
-}
-
-// Visualization helper: Bar Chart
-function buildBarChart(title, data, unit) {
-  const maxValue = Math.max(...data.map(d => d.value));
-  
-  const bars = data.map(d => {
-    const width = (d.value / maxValue * 100);
-    return `
-      <div style="margin-bottom: 0.75rem;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
-          <span style="font-weight: 600; font-size: 0.875rem;">${d.category}</span>
-          <span style="font-size: 0.875rem; color: #666;">${d.value.toFixed(1)} ${unit}</span>
-        </div>
-        <div style="background: #e0e0e0; height: 2rem; border-radius: 0.25rem; overflow: hidden;">
-          <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); height: 100%; width: ${width}%;"></div>
-        </div>
-      </div>
-    `;
-  }).join('');
-  
-  return `
-    <div style="padding: 1.5rem;">
-      <h3 style="margin-bottom: 1rem;">${title}</h3>
-      <div>${bars}</div>
-    </div>
-  `;
-}
-
-// Visualization helper: Heatmap
-function buildHeatmap(title, data) {
-  // data format: { row1: { col1: value, col2: value }, row2: { col1: value } }
-  const rows = Object.keys(data);
-  const cols = new Set();
-  rows.forEach(row => {
-    Object.keys(data[row]).forEach(col => cols.add(col));
-  });
-  const colsArray = Array.from(cols);
-  
-  // Find max value for color scaling
-  let maxVal = 0;
-  rows.forEach(row => {
-    Object.values(data[row]).forEach(val => {
-      maxVal = Math.max(maxVal, parseFloat(val) || 0);
-    });
-  });
-  
-  const cellWidth = 120;
-  const cellHeight = 40;
-  
-  let html = `
-    <div style="padding: 1.5rem;">
-      <h3 style="margin-bottom: 1rem;">${title}</h3>
-      <div style="overflow-x: auto;">
-        <table style="border-collapse: collapse; margin: 1rem 0;">
-          <thead>
-            <tr>
-              <th style="padding: 0.5rem; border: 1px solid #ddd; background: #f8f9fa; min-width: 120px;">Category</th>
-  `;
-  
-  colsArray.forEach(col => {
-    html += `<th style="padding: 0.5rem; border: 1px solid #ddd; background: #f8f9fa; min-width: ${cellWidth}px;">${col}</th>`;
-  });
-  
-  html += '</tr></thead><tbody>';
-  
-  rows.forEach(row => {
-    html += `<tr><td style="padding: 0.5rem; border: 1px solid #ddd; font-weight: bold;">${row}</td>`;
-    colsArray.forEach(col => {
-      const val = data[row][col] || 0;
-      const intensity = maxVal > 0 ? (parseFloat(val) / maxVal) : 0;
-      const bgColor = `rgba(218, 165, 32, ${intensity * 0.7 + 0.1})`; // Gold gradient
-      html += `<td style="padding: 0.5rem; border: 1px solid #ddd; background: ${bgColor}; text-align: center;">${val}${typeof val === 'string' && val.includes('.') ? '%' : ''}</td>`;
-    });
-    html += '</tr>';
-  });
-  
-  html += '</tbody></table></div></div>';
-  return html;
-}
-
-// Visualization helper: Stacked Bar
-function buildStackedBar(title, data, totals) {
-  // data format: { category1: { subcategory1: count, subcategory2: count }, ... }
-  // totals: { category1: total, category2: total, ... }
-  
-  const categories = Object.keys(data);
-  const subCategories = new Set();
-  categories.forEach(cat => {
-    Object.keys(data[cat]).forEach(sub => subCategories.add(sub));
-  });
-  const subCatsArray = Array.from(subCategories);
-  
-  // Color palette for subcategories
-  const colors = [
-    'rgba(218, 165, 32, 0.8)',   // Gold
-    'rgba(184, 134, 11, 0.8)',   // Dark gold
-    'rgba(255, 215, 0, 0.8)',    // Light gold
-    'rgba(169, 169, 169, 0.8)',  // Gray
-    'rgba(128, 128, 128, 0.8)'   // Dark gray
-  ];
-  
-  let html = `
-    <div style="padding: 1.5rem;">
-      <h3 style="margin-bottom: 1rem;">${title}</h3>
-  `;
-  
-  // Legend
-  html += '<div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">';
-  subCatsArray.forEach((sub, idx) => {
-    const color = colors[idx % colors.length];
-    html += `<div style="display: flex; align-items: center; gap: 0.3rem;">
-      <div style="width: 20px; height: 20px; background: ${color}; border: 1px solid #ccc;"></div>
-      <span>${sub}</span>
-    </div>`;
-  });
-  html += '</div>';
-  
-  // Bars
-  categories.forEach(cat => {
-    const total = totals[cat] || 0;
-    html += `<div style="margin-bottom: 1rem;">
-      <div style="margin-bottom: 0.3rem; font-weight: bold;">${cat} (n=${total})</div>
-      <div style="display: flex; height: 30px; border: 1px solid #ddd; overflow: hidden;">
-    `;
-    
-    subCatsArray.forEach((sub, idx) => {
-      const count = data[cat][sub] || 0;
-      const percentage = total > 0 ? (count / total * 100) : 0;
-      const color = colors[idx % colors.length];
-      if (percentage > 0) {
-        html += `<div style="width: ${percentage}%; background: ${color}; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: bold;" title="${sub}: ${count} (${percentage.toFixed(1)}%)">${percentage.toFixed(1)}%</div>`;
-      }
-    });
-    
-    html += '</div></div>';
-  });
-  
-  html += '</div>';
-  return html;
-}
-
-// Sankey Diagram - Entity Flow Visualization
-function buildSankeyDiagram(mount, list) {
-  // Collect entity relationships from REL_INDEX
-  const links = [];
-  const nodeSet = new Set();
-  const listIds = new Set(list.map(r => String(r.rec_ID)));
-  
-  // Use REL_INDEX to find relationships between entities in the current list
-  list.forEach(rec => {
-    const recId = String(rec.rec_ID);
-    
-    // Check outgoing relationships (this record as source)
-    const outgoing = REL_INDEX.bySource[recId] || [];
-    outgoing.forEach(rel => {
-      const tgt = getRes(rel, 'Target record');
-      if (!tgt) return;
-      const tgtId = String(tgt.id);
-      
-      // Find source and target entity types
-      let sourceType = null, targetType = null;
-      for (const et of ['ms', 'su', 'pu', 'mi', 'hi', 'hp', 'tx']) {
-        if (IDX[et]?.[recId]) sourceType = et;
-        if (IDX[et]?.[tgtId]) targetType = et;
-      }
-      
-      if (sourceType && targetType) {
-        const sourceNode = `${sourceType}:${recId}`;
-        const targetNode = `${targetType}:${tgtId}`;
-        nodeSet.add(sourceNode);
-        nodeSet.add(targetNode);
-        links.push({
-          source: sourceNode,
-          target: targetNode,
-          value: 1
-        });
-      }
-    });
-    
-    // Check incoming relationships (this record as target)
-    const incoming = REL_INDEX.byTarget[recId] || [];
-    incoming.forEach(rel => {
-      const src = getRes(rel, 'Source record');
-      if (!src) return;
-      const srcId = String(src.id);
-      
-      // Only count if source is also in our current list (to avoid duplicates)
-      if (!listIds.has(srcId)) return;
-      
-      // Find source and target entity types
-      let sourceType = null, targetType = null;
-      for (const et of ['ms', 'su', 'pu', 'mi', 'hi', 'hp', 'tx']) {
-        if (IDX[et]?.[srcId]) sourceType = et;
-        if (IDX[et]?.[recId]) targetType = et;
-      }
-      
-      if (sourceType && targetType) {
-        const sourceNode = `${sourceType}:${srcId}`;
-        const targetNode = `${targetType}:${recId}`;
-        nodeSet.add(sourceNode);
-        nodeSet.add(targetNode);
-        links.push({
-          source: sourceNode,
-          target: targetNode,
-          value: 1
-        });
-      }
-    });
-  });
-  
-  // Aggregate by entity type pairs with relationship details
-  const flowCounts = {};
-  const flowDetails = {};
-  links.forEach(link => {
-    const sourceType = link.source.split(':')[0];
-    const targetType = link.target.split(':')[0];
-    const key = `${sourceType}→${targetType}`;
-    flowCounts[key] = (flowCounts[key] || 0) + 1;
-    if (!flowDetails[key]) {
-      flowDetails[key] = { connections: [], sourceIds: new Set(), targetIds: new Set() };
-    }
-    flowDetails[key].connections.push(link);
-    flowDetails[key].sourceIds.add(link.source);
-    flowDetails[key].targetIds.add(link.target);
-  });
-  
-  if (Object.keys(flowCounts).length === 0) {
-    mount.innerHTML = `
-      <div style="padding: 2rem; text-align: center; color: #666;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🌊</div>
-        <h3 style="margin-bottom: 0.5rem;">Sankey Diagram</h3>
-        <p>No relationship flows found in current filtered data</p>
-      </div>
-    `;
-    return;
-  }
-  
-  // Calculate statistics
-  const totalFlows = Object.values(flowCounts).reduce((sum, count) => sum + count, 0);
-  const uniqueFlowTypes = Object.keys(flowCounts).length;
-  
-  // Build simplified Sankey visualization with bars
-  const sortedFlows = Object.entries(flowCounts).sort((a, b) => b[1] - a[1]).slice(0, 15);
-  const maxFlow = Math.max(...sortedFlows.map(f => f[1]));
-  
-  const flowBars = sortedFlows.map(([flow, count], idx) => {
-    const [source, target] = flow.split('→');
-    const width = (count / maxFlow) * 100;
-    const percentage = ((count / totalFlows) * 100).toFixed(1);
-    const sourceColor = {ms: '#3498db', su: '#e6b800', pu: '#e74c3c', mi: '#9b59b6', hi: '#2ecc71', hp: '#f39c12', tx: '#1abc9c'}[source] || '#95a5a6';
-    const targetColor = {ms: '#3498db', su: '#e6b800', pu: '#e74c3c', mi: '#9b59b6', hi: '#2ecc71', hp: '#f39c12', tx: '#1abc9c'}[target] || '#95a5a6';
-    
-    const details = flowDetails[flow];
-    const uniqueSources = details.sourceIds.size;
-    const uniqueTargets = details.targetIds.size;
-    
-    return `
-      <div style="margin-bottom: 1rem; padding: 0.75rem; background: white; border-radius: 0.5rem; border: 1px solid #e0e0e0;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-weight: 700; color: #999; font-size: 0.75rem; width: 25px;">#${idx + 1}</span>
-            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: ${sourceColor};"></span>
-            <span style="font-weight: 500; font-size: 0.875rem;">${MAP[source]?.name || source}</span>
-            <span style="color: #999; font-size: 1.2rem;">→</span>
-            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: ${targetColor};"></span>
-            <span style="font-weight: 500; font-size: 0.875rem;">${MAP[target]?.name || target}</span>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-weight: 700; color: #333; font-size: 0.9rem;">${count} connections</div>
-            <div style="font-size: 0.7rem; color: #999;">${percentage}% of total</div>
-          </div>
-        </div>
-        <div style="width: 100%; height: 24px; background: #f0f0f0; border-radius: 12px; overflow: hidden; margin-bottom: 0.5rem;">
-          <div style="width: ${width}%; height: 100%; background: linear-gradient(90deg, ${sourceColor}, ${targetColor}); transition: width 0.3s;"></div>
-        </div>
-        <div style="display: flex; gap: 1rem; font-size: 0.7rem; color: #666;">
-          <span>📤 ${uniqueSources} unique sources</span>
-          <span>📥 ${uniqueTargets} unique targets</span>
-        </div>
-      </div>
-    `;
-  }).join('');
-  
-  mount.innerHTML = `
-    <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <h3 style="margin: 0; font-size: 1.1rem;">Entity Relationship Flows</h3>
-        <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: #666;">
-          <span><strong>${totalFlows}</strong> total connections</span>
-          <span><strong>${uniqueFlowTypes}</strong> flow types</span>
-        </div>
-      </div>
-      <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem;">Top 15 most frequent relationship flows</p>
-      ${flowBars}
-    </div>
-  `;
-}
-
-// Matrix Visualization - Connection Heatmap
-function buildMatrixVisualization(mount, list) {
-  // Build connection matrix between entity types
-  const entityTypes = ['ms', 'su', 'pu', 'mi', 'hi', 'hp', 'tx'];
-  const matrix = {};
-  
-  // Initialize matrix
-  entityTypes.forEach(source => {
-    matrix[source] = {};
-    entityTypes.forEach(target => {
-      matrix[source][target] = 0;
-    });
-  });
-  
-  // Count connections from relationships
-  DATA.rel?.forEach(rel => {
-    const src = getRes(rel, 'Source record');
-    const tgt = getRes(rel, 'Target record');
-    if (!src || !tgt) return;
-    
-    // Find entity types
-    let sourceType = null, targetType = null;
-    for (const et of entityTypes) {
-      if (IDX[et]?.[String(src.id)]) sourceType = et;
-      if (IDX[et]?.[String(tgt.id)]) targetType = et;
-    }
-    
-    if (sourceType && targetType) {
-      matrix[sourceType][targetType]++;
-      matrix[targetType][sourceType]++; // Symmetric
-    }
-  });
-  
-  // Find max value for color scaling
-  let maxValue = 0;
-  let totalConnections = 0;
-  const rowTotals = {};
-  const colTotals = {};
-  
-  entityTypes.forEach(source => {
-    rowTotals[source] = 0;
-    colTotals[source] = 0;
-    entityTypes.forEach(target => {
-      const val = matrix[source][target];
-      if (val > maxValue) maxValue = val;
-      totalConnections += val;
-      rowTotals[source] += val;
-      colTotals[target] += val;
-    });
-  });
-  
-  // Adjust for double counting (symmetric matrix)
-  totalConnections = totalConnections / 2;
-  
-  if (maxValue === 0) {
-    mount.innerHTML = `
-      <div style="padding: 2rem; text-align: center; color: #666;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">▦</div>
-        <h3 style="margin-bottom: 0.5rem;">Matrix Visualization</h3>
-        <p>No connections found between entities</p>
-      </div>
-    `;
-    return;
-  }
-  
-  // Build matrix HTML with enhanced styling
-  const cellSize = 65;
-  const labelWidth = 130;
-  
-  let matrixHTML = '<table style="border-collapse: collapse; margin: 0 auto; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">';
-  
-  // Header row
-  matrixHTML += '<tr><th style="width: ' + labelWidth + 'px; background: #f8f9fa;"></th>';
-  entityTypes.forEach(type => {
-    matrixHTML += `<th style="text-align: center; padding: 0.5rem; font-size: 0.75rem; font-weight: 700; color: #333; background: #f8f9fa; border-bottom: 2px solid #dee2e6;">${MAP[type]?.name || type}</th>`;
-  });
-  matrixHTML += '<th style="text-align: center; padding: 0.5rem; font-size: 0.7rem; font-weight: 700; color: #666; background: #f8f9fa; border-bottom: 2px solid #dee2e6;">Total</th>';
-  matrixHTML += '</tr>';
-  
-  // Data rows
-  entityTypes.forEach(sourceType => {
-    matrixHTML += '<tr>';
-    matrixHTML += `<td style="text-align: right; padding-right: 0.75rem; font-size: 0.75rem; font-weight: 700; color: #333; background: #f8f9fa; border-right: 2px solid #dee2e6;">${MAP[sourceType]?.name || sourceType}</td>`;
-    
-    entityTypes.forEach(targetType => {
-      const value = matrix[sourceType][targetType];
-      const intensity = maxValue > 0 ? value / maxValue : 0;
-      const bgColor = value > 0 ? `rgba(212, 175, 55, ${0.15 + intensity * 0.85})` : '#fafafa';
-      const textColor = intensity > 0.6 ? '#fff' : '#333';
-      const borderColor = sourceType === targetType ? '#d4af37' : '#e0e0e0';
-      const borderWidth = sourceType === targetType ? '2px' : '1px';
-      
-      matrixHTML += `
-        <td style="
-          width: ${cellSize}px; 
-          height: ${cellSize}px; 
-          text-align: center;
-          vertical-align: middle; 
-          background: ${bgColor}; 
-          border: ${borderWidth} solid ${borderColor};
-          font-weight: 700;
-          color: ${textColor};
-          font-size: 0.9rem;
-          cursor: ${value > 0 ? 'pointer' : 'default'};
-          transition: all 0.2s;
-        " 
-        onmouseover="this.style.transform='scale(1.1)'; this.style.zIndex='10'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';"
-        onmouseout="this.style.transform='scale(1)'; this.style.zIndex='1'; this.style.boxShadow='none';"
-        title="${MAP[sourceType]?.name || sourceType} ↔ ${MAP[targetType]?.name || targetType}: ${value} connections${sourceType === targetType ? ' (self-references)' : ''}">
-          ${value > 0 ? value : '—'}
-        </td>
-      `;
-    });
-    
-    // Row total
-    matrixHTML += `<td style="text-align: center; padding: 0.5rem; font-weight: 700; color: #333; background: #f8f9fa; border-left: 2px solid #dee2e6; font-size: 0.8rem;">${rowTotals[sourceType]}</td>`;
-    matrixHTML += '</tr>';
-  });
-  
-  // Column totals row
-  matrixHTML += '<tr>';
-  matrixHTML += `<td style="text-align: right; padding-right: 0.75rem; font-size: 0.7rem; font-weight: 700; color: #666; background: #f8f9fa; border-top: 2px solid #dee2e6;">Total</td>`;
-  entityTypes.forEach(type => {
-    matrixHTML += `<td style="text-align: center; padding: 0.5rem; font-weight: 700; color: #333; background: #f8f9fa; border-top: 2px solid #dee2e6; font-size: 0.8rem;">${colTotals[type]}</td>`;
-  });
-  matrixHTML += `<td style="text-align: center; padding: 0.5rem; font-weight: 700; color: #d4af37; background: #fffbf0; border-top: 2px solid #dee2e6; border-left: 2px solid #dee2e6; font-size: 0.8rem;">${totalConnections}</td>`;
-  matrixHTML += '</tr>';
-  
-  matrixHTML += '</table>';
-  
-  mount.innerHTML = `
-    <div style="padding: 1.5rem; overflow: auto;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <h3 style="margin: 0; font-size: 1.1rem;">Entity Connection Matrix</h3>
-        <div style="font-size: 0.85rem; color: #666;">
-          <strong>${totalConnections}</strong> total connections
-        </div>
-      </div>
-      <p style="text-align: center; color: #666; font-size: 0.875rem; margin-bottom: 1.5rem;">Symmetric heatmap showing bidirectional relationships. Diagonal shows self-references. Hover cells for details.</p>
-      ${matrixHTML}
-      <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 1.5rem; font-size: 0.75rem; color: #666;">
-        <span>Low density</span>
-        <div style="display: flex; gap: 2px;">
-          ${[0.15, 0.35, 0.55, 0.75, 1.0].map(v => `<div style="width: 24px; height: 24px; background: rgba(212, 175, 55, ${v}); border: 1px solid #ddd;"></div>`).join('')}
-        </div>
-        <span>High density</span>
-      </div>
-    </div>
-  `;
-}
-
-// Chord Diagram - Circular Relationship Visualization
-function buildChordDiagram(mount, list) {
-  // Similar to matrix but circular representation
-  const entityTypes = ['ms', 'su', 'pu', 'mi', 'hi', 'hp', 'tx'];
-  const connections = {};
-  
-  entityTypes.forEach(type => connections[type] = 0);
-  
-  // Count total connections per entity type
-  DATA.rel?.forEach(rel => {
-    const src = getRes(rel, 'Source record');
-    const tgt = getRes(rel, 'Target record');
-    if (!src || !tgt) return;
-    
-    for (const et of entityTypes) {
-      if (IDX[et]?.[String(src.id)]) connections[et]++;
-      if (IDX[et]?.[String(tgt.id)]) connections[et]++;
-    }
-  });
-  
-  const totalConnections = Object.values(connections).reduce((a, b) => a + b, 0);
-  
-  if (totalConnections === 0) {
-    mount.innerHTML = `
-      <div style="padding: 2rem; text-align: center; color: #666;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">⭕</div>
-        <h3 style="margin-bottom: 0.5rem;">Chord Diagram</h3>
-        <p>No entity connections found</p>
-      </div>
-    `;
-    return;
-  }
-  
-  // Create circular visualization with segments
-  const sortedEntities = Object.entries(connections)
-    .filter(([_, count]) => count > 0)
-    .sort((a, b) => b[1] - a[1]);
-  
-  const radius = 150;
-  const centerX = 200;
-  const centerY = 200;
-  const colors = {
-    ms: '#3498db', su: '#e6b800', pu: '#e74c3c', 
-    mi: '#9b59b6', hi: '#2ecc71', hp: '#f39c12', tx: '#1abc9c'
-  };
-  
-  let currentAngle = 0;
-  const segments = sortedEntities.map(([type, count]) => {
-    const percentage = count / totalConnections;
-    const angle = percentage * 360;
-    const startAngle = currentAngle;
-    const endAngle = currentAngle + angle;
-    currentAngle = endAngle;
-    
-    // Calculate arc path
-    const startRad = (startAngle - 90) * Math.PI / 180;
-    const endRad = (endAngle - 90) * Math.PI / 180;
-    
-    const x1 = centerX + radius * Math.cos(startRad);
-    const y1 = centerY + radius * Math.sin(startRad);
-    const x2 = centerX + radius * Math.cos(endRad);
-    const y2 = centerY + radius * Math.sin(endRad);
-    
-    const largeArc = angle > 180 ? 1 : 0;
-    
-    const pathData = `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z`;
-    
-    // Label position
-    const labelAngle = (startAngle + angle / 2 - 90) * Math.PI / 180;
-    const labelRadius = radius + 30;
-    const labelX = centerX + labelRadius * Math.cos(labelAngle);
-    const labelY = centerY + labelRadius * Math.sin(labelAngle);
-    
-    return {
-      path: pathData,
-      color: colors[type] || '#95a5a6',
-      label: MAP[type]?.name || type,
-      count,
-      percentage: Math.round(percentage * 100),
-      labelX,
-      labelY,
-      textAnchor: labelX > centerX ? 'start' : 'end'
-    };
-  });
-  
-  const svgSegments = segments.map((seg, idx) => `
-    <g>
-      <path d="${seg.path}" fill="${seg.color}" opacity="0.85" stroke="#fff" stroke-width="3"
-        style="cursor: pointer; transition: opacity 0.2s;"
-        onmouseover="this.style.opacity='1'; this.style.filter='drop-shadow(0 2px 4px rgba(0,0,0,0.3))';"
-        onmouseout="this.style.opacity='0.85'; this.style.filter='none';">
-        <title>${seg.label}: ${seg.count} connections (${seg.percentage}%)</title>
-      </path>
-    </g>
-  `).join('');
-  
-  const svgLabels = segments.map((seg, idx) => `
-    <g>
-      <text x="${seg.labelX}" y="${seg.labelY}" text-anchor="${seg.textAnchor}" font-size="13" font-weight="700" fill="#333">
-        ${seg.label}
-      </text>
-      <text x="${seg.labelX}" y="${seg.labelY + 16}" text-anchor="${seg.textAnchor}" font-size="11" font-weight="600" fill="${seg.color}">
-        ${seg.count}
-      </text>
-      <text x="${seg.labelX}" y="${seg.labelY + 28}" text-anchor="${seg.textAnchor}" font-size="9" fill="#999">
-        ${seg.percentage}%
-      </text>
-    </g>
-  `).join('');
-  
-  // Generate legend
-  const legendItems = sortedEntities.map(([type, count]) => `
-    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0;">
-      <div style="width: 16px; height: 16px; background: ${colors[type] || '#95a5a6'}; border-radius: 3px;"></div>
-      <span style="font-size: 0.85rem; font-weight: 500;">${MAP[type]?.name || type}</span>
-      <span style="font-size: 0.75rem; color: #999; margin-left: auto;">${count} (${Math.round((count / totalConnections) * 100)}%)</span>
-    </div>
-  `).join('');
-  
-  mount.innerHTML = `
-    <div style="padding: 1.5rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <h3 style="margin: 0; font-size: 1.1rem;">Entity Connection Distribution</h3>
-        <div style="font-size: 0.85rem; color: #666;">
-          <strong>${totalConnections}</strong> total connections
-        </div>
-      </div>
-      <p style="text-align: center; color: #666; font-size: 0.875rem; margin-bottom: 1rem;">
-        Circular visualization showing proportional connection frequency per entity type
-      </p>
-      <div style="display: flex; gap: 2rem; align-items: flex-start; justify-content: center;">
-        <svg width="420" height="420" style="flex-shrink: 0;">
-          <defs>
-            <filter id="shadow">
-              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
-            </filter>
-          </defs>
-          ${svgSegments}
-          ${svgLabels}
-        </svg>
-        <div style="min-width: 200px; padding: 1rem; background: #f9fafb; border-radius: 0.5rem; border: 1px solid #e0e0e0;">
-          <h4 style="margin: 0 0 0.75rem 0; font-size: 0.9rem; color: #333;">Entity Breakdown</h4>
-          ${legendItems}
-        </div>
-      </div>
-    </div>
-  `;
-}
 
 // Hierarchical Tree - Entity Structure
-function buildHierarchicalTree(mount, list) {
+function buildHierarchicalTreeVisualization(mount, list) {
   // Build tree showing MS → PU → SU hierarchy
   // Structure: SU points to MS (pointer), SU relates to PU (relationship), PU points to MS (pointer)
   const tree = {};
@@ -9487,7 +10677,9 @@ function buildHierarchicalTree(mount, list) {
         return `
           <div style="${suStyle}">
             <span style="font-size: 0.85rem; color: #999; font-weight: 600;">SU #${suIdx + 1}</span>
-            <span style="font-weight: 600; font-size: 0.875rem; color: #333;">📝 ${su.title}</span>
+            <a href="?browse=${suId}" style="font-weight: 600; font-size: 0.875rem; color: #333; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#2196F3'" onmouseout="this.style.color='#333'">
+              📝 ${su.title} <span style="font-size: 0.7rem; color: #999;">🔗</span>
+            </a>
             ${crossPUIndicator}
           </div>
         `;
@@ -9495,14 +10687,14 @@ function buildHierarchicalTree(mount, list) {
       
       // Special styling for cross-MS PUs
       const puStyle = isCrossMSPU 
-        ? 'margin-left: 1.5rem; padding: 0.75rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 3px dashed #9c27b0; border-right: 3px dashed #9c27b0; margin-top: 0.75rem; border-radius: 0.375rem; box-shadow: 0 2px 6px rgba(156,39,176,0.3); position: relative;'
+        ? 'margin-left: 1.5rem; padding: 0.75rem; background: linear-gradient(135deg, #fef6e8 0%, #f4e4c1 100%); border-left: 3px dashed #c4941f; border-right: 3px dashed #c4941f; margin-top: 0.75rem; border-radius: 0.375rem; box-shadow: 0 2px 6px rgba(196, 148, 31,0.3); position: relative;'
         : 'margin-left: 1.5rem; padding: 0.75rem; background: #ffebee; border-left: 3px solid #e74c3c; margin-top: 0.75rem; border-radius: 0.375rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08);';
       
       const crossMSIndicator = isCrossMSPU 
-        ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #9c27b0; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">
+        ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #c4941f; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">
              🔗 SPANS ${puMsList.length} MSS
            </div>
-           <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(156,39,176,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #7b1fa2;">
+           <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(196, 148, 31,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #7b1fa2;">
              <strong>⚠️ Cross-Manuscript PU:</strong> This production unit also appears in:<br/>
              ${otherMSTitles.map(t => `<span style="margin-left: 1rem;">→ ${t}</span>`).join('<br/>')}
            </div>`
@@ -9513,7 +10705,9 @@ function buildHierarchicalTree(mount, list) {
           ${isCrossMSPU ? crossMSIndicator : ''}
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
             <span style="font-size: 0.85rem; color: #999; font-weight: 600;">PU #${puIdx + 1}</span>
-            <span style="font-weight: 600; font-size: 0.95rem; color: #333;">${isCrossMSPU ? '🔗' : '📦'} ${pu.title}</span>
+            <a href="?browse=${puId}" style="font-weight: 600; font-size: 0.95rem; color: #333; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#e74c3c'" onmouseout="this.style.color='#333'">
+              ${isCrossMSPU ? '🔗' : '📦'} ${pu.title} <span style="font-size: 0.7rem; color: #999;">🔗</span>
+            </a>
           </div>
           ${puSuCount > 0 ? `<div style="font-size: 0.75rem; color: #999; margin-bottom: 0.5rem;">Contains ${puSuCount} Scribal Unit${puSuCount !== 1 ? 's' : ''}</div>` : '<div style="font-size: 0.75rem; color: #999; font-style: italic;">No scribal units</div>'}
           ${suHTML}
@@ -9526,9 +10720,11 @@ function buildHierarchicalTree(mount, list) {
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
           <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
             <span style="font-size: 0.9rem; color: #999; font-weight: 700;">MS #${msIdx + 1}</span>
-            <span style="font-weight: 700; font-size: 1.05rem; color: #1a1a1a;">📚 ${ms.title}</span>
+            <a href="?browse=${msId}" style="font-weight: 700; font-size: 1.05rem; color: #1a1a1a; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#2196F3'" onmouseout="this.style.color='#1a1a1a'">
+              📚 ${ms.title} <span style="font-size: 0.75rem; color: #999;">🔗</span>
+            </a>
             ${metrics.hasInterleaved ? '<span style="padding: 0.125rem 0.375rem; background: #ff9800; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">🔀 INTERLEAVED</span>' : ''}
-            ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #9c27b0; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📚 CROSS-MS</span>' : ''}
+            ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #c4941f; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📚 CROSS-MS</span>' : ''}
             ${metrics.hasCrossPUSU ? '<span style="padding: 0.125rem 0.375rem; background: #f44336; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">✍️ CROSS-PU</span>' : ''}
             ${metrics.puCount >= 5 ? '<span style="padding: 0.125rem 0.375rem; background: #2196f3; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📦 MULTI-PU</span>' : ''}
           </div>
@@ -9549,7 +10745,7 @@ function buildHierarchicalTree(mount, list) {
             <strong style="color: #f4d03f;">${suCount}</strong> Scribal Unit${suCount !== 1 ? 's' : ''}
           </span>
           <span style="display: flex; align-items: center; gap: 0.25rem;">
-            <strong style="color: #9c27b0;">Complexity:</strong> ${metrics.complexityScore}
+            <strong style="color: #c4941f;">Complexity:</strong> ${metrics.complexityScore}
           </span>
         </div>
         ${puHTML}
@@ -10242,7 +11438,7 @@ function buildMultilingualismOverview(mount) {
       
       <!-- Key Statistics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.totalLanguages.size}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Languages/Dialects</div>
         </div>
@@ -10278,7 +11474,7 @@ function buildMultilingualismOverview(mount) {
                   <span style="color: #666;">${count} occurrences</span>
                 </div>
                 <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                  <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                  <div style="background: linear-gradient(90deg, #d4af37, #c4941f); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
                 </div>
               </div>
             `;
@@ -10386,8 +11582,8 @@ function buildMultilingualismOverview(mount) {
                     ${item.location ? `<div>📍 ${item.location}</div>` : ''}
                   </div>
                   <div style="display: flex; gap: 1rem; font-size: 0.75rem;">
-                    <span style="background: #667eea; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''}</span>
-                    <span style="background: #764ba2; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
+                    <span style="background: #d4af37; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''}</span>
+                    <span style="background: #c4941f; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
                   </div>
                 </div>
               `).join('')}
@@ -10396,7 +11592,7 @@ function buildMultilingualismOverview(mount) {
         </div>
         
         <!-- Key Insights -->
-        <div style="background: linear-gradient(135deg, #667eea15, #764ba215); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #667eea;">
+        <div style="background: linear-gradient(135deg, #d4af3715, #c4941f15); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #d4af37;">
           <h4 style="margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;">💡 Key Insights</h4>
           <ul style="margin: 0; padding-left: 1.5rem; color: #555; line-height: 1.8; font-size: 0.9rem;">
             ${topCountries.length > 0 ? `<li><strong>Geographical:</strong> ${topCountries[0].name} shows the highest concentration of multilingual production (${topCountries[0].count} PUs)</li>` : ''}
@@ -10408,7 +11604,7 @@ function buildMultilingualismOverview(mount) {
       </div>
       
       <!-- Description -->
-      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #667eea; border-radius: 0.375rem; margin-bottom: 1.5rem;">
+      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #d4af37; border-radius: 0.375rem; margin-bottom: 1.5rem;">
         <p style="margin: 0; color: #555; line-height: 1.6;">
           This module explores linguistic diversity in medieval manuscript production. Navigate through the tabs above to investigate:
           <strong>Multilingual Manuscripts</strong> with texts in multiple languages,
@@ -10600,7 +11796,7 @@ function buildMultilingualManuscripts(mount) {
   // Build manuscript cards
   const msCards = msLanguageData.map((ms, idx) => {
     const langBadges = ms.languages.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #d4af37, #c4941f); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
     ).join('');
     
     // Multilingualism type badge
@@ -10686,7 +11882,7 @@ function buildMultilingualManuscripts(mount) {
             </div>
           </div>
           <div>
-            <button onclick="window.jumpTo('ms', '${ms.id}')" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#5568d3'" onmouseleave="this.style.background='#667eea'">
+            <button onclick="window.jumpTo('ms', '${ms.id}')" style="padding: 0.5rem 1rem; background: #d4af37; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#b8941e'" onmouseleave="this.style.background='#d4af37'">
               View Details
             </button>
           </div>
@@ -10709,7 +11905,7 @@ function buildMultilingualManuscripts(mount) {
           occurs <strong>within production units</strong> (scribes working across languages) or represents 
           a <strong>cross-PU compilation</strong> (different units with different languages assembled together).
         </p>
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+        <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
           <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${msLanguageData.length}</span>
           <span style="opacity: 0.9;">multilingual manuscript${msLanguageData.length !== 1 ? 's' : ''}</span>
         </div>
@@ -10830,7 +12026,7 @@ function buildScribalMultilingualism(mount) {
         `<div style="font-size: 0.75rem; color: #666; padding: 0.25rem 0; border-bottom: 1px solid #f0f0f0;">
           <span style="font-weight: 600;">${su.suTitle}</span> 
           <span style="color: #999;">in</span> 
-          <span style="color: #667eea;">${su.msTitle}</span>
+          <span style="color: #d4af37;">${su.msTitle}</span>
           ${su.role !== 'scribe' ? `<span style="color: #999; font-style: italic;"> (${su.role})</span>` : ''}
         </div>`
       ).join('');
@@ -10897,7 +12093,7 @@ function buildScribalMultilingualism(mount) {
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualScribes.length}</span>
             <span style="opacity: 0.9;">multilingual scribe${multilingualScribes.length !== 1 ? 's' : ''}</span>
           </div>
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${allScribes.length}</span>
             <span style="opacity: 0.9;">total scribe${allScribes.length !== 1 ? 's' : ''} with language data</span>
           </div>
@@ -11018,7 +12214,7 @@ function buildInstitutionalMultilingualism(mount) {
         `<div style="font-size: 0.75rem; color: #666; padding: 0.25rem 0; border-bottom: 1px solid #f0f0f0;">
           <span style="font-weight: 600;">${pu.puTitle}</span> 
           <span style="color: #999;">in</span> 
-          <span style="color: #667eea;">${pu.msTitle}</span>
+          <span style="color: #d4af37;">${pu.msTitle}</span>
         </div>`
       ).join('');
       
@@ -11084,7 +12280,7 @@ function buildInstitutionalMultilingualism(mount) {
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualInstitutions.length}</span>
             <span style="opacity: 0.9;">multilingual institution${multilingualInstitutions.length !== 1 ? 's' : ''}</span>
           </div>
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${allInstitutions.length}</span>
             <span style="opacity: 0.9;">total institution${allInstitutions.length !== 1 ? 's' : ''} with language data</span>
           </div>
@@ -11199,7 +12395,7 @@ function buildColophonTextDivergence(mount) {
               <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Divergence #${idx + 1}</span>
               <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">🔀 ${div.suTitle}</h3>
             </div>
-            <div style="font-size: 0.85rem; color: #667eea; margin-bottom: 0.75rem;">
+            <div style="font-size: 0.85rem; color: #d4af37; margin-bottom: 0.75rem;">
               📖 ${div.msTitle}
             </div>
           </div>
@@ -11261,7 +12457,7 @@ function buildColophonTextDivergence(mount) {
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${divergences.length}</span>
             <span style="opacity: 0.9;">divergent case${divergences.length !== 1 ? 's' : ''}</span>
           </div>
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${Object.keys(patterns).length}</span>
             <span style="opacity: 0.9;">unique pattern${Object.keys(patterns).length !== 1 ? 's' : ''}</span>
           </div>
@@ -11467,20 +12663,16 @@ function buildColophonOverview(mount) {
   const msByRegion = {};
   
   allSUs.forEach(su => {
-    const century = getVal(su, 'Normalized century of production');
-    if (century) {
-      msByCentury[century] = (msByCentury[century] || 0) + 1;
-    }
+    const century = getVal(su, 'Normalized century of production') || 'Unknown';
+    msByCentury[century] = (msByCentury[century] || 0) + 1;
     
     const pus = getPUsForSU(su);
     if (pus.length > 0) {
       const pu = IDX.pu[pus[0]];
       if (pu) {
-        const place = MAP.pu?.place(pu) || '';
-        const region = place.split(',')[0].trim();
-        if (region) {
-          msByRegion[region] = (msByRegion[region] || 0) + 1;
-        }
+        const place = MAP.pu?.place(pu) || 'Unknown';
+        const region = place.split(',')[0].trim() || 'Unknown';
+        msByRegion[region] = (msByRegion[region] || 0) + 1;
       }
     }
   });
@@ -11492,7 +12684,7 @@ function buildColophonOverview(mount) {
       
       <!-- Key Statistics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.withColophons}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Scribal Units with Colophons</div>
           <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">${Math.round((stats.withColophons / stats.totalSUs) * 100)}% of all SUs</div>
@@ -11531,7 +12723,7 @@ function buildColophonOverview(mount) {
                     <span style="color: #666;">${count} colophon${count !== 1 ? 's' : ''}</span>
                   </div>
                   <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                    <div style="background: linear-gradient(90deg, #d4af37, #c4941f); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
                   </div>
                 </div>
               `;
@@ -11544,8 +12736,6 @@ function buildColophonOverview(mount) {
           <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">📅 Colophons by Century</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${topCenturies.map(([century, count]) => {
-              const maxCount = Math.max(...topCenturies.map(c => c[1]));
-              const barPercentage = (count / maxCount) * 100;
               const totalSUsInCentury = msByCentury[century] || 1;
               const colophonRate = ((count / totalSUsInCentury) * 100).toFixed(1);
               return `
@@ -11558,7 +12748,7 @@ function buildColophonOverview(mount) {
                     </div>
                   </div>
                   <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden; position: relative;">
-                    <div style="background: linear-gradient(90deg, #43e97b, #38f9d7); height: 100%; width: ${barPercentage}%; transition: width 0.3s;"></div>
+                    <div style="background: linear-gradient(90deg, #43e97b, #38f9d7); height: 100%; width: ${colophonRate}%; transition: width 0.3s;"></div>
                   </div>
                   <div style="font-size: 0.7rem; color: #888; margin-top: 0.25rem;">
                     ${colophonRate}% of ${totalSUsInCentury} SUs in this century have colophons
@@ -11577,8 +12767,6 @@ function buildColophonOverview(mount) {
           <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">🌍 Colophons by Region</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${topRegions.map(([region, count]) => {
-              const maxCount = topRegions[0][1];
-              const barPercentage = (count / maxCount) * 100;
               const totalSUsInRegion = msByRegion[region] || 1;
               const colophonRate = ((count / totalSUsInRegion) * 100).toFixed(1);
               return `
@@ -11591,7 +12779,7 @@ function buildColophonOverview(mount) {
                     </div>
                   </div>
                   <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: linear-gradient(90deg, #4facfe, #00f2fe); height: 100%; width: ${barPercentage}%; transition: width 0.3s;"></div>
+                    <div style="background: linear-gradient(90deg, #4facfe, #00f2fe); height: 100%; width: ${colophonRate}%; transition: width 0.3s;"></div>
                   </div>
                   <div style="font-size: 0.7rem; color: #888; margin-top: 0.25rem;">
                     ${colophonRate}% of ${totalSUsInRegion} SUs in this region have colophons
@@ -11604,7 +12792,7 @@ function buildColophonOverview(mount) {
       ` : ''}
       
       <!-- Info Box -->
-      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #667eea; border-radius: 0.375rem;">
+      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #d4af37; border-radius: 0.375rem;">
         <h4 style="margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;">About This Module</h4>
         <p style="margin: 0; color: #555; line-height: 1.6; font-size: 0.9rem;">
           This module analyzes the colophons written by female scribes, examining their emotional tone, thematic content, 
@@ -11751,7 +12939,7 @@ function buildSentimentAnalysis(mount) {
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
           <h3 style="color: #333; font-size: 1.1rem; margin: 0;">Most Expressive Colophons</h3>
           <button id="toggle-most-expressive" onclick="const hidden = document.querySelectorAll('.most-expressive-extra'); const btn = this; if(hidden[0].style.display === 'none') { hidden.forEach(el => el.style.display = 'block'); btn.textContent = 'Show Less'; } else { hidden.forEach(el => el.style.display = 'none'); btn.textContent = 'Show More'; }"
-            style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem;">
+            style="background: #d4af37; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem;">
             Show More
           </button>
         </div>
@@ -11782,7 +12970,7 @@ function buildSentimentAnalysis(mount) {
                     </div>
                   </div>
                   <button onclick="window.jumpTo('su', '${result.su.rec_ID}');" 
-                    style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
+                    style="background: #d4af37; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
                     View SU →
                   </button>
                 </div>
@@ -11815,7 +13003,7 @@ function buildSentimentAnalysis(mount) {
                     </div>
                   </div>
                   <button onclick="window.jumpTo('su', '${result.su.rec_ID}');" 
-                    style="background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
+                    style="background: #d4af37; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap; margin-left: 1rem;">
                     View SU →
                   </button>
                 </div>
@@ -11891,6 +13079,7 @@ function buildThematicAnalysis(mount) {
       const hasTheme = themeData.keywords.some(kw => text.includes(kw.toLowerCase()));
       if (hasTheme && themeData.examples.length < 2) {
         themeData.examples.push({
+          su: su,
           scribe: su.rec_Title,
           text: colophon.translation || colophon.transcription
         });
@@ -11975,7 +13164,7 @@ function buildThematicAnalysis(mount) {
                       <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
                         <div style="font-size: 0.875rem; font-weight: 600; color: #555;">${esc(ex.scribe)}</div>
                         <button onclick="window.jumpTo('su', '${ex.su.rec_ID}');" 
-                          style="background: #667eea; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
+                          style="background: #d4af37; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
                           View SU →
                         </button>
                       </div>
@@ -12060,7 +13249,7 @@ function buildLinguisticFeatures(mount) {
       
       <!-- Key Metrics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgWords.toFixed(1)}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Word Count</div>
         </div>
@@ -12090,7 +13279,7 @@ function buildLinguisticFeatures(mount) {
               <span style="font-size: 1.5rem;">💬</span>
               <span style="font-weight: 600; color: #333;">First-Person Usage</span>
             </div>
-            <div style="font-size: 2rem; font-weight: 700; color: #667eea; margin-bottom: 0.5rem;">
+            <div style="font-size: 2rem; font-weight: 700; color: #d4af37; margin-bottom: 0.5rem;">
               ${avgFirstPerson.toFixed(2)}
             </div>
             <div style="font-size: 0.875rem; color: #666;">
@@ -12137,7 +13326,7 @@ function buildLinguisticFeatures(mount) {
               <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
                   <span style="font-weight: 600; color: #555;">#${idx + 1} ${esc(f.scribeName)}</span>
-                  <span style="color: #667eea; font-weight: 600;">${f.wordCount} words</span>
+                  <span style="color: #d4af37; font-weight: 600;">${f.wordCount} words</span>
                 </div>
                 <div style="font-size: 0.875rem; color: #666;">
                   ${f.sentenceCount} sentence${f.sentenceCount !== 1 ? 's' : ''} • 
@@ -12193,37 +13382,49 @@ function buildComparativePatterns(mount) {
   
   // First, count total SUs per region
   allSUs.forEach(su => {
-    const ms = getMSForSU(su);
-    const region = ms ? (getVal(ms, 'Region of origin') || 'Unknown') : 'Unknown';
-    totalSUsByRegion[region] = (totalSUsByRegion[region] || 0) + 1;
+    const pus = getPUsForSU(su);
+    if (pus.length > 0) {
+      const pu = IDX.pu[pus[0]];
+      if (pu) {
+        const place = MAP.pu?.place(pu) || 'Unknown';
+        const region = place.split(',')[0].trim() || 'Unknown';
+        totalSUsByRegion[region] = (totalSUsByRegion[region] || 0) + 1;
+      }
+    }
   });
   
   // Then analyze colophon SUs
   colophonSUs.forEach(su => {
-    const ms = getMSForSU(su);
-    const region = ms ? (getVal(ms, 'Region of origin') || 'Unknown') : 'Unknown';
+    const pus = getPUsForSU(su);
+    if (pus.length > 0) {
+      const pu = IDX.pu[pus[0]];
+      if (pu) {
+        const place = MAP.pu?.place(pu) || 'Unknown';
+        const region = place.split(',')[0].trim() || 'Unknown';
     
-    if (!byRegion[region]) {
-      byRegion[region] = {
-        count: 0,
-        avgLength: 0,
-        totalWords: 0,
-        sentiment: { humility: 0, pride: 0, labor: 0, religious: 0 }
-      };
+        if (!byRegion[region]) {
+          byRegion[region] = {
+            count: 0,
+            avgLength: 0,
+            totalWords: 0,
+            sentiment: { humility: 0, pride: 0, labor: 0, religious: 0 }
+          };
+        }
+        
+        const colophon = getColophonText(su);
+        const text = (colophon.translation || colophon.transcription).toLowerCase();
+        const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+        
+        byRegion[region].count++;
+        byRegion[region].totalWords += wordCount;
+        
+        // Count sentiments
+        Object.entries(sentimentKeywords).forEach(([sentiment, keywords]) => {
+          const matches = keywords.filter(kw => text.includes(kw)).length;
+          byRegion[region].sentiment[sentiment] += matches;
+        });
+      }
     }
-    
-    const colophon = getColophonText(su);
-    const text = (colophon.translation || colophon.transcription).toLowerCase();
-    const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
-    
-    byRegion[region].count++;
-    byRegion[region].totalWords += wordCount;
-    
-    // Count sentiments
-    Object.entries(sentimentKeywords).forEach(([sentiment, keywords]) => {
-      const matches = keywords.filter(kw => text.includes(kw)).length;
-      byRegion[region].sentiment[sentiment] += matches;
-    });
   });
   
   // Calculate averages
@@ -12305,8 +13506,6 @@ function buildComparativePatterns(mount) {
           <h4 style="font-size: 0.95rem; color: #555; margin-bottom: 1rem;">Number of Colophons</h4>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${topRegions.map(([region, data]) => {
-              const maxCount = topRegions[0][1].count;
-              const barPercentage = (data.count / maxCount) * 100;
               const totalInRegion = totalSUsByRegion[region] || 1;
               const colophonRate = ((data.count / totalInRegion) * 100).toFixed(1);
               return `
@@ -12315,11 +13514,11 @@ function buildComparativePatterns(mount) {
                     <span style="font-weight: 600;">${esc(region)}</span>
                     <span style="color: #666;">
                       ${data.count} colophons (avg ${data.avgLength.toFixed(0)} words)
-                      <span style="color: #667eea; font-weight: 600; margin-left: 0.5rem;">${colophonRate}%</span>
+                      <span style="color: #d4af37; font-weight: 600; margin-left: 0.5rem;">${colophonRate}%</span>
                     </span>
                   </div>
                   <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; width: ${barPercentage}%; transition: width 0.3s;"></div>
+                    <div style="background: linear-gradient(90deg, #d4af37, #c4941f); height: 100%; width: ${colophonRate}%; transition: width 0.3s;"></div>
                   </div>
                   <div style="font-size: 0.7rem; color: #888; margin-top: 0.25rem;">
                     ${colophonRate}% of ${totalInRegion} SUs have colophons
@@ -12445,7 +13644,7 @@ function buildComparativePatterns(mount) {
       </div>
       
       <!-- Key Insights -->
-      <div style="background: linear-gradient(135deg, #667eea15, #764ba230); padding: 2rem; border-radius: 0.5rem; margin-top: 2rem; border-left: 4px solid #667eea;">
+      <div style="background: linear-gradient(135deg, #d4af3715, #c4941f30); padding: 2rem; border-radius: 0.5rem; margin-top: 2rem; border-left: 4px solid #d4af37;">
         <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">💡 Key Insights</h3>
         <ul style="margin: 0; padding-left: 1.5rem; color: #555; line-height: 2;">
           <li>Most colophons come from <strong>${topRegions[0] ? topRegions[0][0] : 'Unknown'}</strong> (${topRegions[0] ? topRegions[0][1].count : 0} colophons)</li>
@@ -12548,11 +13747,11 @@ function buildBrowseColophons(mount) {
                         Original Transcription
                       </div>
                       <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = '📋 Copy', 2000);" 
-                        style="background: #667eea; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
+                        style="background: #d4af37; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
                         📋 Copy
                       </button>
                     </div>
-                    <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #667eea;">
+                    <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #d4af37;">
                       <p style="margin: 0; color: #444; line-height: 1.6; font-style: italic;">
                         ${esc(colophon.transcription)}
                       </p>
@@ -12654,7 +13853,7 @@ function buildBrowseColophons(mount) {
           ${colophon.hasTranscription ? `
             <div style="margin-bottom: 1rem;">
               <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Original Transcription</div>
-              <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #667eea;">
+              <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #d4af37;">
                 <p style="margin: 0; color: #444; line-height: 1.6; font-style: italic;">${esc(colophon.transcription)}</p>
               </div>
             </div>

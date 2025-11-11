@@ -2,7 +2,7 @@
 {% assign undefined = include.undefined | default: 'undefined' %}
 {% assign id = include.id | default: include | jsonify | slugify %}
 
-{% if include.only.size > 0 %}
+{% if include.only.size > 0 and collection %}
   {% assign subset = collection | where: include.facet_by, include.only | sort: 'order' %}
 {% else %}
   {% assign subset = nil %}
