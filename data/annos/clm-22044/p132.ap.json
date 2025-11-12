@@ -1,0 +1,567 @@
+{
+  "id": "data/annos/clm-22044/p132.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Soluite illum: & adducite. Et siquis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=310,130,858,77"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uobis dixerit quid facitis: dicite quia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=309,203,897,84"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dño necessarius estꝰ & continuo illum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=310,277,887,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dimittet huc.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,360,346,70"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et ab euntes in uenerunt pullum li",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=284,419,873,93"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gatum ante ianuam foris inbuuo.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=322,497,845,80"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et soluunt eum. Et quidam de illic",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=320,571,835,74"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "stantibus dicebant illis. Quid facitis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=322,644,859,74"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "soluentes pullum: Qui dixerunt eis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=315,717,857,74"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sicut preceperat illis ihe : &dimise",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,792,827,68"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "runt eis. Et duxrerunt pullum adihm̃.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=305,865,910,75"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& imponunt illi uestimenta sua: et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=310,941,863,67"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sedit super eum. Multi autẽ uesti",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=309,1008,842,73"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "menta sua strauerunt inua: alu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,1082,838,61"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "autem frondes cedebant de arbo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=309,1152,827,73"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ribus: & sternebant inuia.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=310,1222,678,72"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "t qui preibant &qui sequebantur",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,1297,872,76"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "M cxuiiui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1254,1318,146,51"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "clamabant dicentes . Osanna bene",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=316,1365,827,80"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "at ccxiiii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1254,1364,138,38"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lu ccxxxiiii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1260,1387,178,59"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dictus quiuenit in nomine dñi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=305,1445,800,72"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "10",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1255,1417,32,49"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "6",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1296,1419,17,56"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Benedictum quoduenit regnum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=304,1512,812,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "patris nostri dauidꝰ osanna in eacelsis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=326,1584,907,87"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et introiit ierosolimam intemplum. ar .exx",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=290,1661,1090,82"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et circum spectis omnibus: cum iam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=315,1730,846,104"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ot coxiiii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1260,1738,158,45"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "M cxuiii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1288,436,144,50"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "MT CCUIII",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1288,479,140,30"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "LU CCxxXIii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1283,501,183,40"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "107",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1457,43,50,46"
+        }
+      }
+    }
+  ]
+}

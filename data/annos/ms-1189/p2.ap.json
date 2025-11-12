@@ -1,0 +1,414 @@
+{
+  "id": "data/annos/ms-1189/p2.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "d",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=790,700,33,103"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "8",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=876,777,50,81"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sanctam trucem tuam redemisti mundum. Domine exaudi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=943,705,1512,87"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "it lamor. Oremus. Oratio. I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1222,797,803,83"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sionem crucerri et mortem tuam inter iudiciũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=952,950,1505,99"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nine ihesu xpriste fili dei uiui pone pas",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1283,858,1137,107"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuum et ammami meam nunc et inhora mor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=952,1024,1505,106"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tis mee et largiri digneris uiius misericordiã",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=952,1101,1483,110"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et gratiam defunctis requiem et uemam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=952,1186,1426,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ecclesie tue sancte paceni et concordiam et nobis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=948,1257,1513,116"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pectatoribus uitam et leticiam sempiternam.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=950,1359,1511,90"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Qui uius et regnas deus. A. nudi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=970,1423,1198,116"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Eus m adiutorium meum intende.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1191,1508,1220,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Domine ad adiuuandum me festina.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1215,1589,1255,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Dra sexta ihesus est truci conclanatus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1239,1681,1231,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tatus. Pre tormentis siciens felle saturatus.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=948,1843,1448,110"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "est cum latrombus.Pendens depu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1327,1765,1119,105"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Agnus crimem diluit sit deificatus. U̾set",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=939,1925,1474,113"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Adoramus te xpriste. et benedicimus tibi. Quia per sanctam centẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=941,2016,1514,97"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuam redemisti munduun. Dñe exaudi. Et clamor. Oremus. Qo.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=935,2093,1533,83"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Omine ihesu xpriste fili dei iuui porie",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1184,2165,1172,127"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "inter iudicium tuum et ammam mea minc",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=943,2354,1496,94"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "assionem trucem et mortem tuam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1213,2255,1167,94"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et i hora mortis mee et largiri digneris uiuis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=933,2433,1509,135"
+        }
+      }
+    }
+  ]
+}

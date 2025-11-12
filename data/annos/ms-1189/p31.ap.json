@@ -1,0 +1,142 @@
+{
+  "id": "data/annos/ms-1189/p31.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "elium deus omnium conditor et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=609,705,1056,105"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "redemptor animabus famulorum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=550,786,1146,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "DAmularumq tuarum remissionem cunctorũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=252,876,1484,99"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tribue peccatorum ut in dulgentiam quam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=232,957,1423,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lemper optauerunt piis supplicatiomibus ton",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=236,1034,1460,105"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "seꝙͣtur. Qui uiuis et regnas deus per omnia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=225,1117,1438,110"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "secula seculorum. Amen.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,1192,831,147"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "86",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2323,179,83,88"
+        }
+      }
+    }
+  ]
+}

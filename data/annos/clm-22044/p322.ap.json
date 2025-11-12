@@ -1,0 +1,499 @@
+{
+  "id": "data/annos/clm-22044/p322.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lacob autẽ genuit ioseph uirũ mariȩ :",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=278,121,924,88"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "de qua natus est iħc qui uocatur xp̃c.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=275,184,914,105"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Omnes ergo generationes ab abraham",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=254,265,906,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "usq ad dauid generationes quaituor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=284,335,861,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "decim: & a dauid usq ad transmigra",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=281,413,870,89"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tionem babylonis generationes quat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=286,489,893,90"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuor decim: & a transmigratione ba",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=287,565,847,82"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "bylonis usq ad xp̃m generationes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=281,631,854,97"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "quattuordecim.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=283,717,557,79"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ap̃i autem generatio sic erat :",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=235,777,786,100"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "um esset desponsata mater eius",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=292,851,841,98"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "M iii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1269,853,93,58"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "maria ioseph: ante quam conueni",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=293,932,880,91"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "LU II",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1267,919,95,47"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rent inuenta est in utero habens",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=292,1006,836,88"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "de spu scõ. Ioseph autem uir eius",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=294,1077,857,89"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "M iiii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1257,1089,121,41"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cum esset iustus &nollet eam tra",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=295,1154,855,84"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "S0l",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1274,1152,76,62"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ducere: uoluit occulte dimittere ea.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=295,1229,903,80"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Hec autem eo cogitante : ecce angłsdñi in",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=295,1301,1014,86"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "somni apparuit ei dicens. Loseph fili",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=286,1377,894,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dauid: noli timere accipere maria",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=307,1456,893,76"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "coniugem tuam. Quod enim in",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=310,1527,830,79"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ea natum est: de spũ scõ est. Pari&",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=309,1600,898,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "autem filium. & uocabis nomen",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=312,1678,846,75"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "eius iħm. Ipse enim saluum faciet",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,1747,875,83"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "11",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1332,264,22,44"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "0l",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1303,323,52,58"
+        }
+      }
+    }
+  ]
+}

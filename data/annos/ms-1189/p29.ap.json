@@ -1,0 +1,550 @@
+{
+  "id": "data/annos/ms-1189/p29.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1954,732,180,132"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2197,704,75,129"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Nay a .xxxi. Iour. et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=995,668,783,141"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "la lune .xxx.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=947,787,487,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=486,1063,60,95"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=682,1127,83,85"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=875,1098,17,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "XIx",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=423,1197,103,103"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "U",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=686,1199,53,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "N Inuention sainte croys",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=826,1186,968,130"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ui e mi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=427,1285,364,98"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "N",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=846,1276,73,105"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Em",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=605,1366,182,94"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "N",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=853,1364,57,103"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xui gn N̾ Saint Iehan porte la tine",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=390,1443,1360,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "u",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=418,1528,66,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A Nõs. N",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=570,1522,349,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "b um Id",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=605,1614,307,96"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xm C ui idꝰ Saint incholas",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=383,1686,1117,108"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=693,1770,107,103"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Id ͥ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=855,1774,59,105"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "n",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=443,1776,61,119"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Id",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=851,1853,63,99"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "EE",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=583,1820,70,147"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Id",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=857,1936,48,90"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "x E mi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=394,1936,411,119"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "S",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=583,2046,77,35"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Idꝰ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=840,2009,83,103"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "in",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=688,2035,123,79"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Id",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=855,2099,42,100"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xuin x n",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=364,2092,414,125"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "un b idus Idꝰ Saint seruais",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=403,2177,994,156"
+        }
+      }
+    }
+  ]
+}

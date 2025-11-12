@@ -1,0 +1,1366 @@
+{
+  "id": "data/annos/cod-guelf-204-helmst/p263.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nolite: sic agite. sic ag̾e de",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=294,355,1000,106"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "accipiat. Si ego erogans timeo.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,344,1056,108"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sistite: Qͥd mͥ ẽ oneri ẽẽ hõibꝰ:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,438,1016,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qͥ accipit securꝰ ẽt debet: Qui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1428,427,1036,117"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "accepi qͦ mͦ uiuã. qͦmͦ iussus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=294,533,978,128"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "malus fuit heri. bonꝰ sit hodie.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,527,1073,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sũ. qͦmͦ pͣceptꝰ sũ: ad signem",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=297,627,978,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "hȩc ẽ erogatio mea. Qui malus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,622,1053,119"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qͦmͦ accepi de aliis redle",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=297,722,958,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "fuit. bonus sit hodie. Malus fu-",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,716,1078,117"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rationẽ. Quo mͥ᷑ Euangłiũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,822,964,108"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "it heri.: ⁊ n ẽ mortuus. Si mortu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1428,813,1091,120"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "me tͣret. Nã ad istã securita",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=302,913,1003,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "us eẽt. ⁊ malus esset. m ñ redis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1433,902,1075,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tẽ ociosissimã. nemo me",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=294,1002,931,109"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "set. Malus fuit heri: uiuit hodie.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1433,997,1120,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uinceret. Nicħ ẽ meliꝰ. nieħ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=294,1091,1020,109"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ꝓsit illi qͦd uiuit: ñ male uiuat.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1408,1083,1153,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dulciꝰ. qͣm diuinũ nullo stre",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=294,1180,1036,122"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Qre gͦ diei hesterno. hodiernuͣ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,1180,1059,117"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pente thesaurũ. Uulce ẽ. bo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=297,1275,1042,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uult adłe malũ: Longa uitã",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1439,1272,1069,119"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nuͣ e. pͣdicare. arguere. cor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,1380,1039,117"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uis habere. bonã ñ uis: Qͥs lon",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1436,1369,1061,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "riꝑe. edificare. ꝓ unoqͦq sa-",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,1472,1025,122"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gũ ferat malũ ł pͣndiũ: Isq",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1436,1463,1011,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tag̾e. magnũ onꝰ. magnũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,1563,978,123"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "adeo cecitas mentis occuluit.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1433,1561,1081,105"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ponclꝰ. magnꝰ labor. Quis nͣ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,1658,994,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "usq ad eo surdus ẽ ħo in teri-",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,1655,1051,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "refugiat istũ laborẽ.s ter",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=297,1752,1019,120"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "or. ut omĩa bona uelit hab̾e.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1433,1755,1042,103"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ret euangłiũ. ꝓcessit seruꝰ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=300,1852,958,106"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "p̃t se ipsũ. his hab̾e uilła. nego",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1436,1841,1083,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qͥda. ⁊ ait dño suo. Sciebã te",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=305,1938,975,123"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "te uelle hab̾e mała uilla. ua",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1439,1933,1064,108"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-37",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "hõinẽ molestũ. metere uͥ nͣ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=302,2033,967,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-38",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "orẽ uis habere. ñ uis nͥ bonam.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1430,2027,1087,123"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-39",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "seminasti. seruaui pecum ã",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=302,2130,995,106"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-40",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "domũ. ñ nͥ bonã. Qͥd currã ꝑ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1436,2122,1000,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-41",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuã. nolui erogare. tolle qͦd",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=305,2227,1020,100"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-42",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "singła: saligã nͣ uis habere",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1436,2213,1006,123"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-43",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuũ ẽ. si aliqͥd minꝰ ẽ iudica.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,2313,1022,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-44",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mała. ⁊ uis uitã habere mała.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1441,2311,1081,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-45",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "si integrũ eͣ noli mͥ molestꝰ ẽe.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,2405,1039,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-46",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Qͥd si plus tͥ noceat mala cali",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1439,2400,1058,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-47",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ait au ille. Serue nequã.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=319,2502,959,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-48",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ga.qͣm uita mala: Cũ tͥ caliga",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1444,2488,1075,128"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-49",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ex ore tuo te ꝯcłepnabo. Qre",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=313,2591,1020,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-50",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mala ⁊ ꝯstricta nocuerit. sedes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1444,2586,1109,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-51",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "hoc: Qͥa auarũ me dixisti.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=313,2686,967,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-52",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "⁊ discalcias te. abicis. aut cor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1453,2672,1097,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-53",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "luera mea quare neglexis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=319,2786,986,105"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-54",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rigis. aut mutas. ne digitu᷑",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1441,2775,1023,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-55",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tiꝰ S timui dare ne ꝑderẽ.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=319,2872,984,114"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-56",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "letlasꝰ ⁊ calcias te mala uita",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1447,2863,1053,100"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-57",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Hoc dicisꝰ plerũq enĩ dicis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,2961,1011,119"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-58",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qua animã ꝑdas: S plane",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1453,2950,1000,113"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-59",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Qͥd corripis: ꝑit ad illũ qͦd",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=316,3047,989,130"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-60",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "hoc uideo. un fallaris. Caliga",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1450,3041,1094,117"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-61",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dicis. ñ te audit. Et ego in",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=313,3147,984,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-62",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ga nocens. dolore facit: uita",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1441,3130,1087,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-63",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qͥt ille nolui dare. ne ꝑderẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,3238,1047,125"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-64",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nocens uoluptate̾. Illud nocꝰ:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1447,3225,1097,116"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-65",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pecuniã tuã. Ego ueniens",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=313,3333,981,111"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-66",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "illud libet. S qͦd ad teͣpꝰ libet.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1455,3322,1076,122"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-67",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cũ usuris ex igerẽ. ẜ rogato",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=316,3419,1059,128"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-68",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pꝰea peiꝰ dolet. Eͦd au̾ ad teͣpꝰ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1453,3408,1036,130"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-69",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rẽ in qͥt posuerã te. ñ ex acto",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,3522,1067,128"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-70",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "salubrit᷑ dolet. pꝰea finitum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1450,3505,1061,120"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-71",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rẽ. Tu exerceres erogatione.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=311,3613,1039,112"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-72",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uoluptate. ⁊ habundanti gau-",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1461,3605,1153,108"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-73",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mͥ relinqͣres ex actionẽ. hoc",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=313,3705,998,117"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-74",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dio letificat. scłm illud qͦd",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1453,3683,1041,133"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-75",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "timens gͦ unꝰqͥsq uideat qͦmͦ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=325,3802,1022,150"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-76",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "scͥptũ ẽ. Qͥ seminant in lacͥmis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1450,3783,1100,144"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-77",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "166.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2778,297,97,97"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-78",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Herros August Bibliothek",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1336,4713,708,87"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-79",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Wolsenbũttel",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1516,4791,348,92"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263#anno-80",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ooi de",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2661,4716,142,189"
+        }
+      }
+    }
+  ]
+}

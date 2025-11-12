@@ -1,0 +1,312 @@
+{
+  "id": "data/annos/ms-321/p59.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "le monde est sauue qui perdu estoit du",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=255,647,839,117"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tresprecieux sanc. de la quelle chair le",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=255,719,839,116"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "monde est rachate. et le peche pardonne.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=253,800,853,110"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tourmant icelle en tou uentre trespre",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=250,869,845,112"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cierx. de ton precieux sanc. A uinssãt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=251,939,846,111"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "icelle chair a sa diuite ment mua",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=250,1010,853,110"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ule . ⁊ pardurable. de la quelle tout biĩ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=253,1079,852,110"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uient . par la quelle toutes choses sont",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=251,1149,852,113"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sais",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=256,1205,82,86"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "es. la quelle ie auore. la quelle sa",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=361,1231,734,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "esprecieuse chair: ouec son tresprecieux",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=285,1293,834,109"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lanc il donne chescun iour a ces bons",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=253,1364,846,114"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "anus. de souz la fourme de pain ⁊de",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=251,1435,818,114"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "um . en uiande uiatique. ⁊ en reffectiõ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=253,1511,847,105"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "es ames. donnant uie ⁊ salut. qui di",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=262,1578,835,104"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gnement lara mengie:il a uie par",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=250,1645,835,113"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "durable. ⁊ qui indignement lara mẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=248,1722,861,104"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gie il mengue ⁊ boit son nigement.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=245,1792,864,114"
+        }
+      }
+    }
+  ]
+}

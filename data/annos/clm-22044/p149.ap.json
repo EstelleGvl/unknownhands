@@ -1,0 +1,482 @@
+{
+  "id": "data/annos/clm-22044/p149.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "abiit ad summos sacerdotes: ut prode",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=440,133,871,74"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ret eum illis. Qui audientes gauisi sunt :",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=442,204,927,89"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& promiserunt ei pecuniam se daturos.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=445,284,904,76"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et querebat quomodo illum oportu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=446,355,857,81"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ne traderet. Et prima die azimorum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=446,434,870,71"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "quando pascha immolabant: dicunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=447,511,886,76"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ei discipuli. Quo uis eamus & paremus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=446,590,898,73"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tibi ut manduces pascha. Et mittit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=446,668,837,65"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "duos eadiscipulis suis: & dicit eis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=451,735,809,66"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lte inciuitatem: & occurret uobis ho",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=448,813,862,69"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mo lagenam aquȩ baiolans. sequi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=448,888,835,72"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mini eum. & quocunq introierit di",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=448,964,904,64"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cite dno domus. quia magister dicit.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=448,1035,915,78"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ubi est refectio mea ubi pascha cum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=455,1110,897,71"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "discipulis meis manducem: Et ipse",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=460,1184,864,77"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uobis demonstrabit cenaculum gran",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=457,1263,887,75"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "de stratum: & illic parate nobis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=456,1340,825,78"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Et abierunt discipuli eius. & uenerunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=460,1418,912,74"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "inciuitatem. & in uenerunt sicut di",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=462,1496,864,67"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xerat illis: & parauerunt pascha.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=461,1563,801,80"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Uespere autem facto uenit cum duo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=454,1639,852,79"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "decim: & discumbentibus eis d̾man",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=471,1720,858,70"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ducantibus ait iħe. Amen dico uobis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=470,1792,901,103"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ma clai",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=120,1669,113,37"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ot cclaxuͥiiui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=122,1691,180,51"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Io cXXI",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=123,1731,102,29"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "& lxxii",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=123,1754,109,39"
+        }
+      }
+    },
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "O",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=8,1,59,23"
+        }
+      }
+    }
+  ]
+}

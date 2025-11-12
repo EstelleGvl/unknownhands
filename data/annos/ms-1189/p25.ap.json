@@ -1,0 +1,397 @@
+{
+  "id": "data/annos/ms-1189/p25.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dirige me in senuta recta propter minucos meos.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=223,700,1557,129"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tradideris me inanimas tribulantium",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=435,801,1236,105"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mie quoniam in suxrexerunt me testes iniqui et",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=216,873,1470,120"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mentita est miquitas sibi. ¶redo uidere bona",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,952,1468,120"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "donuni interra iuentium.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=227,1037,990,101"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ecta dominum iuriliter age ⁊ conforte",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=523,1116,1165,111"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tux cor tinm et lustine donunum.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=194,1208,1221,107"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "equiem eternam. R̾̃. Credo uidere bona dm̃i",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=418,1278,1262,129"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "In terrã iuuentium. U̾ Anma nostra sustinet domuinuam. Qñi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=109,1368,1579,120"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "aduitor et protector noster est. Paler noster. Lectio. quarta",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,1442,1472,118"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Uanitas habeo iniquitates et petcata",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=519,1527,1115,108"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "stelera mea atq delicta ostende michi.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=519,1600,1185,127"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Cur faciem tuam abscondis et arbitraris ine",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=223,1687,1479,127"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "numicum tuũ. Contra folium quod uento ra-",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=214,1768,1468,129"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pitur ostendis potentiam tuam et stipulam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=212,1856,1446,122"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sictam persequeris. S cribis enim contra me",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=216,1934,1461,121"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "amaritudines et consuniere me ius peccatis ad",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=212,2018,1496,122"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "holescentie mee. Poluisti in ueruo pedem meũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=212,2099,1472,113"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "et obseruasti omnes semitas meas et uestigia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=212,2182,1509,116"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pedum mneorum considerasti. Qui quasi p̃u",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=205,2263,1501,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tredo consumendus sum. et quasi uestanen",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=205,2348,1470,114"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tum quod tomeditur atineti . Rx Requiem eterõ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=212,2431,1564,154"
+        }
+      }
+    },
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2280,159,94,94"
+        }
+      }
+    }
+  ]
+}

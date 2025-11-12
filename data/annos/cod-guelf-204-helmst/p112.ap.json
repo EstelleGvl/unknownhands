@@ -1,0 +1,57 @@
+{
+  "id": "data/annos/cod-guelf-204-helmst/p112.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Herzos August Bibliothek",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=408,4666,689,100"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "o",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1719,4708,48,172"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Wolfenbũttel",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=589,4741,327,95"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/cod-guelf-204-helmst/p321.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00321#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00321",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=224,253,80,54"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "id": "data/annos/ms-321/p93.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "indere in forma panis:⁊ta te mereai",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=896,584,893,98"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uidere in marestatis tue gloria.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=896,662,849,89"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cum ueneris iidicare securus ⁊",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=894,736,864,82"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gaudens. credo corde. confiteor ore.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=894,805,885,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uerũ corpus xpisti in ara crucis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=893,881,864,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pro mondi salute deo patri obla",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=894,952,877,90"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tum . hostiam puram. hostian",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=896,1024,868,92"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sanctam. hostiam deo patri bene",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=894,1094,874,98"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "placentem. panem sanctum uite",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=888,1161,892,98"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "eterne m odorem suauitatis ihe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=890,1236,881,104"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sum xpistum dominum nr̃m.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=884,1309,877,100"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Nmanus tuas domine ⁊ in tua",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=891,1388,885,98"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sancta mĩa. ⁊ ad tuum sanctũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=893,1456,862,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "sanguinem commendo corpus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=887,1529,865,94"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "meum ⁊ animam meam. om̃s",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=885,1595,880,101"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qr amicos meos. ⁊ amicos meos",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=891,1665,866,101"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "⁊ amicas meas. ⁊omnen plebe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=880,1737,859,116"
+        }
+      }
+    }
+  ]
+}

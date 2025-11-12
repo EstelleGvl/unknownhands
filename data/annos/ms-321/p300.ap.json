@@ -1,0 +1,550 @@
+{
+  "id": "data/annos/ms-321/p300.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "16",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1602,496,65,45"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "e",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1393,581,36,185"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "grata eterna xpisti munera.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=286,719,863,111"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ostrum tangat cor ut plangat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=387,809,757,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuorum sanguis nulnerum ĩquo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=286,876,855,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "oti sumus loti conditor aline sỹde",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=298,947,844,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rum.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=296,1016,327,100"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cuirau+",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1312,1042,164,64"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "assionis tue donis saluator",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=376,1096,762,96"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "4",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1386,1109,55,92"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ios mebria qua fidelis dare uelis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=301,1170,843,99"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "a nobis gaudia",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=399,1250,645,86"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "E",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1310,1258,156,111"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "aus honor xpisto uendito ⁊ si",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=399,1321,750,91"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xir",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1313,1361,106,78"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ne causa prodito passo mortem ꝓ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=293,1389,837,104"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "bn",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1407,1367,129,119"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "populo in aspero patibulo. amen.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=296,1462,853,107"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "DU",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1324,1453,160,96"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dit percussientise maxillam u̾.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=421,1542,708,90"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iciabitur obprobrus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=458,1622,632,87"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ue",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1369,1658,135,51"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ditor autem. p̃s dd̾.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=453,1686,629,95"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1361,1701,154,103"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "enedictus domimus deus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=487,1770,654,77"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ion",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1304,1770,131,74"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "israel: quia uisitaint ⁊ fe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=478,1841,663,83"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "edemptionem plebis sue.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=379,1905,696,91"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=153,1439,46,130"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=336,2373,45,145"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "q",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=492,2405,186,162"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "⁊",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=878,2092,34,64"
+        }
+      }
+    }
+  ]
+}

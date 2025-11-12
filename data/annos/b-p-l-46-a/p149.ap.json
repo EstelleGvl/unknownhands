@@ -1,0 +1,108 @@
+{
+  "id": "data/annos/b-p-l-46-a/p149.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "N",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=259,997,85,124"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "a",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1992,1898,45,63"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "L",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2826,2521,82,45"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "¶",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2048,3744,70,90"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=720,2956,52,68"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Q",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604552/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=4888,2068,67,63"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "id": "data/annos/ms-74-82/p12.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "u̾dce",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2241,732,78,45"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "da",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2149,840,49,46"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1802,3481,45,25"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "eo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1795,3529,70,56"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "alo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2207,3209,53,89"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": ".8x",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=3556,1690,37,34"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "¶",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2851,3783,27,77"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lad ddnoes",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2282,3774,549,106"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ue",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2275,593,50,84"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "d",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92296",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=3280,3778,50,109"
+        }
+      }
+    }
+  ]
+}

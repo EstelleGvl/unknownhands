@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-74-82/p23.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92307#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "eod",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92307",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2201,3667,700,102"
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,361 @@
 {
-  "type": "Mapping",
-  "items": []
+  "manifest": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/manifest.json",
+  "items": [
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f1",
+      "annotationPage": "/data/annos/ms-1189/p1.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f2",
+      "annotationPage": "/data/annos/ms-1189/p2.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f3",
+      "annotationPage": "/data/annos/ms-1189/p3.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f4",
+      "annotationPage": "/data/annos/ms-1189/p4.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f5",
+      "annotationPage": "/data/annos/ms-1189/p5.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f6",
+      "annotationPage": "/data/annos/ms-1189/p6.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f7",
+      "annotationPage": "/data/annos/ms-1189/p7.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f8",
+      "annotationPage": "/data/annos/ms-1189/p8.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f9",
+      "annotationPage": "/data/annos/ms-1189/p9.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f10",
+      "annotationPage": "/data/annos/ms-1189/p10.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f11",
+      "annotationPage": "/data/annos/ms-1189/p11.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f12",
+      "annotationPage": "/data/annos/ms-1189/p12.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f13",
+      "annotationPage": "/data/annos/ms-1189/p13.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f14",
+      "annotationPage": "/data/annos/ms-1189/p14.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f15",
+      "annotationPage": "/data/annos/ms-1189/p15.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f16",
+      "annotationPage": "/data/annos/ms-1189/p16.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f17",
+      "annotationPage": "/data/annos/ms-1189/p17.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f18",
+      "annotationPage": "/data/annos/ms-1189/p18.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f19",
+      "annotationPage": "/data/annos/ms-1189/p19.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f20",
+      "annotationPage": "/data/annos/ms-1189/p20.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f21",
+      "annotationPage": "/data/annos/ms-1189/p21.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f22",
+      "annotationPage": "/data/annos/ms-1189/p22.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f23",
+      "annotationPage": "/data/annos/ms-1189/p23.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f24",
+      "annotationPage": "/data/annos/ms-1189/p24.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f25",
+      "annotationPage": "/data/annos/ms-1189/p25.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f26",
+      "annotationPage": "/data/annos/ms-1189/p26.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f27",
+      "annotationPage": "/data/annos/ms-1189/p27.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f28",
+      "annotationPage": "/data/annos/ms-1189/p28.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f29",
+      "annotationPage": "/data/annos/ms-1189/p29.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f30",
+      "annotationPage": "/data/annos/ms-1189/p30.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f31",
+      "annotationPage": "/data/annos/ms-1189/p31.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f32",
+      "annotationPage": "/data/annos/ms-1189/p32.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f33",
+      "annotationPage": "/data/annos/ms-1189/p33.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f34",
+      "annotationPage": "/data/annos/ms-1189/p34.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f35",
+      "annotationPage": "/data/annos/ms-1189/p35.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f36",
+      "annotationPage": "/data/annos/ms-1189/p36.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f37",
+      "annotationPage": "/data/annos/ms-1189/p37.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f38",
+      "annotationPage": "/data/annos/ms-1189/p38.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f39",
+      "annotationPage": "/data/annos/ms-1189/p39.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f40",
+      "annotationPage": "/data/annos/ms-1189/p40.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f41",
+      "annotationPage": "/data/annos/ms-1189/p41.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f42",
+      "annotationPage": "/data/annos/ms-1189/p42.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f43",
+      "annotationPage": "/data/annos/ms-1189/p43.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f44",
+      "annotationPage": "/data/annos/ms-1189/p44.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f45",
+      "annotationPage": "/data/annos/ms-1189/p45.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f46",
+      "annotationPage": "/data/annos/ms-1189/p46.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f47",
+      "annotationPage": "/data/annos/ms-1189/p47.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f48",
+      "annotationPage": "/data/annos/ms-1189/p48.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f49",
+      "annotationPage": "/data/annos/ms-1189/p49.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f50",
+      "annotationPage": "/data/annos/ms-1189/p50.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f51",
+      "annotationPage": "/data/annos/ms-1189/p51.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f52",
+      "annotationPage": "/data/annos/ms-1189/p52.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f53",
+      "annotationPage": "/data/annos/ms-1189/p53.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f54",
+      "annotationPage": "/data/annos/ms-1189/p54.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f55",
+      "annotationPage": "/data/annos/ms-1189/p55.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f56",
+      "annotationPage": "/data/annos/ms-1189/p56.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f57",
+      "annotationPage": "/data/annos/ms-1189/p57.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f58",
+      "annotationPage": "/data/annos/ms-1189/p58.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f59",
+      "annotationPage": "/data/annos/ms-1189/p59.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f60",
+      "annotationPage": "/data/annos/ms-1189/p60.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f61",
+      "annotationPage": "/data/annos/ms-1189/p61.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f62",
+      "annotationPage": "/data/annos/ms-1189/p62.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f63",
+      "annotationPage": "/data/annos/ms-1189/p63.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f64",
+      "annotationPage": "/data/annos/ms-1189/p64.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f65",
+      "annotationPage": "/data/annos/ms-1189/p65.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f66",
+      "annotationPage": "/data/annos/ms-1189/p66.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f67",
+      "annotationPage": "/data/annos/ms-1189/p67.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f68",
+      "annotationPage": "/data/annos/ms-1189/p68.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f69",
+      "annotationPage": "/data/annos/ms-1189/p69.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f70",
+      "annotationPage": "/data/annos/ms-1189/p70.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f71",
+      "annotationPage": "/data/annos/ms-1189/p71.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f72",
+      "annotationPage": "/data/annos/ms-1189/p72.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f73",
+      "annotationPage": "/data/annos/ms-1189/p73.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f74",
+      "annotationPage": "/data/annos/ms-1189/p74.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f75",
+      "annotationPage": "/data/annos/ms-1189/p75.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f76",
+      "annotationPage": "/data/annos/ms-1189/p76.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f77",
+      "annotationPage": "/data/annos/ms-1189/p77.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f78",
+      "annotationPage": "/data/annos/ms-1189/p78.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f79",
+      "annotationPage": "/data/annos/ms-1189/p79.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f80",
+      "annotationPage": "/data/annos/ms-1189/p80.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f81",
+      "annotationPage": "/data/annos/ms-1189/p81.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f82",
+      "annotationPage": "/data/annos/ms-1189/p82.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f83",
+      "annotationPage": "/data/annos/ms-1189/p83.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f84",
+      "annotationPage": "/data/annos/ms-1189/p84.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f85",
+      "annotationPage": "/data/annos/ms-1189/p85.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f86",
+      "annotationPage": "/data/annos/ms-1189/p86.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f87",
+      "annotationPage": "/data/annos/ms-1189/p87.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f88",
+      "annotationPage": "/data/annos/ms-1189/p88.ap.json"
+    },
+    {
+      "canvas": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f89",
+      "annotationPage": "/data/annos/ms-1189/p89.ap.json"
+    }
+  ]
 }

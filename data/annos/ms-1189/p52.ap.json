@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-1189/p52.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f52#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "1",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b52520423n/canvas/f52",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2387,194,46,87"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "data/annos/b-p-l-46-a/p1.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604583/canvas/default#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "SIBI PUBI",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604583/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=345,920,100,28"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604583/canvas/default#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "coden l",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604583/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=359,944,71,29"
+        }
+      }
+    }
+  ]
+}

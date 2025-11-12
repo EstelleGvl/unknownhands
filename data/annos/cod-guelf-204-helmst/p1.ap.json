@@ -1,0 +1,40 @@
+{
+  "id": "data/annos/cod-guelf-204-helmst/p1.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00001#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Herzos August bibliothel",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00001",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1458,4683,706,92"
+        }
+      }
+    },
+    {
+      "id": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00001#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "olfenbũtte",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00001",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1697,4755,278,95"
+        }
+      }
+    }
+  ]
+}

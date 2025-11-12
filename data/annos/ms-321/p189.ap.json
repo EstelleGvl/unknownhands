@@ -1,0 +1,295 @@
+{
+  "id": "data/annos/ms-321/p189.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "⁊ aridam fundauerunt mamis enis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=210,718,862,89"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uenite adoremus ⁊ procidamus ante",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=206,798,873,89"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "deu̾. ploremus coram dommo qui fe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=209,867,873,102"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cit nos quia ip̃e est domimus ds noster",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=215,946,876,90"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nos autem populus eius ⁊ oues pas",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=217,1016,863,96"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cue enis.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=215,1086,299,92"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "n xp̃m crucifixũ uenite adorem.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=414,1170,669,79"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "odie si uocem ens audieritis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=289,1239,737,85"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nolite obdurare corda nr̃a sicut ĩ exa",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=213,1299,878,96"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cerbatione secumdũ diem tempta",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=217,1375,866,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tiomis in deserto ubi temptauerunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=218,1449,876,90"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "me patres uestri probauerunt ⁊ in",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=220,1521,874,95"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nt opera mea.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=332,1607,483,86"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "emte adoremus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=250,1678,527,89"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "radraginta annis proximus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=369,1752,739,94"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tin generatiom hinic ⁊ dixi semper",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=230,1829,855,95"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "hu errant corde ip̃i uero non cogno",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=229,1896,870,103"
+        }
+      }
+    }
+  ]
+}

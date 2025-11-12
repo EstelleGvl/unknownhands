@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-321/p305.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/650d29d2-b4d0-11ec-aae3-8f45381ff07c#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/650d29d2-b4d0-11ec-aae3-8f45381ff07c",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=346,116,138,57"
+        }
+      }
+    }
+  ]
+}

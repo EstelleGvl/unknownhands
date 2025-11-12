@@ -1,0 +1,125 @@
+{
+  "id": "data/annos/ms-63/p505.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ON",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1435,708,137,170"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "II",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2181,718,130,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "TAL",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2473,691,200,157"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "IPER",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1198,888,277,192"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "AGIN TAPSALM",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1914,870,797,180"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=381,1097,55,180"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ORE",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163892",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=534,1087,282,190"
+        }
+      }
+    }
+  ]
+}

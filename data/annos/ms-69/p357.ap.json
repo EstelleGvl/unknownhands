@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-69/p357.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224087#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "caf",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224087",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1031,7311,142,160"
+        }
+      }
+    }
+  ]
+}

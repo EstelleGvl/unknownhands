@@ -1,4 +1,1569 @@
 {
-  "type": "Mapping",
-  "items": []
+  "manifest": "https://iiif.hab.de/object/mss_204-helmst/manifest?manifest=https://iiif.hab.de/object/mss_204-helmst/manifest",
+  "items": [
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00001",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p1.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00002",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p2.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00003",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p3.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00004",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p4.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00005",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p5.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00006",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p6.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00007",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p7.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00008",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p8.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00009",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p9.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00010",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p10.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00011",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p11.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00012",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p12.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00013",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p13.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00014",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p14.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00015",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p15.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00016",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p16.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00017",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p17.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00018",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p18.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00019",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p19.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00020",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p20.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00021",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p21.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00022",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p22.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00023",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p23.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00024",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p24.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00025",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p25.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00026",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p26.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00027",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p27.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00028",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p28.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00029",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p29.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00030",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p30.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00031",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p31.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00032",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p32.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00033",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p33.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00034",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p34.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00035",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p35.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00036",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p36.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00037",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p37.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00038",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p38.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00039",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p39.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00040",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p40.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00041",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p41.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00042",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p42.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00043",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p43.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00044",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p44.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00045",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p45.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00046",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p46.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00047",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p47.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00048",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p48.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00049",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p49.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00050",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p50.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00051",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p51.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00052",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p52.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00053",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p53.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00054",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p54.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00055",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p55.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00056",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p56.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00057",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p57.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00058",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p58.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00059",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p59.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00060",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p60.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00061",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p61.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00062",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p62.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00063",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p63.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00064",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p64.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00065",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p65.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00066",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p66.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00067",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p67.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00068",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p68.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00069",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p69.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00070",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p70.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00071",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p71.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00072",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p72.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00073",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p73.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00074",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p74.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00075",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p75.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00076",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p76.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00077",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p77.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00078",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p78.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00079",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p79.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00080",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p80.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00081",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p81.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00082",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p82.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00083",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p83.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00084",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p84.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00085",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p85.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00086",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p86.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00087",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p87.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00088",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p88.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00089",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p89.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00090",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p90.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00091",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p91.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00092",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p92.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00093",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p93.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00094",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p94.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00095",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p95.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00096",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p96.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00097",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p97.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00098",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p98.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00099",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p99.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00100",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p100.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00101",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p101.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00102",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p102.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00103",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p103.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00104",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p104.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00105",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p105.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00106",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p106.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00107",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p107.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00108",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p108.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00109",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p109.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00110",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p110.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00111",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p111.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00112",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p112.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00113",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p113.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00114",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p114.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00115",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p115.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00116",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p116.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00117",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p117.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00118",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p118.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00119",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p119.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00120",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p120.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00121",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p121.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00122",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p122.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00123",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p123.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00124",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p124.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00125",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p125.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00126",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p126.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00127",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p127.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00128",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p128.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00129",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p129.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00130",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p130.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00131",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p131.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00132",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p132.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00133",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p133.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00134",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p134.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00135",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p135.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00136",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p136.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00137",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p137.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00138",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p138.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00139",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p139.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00140",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p140.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00141",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p141.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00142",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p142.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00143",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p143.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00144",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p144.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00145",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p145.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00146",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p146.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00147",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p147.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00148",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p148.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00149",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p149.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00150",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p150.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00151",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p151.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00152",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p152.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00153",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p153.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00154",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p154.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00155",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p155.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00156",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p156.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00157",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p157.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00158",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p158.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00159",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p159.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00160",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p160.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00161",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p161.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00162",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p162.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00163",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p163.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00164",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p164.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00165",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p165.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00166",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p166.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00167",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p167.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00168",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p168.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00169",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p169.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00170",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p170.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00171",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p171.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00172",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p172.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00173",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p173.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00174",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p174.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00175",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p175.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00176",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p176.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00177",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p177.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00178",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p178.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00179",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p179.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00180",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p180.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00181",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p181.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00182",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p182.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00183",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p183.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00184",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p184.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00185",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p185.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00186",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p186.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00187",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p187.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00188",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p188.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00189",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p189.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00190",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p190.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00191",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p191.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00192",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p192.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00193",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p193.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00194",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p194.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00195",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p195.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00196",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p196.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00197",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p197.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00198",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p198.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00199",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p199.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00200",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p200.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00201",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p201.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00202",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p202.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00203",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p203.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00204",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p204.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00205",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p205.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00206",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p206.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00207",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p207.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00208",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p208.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00209",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p209.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00210",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p210.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00211",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p211.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00212",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p212.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00213",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p213.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00214",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p214.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00215",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p215.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00216",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p216.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00217",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p217.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00218",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p218.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00219",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p219.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00220",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p220.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00221",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p221.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00222",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p222.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00223",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p223.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00224",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p224.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00225",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p225.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00226",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p226.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00227",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p227.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00228",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p228.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00229",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p229.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00230",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p230.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00231",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p231.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00232",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p232.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00233",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p233.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00234",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p234.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00235",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p235.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00236",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p236.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00237",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p237.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00238",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p238.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00239",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p239.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00240",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p240.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00241",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p241.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00242",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p242.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00243",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p243.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00244",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p244.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00245",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p245.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00246",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p246.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00247",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p247.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00248",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p248.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00249",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p249.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00250",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p250.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00251",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p251.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00252",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p252.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00253",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p253.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00254",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p254.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00255",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p255.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00256",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p256.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00257",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p257.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00258",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p258.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00259",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p259.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00260",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p260.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00261",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p261.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00262",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p262.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00263",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p263.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00264",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p264.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00265",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p265.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00266",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p266.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00267",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p267.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00268",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p268.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00269",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p269.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00270",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p270.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00271",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p271.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00272",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p272.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00273",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p273.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00274",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p274.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00275",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p275.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00276",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p276.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00277",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p277.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00278",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p278.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00279",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p279.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00280",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p280.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00281",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p281.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00282",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p282.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00283",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p283.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00284",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p284.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00285",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p285.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00286",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p286.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00287",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p287.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00288",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p288.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00289",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p289.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00290",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p290.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00291",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p291.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00292",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p292.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00293",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p293.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00294",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p294.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00295",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p295.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00296",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p296.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00297",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p297.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00298",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p298.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00299",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p299.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00300",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p300.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00301",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p301.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00302",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p302.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00303",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p303.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00304",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p304.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00305",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p305.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00306",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p306.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00307",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p307.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00308",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p308.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00309",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p309.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00310",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p310.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00311",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p311.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00312",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p312.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00313",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p313.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00314",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p314.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00315",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p315.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00316",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p316.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00317",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p317.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00318",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p318.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00319",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p319.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00320",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p320.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00321",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p321.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00322",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p322.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00323",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p323.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00324",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p324.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00325",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p325.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00326",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p326.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00327",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p327.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00328",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p328.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00329",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p329.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00330",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p330.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00331",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p331.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00332",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p332.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00333",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p333.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00334",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p334.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00335",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p335.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00336",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p336.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00337",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p337.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00338",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p338.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00339",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p339.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00340",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p340.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00341",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p341.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00342",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p342.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00343",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p343.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00344",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p344.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00345",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p345.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00346",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p346.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00347",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p347.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00348",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p348.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00349",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p349.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00350",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p350.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00351",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p351.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00352",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p352.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00353",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p353.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00354",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p354.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00355",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p355.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00356",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p356.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00357",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p357.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00358",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p358.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00359",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p359.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00360",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p360.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00361",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p361.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00362",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p362.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00363",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p363.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00364",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p364.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00365",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p365.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00366",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p366.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00367",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p367.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00368",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p368.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00369",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p369.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00370",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p370.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00371",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p371.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00372",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p372.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00373",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p373.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00374",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p374.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00375",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p375.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00376",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p376.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00377",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p377.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00378",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p378.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00379",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p379.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00380",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p380.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00381",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p381.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00382",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p382.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00383",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p383.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00384",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p384.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00385",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p385.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00386",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p386.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_00387",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p387.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_ebs01",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p388.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_ebs02",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p389.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_ebs03",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p390.ap.json"
+    },
+    {
+      "canvas": "https://iiif.hab.de/object/mss_204-helmst/canvas/mss_204-helmst_ebs04",
+      "annotationPage": "/data/annos/cod-guelf-204-helmst/p391.ap.json"
+    }
+  ]
 }

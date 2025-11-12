@@ -1,0 +1,720 @@
+{
+  "id": "data/annos/ms-321/p120.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ds",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1249,351,334,117"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=646,475,97,103"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=938,480,60,108"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "48",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1290,453,125,66"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1459,456,50,48"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "de misericorde uullez le puer pour",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=927,590,833,115"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "8",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=657,664,21,104"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "moy ⁊ pour touz pecheours ⁊ pour",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=926,671,823,109"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "e",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=796,744,10,88"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "toutes pecheresses. ⁊ pour touz tres",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=923,745,844,118"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "catpu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=672,848,113,56"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "passes que eulx aient mercy. uier",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=921,821,853,113"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Se",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=630,875,205,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ge tres benoiste ⁊ tres digne unullez",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=920,889,866,121"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "oster de moy le mal qui y est. et me",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=918,969,849,107"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ilut",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=675,1094,112,62"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "remplir du bien qui ydeffault.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=918,1043,794,103"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "D",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=642,1126,173,116"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ue maria.I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1050,1127,337,87"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "E",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1687,1103,31,89"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iaus sur dieux ihũcst seul",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1101,1177,668,126"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Re.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=590,1229,167,128"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "E",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=962,1262,48,118"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "filz du tres soruerain pere.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1010,1259,748,115"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "u",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=613,1365,148,60"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qui uousistes esioir la tres benoiste",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=908,1337,858,109"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "R",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=580,1399,234,101"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "3",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1884,1408,33,109"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "soi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=633,1490,157,48"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uierge marie. ⁊ ta mere de sept ioies",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=905,1407,875,110"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "doubles principales. donne ⁊ oetrore",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=903,1478,848,110"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Di",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=592,1525,220,102"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ioui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=711,1624,77,67"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "a moyta seruãte me recoler deuo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=903,1549,857,104"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tement icelles iores alonneur delez",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=900,1617,881,107"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "afin que par satres agreable inter",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=900,1686,878,118"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-37",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cession. ⁊ par ces glouenses prieres",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=897,1763,873,119"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-38",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ro",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=615,1923,116,40"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-39",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "o",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1207,2120,9,69"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-40",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "e",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=560,2178,42,105"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-41",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "¶",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=596,2272,8,42"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b#anno-42",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "N2",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=584,2296,121,58"
+        }
+      }
+    }
+  ]
+}

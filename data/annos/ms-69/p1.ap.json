@@ -1,0 +1,91 @@
+{
+  "id": "data/annos/ms-69/p1.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Uibliot. oceł. Metios. colbri",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=936,653,1812,242"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Lagse codex",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1050,1192,672,212"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "contines folea LOT.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=893,1447,1243,182"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "deee. A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1165,1694,520,167"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "saseru llsir TX0",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/223732/canvas/224151",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=778,2085,1186,200"
+        }
+      }
+    }
+  ]
+}

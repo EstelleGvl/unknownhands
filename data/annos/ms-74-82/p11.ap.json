@@ -1,0 +1,941 @@
+{
+  "id": "data/annos/ms-74-82/p11.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Etibi uidit cibnit hiccin nedanptionis hum acnite",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=534,453,2063,115"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "subtampone pitssioms xp̃s intnaditione conponis & sitigui",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2779,487,2035,106"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "in isct ae. Et itnietm futunum mistquum teliud ole",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=548,550,2081,123"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nir in portolis tnialidit. Einlie lietitite. elian",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2786,566,2010,118"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uotione mãrtis celiud manibus immolcctum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=559,655,2056,108"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "olite titite condis xp̃ierse sp̃s scr̃ edocuit quando lu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2752,659,2040,127"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "E uocituit noma loci illius dñr uidit siue dnr̃ uisus q̃t",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=571,750,2090,115"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gubnita gitude bat iueleus Eelitenim ies litetitute in",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2770,759,2022,125"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Enzo ctnimite lactite doctrincte nutnitite fuqunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=571,838,2060,127"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "monte xp̃ fundebant  ostoli.lug ab antie limẽnta",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2788,852,2024,124"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ecincum spectiẽ infide tninitatisuittm succm̃ dux q̾iunt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=566,940,2133,127"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pendentam in patibulor sed llecatu quipend&",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2797,949,1997,132"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "filicte sion iepellaatun. Egnediamini. de conutelle",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=564,1031,2092,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "quit itmon pordatir omnibup creclatib: uititm ut",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2776,1054,2041,126"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ignontontute itl cculam iunete scictite clesq̃isu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=571,1128,2044,141"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tus ineisit oseees idq &gitudits itdpontit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=3293,1153,1517,109"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iulitico itdctposto licam lucãm doetrunite pq quitm",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=562,1226,2072,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "aliud",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1020,1319,95,56"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "lictm pulchnit es etmieit mect quetm pulchint es oculi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2806,1251,2036,122"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uideittEitout cononatum sinis etonudilissimit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=559,1330,2029,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Otui colum banumritbrqi eo quod intñ insecur lat&:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2822,1348,2020,157"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mnaetne since goga iliud exaltittum samp qi manqe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=546,1437,2097,136"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Pulchnatesttbnat sit consuetudine uitionũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2980,1455,1832,127"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cumpaitne idqt iuqium homincm Et uqium dm̃",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=550,1534,2034,154"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "citnnis & itcultu deonum tun pium etclunum uõiumdm̃",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2776,1550,2072,125"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Quit cononituit eum mater suie Cnudilissimẽt mit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=555,1638,2090,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "conuqi site eccla nte gentiumEitnimte Et conponis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2774,1661,2025,118"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tert spinir uirsibilibus cononttuit filium pattificum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=548,1727,2031,152"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Tanincom pulchinitudinam litudat dñr xp̃r. Pnimit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2786,1752,2001,131"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "clanatissimur filius suct monte inuisibihbus eccm",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=546,1826,2047,148"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "itnimite pulchnitudonut cognoscat fecctonom suum se",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2783,1849,2022,123"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "anmis ponedat onnituit.Indie clisponsionis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=591,1935,1988,141"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cundit ut sãn& ipritm. itgnorcat quitlis uqi cunqeatitsit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2774,1938,2079,140"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Plite inimite tdittpulits in telleetite huius mis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=555,2033,2033,147"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Oculi tui Non fit omnibus mon bñis conponis quicquitm",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2774,2040,2061,147"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-36",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tenu inuitientur quite possunt matgnite glonide",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=550,2139,2075,139"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-37",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "oculir citnius Gigo ex implo suo huius modi pm sonitaib",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2783,2144,2036,129"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-38",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "illius spectaculi citpqͥre clicm Quitndo sibi quitis",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=541,2223,2070,175"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-39",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Tnadito ctnulo in conspectu omnium uuntutum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=546,2316,1938,159"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-40",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "smmmonite doctninte chuctum conponi itecloite",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2781,2241,2038,134"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-41",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pnitebõido inmansue tuline simpli citate castitiete",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2792,2336,2013,148"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-42",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "citelonum effuso pnietiosonsitnguine clispondit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=550,2414,2038,170"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-43",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ecclenitm: quando sitcnilegit mactqi singogit",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=555,2518,2004,168"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-44",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Contnuice oculi ecclestite in telleguntun hitnum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2781,2438,1979,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-45",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ctuium oculis con paratun Quanum naccunit qͦt",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2788,2550,1988,133"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-46",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "spineo de iede mate cononituit eum Dequit dd",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=550,2615,2034,161"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-47",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cdixit. E pecctum matnis eius non delecitun",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=539,2713,2031,163"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-48",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "itduesitnium uenieitam delonge uidõie Mullum",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2790,2640,2020,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-49",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Osteadunt engo filicbus sion clirponstiones diq̃",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=541,2810,2052,182"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-50",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "offendiculum pongdo ueatibus Abrq eo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2788,2747,1956,143"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-51",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "inti łi filium & ecclesicem citelebnatos dis ponsatio",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=539,2919,2061,163"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-52",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dit menton intninsecur dõ neddunt Sicut de conam",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2797,2840,2015,161"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-53",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "enim tnuli et osculi tnitditio Estħ quod sitonamẽntũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=539,3005,2083,191"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-54",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "itspectus fonis hominibus. ut quid quid cegunt totũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2799,2930,2036,154"
+        }
+      }
+    },
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295#anno-55",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dõ Et nihil etel litirelan hominum Et uaniteglonite detun:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92295",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2804,3026,2072,174"
+        }
+      }
+    }
+  ]
+}

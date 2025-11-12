@@ -232,42 +232,142 @@ mark.search-highlight {
   // Lazy load corpus - only load when user interacts with search
   let corpus = null;
   let docs = [];
-  let byId = null;
+  let byId = new Map();  // Initialize as Map, not null
+  let manifestsData = {};  // Store manifest URLs by slug
   let isLoading = false;
   let isLoaded = false;
   
   const $corpusInfo = document.getElementById('corpus-info');
   $corpusInfo.innerHTML = '<em>Loading search index...</em>';
   
-  async function ensureCorpusLoaded() {
-    if (isLoaded) return;
-    if (isLoading) {
-      // Wait for the current load to complete
-      while (isLoading) await new Promise(r => setTimeout(r, 100));
-      return;
+  // Load manifests data for correct URLs
+  async function loadManifests() {
+    try {
+      const response = await fetch('{{ "/data/manifests.yml" | relative_url }}');
+      const text = await response.text();
+      // Parse YAML-ish structure for manifest URLs and annos paths
+      const lines = text.split('\n');
+      let currentSlug = null;
+      lines.forEach(line => {
+        const slugMatch = line.match(/^- slug:\s*(.+)/);
+        if (slugMatch) {
+          currentSlug = slugMatch[1].trim();
+          manifestsData[currentSlug] = {};
+        }
+        if (currentSlug) {
+          const manifestMatch = line.match(/^\s+manifest:\s*(.+)/);
+          if (manifestMatch) {
+            manifestsData[currentSlug].manifest = manifestMatch[1].trim();
+          }
+          const annosMatch = line.match(/^\s+annos:\s*(.+)/);
+          if (annosMatch) {
+            manifestsData[currentSlug].annos = annosMatch[1].trim();
+          }
+        }
+      });
+      console.log('Loaded manifest URLs for', Object.keys(manifestsData).length, 'manuscripts');
+    } catch (err) {
+      console.error('Failed to load manifests:', err);
+    }
+  }
+  
+  // Load manifests immediately
+  loadManifests();
+  
+  // ============= LAZY LOADING SYSTEM =============
+  let manuscriptIndex = null;
+  let loadedManuscripts = new Map(); // slug -> {docs, title}
+  let currentlyLoading = new Set();
+  
+  async function loadManuscriptIndex() {
+    if (manuscriptIndex) return manuscriptIndex;
+    
+    $corpusInfo.innerHTML = '<em>Loading manuscript index...</em>';
+    const response = await fetch('{{ "/assets/search/manuscripts/index.json" | relative_url }}');
+    manuscriptIndex = await response.json();
+    
+    const msCount = manuscriptIndex.manuscripts.length;
+    const lineCount = manuscriptIndex.total_documents;
+    $corpusInfo.innerHTML = `<strong>${msCount}</strong> manuscripts · <strong>${lineCount.toLocaleString()}</strong> transcribed lines available for search`;
+    
+    return manuscriptIndex;
+  }
+  
+  async function loadManuscript(slug) {
+    // Return if already loaded
+    if (loadedManuscripts.has(slug)) {
+      return loadedManuscripts.get(slug);
     }
     
-    isLoading = true;
-    $corpusInfo.innerHTML = '<em>Loading search index... (31MB, may take a moment)</em>';
+    // Wait if currently loading
+    if (currentlyLoading.has(slug)) {
+      while (currentlyLoading.has(slug)) {
+        await new Promise(r => setTimeout(r, 50));
+      }
+      return loadedManuscripts.get(slug);
+    }
+    
+    currentlyLoading.add(slug);
     
     try {
-      corpus = await (await fetch('{{ "/assets/search/transcriptions.json" | relative_url }}')).json();
-      docs = corpus.docs || [];
-      byId = new Map(docs.map(d => [d.id, d]));
+      const response = await fetch(`{{ "/assets/search/manuscripts/" | relative_url }}${slug}.json`);
+      if (!response.ok) throw new Error(`Failed to load ${slug}`);
       
-      // Display corpus statistics
-      const msCount = (corpus.manuscripts||[]).length;
-      const lineCount = docs.length;
-      $corpusInfo.innerHTML = `<strong>${msCount.toLocaleString()}</strong> manuscripts · <strong>${lineCount.toLocaleString()}</strong> transcribed lines available for search`;
+      const data = await response.json();
+      loadedManuscripts.set(slug, data);
       
-      isLoaded = true;
-    } catch (err) {
-      console.error('Failed to load corpus:', err);
-      $corpusInfo.innerHTML = '<em style="color:red;">Failed to load search index</em>';
-      throw err;
+      // Add to byId map
+      data.docs.forEach(d => byId.set(d.id, d));
+      
+      return data;
     } finally {
-      isLoading = false;
+      currentlyLoading.delete(slug);
     }
+  }
+  
+  async function ensureCorpusLoaded(manuscriptSlug = null) {
+    // Load index first
+    await loadManuscriptIndex();
+    
+    if (!manuscriptSlug) {
+      // Load all manuscripts for unfiltered search
+      $corpusInfo.innerHTML = `<em>Loading all manuscripts...</em>`;
+      const slugs = manuscriptIndex.manuscripts.map(m => m.slug);
+      
+      let loaded = 0;
+      await Promise.all(slugs.map(async slug => {
+        await loadManuscript(slug);
+        loaded++;
+        $corpusInfo.innerHTML = `<em>Loading manuscripts... ${loaded}/${slugs.length}</em>`;
+      }));
+      
+      // Rebuild corpus object for compatibility
+      corpus = {
+        manuscripts: manuscriptIndex.manuscripts,
+        docs: Array.from(byId.values())
+      };
+      docs = corpus.docs;
+      
+      const msCount = manuscriptIndex.manuscripts.length;
+      const lineCount = docs.length;
+      $corpusInfo.innerHTML = `<strong>${msCount}</strong> manuscripts · <strong>${lineCount.toLocaleString()}</strong> transcribed lines loaded`;
+      
+    } else {
+      // Load single manuscript
+      const msData = await loadManuscript(manuscriptSlug);
+      
+      // Create corpus with just this manuscript
+      corpus = {
+        manuscripts: manuscriptIndex.manuscripts.filter(m => m.slug === manuscriptSlug),
+        docs: msData.docs
+      };
+      docs = corpus.docs;
+      
+      const lineCount = docs.length;
+      $corpusInfo.innerHTML = `<strong>1</strong> manuscript · <strong>${lineCount.toLocaleString()}</strong> transcribed lines loaded`;
+    }
+    
+    isLoaded = true;
   }
   
   // DOM elements
@@ -287,12 +387,12 @@ mark.search-highlight {
   let idx = null;
   let sortedManuscripts = [];
   
-  // Initialize search interface after corpus loads
+  // Initialize search interface - load index only
   async function initializeSearch() {
-    await ensureCorpusLoaded();
+    await loadManuscriptIndex();
     
     // Sort manuscripts alphabetically
-    sortedManuscripts = (corpus.manuscripts||[]).slice().sort((a, b) => {
+    sortedManuscripts = manuscriptIndex.manuscripts.slice().sort((a, b) => {
       const titleA = (a.title || a.slug).toLowerCase();
       const titleB = (b.title || b.slug).toLowerCase();
       return titleA.localeCompare(titleB);
@@ -307,8 +407,10 @@ mark.search-highlight {
       opt.textContent = m.title || m.slug;
       $ms.appendChild(opt);
     });
-
-    // Build lunr index
+  }
+  
+  // Build Lunr index from loaded documents
+  function buildSearchIndex() {
     idx = lunr(function(){
       this.ref('id');
       this.field('text_norm');
@@ -603,18 +705,35 @@ mark.search-highlight {
   let currentResults = [];
   
   async function run(){
-    // Ensure search is initialized
-    if (!idx) {
-      $status.textContent = 'Initializing search...';
-      await initializeSearch();
-    }
-    
     const q = ($q.value||'').trim();
     const ms = $ms.value||'';
     const edits = Math.max(0, Math.min(2, parseInt($ed.value||'0',10)));
     const sortBy = $sortBy.value;
     const groupByMs = $groupByMs.checked;
     const showContext = $showContext.checked;
+
+    if(!q){
+      $hits.innerHTML = '<p>Enter a search term above.</p>';
+      $status.textContent = '';
+      return;
+    }
+    
+    // Load required manuscripts
+    $status.textContent = 'Loading manuscripts...';
+    try {
+      await ensureCorpusLoaded(ms || null);
+    } catch (err) {
+      console.error('Failed to load manuscripts:', err);
+      $status.textContent = 'Error loading manuscripts';
+      return;
+    }
+    
+    // Build search index
+    $status.textContent = 'Building search index...';
+    buildSearchIndex();
+    
+    // Perform search
+    $status.textContent = 'Searching...';
 
     if (!q){ 
       $status.textContent='Type a query and hit Search.'; 
@@ -700,9 +819,9 @@ mark.search-highlight {
   }
   
   function renderCard(d, query, showContext) {
-    const arkId = d.slug.replace(/^irht-/, '');
-    const manifestUrl = `https://api.irht.cnrs.fr/ark:/63955/${arkId}/manifest.json`;
-    const annosPath = `{{ site.baseurl | default: "" }}/data/transcriptions/${d.slug}/mapping.json`;
+    // Get correct manifest URL and annos path from loaded manifests data
+    const manifestUrl = manifestsData[d.slug]?.manifest || `https://api.irht.cnrs.fr/ark:/63955/${d.slug.replace(/^irht-/, '')}/manifest.json`;
+    const annosPath = manifestsData[d.slug]?.annos || `{{ site.baseurl | default: "" }}/data/annos/${d.slug}/mapping.json`;
     const href = `{{ site.baseurl | default: "" }}/viewer/?manifest=${encodeURIComponent(manifestUrl)}&annos=${encodeURIComponent(annosPath)}&canvas=${encodeURIComponent(d.canvas)}&line=${encodeURIComponent(d.line_id)}`;
     
     const pageNum = extractPageNumber(d.id);

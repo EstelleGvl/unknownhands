@@ -1,4 +1,1509 @@
 {
-  "type": "Mapping",
-  "items": []
+  "manifest": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321",
+  "items": [
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/af8f2906-b4d0-11ec-aae3-b31a2de9b5a8",
+      "annotationPage": "/data/annos/ms-321/p1.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8ee9b80f-b4d0-11ec-aae3-9f68687fd257",
+      "annotationPage": "/data/annos/ms-321/p2.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9e32e15d-b4d0-11ec-aae3-c0acd3501251",
+      "annotationPage": "/data/annos/ms-321/p3.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/734a3cec-b4d0-11ec-aae3-b76e05c48eb6",
+      "annotationPage": "/data/annos/ms-321/p4.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b9c4d0d8-b4d0-11ec-aae3-91770039a8b8",
+      "annotationPage": "/data/annos/ms-321/p5.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a4f7087f-b4d0-11ec-aae3-968218dc1cdd",
+      "annotationPage": "/data/annos/ms-321/p6.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a2ea1078-b4d0-11ec-aae3-81789315358a",
+      "annotationPage": "/data/annos/ms-321/p7.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9ab8915d-b4d0-11ec-aae3-aff07d2212d0",
+      "annotationPage": "/data/annos/ms-321/p8.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a99fd59b-b4d0-11ec-aae3-c184ff940641",
+      "annotationPage": "/data/annos/ms-321/p9.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/adf64e26-b4d0-11ec-aae3-d813b3cd9336",
+      "annotationPage": "/data/annos/ms-321/p10.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8fc3e5c7-b4d0-11ec-aae3-86bba7b442ae",
+      "annotationPage": "/data/annos/ms-321/p11.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/89bb3eb9-b4d0-11ec-aae3-f39cfa89178d",
+      "annotationPage": "/data/annos/ms-321/p12.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/70326232-b4d0-11ec-aae3-e4ea775e9456",
+      "annotationPage": "/data/annos/ms-321/p13.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/868b875c-b4d0-11ec-aae3-938163b6fa88",
+      "annotationPage": "/data/annos/ms-321/p14.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/78b3ce3c-b4d0-11ec-aae3-8b89617532d5",
+      "annotationPage": "/data/annos/ms-321/p15.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/763e9038-b4d0-11ec-aae3-aff96c2ad38b",
+      "annotationPage": "/data/annos/ms-321/p16.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/74122ec8-b4d0-11ec-aae3-ecfebe9d41ab",
+      "annotationPage": "/data/annos/ms-321/p17.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b4e87c69-b4d0-11ec-aae3-bede6cf5fec9",
+      "annotationPage": "/data/annos/ms-321/p18.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8eb101bf-b4d0-11ec-aae3-b03c2d8ec19f",
+      "annotationPage": "/data/annos/ms-321/p19.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6c81ba2b-b4d0-11ec-aae3-c60dd0dfcf83",
+      "annotationPage": "/data/annos/ms-321/p20.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9648358b-b4d0-11ec-aae3-a7e06d0fa888",
+      "annotationPage": "/data/annos/ms-321/p21.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/68f634f0-b4d0-11ec-aae3-f00c8c979792",
+      "annotationPage": "/data/annos/ms-321/p22.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/70036004-b4d0-11ec-aae3-ae809564b45e",
+      "annotationPage": "/data/annos/ms-321/p23.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a640115a-b4d0-11ec-aae3-a0e3714bfbcf",
+      "annotationPage": "/data/annos/ms-321/p24.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/850fe69a-b4d0-11ec-aae3-94834797a7d9",
+      "annotationPage": "/data/annos/ms-321/p25.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7e4e36ad-b4d0-11ec-aae3-9c0c546421bd",
+      "annotationPage": "/data/annos/ms-321/p26.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f12c2d3-b4d0-11ec-aae3-a4d898eac0a5",
+      "annotationPage": "/data/annos/ms-321/p27.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b723c795-b4d0-11ec-aae3-b39090bb0789",
+      "annotationPage": "/data/annos/ms-321/p28.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8428535b-b4d0-11ec-aae3-850d19113ed5",
+      "annotationPage": "/data/annos/ms-321/p29.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7785077f-b4d0-11ec-aae3-8d31913e8583",
+      "annotationPage": "/data/annos/ms-321/p30.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ab1b6cc3-b4d0-11ec-aae3-dbee2dee2b96",
+      "annotationPage": "/data/annos/ms-321/p31.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7c56628e-b4d0-11ec-aae3-f31bebdc6437",
+      "annotationPage": "/data/annos/ms-321/p32.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/83377566-b4d0-11ec-aae3-c2ce624356ef",
+      "annotationPage": "/data/annos/ms-321/p33.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/86faac7c-b4d0-11ec-aae3-88ab106f0ec9",
+      "annotationPage": "/data/annos/ms-321/p34.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/78eeb4d5-b4d0-11ec-aae3-85a648fccddb",
+      "annotationPage": "/data/annos/ms-321/p35.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/71275e68-b4d0-11ec-aae3-a434a64a805d",
+      "annotationPage": "/data/annos/ms-321/p36.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8946f509-b4d0-11ec-aae3-e35f3a21ea7c",
+      "annotationPage": "/data/annos/ms-321/p37.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f2257e7-b4d0-11ec-aae3-e23bcf082ff4",
+      "annotationPage": "/data/annos/ms-321/p38.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/604f55aa-b4d0-11ec-aae3-8ada54dc536d",
+      "annotationPage": "/data/annos/ms-321/p39.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a5350ec5-b4d0-11ec-aae3-830e93730e89",
+      "annotationPage": "/data/annos/ms-321/p40.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b1464914-b4d0-11ec-aae3-f0bdcf2acb13",
+      "annotationPage": "/data/annos/ms-321/p41.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/96bc53af-b4d0-11ec-aae3-f9c1381e7255",
+      "annotationPage": "/data/annos/ms-321/p42.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9557414b-b4d0-11ec-aae3-8b58c594cbc9",
+      "annotationPage": "/data/annos/ms-321/p43.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7a285cf8-b4d0-11ec-aae3-9ac504d31b86",
+      "annotationPage": "/data/annos/ms-321/p44.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7a60efda-b4d0-11ec-aae3-b0522926fc70",
+      "annotationPage": "/data/annos/ms-321/p45.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/94cbbd51-b4d0-11ec-aae3-f8a19aaafe41",
+      "annotationPage": "/data/annos/ms-321/p46.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7ae55db1-b4d0-11ec-aae3-e630b3d5c978",
+      "annotationPage": "/data/annos/ms-321/p47.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/627863c6-b4d0-11ec-aae3-f68efbd5281c",
+      "annotationPage": "/data/annos/ms-321/p48.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6ed794f2-b4d0-11ec-aae3-db7689ce8f3a",
+      "annotationPage": "/data/annos/ms-321/p49.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/979a9043-b4d0-11ec-aae3-979a912dd21e",
+      "annotationPage": "/data/annos/ms-321/p50.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d6497d7-b4d0-11ec-aae3-9774d0800995",
+      "annotationPage": "/data/annos/ms-321/p51.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7c25cbe2-b4d0-11ec-aae3-d6ddab14489d",
+      "annotationPage": "/data/annos/ms-321/p52.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/89f0a904-b4d0-11ec-aae3-f3670df64ab3",
+      "annotationPage": "/data/annos/ms-321/p53.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8bd7a198-b4d0-11ec-aae3-8d833fa18e9e",
+      "annotationPage": "/data/annos/ms-321/p54.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/973228af-b4d0-11ec-aae3-9e979100a181",
+      "annotationPage": "/data/annos/ms-321/p55.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/67d5bc56-b4d0-11ec-aae3-f831cabd4f0f",
+      "annotationPage": "/data/annos/ms-321/p56.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9dba0d90-b4d0-11ec-aae3-e6158315664f",
+      "annotationPage": "/data/annos/ms-321/p57.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/88b828a1-b4d0-11ec-aae3-d78702f9e8f8",
+      "annotationPage": "/data/annos/ms-321/p58.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7d2785f8-b4d0-11ec-aae3-bdad7df73ee5",
+      "annotationPage": "/data/annos/ms-321/p59.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/bb9d9521-b4d0-11ec-aae3-fad0e3a03cc1",
+      "annotationPage": "/data/annos/ms-321/p60.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6937882c-b4d0-11ec-aae3-80038858a829",
+      "annotationPage": "/data/annos/ms-321/p61.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8f885db2-b4d0-11ec-aae3-c0af65c8624f",
+      "annotationPage": "/data/annos/ms-321/p62.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a84ac740-b4d0-11ec-aae3-a797af9eb7bd",
+      "annotationPage": "/data/annos/ms-321/p63.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/71ad2dcd-b4d0-11ec-aae3-8e037d582986",
+      "annotationPage": "/data/annos/ms-321/p64.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8b4f4b2c-b4d0-11ec-aae3-a4b183dc878c",
+      "annotationPage": "/data/annos/ms-321/p65.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b472c901-b4d0-11ec-aae3-ceea1afe16a5",
+      "annotationPage": "/data/annos/ms-321/p66.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/670b6691-b4d0-11ec-aae3-e0591d2cb32e",
+      "annotationPage": "/data/annos/ms-321/p67.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a6029883-b4d0-11ec-aae3-e550ac0ebb5a",
+      "annotationPage": "/data/annos/ms-321/p68.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9e6b5e11-b4d0-11ec-aae3-92b5dd2f2d51",
+      "annotationPage": "/data/annos/ms-321/p69.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/63d8b66d-b4d0-11ec-aae3-f05ba0202d91",
+      "annotationPage": "/data/annos/ms-321/p70.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b2b0737f-b4d0-11ec-aae3-fd2ea7ed247f",
+      "annotationPage": "/data/annos/ms-321/p71.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6cd881f2-b4d0-11ec-aae3-9bf7e72a97db",
+      "annotationPage": "/data/annos/ms-321/p72.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b2ed7bb5-b4d0-11ec-aae3-e1a91ea605b5",
+      "annotationPage": "/data/annos/ms-321/p73.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9ca57f53-b4d0-11ec-aae3-a9c98321b374",
+      "annotationPage": "/data/annos/ms-321/p74.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/90989beb-b4d0-11ec-aae3-fadc436fb91e",
+      "annotationPage": "/data/annos/ms-321/p75.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/675487b3-b4d0-11ec-aae3-fd28173515d5",
+      "annotationPage": "/data/annos/ms-321/p76.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7388d614-b4d0-11ec-aae3-98070109b20f",
+      "annotationPage": "/data/annos/ms-321/p77.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/91d3d152-b4d0-11ec-aae3-fb1a1232ffa5",
+      "annotationPage": "/data/annos/ms-321/p78.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/60975afa-b4d0-11ec-aae3-de8f12f03094",
+      "annotationPage": "/data/annos/ms-321/p79.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/62e1a639-b4d0-11ec-aae3-c1df19f7a80a",
+      "annotationPage": "/data/annos/ms-321/p80.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a1b2d12a-b4d0-11ec-aae3-96e39e88dc14",
+      "annotationPage": "/data/annos/ms-321/p81.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/aee4fd8d-b4d0-11ec-aae3-b6dc2c62a205",
+      "annotationPage": "/data/annos/ms-321/p82.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b3260b85-b4d0-11ec-aae3-da81c6402ef1",
+      "annotationPage": "/data/annos/ms-321/p83.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/619ef21c-b4d0-11ec-aae3-bf813f0bd342",
+      "annotationPage": "/data/annos/ms-321/p84.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9fd79dad-b4d0-11ec-aae3-8ea9a6ecc4d4",
+      "annotationPage": "/data/annos/ms-321/p85.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/90dbb07e-b4d0-11ec-aae3-a5f26f35d252",
+      "annotationPage": "/data/annos/ms-321/p86.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/81870eea-b4d0-11ec-aae3-de35d50d892e",
+      "annotationPage": "/data/annos/ms-321/p87.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a35d5f55-b4d0-11ec-aae3-b8a876d7e9f6",
+      "annotationPage": "/data/annos/ms-321/p88.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ab5a2b2e-b4d0-11ec-aae3-fd4e1cd50ef4",
+      "annotationPage": "/data/annos/ms-321/p89.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7b1d0261-b4d0-11ec-aae3-97ddde0e89df",
+      "annotationPage": "/data/annos/ms-321/p90.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8dcf7533-b4d0-11ec-aae3-99a8bdd3e86a",
+      "annotationPage": "/data/annos/ms-321/p91.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/aeabbedd-b4d0-11ec-aae3-8a0082aff0c9",
+      "annotationPage": "/data/annos/ms-321/p92.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f544e53-b4d0-11ec-aae3-e68505d2f8e6",
+      "annotationPage": "/data/annos/ms-321/p93.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/baecb6e4-b4d0-11ec-aae3-d7b6493c9f97",
+      "annotationPage": "/data/annos/ms-321/p94.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9197e92f-b4d0-11ec-aae3-e0146d2be453",
+      "annotationPage": "/data/annos/ms-321/p95.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/825d80ae-b4d0-11ec-aae3-a378825b911b",
+      "annotationPage": "/data/annos/ms-321/p96.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/644c4546-b4d0-11ec-aae3-ddda9a0db57d",
+      "annotationPage": "/data/annos/ms-321/p97.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6b378509-b4d0-11ec-aae3-99e0f3f4edb0",
+      "annotationPage": "/data/annos/ms-321/p98.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/acee9def-b4d0-11ec-aae3-a96dd8916170",
+      "annotationPage": "/data/annos/ms-321/p99.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7e19d4e8-b4d0-11ec-aae3-dfd71579579d",
+      "annotationPage": "/data/annos/ms-321/p100.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/614a6dd2-b4d0-11ec-aae3-a4af8b2d9f53",
+      "annotationPage": "/data/annos/ms-321/p101.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8d8c9e60-b4d0-11ec-aae3-db9630a7cc5f",
+      "annotationPage": "/data/annos/ms-321/p102.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a67f6362-b4d0-11ec-aae3-ba6277a24f40",
+      "annotationPage": "/data/annos/ms-321/p103.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b7a12c40-b4d0-11ec-aae3-caad95eb59ee",
+      "annotationPage": "/data/annos/ms-321/p104.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/87780e4d-b4d0-11ec-aae3-908dd0fbb5a5",
+      "annotationPage": "/data/annos/ms-321/p105.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9ea2a01f-b4d0-11ec-aae3-8f14060c4ccb",
+      "annotationPage": "/data/annos/ms-321/p106.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9d38e602-b4d0-11ec-aae3-9b2126751a7a",
+      "annotationPage": "/data/annos/ms-321/p107.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a1ebfa9c-b4d0-11ec-aae3-eb2692354642",
+      "annotationPage": "/data/annos/ms-321/p108.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7ca75ee7-b4d0-11ec-aae3-d6e6bc2759fc",
+      "annotationPage": "/data/annos/ms-321/p109.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a0132db1-b4d0-11ec-aae3-fec50f8538b9",
+      "annotationPage": "/data/annos/ms-321/p110.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b3ac8164-b4d0-11ec-aae3-dc2e2429f90d",
+      "annotationPage": "/data/annos/ms-321/p111.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b9fee6bc-b4d0-11ec-aae3-9a049d9dda52",
+      "annotationPage": "/data/annos/ms-321/p112.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/aa0f2fef-b4d0-11ec-aae3-c1958abd7062",
+      "annotationPage": "/data/annos/ms-321/p113.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/82fb4367-b4d0-11ec-aae3-c6375846142b",
+      "annotationPage": "/data/annos/ms-321/p114.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/adc0e3db-b4d0-11ec-aae3-f5c12f325846",
+      "annotationPage": "/data/annos/ms-321/p115.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9a77417a-b4d0-11ec-aae3-f908b2534b8f",
+      "annotationPage": "/data/annos/ms-321/p116.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/95105d67-b4d0-11ec-aae3-b0d49f07870f",
+      "annotationPage": "/data/annos/ms-321/p117.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/94946300-b4d0-11ec-aae3-b58afddebdc0",
+      "annotationPage": "/data/annos/ms-321/p118.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7449835a-b4d0-11ec-aae3-f154a5de2af7",
+      "annotationPage": "/data/annos/ms-321/p119.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/930907b7-b4d0-11ec-aae3-d5101b7faf5b",
+      "annotationPage": "/data/annos/ms-321/p120.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8096ba3a-b4d0-11ec-aae3-a5c335a17fd0",
+      "annotationPage": "/data/annos/ms-321/p121.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b18ea6be-b4d0-11ec-aae3-8f752e448906",
+      "annotationPage": "/data/annos/ms-321/p122.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8d016b60-b4d0-11ec-aae3-ec1269b47ef8",
+      "annotationPage": "/data/annos/ms-321/p123.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8c72905b-b4d0-11ec-aae3-b4aa9a9dc1ca",
+      "annotationPage": "/data/annos/ms-321/p124.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/846b1712-b4d0-11ec-aae3-ef456153d2a1",
+      "annotationPage": "/data/annos/ms-321/p125.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a39a90b8-b4d0-11ec-aae3-b038404b0dbf",
+      "annotationPage": "/data/annos/ms-321/p126.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/854b5b6b-b4d0-11ec-aae3-bd43813f4489",
+      "annotationPage": "/data/annos/ms-321/p127.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/76070227-b4d0-11ec-aae3-9f156f58ba7c",
+      "annotationPage": "/data/annos/ms-321/p128.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/814bb7ef-b4d0-11ec-aae3-b6b6a4c5475a",
+      "annotationPage": "/data/annos/ms-321/p129.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b4a79946-b4d0-11ec-aae3-fe0316ae77d9",
+      "annotationPage": "/data/annos/ms-321/p130.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b59d3720-b4d0-11ec-aae3-bf289af27ca7",
+      "annotationPage": "/data/annos/ms-321/p131.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a0814e45-b4d0-11ec-aae3-8b59cbecfcb9",
+      "annotationPage": "/data/annos/ms-321/p132.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a9d6ff0d-b4d0-11ec-aae3-9e5f133787ea",
+      "annotationPage": "/data/annos/ms-321/p133.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ba6ed418-b4d0-11ec-aae3-d9ac5d5700ae",
+      "annotationPage": "/data/annos/ms-321/p134.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7162357f-b4d0-11ec-aae3-e937e9f467bc",
+      "annotationPage": "/data/annos/ms-321/p135.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b3f7c412-b4d0-11ec-aae3-c5d30b4b7e32",
+      "annotationPage": "/data/annos/ms-321/p136.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a325caf8-b4d0-11ec-aae3-f49fdbe09074",
+      "annotationPage": "/data/annos/ms-321/p137.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/959772f7-b4d0-11ec-aae3-9d823f4e5e2d",
+      "annotationPage": "/data/annos/ms-321/p138.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a7d1177f-b4d0-11ec-aae3-f6f622054f97",
+      "annotationPage": "/data/annos/ms-321/p139.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ac1b9dd6-b4d0-11ec-aae3-abdb24e27541",
+      "annotationPage": "/data/annos/ms-321/p140.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/934de700-b4d0-11ec-aae3-c38eb722fb53",
+      "annotationPage": "/data/annos/ms-321/p141.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/84a55d6f-b4d0-11ec-aae3-c37544ee1255",
+      "annotationPage": "/data/annos/ms-321/p142.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/95ded29a-b4d0-11ec-aae3-db0cc9cb2afd",
+      "annotationPage": "/data/annos/ms-321/p143.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b6d899d6-b4d0-11ec-aae3-f1612bdd761b",
+      "annotationPage": "/data/annos/ms-321/p144.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+      "annotationPage": "/data/annos/ms-321/p145.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/80468faf-b4d0-11ec-aae3-d231e5247f19",
+      "annotationPage": "/data/annos/ms-321/p146.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7071bd75-b4d0-11ec-aae3-b83fbc8bb47b",
+      "annotationPage": "/data/annos/ms-321/p147.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7e8324a3-b4d0-11ec-aae3-a2c0a0e7500c",
+      "annotationPage": "/data/annos/ms-321/p148.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8e7a53a9-b4d0-11ec-aae3-be87236ac33b",
+      "annotationPage": "/data/annos/ms-321/p149.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b69b0059-b4d0-11ec-aae3-89961f77b219",
+      "annotationPage": "/data/annos/ms-321/p150.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/99e24763-b4d0-11ec-aae3-91cbf5719eec",
+      "annotationPage": "/data/annos/ms-321/p151.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9868bca6-b4d0-11ec-aae3-b0d26ebba57a",
+      "annotationPage": "/data/annos/ms-321/p152.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/99ae4571-b4d0-11ec-aae3-a82d7275e6ab",
+      "annotationPage": "/data/annos/ms-321/p153.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a2a261f5-b4d0-11ec-aae3-e12dc5279a14",
+      "annotationPage": "/data/annos/ms-321/p154.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/75cb71e8-b4d0-11ec-aae3-ddb52ae3cff6",
+      "annotationPage": "/data/annos/ms-321/p155.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/70bc132e-b4d0-11ec-aae3-eac37b593ce1",
+      "annotationPage": "/data/annos/ms-321/p156.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/76b4a1ba-b4d0-11ec-aae3-a4ef653fb8b3",
+      "annotationPage": "/data/annos/ms-321/p157.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8605ea48-b4d0-11ec-aae3-a8a88b463537",
+      "annotationPage": "/data/annos/ms-321/p158.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8a52a638-b4d0-11ec-aae3-a9a3861ba30d",
+      "annotationPage": "/data/annos/ms-321/p159.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/98c57bed-b4d0-11ec-aae3-c86d8053fae4",
+      "annotationPage": "/data/annos/ms-321/p160.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9aef8c0c-b4d0-11ec-aae3-e10e8f2ff39c",
+      "annotationPage": "/data/annos/ms-321/p161.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f9d3d95-b4d0-11ec-aae3-a6fb255baa65",
+      "annotationPage": "/data/annos/ms-321/p162.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b650bc46-b4d0-11ec-aae3-80748d27bfbf",
+      "annotationPage": "/data/annos/ms-321/p163.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b6126b63-b4d0-11ec-aae3-b615ddaee3e9",
+      "annotationPage": "/data/annos/ms-321/p164.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7b57188a-b4d0-11ec-aae3-98c3207b891c",
+      "annotationPage": "/data/annos/ms-321/p165.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6366f586-b4d0-11ec-aae3-8ee8455c9c43",
+      "annotationPage": "/data/annos/ms-321/p166.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/75084a30-b4d0-11ec-aae3-8e139ba91486",
+      "annotationPage": "/data/annos/ms-321/p167.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8e48f07e-b4d0-11ec-aae3-dd235d4363d5",
+      "annotationPage": "/data/annos/ms-321/p168.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/915186e8-b4d0-11ec-aae3-8dd3782a3878",
+      "annotationPage": "/data/annos/ms-321/p169.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a049fd9a-b4d0-11ec-aae3-b8f629d01723",
+      "annotationPage": "/data/annos/ms-321/p170.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8b876f65-b4d0-11ec-aae3-f05718fc7208",
+      "annotationPage": "/data/annos/ms-321/p171.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/68196f5b-b4d0-11ec-aae3-c7c22c2b583b",
+      "annotationPage": "/data/annos/ms-321/p172.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/81f52753-b4d0-11ec-aae3-b270c5a3e173",
+      "annotationPage": "/data/annos/ms-321/p173.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b43c9b8d-b4d0-11ec-aae3-bd6af27ab087",
+      "annotationPage": "/data/annos/ms-321/p174.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/758ff187-b4d0-11ec-aae3-fc0a326259ef",
+      "annotationPage": "/data/annos/ms-321/p175.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/73c97bba-b4d0-11ec-aae3-d2d32ac275c1",
+      "annotationPage": "/data/annos/ms-321/p176.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/92343cc0-b4d0-11ec-aae3-8bd44db60dc0",
+      "annotationPage": "/data/annos/ms-321/p177.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b75a857d-b4d0-11ec-aae3-9e63b06d4687",
+      "annotationPage": "/data/annos/ms-321/p178.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/81c676b3-b4d0-11ec-aae3-fe5b0498d065",
+      "annotationPage": "/data/annos/ms-321/p179.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b5d3c25f-b4d0-11ec-aae3-b206985c99bb",
+      "annotationPage": "/data/annos/ms-321/p180.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9d6ed19b-b4d0-11ec-aae3-be09e99ac05e",
+      "annotationPage": "/data/annos/ms-321/p181.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/982a00ec-b4d0-11ec-aae3-d4909309f5cf",
+      "annotationPage": "/data/annos/ms-321/p182.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/71dfed85-b4d0-11ec-aae3-eefce67805c7",
+      "annotationPage": "/data/annos/ms-321/p183.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/83e2cc69-b4d0-11ec-aae3-bb85788cf345",
+      "annotationPage": "/data/annos/ms-321/p184.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/792c4b8b-b4d0-11ec-aae3-8fc2ba581086",
+      "annotationPage": "/data/annos/ms-321/p185.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/721ea52f-b4d0-11ec-aae3-a30039aa9f93",
+      "annotationPage": "/data/annos/ms-321/p186.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6f9ac379-b4d0-11ec-aae3-e0f3b1e2fbf8",
+      "annotationPage": "/data/annos/ms-321/p187.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/945b7a41-b4d0-11ec-aae3-def31fd70843",
+      "annotationPage": "/data/annos/ms-321/p188.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae3bded3-b4d0-11ec-aae3-a7db12fd4fd7",
+      "annotationPage": "/data/annos/ms-321/p189.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/76f825df-b4d0-11ec-aae3-fc45da0fa288",
+      "annotationPage": "/data/annos/ms-321/p190.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a8953fa0-b4d0-11ec-aae3-b303f48664f0",
+      "annotationPage": "/data/annos/ms-321/p191.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/96105c3e-b4d0-11ec-aae3-9288163ad465",
+      "annotationPage": "/data/annos/ms-321/p192.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/66966e44-b4d0-11ec-aae3-9270df700332",
+      "annotationPage": "/data/annos/ms-321/p193.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9b70c665-b4d0-11ec-aae3-c7642d2b2379",
+      "annotationPage": "/data/annos/ms-321/p194.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/69c6d02c-b4d0-11ec-aae3-e41e458dbd9b",
+      "annotationPage": "/data/annos/ms-321/p195.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b9091b35-b4d0-11ec-aae3-e66c62b2884a",
+      "annotationPage": "/data/annos/ms-321/p196.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6abd9998-b4d0-11ec-aae3-b2c5fdb4240f",
+      "annotationPage": "/data/annos/ms-321/p197.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/61faf3a2-b4d0-11ec-aae3-a9bc0cd336c2",
+      "annotationPage": "/data/annos/ms-321/p198.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7aa275ff-b4d0-11ec-aae3-c1f04f0313e3",
+      "annotationPage": "/data/annos/ms-321/p199.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/66d2be45-b4d0-11ec-aae3-e0b456746c56",
+      "annotationPage": "/data/annos/ms-321/p200.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/82c3efcf-b4d0-11ec-aae3-a384fa42aed1",
+      "annotationPage": "/data/annos/ms-321/p201.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7de67f4f-b4d0-11ec-aae3-e32a337a0269",
+      "annotationPage": "/data/annos/ms-321/p202.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6bf197ff-b4d0-11ec-aae3-9dcb569bbfe9",
+      "annotationPage": "/data/annos/ms-321/p203.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a105a2cb-b4d0-11ec-aae3-b3fdbbb4988e",
+      "annotationPage": "/data/annos/ms-321/p204.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9b33c43a-b4d0-11ec-aae3-b7decea4393f",
+      "annotationPage": "/data/annos/ms-321/p205.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9903bc60-b4d0-11ec-aae3-b54e7d0ff495",
+      "annotationPage": "/data/annos/ms-321/p206.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/83709c56-b4d0-11ec-aae3-e9bc7db39510",
+      "annotationPage": "/data/annos/ms-321/p207.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/903cf756-b4d0-11ec-aae3-9cdf0b1c4d62",
+      "annotationPage": "/data/annos/ms-321/p208.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/84d9542a-b4d0-11ec-aae3-8265bf314e1b",
+      "annotationPage": "/data/annos/ms-321/p209.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a93d21c0-b4d0-11ec-aae3-b8e4ec912f20",
+      "annotationPage": "/data/annos/ms-321/p210.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ad7921ed-b4d0-11ec-aae3-b7025b40b3f9",
+      "annotationPage": "/data/annos/ms-321/p211.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8e16801d-b4d0-11ec-aae3-f15ba45d0d3f",
+      "annotationPage": "/data/annos/ms-321/p212.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6242ead5-b4d0-11ec-aae3-b46c6bf0ea87",
+      "annotationPage": "/data/annos/ms-321/p213.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ab961dc8-b4d0-11ec-aae3-dc41dc003804",
+      "annotationPage": "/data/annos/ms-321/p214.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6e432393-b4d0-11ec-aae3-d7bc29c7697b",
+      "annotationPage": "/data/annos/ms-321/p215.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/898c1c6f-b4d0-11ec-aae3-93cb82712559",
+      "annotationPage": "/data/annos/ms-321/p216.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/75493f7b-b4d0-11ec-aae3-b710700094f3",
+      "annotationPage": "/data/annos/ms-321/p217.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/96841e63-b4d0-11ec-aae3-e4133ecde923",
+      "annotationPage": "/data/annos/ms-321/p218.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/72d032f8-b4d0-11ec-aae3-bbde290f163f",
+      "annotationPage": "/data/annos/ms-321/p219.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6c3a16a1-b4d0-11ec-aae3-ec346a2ee94c",
+      "annotationPage": "/data/annos/ms-321/p220.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/83aae3c1-b4d0-11ec-aae3-ccf844df224a",
+      "annotationPage": "/data/annos/ms-321/p221.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/66195ce3-b4d0-11ec-aae3-f9a8ff50013a",
+      "annotationPage": "/data/annos/ms-321/p222.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b988aafe-b4d0-11ec-aae3-e12a04697d7c",
+      "annotationPage": "/data/annos/ms-321/p223.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/96f64b04-b4d0-11ec-aae3-aecdbc20be02",
+      "annotationPage": "/data/annos/ms-321/p224.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8f2db490-b4d0-11ec-aae3-f1ddce487708",
+      "annotationPage": "/data/annos/ms-321/p225.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/bb26695c-b4d0-11ec-aae3-d3d0cbc96f52",
+      "annotationPage": "/data/annos/ms-321/p226.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6d89d4ca-b4d0-11ec-aae3-9e197c4a6630",
+      "annotationPage": "/data/annos/ms-321/p227.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/810190e3-b4d0-11ec-aae3-a2b3baa70559",
+      "annotationPage": "/data/annos/ms-321/p228.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6bbadd89-b4d0-11ec-aae3-e9171932b533",
+      "annotationPage": "/data/annos/ms-321/p229.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a73c0a62-b4d0-11ec-aae3-fc5562edbf11",
+      "annotationPage": "/data/annos/ms-321/p230.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/af2eaf4a-b4d0-11ec-aae3-83cc12bc864b",
+      "annotationPage": "/data/annos/ms-321/p231.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7f517d34-b4d0-11ec-aae3-b546aa18f425",
+      "annotationPage": "/data/annos/ms-321/p232.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7316c999-b4d0-11ec-aae3-b7db14ccf0a1",
+      "annotationPage": "/data/annos/ms-321/p233.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9c086fe7-b4d0-11ec-aae3-c463bf961ae4",
+      "annotationPage": "/data/annos/ms-321/p234.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8cbc34d2-b4d0-11ec-aae3-9c81f472786c",
+      "annotationPage": "/data/annos/ms-321/p235.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/93d92830-b4d0-11ec-aae3-aba3f6215f92",
+      "annotationPage": "/data/annos/ms-321/p236.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6dcc1134-b4d0-11ec-aae3-82288a9bc774",
+      "annotationPage": "/data/annos/ms-321/p237.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/abde6ff6-b4d0-11ec-aae3-c239ddaf8514",
+      "annotationPage": "/data/annos/ms-321/p238.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a484c7fc-b4d0-11ec-aae3-8c0cc8570dd4",
+      "annotationPage": "/data/annos/ms-321/p239.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/639cb4dd-b4d0-11ec-aae3-85507010bc7e",
+      "annotationPage": "/data/annos/ms-321/p240.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7ce14bd0-b4d0-11ec-aae3-ba9b44d456c0",
+      "annotationPage": "/data/annos/ms-321/p241.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/82910fc9-b4d0-11ec-aae3-8e0a2a4f8d06",
+      "annotationPage": "/data/annos/ms-321/p242.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ac4b9af3-b4d0-11ec-aae3-ca37bd515912",
+      "annotationPage": "/data/annos/ms-321/p243.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/87ffd6b9-b4d0-11ec-aae3-ddc915760ac7",
+      "annotationPage": "/data/annos/ms-321/p244.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6af5734a-b4d0-11ec-aae3-a0b0eab8c45a",
+      "annotationPage": "/data/annos/ms-321/p245.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6b75c429-b4d0-11ec-aae3-e678016cd98b",
+      "annotationPage": "/data/annos/ms-321/p246.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ba2baf9d-b4d0-11ec-aae3-c5e6c0f098d9",
+      "annotationPage": "/data/annos/ms-321/p247.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8c464c91-b4d0-11ec-aae3-c03592b61503",
+      "annotationPage": "/data/annos/ms-321/p248.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9cfc5638-b4d0-11ec-aae3-ea2ded104cd7",
+      "annotationPage": "/data/annos/ms-321/p249.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7f0e1870-b4d0-11ec-aae3-d8615ed60ab3",
+      "annotationPage": "/data/annos/ms-321/p250.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b2716c93-b4d0-11ec-aae3-86a253667497",
+      "annotationPage": "/data/annos/ms-321/p251.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7850877a-b4d0-11ec-aae3-b0de4723d4a7",
+      "annotationPage": "/data/annos/ms-321/p252.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/66553259-b4d0-11ec-aae3-b30fa867c23a",
+      "annotationPage": "/data/annos/ms-321/p253.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a6f8a40c-b4d0-11ec-aae3-e31b5d5d664a",
+      "annotationPage": "/data/annos/ms-321/p254.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6e8b9599-b4d0-11ec-aae3-ff77f28b92f4",
+      "annotationPage": "/data/annos/ms-321/p255.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/79ee8f09-b4d0-11ec-aae3-a73b866b1a38",
+      "annotationPage": "/data/annos/ms-321/p256.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9a30086f-b4d0-11ec-aae3-d95f398c13cd",
+      "annotationPage": "/data/annos/ms-321/p257.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/60081ddf-b4d0-11ec-aae3-992dc3f21b62",
+      "annotationPage": "/data/annos/ms-321/p258.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b014b7a7-b4d0-11ec-aae3-b0ca67d366f2",
+      "annotationPage": "/data/annos/ms-321/p259.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7be8d297-b4d0-11ec-aae3-cafaae4b8ed2",
+      "annotationPage": "/data/annos/ms-321/p260.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/858ef0b3-b4d0-11ec-aae3-8067bc5a274f",
+      "annotationPage": "/data/annos/ms-321/p261.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a809f4f4-b4d0-11ec-aae3-dec895c044d3",
+      "annotationPage": "/data/annos/ms-321/p262.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6d4b1803-b4d0-11ec-aae3-fc0a498ff59f",
+      "annotationPage": "/data/annos/ms-321/p263.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/88f7c3b7-b4d0-11ec-aae3-c98205cfd730",
+      "annotationPage": "/data/annos/ms-321/p264.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/873421bf-b4d0-11ec-aae3-dc67b0eab993",
+      "annotationPage": "/data/annos/ms-321/p265.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/780fa78b-b4d0-11ec-aae3-d527acb8dc3d",
+      "annotationPage": "/data/annos/ms-321/p266.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/64924122-b4d0-11ec-aae3-9cca81f36f4e",
+      "annotationPage": "/data/annos/ms-321/p267.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b1dc1ef7-b4d0-11ec-aae3-e9076ef31fbd",
+      "annotationPage": "/data/annos/ms-321/p268.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/796d46c8-b4d0-11ec-aae3-936eab52c2b0",
+      "annotationPage": "/data/annos/ms-321/p269.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8c0f74b8-b4d0-11ec-aae3-96fd6faef84e",
+      "annotationPage": "/data/annos/ms-321/p270.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b944f28d-b4d0-11ec-aae3-8ee0edf7f348",
+      "annotationPage": "/data/annos/ms-321/p271.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/88406036-b4d0-11ec-aae3-bff63da4260b",
+      "annotationPage": "/data/annos/ms-321/p272.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a2639c1c-b4d0-11ec-aae3-f034b8a5cf79",
+      "annotationPage": "/data/annos/ms-321/p273.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/92c5b04d-b4d0-11ec-aae3-9b166d4cb6b2",
+      "annotationPage": "/data/annos/ms-321/p274.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6fcebe95-b4d0-11ec-aae3-9873ce16b0ec",
+      "annotationPage": "/data/annos/ms-321/p275.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b232f873-b4d0-11ec-aae3-f7857a24daf0",
+      "annotationPage": "/data/annos/ms-321/p276.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9c398e59-b4d0-11ec-aae3-e3dd49a48290",
+      "annotationPage": "/data/annos/ms-321/p277.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/686dd892-b4d0-11ec-aae3-9860bc2e8cb6",
+      "annotationPage": "/data/annos/ms-321/p278.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a445b615-b4d0-11ec-aae3-9babb1ceab9e",
+      "annotationPage": "/data/annos/ms-321/p279.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a5cdaffb-b4d0-11ec-aae3-e8d2dd8a44cf",
+      "annotationPage": "/data/annos/ms-321/p280.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/65d8862d-b4d0-11ec-aae3-8524b46862a6",
+      "annotationPage": "/data/annos/ms-321/p281.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b36682d6-b4d0-11ec-aae3-b037bec2e9b6",
+      "annotationPage": "/data/annos/ms-321/p282.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9395fab8-b4d0-11ec-aae3-f76e683ee284",
+      "annotationPage": "/data/annos/ms-321/p283.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/85c06fe0-b4d0-11ec-aae3-e13f6f6220e4",
+      "annotationPage": "/data/annos/ms-321/p284.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a6af3c7e-b4d0-11ec-aae3-9a61d5fd7265",
+      "annotationPage": "/data/annos/ms-321/p285.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a90c8b5a-b4d0-11ec-aae3-9d5f77f6d68d",
+      "annotationPage": "/data/annos/ms-321/p286.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/92845dc3-b4d0-11ec-aae3-ff9b723df9bf",
+      "annotationPage": "/data/annos/ms-321/p287.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/68b1a5eb-b4d0-11ec-aae3-ed8ede3c7762",
+      "annotationPage": "/data/annos/ms-321/p288.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ad30c002-b4d0-11ec-aae3-a2513f091363",
+      "annotationPage": "/data/annos/ms-321/p289.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7ba05818-b4d0-11ec-aae3-920d880574af",
+      "annotationPage": "/data/annos/ms-321/p290.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/91172e10-b4d0-11ec-aae3-d587ef480b50",
+      "annotationPage": "/data/annos/ms-321/p291.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/87b49baa-b4d0-11ec-aae3-ddb8e1d9af26",
+      "annotationPage": "/data/annos/ms-321/p292.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b888100f-b4d0-11ec-aae3-d177fa541728",
+      "annotationPage": "/data/annos/ms-321/p293.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a226812f-b4d0-11ec-aae3-afd9c7997e96",
+      "annotationPage": "/data/annos/ms-321/p294.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b8c320d6-b4d0-11ec-aae3-9ee32b013e69",
+      "annotationPage": "/data/annos/ms-321/p295.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/80cce3d9-b4d0-11ec-aae3-c68e284c2a76",
+      "annotationPage": "/data/annos/ms-321/p296.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9eddf81d-b4d0-11ec-aae3-923121d1542f",
+      "annotationPage": "/data/annos/ms-321/p297.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/5fba8d12-b4d0-11ec-aae3-884a1271c12a",
+      "annotationPage": "/data/annos/ms-321/p298.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/79aabad0-b4d0-11ec-aae3-d15fd9fcb935",
+      "annotationPage": "/data/annos/ms-321/p299.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9f6e98a4-b4d0-11ec-aae3-ac52fd6d3e24",
+      "annotationPage": "/data/annos/ms-321/p300.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/5f711904-b4d0-11ec-aae3-f91d01dec1c1",
+      "annotationPage": "/data/annos/ms-321/p301.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/afd9f1c1-b4d0-11ec-aae3-a6f3e2444771",
+      "annotationPage": "/data/annos/ms-321/p302.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a4bde2b1-b4d0-11ec-aae3-cc7d6136fd27",
+      "annotationPage": "/data/annos/ms-321/p303.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9b9f94ee-b4d0-11ec-aae3-a4aee8caaf4e",
+      "annotationPage": "/data/annos/ms-321/p304.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/650d29d2-b4d0-11ec-aae3-8f45381ff07c",
+      "annotationPage": "/data/annos/ms-321/p305.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/72664b4b-b4d0-11ec-aae3-dc7fd9fff689",
+      "annotationPage": "/data/annos/ms-321/p306.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/97e17356-b4d0-11ec-aae3-f21e137ccb35",
+      "annotationPage": "/data/annos/ms-321/p307.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b845ed51-b4d0-11ec-aae3-945e91c10a52",
+      "annotationPage": "/data/annos/ms-321/p308.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ac82d4e2-b4d0-11ec-aae3-b1da8e22e393",
+      "annotationPage": "/data/annos/ms-321/p309.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7ecfb6bd-b4d0-11ec-aae3-a55991fc4e28",
+      "annotationPage": "/data/annos/ms-321/p310.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8a215284-b4d0-11ec-aae3-b234376116ea",
+      "annotationPage": "/data/annos/ms-321/p311.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a8bef2fa-b4d0-11ec-aae3-8ab61e6cefc8",
+      "annotationPage": "/data/annos/ms-321/p312.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8ffe8a82-b4d0-11ec-aae3-e60fe871378e",
+      "annotationPage": "/data/annos/ms-321/p313.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7f9223de-b4d0-11ec-aae3-e36917c9f80a",
+      "annotationPage": "/data/annos/ms-321/p314.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6579c6b5-b4d0-11ec-aae3-9f59a6833560",
+      "annotationPage": "/data/annos/ms-321/p315.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b0ba5f96-b4d0-11ec-aae3-b722479f2b7c",
+      "annotationPage": "/data/annos/ms-321/p316.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a9760b66-b4d0-11ec-aae3-e483350a4fcd",
+      "annotationPage": "/data/annos/ms-321/p317.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/62ab9e28-b4d0-11ec-aae3-c00379180f6a",
+      "annotationPage": "/data/annos/ms-321/p318.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/bb56c7bd-b4d0-11ec-aae3-ac1825ae8742",
+      "annotationPage": "/data/annos/ms-321/p319.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b0486f88-b4d0-11ec-aae3-cb61a336e699",
+      "annotationPage": "/data/annos/ms-321/p320.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8b0502d7-b4d0-11ec-aae3-cd0bf17de858",
+      "annotationPage": "/data/annos/ms-321/p321.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9415fa43-b4d0-11ec-aae3-a19c48838873",
+      "annotationPage": "/data/annos/ms-321/p322.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/67a02d36-b4d0-11ec-aae3-b7cb6a4452a2",
+      "annotationPage": "/data/annos/ms-321/p323.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/74c634af-b4d0-11ec-aae3-c9989d6b0de3",
+      "annotationPage": "/data/annos/ms-321/p324.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/887e2f74-b4d0-11ec-aae3-e9978160130e",
+      "annotationPage": "/data/annos/ms-321/p325.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8ac18f6c-b4d0-11ec-aae3-d8af846311ef",
+      "annotationPage": "/data/annos/ms-321/p326.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b563d599-b4d0-11ec-aae3-d95ecd1c18de",
+      "annotationPage": "/data/annos/ms-321/p327.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8645d5c3-b4d0-11ec-aae3-8c5865838f5d",
+      "annotationPage": "/data/annos/ms-321/p328.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8a8c7cf8-b4d0-11ec-aae3-bcfdcfd56be1",
+      "annotationPage": "/data/annos/ms-321/p329.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9976e047-b4d0-11ec-aae3-beae9865f018",
+      "annotationPage": "/data/annos/ms-321/p330.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6e0e7bee-b4d0-11ec-aae3-b80ab1614b1c",
+      "annotationPage": "/data/annos/ms-321/p331.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/70f2999f-b4d0-11ec-aae3-d89b563748cc",
+      "annotationPage": "/data/annos/ms-321/p332.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a139ddb0-b4d0-11ec-aae3-88caed3fc498",
+      "annotationPage": "/data/annos/ms-321/p333.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/74806d20-b4d0-11ec-aae3-d4f8e3078e55",
+      "annotationPage": "/data/annos/ms-321/p334.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6a788f75-b4d0-11ec-aae3-bcd129510633",
+      "annotationPage": "/data/annos/ms-321/p335.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/77c38698-b4d0-11ec-aae3-f2908b77d6af",
+      "annotationPage": "/data/annos/ms-321/p336.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/acb7a5d3-b4d0-11ec-aae3-c3926069698c",
+      "annotationPage": "/data/annos/ms-321/p337.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/bab70916-b4d0-11ec-aae3-f6bbf7ed4c52",
+      "annotationPage": "/data/annos/ms-321/p338.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9c6aa53a-b4d0-11ec-aae3-9204f60d5205",
+      "annotationPage": "/data/annos/ms-321/p339.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8010c482-b4d0-11ec-aae3-840418ff4e8a",
+      "annotationPage": "/data/annos/ms-321/p340.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/65a0c58e-b4d0-11ec-aae3-d720d0654f13",
+      "annotationPage": "/data/annos/ms-321/p341.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/697aabad-b4d0-11ec-aae3-c6998509748b",
+      "annotationPage": "/data/annos/ms-321/p342.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a40c5a2b-b4d0-11ec-aae3-f367dd13258e",
+      "annotationPage": "/data/annos/ms-321/p343.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6a02cf27-b4d0-11ec-aae3-fb9f1994be1d",
+      "annotationPage": "/data/annos/ms-321/p344.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a797d6e4-b4d0-11ec-aae3-9270989a2fa6",
+      "annotationPage": "/data/annos/ms-321/p345.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/aaab49d7-b4d0-11ec-aae3-b407af9cf31a",
+      "annotationPage": "/data/annos/ms-321/p346.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7884d6ea-b4d0-11ec-aae3-c8a5cc045f83",
+      "annotationPage": "/data/annos/ms-321/p347.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/773cba45-b4d0-11ec-aae3-881f567c0998",
+      "annotationPage": "/data/annos/ms-321/p348.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b07a2ff2-b4d0-11ec-aae3-f124dfb24e20",
+      "annotationPage": "/data/annos/ms-321/p349.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/aa57ae18-b4d0-11ec-aae3-a39f661eefc2",
+      "annotationPage": "/data/annos/ms-321/p350.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8225fd82-b4d0-11ec-aae3-a1495711dcdc",
+      "annotationPage": "/data/annos/ms-321/p351.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/86c432bf-b4d0-11ec-aae3-dc489c479000",
+      "annotationPage": "/data/annos/ms-321/p352.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8d3bda98-b4d0-11ec-aae3-ceb06aa3aaed",
+      "annotationPage": "/data/annos/ms-321/p353.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7da8d5e0-b4d0-11ec-aae3-a64b695140fc",
+      "annotationPage": "/data/annos/ms-321/p354.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6a3fcde3-b4d0-11ec-aae3-984be22d5503",
+      "annotationPage": "/data/annos/ms-321/p355.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6541b2f7-b4d0-11ec-aae3-b7b77d3adbb3",
+      "annotationPage": "/data/annos/ms-321/p356.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/610a4338-b4d0-11ec-aae3-ee85cae4ad42",
+      "annotationPage": "/data/annos/ms-321/p357.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/641cbeb7-b4d0-11ec-aae3-8437d0046969",
+      "annotationPage": "/data/annos/ms-321/p358.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/ae6e7915-b4d0-11ec-aae3-da68e7962a0f",
+      "annotationPage": "/data/annos/ms-321/p359.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b52a5022-b4d0-11ec-aae3-d1b66dfad269",
+      "annotationPage": "/data/annos/ms-321/p360.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9bd777ce-b4d0-11ec-aae3-c91550d78ead",
+      "annotationPage": "/data/annos/ms-321/p361.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/64d36e86-b4d0-11ec-aae3-d94410351b23",
+      "annotationPage": "/data/annos/ms-321/p362.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/767882d4-b4d0-11ec-aae3-84483e0c82dd",
+      "annotationPage": "/data/annos/ms-321/p363.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a3d8e4ee-b4d0-11ec-aae3-d91187c07340",
+      "annotationPage": "/data/annos/ms-321/p364.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/6d0c9d2b-b4d0-11ec-aae3-ac6ec2595aa8",
+      "annotationPage": "/data/annos/ms-321/p365.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/729370de-b4d0-11ec-aae3-df41d63c92a7",
+      "annotationPage": "/data/annos/ms-321/p366.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/631b1ae4-b4d0-11ec-aae3-8b6a1893fc88",
+      "annotationPage": "/data/annos/ms-321/p367.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/b0fe203b-b4d0-11ec-aae3-d8f5c11e2916",
+      "annotationPage": "/data/annos/ms-321/p368.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/993c224e-b4d0-11ec-aae3-f0ef45654ec9",
+      "annotationPage": "/data/annos/ms-321/p369.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a1744efa-b4d0-11ec-aae3-e1f466cf10a4",
+      "annotationPage": "/data/annos/ms-321/p370.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/60d04b4d-b4d0-11ec-aae3-a55d01d7e6c0",
+      "annotationPage": "/data/annos/ms-321/p371.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a0bd92d2-b4d0-11ec-aae3-f1b3dbecf099",
+      "annotationPage": "/data/annos/ms-321/p372.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/8907264e-b4d0-11ec-aae3-959589bcbdc3",
+      "annotationPage": "/data/annos/ms-321/p373.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/7fbad04a-b4d0-11ec-aae3-862679b2fe6f",
+      "annotationPage": "/data/annos/ms-321/p374.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9a8aa63f-b4d0-11ec-aae3-a629c89aee04",
+      "annotationPage": "/data/annos/ms-321/p375.ap.json"
+    },
+    {
+      "canvas": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/9879f6a6-b4d0-11ec-aae3-c0119d868df3",
+      "annotationPage": "/data/annos/ms-321/p376.ap.json"
+    }
+  ]
 }

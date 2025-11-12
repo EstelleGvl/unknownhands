@@ -1,0 +1,601 @@
+{
+  "id": "data/annos/ms-63/p518.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Delectatio est in fauore &ꝓpitiatione tua in huius uitae itinere ꝑducens usq:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=833,364,2464,115"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ad finẽ gloriae conspectus tui. Explicit psalmus .xu.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=836,451,2072,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Incipit psalm xuii.oratio ipsi dauio.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=826,548,1877,113"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "oc est ꝑsonae đñi tribuenda adiuncta ecclesia quae corpus eius est.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=938,636,2102,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "AExaudi ds iustitiã meã intende depͥcanio nimeae. Au",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=761,738,2549,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ri Abus ꝑcipe orationẽ meaR INLaBusDoLOSIS. Non",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=808,838,2499,112"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "adte in labiis dolosis ꝓcedentẽ uulgu tuo iũdiciu meũ ꝓdeat.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=828,928,2399,114"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ex inluminatione noticiae tuae uerũ iudicẽ aut certe ñ in labus dolosis auultu",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=833,1020,2477,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuo iudiciũ meũ ꝓdeat. Vt scilic& ñ ꝓferã iudicans aliud quã inte intellego.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=836,1112,2364,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ocul. imeiuideant aequigatẽ : Cordis utiq oculi. ProB AStcon",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=831,1212,2514,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "coeci EruiSigaSTIΜocgE. Quia ipsum cor meũ uisitatione tribulatio",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=836,1324,2454,93"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "nis ꝓbatũ . ẽ. Iqne me examiasnetnon.ẽ ince iniquitas.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=836,1397,2529,122"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Non autẽ nox tantũ quia ꝑturbare a sol&. sed &iã ignis quiaurit. uocanda. ẽ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=838,1501,2507,105"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ipsa tribulatio qua ex aminatus iustus inuentus su. Ut Mloquatur õs",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=838,1584,2422,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "meũ opera hominũ. Vt aliud non ꝓcedat exore meo quã id qđ ꝑteneat",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=846,1681,2504,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "adgloriã & laudẽ tuã ñ adopera hominũ quae faciunt pra&er uolunta tẽ tuã.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=836,1771,2499,127"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ropg uerba Labiorꝵ quorũ propt̃ uerba pacis tuae uel ꝓph&arũ",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=816,1868,2524,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tuorũ Ego cusgto diuiuias duras. Ego custo diui uias laboriosas mor",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=843,1961,2512,119"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "talitatis humanae atq passionis. Adppiciendos qres Sus meosin",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=846,2068,2504,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Semitis tuis. Vt ꝑficer&ur caritas ecclesiae in itinerib angustus quib",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=843,2145,2464,125"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uenitur adrequiẽ tuã. Ve M̃moueana uestiqiamea Vt ñ mouean",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=848,2247,2487,110"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tur signa itineris mei quae tamquã uestigia sacramentis & scripturis a posto",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=843,2357,2484,103"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "licis in pressa sunt quae intueantur & obseruent qui me sequi uolunt aut cer",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=841,2435,2519,114"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "te ut &iã stabilit̃ in a&ernitate ꝑ maneã. Postea quã ꝑ egi uias duras & in an",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=846,2527,2466,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "gustiis semitarũ tuarũ gressus ꝑ feci. E. co clamaui qũm exaudisti",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=846,2622,2441,117"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "me Ds. Ego libera & ualida intentione preces adte direxi. qnm ut hanc habere",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=848,2712,2519,124"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "possẽ. ex audistime infirmius orantẽ Inclina aurẽ tuã mihi etex",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=858,2806,2457,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-28",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "aũdi uerBamea. Nondeserat ex auditio tua humilitatẽ meã. Miri",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=853,2901,2447,120"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-29",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pica cmiserationes tuas non uilescant miscricordiae tuae ne mins",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=856,2991,2479,132"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-30",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "amentur. Qui saluos facis. Spenantes inte. Aresis teanb",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=863,3078,2537,138"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-31",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "dexterȩ guae. Aresistentib: fauori quo mihi faues. Cus todime",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=853,3163,2414,142"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-32",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "daẽ utpupildia ocliln Custo dime ut pupillã oculi quae appar& per",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=856,3250,2504,153"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-33",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "parua & exigua ꝑ eã tamen dirigitur acies luminis quo lux & tenebrae diudi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=858,3350,2449,143"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-34",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cantur . sicut ꝑ xp̃i humanitatẽ diuinitas iudicii discernens int̃ iustos & peccatores.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=861,3450,2524,137"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905#anno-35",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "qusoeo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163905",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=848,3567,417,148"
+        }
+      }
+    }
+  ]
+}

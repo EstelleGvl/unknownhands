@@ -1,0 +1,465 @@
+{
+  "id": "data/annos/ms-321/p145.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1184,421,45,138"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "¶",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1052,533,43,162"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "2",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1455,452,43,129"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tam uario. Stella notat unitatẽ.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=276,681,871,106"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "⁊ tres reges trinitatem. In predicto",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=278,764,860,102"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-6",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "filio. Aurum mentis puritatem.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=273,835,842,103"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-7",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Mrra carnis castitatem. ⁊ thus ÷",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=273,916,873,86"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-8",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "oratio.Omaria mater mundi.A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,987,880,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-9",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "peccatis simus mundi.per te data",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=273,1061,882,94"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-10",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "uema. Ut uirtutibus fecundi. Leti",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=273,1130,879,85"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-11",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "tamen ⁊ iocundi. Letemur. in patria.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=273,1199,898,100"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-12",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "iartum uirgo tibi datur.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=483,1284,640,85"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-13",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "xpistus die tercia. per hoc fides robo",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=264,1418,865,92"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-14",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "mi a morte suscitatur:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=526,1352,558,84"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-15",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "rãtur. Spes redit ⁊ mors fugatur.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,1484,862,95"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-16",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "per te plena gracia. Hostis uctus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=272,1555,837,98"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-17",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "captiuatur. Dolet gemit anxiatur:",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=270,1638,893,83"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-18",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "linuissa potencia.homo captus li",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=266,1707,869,100"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-19",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "beratur. ⁊ ab ymmo subleuatur",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=270,1773,871,111"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-20",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "2O",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=107,1821,48,98"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-21",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Ergo mater creatoris. Funde preces",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=267,1850,894,111"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-22",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "Bi",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1083,2056,57,94"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-23",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=729,2142,35,97"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-24",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "2",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1346,2152,57,172"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-25",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "i4",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1409,2150,97,105"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-26",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "ase",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=106,2322,100,111"
+        }
+      }
+    },
+    {
+      "id": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b#anno-27",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "pe",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://sharedcanvas.be/IIIF/manifests/B_OB_MS321/canvases/a583e33f-b4d0-11ec-aae3-f911853e135b",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1375,2302,133,114"
+        }
+      }
+    }
+  ]
+}

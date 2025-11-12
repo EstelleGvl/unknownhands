@@ -1,4 +1,2197 @@
 {
-  "type": "Mapping",
-  "items": []
+  "manifest": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/manifest",
+  "items": [
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/1",
+      "annotationPage": "/data/annos/clm-22044/p1.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/2",
+      "annotationPage": "/data/annos/clm-22044/p2.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/3",
+      "annotationPage": "/data/annos/clm-22044/p3.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/4",
+      "annotationPage": "/data/annos/clm-22044/p4.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/5",
+      "annotationPage": "/data/annos/clm-22044/p5.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/6",
+      "annotationPage": "/data/annos/clm-22044/p6.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/7",
+      "annotationPage": "/data/annos/clm-22044/p7.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/8",
+      "annotationPage": "/data/annos/clm-22044/p8.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/9",
+      "annotationPage": "/data/annos/clm-22044/p9.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/10",
+      "annotationPage": "/data/annos/clm-22044/p10.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/11",
+      "annotationPage": "/data/annos/clm-22044/p11.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/12",
+      "annotationPage": "/data/annos/clm-22044/p12.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/13",
+      "annotationPage": "/data/annos/clm-22044/p13.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/14",
+      "annotationPage": "/data/annos/clm-22044/p14.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/15",
+      "annotationPage": "/data/annos/clm-22044/p15.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/16",
+      "annotationPage": "/data/annos/clm-22044/p16.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/17",
+      "annotationPage": "/data/annos/clm-22044/p17.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/18",
+      "annotationPage": "/data/annos/clm-22044/p18.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/19",
+      "annotationPage": "/data/annos/clm-22044/p19.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/20",
+      "annotationPage": "/data/annos/clm-22044/p20.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/21",
+      "annotationPage": "/data/annos/clm-22044/p21.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/22",
+      "annotationPage": "/data/annos/clm-22044/p22.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/23",
+      "annotationPage": "/data/annos/clm-22044/p23.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/24",
+      "annotationPage": "/data/annos/clm-22044/p24.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/25",
+      "annotationPage": "/data/annos/clm-22044/p25.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/26",
+      "annotationPage": "/data/annos/clm-22044/p26.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/27",
+      "annotationPage": "/data/annos/clm-22044/p27.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/28",
+      "annotationPage": "/data/annos/clm-22044/p28.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/29",
+      "annotationPage": "/data/annos/clm-22044/p29.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/30",
+      "annotationPage": "/data/annos/clm-22044/p30.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/31",
+      "annotationPage": "/data/annos/clm-22044/p31.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/32",
+      "annotationPage": "/data/annos/clm-22044/p32.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/33",
+      "annotationPage": "/data/annos/clm-22044/p33.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/34",
+      "annotationPage": "/data/annos/clm-22044/p34.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/35",
+      "annotationPage": "/data/annos/clm-22044/p35.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/36",
+      "annotationPage": "/data/annos/clm-22044/p36.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/37",
+      "annotationPage": "/data/annos/clm-22044/p37.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/38",
+      "annotationPage": "/data/annos/clm-22044/p38.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/39",
+      "annotationPage": "/data/annos/clm-22044/p39.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/40",
+      "annotationPage": "/data/annos/clm-22044/p40.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/41",
+      "annotationPage": "/data/annos/clm-22044/p41.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/42",
+      "annotationPage": "/data/annos/clm-22044/p42.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/43",
+      "annotationPage": "/data/annos/clm-22044/p43.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/44",
+      "annotationPage": "/data/annos/clm-22044/p44.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/45",
+      "annotationPage": "/data/annos/clm-22044/p45.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/46",
+      "annotationPage": "/data/annos/clm-22044/p46.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/47",
+      "annotationPage": "/data/annos/clm-22044/p47.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/48",
+      "annotationPage": "/data/annos/clm-22044/p48.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/49",
+      "annotationPage": "/data/annos/clm-22044/p49.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/50",
+      "annotationPage": "/data/annos/clm-22044/p50.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/51",
+      "annotationPage": "/data/annos/clm-22044/p51.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/52",
+      "annotationPage": "/data/annos/clm-22044/p52.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/53",
+      "annotationPage": "/data/annos/clm-22044/p53.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/54",
+      "annotationPage": "/data/annos/clm-22044/p54.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/55",
+      "annotationPage": "/data/annos/clm-22044/p55.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/56",
+      "annotationPage": "/data/annos/clm-22044/p56.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/57",
+      "annotationPage": "/data/annos/clm-22044/p57.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/58",
+      "annotationPage": "/data/annos/clm-22044/p58.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/59",
+      "annotationPage": "/data/annos/clm-22044/p59.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/60",
+      "annotationPage": "/data/annos/clm-22044/p60.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/61",
+      "annotationPage": "/data/annos/clm-22044/p61.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/62",
+      "annotationPage": "/data/annos/clm-22044/p62.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/63",
+      "annotationPage": "/data/annos/clm-22044/p63.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/64",
+      "annotationPage": "/data/annos/clm-22044/p64.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/65",
+      "annotationPage": "/data/annos/clm-22044/p65.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/66",
+      "annotationPage": "/data/annos/clm-22044/p66.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/67",
+      "annotationPage": "/data/annos/clm-22044/p67.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/68",
+      "annotationPage": "/data/annos/clm-22044/p68.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/69",
+      "annotationPage": "/data/annos/clm-22044/p69.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/70",
+      "annotationPage": "/data/annos/clm-22044/p70.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/71",
+      "annotationPage": "/data/annos/clm-22044/p71.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/72",
+      "annotationPage": "/data/annos/clm-22044/p72.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/73",
+      "annotationPage": "/data/annos/clm-22044/p73.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/74",
+      "annotationPage": "/data/annos/clm-22044/p74.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/75",
+      "annotationPage": "/data/annos/clm-22044/p75.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/76",
+      "annotationPage": "/data/annos/clm-22044/p76.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/77",
+      "annotationPage": "/data/annos/clm-22044/p77.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/78",
+      "annotationPage": "/data/annos/clm-22044/p78.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/79",
+      "annotationPage": "/data/annos/clm-22044/p79.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/80",
+      "annotationPage": "/data/annos/clm-22044/p80.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/81",
+      "annotationPage": "/data/annos/clm-22044/p81.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/82",
+      "annotationPage": "/data/annos/clm-22044/p82.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/83",
+      "annotationPage": "/data/annos/clm-22044/p83.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/84",
+      "annotationPage": "/data/annos/clm-22044/p84.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/85",
+      "annotationPage": "/data/annos/clm-22044/p85.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/86",
+      "annotationPage": "/data/annos/clm-22044/p86.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/87",
+      "annotationPage": "/data/annos/clm-22044/p87.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/88",
+      "annotationPage": "/data/annos/clm-22044/p88.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/89",
+      "annotationPage": "/data/annos/clm-22044/p89.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/90",
+      "annotationPage": "/data/annos/clm-22044/p90.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/91",
+      "annotationPage": "/data/annos/clm-22044/p91.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/92",
+      "annotationPage": "/data/annos/clm-22044/p92.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/93",
+      "annotationPage": "/data/annos/clm-22044/p93.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/94",
+      "annotationPage": "/data/annos/clm-22044/p94.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/95",
+      "annotationPage": "/data/annos/clm-22044/p95.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/96",
+      "annotationPage": "/data/annos/clm-22044/p96.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/97",
+      "annotationPage": "/data/annos/clm-22044/p97.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/98",
+      "annotationPage": "/data/annos/clm-22044/p98.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/99",
+      "annotationPage": "/data/annos/clm-22044/p99.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/100",
+      "annotationPage": "/data/annos/clm-22044/p100.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/101",
+      "annotationPage": "/data/annos/clm-22044/p101.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/102",
+      "annotationPage": "/data/annos/clm-22044/p102.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/103",
+      "annotationPage": "/data/annos/clm-22044/p103.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/104",
+      "annotationPage": "/data/annos/clm-22044/p104.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/105",
+      "annotationPage": "/data/annos/clm-22044/p105.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/106",
+      "annotationPage": "/data/annos/clm-22044/p106.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/107",
+      "annotationPage": "/data/annos/clm-22044/p107.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/108",
+      "annotationPage": "/data/annos/clm-22044/p108.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/109",
+      "annotationPage": "/data/annos/clm-22044/p109.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/110",
+      "annotationPage": "/data/annos/clm-22044/p110.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/111",
+      "annotationPage": "/data/annos/clm-22044/p111.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/112",
+      "annotationPage": "/data/annos/clm-22044/p112.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/113",
+      "annotationPage": "/data/annos/clm-22044/p113.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/114",
+      "annotationPage": "/data/annos/clm-22044/p114.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/115",
+      "annotationPage": "/data/annos/clm-22044/p115.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/116",
+      "annotationPage": "/data/annos/clm-22044/p116.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/117",
+      "annotationPage": "/data/annos/clm-22044/p117.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/118",
+      "annotationPage": "/data/annos/clm-22044/p118.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/119",
+      "annotationPage": "/data/annos/clm-22044/p119.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/120",
+      "annotationPage": "/data/annos/clm-22044/p120.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/121",
+      "annotationPage": "/data/annos/clm-22044/p121.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/122",
+      "annotationPage": "/data/annos/clm-22044/p122.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/123",
+      "annotationPage": "/data/annos/clm-22044/p123.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/124",
+      "annotationPage": "/data/annos/clm-22044/p124.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/125",
+      "annotationPage": "/data/annos/clm-22044/p125.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/126",
+      "annotationPage": "/data/annos/clm-22044/p126.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/127",
+      "annotationPage": "/data/annos/clm-22044/p127.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/128",
+      "annotationPage": "/data/annos/clm-22044/p128.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/129",
+      "annotationPage": "/data/annos/clm-22044/p129.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/130",
+      "annotationPage": "/data/annos/clm-22044/p130.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/131",
+      "annotationPage": "/data/annos/clm-22044/p131.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/132",
+      "annotationPage": "/data/annos/clm-22044/p132.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/133",
+      "annotationPage": "/data/annos/clm-22044/p133.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/134",
+      "annotationPage": "/data/annos/clm-22044/p134.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/135",
+      "annotationPage": "/data/annos/clm-22044/p135.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/136",
+      "annotationPage": "/data/annos/clm-22044/p136.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/137",
+      "annotationPage": "/data/annos/clm-22044/p137.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/138",
+      "annotationPage": "/data/annos/clm-22044/p138.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/139",
+      "annotationPage": "/data/annos/clm-22044/p139.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/140",
+      "annotationPage": "/data/annos/clm-22044/p140.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/141",
+      "annotationPage": "/data/annos/clm-22044/p141.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/142",
+      "annotationPage": "/data/annos/clm-22044/p142.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/143",
+      "annotationPage": "/data/annos/clm-22044/p143.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/144",
+      "annotationPage": "/data/annos/clm-22044/p144.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/145",
+      "annotationPage": "/data/annos/clm-22044/p145.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/146",
+      "annotationPage": "/data/annos/clm-22044/p146.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/147",
+      "annotationPage": "/data/annos/clm-22044/p147.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/148",
+      "annotationPage": "/data/annos/clm-22044/p148.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/149",
+      "annotationPage": "/data/annos/clm-22044/p149.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/150",
+      "annotationPage": "/data/annos/clm-22044/p150.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/151",
+      "annotationPage": "/data/annos/clm-22044/p151.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/152",
+      "annotationPage": "/data/annos/clm-22044/p152.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/153",
+      "annotationPage": "/data/annos/clm-22044/p153.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/154",
+      "annotationPage": "/data/annos/clm-22044/p154.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/155",
+      "annotationPage": "/data/annos/clm-22044/p155.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/156",
+      "annotationPage": "/data/annos/clm-22044/p156.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/157",
+      "annotationPage": "/data/annos/clm-22044/p157.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/158",
+      "annotationPage": "/data/annos/clm-22044/p158.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/159",
+      "annotationPage": "/data/annos/clm-22044/p159.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/160",
+      "annotationPage": "/data/annos/clm-22044/p160.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/161",
+      "annotationPage": "/data/annos/clm-22044/p161.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/162",
+      "annotationPage": "/data/annos/clm-22044/p162.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/163",
+      "annotationPage": "/data/annos/clm-22044/p163.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/164",
+      "annotationPage": "/data/annos/clm-22044/p164.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/165",
+      "annotationPage": "/data/annos/clm-22044/p165.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/166",
+      "annotationPage": "/data/annos/clm-22044/p166.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/167",
+      "annotationPage": "/data/annos/clm-22044/p167.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/168",
+      "annotationPage": "/data/annos/clm-22044/p168.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/169",
+      "annotationPage": "/data/annos/clm-22044/p169.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/170",
+      "annotationPage": "/data/annos/clm-22044/p170.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/171",
+      "annotationPage": "/data/annos/clm-22044/p171.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/172",
+      "annotationPage": "/data/annos/clm-22044/p172.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/173",
+      "annotationPage": "/data/annos/clm-22044/p173.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/174",
+      "annotationPage": "/data/annos/clm-22044/p174.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/175",
+      "annotationPage": "/data/annos/clm-22044/p175.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/176",
+      "annotationPage": "/data/annos/clm-22044/p176.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/177",
+      "annotationPage": "/data/annos/clm-22044/p177.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/178",
+      "annotationPage": "/data/annos/clm-22044/p178.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/179",
+      "annotationPage": "/data/annos/clm-22044/p179.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/180",
+      "annotationPage": "/data/annos/clm-22044/p180.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/181",
+      "annotationPage": "/data/annos/clm-22044/p181.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/182",
+      "annotationPage": "/data/annos/clm-22044/p182.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/183",
+      "annotationPage": "/data/annos/clm-22044/p183.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/184",
+      "annotationPage": "/data/annos/clm-22044/p184.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/185",
+      "annotationPage": "/data/annos/clm-22044/p185.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/186",
+      "annotationPage": "/data/annos/clm-22044/p186.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/187",
+      "annotationPage": "/data/annos/clm-22044/p187.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/188",
+      "annotationPage": "/data/annos/clm-22044/p188.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/189",
+      "annotationPage": "/data/annos/clm-22044/p189.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/190",
+      "annotationPage": "/data/annos/clm-22044/p190.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/191",
+      "annotationPage": "/data/annos/clm-22044/p191.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/192",
+      "annotationPage": "/data/annos/clm-22044/p192.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/193",
+      "annotationPage": "/data/annos/clm-22044/p193.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/194",
+      "annotationPage": "/data/annos/clm-22044/p194.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/195",
+      "annotationPage": "/data/annos/clm-22044/p195.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/196",
+      "annotationPage": "/data/annos/clm-22044/p196.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/197",
+      "annotationPage": "/data/annos/clm-22044/p197.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/198",
+      "annotationPage": "/data/annos/clm-22044/p198.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/199",
+      "annotationPage": "/data/annos/clm-22044/p199.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/200",
+      "annotationPage": "/data/annos/clm-22044/p200.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/201",
+      "annotationPage": "/data/annos/clm-22044/p201.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/202",
+      "annotationPage": "/data/annos/clm-22044/p202.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/203",
+      "annotationPage": "/data/annos/clm-22044/p203.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/204",
+      "annotationPage": "/data/annos/clm-22044/p204.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/205",
+      "annotationPage": "/data/annos/clm-22044/p205.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/206",
+      "annotationPage": "/data/annos/clm-22044/p206.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/207",
+      "annotationPage": "/data/annos/clm-22044/p207.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/208",
+      "annotationPage": "/data/annos/clm-22044/p208.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/209",
+      "annotationPage": "/data/annos/clm-22044/p209.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/210",
+      "annotationPage": "/data/annos/clm-22044/p210.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/211",
+      "annotationPage": "/data/annos/clm-22044/p211.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/212",
+      "annotationPage": "/data/annos/clm-22044/p212.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/213",
+      "annotationPage": "/data/annos/clm-22044/p213.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/214",
+      "annotationPage": "/data/annos/clm-22044/p214.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/215",
+      "annotationPage": "/data/annos/clm-22044/p215.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/216",
+      "annotationPage": "/data/annos/clm-22044/p216.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/217",
+      "annotationPage": "/data/annos/clm-22044/p217.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/218",
+      "annotationPage": "/data/annos/clm-22044/p218.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/219",
+      "annotationPage": "/data/annos/clm-22044/p219.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/220",
+      "annotationPage": "/data/annos/clm-22044/p220.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/221",
+      "annotationPage": "/data/annos/clm-22044/p221.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/222",
+      "annotationPage": "/data/annos/clm-22044/p222.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/223",
+      "annotationPage": "/data/annos/clm-22044/p223.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/224",
+      "annotationPage": "/data/annos/clm-22044/p224.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/225",
+      "annotationPage": "/data/annos/clm-22044/p225.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/226",
+      "annotationPage": "/data/annos/clm-22044/p226.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/227",
+      "annotationPage": "/data/annos/clm-22044/p227.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/228",
+      "annotationPage": "/data/annos/clm-22044/p228.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/229",
+      "annotationPage": "/data/annos/clm-22044/p229.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/230",
+      "annotationPage": "/data/annos/clm-22044/p230.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/231",
+      "annotationPage": "/data/annos/clm-22044/p231.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/232",
+      "annotationPage": "/data/annos/clm-22044/p232.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/233",
+      "annotationPage": "/data/annos/clm-22044/p233.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/234",
+      "annotationPage": "/data/annos/clm-22044/p234.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/235",
+      "annotationPage": "/data/annos/clm-22044/p235.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/236",
+      "annotationPage": "/data/annos/clm-22044/p236.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/237",
+      "annotationPage": "/data/annos/clm-22044/p237.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/238",
+      "annotationPage": "/data/annos/clm-22044/p238.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/239",
+      "annotationPage": "/data/annos/clm-22044/p239.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/240",
+      "annotationPage": "/data/annos/clm-22044/p240.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/241",
+      "annotationPage": "/data/annos/clm-22044/p241.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/242",
+      "annotationPage": "/data/annos/clm-22044/p242.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/243",
+      "annotationPage": "/data/annos/clm-22044/p243.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/244",
+      "annotationPage": "/data/annos/clm-22044/p244.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/245",
+      "annotationPage": "/data/annos/clm-22044/p245.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/246",
+      "annotationPage": "/data/annos/clm-22044/p246.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/247",
+      "annotationPage": "/data/annos/clm-22044/p247.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/248",
+      "annotationPage": "/data/annos/clm-22044/p248.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/249",
+      "annotationPage": "/data/annos/clm-22044/p249.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/250",
+      "annotationPage": "/data/annos/clm-22044/p250.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/251",
+      "annotationPage": "/data/annos/clm-22044/p251.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/252",
+      "annotationPage": "/data/annos/clm-22044/p252.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/253",
+      "annotationPage": "/data/annos/clm-22044/p253.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/254",
+      "annotationPage": "/data/annos/clm-22044/p254.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/255",
+      "annotationPage": "/data/annos/clm-22044/p255.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/256",
+      "annotationPage": "/data/annos/clm-22044/p256.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/257",
+      "annotationPage": "/data/annos/clm-22044/p257.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/258",
+      "annotationPage": "/data/annos/clm-22044/p258.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/259",
+      "annotationPage": "/data/annos/clm-22044/p259.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/260",
+      "annotationPage": "/data/annos/clm-22044/p260.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/261",
+      "annotationPage": "/data/annos/clm-22044/p261.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/262",
+      "annotationPage": "/data/annos/clm-22044/p262.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/263",
+      "annotationPage": "/data/annos/clm-22044/p263.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/264",
+      "annotationPage": "/data/annos/clm-22044/p264.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/265",
+      "annotationPage": "/data/annos/clm-22044/p265.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/266",
+      "annotationPage": "/data/annos/clm-22044/p266.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/267",
+      "annotationPage": "/data/annos/clm-22044/p267.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/268",
+      "annotationPage": "/data/annos/clm-22044/p268.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/269",
+      "annotationPage": "/data/annos/clm-22044/p269.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/270",
+      "annotationPage": "/data/annos/clm-22044/p270.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/271",
+      "annotationPage": "/data/annos/clm-22044/p271.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/272",
+      "annotationPage": "/data/annos/clm-22044/p272.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/273",
+      "annotationPage": "/data/annos/clm-22044/p273.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/274",
+      "annotationPage": "/data/annos/clm-22044/p274.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/275",
+      "annotationPage": "/data/annos/clm-22044/p275.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/276",
+      "annotationPage": "/data/annos/clm-22044/p276.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/277",
+      "annotationPage": "/data/annos/clm-22044/p277.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/278",
+      "annotationPage": "/data/annos/clm-22044/p278.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/279",
+      "annotationPage": "/data/annos/clm-22044/p279.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/280",
+      "annotationPage": "/data/annos/clm-22044/p280.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/281",
+      "annotationPage": "/data/annos/clm-22044/p281.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/282",
+      "annotationPage": "/data/annos/clm-22044/p282.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/283",
+      "annotationPage": "/data/annos/clm-22044/p283.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/284",
+      "annotationPage": "/data/annos/clm-22044/p284.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/285",
+      "annotationPage": "/data/annos/clm-22044/p285.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/286",
+      "annotationPage": "/data/annos/clm-22044/p286.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/287",
+      "annotationPage": "/data/annos/clm-22044/p287.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/288",
+      "annotationPage": "/data/annos/clm-22044/p288.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/289",
+      "annotationPage": "/data/annos/clm-22044/p289.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/290",
+      "annotationPage": "/data/annos/clm-22044/p290.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/291",
+      "annotationPage": "/data/annos/clm-22044/p291.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/292",
+      "annotationPage": "/data/annos/clm-22044/p292.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/293",
+      "annotationPage": "/data/annos/clm-22044/p293.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/294",
+      "annotationPage": "/data/annos/clm-22044/p294.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/295",
+      "annotationPage": "/data/annos/clm-22044/p295.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/296",
+      "annotationPage": "/data/annos/clm-22044/p296.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/297",
+      "annotationPage": "/data/annos/clm-22044/p297.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/298",
+      "annotationPage": "/data/annos/clm-22044/p298.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/299",
+      "annotationPage": "/data/annos/clm-22044/p299.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/300",
+      "annotationPage": "/data/annos/clm-22044/p300.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/301",
+      "annotationPage": "/data/annos/clm-22044/p301.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/302",
+      "annotationPage": "/data/annos/clm-22044/p302.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/303",
+      "annotationPage": "/data/annos/clm-22044/p303.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/304",
+      "annotationPage": "/data/annos/clm-22044/p304.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/305",
+      "annotationPage": "/data/annos/clm-22044/p305.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/306",
+      "annotationPage": "/data/annos/clm-22044/p306.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/307",
+      "annotationPage": "/data/annos/clm-22044/p307.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/308",
+      "annotationPage": "/data/annos/clm-22044/p308.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/309",
+      "annotationPage": "/data/annos/clm-22044/p309.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/310",
+      "annotationPage": "/data/annos/clm-22044/p310.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/311",
+      "annotationPage": "/data/annos/clm-22044/p311.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/312",
+      "annotationPage": "/data/annos/clm-22044/p312.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/313",
+      "annotationPage": "/data/annos/clm-22044/p313.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/314",
+      "annotationPage": "/data/annos/clm-22044/p314.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/315",
+      "annotationPage": "/data/annos/clm-22044/p315.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/316",
+      "annotationPage": "/data/annos/clm-22044/p316.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/317",
+      "annotationPage": "/data/annos/clm-22044/p317.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/318",
+      "annotationPage": "/data/annos/clm-22044/p318.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/319",
+      "annotationPage": "/data/annos/clm-22044/p319.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/320",
+      "annotationPage": "/data/annos/clm-22044/p320.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/321",
+      "annotationPage": "/data/annos/clm-22044/p321.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/322",
+      "annotationPage": "/data/annos/clm-22044/p322.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/323",
+      "annotationPage": "/data/annos/clm-22044/p323.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/324",
+      "annotationPage": "/data/annos/clm-22044/p324.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/325",
+      "annotationPage": "/data/annos/clm-22044/p325.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/326",
+      "annotationPage": "/data/annos/clm-22044/p326.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/327",
+      "annotationPage": "/data/annos/clm-22044/p327.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/328",
+      "annotationPage": "/data/annos/clm-22044/p328.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/329",
+      "annotationPage": "/data/annos/clm-22044/p329.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/330",
+      "annotationPage": "/data/annos/clm-22044/p330.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/331",
+      "annotationPage": "/data/annos/clm-22044/p331.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/332",
+      "annotationPage": "/data/annos/clm-22044/p332.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/333",
+      "annotationPage": "/data/annos/clm-22044/p333.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/334",
+      "annotationPage": "/data/annos/clm-22044/p334.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/335",
+      "annotationPage": "/data/annos/clm-22044/p335.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/336",
+      "annotationPage": "/data/annos/clm-22044/p336.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/337",
+      "annotationPage": "/data/annos/clm-22044/p337.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/338",
+      "annotationPage": "/data/annos/clm-22044/p338.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/339",
+      "annotationPage": "/data/annos/clm-22044/p339.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/340",
+      "annotationPage": "/data/annos/clm-22044/p340.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/341",
+      "annotationPage": "/data/annos/clm-22044/p341.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/342",
+      "annotationPage": "/data/annos/clm-22044/p342.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/343",
+      "annotationPage": "/data/annos/clm-22044/p343.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/344",
+      "annotationPage": "/data/annos/clm-22044/p344.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/345",
+      "annotationPage": "/data/annos/clm-22044/p345.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/346",
+      "annotationPage": "/data/annos/clm-22044/p346.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/347",
+      "annotationPage": "/data/annos/clm-22044/p347.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/348",
+      "annotationPage": "/data/annos/clm-22044/p348.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/349",
+      "annotationPage": "/data/annos/clm-22044/p349.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/350",
+      "annotationPage": "/data/annos/clm-22044/p350.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/351",
+      "annotationPage": "/data/annos/clm-22044/p351.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/352",
+      "annotationPage": "/data/annos/clm-22044/p352.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/353",
+      "annotationPage": "/data/annos/clm-22044/p353.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/354",
+      "annotationPage": "/data/annos/clm-22044/p354.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/355",
+      "annotationPage": "/data/annos/clm-22044/p355.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/356",
+      "annotationPage": "/data/annos/clm-22044/p356.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/357",
+      "annotationPage": "/data/annos/clm-22044/p357.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/358",
+      "annotationPage": "/data/annos/clm-22044/p358.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/359",
+      "annotationPage": "/data/annos/clm-22044/p359.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/360",
+      "annotationPage": "/data/annos/clm-22044/p360.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/361",
+      "annotationPage": "/data/annos/clm-22044/p361.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/362",
+      "annotationPage": "/data/annos/clm-22044/p362.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/363",
+      "annotationPage": "/data/annos/clm-22044/p363.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/364",
+      "annotationPage": "/data/annos/clm-22044/p364.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/365",
+      "annotationPage": "/data/annos/clm-22044/p365.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/366",
+      "annotationPage": "/data/annos/clm-22044/p366.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/367",
+      "annotationPage": "/data/annos/clm-22044/p367.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/368",
+      "annotationPage": "/data/annos/clm-22044/p368.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/369",
+      "annotationPage": "/data/annos/clm-22044/p369.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/370",
+      "annotationPage": "/data/annos/clm-22044/p370.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/371",
+      "annotationPage": "/data/annos/clm-22044/p371.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/372",
+      "annotationPage": "/data/annos/clm-22044/p372.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/373",
+      "annotationPage": "/data/annos/clm-22044/p373.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/374",
+      "annotationPage": "/data/annos/clm-22044/p374.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/375",
+      "annotationPage": "/data/annos/clm-22044/p375.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/376",
+      "annotationPage": "/data/annos/clm-22044/p376.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/377",
+      "annotationPage": "/data/annos/clm-22044/p377.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/378",
+      "annotationPage": "/data/annos/clm-22044/p378.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/379",
+      "annotationPage": "/data/annos/clm-22044/p379.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/380",
+      "annotationPage": "/data/annos/clm-22044/p380.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/381",
+      "annotationPage": "/data/annos/clm-22044/p381.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/382",
+      "annotationPage": "/data/annos/clm-22044/p382.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/383",
+      "annotationPage": "/data/annos/clm-22044/p383.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/384",
+      "annotationPage": "/data/annos/clm-22044/p384.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/385",
+      "annotationPage": "/data/annos/clm-22044/p385.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/386",
+      "annotationPage": "/data/annos/clm-22044/p386.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/387",
+      "annotationPage": "/data/annos/clm-22044/p387.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/388",
+      "annotationPage": "/data/annos/clm-22044/p388.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/389",
+      "annotationPage": "/data/annos/clm-22044/p389.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/390",
+      "annotationPage": "/data/annos/clm-22044/p390.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/391",
+      "annotationPage": "/data/annos/clm-22044/p391.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/392",
+      "annotationPage": "/data/annos/clm-22044/p392.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/393",
+      "annotationPage": "/data/annos/clm-22044/p393.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/394",
+      "annotationPage": "/data/annos/clm-22044/p394.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/395",
+      "annotationPage": "/data/annos/clm-22044/p395.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/396",
+      "annotationPage": "/data/annos/clm-22044/p396.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/397",
+      "annotationPage": "/data/annos/clm-22044/p397.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/398",
+      "annotationPage": "/data/annos/clm-22044/p398.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/399",
+      "annotationPage": "/data/annos/clm-22044/p399.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/400",
+      "annotationPage": "/data/annos/clm-22044/p400.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/401",
+      "annotationPage": "/data/annos/clm-22044/p401.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/402",
+      "annotationPage": "/data/annos/clm-22044/p402.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/403",
+      "annotationPage": "/data/annos/clm-22044/p403.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/404",
+      "annotationPage": "/data/annos/clm-22044/p404.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/405",
+      "annotationPage": "/data/annos/clm-22044/p405.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/406",
+      "annotationPage": "/data/annos/clm-22044/p406.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/407",
+      "annotationPage": "/data/annos/clm-22044/p407.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/408",
+      "annotationPage": "/data/annos/clm-22044/p408.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/409",
+      "annotationPage": "/data/annos/clm-22044/p409.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/410",
+      "annotationPage": "/data/annos/clm-22044/p410.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/411",
+      "annotationPage": "/data/annos/clm-22044/p411.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/412",
+      "annotationPage": "/data/annos/clm-22044/p412.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/413",
+      "annotationPage": "/data/annos/clm-22044/p413.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/414",
+      "annotationPage": "/data/annos/clm-22044/p414.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/415",
+      "annotationPage": "/data/annos/clm-22044/p415.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/416",
+      "annotationPage": "/data/annos/clm-22044/p416.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/417",
+      "annotationPage": "/data/annos/clm-22044/p417.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/418",
+      "annotationPage": "/data/annos/clm-22044/p418.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/419",
+      "annotationPage": "/data/annos/clm-22044/p419.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/420",
+      "annotationPage": "/data/annos/clm-22044/p420.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/421",
+      "annotationPage": "/data/annos/clm-22044/p421.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/422",
+      "annotationPage": "/data/annos/clm-22044/p422.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/423",
+      "annotationPage": "/data/annos/clm-22044/p423.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/424",
+      "annotationPage": "/data/annos/clm-22044/p424.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/425",
+      "annotationPage": "/data/annos/clm-22044/p425.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/426",
+      "annotationPage": "/data/annos/clm-22044/p426.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/427",
+      "annotationPage": "/data/annos/clm-22044/p427.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/428",
+      "annotationPage": "/data/annos/clm-22044/p428.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/429",
+      "annotationPage": "/data/annos/clm-22044/p429.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/430",
+      "annotationPage": "/data/annos/clm-22044/p430.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/431",
+      "annotationPage": "/data/annos/clm-22044/p431.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/432",
+      "annotationPage": "/data/annos/clm-22044/p432.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/433",
+      "annotationPage": "/data/annos/clm-22044/p433.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/434",
+      "annotationPage": "/data/annos/clm-22044/p434.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/435",
+      "annotationPage": "/data/annos/clm-22044/p435.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/436",
+      "annotationPage": "/data/annos/clm-22044/p436.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/437",
+      "annotationPage": "/data/annos/clm-22044/p437.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/438",
+      "annotationPage": "/data/annos/clm-22044/p438.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/439",
+      "annotationPage": "/data/annos/clm-22044/p439.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/440",
+      "annotationPage": "/data/annos/clm-22044/p440.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/441",
+      "annotationPage": "/data/annos/clm-22044/p441.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/442",
+      "annotationPage": "/data/annos/clm-22044/p442.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/443",
+      "annotationPage": "/data/annos/clm-22044/p443.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/444",
+      "annotationPage": "/data/annos/clm-22044/p444.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/445",
+      "annotationPage": "/data/annos/clm-22044/p445.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/446",
+      "annotationPage": "/data/annos/clm-22044/p446.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/447",
+      "annotationPage": "/data/annos/clm-22044/p447.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/448",
+      "annotationPage": "/data/annos/clm-22044/p448.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/449",
+      "annotationPage": "/data/annos/clm-22044/p449.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/450",
+      "annotationPage": "/data/annos/clm-22044/p450.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/451",
+      "annotationPage": "/data/annos/clm-22044/p451.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/452",
+      "annotationPage": "/data/annos/clm-22044/p452.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/453",
+      "annotationPage": "/data/annos/clm-22044/p453.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/454",
+      "annotationPage": "/data/annos/clm-22044/p454.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/455",
+      "annotationPage": "/data/annos/clm-22044/p455.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/456",
+      "annotationPage": "/data/annos/clm-22044/p456.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/457",
+      "annotationPage": "/data/annos/clm-22044/p457.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/458",
+      "annotationPage": "/data/annos/clm-22044/p458.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/459",
+      "annotationPage": "/data/annos/clm-22044/p459.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/460",
+      "annotationPage": "/data/annos/clm-22044/p460.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/461",
+      "annotationPage": "/data/annos/clm-22044/p461.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/462",
+      "annotationPage": "/data/annos/clm-22044/p462.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/463",
+      "annotationPage": "/data/annos/clm-22044/p463.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/464",
+      "annotationPage": "/data/annos/clm-22044/p464.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/465",
+      "annotationPage": "/data/annos/clm-22044/p465.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/466",
+      "annotationPage": "/data/annos/clm-22044/p466.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/467",
+      "annotationPage": "/data/annos/clm-22044/p467.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/468",
+      "annotationPage": "/data/annos/clm-22044/p468.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/469",
+      "annotationPage": "/data/annos/clm-22044/p469.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/470",
+      "annotationPage": "/data/annos/clm-22044/p470.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/471",
+      "annotationPage": "/data/annos/clm-22044/p471.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/472",
+      "annotationPage": "/data/annos/clm-22044/p472.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/473",
+      "annotationPage": "/data/annos/clm-22044/p473.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/474",
+      "annotationPage": "/data/annos/clm-22044/p474.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/475",
+      "annotationPage": "/data/annos/clm-22044/p475.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/476",
+      "annotationPage": "/data/annos/clm-22044/p476.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/477",
+      "annotationPage": "/data/annos/clm-22044/p477.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/478",
+      "annotationPage": "/data/annos/clm-22044/p478.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/479",
+      "annotationPage": "/data/annos/clm-22044/p479.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/480",
+      "annotationPage": "/data/annos/clm-22044/p480.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/481",
+      "annotationPage": "/data/annos/clm-22044/p481.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/482",
+      "annotationPage": "/data/annos/clm-22044/p482.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/483",
+      "annotationPage": "/data/annos/clm-22044/p483.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/484",
+      "annotationPage": "/data/annos/clm-22044/p484.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/485",
+      "annotationPage": "/data/annos/clm-22044/p485.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/486",
+      "annotationPage": "/data/annos/clm-22044/p486.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/487",
+      "annotationPage": "/data/annos/clm-22044/p487.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/488",
+      "annotationPage": "/data/annos/clm-22044/p488.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/489",
+      "annotationPage": "/data/annos/clm-22044/p489.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/490",
+      "annotationPage": "/data/annos/clm-22044/p490.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/491",
+      "annotationPage": "/data/annos/clm-22044/p491.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/492",
+      "annotationPage": "/data/annos/clm-22044/p492.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/493",
+      "annotationPage": "/data/annos/clm-22044/p493.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/494",
+      "annotationPage": "/data/annos/clm-22044/p494.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/495",
+      "annotationPage": "/data/annos/clm-22044/p495.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/496",
+      "annotationPage": "/data/annos/clm-22044/p496.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/497",
+      "annotationPage": "/data/annos/clm-22044/p497.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/498",
+      "annotationPage": "/data/annos/clm-22044/p498.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/499",
+      "annotationPage": "/data/annos/clm-22044/p499.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/500",
+      "annotationPage": "/data/annos/clm-22044/p500.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/501",
+      "annotationPage": "/data/annos/clm-22044/p501.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/502",
+      "annotationPage": "/data/annos/clm-22044/p502.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/503",
+      "annotationPage": "/data/annos/clm-22044/p503.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/504",
+      "annotationPage": "/data/annos/clm-22044/p504.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/505",
+      "annotationPage": "/data/annos/clm-22044/p505.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/506",
+      "annotationPage": "/data/annos/clm-22044/p506.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/507",
+      "annotationPage": "/data/annos/clm-22044/p507.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/508",
+      "annotationPage": "/data/annos/clm-22044/p508.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/509",
+      "annotationPage": "/data/annos/clm-22044/p509.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/510",
+      "annotationPage": "/data/annos/clm-22044/p510.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/511",
+      "annotationPage": "/data/annos/clm-22044/p511.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/512",
+      "annotationPage": "/data/annos/clm-22044/p512.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/513",
+      "annotationPage": "/data/annos/clm-22044/p513.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/514",
+      "annotationPage": "/data/annos/clm-22044/p514.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/515",
+      "annotationPage": "/data/annos/clm-22044/p515.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/516",
+      "annotationPage": "/data/annos/clm-22044/p516.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/517",
+      "annotationPage": "/data/annos/clm-22044/p517.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/518",
+      "annotationPage": "/data/annos/clm-22044/p518.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/519",
+      "annotationPage": "/data/annos/clm-22044/p519.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/520",
+      "annotationPage": "/data/annos/clm-22044/p520.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/521",
+      "annotationPage": "/data/annos/clm-22044/p521.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/522",
+      "annotationPage": "/data/annos/clm-22044/p522.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/523",
+      "annotationPage": "/data/annos/clm-22044/p523.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/524",
+      "annotationPage": "/data/annos/clm-22044/p524.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/525",
+      "annotationPage": "/data/annos/clm-22044/p525.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/526",
+      "annotationPage": "/data/annos/clm-22044/p526.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/527",
+      "annotationPage": "/data/annos/clm-22044/p527.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/528",
+      "annotationPage": "/data/annos/clm-22044/p528.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/529",
+      "annotationPage": "/data/annos/clm-22044/p529.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/530",
+      "annotationPage": "/data/annos/clm-22044/p530.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/531",
+      "annotationPage": "/data/annos/clm-22044/p531.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/532",
+      "annotationPage": "/data/annos/clm-22044/p532.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/533",
+      "annotationPage": "/data/annos/clm-22044/p533.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/534",
+      "annotationPage": "/data/annos/clm-22044/p534.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/535",
+      "annotationPage": "/data/annos/clm-22044/p535.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/536",
+      "annotationPage": "/data/annos/clm-22044/p536.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/537",
+      "annotationPage": "/data/annos/clm-22044/p537.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/538",
+      "annotationPage": "/data/annos/clm-22044/p538.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/539",
+      "annotationPage": "/data/annos/clm-22044/p539.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/540",
+      "annotationPage": "/data/annos/clm-22044/p540.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/541",
+      "annotationPage": "/data/annos/clm-22044/p541.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/542",
+      "annotationPage": "/data/annos/clm-22044/p542.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/543",
+      "annotationPage": "/data/annos/clm-22044/p543.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/544",
+      "annotationPage": "/data/annos/clm-22044/p544.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/545",
+      "annotationPage": "/data/annos/clm-22044/p545.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/546",
+      "annotationPage": "/data/annos/clm-22044/p546.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/547",
+      "annotationPage": "/data/annos/clm-22044/p547.ap.json"
+    },
+    {
+      "canvas": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/548",
+      "annotationPage": "/data/annos/clm-22044/p548.ap.json"
+    }
+  ]
 }

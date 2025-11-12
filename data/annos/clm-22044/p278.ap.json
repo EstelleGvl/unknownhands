@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/clm-22044/p278.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/278#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "I",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/278",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=150,1,21,18"
+        }
+      }
+    }
+  ]
+}

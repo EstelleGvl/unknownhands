@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/clm-22044/p334.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/334#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "O i i oeth",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb00113471/canvas/334",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=8,0,165,19"
+        }
+      }
+    }
+  ]
+}

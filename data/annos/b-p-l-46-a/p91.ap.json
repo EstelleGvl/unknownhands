@@ -1,0 +1,40 @@
+{
+  "id": "data/annos/b-p-l-46-a/p91.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604540/canvas/default#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "cic.lxxiiii.",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604540/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=4519,325,287,113"
+        }
+      }
+    },
+    {
+      "id": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604540/canvas/default#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "2",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item:1604540/canvas/default",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=5095,376,53,99"
+        }
+      }
+    }
+  ]
+}

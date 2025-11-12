@@ -1,0 +1,23 @@
+{
+  "id": "data/annos/ms-74-82/p45.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92329#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "de I4..",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://arca.irht.cnrs.fr/iiif/51734/canvas/canvas-92329",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=346,369,202,86"
+        }
+      }
+    }
+  ]
+}

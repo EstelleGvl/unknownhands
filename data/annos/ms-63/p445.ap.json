@@ -1,0 +1,91 @@
+{
+  "id": "data/annos/ms-63/p445.ap.json",
+  "type": "AnnotationPage",
+  "items": [
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832#anno-1",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "A",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2341,1020,83,162"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832#anno-2",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "E",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=2526,1022,92,173"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832#anno-3",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "odex scĩ petri subpio patre hildr Eal doscriptus",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=526,1187,1418,130"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832#anno-4",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "LDEBAL",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=644,1294,524,190"
+        }
+      }
+    },
+    {
+      "id": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832#anno-5",
+      "type": "Annotation",
+      "motivation": "supplementing",
+      "body": {
+        "type": "TextualBody",
+        "value": "9",
+        "format": "text/plain"
+      },
+      "target": {
+        "source": "https://digital.dombibliothek-koeln.de/i3f/v20/163389/canvas/163832",
+        "selector": {
+          "type": "FragmentSelector",
+          "value": "xywh=1295,1282,45,150"
+        }
+      }
+    }
+  ]
+}
