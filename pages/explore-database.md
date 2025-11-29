@@ -9,14 +9,14 @@ show_title: false
 
   <!-- Main Navigation Tabs -->
   <div class="main-nav-tabs" id="main-nav-tabs" aria-label="Main Navigation">
-    <button class="main-nav-btn is-on" data-mode="browse">🔍 Browse & Search</button>
-    <button class="main-nav-btn" data-mode="analytics">📊 Analytics</button>
-    <button class="main-nav-btn" data-mode="map">🗺️ Map</button>
-    <button class="main-nav-btn" data-mode="codicology">� Codicology</button>
-    <button class="main-nav-btn" data-mode="tree">🌳 Hierarchical Tree</button>
-    <button class="main-nav-btn" data-mode="network">� Network</button>
-    <button class="main-nav-btn" data-mode="multilingualism">🌍 Multilingualism</button>
-    <button class="main-nav-btn" data-mode="colophon-analysis">📜 Colophon Analysis</button>
+    <button class="main-nav-btn is-on" data-mode="browse">Browse & Search</button>
+    <button class="main-nav-btn" data-mode="analytics">Analytics</button>
+    <button class="main-nav-btn" data-mode="map">Map</button>
+    <button class="main-nav-btn" data-mode="codicology">Codicology</button>
+    <button class="main-nav-btn" data-mode="tree">Hierarchical Tree</button>
+    <button class="main-nav-btn" data-mode="network">Network</button>
+    <button class="main-nav-btn" data-mode="multilingualism">Multilingualism</button>
+    <button class="main-nav-btn" data-mode="colophon-analysis">Colophon Analysis</button>
   </div>
 
   <div class="db-shell">
