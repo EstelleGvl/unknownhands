@@ -27,9 +27,9 @@ show_title: false
         <div class="entity-switcher">
           <div class="entity-switcher-title">Record type</div>
           <div class="entity-switcher-list" id="entity-switch">
-            <button class="entity-btn is-on" data-entity="su">Scribal Units</button>
             <button class="entity-btn" data-entity="ms">Manuscripts</button>
             <button class="entity-btn" data-entity="pu">Production Units</button>
+            <button class="entity-btn is-on" data-entity="su">Scribal Units</button>
             <button class="entity-btn" data-entity="hi">Holding Institutions</button>
             <button class="entity-btn" data-entity="mi">Monastic Institutions</button>
             <button class="entity-btn" data-entity="hp">Historical People</button>
@@ -71,11 +71,6 @@ show_title: false
           <div id="pane-results" class="db-results-wrap">
             <div id="db-status" class="db-status" role="status" aria-live="polite"></div>
             <div id="db-results" class="db-grid"></div>
-            <div id="db-pager" class="db-pager" hidden>
-              <button id="db-prev" disabled>Previous</button>
-              <span id="db-page">Page 1 / 1</span>
-              <button id="db-next" disabled>Next</button>
-            </div>
           </div>
         </section>
 
@@ -83,6 +78,18 @@ show_title: false
         <aside id="db-viz" class="db-viz">
           <div id="details-wrap"></div>
         </aside>
+        
+        <!-- Pagination - spans both middle and right panels -->
+        <div id="db-pager" class="db-pager" hidden>
+          <button id="db-prev" disabled>Previous</button>
+          <span id="db-page">Page 1 / 1</span>
+          <button id="db-next" disabled>Next</button>
+          <span style="margin-left:1rem;display:inline-flex;align-items:center;gap:0.5rem">
+            <label for="db-page-jump" style="font-size:0.9rem">Go to:</label>
+            <input type="number" id="db-page-jump" min="1" style="width:4rem;padding:0.25rem 0.5rem;border:1px solid #ddd;border-radius:0.25rem;text-align:center" />
+            <button id="db-page-go" style="padding:0.35rem 0.75rem;border:1px solid #ddd;border-radius:0.5rem;background:#fff;cursor:pointer">Go</button>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -926,30 +933,41 @@ show_title: false
 </dialog>
 
 <!-- Path Finding dialog -->
-<dialog id="path-dialog" style="max-width:680px;border:1px solid #ddd;border-radius:.75rem;padding:1rem;">
+<dialog id="path-dialog" style="max-width:720px;border:1px solid #ddd;border-radius:.75rem;padding:1.5rem;">
   <form method="dialog">
-    <h3 style="margin:.25rem 0 .75rem;">Find Connection</h3>
-    <p class="muted" style="margin-top:-.25rem">Find paths between the current record and another record.</p>
+    <h3 style="margin:.25rem 0 .5rem;">🔗 Find Connection Between Records</h3>
+    <p class="muted" style="margin-top:-.25rem;line-height:1.5;margin-bottom:1rem;">
+      Discover how two entities are connected through relationships. For example, find the chain linking a scribe to a monastery, 
+      or see how two manuscripts are related through production units or institutions.
+    </p>
     
-    <div id="path-from" style="padding:.75rem;background:#f9f9f9;border-radius:.5rem;margin:.75rem 0;"></div>
+    <div id="path-from" style="padding:.75rem;background:#e8f4f8;border-left:3px solid #3498db;border-radius:.5rem;margin:.75rem 0;"></div>
     
-    <div style="margin:.75rem 0;">
-      <label style="display:block;font-weight:600;margin-bottom:.5rem;">Search for target record:</label>
-      <input type="search" id="path-search" placeholder="Type to search..." 
-        style="width:100%;padding:.5rem .75rem;border:1px solid #ddd;border-radius:.5rem;margin-bottom:.5rem;">
+    <div style="margin:1rem 0;">
+      <label style="display:block;font-weight:600;margin-bottom:.5rem;">
+        <span style="display:inline-block;background:#f39c12;color:white;border-radius:50%;width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;font-size:.85rem;margin-right:.25rem;">2</span>
+        Search for destination record:
+      </label>
+      <input type="search" id="path-search" placeholder="Type name, manuscript title, or institution..." 
+        style="width:100%;padding:.5rem .75rem;border:1px solid #ddd;border-radius:.5rem;margin-bottom:.5rem;font-size:.95rem;">
       <div id="path-results" style="max-height:200px;overflow:auto;border:1px solid #eee;border-radius:.5rem;"></div>
     </div>
     
-    <div style="margin:.75rem 0;">
-      <label style="display:flex;gap:.5rem;align-items:center;">
-        Max depth: <input type="number" id="path-depth" min="1" max="5" value="4" style="width:4rem;padding:.25rem .5rem;border:1px solid #ddd;border-radius:.25rem;">
+    <div style="margin:1rem 0;padding:.75rem;background:#f9f9f9;border-radius:.5rem;">
+      <label style="display:flex;gap:.75rem;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:.5rem;">
+          <strong>Maximum steps:</strong>
+          <span class="muted" style="font-size:.9rem;">(1 = direct connections only, 4 = up to 4 relationships apart)</span>
+        </span>
+        <input type="number" id="path-depth" min="1" max="5" value="4" 
+          style="width:4rem;padding:.35rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.95rem;">
       </label>
     </div>
     
     <div id="path-display" style="margin:1rem 0;"></div>
     
-    <div style="display:flex;gap:.5rem;justify-content:flex-end;">
-      <button type="button" class="chip" onclick="this.closest('dialog').close()">Close</button>
+    <div style="display:flex;gap:.5rem;justify-content:flex-end;margin-top:1rem;">
+      <button type="button" class="chip" onclick="this.closest('dialog').close()" style="padding:.5rem 1rem;">Close</button>
     </div>
   </form>
 </dialog>
@@ -1006,7 +1024,7 @@ show_title: false
     display: grid;
     grid-template-columns: minmax(400px, 1fr) minmax(800px, 2fr);
     gap: 2rem;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
   }
   
   /* Controls now span the full width of the main+viz area */
@@ -1019,11 +1037,20 @@ show_title: false
   .db-main-viz-wrapper > .db-main {
     grid-column: 1;
     grid-row: 2;
+    min-height: 400px;
   }
   
   .db-main-viz-wrapper > .db-viz {
     grid-column: 2;
     grid-row: 2;
+    align-self: start;
+    overflow-y: auto;
+  }
+  
+  /* Pagination spans full width at bottom */
+  .db-main-viz-wrapper > .db-pager {
+    grid-column: 1 / -1;
+    grid-row: 3;
   }
   
   /* Responsive: stack on smaller screens */
@@ -1171,7 +1198,7 @@ show_title: false
   .db-main a, .db-results-wrap a, .db-viz a{ color: var(--uh-gold); font-weight:700; text-decoration:none; }
   .db-main a:hover, .db-results-wrap a:hover, .db-viz a:hover{ text-decoration:underline; }
   .linklike{ appearance:none;background:transparent;border:none;padding:0;margin:0;color:var(--uh-gold);
-    font-weight:700;text-decoration:none;cursor:pointer;line-height:inherit;font:inherit;border-radius:0; }
+    font-weight:700;text-decoration:none;cursor:pointer;line-height:inherit;font:inherit;border-radius:0;display:inline;text-align:left; }
   .linklike:hover{ text-decoration: underline; }
   .linklike:focus{ outline:none; box-shadow:none; }
 
@@ -1242,6 +1269,8 @@ const $pager   = document.getElementById('db-pager');
 const $prev    = document.getElementById('db-prev');
 const $next    = document.getElementById('db-next');
 const $page    = document.getElementById('db-page');
+const $pageJump = document.getElementById('db-page-jump');
+const $pageGo   = document.getElementById('db-page-go');
 const $search  = document.getElementById('db-search');
 const $field   = document.getElementById('db-field');
 const $sort    = document.getElementById('db-sort');
@@ -1437,7 +1466,6 @@ function getRelationshipValues(recId, fieldName) {
 /* ---------- Facets config ---------- */
 const FACETS = {
   su: [
-    { key:'su_dating', label:'SU dating', type:'text', field:'SU dating' },
     { key:'century', label:'Normalized century of production', type:'century', field:'Normalized century of production' },
     { key:'post', label:'Terminus post quem', type:'year-range', field:'Normalized terminus post quem' },
     { key:'ante', label:'Terminus ante quem', type:'year-range', field:'Normalized terminus ante quem' },
@@ -1446,19 +1474,16 @@ const FACETS = {
     { key:'scribe_role', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
     { key:'function_copying', label:'🔗 Function of copying (from relationships)', type:'relationship-enum-multi', field:'Function of Copying' },
     { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'colophon_presence', label:'Colophon presence', type:'enum', field:'Colophon presence' },
+    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'style_rel', label:'🔗 Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
+    { key:'colophon_presence', label:'Colophon presence', type:'enum', field:'Colophon Presence' },
     { key:'colophon_language', label:'Colophon language', type:'enum-multi', field:'Colophon language' },
-    { key:'manuscript', label:'Manuscript', type:'resource', field:'Manuscript' },
-    { key:'scribe_comments', label:'Scribe Comments', type:'text', field:'Scribe Comments' },
-    { key:'text_comments', label:'Text(s) comments', type:'text', field:'Text(s) comments' },
-    { key:'pu_comments', label:'PU Comments', type:'text', field:'PU Comments' },
   ],
   ms: [
     { key:'holding', label:'Holding Institution', type:'resource', field:'Holding Institution' },
     { key:'callno', label:'Call number', type:'text', field:'Call number' },
-    { key:'ms_date', label:'Ms Dating (YYYY ok)', type:'year-range', field:'Ms Dating' },
-    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
+    { key:'ms_date', label:'Ms Dating (YYYY)', type:'year-range', field:'Ms Dating' },
+    { key:'Watermark', label:'Watermark Present', type:'enum-search', field:'Watermark Present' },
     { key:'digit_status', label:'Digitization Status', type:'enum', field:'Digitization Status' },
     { key:'digit_type',   label:'Digitization Type', type:'enum', field:'Digitization Type' },
     { key:'iiif_status',  label:'IIIF Status', type:'enum', field:'IIIF Status' },
@@ -1474,20 +1499,18 @@ const FACETS = {
     { key:'post',    label:'Post quem', type:'year-range', field:'Normalized terminus post quem' },
     { key:'ante',    label:'Ante quem', type:'year-range', field:'Normalized terminus ante quem' },
     { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'scribe_certainty_rel', label:'🔗 Scribe certainty (from relationships)', type:'relationship-enum-multi', field:'scribe certainty' },
-    { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
-    { key:'expression_rel', label:'🔗 Expression (from relationships)', type:'relationship-enum-multi', field:'Expression' },
     { key:'style_rel', label:'🔗 Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
-    { key:'colophon_presence', label:'Colophon presence', type:'enum-search', field:'Colophon presence' },
+    { key:'colophon_presence', label:'Colophon presence', type:'enum', field:'Colophon Presence' },
     { key:'colophon_language', label:'Colophon language', type:'enum-multi', field:'Colophon language' },
-    { key:'Watermark', label:'Watermark Present', type:'enum-search', field:'Watermark Present' },
-    { key:'manuscript', label:'Manuscript', type:'resource', field:'Manuscript' },
+    { key:'musical_notation', label:'Musical Notation Presence', type:'enum', field:'Musical Notation Presence' },
+    { key:'decoration', label:'Decoration Presence', type:'enum', field:'Decoration Presence' },
+    { key:'Watermark', label:'Watermark Present', type:'enum-multi', field:'Watermark Present' },
     { key:'folios', label:'Folios', type:'num-range', field:'Number of Folios' },
     { key:'text_h', label:'Text block height', type:'num-range', field:'Text block height' },
     { key:'text_w', label:'Text block width',  type:'num-range', field:'Text block width' },
-    { key:'ruling', label:'Ruling',  type:'enum', field:'Ruling' },
-    { key:'catchwords', label:'Ruling',  type:'enum-search', field:'catchwords' },
-    { key:'signatures', label:'Ruling',  type:'enum-search', field:'signatures' },
+    { key:'ruling', label:'Ruling',  type:'enum-multi', field:'ruling_type' },
+    { key:'catchwords', label:'Catchwords Presence',  type:'enum-multi', field:'catchwords' },
+    { key:'signatures', label:'Signatures Presence',  type:'enum-multi', field:'signatures' },
     { key:'Quire types', label:'Quires',  type:'enum-multi', field:'Quire types' },
   ],
   hi: [
@@ -1506,7 +1529,6 @@ const FACETS = {
   hp: [
     { key:'gender',  label:'Gender', type:'enum', field:'Gender' },
     { key:'gcert',   label:'Gender certainty', type:'enum', field:'Gender certainty' },
-    { key:'ptype',   label:'Person type', type:'enum', field:'Person type' },
     { key:'activity',   label:'Century of Activity', type:'century', field:'Century of Activity' },
     { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
   ],
@@ -1515,8 +1537,7 @@ const FACETS = {
     { key:'subgenre',label:'Subgenre', type:'enum-search', field:'Subgenre' },
     { key:'ntitle',  label:'Normalized Title', type:'enum-search', field:'Normalized Title' },
     { key:'author',  label:'Author', type:'enum-search', field:'Creator' },
-    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'expression_rel', label:'🔗 Expression (from relationships)', type:'relationship-enum-multi', field:'Expression' },
+    { key:'expression_rel', label:'🔗 Expression (from relationships)', type:'relationship-enum-search', field:'Expression' },
   ],
 };
 
@@ -1858,7 +1879,14 @@ const ORDER_FIELDS = {
     'Manuscript',
     'Number of Folios',
   ],
-  // add hi / mi / hp / tx as needed
+  hi: [
+    'Country',
+    'City',
+    'Institution type',
+    'Latitude',
+    'Longitude',
+  ],
+  // add mi / hp / tx as needed
 };
 
 /* If true, anything not listed in ORDER_FIELDS[entity] (and not hidden) will be appended at the end. */
@@ -1883,12 +1911,39 @@ function renderDetailRows(rec, entity){
   // Helper to render one detail to HTML (keeps your link behaviour)
   const renderVal = (d) => {
     if (d.termLabel) return esc(d.termLabel);
-    if (d.value && typeof d.value === 'object' && (d.value.title || d.value.id)){
-      const tEnt = REC_TYPE_TO_ENTITY[String(d.value.type)] || null;
-      const tId  = String(d.value.id || '');
-      if (tEnt && IDX[tEnt] && IDX[tEnt][tId]) return linkTo(tEnt, tId, d.value.title || tId);
-      return esc(d.value.title || tId);
+    
+    // Handle object values
+    if (d.value && typeof d.value === 'object') {
+      // Check if it's a resource pointer (has title or id)
+      if (d.value.title || d.value.id) {
+        const tEnt = REC_TYPE_TO_ENTITY[String(d.value.type)] || null;
+        const tId  = String(d.value.id || '');
+        if (tEnt && IDX[tEnt] && IDX[tEnt][tId]) return linkTo(tEnt, tId, d.value.title || tId);
+        return esc(d.value.title || tId);
+      }
+      // For geo objects with WKT format, extract coordinates
+      if (d.value.geo && d.value.geo.wkt) {
+        const wkt = d.value.geo.wkt;
+        // Parse POINT(longitude latitude) format
+        const match = wkt.match(/POINT\(([\d.\-]+)\s+([\d.\-]+)\)/);
+        if (match) {
+          const lon = match[1];
+          const lat = match[2];
+          // Return based on field name
+          if (d.fieldName === 'Latitude') return esc(lat);
+          if (d.fieldName === 'Longitude') return esc(lon);
+          return esc(`${lat}, ${lon}`);
+        }
+      }
+      // For other objects (like geo coordinates), try to extract a meaningful value
+      // Check for common numeric value patterns
+      if ('value' in d.value) return esc(String(d.value.value));
+      if ('lat' in d.value) return esc(String(d.value.lat));
+      if ('lon' in d.value) return esc(String(d.value.lon));
+      // If object has no recognizable pattern, stringify it in a readable way
+      return esc(JSON.stringify(d.value));
     }
+    
     const raw = rawValue(d);
     if (typeof raw === 'string' && /^https?:\/\//i.test(raw)){
       return `<a href="${esc(raw)}" target="_blank" rel="noopener">${esc(raw)}</a>`;
@@ -1933,7 +1988,11 @@ function renderDetailRows(rec, entity){
 function groupByRelType(relationships) {
   const grouped = new Map();
   relationships.forEach(r => {
-    const relType = getVal(r, 'Relationship type') || 'Related to';
+    let relType = getVal(r, 'Relationship type') || 'Related to';
+    // Normalize relationship type names
+    relType = relType.trim();
+    if (relType.toLowerCase() === 'isrelatedto') relType = 'Related to';
+    
     if (!grouped.has(relType)) grouped.set(relType, []);
     grouped.get(relType).push(r);
   });
@@ -2367,25 +2426,36 @@ function findPaths(startType, startId, endType, endId, maxDepth = 4) {
 function displayPaths(paths) {
   if (!paths.length) return '<div class="muted" style="padding:1rem;">No connection found</div>';
   
-  let html = '<div class="section"><strong>Connection Paths Found</strong>';
+  let html = `<div style="margin-top:1rem;"><div style="font-size:1.1rem;font-weight:600;margin-bottom:.75rem;color:#2c3e50;">✨ Found ${paths.length} Connection Path${paths.length > 1 ? 's' : ''}</div>`;
+  
   paths.slice(0, 5).forEach((path, i) => {
-    html += `<div style="margin:.75rem 0;padding:.5rem;background:#f9f9f9;border-radius:.5rem;">`;
-    html += `<div style="font-weight:600;margin-bottom:.35rem;">Path ${i + 1} (${path.length - 1} step${path.length > 2 ? 's' : ''}):</div>`;
-    html += `<div style="margin-left:.5rem;line-height:1.6;">`;
+    const stepCount = path.length - 1;
+    html += `<div style="margin:.75rem 0;padding:.75rem;background:#f8f9fa;border-left:4px solid #a67c00;border-radius:.5rem;">`;
+    html += `<div style="font-weight:600;margin-bottom:.5rem;color:#555;">Path ${i + 1} <span class="muted" style="font-weight:normal;">(${stepCount} relationship${stepCount > 1 ? 's' : ''})</span></div>`;
+    html += `<div style="margin-left:.5rem;line-height:2;">`;
     
     path.forEach((node, j) => {
-      if (j > 0) {
-        html += ` <span class="muted">${node.direction} (${esc(node.via)})</span> `;
-      }
+      // Add the entity
+      html += `<div style="display:inline-block;vertical-align:middle;">`;
       html += linkTo(node.type, node.id, node.title);
-      if (j < path.length - 1) html += ' ';
+      html += `</div>`;
+      
+      // Add the relationship arrow if not last item
+      if (j < path.length - 1) {
+        const nextNode = path[j + 1];
+        const arrowColor = nextNode.direction === '→' ? '#3498db' : '#9b59b6';
+        html += `<div style="display:inline-block;vertical-align:middle;margin:0 .5rem;color:${arrowColor};">`;
+        html += `<div style="font-size:.85rem;font-style:italic;">${esc(nextNode.via)}</div>`;
+        html += `<div style="font-size:1.2rem;">${nextNode.direction}</div>`;
+        html += `</div>`;
+      }
     });
     
     html += '</div></div>';
   });
   
   if (paths.length > 5) {
-    html += `<div class="muted" style="margin-top:.5rem;">...and ${paths.length - 5} more path${paths.length > 6 ? 's' : ''}</div>`;
+    html += `<div class="muted" style="margin-top:.75rem;padding:.5rem;text-align:center;background:#f8f9fa;border-radius:.5rem;">+ ${paths.length - 5} more path${paths.length > 6 ? 's' : ''} found</div>`;
   }
   
   html += '</div>';
@@ -2395,117 +2465,134 @@ function displayPaths(paths) {
 
 function renderRelationships(rec, type) {
   const recId = String(rec.rec_ID);
-  const outgoing = REL_INDEX.bySource[recId] || [];
-  const incoming = REL_INDEX.byTarget[recId] || [];
+  let outgoing = REL_INDEX.bySource[recId] || [];
+  let incoming = REL_INDEX.byTarget[recId] || [];
   
   let html = '';
   
-  // Add relationship metadata summary section
-  const allRels = [...outgoing, ...incoming];
-  if (allRels.length > 0) {
-    // Collect unique values from relationship metadata
-    const metadataSummary = {
-      certainties: new Set(),
-      roles: new Set(),
-      languages: new Set(),
-      functions: new Set(),
-      expressions: new Set(),
-      styles: new Set()
-    };
-    
-    allRels.forEach(r => {
-      const certainty = getVal(r, 'scribe certainty');
-      if (certainty) metadataSummary.certainties.add(certainty);
-      
-      const role = getVal(r, 'Scribe role');
-      if (role) metadataSummary.roles.add(role);
-      
-      const langs = getValsAll(r, 'Text Language(s)');
-      langs.forEach(l => metadataSummary.languages.add(l));
-      
-      const func = getVal(r, 'Function of Copying');
-      if (func) metadataSummary.functions.add(func);
-      
-      const expr = getVal(r, 'Expression');
-      if (expr) metadataSummary.expressions.add(expr);
-      
-      const style = getVal(r, 'Style');
-      if (style) metadataSummary.styles.add(style);
-    });
-    
-    // Display metadata summary if we have any
-    const hasMetadata = [...Object.values(metadataSummary)].some(s => s.size > 0);
-    if (hasMetadata) {
-      html += '<div class="section" style="background:#f8f9fa;padding:.75rem;border-radius:.5rem;margin-bottom:1rem">';
-      html += '<strong style="color:#667;">🔗 Relationship Metadata Summary</strong>';
-      html += '<div style="margin-top:.5rem;font-size:.9rem">';
-      
-      if (metadataSummary.certainties.size > 0) {
-        html += `<div style="margin:.25rem 0"><strong>Scribe certainty:</strong> ${Array.from(metadataSummary.certainties).map(esc).join(', ')}</div>`;
-      }
-      if (metadataSummary.roles.size > 0) {
-        html += `<div style="margin:.25rem 0"><strong>Scribe roles:</strong> ${Array.from(metadataSummary.roles).map(esc).join(', ')}</div>`;
-      }
-      if (metadataSummary.languages.size > 0) {
-        html += `<div style="margin:.25rem 0"><strong>Text languages:</strong> ${Array.from(metadataSummary.languages).map(esc).join(', ')}</div>`;
-      }
-      if (metadataSummary.functions.size > 0) {
-        html += `<div style="margin:.25rem 0"><strong>Copying functions:</strong> ${Array.from(metadataSummary.functions).map(esc).join(', ')}</div>`;
-      }
-      if (metadataSummary.expressions.size > 0) {
-        html += `<div style="margin:.25rem 0"><strong>Expressions:</strong> ${Array.from(metadataSummary.expressions).map(esc).join(', ')}</div>`;
-      }
-      if (metadataSummary.styles.size > 0) {
-        html += `<div style="margin:.25rem 0"><strong>Styles:</strong> ${Array.from(metadataSummary.styles).map(esc).join(', ')}</div>`;
-      }
-      
-      html += '</div></div>';
-    }
-  }
+  // Helper function to normalize relationship type names
+  const normalizeRelType = (relType) => {
+    if (!relType) return 'Related to';
+    const normalized = relType.trim();
+    // Normalize common variations
+    if (normalized.toLowerCase() === 'isrelatedto') return 'Related to';
+    return normalized;
+  };
   
   // Outgoing relationships (this record → other records)
   if (outgoing.length) {
     html += '<div class="section"><strong>Relationships</strong>';
-    const grouped = groupByRelType(outgoing);
+    
+    // First, deduplicate across ALL outgoing relationships by target
+    // Keep the relationship with the most specific type (prefer non-"Related to")
+    const targetMap = new Map();
+    outgoing.forEach(r => {
+      const tgt = getRes(r, 'Target record');
+      if (!tgt || !tgt.id) return;
+      const tgtType = REC_TYPE_TO_ENTITY[String(tgt.type)];
+      if (!tgtType) return;
+      const targetKey = `${tgtType}:${tgt.id}`;
+      
+      const relType = getVal(r, 'Relationship type') || 'Related to';
+      const normalized = relType.trim();
+      const isGeneric = normalized.toLowerCase() === 'isrelatedto' || normalized === 'Related to';
+      
+      // Keep this relationship if:
+      // - We haven't seen this target yet, OR
+      // - The existing one is generic and this one is specific
+      const existing = targetMap.get(targetKey);
+      if (!existing || (existing.isGeneric && !isGeneric)) {
+        targetMap.set(targetKey, { r, isGeneric });
+      }
+    });
+    
+    // Now group the deduplicated relationships by type
+    const dedupedRels = Array.from(targetMap.values()).map(({ r }) => r);
+    const grouped = groupByRelType(dedupedRels);
+    let relIndex = 0;
+    
     for (const [relType, rels] of grouped.entries()) {
-      html += `<div style="margin:.5rem 0"><em>${esc(relType)}</em>`;
+      html += `<div style="margin:.75rem 0">`;
+      html += `<div style="font-weight:600;color:#555;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem">`;
+      html += `<span style="background:#e3f2fd;padding:.25rem .5rem;border-radius:.25rem;font-size:.85rem">${esc(relType)}</span>`;
+      html += `<span style="color:#999;font-size:.8rem;font-weight:400">(${rels.length})</span>`;
+      html += `</div>`;
+      
+      // Build list of unique relationships (already deduplicated above)
+      const uniqueRels = [];
       rels.forEach(r => {
         const tgt = getRes(r, 'Target record');
         if (!tgt || !tgt.id) return;
         const tgtType = REC_TYPE_TO_ENTITY[String(tgt.type)];
         if (!tgtType) return;
         const tgtRec = IDX[tgtType]?.[String(tgt.id)];
-        if (!tgtRec) return;
-        html += `<div style="margin-left:1rem">${linkTo(tgtType, tgt.id, MAP[tgtType].title(tgtRec))}`;
+        // Note: tgtRec might be null if entity was filtered out (e.g., authors)
+        uniqueRels.push({ r, tgt, tgtType, tgtRec });
+      });
+      
+      uniqueRels.forEach(({ r, tgt, tgtType, tgtRec }, idx) => {
+        const detailId = `rel-out-${relIndex}-${idx}`;
+        relIndex++;
         
-        // Add detailed metadata if present
+        // Collect metadata
         const metaParts = [];
         const certainty = getVal(r, 'scribe certainty');
-        if (certainty) metaParts.push(`certainty: ${certainty}`);
+        if (certainty) metaParts.push({ label: 'Certainty', value: certainty });
         
         const role = getVal(r, 'Scribe role');
-        if (role) metaParts.push(`role: ${role}`);
+        if (role) metaParts.push({ label: 'Role', value: role });
         
         const func = getVal(r, 'Function of Copying');
-        if (func) metaParts.push(`function: ${func}`);
+        if (func) metaParts.push({ label: 'Function', value: func });
         
         const folioRange = getVal(r, 'Folio range in PU') || getVal(r, 'Folio range');
-        if (folioRange) metaParts.push(`folios: ${folioRange}`);
+        if (folioRange) metaParts.push({ label: 'Folios', value: folioRange });
         
         const textLang = getVal(r, 'Text Language(s)');
-        if (textLang) metaParts.push(`language: ${textLang}`);
+        if (textLang) metaParts.push({ label: 'Language', value: textLang });
         
         const expression = getVal(r, 'Expression');
-        if (expression) metaParts.push(`expression: ${expression}`);
+        if (expression) metaParts.push({ label: 'Expression', value: expression });
         
         const style = getVal(r, 'Style');
-        if (style) metaParts.push(`style: ${style}`);
+        if (style) metaParts.push({ label: 'Style', value: style });
+        
+        const scribeComments = getVal(r, 'Scribe Comments');
+        if (scribeComments) metaParts.push({ label: 'Comments', value: scribeComments });
+        
+        const prodInfo = getVal(r, 'Production info');
+        if (prodInfo) metaParts.push({ label: 'Production Info', value: prodInfo });
+        
+        const textComments = getVal(r, 'Text(s) comments');
+        if (textComments) metaParts.push({ label: 'Text Comments', value: textComments });
+        
+        // Main relationship item
+        html += `<div style="margin-left:1rem;margin-bottom:.5rem;border-left:3px solid #2196F3;padding-left:.75rem">`;
+        html += `<div style="display:flex;align-items:center;gap:.5rem;text-align:left">`;
+        
+        if (tgtRec) {
+          // Entity exists in filtered data - show as clickable link
+          html += linkTo(tgtType, tgt.id, MAP[tgtType].title(tgtRec));
+        } else {
+          // Entity was filtered out (e.g., author not a scribe) - show as plain text
+          html += `<span style="color:#666;font-style:italic;display:inline">${esc(tgt.title || 'Unknown')}</span>`;
+        }
         
         if (metaParts.length > 0) {
-          html += ` <span class="muted" style="font-size:.85rem;display:block;margin-left:1.5rem;margin-top:.25rem">${esc(metaParts.join(' | '))}</span>`;
+          html += `<button onclick="document.getElementById('${detailId}').style.display = document.getElementById('${detailId}').style.display === 'none' ? 'block' : 'none'; this.textContent = this.textContent === '▼' ? '▶' : '▼';" style="background:#f0f0f0;border:1px solid #ddd;border-radius:.25rem;padding:.125rem .375rem;cursor:pointer;font-size:.75rem;color:#666">▶</button>`;
+        }
+        html += `</div>`;
+        
+        if (metaParts.length > 0) {
+          html += `<div id="${detailId}" style="display:none;margin-top:.5rem;padding:.5rem;background:#f9f9f9;border-radius:.25rem;font-size:.85rem">`;
+          metaParts.forEach(({ label, value }) => {
+            html += `<div style="margin:.25rem 0"><strong style="color:#666">${esc(label)}:</strong> ${esc(value)}</div>`;
+          });
+          html += `</div>`;
         }
         html += `</div>`;
       });
+      
       html += '</div>';
     }
     html += '</div>';
@@ -2514,46 +2601,117 @@ function renderRelationships(rec, type) {
   // Incoming relationships (other records → this record)
   if (incoming.length) {
     html += '<div class="section"><strong>Referenced by</strong>';
-    const grouped = groupByRelType(incoming);
+    
+    // First, deduplicate across ALL incoming relationships by source
+    // Keep the relationship with the most specific type (prefer non-"Related to")
+    const sourceMap = new Map();
+    incoming.forEach(r => {
+      const src = getRes(r, 'Source record');
+      if (!src || !src.id) return;
+      const srcType = REC_TYPE_TO_ENTITY[String(src.type)];
+      if (!srcType) return;
+      const sourceKey = `${srcType}:${src.id}`;
+      
+      const relType = getVal(r, 'Relationship type') || 'Related to';
+      const normalized = relType.trim();
+      const isGeneric = normalized.toLowerCase() === 'isrelatedto' || normalized === 'Related to';
+      
+      // Keep this relationship if:
+      // - We haven't seen this source yet, OR
+      // - The existing one is generic and this one is specific
+      const existing = sourceMap.get(sourceKey);
+      if (!existing || (existing.isGeneric && !isGeneric)) {
+        sourceMap.set(sourceKey, { r, isGeneric });
+      }
+    });
+    
+    // Now group the deduplicated relationships by type
+    const dedupedRels = Array.from(sourceMap.values()).map(({ r }) => r);
+    const grouped = groupByRelType(dedupedRels);
+    let relIndex = 0;
+    
     for (const [relType, rels] of grouped.entries()) {
-      html += `<div style="margin:.5rem 0"><em>${esc(relType)}</em>`;
+      html += `<div style="margin:.75rem 0">`;
+      html += `<div style="font-weight:600;color:#555;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem">`;
+      html += `<span style="background:#fff3e0;padding:.25rem .5rem;border-radius:.25rem;font-size:.85rem">${esc(relType)}</span>`;
+      html += `<span style="color:#999;font-size:.8rem;font-weight:400">(${rels.length})</span>`;
+      html += `</div>`;
+      
+      // Build list of unique relationships (already deduplicated above)
+      const uniqueRels = [];
       rels.forEach(r => {
         const src = getRes(r, 'Source record');
         if (!src || !src.id) return;
         const srcType = REC_TYPE_TO_ENTITY[String(src.type)];
         if (!srcType) return;
         const srcRec = IDX[srcType]?.[String(src.id)];
-        if (!srcRec) return;
-        html += `<div style="margin-left:1rem">${linkTo(srcType, src.id, MAP[srcType].title(srcRec))}`;
+        // Note: srcRec might be null if entity was filtered out
+        uniqueRels.push({ r, src, srcType, srcRec });
+      });
+      
+      uniqueRels.forEach(({ r, src, srcType, srcRec }, idx) => {
+        const detailId = `rel-in-${relIndex}-${idx}`;
+        relIndex++;
         
-        // Add detailed metadata if present
+        // Collect metadata
         const metaParts = [];
         const certainty = getVal(r, 'scribe certainty');
-        if (certainty) metaParts.push(`certainty: ${certainty}`);
+        if (certainty) metaParts.push({ label: 'Certainty', value: certainty });
         
         const role = getVal(r, 'Scribe role');
-        if (role) metaParts.push(`role: ${role}`);
+        if (role) metaParts.push({ label: 'Role', value: role });
         
         const func = getVal(r, 'Function of Copying');
-        if (func) metaParts.push(`function: ${func}`);
+        if (func) metaParts.push({ label: 'Function', value: func });
         
         const folioRange = getVal(r, 'Folio range in PU') || getVal(r, 'Folio range');
-        if (folioRange) metaParts.push(`folios: ${folioRange}`);
+        if (folioRange) metaParts.push({ label: 'Folios', value: folioRange });
         
         const textLang = getVal(r, 'Text Language(s)');
-        if (textLang) metaParts.push(`language: ${textLang}`);
+        if (textLang) metaParts.push({ label: 'Language', value: textLang });
         
         const expression = getVal(r, 'Expression');
-        if (expression) metaParts.push(`expression: ${expression}`);
+        if (expression) metaParts.push({ label: 'Expression', value: expression });
         
         const style = getVal(r, 'Style');
-        if (style) metaParts.push(`style: ${style}`);
+        if (style) metaParts.push({ label: 'Style', value: style });
+        
+        const scribeComments = getVal(r, 'Scribe Comments');
+        if (scribeComments) metaParts.push({ label: 'Comments', value: scribeComments });
+        
+        const prodInfo = getVal(r, 'Production info');
+        if (prodInfo) metaParts.push({ label: 'Production Info', value: prodInfo });
+        
+        const textComments = getVal(r, 'Text(s) comments');
+        if (textComments) metaParts.push({ label: 'Text Comments', value: textComments });
+        
+        // Main relationship item
+        html += `<div style="margin-left:1rem;margin-bottom:.5rem;border-left:3px solid #ff9800;padding-left:.75rem">`;
+        html += `<div style="display:flex;align-items:center;gap:.5rem;text-align:left">`;
+        
+        if (srcRec) {
+          // Entity exists in filtered data - show as clickable link
+          html += linkTo(srcType, src.id, MAP[srcType].title(srcRec));
+        } else {
+          // Entity was filtered out - show as plain text
+          html += `<span style="color:#666;font-style:italic;display:inline">${esc(src.title || 'Unknown')}</span>`;
+        }
         
         if (metaParts.length > 0) {
-          html += ` <span class="muted" style="font-size:.85rem;display:block;margin-left:1.5rem;margin-top:.25rem">${esc(metaParts.join(' | '))}</span>`;
+          html += `<button onclick="document.getElementById('${detailId}').style.display = document.getElementById('${detailId}').style.display === 'none' ? 'block' : 'none'; this.textContent = this.textContent === '▼' ? '▶' : '▼';" style="background:#f0f0f0;border:1px solid #ddd;border-radius:.25rem;padding:.125rem .375rem;cursor:pointer;font-size:.75rem;color:#666">▶</button>`;
+        }
+        html += `</div>`;
+        
+        if (metaParts.length > 0) {
+          html += `<div id="${detailId}" style="display:none;margin-top:.5rem;padding:.5rem;background:#f9f9f9;border-radius:.25rem;font-size:.85rem">`;
+          metaParts.forEach(({ label, value }) => {
+            html += `<div style="margin:.25rem 0"><strong style="color:#666">${esc(label)}:</strong> ${esc(value)}</div>`;
+          });
+          html += `</div>`;
         }
         html += `</div>`;
       });
+      
       html += '</div>';
     }
     html += '</div>';
@@ -2757,6 +2915,12 @@ function render(list, type, selectId=null){
   $page.textContent = `Page ${page} / ${totalPages}`;
   $prev.disabled = (page<=1);
   $next.disabled = (page>=totalPages);
+  
+  // Update page jump input
+  if ($pageJump) {
+    $pageJump.max = totalPages;
+    $pageJump.value = page;
+  }
 
   const toSelect = $results.querySelector('.db-card[data-autoselect="1"]') || $results.querySelector('.db-card');
   if (toSelect){ toSelect.click(); toSelect.scrollIntoView({block:'nearest'}); }
@@ -6329,6 +6493,30 @@ function initEventListeners() {
   if ($prev) $prev.addEventListener('click',()=>{ page=Math.max(1,page-1); renderCurrent(); updateAvailableViews(); });
   if ($next) $next.addEventListener('click',()=>{ page=page+1; renderCurrent(); updateAvailableViews(); });
   
+  // Page jump functionality
+  if ($pageGo) {
+    $pageGo.addEventListener('click', ()=>{
+      const jumpTo = parseInt($pageJump.value, 10);
+      if (jumpTo && jumpTo >= 1) {
+        page = jumpTo;
+        renderCurrent();
+        updateAvailableViews();
+      }
+    });
+  }
+  if ($pageJump) {
+    $pageJump.addEventListener('keypress', (e)=>{
+      if (e.key === 'Enter') {
+        const jumpTo = parseInt($pageJump.value, 10);
+        if (jumpTo && jumpTo >= 1) {
+          page = jumpTo;
+          renderCurrent();
+          updateAvailableViews();
+        }
+      }
+    });
+  }
+  
   // Sort and filter
   if ($sort) $sort.addEventListener('change',()=>{ page=1; renderCurrent(); updateAvailableViews(); });
   if ($field) $field.addEventListener('change',()=>{ page=1; renderCurrent(); updateAvailableViews(); });
@@ -6742,12 +6930,16 @@ let pathFindingSource = null;
 function showPathFindingDialog(rec, type) {
   pathFindingSource = { rec, type };
   
-  // Display source record
-  $pathFrom.innerHTML = `<strong>From:</strong> ${linkTo(type, rec.rec_ID, MAP[type].title(rec))} (${type.toUpperCase()})`;
+  // Display source record with step indicator
+  $pathFrom.innerHTML = `
+    <div style="display:flex;align-items:center;gap:.5rem;">
+      <span style="display:inline-block;background:#3498db;color:white;border-radius:50%;width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;font-size:.85rem;font-weight:bold;">1</span>
+      <div><strong>Starting from:</strong> ${linkTo(type, rec.rec_ID, MAP[type].title(rec))} <span class="muted">(${type.toUpperCase()})</span></div>
+    </div>`;
   
   // Clear search
   $pathSearch.value = '';
-  $pathResults.innerHTML = '<div class="muted" style="padding:.75rem;">Type to search for a target record...</div>';
+  $pathResults.innerHTML = '<div class="muted" style="padding:.75rem;">Start typing to search all records in the database...</div>';
   $pathDisplay.innerHTML = '';
   
   $pathDialog.showModal();
@@ -6786,19 +6978,32 @@ $pathSearch?.addEventListener('input', debounce(() => {
   const top = results.slice(0, 20);
   
   if (top.length === 0) {
-    $pathResults.innerHTML = '<div class="muted" style="padding:.75rem;">No results found</div>';
+    $pathResults.innerHTML = '<div class="muted" style="padding:.75rem;text-align:center;">No matching records found. Try a different search term.</div>';
     return;
   }
   
-  let html = '<div style="padding:.5rem;">';
+  let html = `<div style="padding:.5rem;"><div class="muted" style="padding:.5rem;font-size:.9rem;">Found ${results.length} result${results.length > 1 ? 's' : ''} ${results.length > 20 ? '(showing top 20)' : ''} — click to select:</div>`;
+  
+  // Group by entity type for better organization
+  const typeLabels = {
+    'su': '📜 Scribal Unit',
+    'ms': '📖 Manuscript', 
+    'pu': '🏭 Production Unit',
+    'hi': '🏛️ Holding Institution',
+    'mi': '⛪ Monastic Institution',
+    'hp': '👤 Person',
+    'tx': '📝 Text'
+  };
+  
   top.forEach(({ rec, type, title }) => {
-    html += `<div style="padding:.5rem;cursor:pointer;border-radius:.25rem;" 
+    html += `<div style="padding:.5rem .75rem;cursor:pointer;border-radius:.25rem;border-left:3px solid transparent;transition:all 0.15s;" 
       class="path-result-item" 
       data-type="${type}" 
       data-id="${rec.rec_ID}"
-      onmouseover="this.style.background='#f0f0f0'" 
-      onmouseout="this.style.background='transparent'">
-      ${esc(title)} <span class="muted" style="font-size:.9rem;">(${type.toUpperCase()})</span>
+      onmouseover="this.style.background='#f0f8ff';this.style.borderLeftColor='#3498db';" 
+      onmouseout="this.style.background='transparent';this.style.borderLeftColor='transparent';">
+      <div style="font-weight:500;">${esc(title)}</div>
+      <div class="muted" style="font-size:.85rem;margin-top:.15rem;">${typeLabels[type] || type.toUpperCase()}</div>
     </div>`;
   });
   html += '</div>';
@@ -6822,18 +7027,26 @@ $pathSearch?.addEventListener('input', debounce(() => {
 function findAndDisplayPaths(source, target) {
   const depth = parseInt($pathDepth.value) || 4;
   
-  $pathDisplay.innerHTML = '<div class="muted" style="padding:.75rem;">Searching for paths...</div>';
+  $pathDisplay.innerHTML = '<div style="padding:.75rem;text-align:center;"><span class="muted">🔍 Searching for connection paths...</span></div>';
   
   // Run path finding (with a small delay to show searching message)
   setTimeout(() => {
     const paths = findPaths(source.type, source.rec.rec_ID, target.type, target.rec.rec_ID, depth);
     
-    let html = `<div style="margin:.75rem 0;padding:.75rem;background:#e9f3ff;border-radius:.5rem;">
-      <strong>Target:</strong> ${linkTo(target.type, target.rec.rec_ID, MAP[target.type].title(target.rec))} (${target.type.toUpperCase()})
+    let html = `<div style="margin:.75rem 0;padding:.75rem;background:#f0f8e8;border-left:3px solid #2ecc71;border-radius:.5rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <span style="display:inline-block;background:#2ecc71;color:white;border-radius:50%;width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;font-size:.85rem;font-weight:bold;">✓</span>
+        <div><strong>Destination:</strong> ${linkTo(target.type, target.rec.rec_ID, MAP[target.type].title(target.rec))} <span class="muted">(${target.type.toUpperCase()})</span></div>
+      </div>
     </div>`;
     
     if (paths.length === 0) {
-      html += '<div class="muted" style="padding:.75rem;">No paths found within depth ' + depth + '. Try increasing the max depth.</div>';
+      html += `<div style="padding:1rem;text-align:center;background:#fff9e6;border-radius:.5rem;margin-top:.75rem;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">🔍</div>
+        <div><strong>No connection found</strong></div>
+        <div class="muted" style="margin-top:.5rem;">These records aren't connected within ${depth} relationship step${depth > 1 ? 's' : ''}.</div>
+        <div class="muted" style="margin-top:.25rem;">Try increasing the "Maximum steps" value or selecting a different destination record.</div>
+      </div>`;
     } else {
       html += displayPaths(paths);
       
@@ -13908,7 +14121,96 @@ async function boot(){
   DATA = { su:dedupeById(su), ms:dedupeById(ms), pu:dedupeById(pu), hi:dedupeById(hi), mi:dedupeById(mi), hp:dedupeById(hp), tx:dedupeById(tx), rel:dedupeById(rel) };
   indexAll(); buildTypeMap(); indexPointers(); indexRelationships();
   
-  console.log('📊 Data loaded. Initializing event listeners...');
+  // Filter Historical People to only show those linked to Scribal Units via "scribe of" relationship
+  console.log('🔍 Filtering Historical People to show only scribes...');
+  const linkedHPIds = new Set();
+  DATA.rel.forEach(rel => {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    const relType = getVal(rel, 'Relationship type');
+    
+    // Check if relationship is "scribe of" from SU to HP
+    if (src && tgt && relType && relType.toLowerCase().includes('scribe')) {
+      const srcType = REC_TYPE_TO_ENTITY[String(src.type)];
+      const tgtType = REC_TYPE_TO_ENTITY[String(tgt.type)];
+      
+      if (srcType === 'su' && tgtType === 'hp') {
+        linkedHPIds.add(String(tgt.id));
+      }
+    }
+  });
+  DATA.hp = DATA.hp.filter(hp => linkedHPIds.has(String(hp.rec_ID)));
+  console.log(`✅ Filtered Historical People: ${DATA.hp.length} scribes (from ${hp.length} total)`);
+  
+  // Filter Monastic Institutions to show only those linked to PUs or HPs
+  console.log('🔍 Filtering Monastic Institutions to show only those linked to PUs or HPs...');
+  const linkedMIIds = new Set();
+  
+  // Check for PUs pointing to MIs (pointer field)
+  DATA.pu.forEach(pu => {
+    (pu.details || []).forEach(d => {
+      const v = d?.value;
+      if (v && typeof v === 'object' && v.id && v.type) {
+        const toType = REC_TYPE_TO_ENTITY[String(v.type)];
+        if (toType === 'mi') {
+          linkedMIIds.add(String(v.id));
+        }
+      }
+    });
+  });
+  
+  // Check for relationships from HPs to MIs (nun, prioress, abbess, etc.)
+  DATA.rel.forEach(rel => {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    const relType = getVal(rel, 'Relationship type');
+    
+    if (src && tgt && relType) {
+      const srcType = REC_TYPE_TO_ENTITY[String(src.type)];
+      const tgtType = REC_TYPE_TO_ENTITY[String(tgt.type)];
+      const relTypeLower = relType.toLowerCase();
+      
+      // Check if relationship is from HP to MI with relevant relationship types
+      if (srcType === 'hp' && tgtType === 'mi' && 
+          (relTypeLower.includes('nun') || relTypeLower.includes('prioress') || 
+           relTypeLower.includes('abbess') || relTypeLower.includes('sister') || 
+           relTypeLower.includes('member'))) {
+        linkedMIIds.add(String(tgt.id));
+      }
+    }
+  });
+  
+  DATA.mi = DATA.mi.filter(mi => linkedMIIds.has(String(mi.rec_ID)));
+  console.log(`✅ Filtered Monastic Institutions: ${DATA.mi.length} linked (from ${mi.length} total)`);
+  
+  // Filter Texts to show only those linked to PUs or SUs via "contains" relationship
+  console.log('🔍 Filtering Texts to show only those linked to PUs or SUs...');
+  const linkedTXIds = new Set();
+  
+  DATA.rel.forEach(rel => {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    const relType = getVal(rel, 'Relationship type');
+    
+    if (src && tgt && relType) {
+      const srcType = REC_TYPE_TO_ENTITY[String(src.type)];
+      const tgtType = REC_TYPE_TO_ENTITY[String(tgt.type)];
+      const relTypeLower = relType.toLowerCase();
+      
+      // Check if relationship is "contains" from PU or SU to Text
+      if ((srcType === 'pu' || srcType === 'su') && tgtType === 'tx' && relTypeLower.includes('contains')) {
+        linkedTXIds.add(String(tgt.id));
+      }
+    }
+  });
+  
+  DATA.tx = DATA.tx.filter(tx => linkedTXIds.has(String(tx.rec_ID)));
+  console.log(`✅ Filtered Texts: ${DATA.tx.length} linked (from ${tx.length} total)`);
+  
+  // Re-index after filtering
+  indexAll(); buildTypeMap(); indexPointers();
+  
+  console.log('📊 Data loaded and filtered. Initializing event listeners...');
   
   // Initialize all event listeners
   initModeNavigation();
