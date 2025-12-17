@@ -513,21 +513,7 @@ show_title: false
           <!-- Analytics controls -->
           <div style="padding: 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
             <!-- Entity filter -->
-            <div id="entity-filter-panel" style="margin-bottom: 0.5rem;">
-              <label style="display: block; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.875rem;">
-                📊 Filter by Entity Type:
-                <select id="entity-filter-select" style="margin-left: 0.5rem; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
-                  <option value="all">All Entities</option>
-                  <option value="su">Scribal Units</option>
-                  <option value="ms">Manuscripts</option>
-                  <option value="pu">Production Units</option>
-                  <option value="hi">Holding Institutions</option>
-                  <option value="mi">Monastic Institutions</option>
-                  <option value="hp">Historical People</option>
-                  <option value="tx">Texts</option>
-                </select>
-              </label>
-            </div>
+
             <div id="analytics-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
               <strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.
             </div>
@@ -3321,10 +3307,15 @@ function collectMapData(viewType) {
   
   const getYear = s => {
     if (!s) return null;
-    const m = String(s).match(/(^|[^0-9])([0-9]{3,4})(?![0-9])/);
+    // Handle date objects
+    if (typeof s === 'object' && s.value) s = s.value;
+    // Convert to string
+    const str = String(s);
+    // Try to extract year - handle formats like "1454-12-31", "1454", or "c. 1450"
+    const m = str.match(/\b([12]\d{3})\b/);
     if (!m) return null;
-    const y = parseInt(m[2], 10);
-    return (y >= 1 && y <= 2100) ? y : null;
+    const y = parseInt(m[1], 10);
+    return (y >= 800 && y <= 1600) ? y : null;
   };
   
   switch(viewType) {
@@ -3614,7 +3605,7 @@ function renderMapLayers() {
   
   // Filter markers by time
   const filtered = MAP_MARKERS_DATA.filter(m => {
-    if (!m.year) return true; // Include records without dates
+    if (!m.year) return true; // Always include records without dates
     return m.year >= timeStart && m.year <= timeEnd;
   });
   
@@ -7854,21 +7845,14 @@ if (codicVizType) {
 
 // Statistical Dashboard
 function buildStatisticalDashboard(mount, list) {
-  // Get selected entity filter
-  const entityFilter = document.getElementById('entity-filter-select')?.value || 'all';
-  
   // Build statistics cards based on entity type
   let statsCards = [];
+  let entityFilter = 'su'; // Default to Scribal Units
   
-  if (entityFilter === 'all') {
-    // All entities view
-    statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('Entity Types', getUniqueCount(list, 'rty'), '🏛️'),
-      buildStatsCard('Date Range', getDateRange(list), '📅'),
-      buildStatsCard('With Dates', getRecordsWithDates(list), '⏰')
-    ];
-  } else if (entityFilter === 'su') {
+  // Filter list by entity type
+  list = list.filter(r => r.rty === entityFilter);
+  
+  if (entityFilter === 'su') {
     // Scribal Units
     const withDates = getRecordsWithDates(list);
     const withScript = getCountByFieldExists(list, 'Normalised script(s)');
@@ -7948,18 +7932,8 @@ function buildStatisticalDashboard(mount, list) {
   
   let chartsHtml = '';
   
-  // Entity Distribution - only show for "all entities"
-  if (entityFilter === 'all') {
-    chartsHtml += `
-      <div style="margin-top: 1.5rem;">
-        <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Entity Distribution</h3>
-        ${buildEntityDistributionChart(list)}
-      </div>
-    `;
-  }
-  
-  // Temporal Distribution - only for entities with dates (su, pu, all)
-  if (entityFilter === 'all' || entityFilter === 'su' || entityFilter === 'pu' || entityFilter === 'ms' || entityFilter === 'hp' || entityFilter === 'tx') {
+  // Temporal Distribution - only for entities with dates
+  if (entityFilter === 'su' || entityFilter === 'pu' || entityFilter === 'ms' || entityFilter === 'hp' || entityFilter === 'tx') {
     chartsHtml += `
       <div style="margin-top: 1.5rem;">
         <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Temporal Distribution</h3>
