@@ -12,7 +12,7 @@ show_title: false
     <button class="main-nav-btn is-on" data-mode="browse">Browse & Search</button>
     <button class="main-nav-btn" data-mode="analytics">Analytics</button>
     <button class="main-nav-btn" data-mode="map">Map</button>
-    <button class="main-nav-btn" data-mode="codicology">Codicology</button>
+      <!-- <button class="main-nav-btn" data-mode="codicology">Codicology</button> -->
     <button class="main-nav-btn" data-mode="tree">Hierarchical Tree</button>
     <button class="main-nav-btn" data-mode="network">Network</button>
     <button class="main-nav-btn" data-mode="multilingualism">Multilingualism</button>
@@ -97,7 +97,7 @@ show_title: false
     <div id="mode-map" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span id="map-title">🗺️ Map Visualization</span>
+          <span id="map-title">Map Visualization</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Exploring all entities across space</span>
         </div>
         <div class="viz-body" style="padding: 0;">
@@ -115,7 +115,7 @@ show_title: false
               </select>
             </label>
             <div id="map-view-hint" style="font-size: 0.75rem; color: #666; margin-top: 0.25rem;">
-              💡 Tip: Map views show all data from the entire database.
+              Tip: Map views show all data from the entire database.
             </div>
           </div>
           <!-- Map controls -->
@@ -167,7 +167,7 @@ show_title: false
     <div id="mode-timeline" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span id="timeline-title">📈 Timeline Visualization</span>
+          <span id="timeline-title">Timeline Visualization</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Exploring all entities across time</span>
         </div>
         <div class="viz-body" style="padding: 0;">
@@ -217,7 +217,7 @@ show_title: false
     <div id="mode-network" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span>🔗 Network Visualization</span>
+          <span>Network Visualization</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Exploring relationships between entities</span>
         </div>
         <div class="viz-body" style="padding: 0;">
@@ -226,10 +226,10 @@ show_title: false
             <label style="display: flex; align-items: center; gap: 0.5rem; margin: 0; font-weight: 500; font-size: 0.875rem;">
               Network View:
               <select id="network-view-selector" style="flex: 1; padding: 0.25rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; background: white;">
-                <option value="search">🔍 Search & Explore from Record (Recommended)</option>
-                <option value="sample">🎲 Random Sample of Connected Entities</option>
-                <option value="hubs">⭐ Top Connected Entities (Hubs)</option>
-                <option value="clusters">📊 Cluster View by Entity Type</option>
+                <option value="search">Search & Explore from Record (Recommended)</option>
+                <option value="sample">Random Sample of Connected Entities</option>
+                <option value="hubs">Top Connected Entities (Hubs)</option>
+                <option value="clusters">Cluster View by Entity Type</option>
               </select>
             </label>
           </div>
@@ -237,7 +237,7 @@ show_title: false
           <!-- Search panel (primary interface) -->
           <div id="network-search-panel" style="padding: 0.75rem; background: #fff; border-bottom: 1px solid #dee2e6;">
             <label style="display: block; font-weight: 500; font-size: 0.875rem; margin-bottom: 0.5rem;">
-              🔍 Search for a record to explore its network:
+              Search for a record to explore its network:
             </label>
             <input type="search" id="network-search-input" placeholder="Type manuscript name, scribe, institution, text..." style="width: 100%; padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; margin-bottom: 0.5rem;">
             <div id="network-search-results" style="max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 0.25rem;"></div>
@@ -251,16 +251,16 @@ show_title: false
               <label style="display:flex;gap:.5rem;align-items:center;">
                 <input type="checkbox" id="network-show-labels" checked> Show labels
               </label>
-              <button id="network-filters-toggle" class="chip" style="padding:.25rem .5rem;">⚙️ Filters</button>
-              <button id="network-zoom-in" class="chip" style="padding:.25rem .5rem;">🔍+ Zoom In</button>
-              <button id="network-zoom-out" class="chip" style="padding:.25rem .5rem;">🔍− Zoom Out</button>
-              <button id="network-zoom-reset" class="chip" style="padding:.25rem .5rem;">↺ Reset View</button>
-              <button id="network-zoom-fit" class="chip" style="padding:.25rem .5rem;">⛶ Fit to Screen</button>
+              <button id="network-filters-toggle" class="chip" style="padding:.25rem .5rem;">Filters</button>
+              <button id="network-zoom-in" class="chip" style="padding:.25rem .5rem;">Zoom In</button>
+              <button id="network-zoom-out" class="chip" style="padding:.25rem .5rem;">Zoom Out</button>
+              <button id="network-zoom-reset" class="chip" style="padding:.25rem .5rem;">Reset View</button>
+              <button id="network-zoom-fit" class="chip" style="padding:.25rem .5rem;">Fit to Screen</button>
               <button id="network-refresh" class="chip" style="padding:.25rem .5rem;">Refresh</button>
               <button id="network-export-svg" class="chip" style="padding:.25rem .5rem;background:#28a745;color:white;">📷 Export SVG</button>
               <button id="network-export-png" class="chip" style="padding:.25rem .5rem;background:#28a745;color:white;">📷 Export PNG</button>
               <select id="network-export-format" style="padding:.25rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;cursor:pointer;">
-                <option value="">📊 Export Data...</option>
+                <option value="">Export Data...</option>
                 <option value="gephi">Gephi (2 CSV files)</option>
                 <option value="r">R (CSV + script)</option>
               </select>
@@ -272,19 +272,19 @@ show_title: false
               <!-- Filter Tabs -->
               <div style="display:flex;gap:.5rem;margin-bottom:.75rem;border-bottom:2px solid #dee2e6;padding-bottom:.5rem;">
                 <button class="filter-tab active" data-tab="entity-types" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  📦 Entity Types
+                  Entity Types
                 </button>
                 <button class="filter-tab" data-tab="general" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  🔍 General
+                  General
                 </button>
                 <button class="filter-tab" data-tab="manuscripts" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  📜 Manuscripts
+                  Manuscripts
                 </button>
                 <button class="filter-tab" data-tab="scribal" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  ✍️ Scribal Units
+                  Scribal Units
                 </button>
                 <button class="filter-tab" data-tab="people" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  👤 People
+                  People
                 </button>
               </div>
               
@@ -334,33 +334,33 @@ show_title: false
               <div class="filter-tab-content" data-tab="general" style="display:none;">
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">🌍 Country</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Country</label>
                     <select id="network-filter-country" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any country</option>
                     </select>
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Production Units, Institutions</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📅 Century</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Century</label>
                     <select id="network-filter-century" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any century</option>
                     </select>
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Production date (Scribal/Production Units)</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📍 Production Location</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Production Location</label>
                     <input type="text" id="network-filter-production-location" placeholder="e.g., Paris, Bologna..." style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Production Units (free text search)</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">🗣️ Language (colophon)</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Language (colophon)</label>
                     <select id="network-filter-language" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any language</option>
                     </select>
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Scribal Units</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📚 Genre</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Genre</label>
                     <select id="network-filter-genre" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any genre</option>
                     </select>
@@ -373,19 +373,19 @@ show_title: false
               <div class="filter-tab-content" data-tab="manuscripts" style="display:none;">
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📄 Material</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Material</label>
                     <select id="network-filter-material" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any material</option>
                     </select>
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Writing support material</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">🏛️ Current Location</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Current Location</label>
                     <input type="text" id="network-filter-shelfmark" placeholder="e.g., BnF, Bodleian..." style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Search in shelfmark/location (free text)</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📏 Size (folios)</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Size (folios)</label>
                     <div style="display:flex;gap:.5rem;">
                       <input type="number" id="network-filter-folios-min" placeholder="Min" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <input type="number" id="network-filter-folios-max" placeholder="Max" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
@@ -399,14 +399,14 @@ show_title: false
               <div class="filter-tab-content" data-tab="scribal" style="display:none;">
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">✒️ Script Type</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Script Type</label>
                     <select id="network-filter-script" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any script</option>
                     </select>
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Script classification</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">🎨 Decoration</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Decoration</label>
                     <select id="network-filter-decoration" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any</option>
                       <option value="yes">With decoration</option>
@@ -415,7 +415,7 @@ show_title: false
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Presence of decoration</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📖 Folios Range</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Folios Range</label>
                     <div style="display:flex;gap:.5rem;">
                       <input type="text" id="network-filter-folio-start" placeholder="Start (e.g., 1r)" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <input type="text" id="network-filter-folio-end" placeholder="End (e.g., 23v)" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
@@ -432,14 +432,14 @@ show_title: false
               <div class="filter-tab-content" data-tab="people" style="display:none;">
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">👔 Role</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Role</label>
                     <select id="network-filter-role" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any role</option>
                     </select>
                     <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Person's role or function</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">⚧️ Gender</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Gender</label>
                     <select id="network-filter-gender" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any</option>
                       <option value="male">Male</option>
@@ -454,7 +454,7 @@ show_title: false
               <!-- Clear Filters Button -->
               <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #dee2e6;text-align:right;">
                 <button id="network-clear-filters" style="padding:.4rem 1rem;background:#dc3545;color:white;border:none;border-radius:.25rem;font-size:.85rem;cursor:pointer;font-weight:500;">
-                  🗑️ Clear All Filters
+                  Clear All Filters
                 </button>
               </div>
               
@@ -462,6 +462,7 @@ show_title: false
           </div>
           <div style="position:relative;">
             <div id="network-mount" style="cursor: grab;"></div>
+            <div id="network-node-details" style="display:none;position:absolute;top:10px;left:10px;max-width:350px;background:rgba(255,255,255,0.98);border:1px solid #ddd;border-radius:.5rem;padding:.75rem;font-size:.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);z-index:1000;"></div>
             <div id="network-legend" style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.95);border:1px solid #ddd;border-radius:.5rem;padding:.75rem;font-size:.85rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
               <div style="font-weight:600;margin-bottom:.5rem;">Entity Types</div>
               <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
@@ -506,7 +507,7 @@ show_title: false
     <div id="mode-analytics" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span>📊 Statistical Dashboard</span>
+          <span>Statistical Dashboard</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Statistical insights across the entire database</span>
         </div>
         <div class="viz-body" style="padding: 0;">
@@ -515,7 +516,7 @@ show_title: false
             <!-- Entity filter -->
             <div id="entity-filter-panel" style="margin-bottom: 0.5rem;">
               <label style="display: block; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.875rem;">
-                📊 Filter by Entity Type:
+                Filter by Entity Type:
                 <select id="entity-filter-select" style="margin-left: 0.5rem; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
                   <option value="su">Scribal Units</option>
                   <option value="ms">Manuscripts</option>
@@ -531,7 +532,7 @@ show_title: false
               <strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
-              <button class="chip" id="analytics-export-png" style="background:#28a745;color:white;">📥 Export as Image</button>
+              <button class="chip" id="analytics-export-png" style="background:#28a745;color:white;">Export as Image</button>
             </div>
           </div>
 
@@ -547,7 +548,7 @@ show_title: false
     <div id="mode-codicology" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span>📖 Codicological Analysis</span>
+          <span>Codicological Analysis</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Manuscript structure and production analysis</span>
         </div>
         <div class="viz-body" style="padding: 0;">
@@ -557,26 +558,26 @@ show_title: false
             <div style="margin-bottom: 0.75rem; padding: 1rem; background: white; border: 1px solid #dee2e6; border-radius: 0.375rem;">
               <!-- Quick Start Presets -->
               <div style="margin-bottom: 1rem; padding: 0.75rem; background: #f0f7ff; border-radius: 0.25rem; border-left: 3px solid #2196F3;">
-                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #1565c0;">💡 Quick Start - Try These Combinations:</div>
+                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #1565c0;">Quick Start - Try These Combinations:</div>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                   <button class="codic-preset-btn chip" data-preset="material-size" style="background: #e3f2fd; border: 1px solid #90caf9; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
-                    📏 Material vs Size
+                    Material vs Size
                   </button>
                   <button class="codic-preset-btn chip" data-preset="date-folios" style="background: #e3f2fd; border: 1px solid #90caf9; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
-                    📅 Date vs Folios
+                    Date vs Folios
                   </button>
                   <button class="codic-preset-btn chip" data-preset="quire-material" style="background: #e3f2fd; border: 1px solid #90caf9; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
-                    📚 Quire Type vs Material
+                    Quire Type vs Material
                   </button>
                   <button class="codic-preset-btn chip" data-preset="clear" style="background: #fff; border: 1px solid #ddd; padding: 0.375rem 0.75rem; font-size: 0.8rem; cursor: pointer;">
-                    ✨ Clear Selection
+                    Clear Selection
                   </button>
                 </div>
               </div>
 
               <!-- Filters Section -->
               <div style="margin-bottom: 1rem; padding: 0.75rem; background: #fff3cd; border-radius: 0.25rem; border-left: 3px solid #ffc107;">
-                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #856404;">🔍 Active Filters</div>
+                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #856404;">Active Filters</div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.5rem; margin-bottom: 0.5rem;">
                   <div>
                     <label style="display: block; font-size: 0.75rem; margin-bottom: 0.25rem; color: #666;"> Century:</label>
@@ -602,7 +603,7 @@ show_title: false
                     <div style="font-size: 0.65rem; color: #666; margin-top: 0.25rem;">Hold Cmd/Ctrl to select multiple</div>
                   </div>
                   <div>
-                    <label style="display: block; font-size: 0.75rem; margin-bottom: 0.25rem; color: #666;">🌍 Region:</label>
+                    <label style="display: block; font-size: 0.75rem; margin-bottom: 0.25rem; color: #666;">Region:</label>
                     <select id="codic-filter-region" multiple style="width: 100%; padding: 0.375rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.75rem; min-height: 60px;">
                       <option value="Austria">Austria</option>
                       <option value="Belgium">Belgium</option>
@@ -620,7 +621,7 @@ show_title: false
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <div id="codic-filter-status" style="font-size: 0.75rem; color: #856404;"></div>
                   <button id="codic-clear-filters-btn" style="padding: 0.25rem 0.75rem; background: #fff; border: 1px solid #ffc107; border-radius: 0.25rem; font-size: 0.75rem; cursor: pointer; color: #856404;">
-                    ✨ Clear Filters
+                    Clear Filters
                   </button>
                 </div>
               </div>
@@ -628,10 +629,10 @@ show_title: false
               <!-- Variable Selection -->
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
                 <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
-                  📊 X-Axis Variable:
+                  X-Axis Variable:
                   <select id="codic-x-var" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
                     <option value="">-- Select Variable --</option>
-                    <optgroup label="📏 Dimensions">
+                    <optgroup label="Dimensions">
                       <option value="height">Height (mm)</option>
                       <option value="width">Width (mm)</option>
                       <option value="combined-size">Combined Size (Height + Width, mm)</option>
@@ -639,17 +640,17 @@ show_title: false
                       <option value="justification-width">Justification Width (mm)</option>
                       <option value="margin-ratio">Margin Ratio</option>
                     </optgroup>
-                    <optgroup label="📖 Structure">
+                    <optgroup label="Structure">
                       <option value="folios">Number of Folios</option>
                       <option value="columns">Number of Columns</option>
                       <option value="lines-per-page">Lines per Page</option>
                       <option value="quires">Number of Quires</option>
                     </optgroup>
-                    <optgroup label="📅 Temporal">
+                    <optgroup label="Temporal">
                       <option value="date">Date (Year)</option>
                       <option value="century">Century</option>
                     </optgroup>
-                    <optgroup label="📝 Categorical">
+                    <optgroup label="Categorical">
                       <option value="material">Material</option>
                       <option value="quire-type">Quire Type</option>
                       <option value="ruling-type">Ruling Type</option>
@@ -659,10 +660,10 @@ show_title: false
                   </select>
                 </label>
                 <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
-                  📈 Y-Axis Variable:
+                  Y-Axis Variable:
                   <select id="codic-y-var" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
                     <option value="">-- Select Variable --</option>
-                    <optgroup label="📏 Dimensions">
+                    <optgroup label="Dimensions">
                       <option value="height">Height (mm)</option>
                       <option value="width">Width (mm)</option>
                       <option value="combined-size">Combined Size (Height + Width, mm)</option>
@@ -670,17 +671,17 @@ show_title: false
                       <option value="justification-width">Justification Width (mm)</option>
                       <option value="margin-ratio">Margin Ratio</option>
                     </optgroup>
-                    <optgroup label="📖 Structure">
+                    <optgroup label="Structure">
                       <option value="folios">Number of Folios</option>
                       <option value="columns">Number of Columns</option>
                       <option value="lines-per-page">Lines per Page</option>
                       <option value="quires">Number of Quires</option>
                     </optgroup>
-                    <optgroup label="📅 Temporal">
+                    <optgroup label="Temporal">
                       <option value="date">Date (Year)</option>
                       <option value="century">Century</option>
                     </optgroup>
-                    <optgroup label="📝 Categorical">
+                    <optgroup label="Categorical">
                       <option value="material">Material</option>
                       <option value="quire-type">Quire Type</option>
                       <option value="ruling-type">Ruling Type</option>
@@ -693,20 +694,20 @@ show_title: false
               
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
                 <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
-                  🎨 Color/Group By:
+                  Color/Group By:
                   <select id="codic-color-var" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
                     <option value="none">None</option>
-                    <optgroup label="👤 People & Gender">
+                    <optgroup label="People & Gender">
                       <option value="gender">Gender</option>
                       <option value="scribe-name">Scribe Name</option>
                     </optgroup>
-                    <optgroup label="🏛️ Production Context">
+                    <optgroup label="Production Context">
                       <option value="material">Material</option>
                       <option value="origin-country">Origin Country</option>
                       <option value="origin-region">Origin Region</option>
                       <option value="monastery-type">Monastery Type</option>
                     </optgroup>
-                    <optgroup label="📚 Physical Features">
+                    <optgroup label="Physical Features">
                       <option value="quire-type">Quire Type</option>
                       <option value="catchwords">Has Catchwords</option>
                       <option value="signatures">Has Signatures</option>
@@ -714,25 +715,25 @@ show_title: false
                       <option value="ruling-type">Ruling Type</option>
                       <option value="columns">Number of Columns</option>
                     </optgroup>
-                    <optgroup label="📜 Content">
+                    <optgroup label="Content">
                       <option value="has-colophon">Has Colophon</option>
                       <option value="language">Language</option>
                       <option value="script-type">Script Type</option>
                       <option value="decoration">Has Decoration</option>
                     </optgroup>
-                    <optgroup label="🤝 Collaboration">
+                    <optgroup label="Collaboration">
                       <option value="collaboration-type">Collaboration Type</option>
                       <option value="multiple-scribes">Multiple Scribes</option>
                     </optgroup>
                   </select>
                 </label>
                 <label style="display: flex; flex-direction: column; gap: 0.35rem; font-weight: 500; font-size: 0.875rem;">
-                  📊 Visualization Type:
+                  Visualization Type:
                   <select id="codic-viz-type" style="padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
                     <option value="scatter">Scatter Plot</option>
                     <option value="box">Box Plot</option>
                     <option value="bar">Bar Chart</option>
-                    <option value="correlation">🔗 Correlation Analysis</option>
+                    <option value="correlation">Correlation Analysis</option>
                     <option value="stats">Statistical Summary</option>
                   </select>
                 </label>
@@ -745,16 +746,16 @@ show_title: false
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
               <div style="display: flex; gap: 0.5rem;">
                 <button class="chip" id="codicology-add-comparison" style="background:#17a2b8;color:white;">
-                  ➕ Add to Comparison
+                  Add to Comparison
                 </button>
                 <button class="chip" id="codicology-view-comparison" style="background:#6c757d;color:white;display:none;">
-                  👁️ View Comparisons (<span id="comparison-count">0</span>)
+                  View Comparisons (<span id="comparison-count">0</span>)
                 </button>
                 <button class="chip" id="codicology-clear-comparison" style="background:#dc3545;color:white;display:none;">
-                  🗑️ Clear Comparisons
+                  Clear Comparisons
                 </button>
               </div>
-              <button class="chip" id="codicology-export-png" style="background:#28a745;color:white;">📥 Export as Image</button>
+              <button class="chip" id="codicology-export-png" style="background:#28a745;color:white;">Export as Image</button>
             </div>
           </div>
 
@@ -770,7 +771,7 @@ show_title: false
     <div id="mode-tree" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span>🌳 Hierarchical Tree</span>
+          <span>Hierarchical Tree</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Manuscript structure and entity relationships</span>
         </div>
         <div class="viz-body" style="padding: 0;">
@@ -781,7 +782,7 @@ show_title: false
               <!-- Search Bar -->
               <div style="margin-bottom: 0.75rem;">
                 <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: #333;">
-                  🔍 Search Manuscripts
+                  Search Manuscripts
                 </label>
                 <div style="display: flex; gap: 0.5rem;">
                   <input type="text" id="tree-manuscript-search" placeholder="Type manuscript title, shelfmark, or ID..." style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
@@ -792,24 +793,24 @@ show_title: false
               <!-- Filter Section -->
               <div style="margin-bottom: 0.75rem; padding: 0.75rem; background: #f8f9fa; border-radius: 0.25rem;">
                 <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #333;">
-                  🎯 Filter by Structure
+                  Filter by Structure
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
                   <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
                     <input type="checkbox" id="tree-filter-multi-pu" style="cursor: pointer;">
-                    <span>📖 3+ Production Units</span>
+                    <span>3+ Production Units</span>
                   </label>
                   <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
                     <input type="checkbox" id="tree-filter-interleaved" style="cursor: pointer;">
-                    <span>🔀 Interleaved Units</span>
+                    <span>Interleaved Units</span>
                   </label>
                   <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
                     <input type="checkbox" id="tree-filter-cross-ms-pu" style="cursor: pointer;">
-                    <span>📚 PUs Across Multiple MSS</span>
+                    <span>PUs Across Multiple MSS</span>
                   </label>
                   <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
                     <input type="checkbox" id="tree-filter-cross-pu-su" style="cursor: pointer;">
-                    <span>✍️ SUs Across Multiple PUs</span>
+                    <span>SUs Across Multiple PUs</span>
                   </label>
                 </div>
               </div>
@@ -817,7 +818,7 @@ show_title: false
               <!-- Sort Section -->
               <div style="display: flex; align-items: center; gap: 0.5rem;">
                 <label style="font-weight: 600; font-size: 0.875rem; color: #333; white-space: nowrap;">
-                  📊 Sort by:
+                  Sort by:
                 </label>
                 <select id="tree-sort-select" style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
                   <option value="default">Alphabetical</option>
@@ -832,7 +833,7 @@ show_title: false
               <strong>Hierarchical Tree:</strong> Explore the complete structural hierarchy of manuscripts showing relationships between manuscripts, production units, scribal units, and texts in an interactive tree visualization.
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
-              <button class="chip" id="tree-export-png" style="background:#28a745;color:white;">📥 Export as Image</button>
+              <button class="chip" id="tree-export-png" style="background:#28a745;color:white;">Export as Image</button>
             </div>
           </div>
 
@@ -848,26 +849,26 @@ show_title: false
     <div id="mode-multilingualism" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
         <div class="viz-head">
-          <span id="multilingualism-title">🌍 Multilingualism Explorer</span>
+          <span id="multilingualism-title">Multilingualism Explorer</span>
           <span style="font-size: 0.875rem; font-weight: 400; color: #666; margin-left: 1rem;">Exploring linguistic diversity in medieval manuscript production</span>
         </div>
         <div class="viz-body" style="padding: 0;">
           <!-- Sub-navigation tabs -->
           <div style="display: flex; gap: 0.5rem; padding: 1rem; border-bottom: 2px solid #e0e0e0; background: #f8f9fa; flex-wrap: wrap;">
             <button class="multilingualism-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: #fff; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-              📊 Overview
+              Overview
             </button>
             <button class="multilingualism-tab-btn" data-tab="manuscripts" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              📚 Multilingual Manuscripts
+              Multilingual Manuscripts
             </button>
             <button class="multilingualism-tab-btn" data-tab="scribes" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              ✍️ Scribal Multilingualism
+              Scribal Multilingualism
             </button>
             <button class="multilingualism-tab-btn" data-tab="institutions" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              🏛️ Institutional Multilingualism
+              Institutional Multilingualism
             </button>
             <button class="multilingualism-tab-btn" data-tab="colophons" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              🔀 Colophon-Text Divergence
+              Colophon-Text Divergence
             </button>
           </div>
 
@@ -885,22 +886,22 @@ show_title: false
         <div style="border-bottom: 2px solid #f0f0f0;">
           <div class="colophon-tabs" style="display: flex; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #fafafa;">
             <button class="colophon-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              📊 Overview
+              Overview
             </button>
             <button class="colophon-tab-btn" data-tab="sentiment" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              💭 Sentiment Analysis
+              Sentiment Analysis
             </button>
             <button class="colophon-tab-btn" data-tab="themes" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              🏷️ Thematic Analysis
+              Thematic Analysis
             </button>
             <button class="colophon-tab-btn" data-tab="linguistic" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              📝 Linguistic Features
+              Linguistic Features
             </button>
             <button class="colophon-tab-btn" data-tab="patterns" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              🔍 Comparative Patterns
+              Comparative Patterns
             </button>
             <button class="colophon-tab-btn" data-tab="browse-colophons" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
-              📖 Browse Colophons
+              Browse Colophons
             </button>
           </div>
         </div>
@@ -934,7 +935,7 @@ show_title: false
 <!-- Path Finding dialog -->
 <dialog id="path-dialog" style="max-width:720px;border:1px solid #ddd;border-radius:.75rem;padding:1.5rem;">
   <form method="dialog">
-    <h3 style="margin:.25rem 0 .5rem;">🔗 Find Connection Between Records</h3>
+    <h3 style="margin:.25rem 0 .5rem;">Find Connection Between Records</h3>
     <p class="muted" style="margin-top:-.25rem;line-height:1.5;margin-bottom:1rem;">
       Discover how two entities are connected through relationships. For example, find the chain linking a scribe to a monastery, 
       or see how two manuscripts are related through production units or institutions.
@@ -1476,12 +1477,12 @@ const FACETS = {
     { key:'post', label:'Terminus post quem', type:'year-range', field:'Normalized terminus post quem' },
     { key:'ante', label:'Terminus ante quem', type:'year-range', field:'Normalized terminus ante quem' },
     { key:'script', label:'Normalized script(s)', type:'enum-multi', field:'Normalised script(s)' },
-    { key:'scribe_certainty', label:'🔗 Scribe certainty (from relationships)', type:'relationship-enum-multi', field:'scribe certainty' },
-    { key:'scribe_role', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
-    { key:'function_copying', label:'🔗 Function of copying (from relationships)', type:'relationship-enum-multi', field:'Function of Copying' },
-    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'style_rel', label:'🔗 Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
+    { key:'scribe_certainty', label:'Scribe certainty (from relationships)', type:'relationship-enum-multi', field:'scribe certainty' },
+    { key:'scribe_role', label:'Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
+    { key:'function_copying', label:'Function of copying (from relationships)', type:'relationship-enum-multi', field:'Function of Copying' },
+    { key:'text_language_rel', label:'Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'text_language_rel', label:'Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'style_rel', label:'Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
     { key:'colophon_presence', label:'Colophon presence', type:'enum', field:'Colophon Presence' },
     { key:'colophon_language', label:'Colophon language', type:'enum-multi', field:'Colophon language' },
   ],
@@ -1504,8 +1505,8 @@ const FACETS = {
     { key:'century', label:'Century', type:'century', field:'Normalized century of production' },
     { key:'post',    label:'Post quem', type:'year-range', field:'Normalized terminus post quem' },
     { key:'ante',    label:'Ante quem', type:'year-range', field:'Normalized terminus ante quem' },
-    { key:'text_language_rel', label:'🔗 Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
-    { key:'style_rel', label:'🔗 Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
+    { key:'text_language_rel', label:'Text language (from relationships)', type:'relationship-enum-multi', field:'Text Language(s)' },
+    { key:'style_rel', label:'Style (from relationships)', type:'relationship-enum-multi', field:'Style' },
     { key:'colophon_presence', label:'Colophon presence', type:'enum', field:'Colophon Presence' },
     { key:'colophon_language', label:'Colophon language', type:'enum-multi', field:'Colophon language' },
     { key:'musical_notation', label:'Musical Notation Presence', type:'enum', field:'Musical Notation Presence' },
@@ -1536,14 +1537,14 @@ const FACETS = {
     { key:'gender',  label:'Gender', type:'enum', field:'Gender' },
     { key:'gcert',   label:'Gender certainty', type:'enum', field:'Gender certainty' },
     { key:'activity',   label:'Century of Activity', type:'century', field:'Century of Activity' },
-    { key:'scribe_role_rel', label:'🔗 Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
+    { key:'scribe_role_rel', label:'Scribe role (from relationships)', type:'relationship-enum-multi', field:'Scribe role' },
   ],
   tx: [
     { key:'genre',   label:'Genre', type:'enum', field:'Genre' },
     { key:'subgenre',label:'Subgenre', type:'enum-search', field:'Subgenre' },
     { key:'ntitle',  label:'Normalized Title', type:'enum-search', field:'Normalized Title' },
     { key:'author',  label:'Author', type:'enum-search', field:'Creator' },
-    { key:'expression_rel', label:'🔗 Expression (from relationships)', type:'relationship-enum-search', field:'Expression' },
+    { key:'expression_rel', label:'Expression (from relationships)', type:'relationship-enum-search', field:'Expression' },
   ],
 };
 
@@ -1597,14 +1598,15 @@ function buildFacets(records, config, prevState = {}) {
     box.appendChild(title);
 
     if (f.type==='enum') {
+      // Multi-select: Use checkboxes instead of single-select chips
       const counts={}; records.forEach(r=>{ const v=getVal(r,f.field); if (!v||v==='—') return; counts[v]=(counts[v]||0)+1; });
-      const wrap=document.createElement('div'); wrap.className='chip-list';
+      const wrap=document.createElement('div'); wrap.className='check-list';
       Object.keys(counts).sort().forEach(v=>{
-        const b=document.createElement('button'); b.type='button'; b.className='chip';
-        b.dataset.fkey=f.key; b.dataset.value=v;
-        b.textContent = `${v} (${counts[v]||0})`;
-        if (prevState[f.key]?.values?.has(v)) b.classList.add('is-on');
-        wrap.appendChild(b);
+        const lab=document.createElement('label'); lab.className='check-item';
+        const cb=document.createElement('input'); cb.type='checkbox'; cb.dataset.fkey=f.key; cb.value=v;
+        if (prevState[f.key]?.values?.has(v)) cb.checked=true;
+        lab.appendChild(cb); lab.append(` ${v} (${counts[v]||0})`);
+        wrap.appendChild(lab);
       });
       box.appendChild(wrap);
 
@@ -1687,8 +1689,9 @@ function readFacetState(config){
   const st={};
   config.forEach(f=>{
     if (f.type==='enum'){
-      const onChips=[...document.querySelectorAll(`.chip[data-fkey="${f.key}"].is-on`)].map(n=>n.dataset.value);
-      st[f.key]={type:f.type, values:new Set(onChips)};
+      // Now using checkboxes for multi-select
+      const onCbs=[...document.querySelectorAll(`input[type="checkbox"][data-fkey="${f.key}"]:checked`)].map(n=>n.value);
+      st[f.key]={type:f.type, values:new Set(onCbs)};
     } else if (f.type==='enum-multi' || f.type==='century' || f.type==='relationship-enum-multi'){
       const onCbs=[...document.querySelectorAll(`input[type="checkbox"][data-fkey="${f.key}"]:checked`)].map(n=>n.value);
       st[f.key]={type:f.type, values:new Set(onCbs)};
@@ -1708,8 +1711,11 @@ function applyFacets(list, config){
     for (const f of config){
       const s=st[f.key]; if (!s) continue;
       if (f.type==='enum'){
-        const v=getVal(rec,f.field);
-        if (s.values.size && !s.values.has(v)) return false;
+        // Multi-select: record must have one of the selected values
+        if (s.values.size) {
+          const v=getVal(rec,f.field);
+          if (!s.values.has(v)) return false;
+        }
       } else if (f.type==='enum-multi' || f.type==='century'){
         const values = (f.type==='century')
           ? getValsAll(rec, 'Normalized century of production')
@@ -2045,6 +2051,78 @@ function getRelationshipMetadata(rel) {
 }
 
 /* ============================================================
+   NETWORK NODE DETAILS PANEL
+   ============================================================ */
+function showNetworkNodeDetails(type, id, rec) {
+  const detailsPanel = document.getElementById('network-node-details');
+  if (!detailsPanel) return;
+  
+  const typeLabels = {
+    su: 'Scribal Unit',
+    ms: 'Manuscript',
+    pu: 'Production Unit',
+    hi: 'Holding Institution',
+    mi: 'Monastic Institution',
+    hp: 'Historical Person',
+    tx: 'Text'
+  };
+  
+  const typeLabel = typeLabels[type] || type.toUpperCase();
+  const title = MAP[type]?.title(rec) || 'Unknown';
+  
+  // Get a few key details based on entity type
+  let detailsHTML = '';
+  if (type === 'su') {
+    const ms = getRes(rec, 'Manuscript');
+    const scribe = getRes(rec, 'Scribe');
+    if (ms) detailsHTML += `<div style="margin:.25rem 0;"><strong>Manuscript:</strong> ${ms.title}</div>`;
+    if (scribe) detailsHTML += `<div style="margin:.25rem 0;"><strong>Scribe:</strong> ${scribe.title}</div>`;
+  } else if (type === 'ms') {
+    const holding = getRes(rec, 'Holding Institution');
+    const shelfmark = getVal(rec, 'Shelfmark');
+    if (holding) detailsHTML += `<div style="margin:.25rem 0;"><strong>Holding:</strong> ${holding.title}</div>`;
+    if (shelfmark && shelfmark !== '—') detailsHTML += `<div style="margin:.25rem 0;"><strong>Shelfmark:</strong> ${shelfmark}</div>`;
+  } else if (type === 'pu') {
+    const century = getVal(rec, 'Normalized century of production');
+    const monastery = getRes(rec, 'Monastic Institution');
+    if (century && century !== '—') detailsHTML += `<div style="margin:.25rem 0;"><strong>Century:</strong> ${century}</div>`;
+    if (monastery) detailsHTML += `<div style="margin:.25rem 0;"><strong>Monastery:</strong> ${monastery.title}</div>`;
+  } else if (type === 'hp') {
+    const role = getVal(rec, 'Role / function');
+    const gender = getVal(rec, 'Gender');
+    if (role && role !== '—') detailsHTML += `<div style="margin:.25rem 0;"><strong>Role:</strong> ${role}</div>`;
+    if (gender && gender !== '—') detailsHTML += `<div style="margin:.25rem 0;"><strong>Gender:</strong> ${gender}</div>`;
+  }
+  
+  detailsPanel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:.5rem;">
+      <div>
+        <div style="font-weight:600;font-size:.95rem;color:#333;margin-bottom:.25rem;">${title}</div>
+        <div style="font-size:.75rem;color:#666;text-transform:uppercase;letter-spacing:.5px;">${typeLabel}</div>
+      </div>
+      <button id="close-node-details" style="background:none;border:none;font-size:1.2rem;color:#999;cursor:pointer;padding:0;line-height:1;" title="Close">&times;</button>
+    </div>
+    ${detailsHTML}
+    <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #eee;">
+      <button id="view-in-browse-btn" class="chip" style="width:100%;padding:.5rem;background:#007bff;color:white;font-weight:500;border:none;cursor:pointer;">
+        View Full Record in Browse Mode
+      </button>
+    </div>
+  `;
+  
+  detailsPanel.style.display = 'block';
+  
+  // Add event listeners
+  document.getElementById('close-node-details')?.addEventListener('click', () => {
+    detailsPanel.style.display = 'none';
+  });
+  
+  document.getElementById('view-in-browse-btn')?.addEventListener('click', () => {
+    jumpTo(type, id);
+  });
+}
+
+/* ============================================================
    NETWORK DIAGRAM VISUALIZATION
    ============================================================ */
 function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = null) {
@@ -2299,23 +2377,22 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     .attr('dy', 4)
     .style('display', showLabels ? 'block' : 'none');
   
-  // Click handler
+  // Click handler - refocus network on clicked node
   node.on('click', (event, d) => {
     const [type, id] = d.id.split(':');
-    // Stay on network view but update to the clicked record
-    jumpTo(type, id);
-    // Rebuild network with new center
     const clickedRec = IDX[type]?.[String(id)];
     if (clickedRec) {
       NETWORK_CURRENT_REC = clickedRec;
       NETWORK_CURRENT_TYPE = type;
       buildNetworkView();
+      // Show details panel with "View in Browse" button
+      showNetworkNodeDetails(type, id, clickedRec);
     }
   });
   
   // Tooltip
   node.append('title')
-    .text(d => `${d.label} (${d.type.toUpperCase()})\nClick to view`);
+    .text(d => `${d.label} (${d.type.toUpperCase()})\nClick to refocus network`);
   
   // Update positions
   simulation.on('tick', () => {
@@ -2432,7 +2509,7 @@ function findPaths(startType, startId, endType, endId, maxDepth = 4) {
 function displayPaths(paths) {
   if (!paths.length) return '<div class="muted" style="padding:1rem;">No connection found</div>';
   
-  let html = `<div style="margin-top:1rem;"><div style="font-size:1.1rem;font-weight:600;margin-bottom:.75rem;color:#2c3e50;">✨ Found ${paths.length} Connection Path${paths.length > 1 ? 's' : ''}</div>`;
+  let html = `<div style="margin-top:1rem;"><div style="font-size:1.1rem;font-weight:600;margin-bottom:.75rem;color:#2c3e50;">Found ${paths.length} Connection Path${paths.length > 1 ? 's' : ''}</div>`;
   
   paths.slice(0, 5).forEach((path, i) => {
     const stepCount = path.length - 1;
@@ -2811,7 +2888,7 @@ html += `<div class="section"><div class="kv">${renderDetailRows(rec, type)}</di
 
   // Add Find Connection button
   html += `<div class="section" style="margin-top:1rem;">
-    <button class="chip" id="btn-find-connection" style="padding:.5rem .75rem;">🔗 Find Connection to...</button>
+    <button class="chip" id="btn-find-connection" style="padding:.5rem .75rem;">Find Connection to...</button>
   </div>`;
 
   $viz.innerHTML = html;
@@ -2947,8 +3024,9 @@ function renderCurrent(){
 function recompute(){
   const cfg = FACETS[ENTITY];
   const prevState = readFacetState(cfg);
+  // Build facets from full dataset, not filtered list, so all options remain available
+  buildFacets(DATA[ENTITY] || [], cfg, prevState);
   const list = computeList();
-  buildFacets(list, cfg, prevState);
   render(list, ENTITY);
 }
 
@@ -3066,12 +3144,12 @@ function setMode(mode) {
 }
 
 function initModeNavigation() {
-  console.log('🔧 Setting up mode navigation listeners...');
+  console.log('Setting up mode navigation listeners...');
   // Set up main navigation listeners
   document.querySelectorAll('.main-nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const mode = btn.dataset.mode;
-      console.log('🖱️ Mode button clicked:', mode);
+      console.log('Mode button clicked:', mode);
       if (mode) setMode(mode);
     });
   });
@@ -3240,7 +3318,7 @@ function updateMapControls(viewType) {
 }
 
 async function buildMap(){
-  console.log('🗺️ buildMap() called');
+  console.log('buildMap() called');
   await ensureLeaflet();
 
   // Get selected map view - default to 'ms-current'
@@ -3274,7 +3352,7 @@ async function buildMap(){
   if (hintEl) {
     if (!entityHasDirectMap) {
       hintEl.style.display = 'block';
-      hintEl.textContent = `💡 Tip: Viewing ${ENTITY.toUpperCase()} records, but map shows related geographic data. Change "Map View" above to explore different aspects.`;
+      hintEl.textContent = `Tip: Viewing ${ENTITY.toUpperCase()} records, but map shows related geographic data. Change "Map View" above to explore different aspects.`;
     } else {
       hintEl.style.display = 'none';
     }
@@ -3658,7 +3736,7 @@ function renderMapLayers() {
       marker.on('popupopen', (e)=>{
         const btn = e.popup.getElement().querySelector('[data-jump]');
         if (btn) {
-          btn.addEventListener('click', ()=>{ setView('results'); jumpTo(m.entity, m.id); });
+          btn.addEventListener('click', ()=>{ jumpTo(m.entity, m.id); });
         }
       });
       MAP_CLUSTER_LAYER.addLayer(marker);
@@ -3676,7 +3754,7 @@ function renderMapLayers() {
       marker.on('popupopen', (e)=>{
         const btn = e.popup.getElement().querySelector('[data-jump]');
         if (btn) {
-          btn.addEventListener('click', ()=>{ setView('results'); jumpTo(m.entity, m.id); });
+          btn.addEventListener('click', ()=>{ jumpTo(m.entity, m.id); });
         }
       });
       MAP_MARKERS_LAYER.addLayer(marker);
@@ -3919,7 +3997,7 @@ let TIMELINE_SVG = null; // Reference to SVG element for brushing
 let TIMELINE_SELECTED = null; // Currently selected record for highlighting connections
 
 function buildTimeline(){
-  console.log('📈 buildTimeline() called');
+  console.log('buildTimeline() called');
   // Only render where supported
   if (!supportsTimeline(ENTITY)) return;
 
@@ -4575,7 +4653,7 @@ function updateRelationshipFilter(relTypes) {
 }
 
 function buildNetworkView(){
-  console.log('🔗 buildNetworkView() called');
+  console.log('buildNetworkView() called');
   
   const viewSelector = document.getElementById('network-view-selector');
   const networkView = viewSelector?.value || 'search';
@@ -4591,7 +4669,7 @@ function buildNetworkView(){
     // Search mode - wait for user to select a record or show last selected
     if (!NETWORK_CURRENT_REC) {
       const mount = document.getElementById('network-mount');
-      if (mount) mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#666;">👆 Search for a record above to explore its network</div>';
+      if (mount) mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#666;">Search for a record above to explore its network</div>';
       return;
     }
     // If we have a record, show its network
@@ -4617,13 +4695,13 @@ function getActiveEntityFilters() {
     return [];
   }
   
-  console.log('🔍 Active entity types:', selected);
+  console.log('Active entity types:', selected);
   return selected;
 }
 
 // Populate filter dropdowns with unique values from data
 function populateFilterDropdowns() {
-  console.log('📋 Populating filter dropdowns...');
+  console.log('Populating filter dropdowns...');
   
   // Helper to extract unique values
   const getUniqueValues = (entityType, fieldName, useGetValsAll = false) => {
@@ -4726,7 +4804,7 @@ function getActiveFieldFilters() {
   // Log active filters for debugging
   const activeFilters = Object.entries(filters).filter(([k, v]) => v !== null && v !== '');
   if (activeFilters.length > 0) {
-    console.log('🔍 Active field filters:', Object.fromEntries(activeFilters));
+    console.log('Active field filters:', Object.fromEntries(activeFilters));
   }
   
   return filters;
@@ -4744,7 +4822,7 @@ function recordMatchesFilters(rec, type) {
   if (window.filterDebugCount === undefined) window.filterDebugCount = 0;
   const shouldLog = window.filterDebugCount < 3;
   if (shouldLog) {
-    console.log(`🔍 Checking record (${window.filterDebugCount + 1}/3):`, { type, id: rec.rec_ID, filters });
+    console.log(`Checking record (${window.filterDebugCount + 1}/3):`, { type, id: rec.rec_ID, filters });
   }
   
   // === GENERAL FILTERS ===
@@ -5102,7 +5180,7 @@ function buildSubsetNetwork(subsetType) {
   if (totalNodes > 200) {
     mount.innerHTML = `
       <div style="padding:2rem;max-width:600px;margin:0 auto;">
-        <h3 style="margin-top:0;">📊 ${subset.label}</h3>
+        <h3 style="margin-top:0;">${subset.label}</h3>
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:0.5rem;padding:1rem;margin:1rem 0;">
           <div style="font-size:0.875rem;color:#666;margin-bottom:0.5rem;">Network Statistics:</div>
           <div style="font-size:2rem;font-weight:700;color:#d4af37;margin-bottom:0.25rem;">${totalNodes.toLocaleString()}</div>
@@ -5117,10 +5195,10 @@ function buildSubsetNetwork(subsetType) {
         </div>
         
         <div style="margin-top:1.5rem;">
-          <div style="font-weight:600;margin-bottom:0.75rem;">💡 Recommended approaches:</div>
+          <div style="font-weight:600;margin-bottom:0.75rem;">Recommended approaches:</div>
           <div style="display:flex;flex-direction:column;gap:0.75rem;">
             <button id="network-sample-btn" class="chip" style="padding:0.75rem;text-align:left;background:#fff;display:flex;align-items:center;gap:0.5rem;width:100%;">
-              <span style="font-size:1.2rem;">🎲</span>
+              <span style="font-size:1.2rem;"></span>
               <div style="flex:1;">
                 <div style="font-weight:600;">Show Random Sample</div>
                 <div style="font-size:0.75rem;color:#666;">Display 100 random well-connected entities</div>
@@ -5136,7 +5214,7 @@ function buildSubsetNetwork(subsetType) {
             </button>
             
             <button id="network-search-mode-btn" class="chip" style="padding:0.75rem;text-align:left;background:#d4af37;color:white;display:flex;align-items:center;gap:0.5rem;width:100%;">
-              <span style="font-size:1.2rem;">🔍</span>
+              <span style="font-size:1.2rem;"></span>
               <div style="flex:1;">
                 <div style="font-weight:600;">Search & Explore</div>
                 <div style="font-size:0.75rem;opacity:0.9;">Start from a specific record (Recommended)</div>
@@ -5229,7 +5307,7 @@ function buildSampledNetwork(entityTypes, sampleSize) {
   
   // Reset debug counter for filtering logs
   window.filterDebugCount = 0;
-  console.log('🔬 Starting buildSampledNetwork with:', { entityTypes, sampleSize });
+  console.log('Starting buildSampledNetwork with:', { entityTypes, sampleSize });
   
   // Handle entity type filtering
   let types;
@@ -5260,7 +5338,7 @@ function buildSampledNetwork(entityTypes, sampleSize) {
     });
   });
   
-  console.log(`📊 Indexed ${nodeInfo.size} nodes after filtering`);
+  console.log(`Indexed ${nodeInfo.size} nodes after filtering`);
   
   // Build adjacency lists
   DATA.rel.forEach(rel => {
@@ -5373,7 +5451,7 @@ function buildHubsNetwork(entityTypes, topN) {
   
   // Reset debug counter for filtering logs
   window.filterDebugCount = 0;
-  console.log('🔬 Starting buildHubsNetwork with:', { entityTypes, topN });
+  console.log('Starting buildHubsNetwork with:', { entityTypes, topN });
   
   // Handle entity type filtering
   let types;
@@ -5408,7 +5486,7 @@ function buildHubsNetwork(entityTypes, topN) {
     });
   });
   
-  console.log(`📊 Indexed ${nodeData.size} nodes after filtering`);
+  console.log(`Indexed ${nodeData.size} nodes after filtering`);
   
   // Count connections efficiently
   DATA.rel.forEach(rel => {
@@ -5914,8 +5992,8 @@ function exportCurrentNetwork(format) {
       downloadFile(edgesCsv, `${filename}_edges.csv`, 'text/csv');
       alert('✅ Gephi Export Complete!\n\n' +
             `Downloaded 2 files:\n` +
-            `📄 ${filename}_nodes.csv (${CURRENT_NETWORK_DATA.nodes.length} nodes)\n` +
-            `📄 ${filename}_edges.csv (${CURRENT_NETWORK_DATA.links.length} edges)\n\n` +
+            `${filename}_nodes.csv (${CURRENT_NETWORK_DATA.nodes.length} nodes)\n` +
+            `${filename}_edges.csv (${CURRENT_NETWORK_DATA.links.length} edges)\n\n` +
             'To import into Gephi:\n' +
             '1. Open Gephi → New Project\n' +
             '2. File → Import Spreadsheet\n' +
@@ -5988,8 +6066,8 @@ cat("\\nPlot saved to: ${filename}_plot.pdf\\n")
       downloadFile(rScript, `${filename}.R`, 'text/plain');
       alert('✅ R Export Complete!\n\n' +
             `Downloaded 2 files:\n` +
-            `📄 ${filename}.csv (${CURRENT_NETWORK_DATA.links.length} edges)\n` +
-            `📄 ${filename}.R (analysis script)\n\n` +
+            `${filename}.csv (${CURRENT_NETWORK_DATA.links.length} edges)\n` +
+            `${filename}.R (analysis script)\n\n` +
             'To use in R:\n' +
             '1. Place both files in the same folder\n' +
             '2. Open the .R file in RStudio\n' +
@@ -6488,14 +6566,14 @@ function downloadCSVFromList(){
 
 /* ---------- Events Initialization ---------- */
 function initEventListeners() {
-  console.log('🔧 Setting up event listeners...');
+  console.log('Setting up event listeners...');
   
   // Entity switching
   const entitySwitch = document.getElementById('entity-switch');
   if (entitySwitch) {
     entitySwitch.addEventListener('click', (e)=>{
       const btn = e.target.closest('.entity-btn'); if (!btn) return;
-      console.log('🖱️ Entity button clicked:', btn.dataset.entity);
+      console.log('Entity button clicked:', btn.dataset.entity);
       switchEntity(btn.dataset.entity);
     });
   } else {
@@ -6656,7 +6734,7 @@ function initEventListeners() {
   
   // Filter tab switching
   const filterTabs = document.querySelectorAll('.filter-tab');
-  console.log('🔧 Setting up', filterTabs.length, 'filter tabs');
+  console.log('Setting up', filterTabs.length, 'filter tabs');
   
   // Add CSS for tabs dynamically
   const tabStyle = document.createElement('style');
@@ -6672,7 +6750,7 @@ function initEventListeners() {
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetTab = tab.dataset.tab;
-      console.log('🖱️ Tab clicked:', targetTab);
+      console.log('Tab clicked:', targetTab);
       // Update active tab styling
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
@@ -6697,12 +6775,12 @@ function initEventListeners() {
     'network-filter-genre', 'network-filter-script', 'network-filter-material',
     'network-filter-role', 'network-filter-decoration', 'network-filter-gender'
   ];
-  console.log('🔧 Setting up', dropdownFilters.length, 'dropdown filters');
+  console.log('Setting up', dropdownFilters.length, 'dropdown filters');
   dropdownFilters.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('change', () => {
-        console.log('🔄 Dropdown changed:', id, '=', el.value);
+        console.log('Dropdown changed:', id, '=', el.value);
         if (ACTIVE_MODE === 'network') buildNetworkView();
       });
     } else {
@@ -6715,7 +6793,7 @@ function initEventListeners() {
     'network-filter-production-location', 'network-filter-shelfmark',
     'network-filter-folio-start', 'network-filter-folio-end'
   ];
-  console.log('🔧 Setting up', textFilters.length, 'text field filters');
+  console.log('Setting up', textFilters.length, 'text field filters');
   textFilters.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -6741,7 +6819,7 @@ function initEventListeners() {
   
   // Clear all filters
   document.getElementById('network-clear-filters')?.addEventListener('click', () => {
-    console.log('🗑️ Clearing all filters');
+    console.log('Clearing all filters');
     // Reset entity type checkboxes
     document.querySelectorAll('.network-entity-filter').forEach(cb => cb.checked = true);
     // Reset ALL filters (dropdowns and text inputs)
@@ -6999,13 +7077,13 @@ $pathSearch?.addEventListener('input', debounce(() => {
   
   // Group by entity type for better organization
   const typeLabels = {
-    'su': '📜 Scribal Unit',
-    'ms': '📖 Manuscript', 
+    'su': 'Scribal Unit',
+    'ms': 'Manuscript', 
     'pu': '🏭 Production Unit',
-    'hi': '🏛️ Holding Institution',
+    'hi': 'Holding Institution',
     'mi': '⛪ Monastic Institution',
-    'hp': '👤 Person',
-    'tx': '📝 Text'
+    'hp': 'Person',
+    'tx': 'Text'
   };
   
   top.forEach(({ rec, type, title }) => {
@@ -7040,7 +7118,7 @@ $pathSearch?.addEventListener('input', debounce(() => {
 function findAndDisplayPaths(source, target) {
   const depth = parseInt($pathDepth.value) || 4;
   
-  $pathDisplay.innerHTML = '<div style="padding:.75rem;text-align:center;"><span class="muted">🔍 Searching for connection paths...</span></div>';
+  $pathDisplay.innerHTML = '<div style="padding:.75rem;text-align:center;"><span class="muted">Searching for connection paths...</span></div>';
   
   // Run path finding (with a small delay to show searching message)
   setTimeout(() => {
@@ -7055,7 +7133,7 @@ function findAndDisplayPaths(source, target) {
     
     if (paths.length === 0) {
       html += `<div style="padding:1rem;text-align:center;background:#fff9e6;border-radius:.5rem;margin-top:.75rem;">
-        <div style="font-size:2rem;margin-bottom:.5rem;">🔍</div>
+        <div style="font-size:2rem;margin-bottom:.5rem;"></div>
         <div><strong>No connection found</strong></div>
         <div class="muted" style="margin-top:.5rem;">These records aren't connected within ${depth} relationship step${depth > 1 ? 's' : ''}.</div>
         <div class="muted" style="margin-top:.25rem;">Try increasing the "Maximum steps" value or selecting a different destination record.</div>
@@ -7065,8 +7143,8 @@ function findAndDisplayPaths(source, target) {
       
       // Add export option
       html += `<div style="margin-top:1rem;">
-        <button class="chip" id="export-paths-gephi" style="padding:.5rem .75rem;">📊 Export for Gephi</button>
-        <button class="chip" id="export-paths-r" style="padding:.5rem .75rem;">📊 Export for R</button>
+        <button class="chip" id="export-paths-gephi" style="padding:.5rem .75rem;">Export for Gephi</button>
+        <button class="chip" id="export-paths-r" style="padding:.5rem .75rem;">Export for R</button>
       </div>`;
     }
     
@@ -7647,7 +7725,7 @@ if (viewComparisonBtn) {
     const comparisonHTML = `
       <div style="padding: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <h2 style="margin: 0;">📊 Comparison View</h2>
+          <h2 style="margin: 0;">Comparison View</h2>
           <button onclick="buildCodicology()" style="padding: 0.5rem 1rem; background: #6c757d; color: white; border: none; border-radius: 0.25rem; cursor: pointer;">
             ← Back to Analysis
           </button>
@@ -8364,7 +8442,7 @@ function buildCodicologicalAnalysis(mount, list) {
         <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
         <h3 style="color: #999; font-weight: 500;">Select Variables to Begin Analysis</h3>
         <p style="margin-top: 0.5rem;">Choose X and Y axis variables from the dropdowns above to explore codicological patterns.</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">💡 Try the Quick Analysis presets for research questions!</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">Try the Quick Analysis presets for research questions!</p>
       </div>
     `;
     return;
@@ -8524,26 +8602,26 @@ function buildExploratoryAnalysis(msRecords, puRecords, suRecords, xVar, yVar, c
       ${insights ? `
       <div class="analysis-card" data-card-id="key-insights" style="position: relative;">
         <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
-          📥 Export Insights
+          Export Insights
         </button>
         ${insights}
       </div>
       ` : ''}
       <div class="analysis-card" data-card-id="main-viz" style="position: relative;">
         <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
-          📥 Export Chart
+          Export Chart
         </button>
         ${mainViz}
       </div>
       <div class="analysis-card" data-card-id="summary-stats" style="position: relative;">
         <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
-          📥 Export Stats
+          Export Stats
         </button>
         ${summaryCard}
       </div>
       <div class="analysis-card" data-card-id="breakdown" style="position: relative;">
         <button class="export-card-btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; z-index: 10;">
-          📥 Export Breakdown
+          Export Breakdown
         </button>
         ${breakdownCard}
       </div>
@@ -8690,7 +8768,7 @@ function generateKeyInsights(dataPoints, xVar, yVar, colorVar) {
   return `
     <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
       <h3 style="margin: 0 0 1rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
-        💡 Key Findings
+        Key Findings
       </h3>
       <div style="display: flex; flex-direction: column; gap: 0.75rem;">
         ${insights.map(insight => `
@@ -8705,7 +8783,7 @@ function generateKeyInsights(dataPoints, xVar, yVar, colorVar) {
         `).join('')}
       </div>
       <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.875rem; opacity: 0.9;">
-        💭 These insights are automatically generated from statistical patterns in your data. Always verify with domain knowledge.
+        These insights are automatically generated from statistical patterns in your data. Always verify with domain knowledge.
       </div>
     </div>
   `;
@@ -8906,7 +8984,7 @@ function buildSummaryStatisticsCard(dataPoints, xVar, yVar, colorVar) {
   
   return `
     <div style="background: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-      <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: #333;">📈 Summary Statistics</h3>
+      <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: #333;">Summary Statistics</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
         <div style="padding: 1rem; background: #f8f9fa; border-radius: 0.375rem; border-left: 3px solid #2196F3;">
           <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">Sample Size</div>
@@ -8995,11 +9073,11 @@ function buildBreakdownCard(msRecords, puRecords, suRecords, xVar, yVar, colorVa
   
   return `
     <div style="background: white; border-radius: 0.5rem; padding: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-      <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: #333;">🔍 Dataset Breakdown</h3>
+      <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: #333;">Dataset Breakdown</h3>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
         ${Object.keys(centuries).length > 0 ? `
           <div>
-            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">📅 By Century</div>
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">By Century</div>
             ${Object.entries(centuries).sort((a,b) => b[1] - a[1]).slice(0, 5).map(([c, count]) => `
               <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem;">
                 <span>${c}</span>
@@ -9010,7 +9088,7 @@ function buildBreakdownCard(msRecords, puRecords, suRecords, xVar, yVar, colorVa
         ` : ''}
         ${Object.keys(materials).length > 0 ? `
           <div>
-            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">📜 By Material</div>
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">By Material</div>
             ${Object.entries(materials).sort((a,b) => b[1] - a[1]).map(([m, count]) => `
               <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem;">
                 <span>${m}</span>
@@ -9021,7 +9099,7 @@ function buildBreakdownCard(msRecords, puRecords, suRecords, xVar, yVar, colorVa
         ` : ''}
         ${Object.keys(genders).length > 0 ? `
           <div>
-            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">👤 By Gender</div>
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: #666;">By Gender</div>
             ${Object.entries(genders).sort((a,b) => b[1] - a[1]).map(([g, count]) => `
               <div style="display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem;">
                 <span>${g}</span>
@@ -10098,7 +10176,7 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
   const dataPoints = [];
   
   // Debug: Check input data
-  console.log('🔍 analyzeCustomVariables called:', {
+  console.log('analyzeCustomVariables called:', {
     msCount: msRecords.length,
     puCount: puRecords.length,
     suCount: suRecords.length,
@@ -10275,7 +10353,7 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
         
         // Debug logging (first record only)
         if (dataPoints.length === 0) {
-          console.log('🔍 Debug first extraction:', {
+          console.log('Debug first extraction:', {
             msId,
             puId: pu.rec_ID,
             xVar, xVal,
@@ -10299,7 +10377,7 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
     });
   });
   
-  console.log(`📊 Codicology: Found ${dataPoints.length} data points for ${xVar} vs ${yVar}`);
+  console.log(`Codicology: Found ${dataPoints.length} data points for ${xVar} vs ${yVar}`);
   
   if (dataPoints.length === 0) {
     return `
@@ -10488,7 +10566,7 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
           </div>
         </div>
         <div style="background: #f5f5f5; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #2196F3;">
-          <div style="font-weight: 600; margin-bottom: 0.5rem;">📊 Sample Size: ${n} manuscripts</div>
+          <div style="font-weight: 600; margin-bottom: 0.5rem;">Sample Size: ${n} manuscripts</div>
           <div style="font-size: 0.875rem; color: #666; line-height: 1.6;">
             <strong>Interpretation:</strong> ${
               absCorr >= 0.7 
@@ -10881,7 +10959,7 @@ function buildHierarchicalTreeVisualization(mount, list) {
         
         const crossPUIndicator = isCrossPUSU
           ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #ff9800; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">
-               🔗 SPANS ${suPUs.length} PUs
+               SPANS ${suPUs.length} PUs
              </div>
              <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,152,0,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #e65100; width: 100%;">
                <strong>⚠️ Cross-PU Scribal Unit:</strong> This scribal unit also appears in:<br/>
@@ -10893,7 +10971,7 @@ function buildHierarchicalTreeVisualization(mount, list) {
           <div style="${suStyle}">
             <span style="font-size: 0.85rem; color: #999; font-weight: 600;">SU #${suIdx + 1}</span>
             <a href="?browse=${suId}" style="font-weight: 600; font-size: 0.875rem; color: #333; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#2196F3'" onmouseout="this.style.color='#333'">
-              📝 ${su.title} <span style="font-size: 0.7rem; color: #999;">🔗</span>
+              ${su.title} <span style="font-size: 0.7rem; color: #999;">🔗</span>
             </a>
             ${crossPUIndicator}
           </div>
@@ -10907,7 +10985,7 @@ function buildHierarchicalTreeVisualization(mount, list) {
       
       const crossMSIndicator = isCrossMSPU 
         ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #c4941f; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">
-             🔗 SPANS ${puMsList.length} MSS
+             SPANS ${puMsList.length} MSS
            </div>
            <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(196, 148, 31,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #7b1fa2;">
              <strong>⚠️ Cross-Manuscript PU:</strong> This production unit also appears in:<br/>
@@ -10936,12 +11014,12 @@ function buildHierarchicalTreeVisualization(mount, list) {
           <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
             <span style="font-size: 0.9rem; color: #999; font-weight: 700;">MS #${msIdx + 1}</span>
             <a href="?browse=${msId}" style="font-weight: 700; font-size: 1.05rem; color: #1a1a1a; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#2196F3'" onmouseout="this.style.color='#1a1a1a'">
-              📚 ${ms.title} <span style="font-size: 0.75rem; color: #999;">🔗</span>
+              ${ms.title} <span style="font-size: 0.75rem; color: #999;">🔗</span>
             </a>
-            ${metrics.hasInterleaved ? '<span style="padding: 0.125rem 0.375rem; background: #ff9800; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">🔀 INTERLEAVED</span>' : ''}
-            ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #c4941f; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📚 CROSS-MS</span>' : ''}
-            ${metrics.hasCrossPUSU ? '<span style="padding: 0.125rem 0.375rem; background: #f44336; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">✍️ CROSS-PU</span>' : ''}
-            ${metrics.puCount >= 5 ? '<span style="padding: 0.125rem 0.375rem; background: #2196f3; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">📦 MULTI-PU</span>' : ''}
+            ${metrics.hasInterleaved ? '<span style="padding: 0.125rem 0.375rem; background: #ff9800; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">INTERLEAVED</span>' : ''}
+            ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #c4941f; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">CROSS-MS</span>' : ''}
+            ${metrics.hasCrossPUSU ? '<span style="padding: 0.125rem 0.375rem; background: #f44336; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">CROSS-PU</span>' : ''}
+            ${metrics.puCount >= 5 ? '<span style="padding: 0.125rem 0.375rem; background: #2196f3; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">MULTI-PU</span>' : ''}
           </div>
           <div style="display: flex; gap: 0.25rem;">
             <button class="tree-export-svg-btn" data-ms-id="${msId}" style="padding: 0.25rem 0.5rem; background: #28a745; color: white; border: none; border-radius: 0.25rem; font-size: 0.7rem; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.25rem;" title="Export this manuscript tree as SVG">
@@ -10973,9 +11051,9 @@ function buildHierarchicalTreeVisualization(mount, list) {
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
         <h3 style="margin: 0; font-size: 1.1rem;">Manuscript Codicological Hierarchy</h3>
         <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: #666;">
-          <span>📚 <strong>${totalManuscripts}</strong> MS</span>
-          <span>📦 <strong>${totalPUs}</strong> PU</span>
-          <span>📝 <strong>${totalSUs}</strong> SU</span>
+          <span><strong>${totalManuscripts}</strong> MS</span>
+          <span><strong>${totalPUs}</strong> PU</span>
+          <span><strong>${totalSUs}</strong> SU</span>
         </div>
       </div>
       <p style="color: #666; font-size: 0.875rem; margin-bottom: 1rem;">
@@ -11075,7 +11153,7 @@ let CURRENT_MULTILINGUALISM_TAB = 'overview';
 
 // Main entry point for multilingualism mode
 function buildMultilingualism() {
-  console.log('🌍 Building multilingualism view, tab:', CURRENT_MULTILINGUALISM_TAB);
+  console.log('Building multilingualism view, tab:', CURRENT_MULTILINGUALISM_TAB);
   
   // Initialize tab navigation if first time
   if (!window.multilingualismTabsInitialized) {
@@ -11372,7 +11450,7 @@ function getPUsForSU(su) {
 // ===== OVERVIEW TAB =====
 
 function buildMultilingualismOverview(mount) {
-  console.log('📊 Building multilingualism overview...');
+  console.log('Building multilingualism overview...');
   console.log('Mount element:', mount);
   console.log('Available DATA:', Object.keys(DATA || {}));
   console.log('SU count:', DATA.su?.length || 0);
@@ -11395,7 +11473,7 @@ function buildMultilingualismOverview(mount) {
   const scribeLanguages = {};
   const institutionLanguages = {};
   
-  console.log('🔍 Checking first 3 SUs for language data...');
+  console.log('Checking first 3 SUs for language data...');
   allSUs.slice(0, 3).forEach((su, idx) => {
     const langInfo = getLanguageInfo(su, 'su');
     console.log(`  SU #${idx + 1} (${su.rec_ID}):`, {
@@ -11488,7 +11566,7 @@ function buildMultilingualismOverview(mount) {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 15);
   
-  console.log('📊 Overview stats:', {
+  console.log('Overview stats:', {
     totalLanguages: stats.totalLanguages.size,
     multilingualMss: stats.multilingualMss,
     multilingualScribes: stats.multilingualScribes,
@@ -11639,7 +11717,7 @@ function buildMultilingualismOverview(mount) {
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
   
-  console.log('🔍 Pattern Analysis:', {
+  console.log('Pattern Analysis:', {
     countries: topCountries.length,
     periods: periodsSorted.length,
     orders: topOrders.length,
@@ -11649,7 +11727,7 @@ function buildMultilingualismOverview(mount) {
   // Render overview
   mount.innerHTML = `
     <div style="padding: 1.5rem; max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">🌍 Multilingualism in the Corpus</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Multilingualism in the Corpus</h2>
       
       <!-- Key Statistics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
@@ -11677,7 +11755,7 @@ function buildMultilingualismOverview(mount) {
       
       <!-- Language Distribution Chart -->
       <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-        <h3 style="margin-bottom: 1rem; color: #333;">📊 Most Common Languages</h3>
+        <h3 style="margin-bottom: 1rem; color: #333;">Most Common Languages</h3>
         <div style="display: flex; flex-direction: column; gap: 0.75rem;">
           ${sortedLanguages.map(([lang, count]) => {
             const maxCount = sortedLanguages[0][1];
@@ -11699,7 +11777,7 @@ function buildMultilingualismOverview(mount) {
       
       <!-- PATTERN ANALYSIS SECTION -->
       <div style="margin-bottom: 2rem;">
-        <h2 style="margin-bottom: 1rem; color: #1a1a1a; font-size: 1.5rem;">🔍 Multilingualism Patterns</h2>
+        <h2 style="margin-bottom: 1rem; color: #1a1a1a; font-size: 1.5rem;">Multilingualism Patterns</h2>
         <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem;">
           Exploring geographical, temporal, and institutional patterns reveals how multilingualism was distributed across different contexts.
         </p>
@@ -11794,7 +11872,7 @@ function buildMultilingualismOverview(mount) {
                   <div style="font-weight: 600; color: #333; margin-bottom: 0.5rem; font-size: 0.9rem;">${item.name}</div>
                   <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.5rem;">
                     <div>${item.order}</div>
-                    ${item.location ? `<div>📍 ${item.location}</div>` : ''}
+                    ${item.location ? `<div>${item.location}</div>` : ''}
                   </div>
                   <div style="display: flex; gap: 1rem; font-size: 0.75rem;">
                     <span style="background: #d4af37; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''}</span>
@@ -11808,7 +11886,7 @@ function buildMultilingualismOverview(mount) {
         
         <!-- Key Insights -->
         <div style="background: linear-gradient(135deg, #d4af3715, #c4941f15); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #d4af37;">
-          <h4 style="margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;">💡 Key Insights</h4>
+          <h4 style="margin: 0 0 0.75rem 0; color: #333; font-size: 1rem;">Key Insights</h4>
           <ul style="margin: 0; padding-left: 1.5rem; color: #555; line-height: 1.8; font-size: 0.9rem;">
             ${topCountries.length > 0 ? `<li><strong>Geographical:</strong> ${topCountries[0].name} shows the highest concentration of multilingual production (${topCountries[0].count} PUs)</li>` : ''}
             ${periodsSorted.length > 0 ? `<li><strong>Temporal:</strong> ${periodsSorted.reduce((max, p) => p.count > max.count ? p : max, periodsSorted[0]).name} has the most multilingual activity (${periodsSorted.reduce((max, p) => p.count > max.count ? p : max, periodsSorted[0]).count} PUs)</li>` : ''}
@@ -11872,7 +11950,7 @@ function getMSForSU(su) {
 // ===== MULTILINGUAL MANUSCRIPTS TAB =====
 
 function buildMultilingualManuscripts(mount) {
-  console.log('📚 Building multilingual manuscripts view...');
+  console.log('Building multilingual manuscripts view...');
   
   // Strategy: For each manuscript, collect ALL languages from:
   // - All PUs in the manuscript (their colophons)
@@ -11882,7 +11960,7 @@ function buildMultilingualManuscripts(mount) {
   const allMSs = DATA.ms || [];
   const msLanguageData = [];
   
-  console.log('🔍 Total manuscripts to check:', allMSs.length);
+  console.log('Total manuscripts to check:', allMSs.length);
   
   allMSs.forEach(ms => {
     const msId = String(ms.rec_ID);
@@ -11901,7 +11979,7 @@ function buildMultilingualManuscripts(mount) {
     
     if (puIds.size === 0) return; // No PUs in this manuscript
     
-    console.log(`📖 MS "${msTitle}" has ${puIds.size} PUs`);
+    console.log(`MS "${msTitle}" has ${puIds.size} PUs`);
     
     // Collect languages organized by PU
     const puData = {};
@@ -11914,7 +11992,7 @@ function buildMultilingualManuscripts(mount) {
       const puTitle = MAP.pu?.title(pu) || 'Untitled PU';
       const puLangInfo = getLanguageInfo(pu, 'pu');
       
-      console.log(`  📄 PU "${puTitle}":`, {
+      console.log(`  PU "${puTitle}":`, {
         colophonLangs: puLangInfo.colophon,
         textLangs: puLangInfo.text,
         allLangs: puLangInfo.all
@@ -11942,7 +12020,7 @@ function buildMultilingualManuscripts(mount) {
           const suLangInfo = getLanguageInfo(su, 'su');
           const scribes = getScribesForSU(su);
           
-          console.log(`    📝 SU "${suTitle}":`, {
+          console.log(`    SU "${suTitle}":`, {
             colophonLangs: suLangInfo.colophon,
             textLangs: suLangInfo.text,
             allLangs: suLangInfo.all,
@@ -11992,7 +12070,7 @@ function buildMultilingualManuscripts(mount) {
   // Sort by language count (most multilingual first)
   msLanguageData.sort((a, b) => b.languageCount - a.languageCount);
   
-  console.log('📊 Found', msLanguageData.length, 'multilingual manuscripts');
+  console.log('Found', msLanguageData.length, 'multilingual manuscripts');
   
   if (msLanguageData.length === 0) {
     mount.innerHTML = `
@@ -12016,8 +12094,8 @@ function buildMultilingualManuscripts(mount) {
     
     // Multilingualism type badge
     const typeBadge = ms.multilingualismType === 'within-pu'
-      ? `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: #4caf50; color: white; border-radius: 0.75rem; font-size: 0.7rem; font-weight: 600;">🔬 Within-PU multilingualism (${ms.multilingualPUCount} PU${ms.multilingualPUCount > 1 ? 's' : ''})</span>`
-      : `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: #ff9800; color: white; border-radius: 0.75rem; font-size: 0.7rem; font-weight: 600;">📦 Cross-PU compilation</span>`;
+      ? `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: #4caf50; color: white; border-radius: 0.75rem; font-size: 0.7rem; font-weight: 600;">Within-PU multilingualism (${ms.multilingualPUCount} PU${ms.multilingualPUCount > 1 ? 's' : ''})</span>`
+      : `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: #ff9800; color: white; border-radius: 0.75rem; font-size: 0.7rem; font-weight: 600;">Cross-PU compilation</span>`;
     
     // Build PU breakdown
     const puBreakdown = Object.values(ms.pus).map(pu => {
@@ -12025,12 +12103,12 @@ function buildMultilingualManuscripts(mount) {
       let puLangBadges = '';
       if (pu.colophonLangs && pu.colophonLangs.length > 0) {
         puLangBadges += pu.colophonLangs.map(lang =>
-          `<span style="padding: 0.2rem 0.5rem; background: #2196f3; color: white; border-radius: 0.5rem; font-size: 0.7rem; margin-right: 0.25rem;" title="From PU colophon">📝 ${lang}</span>`
+          `<span style="padding: 0.2rem 0.5rem; background: #2196f3; color: white; border-radius: 0.5rem; font-size: 0.7rem; margin-right: 0.25rem;" title="From PU colophon">${lang}</span>`
         ).join('');
       }
       if (pu.textLangs && pu.textLangs.length > 0) {
         puLangBadges += pu.textLangs.map(lang =>
-          `<span style="padding: 0.2rem 0.5rem; background: #4a90e2; color: white; border-radius: 0.5rem; font-size: 0.7rem; margin-right: 0.25rem;" title="From linked text at PU level">📖 ${lang}</span>`
+          `<span style="padding: 0.2rem 0.5rem; background: #4a90e2; color: white; border-radius: 0.5rem; font-size: 0.7rem; margin-right: 0.25rem;" title="From linked text at PU level">${lang}</span>`
         ).join('');
       }
       
@@ -12039,21 +12117,21 @@ function buildMultilingualManuscripts(mount) {
         let suLangBadges = '';
         if (su.colophonLangs && su.colophonLangs.length > 0) {
           suLangBadges += su.colophonLangs.map(lang =>
-            `<span style="padding: 0.15rem 0.4rem; background: #ff9800; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-right: 0.25rem;" title="From SU colophon">📝 ${lang}</span>`
+            `<span style="padding: 0.15rem 0.4rem; background: #ff9800; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-right: 0.25rem;" title="From SU colophon">${lang}</span>`
           ).join('');
         }
         if (su.textLangs && su.textLangs.length > 0 && JSON.stringify(su.textLangs) !== JSON.stringify(su.colophonLangs)) {
           suLangBadges += su.textLangs.map(lang =>
-            `<span style="padding: 0.15rem 0.4rem; background: #ffa726; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-right: 0.25rem;" title="From linked text at SU level">📖 ${lang}</span>`
+            `<span style="padding: 0.15rem 0.4rem; background: #ffa726; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-right: 0.25rem;" title="From linked text at SU level">${lang}</span>`
           ).join('');
         }
         
         const scribeInfo = su.scribes.length > 0
-          ? su.scribes.map(s => `<span style="color: #666; font-size: 0.7rem;">✍️ ${s.scribeName}</span>`).join(', ')
+          ? su.scribes.map(s => `<span style="color: #666; font-size: 0.7rem;">${s.scribeName}</span>`).join(', ')
           : '';
         
         const divergenceBadge = su.hasColophonDivergence
-          ? `<span style="padding: 0.15rem 0.4rem; background: #f44336; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-left: 0.25rem;">🔀 Colophon≠Text</span>`
+          ? `<span style="padding: 0.15rem 0.4rem; background: #f44336; color: white; border-radius: 0.5rem; font-size: 0.65rem; margin-left: 0.25rem;">Colophon≠Text</span>`
           : '';
         
         return `
@@ -12070,7 +12148,7 @@ function buildMultilingualManuscripts(mount) {
       return `
         <div style="margin-bottom: 1rem; padding: 0.75rem; background: #f0f4ff; border-left: 4px solid #2196f3; border-radius: 0.375rem;">
           <div style="font-weight: 600; color: #1565c0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-            <span>📄 ${pu.title}</span>
+            <span>${pu.title}</span>
             ${puLangBadges}
             <span style="font-size: 0.7rem; color: #666; font-weight: 400;">(${pu.sus.length} SU${pu.sus.length !== 1 ? 's' : ''})</span>
           </div>
@@ -12085,7 +12163,7 @@ function buildMultilingualManuscripts(mount) {
           <div style="flex: 1; min-width: 300px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
               <span style="font-size: 0.85rem; color: #999; font-weight: 600;">MS #${idx + 1}</span>
-              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">📚 ${ms.title}</h3>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">${ms.title}</h3>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
               ${langBadges}
@@ -12104,7 +12182,7 @@ function buildMultilingualManuscripts(mount) {
         </div>
         
         <div style="border-top: 1px solid #f0f0f0; padding-top: 1rem;">
-          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">📖 Production Units & Scribal Units:</div>
+          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">Production Units & Scribal Units:</div>
           ${puBreakdown}
         </div>
       </div>
@@ -12114,7 +12192,7 @@ function buildMultilingualManuscripts(mount) {
   mount.innerHTML = `
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
-        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">📚 Multilingual Manuscripts</h2>
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Multilingual Manuscripts</h2>
         <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
           Manuscripts containing texts in multiple languages. The badge indicates whether multilingualism 
           occurs <strong>within production units</strong> (scribes working across languages) or represents 
@@ -12131,9 +12209,9 @@ function buildMultilingualManuscripts(mount) {
         <span style="margin-right: 1.5rem;">🟣 Purple = Manuscript-level languages</span>
         <span style="margin-right: 1.5rem;">🔵 Blue = Production Unit languages</span>
         <span style="margin-right: 1.5rem;">🟠 Orange = Scribal Unit languages</span><br>
-        <span style="margin-right: 1.5rem;">📝 Notebook icon = From colophon</span>
-        <span style="margin-right: 1.5rem;">📖 Book icon = From linked text</span>
-        <span style="margin-right: 1.5rem;">🔀 Red badge = Colophon-text divergence</span>
+        <span style="margin-right: 1.5rem;">Notebook icon = From colophon</span>
+        <span style="margin-right: 1.5rem;">Book icon = From linked text</span>
+        <span style="margin-right: 1.5rem;">Red badge = Colophon-text divergence</span>
       </div>
       
       ${msCards}
@@ -12146,7 +12224,7 @@ function buildMultilingualManuscripts(mount) {
 }
 
 function buildScribalMultilingualism(mount) {
-  console.log('✍️ Building scribal multilingualism view...');
+  console.log('Building scribal multilingualism view...');
   
   // Collect scribe language data
   const allSUs = DATA.su || [];
@@ -12269,7 +12347,7 @@ function buildScribalMultilingualism(mount) {
           <div style="flex: 1; min-width: 250px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
               <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Scribe #${idx + 1}</span>
-              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">✍️ ${scribe.name}</h3>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">${scribe.name}</h3>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
               ${langBadges}
@@ -12288,7 +12366,7 @@ function buildScribalMultilingualism(mount) {
         </div>
         
         <div style="border-top: 1px solid #f0f0f0; padding-top: 1rem;">
-          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">📖 Work by Language:</div>
+          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">Work by Language:</div>
           ${langBreakdown}
         </div>
       </div>
@@ -12298,7 +12376,7 @@ function buildScribalMultilingualism(mount) {
   mount.innerHTML = `
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
-        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">✍️ Scribal Multilingualism</h2>
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Scribal Multilingualism</h2>
         <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
           Scribes who worked across multiple languages, demonstrating linguistic competence and cultural mediation 
           in medieval manuscript production. This reveals the multilingual capabilities of individual scribes.
@@ -12337,7 +12415,7 @@ function buildScribalMultilingualism(mount) {
 }
 
 function buildInstitutionalMultilingualism(mount) {
-  console.log('🏛️ Building institutional multilingualism view...');
+  console.log('Building institutional multilingualism view...');
   
   // Collect institution language data via PU -> Institution relationships
   const allPUs = DATA.pu || [];
@@ -12456,7 +12534,7 @@ function buildInstitutionalMultilingualism(mount) {
           <div style="flex: 1; min-width: 250px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
               <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Institution #${idx + 1}</span>
-              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">🏛️ ${inst.name}</h3>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">${inst.name}</h3>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
               ${langBadges}
@@ -12475,7 +12553,7 @@ function buildInstitutionalMultilingualism(mount) {
         </div>
         
         <div style="border-top: 1px solid #f0f0f0; padding-top: 1rem;">
-          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">📚 Productions by Language:</div>
+          <div style="font-weight: 600; font-size: 0.9rem; color: #555; margin-bottom: 0.75rem;">Productions by Language:</div>
           ${langBreakdown}
         </div>
       </div>
@@ -12485,7 +12563,7 @@ function buildInstitutionalMultilingualism(mount) {
   mount.innerHTML = `
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
-        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">🏛️ Institutional Multilingualism</h2>
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Institutional Multilingualism</h2>
         <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
           Monastic institutions and scriptoria that produced manuscripts in multiple languages, revealing 
           institutional multilingual capacities and cultural exchange networks in medieval book production.
@@ -12524,7 +12602,7 @@ function buildInstitutionalMultilingualism(mount) {
 }
 
 function buildColophonTextDivergence(mount) {
-  console.log('🔀 Building colophon-text divergence view...');
+  console.log('Building colophon-text divergence view...');
   
   // Find SUs where colophon language differs from text language(s)
   const allSUs = DATA.su || [];
@@ -12596,7 +12674,7 @@ function buildColophonTextDivergence(mount) {
     const scribeInfo = div.scribes.length > 0
       ? div.scribes.map(s =>
           `<span style="font-size: 0.8rem; color: #666; margin-right: 1rem;">
-            ✍️ <span style="font-weight: 600; color: #333;">${s.scribeName}</span>
+            <span style="font-weight: 600; color: #333;">${s.scribeName}</span>
             ${s.role !== 'scribe' ? `<span style="color: #999; font-style: italic;"> (${s.role})</span>` : ''}
           </span>`
         ).join('')
@@ -12608,10 +12686,10 @@ function buildColophonTextDivergence(mount) {
           <div style="flex: 1; min-width: 250px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
               <span style="font-size: 0.85rem; color: #999; font-weight: 600;">Divergence #${idx + 1}</span>
-              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">🔀 ${div.suTitle}</h3>
+              <h3 style="margin: 0; font-size: 1.1rem; color: #1a1a1a; font-weight: 700;">${div.suTitle}</h3>
             </div>
             <div style="font-size: 0.85rem; color: #d4af37; margin-bottom: 0.75rem;">
-              📖 ${div.msTitle}
+              ${div.msTitle}
             </div>
           </div>
           <div>
@@ -12623,7 +12701,7 @@ function buildColophonTextDivergence(mount) {
         
         <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; padding: 1rem; background: #fafafa; border-radius: 0.375rem; margin-bottom: 1rem;">
           <div>
-            <div style="font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 0.5rem;">📝 Colophon Language:</div>
+            <div style="font-weight: 600; font-size: 0.85rem; color: #555; margin-bottom: 0.5rem;">Colophon Language:</div>
             <div>${colophonBadges}</div>
           </div>
           <div style="font-size: 1.5rem; color: #ccc;">→</div>
@@ -12661,7 +12739,7 @@ function buildColophonTextDivergence(mount) {
   mount.innerHTML = `
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
-        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">�🔀 Colophon-Text Language Divergence</h2>
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">�Colophon-Text Language Divergence</h2>
         <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
           Scribal units where the colophon language differs from the text language(s), revealing interesting 
           linguistic practices such as scribes writing colophons in their native language while copying texts 
@@ -12680,7 +12758,7 @@ function buildColophonTextDivergence(mount) {
         
         ${topPatterns ? `
           <div style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 2rem;">
-            <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem; color: #333;">📊 Most Common Divergence Patterns</h3>
+            <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1rem; color: #333;">Most Common Divergence Patterns</h3>
             ${topPatterns}
           </div>
         ` : ''}
@@ -12706,7 +12784,7 @@ function buildColophonAnalysis() {
   const mount = document.getElementById('colophon-mount');
   if (!mount) return;
   
-  console.log('📜 Building Colophon Analysis...');
+  console.log('Building Colophon Analysis...');
   
   // Set up tab navigation
   document.querySelectorAll('.colophon-tab-btn').forEach(btn => {
@@ -12782,13 +12860,13 @@ function hasColophon(su) {
 
 // 1. OVERVIEW TAB
 function buildColophonOverview(mount) {
-  console.log('📊 Building Colophon Overview...');
+  console.log('Building Colophon Overview...');
   
   const allSUs = DATA.su || [];
   
   // Debug: Check first few SUs
-  console.log('🔍 First SU sample:', allSUs[0]);
-  console.log('🔍 Colophon presence value for first SU:', getVal(allSUs[0], 'Colophon presence'));
+  console.log('First SU sample:', allSUs[0]);
+  console.log('Colophon presence value for first SU:', getVal(allSUs[0], 'Colophon presence'));
   
   const colophonSUs = allSUs.filter(su => hasColophon(su));
   console.log('✅ Found', colophonSUs.length, 'SUs with colophons');
@@ -12870,7 +12948,7 @@ function buildColophonOverview(mount) {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10);
   
-  console.log('📊 Colophon stats:', stats);
+  console.log('Colophon stats:', stats);
   
   // Calculate relative percentages (colophons vs total manuscripts)
   const allMSs = DATA.ms || [];
@@ -12895,7 +12973,7 @@ function buildColophonOverview(mount) {
   // Render
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">📜 Colophon Analysis Overview</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Colophon Analysis Overview</h2>
       
       <!-- Key Statistics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
@@ -12926,7 +13004,7 @@ function buildColophonOverview(mount) {
         
         <!-- By Language -->
         <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">🗣️ Colophons by Language</h3>
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">Colophons by Language</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${topLanguages.map(([lang, count]) => {
               const maxCount = topLanguages[0][1];
@@ -12948,7 +13026,7 @@ function buildColophonOverview(mount) {
         
         <!-- By Century -->
         <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">📅 Colophons by Century</h3>
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">Colophons by Century</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${topCenturies.map(([century, count]) => {
               const totalSUsInCentury = msByCentury[century] || 1;
@@ -12979,7 +13057,7 @@ function buildColophonOverview(mount) {
       <!-- By Region -->
       ${topRegions.length > 0 ? `
         <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">🌍 Colophons by Region</h3>
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1rem;">Colophons by Region</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${topRegions.map(([region, count]) => {
               const totalSUsInRegion = msByRegion[region] || 1;
@@ -13027,7 +13105,7 @@ function buildColophonOverview(mount) {
 
 // 2. SENTIMENT ANALYSIS TAB
 function buildSentimentAnalysis(mount) {
-  console.log('💭 Building Sentiment Analysis...');
+  console.log('Building Sentiment Analysis...');
   
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
@@ -13037,32 +13115,26 @@ function buildSentimentAnalysis(mount) {
     humility: {
       keywords: ['unworthy', 'poor', 'sinner', 'humble', 'weak', 'undeserving', 'lowly', 'inadequate', 'insufficient'],
       color: '#9333ea',
-      icon: '🙏'
     },
     pride: {
       keywords: ['diligent', 'careful', 'completed', 'accomplished', 'faithfully', 'skillfully', 'perfectly', 'successfully'],
       color: '#dc2626',
-      icon: '✨'
     },
     labor: {
       keywords: ['weary', 'tired', 'labor', 'labored', 'difficult', 'effort', 'toil', 'fatigue', 'hand', 'finger'],
       color: '#ea580c',
-      icon: '💪'
     },
     religious: {
       keywords: ['god', 'pray', 'prayer', 'blessing', 'mercy', 'grace', 'lord', 'christ', 'saint', 'holy', 'amen'],
       color: '#0891b2',
-      icon: '✝️'
     },
     temporal: {
       keywords: ['year', 'day', 'month', 'century', 'completed in', 'written in', 'finished on'],
       color: '#059669',
-      icon: '📅'
     },
     dedication: {
       keywords: ['honor', 'dedicated', 'memory', 'commissioned', 'request', 'patron', 'benefactor'],
       color: '#7c3aed',
-      icon: '💝'
     }
   };
   
@@ -13108,7 +13180,7 @@ function buildSentimentAnalysis(mount) {
   // Render
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">💭 Sentiment Analysis</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Sentiment Analysis</h2>
       
       <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
         Analyzing emotional expressions in ${colophonSUs.length} colophons using keyword matching. 
@@ -13400,7 +13472,7 @@ function buildThematicAnalysis(mount) {
 
 // 4. LINGUISTIC FEATURES TAB
 function buildLinguisticFeatures(mount) {
-  console.log('📝 Building Linguistic Features...');
+  console.log('Building Linguistic Features...');
   
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
@@ -13456,7 +13528,7 @@ function buildLinguisticFeatures(mount) {
   // Render
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">📝 Linguistic Features</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Linguistic Features</h2>
       
       <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
         Analyzing linguistic patterns across ${features.length} colophons.
@@ -13535,7 +13607,7 @@ function buildLinguisticFeatures(mount) {
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
         <!-- Longest Colophons -->
         <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">📏 Longest Colophons</h3>
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">Longest Colophons</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${longest.map((f, idx) => `
               <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem;">
@@ -13577,7 +13649,7 @@ function buildLinguisticFeatures(mount) {
 
 // 5. COMPARATIVE PATTERNS TAB
 function buildComparativePatterns(mount) {
-  console.log('🔍 Building Comparative Patterns...');
+  console.log('Building Comparative Patterns...');
   
   const allSUs = DATA.su || [];
   const allMSs = DATA.ms || [];
@@ -13706,7 +13778,7 @@ function buildComparativePatterns(mount) {
   // Render
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">🔍 Comparative Patterns</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Comparative Patterns</h2>
       
       <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
         Comparing colophon characteristics across regions and time periods.
@@ -13714,7 +13786,7 @@ function buildComparativePatterns(mount) {
       
       <!-- By Region -->
       <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
-        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">🌍 Patterns by Region</h3>
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Patterns by Region</h3>
         
         <!-- Colophon Count by Region -->
         <div style="margin-bottom: 2rem;">
@@ -13752,10 +13824,10 @@ function buildComparativePatterns(mount) {
               <thead>
                 <tr style="background: #f9f9f9; border-bottom: 2px solid #e0e0e0;">
                   <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #333;">Region</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #9333ea;">🙏 Humility</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #dc2626;">✨ Pride</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #ea580c;">💪 Labor</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #0891b2;">✝️ Religious</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #9333ea;">Humility</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #dc2626;">Pride</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #ea580c;">Labor</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #0891b2;">Religious</th>
                 </tr>
               </thead>
               <tbody>
@@ -13776,7 +13848,7 @@ function buildComparativePatterns(mount) {
       
       <!-- By Century -->
       <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">📅 Patterns Over Time</h3>
+        <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Patterns Over Time</h3>
         
         <!-- Average Length Trend -->
         <div style="margin-bottom: 2rem;">
@@ -13784,12 +13856,12 @@ function buildComparativePatterns(mount) {
           <div style="display: flex; align-items: end; gap: 0.5rem; height: 200px; padding: 1rem; background: #f9f9f9; border-radius: 0.5rem;">
             ${sortedCenturies.map(([century, data]) => {
               const maxLength = Math.max(...sortedCenturies.map(c => c[1].avgLength));
-              const height = (data.avgLength / maxLength) * 100;
+              const heightPercent = maxLength > 0 ? (data.avgLength / maxLength) * 100 : 0;
               return `
                 <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                   <div style="display: flex; flex-direction: column; justify-content: end; align-items: center; height: 100%; width: 100%;">
                     <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">${data.avgLength.toFixed(0)}</div>
-                    <div style="background: linear-gradient(180deg, #4facfe, #00f2fe); width: 100%; height: ${height}%; border-radius: 4px 4px 0 0; min-height: 4px;"></div>
+                    <div style="background: linear-gradient(180deg, #4facfe, #00f2fe); width: 100%; height: ${heightPercent}%; border-radius: 4px 4px 0 0; min-height: 4px;"></div>
                   </div>
                   <div style="font-size: 0.75rem; font-weight: 600; color: #333;">${century}</div>
                 </div>
@@ -13811,10 +13883,10 @@ function buildComparativePatterns(mount) {
                   <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #333;">Century</th>
                   <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #666;">Colophons</th>
                   <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #666;">Rate</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #9333ea;">🙏 Humility</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #dc2626;">✨ Pride</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #ea580c;">💪 Labor</th>
-                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #0891b2;">✝️ Religious</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #9333ea;">Humility</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #dc2626;">Pride</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #ea580c;">Labor</th>
+                  <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #0891b2;">Religious</th>
                 </tr>
               </thead>
               <tbody>
@@ -13860,7 +13932,7 @@ function buildComparativePatterns(mount) {
       
       <!-- Key Insights -->
       <div style="background: linear-gradient(135deg, #d4af3715, #c4941f30); padding: 2rem; border-radius: 0.5rem; margin-top: 2rem; border-left: 4px solid #d4af37;">
-        <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">💡 Key Insights</h3>
+        <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">Key Insights</h3>
         <ul style="margin: 0; padding-left: 1.5rem; color: #555; line-height: 2;">
           <li>Most colophons come from <strong>${topRegions[0] ? topRegions[0][0] : 'Unknown'}</strong> (${topRegions[0] ? topRegions[0][1].count : 0} colophons)</li>
           <li>Average colophon length: <strong>${Object.values(byRegion).reduce((sum, d) => sum + d.avgLength, 0) / Object.keys(byRegion).length | 0} words</strong></li>
@@ -13874,7 +13946,7 @@ function buildComparativePatterns(mount) {
 
 // 6. BROWSE COLOPHONS TAB
 function buildBrowseColophons(mount) {
-  console.log('📖 Building Browse Colophons...');
+  console.log('Building Browse Colophons...');
   
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
@@ -13888,7 +13960,7 @@ function buildBrowseColophons(mount) {
   
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">📖 Browse Colophons</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Browse Colophons</h2>
       
       <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
         Showing ${displayColophons.length} of ${colophonSUs.length} colophons. 
@@ -13937,13 +14009,13 @@ function buildBrowseColophons(mount) {
                 <div style="flex: 1;">
                   <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin: 0 0 0.5rem 0;">${esc(scribeName)}</h3>
                   <div style="font-size: 0.875rem; color: #666;">
-                    📜 ${esc(msTitle)}
+                    ${esc(msTitle)}
                   </div>
                 </div>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <div style="text-align: right; font-size: 0.875rem; color: #666; margin-right: 0.5rem;">
-                    <div>🗣️ ${esc(language)}</div>
-                    <div>📅 ${esc(century)} century (${esc(dating)})</div>
+                    <div>${esc(language)}</div>
+                    <div>${esc(century)} century (${esc(dating)})</div>
                   </div>
                   <button onclick="const card = document.getElementById('${cardId}'); const content = card.querySelector('.colophon-content'); const btn = this; if(content.style.display === 'none') { content.style.display = 'block'; btn.textContent = '▼'; } else { content.style.display = 'none'; btn.textContent = '▶'; }" 
                     style="background: #f0f0f0; border: none; padding: 0.5rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 1rem; width: 40px; height: 40px;">
@@ -13961,9 +14033,9 @@ function buildBrowseColophons(mount) {
                       <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;">
                         Original Transcription
                       </div>
-                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = '📋 Copy', 2000);" 
+                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = 'Copy', 2000);" 
                         style="background: #d4af37; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
-                        📋 Copy
+                        Copy
                       </button>
                     </div>
                     <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #d4af37;">
@@ -13981,9 +14053,9 @@ function buildBrowseColophons(mount) {
                       <div style="font-size: 0.75rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;">
                         English Translation
                       </div>
-                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = '📋 Copy', 2000);" 
+                      <button onclick="navigator.clipboard.writeText(this.parentElement.nextElementSibling.textContent.trim()); this.innerHTML = '✓ Copied!'; setTimeout(() => this.innerHTML = 'Copy', 2000);" 
                         style="background: #4facfe; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; white-space: nowrap;">
-                        📋 Copy
+                        Copy
                       </button>
                     </div>
                     <div style="background: #f0f8ff; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #4facfe;">
@@ -14057,11 +14129,11 @@ function buildBrowseColophons(mount) {
           <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #f0f0f0;">
             <div style="flex: 1;">
               <h3 style="font-size: 1.1rem; font-weight: 600; color: #333; margin: 0 0 0.5rem 0;">${esc(scribeName)}</h3>
-              <div style="font-size: 0.875rem; color: #666;">📜 ${esc(msTitle)}</div>
+              <div style="font-size: 0.875rem; color: #666;">${esc(msTitle)}</div>
             </div>
             <div style="text-align: right; font-size: 0.875rem; color: #666;">
-              <div>🗣️ ${esc(language)}</div>
-              <div>📅 ${esc(century)} century (${esc(dating)})</div>
+              <div>${esc(language)}</div>
+              <div>${esc(century)} century (${esc(dating)})</div>
             </div>
           </div>
           
@@ -14120,7 +14192,7 @@ async function boot(){
   indexAll(); buildTypeMap(); indexPointers(); indexRelationships();
   
   // Filter Historical People to only show those linked to Scribal Units via "scribe of" relationship
-  console.log('🔍 Filtering Historical People to show only scribes...');
+  console.log('Filtering Historical People to show only scribes...');
   const linkedHPIds = new Set();
   DATA.rel.forEach(rel => {
     const src = getRes(rel, 'Source record');
@@ -14141,7 +14213,7 @@ async function boot(){
   console.log(`✅ Filtered Historical People: ${DATA.hp.length} scribes (from ${hp.length} total)`);
   
   // Filter Monastic Institutions to show only those linked to PUs or HPs
-  console.log('🔍 Filtering Monastic Institutions to show only those linked to PUs or HPs...');
+  console.log('Filtering Monastic Institutions to show only those linked to PUs or HPs...');
   const linkedMIIds = new Set();
   
   // Check for PUs pointing to MIs (pointer field)
@@ -14182,7 +14254,7 @@ async function boot(){
   console.log(`✅ Filtered Monastic Institutions: ${DATA.mi.length} linked (from ${mi.length} total)`);
   
   // Filter Texts to show only those linked to PUs or SUs via "contains" relationship
-  console.log('🔍 Filtering Texts to show only those linked to PUs or SUs...');
+  console.log('Filtering Texts to show only those linked to PUs or SUs...');
   const linkedTXIds = new Set();
   
   DATA.rel.forEach(rel => {
@@ -14208,7 +14280,7 @@ async function boot(){
   // Re-index after filtering
   indexAll(); buildTypeMap(); indexPointers();
   
-  console.log('📊 Data loaded and filtered. Initializing event listeners...');
+  console.log('Data loaded and filtered. Initializing event listeners...');
   
   // Initialize all event listeners
   initModeNavigation();
@@ -14224,7 +14296,7 @@ async function boot(){
   updateAvailableViews();
   $status.textContent='';
   
-  console.log('✨ Boot complete! Page ready.');
+  console.log('Boot complete! Page ready.');
   
   // Check for URL parameters to auto-navigate to a specific record
   const params = new URLSearchParams(window.location.search);
@@ -14242,7 +14314,7 @@ async function boot(){
           const msSlug = 'irht-' + arkMatch[1];
           if (msSlug === slugParam) {
             // Found it! Jump to this manuscript
-            console.log('📖 Auto-navigating to manuscript:', ms.rec_ID);
+            console.log('Auto-navigating to manuscript:', ms.rec_ID);
             setTimeout(() => jumpTo('ms', String(ms.rec_ID)), 100);
             break;
           }
