@@ -8129,10 +8129,9 @@ function buildStatisticalDashboard(mount, list) {
   mount.innerHTML = html;
 }
 
-function buildStatsCard(label, value, icon) {
+function buildStatsCard(label, value) {
   return `
     <div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.25rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-      <div style="font-size: 2rem; margin-bottom: 0.25rem;">${icon}</div>
       <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${value}</div>
       <div style="font-size: 0.875rem; opacity: 0.9;">${label}</div>
     </div>
