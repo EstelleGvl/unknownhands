@@ -8010,8 +8010,8 @@ function buildStatisticalDashboard(mount, list) {
     statsCards = [
       buildStatsCard('Total Records', list.length),
       buildStatsCard('With Type', withType),
-      buildStatsCard('Countries', getUniqueFieldCount(list))),
-      buildStatsCard('Cities', getUniqueFieldCount(list), '🏙️')
+      buildStatsCard('Countries', getUniqueFieldCount(list, 'Country')),
+      buildStatsCard('Cities', getUniqueFieldCount(list, 'City'))
     ];
   } else if (entityFilter === 'mi') {
     // Monastic Institutions
@@ -8021,7 +8021,7 @@ function buildStatisticalDashboard(mount, list) {
       buildStatsCard('Total Records', list.length),
       buildStatsCard('With Order', withOrder),
       buildStatsCard('With Type', withType),
-      buildStatsCard('Countries', getUniqueFieldCount(list), '�')
+      buildStatsCard('Countries', getUniqueFieldCount(list, 'Country'))
     ];
   } else {
     // Default fallback

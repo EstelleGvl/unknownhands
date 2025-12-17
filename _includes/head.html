@@ -9,7 +9,8 @@
   <link rel="canonical" href="{{ page.url | absolute_url }}" />
 
   <!-- internal assets should be relative -->
-  <link rel="icon" type="image/png" href="{{ '/img/logo.png' | relative_url }}">
+  <!-- Use inline data URI favicon to avoid missing file errors -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==">
   <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
 
   <script src="{{ '/assets/jquery-3.2.1.min.js' | relative_url }}"></script>
