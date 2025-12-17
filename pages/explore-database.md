@@ -1259,7 +1259,7 @@ const HI_ENDPOINT = "{{ site.heurist.holding_json | default: '/data/holding_inst
 const MI_ENDPOINT = "{{ site.heurist.monastic_json | default: '/data/monastic_institutions.json' | relative_url }}";
 const HP_ENDPOINT = "{{ site.heurist.people_json | default: '/data/historical_people.json' | relative_url }}";
 const TX_ENDPOINT = "{{ site.heurist.texts_json | default: '/data/texts.json' | relative_url }}";
-const REL_ENDPOINT = "/assets/data/relationships.json";
+const REL_ENDPOINT = "{{ site.heurist.relations_json | default: '/assets/data/relationships.json' | relative_url }}";
 const BASE = "{{ site.baseurl | default: '' }}";
 
 /* ---------- Load manifest-annos map ---------- */
