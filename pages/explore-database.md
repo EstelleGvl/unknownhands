@@ -10997,7 +10997,7 @@ function buildHierarchicalTreeVisualization(mount, list) {
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
             <span style="font-size: 0.85rem; color: #999; font-weight: 600;">PU #${puIdx + 1}</span>
             <a href="?browse=${puId}" style="font-weight: 600; font-size: 0.95rem; color: #333; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#e74c3c'" onmouseout="this.style.color='#333'">
-              ${isCrossMSPU ? '🔗' : '📦'} ${pu.title} <span style="font-size: 0.7rem; color: #999;">🔗</span>
+              ${isCrossMSPU ? '' : ''} ${pu.title} <span style="font-size: 0.7rem; color: #999;"></span>
             </a>
           </div>
           ${puSuCount > 0 ? `<div style="font-size: 0.75rem; color: #999; margin-bottom: 0.5rem;">Contains ${puSuCount} Scribal Unit${puSuCount !== 1 ? 's' : ''}</div>` : '<div style="font-size: 0.75rem; color: #999; font-style: italic;">No scribal units</div>'}
