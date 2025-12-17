@@ -513,7 +513,20 @@ show_title: false
           <!-- Analytics controls -->
           <div style="padding: 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
             <!-- Entity filter -->
-
+            <div id="entity-filter-panel" style="margin-bottom: 0.5rem;">
+              <label style="display: block; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.875rem;">
+                📊 Filter by Entity Type:
+                <select id="entity-filter-select" style="margin-left: 0.5rem; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
+                  <option value="su">Scribal Units</option>
+                  <option value="ms">Manuscripts</option>
+                  <option value="pu">Production Units</option>
+                  <option value="hi">Holding Institutions</option>
+                  <option value="mi">Monastic Institutions</option>
+                  <option value="hp">Historical People</option>
+                  <option value="tx">Texts</option>
+                </select>
+              </label>
+            </div>
             <div id="analytics-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
               <strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.
             </div>
@@ -1031,14 +1044,19 @@ show_title: false
     grid-row: 2;
     align-self: start;
     overflow-y: auto;
-    max-height: calc(100vh - 250px);
+    max-height: calc(100vh - 280px);
     padding-bottom: 1rem;
+    position: relative;
   }
   
   /* Pagination spans full width at bottom */
   .db-main-viz-wrapper > .db-pager {
     grid-column: 1 / -1;
     grid-row: 3;
+    position: relative;
+    z-index: 10;
+    background: white;
+    padding-top: 0.5rem;
   }
   
   /* Responsive: stack on smaller screens */
@@ -7849,12 +7867,14 @@ if (codicVizType) {
 
 // Statistical Dashboard
 function buildStatisticalDashboard(mount, list) {
-  // Build statistics cards based on entity type
-  let statsCards = [];
-  let entityFilter = 'su'; // Default to Scribal Units
+  // Get selected entity filter from dropdown
+  const entityFilter = document.getElementById('entity-filter-select')?.value || 'su';
   
   // Filter list by entity type
   list = list.filter(r => r.rty === entityFilter);
+  
+  // Build statistics cards based on entity type
+  let statsCards = [];
   
   if (entityFilter === 'su') {
     // Scribal Units
