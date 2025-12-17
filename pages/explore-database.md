@@ -1031,6 +1031,8 @@ show_title: false
     grid-row: 2;
     align-self: start;
     overflow-y: auto;
+    max-height: calc(100vh - 250px);
+    padding-bottom: 1rem;
   }
   
   /* Pagination spans full width at bottom */
@@ -3417,8 +3419,8 @@ function collectMapData(viewType) {
         const pt = parseWKTPoint(wkt);
         if (!pt) return;
         
-        const year = getYear(getDetail(rec,'PU Date terminus post quem')?.value) ||
-                     getYear(getDetail(rec,'PU Date terminus ante quem')?.value);
+        const year = getYear(getDetail(rec,'Normalized terminus post quem')?.value) ||
+                     getYear(getDetail(rec,'Normalized terminus ante quem')?.value);
         const id = String(rec.rec_ID);
         const title = (MAP.pu.title(rec) || 'Untitled').replace(/"/g,'&quot;');
         
@@ -3608,6 +3610,8 @@ function renderMapLayers() {
     if (!m.year) return true; // Always include records without dates
     return m.year >= timeStart && m.year <= timeEnd;
   });
+  
+  console.log(`Time filter: ${timeStart}-${timeEnd}, Total markers: ${MAP_MARKERS_DATA.length}, Filtered: ${filtered.length}`);
   
   // Update time range display
   const rangeDisplay = document.getElementById('map-time-range');
