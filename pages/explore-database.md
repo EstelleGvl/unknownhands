@@ -4691,7 +4691,7 @@ function getActiveEntityFilters() {
   
   // If none are checked, show nothing (not all)
   if (selected.length === 0) {
-    console.log('⚠️ No entity types selected');
+    console.log('No entity types selected');
     return [];
   }
   
@@ -4761,7 +4761,7 @@ function populateFilterDropdowns() {
 function populateDropdown(elementId, values, placeholder = 'Any') {
   const select = document.getElementById(elementId);
   if (!select) {
-    console.warn('⚠️ Dropdown element not found:', elementId);
+    console.warn('Dropdown element not found:', elementId);
     return;
   }
   
@@ -5134,7 +5134,7 @@ function buildFullDatabaseNetwork() {
   // Limit to prevent browser crash - show warning if too large
   if (nodes.length > 500) {
     mount.innerHTML = `<div style="padding:2rem;text-align:center;color:#666;">
-      ⚠️ Full database network contains ${nodes.length} nodes and would be too complex to visualize effectively.<br>
+      Full database network contains ${nodes.length} nodes and would be too complex to visualize effectively.<br>
       Please select a specific subset view or use the search function to explore from a specific record.
     </div>`;
     return;
@@ -5188,7 +5188,7 @@ function buildSubsetNetwork(subsetType) {
         </div>
         
         <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:0.5rem;padding:1rem;margin:1rem 0;">
-          <div style="font-weight:600;margin-bottom:0.5rem;">⚠️ Network too large to visualize</div>
+          <div style="font-weight:600;margin-bottom:0.5rem;">Network too large to visualize</div>
           <div style="font-size:0.875rem;color:#666;">
             Visualizing ${totalNodes.toLocaleString()} nodes would overwhelm your browser.
           </div>
@@ -5315,7 +5315,7 @@ function buildSampledNetwork(entityTypes, sampleSize) {
     types = ['su', 'ms', 'pu', 'hi', 'mi', 'hp', 'tx']; // No filter = all types
   } else if (Array.isArray(entityTypes) && entityTypes.length === 0) {
     // Empty array = nothing selected, show message
-    mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#999;">⚠️ No entity types selected. Check at least one entity type in the filters.</div>';
+    mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#999;">No entity types selected. Check at least one entity type in the filters.</div>';
     return;
   } else {
     types = entityTypes;
@@ -5459,7 +5459,7 @@ function buildHubsNetwork(entityTypes, topN) {
     types = ['su', 'ms', 'pu', 'hi', 'mi', 'hp', 'tx']; // No filter = all types
   } else if (Array.isArray(entityTypes) && entityTypes.length === 0) {
     // Empty array = nothing selected, show message
-    mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#999;">⚠️ No entity types selected. Check at least one entity type in the filters.</div>';
+    mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#999;">No entity types selected. Check at least one entity type in the filters.</div>';
     return;
   } else {
     types = entityTypes;
@@ -5965,7 +5965,7 @@ let CURRENT_NETWORK_DATA = { nodes: [], links: [] }; // Store current network da
 
 function exportCurrentNetwork(format) {
   if (!CURRENT_NETWORK_DATA.nodes || CURRENT_NETWORK_DATA.nodes.length === 0) {
-    alert('⚠️ No network to export\n\nPlease generate a network first (Random Sample, Top Hubs, or search for a record).');
+    alert('No network to export\n\nPlease generate a network first (Random Sample, Top Hubs, or search for a record).');
     return;
   }
   
@@ -6087,7 +6087,7 @@ cat("\\nPlot saved to: ${filename}_plot.pdf\\n")
  */
 function exportSvgAsSvg(svgElement, filename) {
   if (!svgElement) {
-    alert('⚠️ No visualization to export');
+    alert('No visualization to export');
     return;
   }
   
@@ -6151,7 +6151,7 @@ function exportSvgAsSvg(svgElement, filename) {
  */
 function exportSvgAsPng(svgElement, filename, scaleFactor = 3) {
   if (!svgElement) {
-    alert('⚠️ No visualization to export');
+    alert('No visualization to export');
     return;
   }
   
@@ -6231,7 +6231,7 @@ function exportSvgAsPng(svgElement, filename, scaleFactor = 3) {
   img.onerror = function(e) {
     URL.revokeObjectURL(url);
     console.error('Failed to load SVG:', e);
-    alert('⚠️ Failed to export PNG. Please try SVG export instead.');
+    alert('Failed to export PNG. Please try SVG export instead.');
   };
   
   img.src = url;
@@ -6246,7 +6246,7 @@ function exportMapAsPng(containerId, filename) {
   const mapElement = document.getElementById(containerId);
   
   if (!mapElement) {
-    alert('⚠️ No map to export');
+    alert('No map to export');
     return;
   }
   
@@ -6269,7 +6269,7 @@ function exportMapAsPng(containerId, filename) {
   }).catch(error => {
     console.error('Map export error:', error);
     mapElement.style.cursor = originalCursor;
-    alert('⚠️ Failed to export map. Please try again or use a screenshot tool.');
+    alert('Failed to export map. Please try again or use a screenshot tool.');
   });
 }
 
@@ -6281,20 +6281,20 @@ function exportAnalyticsVisualization(format) {
   const analyticsMount = document.getElementById('analytics-mount');
   
   if (!analyticsMount) {
-    alert('⚠️ No analytics visualization to export');
+    alert('No analytics visualization to export');
     return;
   }
   
   // Check if there's actual content
   if (!analyticsMount.innerHTML.trim()) {
-    alert('⚠️ No visualization content to export. Please generate a visualization first.');
+    alert('No visualization content to export. Please generate a visualization first.');
     return;
   }
   
   // Check if element has dimensions
   const rect = analyticsMount.getBoundingClientRect();
   if (rect.width === 0 || rect.height === 0) {
-    alert('⚠️ Visualization has no visible dimensions. Please ensure the visualization is properly rendered.');
+    alert('Visualization has no visible dimensions. Please ensure the visualization is properly rendered.');
     return;
   }
   
@@ -6304,9 +6304,9 @@ function exportAnalyticsVisualization(format) {
   if (!svgElement) {
     // If no SVG, use html2canvas for HTML content
     if (format === 'png') {
-      alert('⚠️ HTML-based visualizations cannot be exported automatically. Please use your browser\'s screenshot tool (Cmd+Shift+4 on Mac, or right-click > "Save image as" in some browsers).');
+      alert('HTML-based visualizations cannot be exported automatically. Please use your browser\'s screenshot tool (Cmd+Shift+4 on Mac, or right-click > "Save image as" in some browsers).');
     } else {
-      alert('⚠️ This visualization type does not support SVG export. Please use PNG export or screenshot tool.');
+      alert('This visualization type does not support SVG export. Please use PNG export or screenshot tool.');
     }
     return;
   }
@@ -6329,7 +6329,7 @@ function exportAnalyticsVisualization(format) {
  */
 function exportTreeItemAsSvg(treeItem, msId) {
   if (!treeItem) {
-    alert('⚠️ No tree item to export');
+    alert('No tree item to export');
     return;
   }
   
@@ -6416,7 +6416,7 @@ function exportTreeItemAsSvg(treeItem, msId) {
  */
 function exportTreeItemAsPng(treeItem, msId) {
   if (!treeItem) {
-    alert('⚠️ No tree item to export');
+    alert('No tree item to export');
     return;
   }
   
@@ -6461,7 +6461,7 @@ function exportTreeItemAsPng(treeItem, msId) {
     console.error('Tree export error:', error);
     document.body.removeChild(tempContainer);
     treeItem.style.cursor = '';
-    alert('⚠️ Failed to export tree. Please try again.');
+    alert('Failed to export tree. Please try again.');
   });
 }
 
@@ -6784,7 +6784,7 @@ function initEventListeners() {
         if (ACTIVE_MODE === 'network') buildNetworkView();
       });
     } else {
-      console.warn('⚠️ Dropdown filter element not found:', id);
+      console.warn('Dropdown filter element not found:', id);
     }
   });
   
@@ -6801,7 +6801,7 @@ function initEventListeners() {
         if (ACTIVE_MODE === 'network') buildNetworkView();
       }, 500));
     } else {
-      console.warn('⚠️ Text filter element not found:', id);
+      console.warn('Text filter element not found:', id);
     }
   });
   
@@ -6813,7 +6813,7 @@ function initEventListeners() {
         if (ACTIVE_MODE === 'network') buildNetworkView();
       }, 500));
     } else {
-      console.warn('⚠️ Numeric filter element not found:', id);
+      console.warn('Numeric filter element not found:', id);
     }
   });
   
@@ -6952,7 +6952,7 @@ function initEventListeners() {
       const filename = `unknownhands-network-depth${depth}-${Date.now()}.svg`;
       exportSvgAsSvg(svg, filename);
     } else {
-      alert('⚠️ No network visualization to export\n\nPlease generate a network first.');
+      alert('No network visualization to export\n\nPlease generate a network first.');
     }
   });
   
@@ -6972,7 +6972,7 @@ function initEventListeners() {
       const filename = `unknownhands-network-depth${depth}-${Date.now()}.png`;
       exportSvgAsPng(svg, filename, 3); // 3x scale for ~300 DPI
     } else {
-      alert('⚠️ No network visualization to export\n\nPlease generate a network first.');
+      alert('No network visualization to export\n\nPlease generate a network first.');
     }
   });
   
@@ -6984,7 +6984,7 @@ function initEventListeners() {
       const filename = `unknownhands-timeline-${Date.now()}.svg`;
       exportSvgAsSvg(svg, filename);
     } else {
-      alert('⚠️ No timeline visualization to export\n\nPlease switch to Timeline view first.');
+      alert('No timeline visualization to export\n\nPlease switch to Timeline view first.');
     }
   });
   
@@ -6996,7 +6996,7 @@ function initEventListeners() {
       const filename = `unknownhands-timeline-${Date.now()}.png`;
       exportSvgAsPng(svg, filename, 3); // 3x scale for ~300 DPI
     } else {
-      alert('⚠️ No timeline visualization to export\n\nPlease switch to Timeline view first.');
+      alert('No timeline visualization to export\n\nPlease switch to Timeline view first.');
     }
   });
   
@@ -7081,7 +7081,7 @@ $pathSearch?.addEventListener('input', debounce(() => {
     'ms': 'Manuscript', 
     'pu': '🏭 Production Unit',
     'hi': 'Holding Institution',
-    'mi': '⛪ Monastic Institution',
+    'mi': 'Monastic Institution',
     'hp': 'Person',
     'tx': 'Text'
   };
@@ -7960,75 +7960,75 @@ function buildStatisticalDashboard(mount, list) {
     const withScript = getCountByFieldExists(list, 'Normalised script(s)');
     const withLanguage = getCountByFieldExists(list, 'Colophon language');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('Date Range', getDateRange(list), '📅'),
-      buildStatsCard('With Script', withScript, '✍️'),
-      buildStatsCard('With Language', withLanguage, '🗣️')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('Date Range', getDateRange(list)),
+      buildStatsCard('With Script', withScript),
+      buildStatsCard('With Language', withLanguage)
     ];
   } else if (entityFilter === 'ms') {
     // Manuscripts
     const avgFolios = getAverageFolios(list);
     const withDigitization = getCountByFieldExists(list, 'Digitization Status');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('Date Range', getDateRange(list), '📅'),
-      buildStatsCard('Avg Folios', avgFolios, '📄'),
-      buildStatsCard('Digitized', withDigitization, '💻')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('Date Range', getDateRange(list)),
+      buildStatsCard('Avg Folios', avgFolios),
+      buildStatsCard('Digitized', withDigitization)
     ];
   } else if (entityFilter === 'pu') {
     // Production Units
     const withLocation = getCountByFieldExists(list, 'Production unit location');
     const withCountry = getCountByFieldExists(list, 'PU country');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('Date Range', getDateRange(list), '📅'),
-      buildStatsCard('With Location', withLocation, '📍'),
-      buildStatsCard('With Country', withCountry, '🌍')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('Date Range', getDateRange(list)),
+      buildStatsCard('With Location', withLocation),
+      buildStatsCard('With Country', withCountry)
     ];
   } else if (entityFilter === 'hp') {
     // Historical People
     const withGender = getCountByFieldExists(list, 'Gender');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('Date Range', getDateRange(list), '📅'),
-      buildStatsCard('With Gender', withGender, '👤'),
-      buildStatsCard('With Dates', getRecordsWithDates(list), '⏰')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('Date Range', getDateRange(list)),
+      buildStatsCard('With Gender', withGender),
+      buildStatsCard('With Dates', getRecordsWithDates(list))
     ];
   } else if (entityFilter === 'tx') {
     // Texts
     const withGenre = getCountByFieldExists(list, 'Genre');
     const withSubgenre = getCountByFieldExists(list, 'Subgenre');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('With Genre', withGenre, '📚'),
-      buildStatsCard('With Subgenre', withSubgenre, '📖'),
-      buildStatsCard('Date Range', getDateRange(list), '📅')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('With Genre', withGenre),
+      buildStatsCard('With Subgenre', withSubgenre),
+      buildStatsCard('Date Range', getDateRange(list))
     ];
   } else if (entityFilter === 'hi') {
     // Holding Institutions
     const withType = getCountByFieldExists(list, 'Institution type');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('With Type', withType, '🏛️'),
-      buildStatsCard('Countries', getUniqueFieldCount(list, 'Country'), '🌍'),
-      buildStatsCard('Cities', getUniqueFieldCount(list, 'City'), '🏙️')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('With Type', withType),
+      buildStatsCard('Countries', getUniqueFieldCount(list))),
+      buildStatsCard('Cities', getUniqueFieldCount(list), '🏙️')
     ];
   } else if (entityFilter === 'mi') {
     // Monastic Institutions
     const withOrder = getCountByFieldExists(list, 'Religious order');
     const withType = getCountByFieldExists(list, 'Type of monastery');
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('With Order', withOrder, '⛪'),
-      buildStatsCard('With Type', withType, '🏰'),
-      buildStatsCard('Countries', getUniqueFieldCount(list, 'Country'), '�')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('With Order', withOrder),
+      buildStatsCard('With Type', withType),
+      buildStatsCard('Countries', getUniqueFieldCount(list), '�')
     ];
   } else {
     // Default fallback
     statsCards = [
-      buildStatsCard('Total Records', list.length, '📊'),
-      buildStatsCard('Date Range', getDateRange(list), '📅'),
-      buildStatsCard('With Dates', getRecordsWithDates(list), '⏰')
+      buildStatsCard('Total Records', list.length),
+      buildStatsCard('Date Range', getDateRange(list)),
+      buildStatsCard('With Dates', getRecordsWithDates(list))
     ];
   }
   
@@ -9755,7 +9755,7 @@ function buildScatterPlot(title, dataPoints, xVar, yVar, xLabel, yLabel, colorVa
   if (xValues.length === 0 || yValues.length === 0) {
     return `
       <div style="padding: 2rem; text-align: center; color: #666;">
-        <p>⚠️ Cannot create scatter plot: one or both variables are not numeric</p>
+        <p>Cannot create scatter plot: one or both variables are not numeric</p>
         <p style="font-size: 0.875rem; margin-top: 0.5rem;">Try using a box plot or bar chart for categorical variables</p>
       </div>
     `;
@@ -10962,7 +10962,7 @@ function buildHierarchicalTreeVisualization(mount, list) {
                SPANS ${suPUs.length} PUs
              </div>
              <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(255,152,0,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #e65100; width: 100%;">
-               <strong>⚠️ Cross-PU Scribal Unit:</strong> This scribal unit also appears in:<br/>
+               <strong>Cross-PU Scribal Unit:</strong> This scribal unit also appears in:<br/>
                ${otherPUTitles.map(t => `<span style="margin-left: 1rem;">→ ${t}</span>`).join('<br/>')}
              </div>`
           : '';
@@ -10988,7 +10988,7 @@ function buildHierarchicalTreeVisualization(mount, list) {
              SPANS ${puMsList.length} MSS
            </div>
            <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(196, 148, 31,0.1); border-radius: 0.25rem; font-size: 0.75rem; color: #7b1fa2;">
-             <strong>⚠️ Cross-Manuscript PU:</strong> This production unit also appears in:<br/>
+             <strong>Cross-Manuscript PU:</strong> This production unit also appears in:<br/>
              ${otherMSTitles.map(t => `<span style="margin-left: 1rem;">→ ${t}</span>`).join('<br/>')}
            </div>`
         : '';
@@ -11837,7 +11837,7 @@ function buildMultilingualismOverview(mount) {
         <!-- Religious Order Patterns -->
         <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
           <h3 style="margin-bottom: 1rem; color: #333; display: flex; align-items: center; gap: 0.5rem;">
-            <span>⛪</span> Religious Order Patterns
+            Religious Order Patterns
           </h3>
           ${topOrders.length > 0 ? `
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -13308,7 +13308,7 @@ function buildSentimentAnalysis(mount) {
 
 // 3. THEMATIC ANALYSIS TAB
 function buildThematicAnalysis(mount) {
-  console.log('🏷️ Building Thematic Analysis...');
+  console.log('Building Thematic Analysis...');
   
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
@@ -13390,7 +13390,7 @@ function buildThematicAnalysis(mount) {
   // Render
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
-      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">🏷️ Thematic Analysis</h2>
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Thematic Analysis</h2>
       
       <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">
         Identifying common themes across ${colophonSUs.length} colophons. Themes are detected using keyword matching.
@@ -13563,7 +13563,7 @@ function buildLinguisticFeatures(mount) {
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
           <div>
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-              <span style="font-size: 1.5rem;">💬</span>
+              <span style="font-size: 1.5rem;">Expression</span>
               <span style="font-weight: 600; color: #333;">First-Person Usage</span>
             </div>
             <div style="font-size: 2rem; font-weight: 700; color: #d4af37; margin-bottom: 0.5rem;">
@@ -13577,7 +13577,7 @@ function buildLinguisticFeatures(mount) {
           
           <div>
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-              <span style="font-size: 1.5rem;">❓</span>
+              <span style="font-size: 1.5rem;">Questions</span>
               <span style="font-weight: 600; color: #333;">Questions</span>
             </div>
             <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">
@@ -13590,7 +13590,7 @@ function buildLinguisticFeatures(mount) {
           
           <div>
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-              <span style="font-size: 1.5rem;">❗</span>
+              <span style="font-size: 1.5rem;">Exclamations</span>
               <span style="font-weight: 600; color: #333;">Exclamations</span>
             </div>
             <div style="font-size: 2rem; font-weight: 700; color: #ef4444; margin-bottom: 0.5rem;">
@@ -13626,7 +13626,7 @@ function buildLinguisticFeatures(mount) {
         
         <!-- Most Personal (First-Person) -->
         <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">💬 Most Personal Expression</h3>
+          <h3 style="margin-bottom: 1rem; color: #333; font-size: 1.1rem;">Most Personal Expression</h3>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             ${mostFirstPerson.filter(f => f.firstPersonCount > 0).map((f, idx) => `
               <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem;">

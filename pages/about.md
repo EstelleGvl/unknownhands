@@ -62,9 +62,9 @@ Data not included at this point includes:
 
 
 # Ethics & Care
-Unknown Hands is directed by Estelle Guéville (Yale University) with the support of colleagues in manuscript studies and digital humanities. See the [Team page](/team) for advisors, collaborators, and acknowledgments.
+Unknown Hands is directed by Estelle Guéville (Yale University) with the support of colleagues in manuscript studies and digital humanities. See the [Team page](/unknownhands/team) for advisors, collaborators, and acknowledgments.
 
-We aim to represent people’s work accurately and respectfully. When records include sensitive details or contested attributions, we document the basis, allow for disagreement, and respond to takedown/correction requests. [Contact us](/contact) for concerns.
+We aim to represent people’s work accurately and respectfully. When records include sensitive details or contested attributions, we document the basis, allow for disagreement, and respond to takedown/correction requests. [Contact us](/unknownhands/contact) for concerns.
 
 - Site content: [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) (please attribute Unknown Hands and author: Estelle Guéville).
 - Data: [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/).
@@ -79,4 +79,4 @@ We aim to represent people’s work accurately and respectfully. When records in
 
  We aim to develop collaborations and we welcome participation of scholars working on subjects beyond the scope of this project. Feel free to share with us data about languages and periods not currently included in the dataset.
 
-See [Contact](/contact) for how to reach us and [Participate](/participate) to get involved in the project.
+See [Contact](/unknownhands/contact) for how to reach us and [Participate](/unknownhands/participate) to get involved in the project.
