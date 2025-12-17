@@ -3024,9 +3024,8 @@ function renderCurrent(){
 function recompute(){
   const cfg = FACETS[ENTITY];
   const prevState = readFacetState(cfg);
-  // Build facets from full dataset, not filtered list, so all options remain available
-  buildFacets(DATA[ENTITY] || [], cfg, prevState);
   const list = computeList();
+  buildFacets(list, cfg, prevState);
   render(list, ENTITY);
 }
 
