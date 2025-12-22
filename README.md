@@ -1,4 +1,4 @@
-# 🕯 Unknown Hands — Technical Documentation
+# Unknown Hands — Technical Documentation
 
 > *Unknown Hands* is a digital research and publication ecosystem designed to document, analyze, and visualize the work of pre-modern female scribes (before 1600).  
 > It integrates structured metadata (Heurist), IIIF-compliant manuscript images, machine-readable transcriptions, and interactive data exploration tools.
@@ -16,92 +16,6 @@
 7. [Development Setup](#7-development-setup)
 8. [Standards & Interoperability](#8-standards--interoperability)
 9. [Deployment](#9-deployment)
-
-**📖 For detailed transcription workflow, see [TRANSCRIPTION_GUIDE.md](./TRANSCRIPTION_GUIDE.md)**
-
----
-
-## ✨ Recent Updates (November 2025)
-
-### Interface Reorganization
-
-The Explore Database has undergone a major structural reorganization:
-
-**New Main Navigation Tabs** (8 total):
-1. 🔍 **Browse & Search** — Faceted search with CSV export
-2. 📊 **Analytics** — Statistical dashboard
-3. 🗺️ **Map** — Geographic visualizations with movement tracking
-4. 📖 **Codicology** — Physical manuscript feature analysis
-5. 🌳 **Hierarchical Tree** — Manuscript structure explorer
-6. 🔗 **Network** — Relationship visualization
-7. 🌍 **Multilingualism** — Language pattern analysis
-8. 📜 **Colophon Analysis** — Sentiment and thematic analysis
-
-**Key Changes**:
-- **Timeline visualization removed** — Temporal analysis now in Analytics dashboard
-- **Codicology elevated to main tab** — Now includes filtering, presets, comparison tools, and export
-- **Hierarchical Tree elevated to main tab** — Enhanced with search, structural filters, and sorting
-- **Multilingualism tab added** — 5 sub-tabs exploring linguistic diversity across manuscripts, scribes, and institutions
-- **Colophon Analysis tab added** — 6 sub-tabs for sentiment, themes, linguistic features, and browsing colophons
-- **Relationships integrated** — Fully searchable relationship data indexed throughout
-
-**Map Enhancements**:
-- **New visualization**: "Manuscripts - Movement (Production → Current)" shows manuscript migration patterns
-- Streamlined view selector with 6 focused options
-- PNG export functionality
-
-**Export Capabilities Expanded**:
-- **Browse**: Export filtered results as CSV
-- **Analytics**: Export dashboard as PNG
-- **Map**: Export visualization as PNG
-- **Codicology**: Export analyses as PNG, comparison views supported
-- **Hierarchical Tree**: Export tree structure as PNG
-- **Network**: Export as SVG or PNG
-
-### Transcription System Enhancements
-- **Unified Transcription Linking**: Created `manifest-annos-map.json` mapping system
-  - All 230+ manuscripts now automatically link to transcriptions in viewer
-  - Supports both legacy (`data/transcriptions/`) and new (`data/annos/`) structures
-  - Eliminates hard-coded slug extraction logic
-- **Search Performance**: Implemented lazy loading for 31MB search corpus
-  - Corpus loads on-demand instead of page load
-  - Prevents blocking of initial page render
-  - Added loading indicators and status messages
-
-### Database & Viewer Improvements
-- **Explore Database Page**:
-  - Removed hard-coded IRHT/ARK-only transcription logic
-  - Now uses manifest-annos-map for universal transcription support
-  - Added 4 new manuscripts with full transcription integration:
-    * Laon, Bibliothèque municipale, Ms.423 (181 pages)
-    * Cologne, Erzbischöfliche Diözesan- und Dombibliothek, Ms. 65 (708 pages)
-    * Cologne, Erzbischöfliche Diözesan- und Dombibliothek, Ms. 67 (378 pages)
-    * Munich, Bayerische Staatsbibliothek, Clm 22016 (327 pages)
-
-- **Mirador Viewer**:
-  - Fixed transcription display for all manuscript sources
-  - Dynamic annotation loading via manifest-annos-map
-  - Search functionality within viewer for manuscript selection
-
-### Search Transcriptions Page
-- **Bug Fixes**:
-  - Fixed null reference errors from thumbnail feature removal
-  - Fixed comparison counter stuck at 0 (ID mismatch bug)
-  - Fixed "Clear Selection" button always disabled
-- **Functionality**:
-  - Comparison feature now fully operational
-  - Export functionality working
-  - Lazy initialization prevents race conditions
-
-### Documentation
-- **Consolidated transcription documentation** into `TRANSCRIPTION_GUIDE.md`
-- **Marked 7 outdated docs** as superseded
-- **Renamed** `pages/README.md` → `pages/documentation.md` (clearer purpose)
-- **Updated main README** with transcription system architecture
-
-### New Scripts
-- `scripts/generate_manifest_map.py`: Generates manifest-to-annotations mapping from manifests.yml
-- `scripts/pagexml_to_iiif.py`: Already existed, now documented and understood
 
 ---
 
@@ -166,7 +80,7 @@ The Explore Database has undergone a major structural reorganization:
 
 │              JEKYLL STATIC SITE GENERATOR                    │
 
-├─────────────────────────────────────────────────────────────┤### 🧩 Heurist Database
+├─────────────────────────────────────────────────────────────┤### Heurist Database
 
 │  • Liquid templating                                         │- Central research model defining entities and relationships:
 
@@ -178,7 +92,7 @@ The Explore Database has undergone a major structural reorganization:
 
 └──────────┬──────────────────────────────────────────────────┘
 
-           │### ⚙️ Python Scripts
+           │### Python Scripts
 
            ▼| Script | Role |
 
@@ -204,7 +118,7 @@ The Explore Database has undergone a major structural reorganization:
 
 
 
-## 2. Technology Stack### 🌐 Jekyll Website
+## 2. Technology Stack### Jekyll Website
 
 A modular static site using:
 
@@ -690,14 +604,6 @@ The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
 - Gender vs. script correlations
 - Temporal gender patterns
 
-**Codicological Analysis**
-- Material vs. Size: Parchment/paper size comparisons
-- Size vs. Date: Manuscript dimensions over time
-- Quire Patterns: Catchwords and signatures analysis
-- Column Patterns: Column layouts vs. dimensions
-- Margin Ratio: Codex size vs. writing space ratio
-- Custom Analysis: User-defined variable comparisons
-
 **Multilingualism Module** *(NEW)*
 - Overview: Distribution of languages across manuscripts and scribal units
 - Manuscripts Tab: Language patterns per manuscript with filtering
@@ -836,15 +742,6 @@ bundle exec jekyll serve --config _config.yml,_config_dev.yml
 
 ### 6.4 Adding New Content
 
-**Add a manuscript:**
-1. Add entry to `/data/manuscripts.csv`
-2. Create IIIF manifest (or link to existing)
-3. Run `python scripts/setup_manuscripts.py`
-4. Add PAGE-XML transcriptions to appropriate folder
-5. Run `python scripts/pagexml_to_iiif.py <slug>`
-6. Rebuild search index: `python scripts/build_search_index.py`
-7. Rebuild site: `bundle exec jekyll build`
-
 **Add a static page:**
 1. Create Markdown file in `/pages/`
 2. Add front matter with layout and title
@@ -923,23 +820,6 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ---
 
-## 9. Contributing
-
-### Code Contributions
-1. Fork the repository
-2. Create feature branch
-3. Follow existing code style
-4. Test thoroughly
-5. Submit pull request with description
-
-### Data Contributions
-- Suggest new manuscripts via GitHub issues
-- Report errors in existing data
-- Share transcription improvements
-- Propose new analytical features
-
----
-
 ## 10. License & Credits
 
 **Code License:** MIT License (see LICENSE.txt)
@@ -956,8 +836,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 - [Bootstrap](https://getbootstrap.com/) — UI framework
 
 **Project Team:**
-- **Director:** Estelle Guéville, Yale University
-- **Research:** Medieval Studies, Digital Humanities
+- **Director:** Estelle Guéville, Yale University, Medieval Studies, Digital Humanities
 - **Focus:** Pre-modern female scribal production
 
 ---
@@ -974,4 +853,4 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ---
 
-*Last updated: November 2025*
+*Last updated: December 2025*
