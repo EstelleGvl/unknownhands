@@ -353,7 +353,10 @@ show_title: false
 
       try {
         const base = new URL(mappingUrl, location.href);
-        const apUrl = new URL(apRel, base).toString();
+        // Prepend baseurl if apRel starts with /
+        const baseUrl = '{{ site.baseurl | default: "" }}';
+        const apRelWithBase = (apRel.startsWith('/') && baseUrl) ? baseUrl + apRel : apRel;
+        const apUrl = new URL(apRelWithBase, base).toString();
         const ap = apCache.has(apUrl) ? apCache.get(apUrl) : await (await fetch(apUrl)).json();
         apCache.set(apUrl, ap);
         
