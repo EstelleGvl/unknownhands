@@ -1065,15 +1065,20 @@ show_title: false
   }
   
   /* Responsive: stack on smaller screens */
-  @media (max-width: 1400px) {
-    #mode-browse[aria-hidden="false"] {
+  /* At 1440px: Stack the details panel below results for better readability */
+  @media (max-width: 1440px) {
+    .db-main-viz-wrapper {
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
-    .db-main-viz-wrapper {
-      gap: 1.5rem;
+    .db-main-viz-wrapper > .db-viz {
+      grid-column: 1;
+      grid-row: 3;
+      max-height: 70vh;
     }
   }
   
+  /* At 1200px: Also stack the facets sidebar */
   @media (max-width: 1200px) {
     #mode-browse[aria-hidden="false"] {
       grid-template-columns: 1fr;
@@ -1081,17 +1086,6 @@ show_title: false
     }
     .db-facets {
       max-width: 100%;
-    }
-    .db-main-viz-wrapper {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    .db-main-viz-wrapper > .db-viz {
-      grid-column: 1;
-      grid-row: 3;
-    }
-    #db-viz {
-      display: none; /* Hide details on smaller screens, or make it a modal */
     }
   }
   

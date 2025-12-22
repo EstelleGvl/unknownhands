@@ -13,6 +13,8 @@ permalink: /publications/
 # Presentations
 
 Findings from Unknown Hands have been presented at international conferences and workshops, including:
+  - **Forthcoming:** Guéville, Estelle. “The Scribal Unit: A New Descriptive Layer for Medieval Manuscripts.” *International Medieval Congress,* Leeds University, July 2026.
+  - **Forthcoming:** Guéville, Estelle. “Unknown Hands: A Digital Resource for the Study of Female Scribal Production.” *International Congress on Medieval Studies,* Medieval Institute, Western Michigan University, Kalamazoo, May 2026.
   - **Forthcoming:** Guéville, Estelle. “Unknown Hands and the Digital Recovery of Female Scribes.” Paper presented as part of the roundtable “New Possibilities and Directions in Digital Medieval Studies” at the *International Congress on Medieval Studies,* Medieval Institute, Western Michigan University, Kalamazoo, May 2026.
   - Guéville, Estelle. “Multilingualism and Literacy Among Medieval Female Scribes.” *International Congress on Medieval Studies*, Medieval Institute, Western Michigan University. 9 May 2025.
   - Guéville, Estelle.“Unknown Hands: Addressing the Scribal Gender Gap in Manuscript Studies.” *Harvard-Yale-Brown Graduate Conference in Book History.* 5 May 2025.
