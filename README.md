@@ -31,8 +31,8 @@ The Explore Database has undergone a major structural reorganization:
 1. 🔍 **Browse & Search** — Faceted search with CSV export
 2. 📊 **Analytics** — Statistical dashboard
 3. 🗺️ **Map** — Geographic visualizations with movement tracking
-4. 📖 **Codicology** — Physical manuscript feature analysis (formerly in Analytics)
-5. 🌳 **Hierarchical Tree** — Manuscript structure explorer (formerly in Analytics)
+4. 📖 **Codicology** — Physical manuscript feature analysis
+5. 🌳 **Hierarchical Tree** — Manuscript structure explorer
 6. 🔗 **Network** — Relationship visualization
 7. 🌍 **Multilingualism** — Language pattern analysis
 8. 📜 **Colophon Analysis** — Sentiment and thematic analysis

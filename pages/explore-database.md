@@ -2,6 +2,12 @@
 layout: page
 permalink: /explore-database/
 show_title: false
+banner:
+  image: "pizan.jpg"
+  y: "50%"
+  clickable: yes
+  height: '500px'
+  caption: "Christine of Pizan writing at her desk. BnF, français 603, f. 81v"
 ---
 
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
