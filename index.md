@@ -19,12 +19,7 @@ Using archival research, codicology, paleography, and digital humanities methods
   - To map and visualize women’s scribal activity across Western Europe.  
   - To provide resources for researchers, teachers, and the wider public.  
 
-**What’s available now**
-  -	A beta site with project overview, roadmap, and initial examples.
-  -	Initial summary visualizations and data (counts over time, maps, etc.).
-  - Key references to study pre-modern female scribes.
-
-The project is in active development. Explore our [About](/pages/about.md) page to learn more about the methods, see our [Roadmap](/pages/roadmap.md) for upcoming milestones, or visit the [Bibliography](/pages/bibliography.md) for key references on the subject of female scribes.
+The project is in active development. Explore our [About](/pages/about.md) page to learn more about the methods, see the [Explore the database](/pages/explore-database.md) to visualize the data or visit the [Bibliography](/pages/bibliography.md) for key references on the subject of female scribes.
 
 <br>
 

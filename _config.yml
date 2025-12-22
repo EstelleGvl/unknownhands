@@ -108,8 +108,8 @@ menu:
 #        link: '/exhibits/b/'
   - label: 'Explore'
     sub:
-      - label: 'Data'
-        link: '/data/'
+#      - label: 'Data'
+#        link: '/data/'
       - label: 'Explore the Database'
         link: '/explore-database/'
       - label: 'IIIF Viewer'
