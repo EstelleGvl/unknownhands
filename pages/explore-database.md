@@ -1785,7 +1785,21 @@ function jumpTo(type, id){
     setMode('browse');
   }
   
-  switchEntity(type);
+  // Switch entity type without rendering (we'll render with selection below)
+  if (ENTITY !== type) {
+    ENTITY = type;
+    document.querySelectorAll('#entity-switch .entity-btn').forEach(c=>c.classList.toggle('is-on', c.dataset.entity===type));
+    $search.value=''; $field.value=''; $sort.value='';
+    page=1;
+    
+    // Rebuild facets but don't render yet
+    const cfg = FACETS[type];
+    const list = computeList();
+    buildFacets(list, cfg, {});
+    updateAvailableViews();
+  }
+  
+  // Now render with the selected record
   const list = computeList();
   const selIndex = indexOfRecord(list, id);
   if (selIndex >= 0) page = Math.floor(selIndex / pageSize) + 1;
