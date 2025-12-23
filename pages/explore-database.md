@@ -3042,9 +3042,10 @@ function renderCurrent(){
 function recompute(){
   const cfg = FACETS[ENTITY];
   const prevState = readFacetState(cfg);
-  const list = computeList();
-  buildFacets(list, cfg, prevState);
-  render(list, ENTITY);
+  const fullList = DATA[ENTITY] || []; // Use full unfiltered data for facet counts
+  const filteredList = computeList(); // Use filtered data for results
+  buildFacets(fullList, cfg, prevState); // Build facets from full dataset
+  render(filteredList, ENTITY); // Render filtered results
 }
 
 /* ---------- Views (Results / Map / Timeline / Network) ---------- */
