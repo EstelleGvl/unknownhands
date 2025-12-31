@@ -2166,7 +2166,7 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     if (visited.has(id)) return;
     
     // Check if this entity type is allowed by filters (except for center node at level 0)
-    if (level > 0 && activeEntityTypes.length > 0 && !activeEntityTypes.includes(type)) {
+    if (level > 0 && !activeEntityTypes.includes(type)) {
       return; // Skip this node if its entity type is not in the active filters
     }
     
@@ -4708,15 +4708,14 @@ function buildNetworkView(){
 }
 
 // Get active entity type filters
-// Get active entity type filters
 function getActiveEntityFilters() {
   const checkboxes = document.querySelectorAll('.network-entity-filter:checked');
   const selected = Array.from(checkboxes).map(cb => cb.value);
   
-  // If none are checked, show nothing (not all)
+  // If none are checked, return all entity types (show everything)
   if (selected.length === 0) {
-    console.log('No entity types selected');
-    return [];
+    console.log('No entity types selected - showing all');
+    return ['su', 'ms', 'pu', 'hi', 'mi', 'hp', 'tx'];
   }
   
   console.log('Active entity types:', selected);
@@ -5645,10 +5644,10 @@ function renderD3Network(mount, nodes, links) {
   
   svg.call(zoom);
   
-  // Store zoom object for button controls
-  svg.zoomBehavior = zoom;
-  mount._d3Svg = svg;
-  mount._d3Transform = d3.zoomIdentity;
+  // Store zoom object and svg for button controls on mount element
+  mount._zoom = zoom;
+  mount._svg = svg;
+  mount._g = g;
   
   const colors = {
     su: '#e6b800',
@@ -5854,10 +5853,10 @@ function renderD3ClusterNetwork(mount, nodes, links) {
   
   svg.call(zoom);
   
-  // Store zoom object for button controls
-  svg.zoomBehavior = zoom;
-  mount._d3Svg = svg;
-  mount._d3Transform = d3.zoomIdentity;
+  // Store zoom object and svg for button controls on mount element
+  mount._zoom = zoom;
+  mount._svg = svg;
+  mount._g = g;
   
   const colors = {
     su: '#e6b800',
@@ -6865,41 +6864,31 @@ function initEventListeners() {
   // Network zoom controls
   document.getElementById('network-zoom-in')?.addEventListener('click', () => {
     const mount = document.getElementById('network-mount');
-    if (mount && mount._d3Svg && mount._d3Svg.zoomBehavior) {
-      const svg = mount._d3Svg;
-      const zoom = mount._d3Svg.zoomBehavior;
-      svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+    if (mount && mount._svg && mount._zoom) {
+      mount._svg.transition().duration(300).call(mount._zoom.scaleBy, 1.3);
     }
   });
   
   document.getElementById('network-zoom-out')?.addEventListener('click', () => {
     const mount = document.getElementById('network-mount');
-    if (mount && mount._d3Svg && mount._d3Svg.zoomBehavior) {
-      const svg = mount._d3Svg;
-      const zoom = mount._d3Svg.zoomBehavior;
-      svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+    if (mount && mount._svg && mount._zoom) {
+      mount._svg.transition().duration(300).call(mount._zoom.scaleBy, 0.7);
     }
   });
   
   document.getElementById('network-zoom-reset')?.addEventListener('click', () => {
     const mount = document.getElementById('network-mount');
-    if (mount && mount._d3Svg && mount._d3Svg.zoomBehavior) {
-      const svg = mount._d3Svg;
-      const zoom = mount._d3Svg.zoomBehavior;
-      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    if (mount && mount._svg && mount._zoom) {
+      mount._svg.transition().duration(500).call(mount._zoom.transform, d3.zoomIdentity);
     }
   });
   
   document.getElementById('network-zoom-fit')?.addEventListener('click', () => {
     const mount = document.getElementById('network-mount');
-    if (mount && mount._d3Svg && mount._d3Svg.zoomBehavior) {
-      const svg = mount._d3Svg;
-      const zoom = mount._d3Svg.zoomBehavior;
-      const g = svg.select('g');
-      
+    if (mount && mount._svg && mount._zoom && mount._g) {
       // Get bounds of all nodes
       try {
-        const bounds = g.node().getBBox();
+        const bounds = mount._g.node().getBBox();
         const width = mount.clientWidth || 800;
         const height = mount.clientHeight || 600;
         
@@ -6912,7 +6901,7 @@ function initEventListeners() {
         const translate = [width / 2 - scale * x, height / 2 - scale * y];
         
         const transform = d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale);
-        svg.transition().duration(750).call(zoom.transform, transform);
+        mount._svg.transition().duration(750).call(mount._zoom.transform, transform);
       } catch (e) {
         console.warn('Could not fit network to screen:', e);
       }
