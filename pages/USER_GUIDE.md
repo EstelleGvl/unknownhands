@@ -5,7 +5,7 @@ show_title: false
 ---
 
 
-# 📖 Unknown Hands — User Guide
+# Unknown Hands — User Guide
 
 **Welcome to Unknown Hands!** This guide will help you explore and analyze our database of pre-modern female scribal production. Whether you're a researcher, student, or simply curious about medieval manuscripts, this manual will show you how to get the most out of our interactive platform.
 
@@ -22,10 +22,11 @@ show_title: false
 7. [Network Explorer](#7-network-explorer)
 8. [Multilingualism Analysis](#8-multilingualism-analysis)
 9. [Colophon Analysis](#9-colophon-analysis)
-10. [IIIF Viewer & Mirador](#10-iiif-viewer--mirador)
-11. [Search Transcriptions](#11-search-transcriptions)
-12. [Tips & Tricks](#12-tips--tricks)
-13. [FAQ](#13-frequently-asked-questions)
+10. [Explore Formulae](#10-explore-formulae)
+11. [IIIF Viewer & Mirador](#11-iiif-viewer--mirador)
+12. [Search Transcriptions](#12-search-transcriptions)
+13. [Tips & Tricks](#13-tips--tricks)
+14. [FAQ](#14-frequently-asked-questions)
 
 ---
 
@@ -235,7 +236,7 @@ The database now includes **relationship data** that is fully searchable:
    - Historical geography
    - See production centers
 
-3. **Manuscripts - Movement (Production → Current)** ⭐ NEW
+3. **Manuscripts - Movement (Production → Current)**
    - Visualizes manuscript movement from production location to current holding
    - Shows historical migration patterns
    - Arrows connect origin to current location
@@ -275,7 +276,7 @@ The database now includes **relationship data** that is fully searchable:
 ### Exporting Maps
 
 **Export as Image:**
-1. Click **"📷 Export PNG"** button (top right of map)
+1. Click **"Export PNG"** button (top right of map)
 2. High-resolution PNG image downloads
 3. Use in presentations, publications, or reports
 
@@ -295,9 +296,9 @@ Explore relationships between manuscript physical features through interactive v
 ### Quick Start Presets
 
 **Try These Combinations:**
-- **📏 Material vs Size** — See how parchment and paper manuscripts differ in dimensions
-- **📅 Date vs Folios** — Explore temporal changes in manuscript length
-- **📚 Quire Type vs Material** — Analyze structural variations by material
+- **Material vs Size** — See how parchment and paper manuscripts differ in dimensions
+- **Date vs Folios** — Explore temporal changes in manuscript length
+- **Quire Type vs Material** — Analyze structural variations by material
 
 Click preset buttons to quickly load interesting analyses, or select variables manually.
 
@@ -306,30 +307,29 @@ Click preset buttons to quickly load interesting analyses, or select variables m
 **Three-Step Process:**
 
 1. **X-Axis Variable** — Choose from:
-   - **📏 Dimensions:** Height, Width, Justification measurements, Margin ratio
-   - **📖 Structure:** Folios, Columns, Lines per page, Quires
-   - **📅 Temporal:** Date, Century
-   - **📝 Categorical:** Material, Quire type, Ruling type, Script type, Binding type
+   - **Dimensions:** Height, Width, Justification measurements, Margin ratio
+   - **Structure:** Folios, Columns, Lines per page, Quires
+   - **Temporal:** Date, Century
+   - **Categorical:** Material, Quire type, Ruling type, Script type, Binding type
 
 2. **Y-Axis Variable** — Same options as X-axis
 
 3. **Color/Group By** (optional) — Add a third dimension:
-   - **👤 People & Gender:** Gender, Scribe name
-   - **🏛️ Production Context:** Material, Origin country/region, Monastery type
-   - **📚 Physical Features:** Quire type, Catchwords, Signatures, Watermark, Ruling type, Columns
-   - **📜 Content:** Has colophon, Language, Script type, Decoration
-   - **🤝 Collaboration:** Collaboration type, Multiple scribes
-
+   - **People & Gender:** Gender, Scribe name
+   - **Production Context:** Material, Origin country/region, Monastery type
+   - **Physical Features:** Quire type, Catchwords, Signatures, Watermark, Ruling type, Columns
+   - **Content:** Has colophon, Language, Script type, Decoration
+   - **Collaboration:** Collaboration type, Multiple scribes
 ### Filtering Data
 
 **Active Filters Panel:**
-- **📅 Century:** Select one or more centuries (hold Cmd/Ctrl for multiple)
-- **📄 Material:** Filter by Parchment, Paper, or both
-- **🌍 Region:** Select specific geographic regions
+- **Century:** Select one or more centuries (hold Cmd/Ctrl for multiple)
+- **Material:** Filter by Parchment, Paper, or both
+- **Region:** Select specific geographic regions
 
 **Filter Status:** Shows how many manuscripts match your criteria
 
-**Clear Filters:** Click ✨ Clear Filters button to reset
+**Clear Filters:** Click Clear Filters button to reset
 
 ### Visualization Types
 
@@ -347,7 +347,7 @@ Choose from multiple visualization methods:
    - Compare frequencies
    - See which combinations are most common
 
-4. **🔗 Correlation Analysis** — Statistical relationships
+4. **Correlation Analysis** — Statistical relationships
    - Quantify strength of relationships
    - Identify significant patterns
 
@@ -360,9 +360,9 @@ Choose from multiple visualization methods:
 **Build Multi-Panel Comparisons:**
 
 1. Configure your first analysis (variables, filters, viz type)
-2. Click **"➕ Add to Comparison"**
+2. Click **"Add to Comparison"**
 3. Configure additional analyses
-4. Click **"👁️ View Comparisons"** to see all side-by-side
+4. Click **"View Comparisons"** to see all side-by-side
 5. Export combined view as image
 
 **Use Cases:**
@@ -373,7 +373,7 @@ Choose from multiple visualization methods:
 ### Exporting
 
 **Export as Image:**
-- Click **"📥 Export as Image"** button
+- Click **"Export as Image"** button
 - High-resolution PNG downloads
 - Include in papers, presentations, or reports
 
@@ -383,7 +383,7 @@ Choose from multiple visualization methods:
 
 ### Accessing Hierarchical Tree Mode
 
-1. In **Explore Database**, click **🌳 Hierarchical Tree** tab (top navigation)
+1. In **Explore Database**, click **Hierarchical Tree** tab (top navigation)
 2. Interactive tree visualization loads
 
 ### What is the Hierarchical Tree?
@@ -405,14 +405,14 @@ This visualization reveals the complex internal structure of medieval manuscript
 
 ### Filtering by Structure
 
-**🎯 Filter by Structure Panel:**
+**Filter by Structure Panel:**
 
 Check boxes to show only manuscripts with specific characteristics:
 
-- **📖 3+ Production Units** — Complex composite manuscripts
-- **🔀 Interleaved Units** — Non-sequential PU arrangements
-- **📚 PUs Across Multiple MSS** — Production units spanning multiple manuscripts
-- **✍️ SUs Across Multiple PUs** — Scribes working across production units
+- **3+ Production Units** — Complex composite manuscripts
+- **Interleaved Units** — Non-sequential PU arrangements
+- **PUs Across Multiple MSS** — Production units spanning multiple manuscripts
+- **SUs Across Multiple PUs** — Scribes working across production units
 
 **Use Cases:**
 - Find manuscripts with complex codicological history
@@ -421,7 +421,7 @@ Check boxes to show only manuscripts with specific characteristics:
 
 ### Sorting Options
 
-**📊 Sort by:**
+**Sort by:**
 - **Alphabetical** (default) — Manuscript titles A-Z
 - **Production Units (Most)** — Manuscripts with most PUs first
 - **Scribal Units (Most)** — Manuscripts with most SUs first
@@ -443,7 +443,7 @@ Check boxes to show only manuscripts with specific characteristics:
 ### Exporting
 
 **Export as Image:**
-- Click **"📥 Export as Image"** button
+- Click **"Export as Image"** button
 - Exports current tree view as PNG
 - Useful for presenting manuscript structure
 
@@ -514,8 +514,8 @@ The Network mode includes a **Relationships** filter that allows you to explore 
 ### Exporting Network Visualizations
 
 **Export Options:**
-- **📷 Export SVG** — Vector format, scalable without quality loss, ideal for publications
-- **📷 Export PNG** — Raster image format, good for presentations and web use
+- **Export SVG** — Vector format, scalable without quality loss, ideal for publications
+- **Export PNG** — Raster image format, good for presentations and web use
 
 Click the appropriate export button to download your current network view.
 
@@ -525,7 +525,7 @@ Click the appropriate export button to download your current network view.
 
 ### Accessing Multilingualism Mode
 
-1. In **Explore Database**, click **🌍 Multilingualism** tab (top navigation)
+1. In **Explore Database**, click **Multilingualism** tab (top navigation)
 2. View loads showing the Multilingualism Explorer
 
 ### What is Multilingualism Analysis?
@@ -534,7 +534,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 
 ### Five Analysis Tabs
 
-#### 1. 📊 Overview Tab
+#### 1. Overview Tab
 
 **Purpose:** Get a quick snapshot of linguistic diversity
 
@@ -546,7 +546,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 
 **Use this to:** Understand the overall linguistic composition of the collection
 
-#### 2. 📚 Multilingual Manuscripts Tab
+#### 2. Multilingual Manuscripts Tab
 
 **Purpose:** Find and analyze manuscripts containing multiple languages
 
@@ -566,13 +566,13 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 - Identify the most linguistically diverse manuscripts
 - Study language combinations (e.g., Latin + vernacular)
 
-#### 3. ✍️ Scribal Multilingualism Tab
+#### 3. Scribal Multilingualism Tab
 
 **Purpose:** Examine language use at the scribal unit level
 
 **Key Distinction:**
-- 📝 **Colophon language** — Language of the scribe's note/signature
-- 📖 **Text language** — Language of the main content copied
+- **Colophon language** — Language of the scribe's note/signature
+- **Text language** — Language of the main content copied
 
 **Features:**
 - Shows scribal units with their attributed languages
@@ -585,7 +585,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 - Identify cases where colophon language differs from text language
 - Study individual scribal linguistic abilities
 
-#### 4. 🏛️ Institutional Multilingualism Tab
+#### 4. Institutional Multilingualism Tab
 
 **Purpose:** Analyze linguistic diversity by monastery/convent
 
@@ -600,7 +600,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 - Compare linguistic diversity across religious institutions
 - Identify regional patterns in institutional multilingualism
 
-#### 5. 🔀 Colophon-Text Divergence Tab
+#### 5. Colophon-Text Divergence Tab
 
 **Purpose:** Specialized analysis of language code-switching
 
@@ -635,7 +635,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 
 ### Accessing Colophon Analysis Mode
 
-1. In **Explore Database**, click **📜 Colophon Analysis** tab (top navigation)
+1. In **Explore Database**, click **Colophon Analysis** tab (top navigation)
 2. View loads showing the Colophon Analysis interface
 
 ### What is a Colophon?
@@ -652,7 +652,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 
 ### Six Analysis Tabs
 
-#### 1. 📊 Overview Tab
+#### 1. Overview Tab
 
 **Purpose:** Understand overall colophon prevalence patterns
 
@@ -671,17 +671,17 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 
 **Use this to:** Get a quantitative overview of colophon presence across the corpus
 
-#### 2. 💭 Sentiment Analysis Tab
+#### 2. Sentiment Analysis Tab
 
 **Purpose:** Detect emotional tone and attitudes in colophons
 
 **Six Sentiment Categories:**
-- 🙏 **Humility** — unworthy, poor, sinner, humble, weak
-- ✨ **Pride** — diligent, careful, completed, accomplished
-- 💪 **Labor** — weary, tired, labor, difficult, hand, finger
-- ✝️ **Religious** — god, pray, prayer, blessing, mercy
-- ⏰ **Temporal** — finished, completed, ended, year, day
-- 💝 **Dedication** — patron, gift, love, honor
+- **Humility** — unworthy, poor, sinner, humble, weak
+- **Pride** — diligent, careful, completed, accomplished
+- **Labor** — weary, tired, labor, difficult, hand, finger
+- **Religious** — god, pray, prayer, blessing, mercy
+- **Temporal** — finished, completed, ended, year, day
+- **Dedication** — patron, gift, love, honor
 
 **Features:**
 - **Most Expressive Colophons:** Shows colophons with highest emotional content (expandable from 5 to 20)
@@ -696,7 +696,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - Identify patterns in how scribes represented themselves
 - Study regional or temporal variations in emotional expression
 
-#### 3. 🏷️ Thematic Analysis Tab
+#### 3. Thematic Analysis Tab
 
 **Purpose:** Identify major topics and themes in colophons
 
@@ -722,7 +722,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - Compare thematic emphasis across time and geography
 - Identify common colophon conventions
 
-#### 4. 📝 Linguistic Features Tab
+#### 4. Linguistic Features Tab
 
 **Purpose:** Analyze colophon length, complexity, and style
 
@@ -754,7 +754,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - Find particularly detailed or brief colophons
 - Identify regional linguistic patterns
 
-#### 5. 🔍 Comparative Patterns Tab
+#### 5. Comparative Patterns Tab
 
 **Purpose:** Compare colophon characteristics across regions and centuries
 
@@ -783,7 +783,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - Find patterns in colophon conventions
 - Answer questions like: "Did 15th-century colophons express more labor/fatigue than 13th-century ones?"
 
-#### 6. 📖 Browse Colophons Tab
+#### 6. Browse Colophons Tab
 
 **Purpose:** Read, search, and filter colophons in detail
 
@@ -831,7 +831,176 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 
 ---
 
-## 10. IIIF Viewer & Mirador
+## 10. Explore Formulae
+
+### Accessing Explore Formulae Mode
+
+1. In **Explore Database**, click **Colophon Analysis** tab (top navigation)
+2. Click the **Explore Formulae** sub-tab
+3. View loads showing predefined formulaic patterns found across the corpus
+
+### What are Colophon Formulae?
+
+Colophon formulae are standardized phrases, expressions, and linguistic patterns that scribes commonly used in their colophons. These recurring formulas reveal:
+- Traditional scribal practices and conventions
+- Regional and linguistic patterns
+- Cross-cultural influences and transmission of scribal culture
+- Common themes in medieval self-expression
+
+Formulae can be complete phrases ("Qui scripsit scribat semper cum Domino vivat") or shorter fragments ("anno domini", "finito libro").
+
+### Overview Statistics
+
+The interface displays three key metrics:
+- **Predefined Formulas:** Total number of formulaic patterns being searched
+- **Languages:** Number of languages represented in the formula collection
+- **Colophons Searched:** Total colophons in the database searched for matches
+
+### Filter Options
+
+**Four-Step Filtering System:**
+
+**1a. Select Language**
+- Filter formulas by language (Latin, Dutch, German, Italian, French, Portuguese, Swedish, etc.)
+- Shows count of formulas available per language
+- Example: "Latin (20 formulas)" or "Dutch (3 formulas)"
+
+**1b. OR Select Country**
+- Alternative filter by geographic region
+- Shows formulas found in manuscripts from specific countries
+- Example: "Germany (15 formulas)" or "Netherlands (8 formulas)"
+
+**2. Select Specific Formula (optional)**
+- Once a language or country is selected, this dropdown populates with specific formulas
+- Allows drilling down to individual formula patterns
+- Shows the exact text of each formula
+
+**3. Filter by Type**
+- Classify formulas by thematic category:
+  - **Prayer:** Requests for prayers ("bidt om gods wil", "oretis pro scriptore")
+  - **Dating:** Temporal references ("anno domini", "int jaer ons heren")
+  - **Scribe:** Scribe identification ("qui scripsit", "die schreiberin")
+  - **Completion:** Finishing statements ("finitus et completus", "explicit")
+  - **Humility:** Self-deprecating expressions ("peccatrice", "indegniamente")
+  - **Ownership:** Possession statements ("dit boeck hoert", "libro è delle monache")
+  - **Praise:** Religious praise ("laus et gloria Christo", "lob sye gott")
+  - **Other:** Miscellaneous formulas
+
+### Formula Display
+
+**Each formula card shows:**
+- **Formula Text:** The main formula in its original language
+- **Language:** Language of the formula
+- **Match Count:** Number of unique manuscripts containing this formula
+- **Variants:** Accepted spelling variations and fragments (e.g., "int jaer", "int iaer", "intjaer")
+- **Formula Type Badge:** Color-coded category (Prayer, Dating, Scribe, etc.)
+
+### Viewing Matching Examples
+
+**Expand Formula Cards:**
+- Click "Show Examples" to view colophons containing the formula
+- Displays up to 20 matching examples per page
+- Each example shows:
+  - **Manuscript title** and shelfmark
+  - **Country** and **Century** of production
+  - **Matched variant:** Which specific variant was found
+  - **Full colophon transcription:** Original text (first 200 characters)
+  - **English translation** (if available)
+  - **View SU button:** Navigate to full scribal unit record
+
+**Pagination:**
+- Navigate through multiple pages of examples if more than 20 matches exist
+- Page counter shows current page and total pages
+
+### Global Formula Distribution Map
+
+Expand the **Global Formula Distribution Map** to see:
+- Geographic spread of all formulas in the corpus
+- Interactive map showing locations where formulas appear
+- Click markers to see which formulas are found in each region
+- Visual representation of formula transmission and regional patterns
+
+### Example Formulas by Language
+
+**Latin Formulas:**
+- "Qui scripsit scribat semper cum Domino vivat" (May the one who wrote always live with the Lord)
+- "Finito libro sit laus et gloria Christo" (The book finished, let there be praise and glory to Christ)
+- "Explicit expliceat ludere scriptrix eat" (The end is unfolded, let the female scribe go play)
+- "Detur pro penna scriptori pulchra puella" (Let a beautiful girl be given to the scribe for his pen)
+
+**Dutch Formulas:**
+- "int jaer ons heren" (in the year of our Lord)
+- "bidt om gods wil" (pray for God's sake)
+- "dit boeck hoert" (this book belongs)
+
+**German Formulas:**
+- "pitt got für" (pray to God for)
+- "das puch hat geschriben swester" (the book was written by sister)
+- "do man zalt" / "als man zalt" (when one counts [dating formulas])
+- "Lob sye Gott" (Praise be to God)
+
+**Italian Formulas:**
+- "libro è delle monache" (the book belongs to the nuns)
+- "A llaude et onore" (To praise and honor)
+- "peccatrice" (sinner [female])
+
+**Other Languages:**
+- **French:** "Pries Nostre Seigneur" (Pray to Our Lord)
+- **Portuguese:** "Acabousse" (It was finished); "Screveo freira" (The nun wrote)
+- **Swedish:** "bidhin kära systra" (pray dear sisters); "owärdoghe" (unworthy)
+
+### Use Cases and Research Questions
+
+**Formula Distribution:**
+- Which formulas were most widespread across Europe?
+- Are certain formulas region-specific or pan-European?
+- How did formulas spread across linguistic boundaries?
+
+**Temporal Patterns:**
+- Did certain formulas become more or less common over time?
+- When did particular formulas first appear in the corpus?
+- Are there chronological patterns in formula usage?
+
+**Linguistic Analysis:**
+- Which languages have the most diverse formula traditions?
+- How do formulas in Latin differ from vernacular languages?
+- Are there translation patterns between Latin and vernacular formulas?
+
+**Cultural Transmission:**
+- Do formulas cluster geographically?
+- Which institutions shared formula traditions?
+- How did formulas travel between convents and scriptoria?
+
+**Gender-Specific Formulas:**
+- Are there formulas unique to female scribes?
+- How do female scribes adapt traditionally masculine formulas?
+- What does formula usage reveal about female scribal identity?
+
+### Tips for Using Explore Formulae
+
+1. **Start Broad:** Begin by viewing all formulas to understand the full scope
+2. **Filter Strategically:** Use language or country filters to focus on specific traditions
+3. **Compare Variants:** Notice how the same formula appears with different spellings
+4. **Check Examples:** Always expand formula cards to see real examples in context
+5. **Cross-Reference:** Use the "View SU" button to explore full records and related data
+6. **Track Patterns:** Note which formulas appear in multiple countries or time periods
+7. **Consider Zero Matches:** Formulas with zero matches indicate patterns not yet found in the corpus
+
+### Formula Search Technology
+
+**Fuzzy Matching:**
+- The system uses flexible pattern matching to find formula variants
+- Accounts for spelling variations, spacing differences, and abbreviations
+- Case-insensitive matching ensures comprehensive coverage
+
+**Variant Recognition:**
+- Each formula includes predefined variants based on scholarly research
+- Captures common abbreviations and alternative spellings
+- Recognizes partial matches (formula fragments)
+
+---
+
+## 11. IIIF Viewer & Mirador
 
 ### What is the IIIF Viewer?
 
@@ -916,7 +1085,7 @@ View high-resolution manuscript images with synchronized transcriptions. Uses **
 
 ---
 
-## 11. Search Transcriptions
+## 12. Search Transcriptions
 
 ### Accessing Transcription Search
 
@@ -1028,7 +1197,7 @@ The transcription search includes a comparison tool for analyzing multiple resul
 
 ---
 
-## 12. Tips & Tricks
+## 13. Tips & Tricks
 
 ### Power User Techniques
 
@@ -1149,33 +1318,33 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
 **Export by Tab:**
 
 1. **Map Visualizations:**
-   - Click **"📷 Export PNG"** button
+   - Click **"Export PNG"** button
    - Captures entire map with all markers and layers
    - Filename: `unknownhands-map-{timestamp}.png`
    - **Resolution:** 3x scale (~300 DPI)
 
 2. **Analytics Dashboard:**
-   - Click **"📥 Export as Image"** button
+   - Click **"Export as Image"** button
    - Captures current statistical visualization
    - Filename: `unknownhands-analytics-{timestamp}.png`
    - **Resolution:** 3x scale (~300 DPI)
 
 3. **Codicology Analysis:**
-   - Click **"📥 Export as Image"** button
+   - Click **"Export as Image"** button
    - Exports scatter plots, box plots, bar charts, etc.
    - Filename: `unknownhands-codicology-{timestamp}.png`
    - **Resolution:** 3x scale (~300 DPI)
    - **Comparison mode:** Export entire comparison grid
 
 4. **Hierarchical Tree:**
-   - Click **"📥 Export as Image"** button
+   - Click **"Export as Image"** button
    - Captures full tree structure
    - Filename: `unknownhands-tree-{timestamp}.png`
    - **Resolution:** 3x scale (~300 DPI)
 
 5. **Network Visualization:**
-   - **SVG export:** Click **"📷 Export SVG"** (vector format, infinitely scalable)
-   - **PNG export:** Click **"📷 Export PNG"** (raster format, 300 DPI)
+   - **SVG export:** Click **"Export SVG"** (vector format, infinitely scalable)
+   - **PNG export:** Click **"Export PNG"** (raster format, 300 DPI)
    - Filename: `unknownhands-network-{timestamp}.{svg|png}`
    - **Additional:** Data export dropdown for Gephi or R formats
 
@@ -1190,7 +1359,7 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
 
 **Colophon Transcriptions:**
 - In Colophon Analysis Browse tab
-- Click **"📋"** copy-to-clipboard button
+- Click copy-to-clipboard button
 - Copies transcription or translation
 - Paste directly into your research notes or documents
 
@@ -1230,11 +1399,11 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
 
 **Copy Colophon Text:**
 - In Colophon Analysis Browse tab
-- Each colophon has "📋 Copy" buttons
+- Each colophon has "Copy" buttons
 - Separate buttons for transcription and translation
 - Click to copy to clipboard
 - Paste into your documents for citation
-- Button shows "✓ Copied!" confirmation
+- Button shows "Copied!" confirmation
 
 **Statistical Dashboard Export:**
 - Export statistical summaries from Analytics tabs
@@ -1249,7 +1418,7 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
 
 ---
 
-## 13. Frequently Asked Questions
+## 14. Frequently Asked Questions
 
 ### General Questions
 
@@ -1362,5 +1531,5 @@ This platform is the result of collaboration between medievalists, digital human
 ---
 
 *Unknown Hands User Guide v2.0*  
-*Last updated: November 2025*  
+*Last updated: December 2025*  
 *Estelle Guéville, Yale University*
