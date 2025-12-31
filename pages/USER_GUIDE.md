@@ -75,12 +75,12 @@ Unknown Hands is a digital research platform documenting the work of female scri
 Filters appear on the left side and change based on record type.
 
 **Filter Types:**
+- **Text Filters** Type keywords. 
+- **Dropdown Filters** Select one option.  
+- **Multi-Select Filters** Choose multiple options. 
+- **Number Range Filters**: Set min/max values. 
+- **Year Range Filters**: Set date ranges. 
 
-**Text Filters** Type keywords. 
-**Dropdown Filters** Select one option.  
-**Multi-Select Filters** Choose multiple options. 
-**Number Range Filters**: Set min/max values. 
-**Year Range Filters**: Set date ranges. 
 **How to Apply Filters:**
 1. Select or enter filter values
 2. Results update automatically
@@ -148,8 +148,7 @@ The database includes **relationship data** that connects entities and provides 
 
 **In the Detail View (Right Panel):**
 When you click a record, relationships appear at the bottom of the detail panel:
-- **Incoming Relationships** — Entities pointing to this record (e.g., Scribal Units in a Manuscript)
-- **Outgoing Relationships** — Entities this record points to (e.g., the Manuscript a Scribal Unit belongs to)
+- **Relationships** — Entities this record points to (e.g., the Manuscript a Scribal Unit belongs to)
 - **Expandable Details** — Click the ▶ button next to any relationship to see full metadata (scribe role, certainty, language, style, etc.)
 - **Clickable Links** — Gold-colored entity names are clickable to navigate to that record
 - **Filtered Entities** — If a related entity is filtered out, it appears as gray italic text (not clickable)
@@ -185,12 +184,12 @@ These filters allow you to search based on metadata stored in the relationships 
 
 **2. Filter by Relationship Metadata:**
 - Use relationship-based filters in the left panel
-- Example: Filter Scribal Units by "Scribe role (from relationships)" = "Principal scribe"
+- Example: Filter Scribal Units by "Scribe role (from relationships)" = "Main scribe"
 - These filters search metadata attached to the relationships, not just the entities
 
 **3. Full-Text Search Includes Relationships:**
 - When you search, all relationship metadata is automatically included
-- Search for "principal scribe" to find Scribal Units with that role in relationships
+- Search for "main scribe" to find Scribal Units with that role in relationships
 - Search for a monastery name to find Production Units linked to it
 
 **4. Visual Exploration:**
@@ -213,6 +212,7 @@ These filters allow you to search based on metadata stored in the relationships 
 **Bottom of record list:**
 - **Previous / Next** buttons
 - Page numbers
+- Go to specific page
 - Shows records per page (default: 20)
 
 ---
@@ -233,7 +233,7 @@ These filters allow you to search based on metadata stored in the relationships 
 - Key attributes and characteristics
 
 **Features:**
-- **Entity Filter:** Select specific entity types (Manuscripts, Scribal Units, etc.) or view all
+- **Entity Filter:** Select specific entity types (Manuscripts, Scribal Units, etc.)
 - **Interactive Visualizations:** Statistical charts and graphs
 - **Export:** Save dashboard as image (PNG) for presentations or publications
 
@@ -271,13 +271,11 @@ These filters allow you to search based on metadata stored in the relationships 
 
 3. **Manuscripts - Movement (Production → Current)**
    - Visualizes manuscript movement from production location to current holding
-   - Shows historical migration patterns
+   - Shows historical migration patterns and helps understand manuscript circulation and collection history
    - Arrows connect origin to current location
-   - Helps understand manuscript circulation and collection history
 
 4. **Production Units - All Locations**
    - All Production Unit geographic data
-   - Country, city, monastery
 
 5. **Production Units - By Monastery**
    - Groups PUs by monastic institution
@@ -293,18 +291,16 @@ These filters allow you to search based on metadata stored in the relationships 
 - **Circles with numbers** — Clusters (multiple records in same location)
 - **Individual icons** — Single records
 - **Colors** — Different entity types
+- **Heatmap** option available for density visualization
 
 **Interactions:**
 - **Zoom:** Mouse wheel or +/- buttons
 - **Pan:** Click and drag
 - **Click cluster:** Zooms in to show individual markers
 - **Click marker:** Opens popup with record details
-- **Popup:** Click record name to view full details
-
-**Map Controls:**
-- **Zoom In/Out** — + and - buttons (top left)
-- **Zoom to Fit** — Shows all markers
-- **Layers** — Toggle different data overlays
+- **Popup:** Click record name to view full details and "Open in results" button to see details in results view.
+- **Reset view:** Zoom to fit button
+- 
 
 ### Exporting Maps
 
@@ -315,100 +311,8 @@ These filters allow you to search based on metadata stored in the relationships 
 
 ---
 
-## 5. Codicological Analysis
+## 5. Codicological Analysis (Not currently available)
 
-### Accessing Codicology Mode
-
-1. In **Explore Database**, click **Codicology** tab (top navigation)
-2. View loads showing codicological analysis tools
-
-### What is Codicological Analysis?
-
-Explore relationships between manuscript physical features through interactive visualizations. Analyze correlations, distributions, and patterns across the corpus by selecting any two variables.
-
-### Quick Start Presets
-
-**Try These Combinations:**
-- **Material vs Size** — See how parchment and paper manuscripts differ in dimensions
-- **Date vs Folios** — Explore temporal changes in manuscript length
-- **Quire Type vs Material** — Analyze structural variations by material
-
-Click preset buttons to quickly load interesting analyses, or select variables manually.
-
-### Selecting Variables
-
-**Three-Step Process:**
-
-1. **X-Axis Variable** — Choose from:
-   - **Dimensions:** Height, Width, Justification measurements, Margin ratio
-   - **Structure:** Folios, Columns, Lines per page, Quires
-   - **Temporal:** Date, Century
-   - **Categorical:** Material, Quire type, Ruling type, Script type, Binding type
-
-2. **Y-Axis Variable** — Same options as X-axis
-
-3. **Color/Group By** (optional) — Add a third dimension:
-   - **People & Gender:** Gender, Scribe name
-   - **Production Context:** Material, Origin country/region, Monastery type
-   - **Physical Features:** Quire type, Catchwords, Signatures, Watermark, Ruling type, Columns
-   - **Content:** Has colophon, Language, Script type, Decoration
-   - **Collaboration:** Collaboration type, Multiple scribes
-### Filtering Data
-
-**Active Filters Panel:**
-- **Century:** Select one or more centuries (hold Cmd/Ctrl for multiple)
-- **Material:** Filter by Parchment, Paper, or both
-- **Region:** Select specific geographic regions
-
-**Filter Status:** Shows how many manuscripts match your criteria
-
-**Clear Filters:** Click Clear Filters button to reset
-
-### Visualization Types
-
-Choose from multiple visualization methods:
-
-1. **Scatter Plot** — Best for continuous variables (height vs width, date vs folios)
-   - See correlations and outliers
-   - Color points by grouping variable
-
-2. **Box Plot** — Compare distributions across categories
-   - Shows median, quartiles, and outliers
-   - Good for comparing groups
-
-3. **Bar Chart** — Count occurrences of categorical variables
-   - Compare frequencies
-   - See which combinations are most common
-
-4. **Correlation Analysis** — Statistical relationships
-   - Quantify strength of relationships
-   - Identify significant patterns
-
-5. **Statistical Summary** — Descriptive statistics
-   - Mean, median, standard deviation
-   - Range and quartile values
-
-### Comparison Feature
-
-**Build Multi-Panel Comparisons:**
-
-1. Configure your first analysis (variables, filters, viz type)
-2. Click **"Add to Comparison"**
-3. Configure additional analyses
-4. Click **"View Comparisons"** to see all side-by-side
-5. Export combined view as image
-
-**Use Cases:**
-- Compare same variables across different centuries
-- Test multiple hypotheses simultaneously
-- Create comprehensive publication figures
-
-### Exporting
-
-**Export as Image:**
-- Click **"Export as Image"** button
-- High-resolution PNG downloads
-- Include in papers, presentations, or reports
 
 ---
 
@@ -425,7 +329,6 @@ Explore the complete structural hierarchy of manuscripts, showing relationships 
 - **Manuscripts** (top level)
 - **Production Units** (sections of manuscripts)
 - **Scribal Units** (individual scribes' work)
-- **Texts** (content within units)
 
 This visualization reveals the complex internal structure of medieval manuscripts and how scribes collaborated.
 
@@ -459,19 +362,6 @@ Check boxes to show only manuscripts with specific characteristics:
 - **Production Units (Most)** — Manuscripts with most PUs first
 - **Scribal Units (Most)** — Manuscripts with most SUs first
 - **Structural Complexity (Highest)** — Most intricate hierarchies first
-
-### Reading the Tree
-
-**Tree Structure:**
-- **Top level:** Manuscript names
-- **Second level:** Production Units (sections)
-- **Third level:** Scribal Units (scribes)
-- **Fourth level:** Texts (content)
-
-**Interactions:**
-- **Click nodes** to expand/collapse
-- **Hover** for quick details
-- **Navigate** through nested structures
 
 ### Exporting
 
@@ -513,12 +403,18 @@ Check boxes to show only manuscripts with specific characteristics:
 - **Reset view:** Zoom to fit button
 
 **Exploring Connections:**
-1. **Click a node** — Highlights that record and its immediate connections
-2. **Details panel** — Shows record information
-3. **Relationship labels** — Hover over lines to see relationship type
+1. **Click a node** — Highlights that record and its immediate connections, opens a pop-up with details and a link to view full records in Browse mode.
+2. **Relationship labels** — Hover over lines to see relationship type
 
 **Filtering:**
-- Use **left panel filters** to show only certain entity types
+- Click on filters to select which entity types to show:
+  - Manuscripts
+  - Scribal Units
+  - Production Units
+  - Holding Institutions
+  - Monastic Institutions
+  - Historical People
+  - Texts
 - Network updates to show filtered relationships
 - Example: Show only MSS and holding institutions
 
@@ -539,10 +435,6 @@ Check boxes to show only manuscripts with specific characteristics:
 - Clusters = closely related groups
 - Isolated nodes = unique records
 - Dense areas = production centers
-
-### Searching by Relationships
-
-The Network mode includes a **Relationships** filter that allows you to explore connections between entities. Relationship data is indexed and searchable, making it easy to find records based on their connections to other entities.
 
 ### Exporting Network Visualizations
 
