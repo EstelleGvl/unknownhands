@@ -1123,28 +1123,6 @@ The transcription search includes a comparison tool for analyzing multiple resul
 
 ### Power User Techniques
 
-#### Combining Filters and Modes
-
-**Example Workflow:**
-
-1. **Start in Browse mode**
-   - Filter to: Material = Parchment, Country = Germany
-   - See which MSS match
-
-2. **Switch to Map**
-   - Filters persist
-   - See geographic distribution of filtered MSS
-
-3. **Switch to Timeline**
-   - Still filtered
-   - See temporal distribution
-
-4. **Switch to Analytics**
-   - Run Codicological Analysis
-   - Results show only filtered MSS
-
-**Result:** Deep dive into German parchment manuscripts across multiple views
-
 #### Research Workflows
 
 **Finding Manuscripts to Study:**
@@ -1180,29 +1158,8 @@ The transcription search includes a comparison tool for analyzing multiple resul
 - **Enter:** Submit search
 
 ### Mobile Use
+- Site works on tablets and phones but is overall optimized for desktop
 
-**Responsive Design:**
-- Site works on tablets and phones
-- Some features optimized for desktop
-- Map and Timeline best on larger screens
-
-**Mobile Tips:**
-- Use portrait mode for Browse
-- Use landscape for Viewer
-- Pinch to zoom on maps
-
-### Bookmarking Searches
-
-**Save Your Work:**
-1. Apply filters and search
-2. Copy URL from address bar
-3. Bookmark or save link
-4. Return to exact same filtered view later
-
-**Share Searches:**
-- Send URLs to colleagues
-- Include in publications
-- Cite specific subsets of data
 
 ### Exporting Data and Visualizations
 
@@ -1251,20 +1208,13 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
    - Filename: `unknownhands-analytics-{timestamp}.png`
    - **Resolution:** 3x scale (~300 DPI)
 
-3. **Codicology Analysis:**
-   - Click **"Export as Image"** button
-   - Exports scatter plots, box plots, bar charts, etc.
-   - Filename: `unknownhands-codicology-{timestamp}.png`
-   - **Resolution:** 3x scale (~300 DPI)
-   - **Comparison mode:** Export entire comparison grid
-
-4. **Hierarchical Tree:**
+3. **Hierarchical Tree:**
    - Click **"Export as Image"** button
    - Captures full tree structure
    - Filename: `unknownhands-tree-{timestamp}.png`
    - **Resolution:** 3x scale (~300 DPI)
 
-5. **Network Visualization:**
+4. **Network Visualization:**
    - **SVG export:** Click **"Export SVG"** (vector format, infinitely scalable)
    - **PNG export:** Click **"Export PNG"** (raster format, 300 DPI)
    - Filename: `unknownhands-network-{timestamp}.{svg|png}`
@@ -1279,34 +1229,19 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
 
 #### Text Export
 
-**Colophon Transcriptions:**
+**Colophon Transcriptions and translations:**
 - In Colophon Analysis Browse tab
 - Click copy-to-clipboard button
-- Copies transcription or translation
-- Paste directly into your research notes or documents
+- Each colophon has "Copy" buttons
+- Separate buttons for transcription and translation
+- Click to copy to clipboard
+- Paste into your documents for citation
+- Button shows "Copied!" confirmation
 
 **Transcription Search Results:**
-- Export search results as CSV
+- Export search results as TSV
 - Includes manuscript name, page, line number, and full text
 - Export filtered datasets to focus on your research corpus
-
-#### Multi-Format Export Strategy
-
-**For Research Papers:**
-1. Export filtered CSV data from Browse mode
-2. Create custom visualizations in R/Python
-3. Export high-res PNGs from platform for supplementary figures
-4. Cite data subsets with bookmarked URLs
-
-**For Presentations:**
-1. Export PNG images from all visualization tabs
-2. Use in PowerPoint/Keynote at full quality
-3. No need to resize (already high resolution)
-
-**For Posters:**
-1. Export SVG from Network (edit in Illustrator if needed)
-2. Export PNG from Maps, Trees, Codicology
-3. All exports meet 300 DPI minimum for printing
 
 **Technical Details:**
 - **PNG Resolution:** 3x scale factor (~300 DPI at typical display sizes)
@@ -1318,25 +1253,6 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
   - Network graphs (SVG format)
   - All analytics visualizations
   - Hierarchical tree views (per-manuscript export)
-
-**Copy Colophon Text:**
-- In Colophon Analysis Browse tab
-- Each colophon has "Copy" buttons
-- Separate buttons for transcription and translation
-- Click to copy to clipboard
-- Paste into your documents for citation
-- Button shows "Copied!" confirmation
-
-**Statistical Dashboard Export:**
-- Export statistical summaries from Analytics tabs
-- Useful for recording analysis parameters
-- Can be imported into other tools (Excel, R, etc.)
-
-**Best Practices:**
-- Export filtered datasets to focus on your research corpus
-- Use high-DPI exports for publications
-- Keep track of filter parameters used for reproducibility
-- Cite Unknown Hands database in your work (see Credits page)
 
 ---
 
@@ -1351,21 +1267,18 @@ A: The database is continuously growing. We're adding manuscripts and transcript
 A: Yes, in Browse mode, with no filters, click "Export CSV" to download all records of current entity type. Repeat for each type.
 
 **Q: How do I cite the Unknown Hands database?**
-A: See the "Credits" page for citation information.
+A: See the [Credits](/unknownhands/credits) page for citation information.
 
 **Q: Who created the data?**
-A: Project team led by Estelle Guéville. Data sourced from Heurist database, incorporating research from multiple scholars. See "Team" page.
+A: Project team led by Estelle Guéville. See [Team](/unknownhands/team) page.
 
 ### Data Questions
 
-**Q: What does "—" mean in a field?**
-A: Data not available or not applicable for that record.
-
 **Q: Why do some manuscripts not have images?**
-A: Not all manuscripts have been digitized. We link to IIIF manifests when available. Check "Digitization Status" field.
+A: Not all manuscripts have been digitized. We link to IIIF manifests when available. Check "Digitization Status" and "IIIF status"fields.
 
 **Q: What is a "Production Unit"?**
-A: A Production Unit represents the context of manuscript creation: where, when, by whom, with what materials. One Manuscript can have multiple Production Units if created in stages.
+A: A Production Unit represents the context of manuscript creation: where, when, how, with what materials. One Manuscript can have multiple Production Units if created in stages.
 
 **Q: What is a "Scribal Unit"?**
 A: A Scribal Unit is the work of one scribe on a specific portion of a manuscript. Represents the core evidence of scribal activity.
@@ -1382,13 +1295,13 @@ A: Normalized fields have standardized values for analysis. Example: "Normalized
 A: Modern browsers: Chrome, Firefox, Safari, Edge. Latest versions recommended.
 
 **Q: Why is the map/timeline loading slowly?**
-A: Large datasets take time. Try filtering to a subset first. Clear browser cache if persistent.
+A: Large datasets take time. Try filtering to a subset. Clear browser cache if persistent.
 
 **Q: Can I use the data in my research?**
-A: Yes! Data is open access. Please cite appropriately. See license information on Credits page.
+A: Yes! Data is open access. Please cite appropriately. See license information on [Credits](/unknownhands/credits) page.
 
 **Q: How do I report an error?**
-A: Use GitHub issues (link in footer) or contact project team (see Contact page).
+A: Contact project team (see [Contact](/unknownhands/contact) page).
 
 **Q: Is there an API?**
 A: Currently, data is available via CSV export and JSON files. We're exploring API options for future releases.
@@ -1399,13 +1312,10 @@ A: Currently, data is available via CSV export and JSON files. We're exploring A
 A: Currently, you can export results as CSV and visualizations as high-quality images. Saved analysis workspaces are planned for future release.
 
 **Q: Can I upload my own manuscripts?**
-A: Not directly through the website. Contact the team if you have data to contribute.
+A: Not directly through the website. Contact the team if you have data to contribute ([Contact](/unknownhands/contact)).
 
 **Q: Will there be more analysis types?**
 A: Yes! We're continuously developing new analytical tools based on user feedback.
-
-**Q: Can I compare two manuscripts side-by-side?**
-A: In the Viewer, use split-screen mode. In Analytics, filter to your manuscripts and compare statistics.
 
 **Q: What is sentiment analysis in colophons?**
 A: Our sentiment analysis uses keyword matching to detect emotional tones in colophon texts. It identifies 6 categories (humility, pride, labor, religious, temporal, dedication) and shows which keywords were matched for transparency.
@@ -1417,7 +1327,7 @@ A: The analysis is keyword-based and designed for exploratory research. It ident
 A: 📝 indicates colophon language (the language of the scribe's note), while 📖 indicates text language (the language of the main content being copied). This distinction helps identify code-switching.
 
 **Q: How do I export a visualization for my publication?**
-A: Click the "Export" button on any visualization. It will download as a high-quality PNG (300 DPI) suitable for publication. Available for maps, timelines, networks, and all analytics charts.
+A: Click the "Export" button on any visualization. It will download as a high-quality PNG (300 DPI) suitable for publication. Available for maps, timelines, networks, and all analytics charts. Please cite appropriately.
 
 **Q: Can I see the raw colophon text?**
 A: Yes! Use the Colophon Analysis module's "Browse Colophons" tab. Each colophon shows both the original transcription and English translation, with copy-to-clipboard buttons for citation.
@@ -1432,23 +1342,21 @@ A: These are colophons with minimal emotional language, typically containing onl
 ### Resources
 
 - **Technical Documentation:** See `README.md` in GitHub repository
-- **Contact Form:** [Link to contact page]
-- **Report Issues:** [Link to GitHub issues]
-- **Email:** [Project email]
+- **Contact Form:** [Contact](/unknownhands/contact)
+- **Report Issues:** [Contact](/unknownhands/contact)
+- **Email:** estelle.gueville@yale.edu
 
 ### Tutorials
 
 - **Video Tutorials:** [Coming soon]
 - **Workshops:** Check website for announcements
-- **Publications:** See Publications page for case studies
+- **Publications:** See [Publications](/unknownhands/publications) page
 
 ---
 
 ## Acknowledgments
 
-This platform is the result of collaboration between medievalists, digital humanists, librarians, and software developers. Thank you for exploring the Unknown Hands database!
-
-**Happy researching!**
+This platform is the result of collaboration between medievalists, digital humanists, librarians, and software developers. Thank you for exploring the *Unknown Hands* database!
 
 ---
 
