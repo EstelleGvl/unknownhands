@@ -1044,19 +1044,6 @@ Click **"Search Transcriptions"** in main navigation
 - **Click result** — Opens viewer to that exact line
 - **View more context** — Expand to see surrounding lines
 
-### Advanced Search Tips
-
-**Phrase Search:**
-- Use quotes: `"divine office"`
-- Finds exact phrase
-
-**Multiple Terms:**
-- Space between words: `prayer psalter`
-- Finds either word (OR logic)
-
-**Wildcards** (if supported):
-- `*` for multiple characters: `tran*` finds "transcription", "translation"
-
 ### Comparing Transcriptions
 
 **Side-by-Side Comparison Feature:**
