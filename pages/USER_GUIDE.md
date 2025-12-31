@@ -34,34 +34,22 @@ show_title: false
 ### What is Unknown Hands?
 
 Unknown Hands is a digital research platform documenting the work of female scribes who created manuscripts before 1600. Our database includes:
-
-- **Manuscripts** — Codices written by or associated with women
-- **Production Units** — Information about when and where portions of or full manuscripts were made
-- **Scribal Units** — Details about the units of text written by specific scribes.
-- **Holding Institutions** — Libraries and archives holding these manuscripts
-- **Texts, People, and Monastic Institutions** — Comprehensive relational data
-
-### Navigating the Site
-
-**Main Navigation Bar** (top of page):
-- **[About](/about/)** — Learn about the project
-- **[Explore Database](/explore-database/)** — Interactive data explorer (this guide's focus)
-- **[Viewer](/viewer/)** — View manuscript images with transcriptions
-- **[Search Transcriptions](/search-transcriptions/)** — Full-text search across all transcribed manuscripts
-- **[Team](/team/)**, **[Publications](/publications/)**, **[Participate](/participate/)** — Project information
-
-### Understanding Record Types
-
-The database contains **7 types of records**:
-
-1. **Scribal Units (SU)** — The core production unit: a scribe working on a specific manuscript section
-2. **Manuscripts (MS)** — Physical codices (books)
-3. **Production Units (PU)** — Manufacturing contexts (where/when/how manuscripts were made)
-4. **Holding Institutions (HI)** — Current location (libraries, archives)
+1. **Scribal Units (SU)** — The core unit of analysis in the database. A specific manuscript section written by a scribe.
+2. **Manuscripts (MS)** — Physical codices (books) at least partially written by or associated with women.
+3. **Production Units (PU)** — Manufacturing contexts of specific manuscript sections(where/when/how manuscripts were made)
+4. **Holding Institutions (HI)** — Libraries and archives holding these manuscripts
 5. **Monastic Institutions (MI)** — Historical production locations (monasteries, convents)
 6. **Historical People (HP)** — Scribes, patrons, owners
 7. **Texts (TX)** — Literary works contained in manuscripts
 
+### Navigating the Site
+
+**Main Navigation Bar** (top of page):
+- **[About](/unknownhands/about/)** — Learn about the project
+- **[Explore Database](/unknownhands/explore-database/)** — Interactive data explorer (this guide's focus)
+- **[Viewer](/unknownhands/viewer/)** — View manuscript images with transcriptions
+- **[Search Transcriptions](/unknownhands/search-transcriptions/)** — Full-text search across all transcribed manuscripts
+- **[Team](/unknownhands/team/)**, **[Publications](/unknownhands/publications/)**, **[Participate](/unknownhands/participate/)** — Project information
 ---
 
 ## 2. Browse & Search
@@ -78,7 +66,7 @@ The database contains **7 types of records**:
 ### Switching Record Types
 
 **Entity Switcher** (top left):
-- Click buttons to switch between record types: SU, MS, PU, HI, MI, HP, TX
+- Click buttons to switch between record types: Scribal Units, Manuscripts, Production Units, Holding Institutions, Monastic Institutions, Historical People, Texts
 - Each type has different filters and fields
 
 ### Using Filters (Facets)
@@ -87,28 +75,15 @@ Filters appear on the left side and change based on record type.
 
 **Filter Types:**
 
-**Text Filters** — Type keywords:
-- Example: SU Dating, Call number
-
-**Dropdown Filters** — Select one option:
-- Example: Material (Parchment, Paper, Mixed)
-
-**Multi-Select Filters** — Choose multiple options:
-- Example: Scripts, Genres
-
-**Number Range Filters**:
-- Set min/max values
-- Example: Codex height (150-400 mm)
-
-**Year Range Filters**:
-- Set date ranges
-- Example: Terminus post quem (1200-1500)
-
+**Text Filters** Type keywords
+**Dropdown Filters** Select one option.
+**Multi-Select Filters** Choose multiple options
+**Number Range Filters**: Set min/max values
+**Year Range Filters**: Set date ranges
 **How to Apply Filters:**
 1. Select or enter filter values
 2. Results update automatically
-3. Active filters show at the top
-4. Click **"Clear all filters"** to reset
+3. Click **"Clear all filters"** to reset
 
 ### Searching Records
 
@@ -146,7 +121,7 @@ Filters appear on the left side and change based on record type.
 
 **Related Records:**
 - Click blue linked names to navigate
-- Example: Click a manuscript name in a Scribal Unit to see the full MS record
+- Example: Click a manuscript name in a Scribal Unit to see the full Manuscript record
 
 ### Exporting Data
 
@@ -242,7 +217,7 @@ The database now includes **relationship data** that is fully searchable:
    - Helps understand manuscript circulation and collection history
 
 4. **Production Units - All Locations**
-   - All PU geographic data
+   - All Production Unit geographic data
    - Country, city, monastery
 
 5. **Production Units - By Monastery**
@@ -409,9 +384,9 @@ This visualization reveals the complex internal structure of medieval manuscript
 Check boxes to show only manuscripts with specific characteristics:
 
 - **3+ Production Units** — Complex composite manuscripts
-- **Interleaved Units** — Non-sequential PU arrangements
-- **PUs Across Multiple MSS** — Production units spanning multiple manuscripts
-- **SUs Across Multiple PUs** — Scribes working across production units
+- **Interleaved Units** — Non-sequential Production Unit arrangements
+- **Production Units Across Multiple Manuscripts** — Production units spanning multiple manuscripts
+- **Scribal Units Across Multiple Production Units** — Scribes working across production units
 
 **Use Cases:**
 - Find manuscripts with complex codicological history
@@ -464,10 +439,10 @@ Check boxes to show only manuscripts with specific characteristics:
 - **Node size** — Can represent number of connections
 
 **Relationship Types:**
-- "Produced by" — PU → MI (monastery)
-- "Contains" — MS → SU
-- "Is part of" — SU → PU
-- "Held by" — MS → HI
+- "Produced by" — Production Unit → Monastic Institution (monastery)
+- "Contains" — Manuscript → Scribal Unit
+- "Is part of" — Scribal Unit → Production Unit
+- "Held by" — Manuscript → Holding Institution
 - And more...
 
 ### Interacting with the Network
@@ -539,7 +514,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 
 **Features:**
 - **Total Language Count:** Number of unique languages in the database
-- **Language Distribution:** Top languages with manuscript/SU counts
+- **Language Distribution:** Top languages with manuscript/Scribal Unit counts
 - **Key Statistics:** Overall linguistic diversity metrics
 - **Visualization:** Bar chart showing language frequency
 
@@ -591,7 +566,7 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 **Features:**
 - See which institutions had multilingual production
 - Count of unique languages per institution
-- **Display:** Institution name, location, languages used, SU count
+- **Display:** Institution name, location, languages used, Scribal Unit count
 - **Sort:** By name or language diversity score
 
 **Use this to:**
@@ -687,7 +662,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - **Least Expressive Colophons:** Shows neutral/factual colophons (dates, names only)
 - **Sentiment Distribution:** Visual breakdown of sentiment frequency
 - **Matched Keywords Display:** See exactly which words triggered each sentiment
-- **"View SU" Button:** Quick navigation to full scribal unit record
+- **"View Scribal Unit" Button:** Quick navigation to full scribal unit record
 
 **Use this to:**
 - Find emotionally expressive colophons
@@ -712,7 +687,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 **Features:**
 - **Theme Distribution Chart:** Visual overview of theme frequency
 - **Example Colophons by Theme:** Shows 2-20 examples per theme (expandable)
-- **"View SU" Buttons:** Navigate to full records
+- **"View Scribal Unit" Buttons:** Navigate to full records
 - **Original Text Preserved:** Up to 200 characters shown
 
 **Use this to:**
@@ -797,7 +772,7 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - **Original Transcription:** Shows colophon in original language
 - **English Translation:** Shows translated text
 - **Copy-to-Clipboard Buttons:** For both transcription and translation
-- **"View SU" Button:** Navigate to full scribal unit record
+- **"View Scribal Unit" Button:** Navigate to full scribal unit record
 - **Manuscript Context:** Shows manuscript information
 
 **Results:**
@@ -900,7 +875,7 @@ Expand Formula Cards:
   - **Matched variant:** Which specific variant was found
   - **Full colophon transcription:** Original text (first 200 characters)
   - **English translation** (if available)
-  - **View SU button:** Navigate to full scribal unit record
+  - **View Scribal Unit button:** Navigate to full scribal unit record
 
 **Pagination:**
 - Navigate through multiple pages of examples if more than 20 matches exist
@@ -976,7 +951,7 @@ Gender-Specific Formulas:
 2. Filter strategically using language or country filters to focus on specific traditions
 3. Compare variants to notice how the same formula appears with different spellings
 4. Always expand formula cards to see real examples in context
-5. Use the "View SU" button to explore full records and related data
+5. Use the "View Scribal Unit" button to explore full records and related data
 6. Track patterns by noting which formulas appear in multiple countries or time periods
 7. Consider zero matches as indicators of patterns not yet found in the corpus
 
@@ -1235,9 +1210,9 @@ The transcription search includes a comparison tool for analyzing multiple resul
 **Following Relationships:**
 1. Find a scribe (Historical Person)
 2. Click to see their Scribal Units
-3. From SU, see Production Units
-4. From PU, see Manuscripts
-5. From MS, see Holding Institution
+3. From Scribal Unit, see Production Units
+4. From Production Unit, see Manuscripts
+5. From Manuscript, see Holding Institution
 6. Plan to view manuscripts in person
 
 ### Keyboard Shortcuts
@@ -1439,10 +1414,10 @@ A: Data not available or not applicable for that record.
 A: Not all manuscripts have been digitized. We link to IIIF manifests when available. Check "Digitization Status" field.
 
 **Q: What is a "Production Unit"?**
-A: A PU represents the context of manuscript creation: where, when, by whom, with what materials. One MS can have multiple PUs if created in stages.
+A: A Production Unit represents the context of manuscript creation: where, when, by whom, with what materials. One Manuscript can have multiple Production Units if created in stages.
 
 **Q: What is a "Scribal Unit"?**
-A: An SU is the work of one scribe on a specific portion of a manuscript. Represents the core evidence of scribal activity.
+A: A Scribal Unit is the work of one scribe on a specific portion of a manuscript. Represents the core evidence of scribal activity.
 
 **Q: How are dates formatted?**
 A: Dates use terminus post quem (earliest possible) and terminus ante quem (latest possible). Many manuscripts can only be dated to a range (e.g., 1300-1350).
