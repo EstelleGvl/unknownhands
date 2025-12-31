@@ -22,11 +22,10 @@ show_title: false
 7. [Network Explorer](#7-network-explorer)
 8. [Multilingualism Analysis](#8-multilingualism-analysis)
 9. [Colophon Analysis](#9-colophon-analysis)
-10. [Explore Formulae](#10-explore-formulae)
-11. [IIIF Viewer & Mirador](#11-iiif-viewer--mirador)
-12. [Search Transcriptions](#12-search-transcriptions)
-13. [Tips & Tricks](#13-tips--tricks)
-14. [FAQ](#14-frequently-asked-questions)
+10. [IIIF Viewer & Mirador](#10-iiif-viewer--mirador)
+11. [Search Transcriptions](#11-search-transcriptions)
+12. [Tips & Tricks](#12-tips--tricks)
+13. [FAQ](#13-frequently-asked-questions)
 
 ---
 
@@ -37,19 +36,19 @@ show_title: false
 Unknown Hands is a digital research platform documenting the work of female scribes who created manuscripts before 1600. Our database includes:
 
 - **Manuscripts** — Codices written by or associated with women
-- **Production Units** — Information about when and where manuscripts were made
-- **Scribal Units** — Details about the scribes themselves
-- **Institutions** — Libraries and archives holding these manuscripts
-- **Texts, People, and more** — Comprehensive relational data
+- **Production Units** — Information about when and where portions of or full manuscripts were made
+- **Scribal Units** — Details about the units of text written by specific scribes.
+- **Holding Institutions** — Libraries and archives holding these manuscripts
+- **Texts, People, and Monastic Institutions** — Comprehensive relational data
 
 ### Navigating the Site
 
 **Main Navigation Bar** (top of page):
-- **About** — Learn about the project
-- **Explore Database** — Interactive data explorer (this guide's focus)
-- **Viewer** — View manuscript images with transcriptions
-- **Search Transcriptions** — Full-text search across all transcribed manuscripts
-- **Team, Publications, Participate** — Project information
+- **[About](/about/)** — Learn about the project
+- **[Explore Database](/explore-database/)** — Interactive data explorer (this guide's focus)
+- **[Viewer](/viewer/)** — View manuscript images with transcriptions
+- **[Search Transcriptions](/search-transcriptions/)** — Full-text search across all transcribed manuscripts
+- **[Team](/team/)**, **[Publications](/publications/)**, **[Participate](/participate/)** — Project information
 
 ### Understanding Record Types
 
@@ -650,7 +649,7 @@ A colophon is a note written by the scribe, typically at the end of a manuscript
 
 Colophons are invaluable for understanding medieval scribal culture and self-expression.
 
-### Six Analysis Tabs
+### Seven Analysis Tabs
 
 #### 1. Overview Tab
 
@@ -829,19 +828,16 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - **Visualizations:** All charts can be exported as images
 - **Filtered Results:** Export through main Browse mode for CSV
 
----
+#### 7. 📖 Explore Formulae Tab
 
-## 10. Explore Formulae
+**Purpose:** Discover and analyze standardized formulaic patterns in colophons across languages and regions
 
-### Accessing Explore Formulae Mode
+**Accessing:**
+- Click the **Explore Formulae** sub-tab within Colophon Analysis
 
-1. In **Explore Database**, click **Colophon Analysis** tab (top navigation)
-2. Click the **Explore Formulae** sub-tab
-3. View loads showing predefined formulaic patterns found across the corpus
+**What are Colophon Formulae?**
 
-### What are Colophon Formulae?
-
-Colophon formulae are standardized phrases, expressions, and linguistic patterns that scribes commonly used in their colophons. These recurring formulas reveal:
+Standardized phrases, expressions, and linguistic patterns that scribes commonly used in their colophons. These recurring formulas reveal:
 - Traditional scribal practices and conventions
 - Regional and linguistic patterns
 - Cross-cultural influences and transmission of scribal culture
@@ -849,16 +845,14 @@ Colophon formulae are standardized phrases, expressions, and linguistic patterns
 
 Formulae can be complete phrases ("Qui scripsit scribat semper cum Domino vivat") or shorter fragments ("anno domini", "finito libro").
 
-### Overview Statistics
+**Overview Statistics:**
 
 The interface displays three key metrics:
 - **Predefined Formulas:** Total number of formulaic patterns being searched
 - **Languages:** Number of languages represented in the formula collection
 - **Colophons Searched:** Total colophons in the database searched for matches
 
-### Filter Options
-
-**Four-Step Filtering System:**
+**Filter Options:**
 
 **1a. Select Language**
 - Filter formulas by language (Latin, Dutch, German, Italian, French, Portuguese, Swedish, etc.)
@@ -886,18 +880,18 @@ The interface displays three key metrics:
   - **Praise:** Religious praise ("laus et gloria Christo", "lob sye gott")
   - **Other:** Miscellaneous formulas
 
-### Formula Display
+**Formula Display:**
 
-**Each formula card shows:**
+Each formula card shows:
 - **Formula Text:** The main formula in its original language
 - **Language:** Language of the formula
 - **Match Count:** Number of unique manuscripts containing this formula
 - **Variants:** Accepted spelling variations and fragments (e.g., "int jaer", "int iaer", "intjaer")
 - **Formula Type Badge:** Color-coded category (Prayer, Dating, Scribe, etc.)
 
-### Viewing Matching Examples
+**Viewing Matching Examples:**
 
-**Expand Formula Cards:**
+Expand Formula Cards:
 - Click "Show Examples" to view colophons containing the formula
 - Displays up to 20 matching examples per page
 - Each example shows:
@@ -912,95 +906,97 @@ The interface displays three key metrics:
 - Navigate through multiple pages of examples if more than 20 matches exist
 - Page counter shows current page and total pages
 
-### Global Formula Distribution Map
+**Global Formula Distribution Map:**
 
-Expand the **Global Formula Distribution Map** to see:
+Expand to see:
 - Geographic spread of all formulas in the corpus
 - Interactive map showing locations where formulas appear
 - Click markers to see which formulas are found in each region
 - Visual representation of formula transmission and regional patterns
 
-### Example Formulas by Language
+**Example Formulas by Language:**
 
-**Latin Formulas:**
+Latin Formulas:
 - "Qui scripsit scribat semper cum Domino vivat" (May the one who wrote always live with the Lord)
 - "Finito libro sit laus et gloria Christo" (The book finished, let there be praise and glory to Christ)
 - "Explicit expliceat ludere scriptrix eat" (The end is unfolded, let the female scribe go play)
 - "Detur pro penna scriptori pulchra puella" (Let a beautiful girl be given to the scribe for his pen)
 
-**Dutch Formulas:**
+Dutch Formulas:
 - "int jaer ons heren" (in the year of our Lord)
 - "bidt om gods wil" (pray for God's sake)
 - "dit boeck hoert" (this book belongs)
 
-**German Formulas:**
+German Formulas:
 - "pitt got für" (pray to God for)
 - "das puch hat geschriben swester" (the book was written by sister)
 - "do man zalt" / "als man zalt" (when one counts [dating formulas])
 - "Lob sye Gott" (Praise be to God)
 
-**Italian Formulas:**
+Italian Formulas:
 - "libro è delle monache" (the book belongs to the nuns)
 - "A llaude et onore" (To praise and honor)
 - "peccatrice" (sinner [female])
 
-**Other Languages:**
+Other Languages:
 - **French:** "Pries Nostre Seigneur" (Pray to Our Lord)
 - **Portuguese:** "Acabousse" (It was finished); "Screveo freira" (The nun wrote)
 - **Swedish:** "bidhin kära systra" (pray dear sisters); "owärdoghe" (unworthy)
 
-### Use Cases and Research Questions
+**Use Cases and Research Questions:**
 
-**Formula Distribution:**
+Formula Distribution:
 - Which formulas were most widespread across Europe?
 - Are certain formulas region-specific or pan-European?
 - How did formulas spread across linguistic boundaries?
 
-**Temporal Patterns:**
+Temporal Patterns:
 - Did certain formulas become more or less common over time?
 - When did particular formulas first appear in the corpus?
 - Are there chronological patterns in formula usage?
 
-**Linguistic Analysis:**
+Linguistic Analysis:
 - Which languages have the most diverse formula traditions?
 - How do formulas in Latin differ from vernacular languages?
 - Are there translation patterns between Latin and vernacular formulas?
 
-**Cultural Transmission:**
+Cultural Transmission:
 - Do formulas cluster geographically?
 - Which institutions shared formula traditions?
 - How did formulas travel between convents and scriptoria?
 
-**Gender-Specific Formulas:**
+Gender-Specific Formulas:
 - Are there formulas unique to female scribes?
 - How do female scribes adapt traditionally masculine formulas?
 - What does formula usage reveal about female scribal identity?
 
-### Tips for Using Explore Formulae
+**Tips for Using Explore Formulae:**
 
-1. **Start Broad:** Begin by viewing all formulas to understand the full scope
-2. **Filter Strategically:** Use language or country filters to focus on specific traditions
-3. **Compare Variants:** Notice how the same formula appears with different spellings
-4. **Check Examples:** Always expand formula cards to see real examples in context
-5. **Cross-Reference:** Use the "View SU" button to explore full records and related data
-6. **Track Patterns:** Note which formulas appear in multiple countries or time periods
-7. **Consider Zero Matches:** Formulas with zero matches indicate patterns not yet found in the corpus
+1. Start broad by viewing all formulas to understand the full scope
+2. Filter strategically using language or country filters to focus on specific traditions
+3. Compare variants to notice how the same formula appears with different spellings
+4. Always expand formula cards to see real examples in context
+5. Use the "View SU" button to explore full records and related data
+6. Track patterns by noting which formulas appear in multiple countries or time periods
+7. Consider zero matches as indicators of patterns not yet found in the corpus
 
-### Formula Search Technology
-
-**Fuzzy Matching:**
-- The system uses flexible pattern matching to find formula variants
+**Formula Search Technology:**
+- Fuzzy matching with flexible pattern recognition for variants
 - Accounts for spelling variations, spacing differences, and abbreviations
 - Case-insensitive matching ensures comprehensive coverage
-
-**Variant Recognition:**
 - Each formula includes predefined variants based on scholarly research
 - Captures common abbreviations and alternative spellings
 - Recognizes partial matches (formula fragments)
 
+### Export Features
+
+- **Copy to Clipboard:** Any colophon text (transcription or translation)
+- **Visualizations:** All charts can be exported as images
+- **Filtered Results:** Export through main Browse mode for CSV
+
 ---
 
-## 11. IIIF Viewer & Mirador
+## 10. IIIF Viewer & Mirador
 
 ### What is the IIIF Viewer?
 
@@ -1085,7 +1081,7 @@ View high-resolution manuscript images with synchronized transcriptions. Uses **
 
 ---
 
-## 12. Search Transcriptions
+## 11. Search Transcriptions
 
 ### Accessing Transcription Search
 
@@ -1197,7 +1193,7 @@ The transcription search includes a comparison tool for analyzing multiple resul
 
 ---
 
-## 13. Tips & Tricks
+## 12. Tips & Tricks
 
 ### Power User Techniques
 
@@ -1418,7 +1414,7 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
 
 ---
 
-## 14. Frequently Asked Questions
+## 13. Frequently Asked Questions
 
 ### General Questions
 
