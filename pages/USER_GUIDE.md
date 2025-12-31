@@ -49,7 +49,8 @@ Unknown Hands is a digital research platform documenting the work of female scri
 - **[Explore Database](/unknownhands/explore-database/)** — Interactive data explorer (this guide's focus)
 - **[Viewer](/unknownhands/viewer/)** — View manuscript images with transcriptions
 - **[Search Transcriptions](/unknownhands/search-transcriptions/)** — Full-text search across all transcribed manuscripts
-- **[Team](/unknownhands/team/)**, **[Publications](/unknownhands/publications/)**, **[Participate](/unknownhands/participate/)** — Project information
+- **[Team](/unknownhands/team/)**, **[Publications](/unknownhands/publications/)**, - **[Participate](/unknownhands/participate/)** — Project information
+
 ---
 
 ## 2. Browse & Search
@@ -75,11 +76,11 @@ Filters appear on the left side and change based on record type.
 
 **Filter Types:**
 
-**Text Filters** Type keywords
-**Dropdown Filters** Select one option.
-**Multi-Select Filters** Choose multiple options
-**Number Range Filters**: Set min/max values
-**Year Range Filters**: Set date ranges
+**Text Filters** Type keywords. 
+**Dropdown Filters** Select one option.  
+**Multi-Select Filters** Choose multiple options. 
+**Number Range Filters**: Set min/max values. 
+**Year Range Filters**: Set date ranges. 
 **How to Apply Filters:**
 1. Select or enter filter values
 2. Results update automatically
@@ -116,11 +117,11 @@ Filters appear on the left side and change based on record type.
 **Click any record** in the center panel:
 - Details appear on the right
 - Shows all metadata fields
-- Links to related records (clickable)
-- Images (if available)
+- Links to related records (clickable) and relationships (clickable)
+- Links to images and IIIF manifests (if available) with a button to open in Mirador
 
 **Related Records:**
-- Click blue linked names to navigate
+- Click gold linked names to navigate
 - Example: Click a manuscript name in a Scribal Unit to see the full Manuscript record
 
 ### Exporting Data
@@ -128,26 +129,84 @@ Filters appear on the left side and change based on record type.
 **Export Button** (top right):
 1. Apply filters/search to get desired records
 2. Click **"Export CSV"**
-3. Downloads spreadsheet with visible results
-4. Opens in Excel, Google Sheets, etc.
-
-**CSV Contents:**
-- All fields for filtered records
-- Use for your own analysis
-- Import into statistical software
+3. Choose the fields to include
+4. Downloads spreadsheet with visible results
+5. Opens in Excel, Google Sheets, etc. to use for your own analysis
 
 ### Searching by Relationships
 
-The database now includes **relationship data** that is fully searchable:
+The database includes **relationship data** that connects entities and provides rich contextual metadata:
 
 **What Are Relationships?**
-- Connections between entities in the database
-- Examples: scribes working at institutions, manuscripts produced at locations, texts contained in manuscripts
+- Connections between entities in the database with associated metadata
+- Examples: 
+  - Scribal Units linked to texts (with language, style, expression details)
+  - Scribal Units linked to historical people (with scribe role, certainty level)
+  - Manuscripts linked to holding institutions (current locations)
 
-**How to Use:**
-- Relationship data is automatically included in full-text searches
-- When you search, results include records with matching relationship metadata
-- Use the Network Explorer tab for visual exploration of relationships
+**How Relationships Display:**
+
+**In the Detail View (Right Panel):**
+When you click a record, relationships appear at the bottom of the detail panel:
+- **Incoming Relationships** — Entities pointing to this record (e.g., Scribal Units in a Manuscript)
+- **Outgoing Relationships** — Entities this record points to (e.g., the Manuscript a Scribal Unit belongs to)
+- **Expandable Details** — Click the ▶ button next to any relationship to see full metadata (scribe role, certainty, language, style, etc.)
+- **Clickable Links** — Gold-colored entity names are clickable to navigate to that record
+- **Filtered Entities** — If a related entity is filtered out, it appears as gray italic text (not clickable)
+
+**In the Filters (Left Panel):**
+Some entity types have **relationship-based filters** that pull values from connected records:
+- **Scribal Units:**
+  - Scribe certainty (from relationships)
+  - Scribe role (from relationships)
+  - Function of copying (from relationships)
+  - Text language (from relationships)
+  - Style (from relationships)
+  
+- **Production Units:**
+  - Text language (from relationships)
+  - Style (from relationships)
+  
+- **Historical People:**
+  - Scribe role (from relationships)
+  
+- **Texts:**
+  - Expression (from relationships)
+
+These filters allow you to search based on metadata stored in the relationships themselves, not just the entity's direct fields.
+
+**How to Use Relationships:**
+
+**1. Browse Related Entities:**
+- Click any record to see its detail view
+- Scroll to the bottom to see all relationships
+- Click linked entity names to navigate between connected records
+- Example: Click a Scribal Unit → see its Manuscript → see other Scribal Units in that Manuscript
+
+**2. Filter by Relationship Metadata:**
+- Use relationship-based filters in the left panel
+- Example: Filter Scribal Units by "Scribe role (from relationships)" = "Principal scribe"
+- These filters search metadata attached to the relationships, not just the entities
+
+**3. Full-Text Search Includes Relationships:**
+- When you search, all relationship metadata is automatically included
+- Search for "principal scribe" to find Scribal Units with that role in relationships
+- Search for a monastery name to find Production Units linked to it
+
+**4. Visual Exploration:**
+- Switch to the **Network Explorer** tab for interactive graph visualization
+- See all relationships as lines connecting nodes
+- Click nodes to highlight connections
+- Filter by entity type to focus on specific relationship patterns
+
+**Example Workflow:**
+1. Search for "Latin" in Scribal Units
+2. Results include units where Latin appears in text language (from relationships)
+3. Click a result to see detail view
+4. Expand relationship details (▶ button) to see full metadata
+5. Click linked manuscript name to navigate to that record
+6. See all other Scribal Units in that manuscript
+7. Switch to Network view to visualize the full relationship network
 
 ### Pagination
 
