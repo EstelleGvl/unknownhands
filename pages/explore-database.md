@@ -7987,76 +7987,7 @@ function buildStatisticalDashboard(mount, list) {
       buildStatsCard('Avg Folios', avgFolios),
       buildStatsCard('Digitized', withDigitization)
     ];
-  } else if (entityFilt
-    "label": "Scribal Units",
-    "type": "scribalUnits",
-    "statistics": [
-      {
-        "label": "Total",
-        "value": "COUNT(scribalUnits)"
-      },
-      {
-        "label": "With High Certainty Attribution",
-        "value": "COUNT(scribalUnits WHERE relationships.type = 'scribeOf' AND relationships.scribeCertainty = 'high')",
-        "description": "Scribal units with a high certainty scribe attribution"
-      },
-      {
-        "label": "With Attribution",
-        "value": "COUNT(scribalUnits WHERE HAS relationships.type = 'scribeOf')",
-        "description": "Scribal units with any scribe attribution"
-      },
-      {
-        "label": "With Transcription",
-        "value": "COUNT(scribalUnits WHERE transcription IS NOT NULL)"
-      }
-    ]
-  }  {
-    "label": "Scribal Units",
-    "type": "scribalUnits",
-    "statistics": [
-      {
-        "label": "Total",
-        "value": "COUNT(scribalUnits)"
-      },
-      {
-        "label": "With High Certainty Attribution",
-        "value": "COUNT(scribalUnits WHERE relationships.type = 'scribeOf' AND relationships.scribeCertainty = 'high')",
-        "description": "Scribal units with a high certainty scribe attribution"
-      },
-      {
-        "label": "With Attribution",
-        "value": "COUNT(scribalUnits WHERE HAS relationships.type = 'scribeOf')",
-        "description": "Scribal units with any scribe attribution"
-      },
-      {
-        "label": "With Transcription",
-        "value": "COUNT(scribalUnits WHERE transcription IS NOT NULL)"
-      }
-    ]
-  }  {
-    "label": "Scribal Units",
-    "type": "scribalUnits",
-    "statistics": [
-      {
-        "label": "Total",
-        "value": "COUNT(scribalUnits)"
-      },
-      {
-        "label": "With High Certainty Attribution",
-        "value": "COUNT(scribalUnits WHERE relationships.type = 'scribeOf' AND relationships.scribeCertainty = 'high')",
-        "description": "Scribal units with a high certainty scribe attribution"
-      },
-      {
-        "label": "With Attribution",
-        "value": "COUNT(scribalUnits WHERE HAS relationships.type = 'scribeOf')",
-        "description": "Scribal units with any scribe attribution"
-      },
-      {
-        "label": "With Transcription",
-        "value": "COUNT(scribalUnits WHERE transcription IS NOT NULL)"
-      }
-    ]
-  }er === 'pu') {
+  } else if (entityFilter === 'pu') {
     // Production Units
     const withLocation = getCountByFieldExists(list, 'Production unit location');
     const withCountry = getCountByFieldExists(list, 'PU country');
