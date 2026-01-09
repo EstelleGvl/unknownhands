@@ -6330,16 +6330,29 @@ function exportAnalyticsVisualization(format) {
   if (!svgElement) {
     // If no SVG, use html2canvas for HTML content
     if (format === 'png') {
-      // Use html2canvas to export HTML-based visualizations
+      // Ensure html2canvas is loaded
       if (typeof html2canvas === 'undefined') {
+        console.log('Loading html2canvas...');
         const script = document.createElement('script');
         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
         script.onload = () => {
-          exportHtmlVisualizationAsPng(analyticsMount, filename);
+          console.log('html2canvas loaded, attempting export...');
+          exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
+            console.error('Export error:', err);
+            alert('Export failed: ' + err.message);
+          });
+        };
+        script.onerror = () => {
+          console.error('Failed to load html2canvas');
+          alert('Failed to load export library. Please check your internet connection.');
         };
         document.head.appendChild(script);
       } else {
-        exportHtmlVisualizationAsPng(analyticsMount, filename);
+        console.log('html2canvas already loaded, attempting export...');
+        exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
+          console.error('Export error:', err);
+          alert('Export failed: ' + err.message);
+        });
       }
     } else {
       alert('This visualization type does not support SVG export. Please use PNG export instead.');
@@ -6359,15 +6372,37 @@ function exportAnalyticsVisualization(format) {
  * Export HTML-based visualization as PNG using html2canvas
  */
 async function exportHtmlVisualizationAsPng(element, filename) {
+  console.log('Starting export with html2canvas...');
+  console.log('Element:', element);
+  console.log('Filename:', filename);
+  
   try {
+    // Check if html2canvas is available
+    if (typeof html2canvas === 'undefined') {
+      throw new Error('html2canvas library is not loaded');
+    }
+    
+    console.log('Calling html2canvas...');
     const canvas = await html2canvas(element, {
       backgroundColor: '#ffffff',
       scale: 2,
-      logging: false,
-      useCORS: true
+      logging: true, // Enable logging for debugging
+      useCORS: true,
+      allowTaint: false,
+      removeContainer: true
     });
     
+    console.log('Canvas created:', canvas.width, 'x', canvas.height);
+    
+    // Convert to blob and download
     canvas.toBlob(blob => {
+      if (!blob) {
+        console.error('Failed to create blob');
+        alert('Failed to create image blob');
+        return;
+      }
+      
+      console.log('Blob created, downloading...');
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -6376,10 +6411,12 @@ async function exportHtmlVisualizationAsPng(element, filename) {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-    });
+      console.log('Download complete');
+    }, 'image/png');
   } catch (error) {
     console.error('Export failed:', error);
-    alert('Export failed. Please try using your browser\'s screenshot tool (Cmd+Shift+4 on Mac).');
+    console.error('Error details:', error.message, error.stack);
+    throw error; // Re-throw so the caller can handle it
   }
 }
 
