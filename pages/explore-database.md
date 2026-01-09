@@ -3402,6 +3402,7 @@ async function buildMap(){
   // Create map
   const map = L.map(mount).setView([47,8],4);
   MAP_INSTANCE = map;
+  window.globalMap = map; // Store for export functionality
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ attribution:'© OpenStreetMap' }).addTo(map);
 
   // Collect marker data based on selected view
@@ -3419,9 +3420,11 @@ async function buildMap(){
   // Fit bounds
   if (MAP_MARKERS_DATA.length) {
     const bounds = L.latLngBounds(MAP_MARKERS_DATA.map(m => [m.pt.lat, m.pt.lng]));
+    window.globalMapBounds = bounds; // Store for export functionality
     map.fitBounds(bounds.pad(0.2));
   } else {
     map.setView([47,8],4);
+    window.globalMapBounds = null;
     mount.insertAdjacentHTML('beforeend','<div class="muted" style="padding:.75rem">No mappable coordinates for this view.</div>');
   }
 }
@@ -6404,6 +6407,17 @@ async function exportHtmlVisualizationAsPng(element, filename) {
       throw new Error('html2canvas library is not loaded');
     }
     
+    // Wait for any animations or rendering to complete
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Ensure element is visible
+    const rect = element.getBoundingClientRect();
+    console.log('Element dimensions:', rect.width, 'x', rect.height);
+    
+    if (rect.width === 0 || rect.height === 0) {
+      throw new Error('Element has no visible dimensions');
+    }
+    
     console.log('Calling html2canvas...');
     const canvas = await html2canvas(element, {
       backgroundColor: '#ffffff',
@@ -6411,7 +6425,9 @@ async function exportHtmlVisualizationAsPng(element, filename) {
       logging: true, // Enable logging for debugging
       useCORS: true,
       allowTaint: false,
-      removeContainer: true
+      removeContainer: true,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight
     });
     
     console.log('Canvas created:', canvas.width, 'x', canvas.height);
@@ -7735,38 +7751,8 @@ document.addEventListener('click', async (e) => {
 });
 
 // Analytics export button
-const analyticsExportBtn = document.getElementById('analytics-export-png');
-if (analyticsExportBtn) {
-  analyticsExportBtn.addEventListener('click', async () => {
-    const mount = document.getElementById('analytics-mount');
-    if (!mount) return;
-    
-    if (typeof html2canvas === 'undefined') {
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-      document.head.appendChild(script);
-      await new Promise(resolve => script.onload = resolve);
-    }
-    
-    try {
-      const canvas = await html2canvas(mount, {
-        backgroundColor: '#ffffff',
-        scale: 2,
-        logging: false,
-        useCORS: true
-      });
-      
-      const dataURL = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.download = 'analytics-dashboard.png';
-      link.href = dataURL;
-      link.click();
-    } catch (error) {
-      console.error('Export failed:', error);
-      alert('Export failed. Please try again.');
-    }
-  });
-}
+// Analytics export is handled by the exportAnalyticsVisualization function
+// Event listener is attached in attachEventListeners() at line 7114
 
 // Comparison mode storage
 const COMPARISONS = [];
