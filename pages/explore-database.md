@@ -117,7 +117,6 @@ banner:
               Map View:
               <select id="map-view-selector" style="flex: 1; padding: 0.25rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; background: white;">
                 <option value="ms-current">Manuscripts - Current Location (Holdings)</option>
-                <option value="ms-production">Manuscripts - Production Location</option>
                 <option value="ms-movement">Manuscripts - Movement (Production → Current)</option>
                 <option value="pu-location">Production Units - All Locations</option>
                 <option value="pu-monastery">Production Units - By Monastery</option>
@@ -6277,23 +6276,46 @@ function exportMapAsPng(containerId, filename) {
   const originalCursor = mapElement.style.cursor;
   mapElement.style.cursor = 'wait';
   
-  // Use html2canvas to capture the map
-  html2canvas(mapElement, {
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#ffffff',
-    scale: 3, // 3x scale for ~300 DPI
-    logging: false
-  }).then(canvas => {
-    canvas.toBlob(function(blob) {
-      downloadFile(blob, filename, 'image/png');
+  // Store current map view to restore later
+  const currentZoom = window.globalMap ? window.globalMap.getZoom() : null;
+  const currentCenter = window.globalMap ? window.globalMap.getCenter() : null;
+  
+  // Reset map to show all bounds before exporting to prevent coordinate misplacement
+  if (window.globalMap && window.globalMapBounds) {
+    window.globalMap.fitBounds(window.globalMapBounds, { padding: [50, 50] });
+  }
+  
+  // Wait for map to render at new bounds
+  setTimeout(() => {
+    // Use html2canvas to capture the map
+    html2canvas(mapElement, {
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#ffffff',
+      scale: 3, // 3x scale for ~300 DPI
+      logging: false
+    }).then(canvas => {
+      canvas.toBlob(function(blob) {
+        downloadFile(blob, filename, 'image/png');
+        mapElement.style.cursor = originalCursor;
+        
+        // Restore original view
+        if (window.globalMap && currentZoom && currentCenter) {
+          window.globalMap.setView(currentCenter, currentZoom);
+        }
+      }, 'image/png');
+    }).catch(error => {
+      console.error('Map export error:', error);
       mapElement.style.cursor = originalCursor;
-    }, 'image/png');
-  }).catch(error => {
-    console.error('Map export error:', error);
-    mapElement.style.cursor = originalCursor;
-    alert('Failed to export map. Please try again or use a screenshot tool.');
-  });
+      
+      // Restore original view on error too
+      if (window.globalMap && currentZoom && currentCenter) {
+        window.globalMap.setView(currentCenter, currentZoom);
+      }
+      
+      alert('Failed to export map. Please try again or use a screenshot tool.');
+    });
+  }, 500); // Wait 500ms for tiles to load at new bounds
 }
 
 /**
@@ -15566,12 +15588,22 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
       const { markerClusterGroup, markers } = window.formulaMapData;
       const wasUsingCluster = map.hasLayer(markerClusterGroup);
       
+      // Store current view
+      const currentZoom = map.getZoom();
+      const currentCenter = map.getCenter();
+      
       if (wasUsingCluster) {
         map.removeLayer(markerClusterGroup);
         markers.forEach(m => m.addTo(map));
       }
       
-      // Wait for tiles and markers to render
+      // Reset map to show all bounds to prevent coordinate misplacement
+      const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, { padding: [50, 50] });
+      }
+      
+      // Wait for tiles and markers to render at new bounds
       setTimeout(() => {
         // Use leaflet-image to properly capture map tiles and markers
         leafletImage(map, function(err, canvas) {
@@ -15579,6 +15611,16 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
             console.error('PNG export failed:', err);
             btn.textContent = '📷 PNG';
             btn.disabled = false;
+            
+            // Restore original view on error
+            map.setView(currentCenter, currentZoom);
+            
+            // Re-enable clustering if it was active
+            if (wasUsingCluster) {
+              markers.forEach(m => map.removeLayer(m));
+              map.addLayer(markerClusterGroup);
+            }
+            
             alert('Export failed. Please try again.');
             return;
           }
@@ -15605,6 +15647,9 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
           
           btn.textContent = '📷 PNG';
           btn.disabled = false;
+          
+          // Restore original view
+          map.setView(currentCenter, currentZoom);
           
           // Re-enable clustering if it was active
           if (wasUsingCluster) {
