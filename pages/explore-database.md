@@ -6324,24 +6324,62 @@ function exportAnalyticsVisualization(format) {
   // Try to find SVG element (most analytics use D3 SVG)
   const svgElement = analyticsMount.querySelector('svg');
   
+  const entityFilter = document.getElementById('entity-filter-select')?.value || 'su';
+  const filename = `unknownhands-analytics-${entityFilter}-${Date.now()}.${format}`;
+  
   if (!svgElement) {
     // If no SVG, use html2canvas for HTML content
     if (format === 'png') {
-      alert('HTML-based visualizations cannot be exported automatically. Please use your browser\'s screenshot tool (Cmd+Shift+4 on Mac, or right-click > "Save image as" in some browsers).');
+      // Use html2canvas to export HTML-based visualizations
+      if (typeof html2canvas === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        script.onload = () => {
+          exportHtmlVisualizationAsPng(analyticsMount, filename);
+        };
+        document.head.appendChild(script);
+      } else {
+        exportHtmlVisualizationAsPng(analyticsMount, filename);
+      }
     } else {
-      alert('This visualization type does not support SVG export. Please use PNG export or screenshot tool.');
+      alert('This visualization type does not support SVG export. Please use PNG export instead.');
     }
     return;
   }
   
   // Export SVG
-  const vizType = document.getElementById('analytics-viz-type')?.value || 'dashboard';
-  const filename = `unknownhands-analytics-${vizType}-${Date.now()}.${format}`;
-  
   if (format === 'svg') {
     exportSvgAsSvg(svgElement, filename);
   } else if (format === 'png') {
     exportSvgAsPng(svgElement, filename, 3);
+  }
+}
+
+/**
+ * Export HTML-based visualization as PNG using html2canvas
+ */
+async function exportHtmlVisualizationAsPng(element, filename) {
+  try {
+    const canvas = await html2canvas(element, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      logging: false,
+      useCORS: true
+    });
+    
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  } catch (error) {
+    console.error('Export failed:', error);
+    alert('Export failed. Please try using your browser\'s screenshot tool (Cmd+Shift+4 on Mac).');
   }
 }
 
