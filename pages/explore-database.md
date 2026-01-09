@@ -243,8 +243,9 @@ banner:
           
           <!-- Search panel (primary interface) -->
           <div id="network-search-panel" style="padding: 0.75rem; background: #fff; border-bottom: 1px solid #dee2e6;">
-            <label style="display: block; font-weight: 500; font-size: 0.875rem; margin-bottom: 0.5rem;">
-              Search for a record to explore its network:
+            <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">1. Pick a Record</div>
+            <label style="display: block; font-weight: 400; font-size: 0.8rem; margin-bottom: 0.5rem; color: #666;">
+              Search for any manuscript, scribe, institution, or text to start exploring
             </label>
             <input type="search" id="network-search-input" placeholder="Type manuscript name, scribe, institution, text..." style="width: 100%; padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; margin-bottom: 0.5rem;">
             <div id="network-search-results" style="max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 0.25rem;"></div>
@@ -276,28 +277,10 @@ banner:
             <!-- Advanced Filters Panel (collapsible) -->
             <div id="network-filters-panel" style="display:none;margin-top:.75rem;padding:.75rem;background:#f8f9fa;border-radius:.25rem;border:1px solid #dee2e6;">
               
-              <!-- Filter Tabs -->
-              <div style="display:flex;gap:.5rem;margin-bottom:.75rem;border-bottom:2px solid #dee2e6;padding-bottom:.5rem;">
-                <button class="filter-tab active" data-tab="entity-types" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  Entity Types
-                </button>
-                <button class="filter-tab" data-tab="general" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  General
-                </button>
-                <button class="filter-tab" data-tab="manuscripts" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  Manuscripts
-                </button>
-                <button class="filter-tab" data-tab="scribal" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  Scribal Units
-                </button>
-                <button class="filter-tab" data-tab="people" style="padding:.35rem .75rem;border:none;background:transparent;cursor:pointer;font-weight:600;font-size:.85rem;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;">
-                  People
-                </button>
-              </div>
-              
-              <!-- Entity Types Tab -->
-              <div class="filter-tab-content" data-tab="entity-types" style="display:block;">
-                <div style="font-weight:600;font-size:.9rem;margin-bottom:.5rem;">Select which entity types to include in the network:</div>
+              <!-- Section 2: Show These Types -->
+              <div style="margin-bottom:1rem;">
+                <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">2. Show These Types</div>
+                <div style="font-size:.8rem;color:#666;margin-bottom:.6rem;">Select which types of entities to include in the network</div>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem;">
                   <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
                     <input type="checkbox" class="network-entity-filter" value="su" checked>
@@ -337,131 +320,42 @@ banner:
                 </div>
               </div>
               
-              <!-- General Filters Tab -->
-              <div class="filter-tab-content" data-tab="general" style="display:none;">
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
+              <!-- Section 3: Refine View -->
+              <div style="margin-bottom:1rem;padding-top:1rem;border-top:1px solid #dee2e6;">
+                <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">3. Refine View (Optional)</div>
+                <div style="font-size:.8rem;color:#666;margin-bottom:.6rem;">Filter by geography, time period, or content</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Country</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📍 Geography</label>
                     <select id="network-filter-country" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any country</option>
                     </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Production Units, Institutions</div>
+                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Filters Production Units and Institutions</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Century</label>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📅 Time Period</label>
                     <select id="network-filter-century" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
                       <option value="">Any century</option>
                     </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Production date (Scribal/Production Units)</div>
+                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Filters Scribal Units and Production Units</div>
                   </div>
                   <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Production Location</label>
-                    <input type="text" id="network-filter-production-location" placeholder="e.g., Paris, Bologna..." style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Production Units (free text search)</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Language (colophon)</label>
-                    <select id="network-filter-language" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any language</option>
+                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📚 Content</label>
+                    <select id="network-filter-content" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
+                      <option value="">Any content</option>
                     </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Scribal Units</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Genre</label>
-                    <select id="network-filter-genre" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any genre</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Texts</div>
+                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;" id="content-filter-help">Adapts based on selected entity types</div>
                   </div>
                 </div>
               </div>
               
-              <!-- Manuscripts Tab -->
-              <div class="filter-tab-content" data-tab="manuscripts" style="display:none;">
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Material</label>
-                    <select id="network-filter-material" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any material</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Writing support material</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Current Location</label>
-                    <input type="text" id="network-filter-shelfmark" placeholder="e.g., BnF, Bodleian..." style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Search in shelfmark/location (free text)</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Size (folios)</label>
-                    <div style="display:flex;gap:.5rem;">
-                      <input type="number" id="network-filter-folios-min" placeholder="Min" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <input type="number" id="network-filter-folios-max" placeholder="Max" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                    </div>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Number of folios range</div>
-                  </div>
+              <!-- Actions and Feedback -->
+              <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #dee2e6;display:flex;justify-content:space-between;align-items:center;">
+                <div id="network-filter-feedback" style="font-size:.85rem;color:#666;">
+                  <span id="network-node-count">0 nodes</span>, <span id="network-link-count">0 links</span>
                 </div>
-              </div>
-              
-              <!-- Scribal Units Tab -->
-              <div class="filter-tab-content" data-tab="scribal" style="display:none;">
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Script Type</label>
-                    <select id="network-filter-script" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any script</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Script classification</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Decoration</label>
-                    <select id="network-filter-decoration" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any</option>
-                      <option value="yes">With decoration</option>
-                      <option value="no">Without decoration</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Presence of decoration</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Folios Range</label>
-                    <div style="display:flex;gap:.5rem;">
-                      <input type="text" id="network-filter-folio-start" placeholder="Start (e.g., 1r)" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <input type="text" id="network-filter-folio-end" placeholder="End (e.g., 23v)" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                    </div>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Folio range (free text)</div>
-                      <input type="text" id="network-filter-folio-end" placeholder="End" style="width:50%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                    </div>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Folio range (e.g., 1r, 23v)</div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- People Tab -->
-              <div class="filter-tab-content" data-tab="people" style="display:none;">
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Role</label>
-                    <select id="network-filter-role" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any role</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Person's role or function</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">Gender</label>
-                    <select id="network-filter-gender" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="unknown">Unknown</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Historical person's gender</div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Clear Filters Button -->
-              <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #dee2e6;text-align:right;">
-                <button id="network-clear-filters" style="padding:.4rem 1rem;background:#dc3545;color:white;border:none;border-radius:.25rem;font-size:.85rem;cursor:pointer;font-weight:500;">
-                  Clear All Filters
+                <button id="network-clear-filters" style="padding:.4rem 1rem;background:#6c757d;color:white;border:none;border-radius:.25rem;font-size:.85rem;cursor:pointer;font-weight:500;">
+                  Reset All Filters
                 </button>
               </div>
               
@@ -2464,6 +2358,22 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     if (!event.active) simulation.alphaTarget(0);
     d.fx = null;
     d.fy = null;
+  }
+  
+  // Update visual feedback
+  updateNetworkFeedback(visibleNodes.length, visibleLinks.length);
+}
+
+// Update network visual feedback
+function updateNetworkFeedback(nodeCount, linkCount) {
+  const nodeCountEl = document.getElementById('network-node-count');
+  const linkCountEl = document.getElementById('network-link-count');
+  
+  if (nodeCountEl) {
+    nodeCountEl.textContent = `${nodeCount} node${nodeCount !== 1 ? 's' : ''}`;
+  }
+  if (linkCountEl) {
+    linkCountEl.textContent = `${linkCount} link${linkCount !== 1 ? 's' : ''}`;
   }
 }
 
@@ -4770,25 +4680,8 @@ function populateFilterDropdowns() {
   ]);
   populateDropdown('network-filter-century', Array.from(centuries).sort(), 'Any century');
   
-  // Language (SU)
-  const languages = getUniqueValues('su', 'Colophon language');
-  populateDropdown('network-filter-language', languages, 'Any language');
-  
-  // Genre (TX)
-  const genres = getUniqueValues('tx', 'Genre');
-  populateDropdown('network-filter-genre', genres, 'Any genre');
-  
-  // Script (SU)
-  const scripts = getUniqueValues('su', 'Script');
-  populateDropdown('network-filter-script', scripts, 'Any script');
-  
-  // Material (MS)
-  const materials = getUniqueValues('ms', 'Material');
-  populateDropdown('network-filter-material', materials, 'Any material');
-  
-  // Role (HP)
-  const roles = getUniqueValues('hp', 'Role', true);
-  populateDropdown('network-filter-role', roles, 'Any role');
+  // Content filter - will be populated dynamically based on selected entity types
+  updateContentFilter();
   
   console.log('✅ Filter dropdowns populated');
 }
@@ -4810,31 +4703,73 @@ function populateDropdown(elementId, values, placeholder = 'Any') {
   });
 }
 
+// Update content filter based on selected entity types
+function updateContentFilter() {
+  const contentSelect = document.getElementById('network-filter-content');
+  const helpText = document.getElementById('content-filter-help');
+  if (!contentSelect || !helpText) return;
+  
+  const checkedTypes = Array.from(document.querySelectorAll('.network-entity-filter:checked'))
+    .map(cb => cb.value);
+  
+  // Determine what content filter to show based on selected types
+  let filterType = 'none';
+  let values = [];
+  let label = 'Any content';
+  let help = 'Select entity types to enable content filtering';
+  
+  if (checkedTypes.includes('tx')) {
+    // If texts are selected, show genre filter
+    filterType = 'genre';
+    values = getUniqueValues('tx', 'Genre');
+    label = 'Any genre';
+    help = 'Filters Texts by genre';
+  } else if (checkedTypes.includes('mi')) {
+    // If monastic institutions selected, show religious order filter
+    filterType = 'order';
+    values = getUniqueValues('mi', 'Religious order');
+    label = 'Any order';
+    help = 'Filters Monastic Institutions by religious order';
+  } else if (checkedTypes.includes('ms')) {
+    // If manuscripts selected, show material filter
+    filterType = 'material';
+    values = getUniqueValues('ms', 'Material');
+    label = 'Any material';
+    help = 'Filters Manuscripts by writing support material';
+  } else if (checkedTypes.includes('su')) {
+    // If scribal units selected, show script type filter
+    filterType = 'script';
+    values = getUniqueValues('su', 'Script');
+    label = 'Any script';
+    help = 'Filters Scribal Units by script type';
+  }
+  
+  // Store the current filter type as data attribute
+  contentSelect.setAttribute('data-filter-type', filterType);
+  
+  // Populate dropdown
+  populateDropdown('network-filter-content', values, label);
+  
+  // Update help text
+  helpText.textContent = help;
+}
+
 // Get active field filters
 function getActiveFieldFilters() {
+  const contentSelect = document.getElementById('network-filter-content');
+  const contentFilterType = contentSelect?.getAttribute('data-filter-type') || 'none';
+  const contentValue = contentSelect?.value || null;
+  
   const filters = {
-    // General filters
-    genre: document.getElementById('network-filter-genre')?.value || null,
-    language: document.getElementById('network-filter-language')?.value || null,
+    // Core filters
     century: document.getElementById('network-filter-century')?.value || null,
     country: document.getElementById('network-filter-country')?.value || null,
-    productionLocation: document.getElementById('network-filter-production-location')?.value.trim().toLowerCase() || null,
     
-    // Manuscript filters
-    material: document.getElementById('network-filter-material')?.value || null,
-    shelfmark: document.getElementById('network-filter-shelfmark')?.value.trim().toLowerCase() || null,
-    foliosMin: parseInt(document.getElementById('network-filter-folios-min')?.value) || null,
-    foliosMax: parseInt(document.getElementById('network-filter-folios-max')?.value) || null,
-    
-    // Scribal unit filters
-    script: document.getElementById('network-filter-script')?.value || null,
-    decoration: document.getElementById('network-filter-decoration')?.value || null,
-    folioStart: document.getElementById('network-filter-folio-start')?.value.trim().toLowerCase() || null,
-    folioEnd: document.getElementById('network-filter-folio-end')?.value.trim().toLowerCase() || null,
-    
-    // People filters
-    role: document.getElementById('network-filter-role')?.value || null,
-    gender: document.getElementById('network-filter-gender')?.value || null
+    // Dynamic content filter - set the appropriate field based on filter type
+    genre: contentFilterType === 'genre' ? contentValue : null,
+    material: contentFilterType === 'material' ? contentValue : null,
+    script: contentFilterType === 'script' ? contentValue : null,
+    order: contentFilterType === 'order' ? contentValue : null
   };
   
   // Log active filters for debugging
@@ -4861,27 +4796,7 @@ function recordMatchesFilters(rec, type) {
     console.log(`Checking record (${window.filterDebugCount + 1}/3):`, { type, id: rec.rec_ID, filters });
   }
   
-  // === GENERAL FILTERS ===
-  
-  // Genre filter (texts only)
-  if (filters.genre && type === 'tx') {
-    const genre = (getVal(rec, 'Genre') || '').toLowerCase();
-    if (!genre.includes(filters.genre)) {
-      if (shouldLog) console.log('  ❌ Genre mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  // Language filter (scribal units - colophon language)
-  if (filters.language && type === 'su') {
-    const lang = (getVal(rec, 'Colophon language') || '').toLowerCase();
-    if (!lang.includes(filters.language)) {
-      if (shouldLog) console.log('  ❌ Language mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
+  // === CORE FILTERS (SIMPLIFIED) ===
   
   // Century filter (scribal units, production units)
   if (filters.century && (type === 'su' || type === 'pu')) {
@@ -4906,17 +4821,17 @@ function recordMatchesFilters(rec, type) {
     }
   }
   
-  // Production location filter (production units)
-  if (filters.productionLocation && type === 'pu') {
-    const location = (getVal(rec, 'Production location') || '').toLowerCase();
-    if (!location.includes(filters.productionLocation)) {
-      if (shouldLog) console.log('  ❌ Production location mismatch');
+  // === DYNAMIC CONTENT FILTERS ===
+  
+  // Genre filter (texts)
+  if (filters.genre && type === 'tx') {
+    const genre = (getVal(rec, 'Genre') || '').toLowerCase();
+    if (!genre.includes(filters.genre)) {
+      if (shouldLog) console.log('  ❌ Genre mismatch');
       window.filterDebugCount++;
       return false;
     }
   }
-  
-  // === MANUSCRIPT FILTERS ===
   
   // Material filter (manuscripts)
   if (filters.material && type === 'ms') {
@@ -4928,33 +4843,6 @@ function recordMatchesFilters(rec, type) {
     }
   }
   
-  // Shelfmark filter (manuscripts)
-  if (filters.shelfmark && type === 'ms') {
-    const shelfmark = (getVal(rec, 'MS shelfmark') || '').toLowerCase();
-    if (!shelfmark.includes(filters.shelfmark)) {
-      if (shouldLog) console.log('  ❌ Shelfmark mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  // Folios range filter (manuscripts)
-  if ((filters.foliosMin !== null || filters.foliosMax !== null) && type === 'ms') {
-    const folios = parseInt(getVal(rec, 'Number of folios')) || 0;
-    if (filters.foliosMin !== null && folios < filters.foliosMin) {
-      if (shouldLog) console.log('  ❌ Below minimum folios');
-      window.filterDebugCount++;
-      return false;
-    }
-    if (filters.foliosMax !== null && folios > filters.foliosMax) {
-      if (shouldLog) console.log('  ❌ Above maximum folios');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  // === SCRIBAL UNIT FILTERS ===
-  
   // Script type filter (scribal units)
   if (filters.script && type === 'su') {
     const script = (getVal(rec, 'Script') || '').toLowerCase();
@@ -4965,52 +4853,11 @@ function recordMatchesFilters(rec, type) {
     }
   }
   
-  // Decoration filter (scribal units)
-  if (filters.decoration && type === 'su') {
-    const hasDecoration = (getVal(rec, 'Decoration') || '').toLowerCase();
-    const wantDecoration = filters.decoration === 'yes';
-    const hasIt = hasDecoration && hasDecoration !== 'none' && hasDecoration !== 'no';
-    if (wantDecoration !== hasIt) {
-      if (shouldLog) console.log('  ❌ Decoration mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  // Folio range filter (scribal units)
-  if ((filters.folioStart || filters.folioEnd) && type === 'su') {
-    const start = (getVal(rec, 'Start folio') || '').toLowerCase();
-    const end = (getVal(rec, 'End folio') || '').toLowerCase();
-    if (filters.folioStart && !start.includes(filters.folioStart)) {
-      if (shouldLog) console.log('  ❌ Folio start mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-    if (filters.folioEnd && !end.includes(filters.folioEnd)) {
-      if (shouldLog) console.log('  ❌ Folio end mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  // === PEOPLE FILTERS ===
-  
-  // Role filter (historical people)
-  if (filters.role && type === 'hp') {
-    const roles = getValsAll(rec, 'Role');
-    const match = roles.some(r => r && r.toLowerCase().includes(filters.role));
-    if (!match) {
-      if (shouldLog) console.log('  ❌ Role mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  // Gender filter (historical people)
-  if (filters.gender && type === 'hp') {
-    const gender = (getVal(rec, 'Gender') || '').toLowerCase();
-    if (!gender.includes(filters.gender)) {
-      if (shouldLog) console.log('  ❌ Gender mismatch');
+  // Religious order filter (monastic institutions)
+  if (filters.order && type === 'mi') {
+    const order = (getVal(rec, 'Religious order') || '').toLowerCase();
+    if (!order.includes(filters.order)) {
+      if (shouldLog) console.log('  ❌ Order mismatch');
       window.filterDebugCount++;
       return false;
     }
@@ -6902,49 +6749,16 @@ function initEventListeners() {
     }
   });
   
-  // Filter tab switching
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  console.log('Setting up', filterTabs.length, 'filter tabs');
-  
-  // Add CSS for tabs dynamically
-  const tabStyle = document.createElement('style');
-  tabStyle.textContent = `
-    .filter-tab { transition: all 0.2s ease; }
-    .filter-tab:hover { color: #333 !important; background: rgba(0,0,0,0.03) !important; }
-    .filter-tab.active { color: #007bff !important; border-bottom-color: #007bff !important; }
-    .filter-tab-content { animation: fadeIn 0.3s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-  `;
-  document.head.appendChild(tabStyle);
-  
-  filterTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetTab = tab.dataset.tab;
-      console.log('Tab clicked:', targetTab);
-      // Update active tab styling
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      // Show/hide content
-      document.querySelectorAll('.filter-tab-content').forEach(content => {
-        content.style.display = content.dataset.tab === targetTab ? 'block' : 'none';
-      });
-    });
-  });
-  
-  // Network entity type filters
+  // Network entity type filters - also update content filter when changed
   document.querySelectorAll('.network-entity-filter').forEach(checkbox => {
     checkbox.addEventListener('change', () => {
+      updateContentFilter(); // Update content filter based on new selection
       if (ACTIVE_MODE === 'network') buildNetworkView();
     });
   });
   
-  // Network field filters
-  // Dropdown filters (immediate rebuild on change)
-  const dropdownFilters = [
-    'network-filter-country', 'network-filter-century', 'network-filter-language', 
-    'network-filter-genre', 'network-filter-script', 'network-filter-material',
-    'network-filter-role', 'network-filter-decoration', 'network-filter-gender'
-  ];
+  // Network field filters (simplified system)
+  const dropdownFilters = ['network-filter-country', 'network-filter-century', 'network-filter-content'];
   console.log('Setting up', dropdownFilters.length, 'dropdown filters');
   dropdownFilters.forEach(id => {
     const el = document.getElementById(id);
@@ -6958,52 +6772,19 @@ function initEventListeners() {
     }
   });
   
-  // Text field filters (debounced)
-  const textFilters = [
-    'network-filter-production-location', 'network-filter-shelfmark',
-    'network-filter-folio-start', 'network-filter-folio-end'
-  ];
-  console.log('Setting up', textFilters.length, 'text field filters');
-  textFilters.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', debounce(() => {
-        if (ACTIVE_MODE === 'network') buildNetworkView();
-      }, 500));
-    } else {
-      console.warn('Text filter element not found:', id);
-    }
-  });
-  
-  // Numeric filters (folios range)
-  ['network-filter-folios-min', 'network-filter-folios-max'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', debounce(() => {
-        if (ACTIVE_MODE === 'network') buildNetworkView();
-      }, 500));
-    } else {
-      console.warn('Numeric filter element not found:', id);
-    }
-  });
-  
   // Clear all filters
   document.getElementById('network-clear-filters')?.addEventListener('click', () => {
     console.log('Clearing all filters');
     // Reset entity type checkboxes
     document.querySelectorAll('.network-entity-filter').forEach(cb => cb.checked = true);
-    // Reset ALL filters (dropdowns and text inputs)
-    const allFilterIds = [
-      'network-filter-genre', 'network-filter-language', 'network-filter-century', 'network-filter-country',
-      'network-filter-production-location', 'network-filter-material', 'network-filter-shelfmark',
-      'network-filter-script', 'network-filter-role',
-      'network-filter-folio-start', 'network-filter-folio-end', 'network-filter-folios-min', 
-      'network-filter-folios-max', 'network-filter-decoration', 'network-filter-gender'
-    ];
+    // Reset simplified filters
+    const allFilterIds = ['network-filter-country', 'network-filter-century', 'network-filter-content'];
     allFilterIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.value = '';
     });
+    // Update content filter
+    updateContentFilter();
     // Rebuild
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
