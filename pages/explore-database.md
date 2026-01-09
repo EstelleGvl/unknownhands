@@ -2160,11 +2160,6 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     const id = `${type}:${rec.rec_ID}`;
     if (visited.has(id)) return;
     
-    // Check if this entity type is allowed by filters (except for center node at level 0)
-    if (level > 0 && !activeEntityTypes.includes(type)) {
-      return; // Skip this node if its entity type is not in the active filters
-    }
-    
     visited.add(id);
     
     const node = {
@@ -2295,8 +2290,23 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     return;
   }
   
-  // Store network data for export
-  CURRENT_NETWORK_DATA = { nodes: nodes.map(n => ({...n})), links: links.map(l => ({...l})) };
+  // Filter nodes by entity type (but keep all for traversal)
+  // Center node (level 0) is always visible
+  const visibleNodes = nodes.filter(n => n.level === 0 || activeEntityTypes.includes(n.type));
+  const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
+  
+  // Filter links to only show those between visible nodes
+  const visibleLinks = links.filter(l => {
+    const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+    const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+    return visibleNodeIds.has(sourceId) && visibleNodeIds.has(targetId);
+  });
+  
+  // Store network data for export (use visible nodes/links)
+  CURRENT_NETWORK_DATA = { 
+    nodes: visibleNodes.map(n => ({...n})), 
+    links: visibleLinks.map(l => ({...l})) 
+  };
   
   // D3 force simulation
   const width = mount.clientWidth || 900;
@@ -2328,9 +2338,9 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     .domain(['su', 'ms', 'pu', 'hi', 'mi', 'hp', 'tx'])
     .range(['#e6b800', '#3498db', '#e74c3c', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c']);
   
-  // Force simulation
-  const simulation = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d => d.id).distance(100))
+  // Force simulation - use visibleNodes and visibleLinks
+  const simulation = d3.forceSimulation(visibleNodes)
+    .force('link', d3.forceLink(visibleLinks).id(d => d.id).distance(100))
     .force('charge', d3.forceManyBody().strength(-300))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(35));
@@ -2338,7 +2348,7 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   // Draw links
   const link = g.append('g')
     .selectAll('line')
-    .data(links)
+    .data(visibleLinks)
     .join('line')
     .attr('stroke', d => d.linkType === 'pointer' ? '#bbb' : '#999')
     .attr('stroke-opacity', d => d.linkType === 'pointer' ? 0.4 : 0.6)
@@ -2376,10 +2386,10 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
     .attr('fill', '#bbb');
   
-  // Draw nodes
+  // Draw nodes - use visibleNodes
   const node = g.append('g')
     .selectAll('circle')
-    .data(nodes)
+    .data(visibleNodes)
     .join('circle')
     .attr('r', d => d.level === 0 ? 15 : 10)
     .attr('fill', d => colorScale(d.type))
@@ -2393,7 +2403,7 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   // Add labels
   const label = g.append('g')
     .selectAll('text')
-    .data(nodes)
+    .data(visibleNodes)
     .join('text')
     .text(d => {
       const maxLen = d.level === 0 ? 30 : 20;
@@ -4889,7 +4899,7 @@ function recordMatchesFilters(rec, type) {
     let country = '';
     if (type === 'pu') country = getVal(rec, 'PU country') || '';
     else if (type === 'hi' || type === 'mi') country = getVal(rec, 'Country') || '';
-    if (!country.toLowerCase().includes(filters.country)) {
+    if (!country.toLowerCase().includes(filters.country.toLowerCase())) {
       if (shouldLog) console.log('  ❌ Country mismatch');
       window.filterDebugCount++;
       return false;
