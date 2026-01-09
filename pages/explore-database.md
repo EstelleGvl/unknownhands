@@ -1231,6 +1231,34 @@ const detailToString = d => val(d);
 const getValsAll = (rec, field) =>
   getDetailsAll(rec, field).map(detailToString).filter(Boolean);
 
+/**
+ * Get unique values for a field across all records of a given type
+ * @param {string} entityType - Entity type (su, ms, pu, hi, mi, hp, tx)
+ * @param {string} fieldName - Field name to extract values from
+ * @param {boolean} multi - Whether to extract from multi-valued fields
+ * @returns {Array<string>} Sorted array of unique values
+ */
+function getUniqueValues(entityType, fieldName, multi = false) {
+  const records = DATA[entityType] || [];
+  const values = new Set();
+  
+  records.forEach(rec => {
+    if (multi) {
+      // For multi-valued fields, get all values
+      const vals = getValsAll(rec, fieldName);
+      vals.forEach(v => {
+        if (v && v.trim()) values.add(v.trim());
+      });
+    } else {
+      // For single-valued fields, get one value
+      const val = getVal(rec, fieldName);
+      if (val && val.trim()) values.add(val.trim());
+    }
+  });
+  
+  return Array.from(values).sort();
+}
+
 
 /* ---------- Data loading ---------- */
 const EXPECT_TYPE = { su:119, ms:118, pu:116, hi:113, mi:115, hp:114, tx:107 };
