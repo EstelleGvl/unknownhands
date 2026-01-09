@@ -808,10 +808,6 @@ banner:
                     <span>3+ Production Units</span>
                   </label>
                   <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
-                    <input type="checkbox" id="tree-filter-interleaved" style="cursor: pointer;">
-                    <span>Interleaved Units</span>
-                  </label>
-                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
                     <input type="checkbox" id="tree-filter-cross-ms-pu" style="cursor: pointer;">
                     <span>PUs Across Multiple MSS</span>
                   </label>
@@ -7556,7 +7552,6 @@ if (entityFilterSelect) {
 const treeSearchInput = document.getElementById('tree-manuscript-search');
 const treeSearchClear = document.getElementById('tree-search-clear');
 const treeSortSelect = document.getElementById('tree-sort-select');
-const treeFilterInterleaved = document.getElementById('tree-filter-interleaved');
 const treeFilterCrossMSPU = document.getElementById('tree-filter-cross-ms-pu');
 const treeFilterCrossPUSU = document.getElementById('tree-filter-cross-pu-su');
 const treeFilterMultiPU = document.getElementById('tree-filter-multi-pu');
@@ -7583,7 +7578,7 @@ if (treeSortSelect) {
 }
 
 // Add event listeners for filter checkboxes
-[treeFilterInterleaved, treeFilterCrossMSPU, treeFilterCrossPUSU, treeFilterMultiPU].forEach(checkbox => {
+[treeFilterCrossMSPU, treeFilterCrossPUSU, treeFilterMultiPU].forEach(checkbox => {
   if (checkbox) {
     checkbox.addEventListener('change', () => {
       buildHierarchicalTree();
@@ -10963,24 +10958,18 @@ function buildHierarchicalTreeVisualization(mount, list) {
     });
     const hasCrossPUSU = Object.values(suToPUMap).some(pus => pus.length > 1);
     
-    // Check for interleaved units (multiple PUs with overlapping SU ranges)
-    // This is a simplified heuristic: if there are multiple PUs and cross-PU SUs
-    const hasInterleaved = puCount > 1 && hasCrossPUSU;
-    
     // Complexity score: weighted sum of various factors
     const complexityScore = 
       puCount * 10 +  // More PUs = more complex
       suCount * 2 +    // More SUs = somewhat more complex
       (hasCrossMSPU ? 100 : 0) +  // Cross-MS PUs are very unusual
-      (hasCrossPUSU ? 50 : 0) +   // Cross-PU SUs are unusual
-      (hasInterleaved ? 75 : 0);  // Interleaving is complex
+      (hasCrossPUSU ? 50 : 0);   // Cross-PU SUs are unusual
     
     msMetrics[msId] = {
       puCount,
       suCount,
       hasCrossMSPU,
       hasCrossPUSU,
-      hasInterleaved,
       complexityScore
     };
   });
@@ -10990,7 +10979,6 @@ function buildHierarchicalTreeVisualization(mount, list) {
   const searchQuery = (searchInput?.value || '').trim().toLowerCase();
   
   // Get filter checkboxes
-  const filterInterleaved = document.getElementById('tree-filter-interleaved')?.checked || false;
   const filterCrossMSPU = document.getElementById('tree-filter-cross-ms-pu')?.checked || false;
   const filterCrossPUSU = document.getElementById('tree-filter-cross-pu-su')?.checked || false;
   const filterMultiPU = document.getElementById('tree-filter-multi-pu')?.checked || false;
@@ -11006,10 +10994,9 @@ function buildHierarchicalTreeVisualization(mount, list) {
     }
     
     // Checkbox filters (if any are active, MS must match at least one)
-    const anyFilterActive = filterInterleaved || filterCrossMSPU || filterCrossPUSU || filterMultiPU;
+    const anyFilterActive = filterCrossMSPU || filterCrossPUSU || filterMultiPU;
     if (anyFilterActive) {
       let matchesFilter = false;
-      if (filterInterleaved && metrics.hasInterleaved) matchesFilter = true;
       if (filterCrossMSPU && metrics.hasCrossMSPU) matchesFilter = true;
       if (filterCrossPUSU && metrics.hasCrossPUSU) matchesFilter = true;
       if (filterMultiPU && metrics.puCount >= 3) matchesFilter = true;
@@ -11149,7 +11136,6 @@ function buildHierarchicalTreeVisualization(mount, list) {
             <a href="?browse=${msId}" style="font-weight: 700; font-size: 1.05rem; color: #1a1a1a; text-decoration: none; display: flex; align-items: center; gap: 0.25rem;" onmouseover="this.style.color='#2196F3'" onmouseout="this.style.color='#1a1a1a'">
               ${ms.title} <span style="font-size: 0.75rem; color: #999;">🔗</span>
             </a>
-            ${metrics.hasInterleaved ? '<span style="padding: 0.125rem 0.375rem; background: #ff9800; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">INTERLEAVED</span>' : ''}
             ${metrics.hasCrossMSPU ? '<span style="padding: 0.125rem 0.375rem; background: #c4941f; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">CROSS-MS</span>' : ''}
             ${metrics.hasCrossPUSU ? '<span style="padding: 0.125rem 0.375rem; background: #f44336; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">CROSS-PU</span>' : ''}
             ${metrics.puCount >= 5 ? '<span style="padding: 0.125rem 0.375rem; background: #2196f3; color: white; border-radius: 0.25rem; font-size: 0.65rem; font-weight: 600;">MULTI-PU</span>' : ''}
