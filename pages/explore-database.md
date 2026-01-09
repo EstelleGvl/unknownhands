@@ -2379,7 +2379,6 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
       .on('end', dragended));
   
   // Add labels
-  const mount = document.getElementById('network-mount');
   const isDarkMode = mount?.dataset.darkMode === 'true';
   
   const label = g.append('g')
