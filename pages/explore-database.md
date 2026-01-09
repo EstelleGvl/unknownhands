@@ -2214,7 +2214,22 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   
   // Filter nodes by entity type (but keep all for traversal)
   // Center node (level 0) is always visible
-  const visibleNodes = nodes.filter(n => n.level === 0 || activeEntityTypes.includes(n.type));
+  let visibleNodes = nodes.filter(n => n.level === 0 || activeEntityTypes.includes(n.type));
+  
+  // Apply field filters (geography, time period, content) to further refine visible nodes
+  const fieldFilters = getActiveFieldFilters();
+  const hasFieldFilters = Object.values(fieldFilters).some(v => v !== null);
+  
+  if (hasFieldFilters) {
+    console.log('Applying field filters to network:', fieldFilters);
+    visibleNodes = visibleNodes.filter(n => {
+      // Always show center node
+      if (n.level === 0) return true;
+      // Check if node matches field filters
+      return recordMatchesFilters(n.rec, n.type);
+    });
+  }
+  
   const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
   
   // Filter links to only show those between visible nodes
@@ -2308,15 +2323,34 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     .attr('d', 'M 0,-5 L 10 ,0 L 0,5')
     .attr('fill', '#bbb');
   
-  // Draw nodes - use visibleNodes
+  // Calculate node degrees (number of connections) for sizing
+  const nodeDegrees = new Map();
+  visibleNodes.forEach(n => nodeDegrees.set(n.id, 0));
+  visibleLinks.forEach(link => {
+    const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+    const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+    nodeDegrees.set(sourceId, (nodeDegrees.get(sourceId) || 0) + 1);
+    nodeDegrees.set(targetId, (nodeDegrees.get(targetId) || 0) + 1);
+  });
+  
+  // Calculate radius based on degree (with min/max bounds)
+  const getNodeRadius = (d) => {
+    if (d.level === 0) return 16; // Center node is always prominent
+    const degree = nodeDegrees.get(d.id) || 0;
+    // Scale: 0 connections = 6px, 10+ connections = 14px
+    return Math.min(14, Math.max(6, 6 + degree * 0.8));
+  };
+  
+  // Draw nodes - use visibleNodes with dynamic sizing
   const node = g.append('g')
     .selectAll('circle')
     .data(visibleNodes)
     .join('circle')
-    .attr('r', d => d.level === 0 ? 15 : 10)
+    .attr('r', d => getNodeRadius(d))
     .attr('fill', d => colorScale(d.type))
     .attr('stroke', d => d.level === 0 ? '#000' : '#fff')
     .attr('stroke-width', d => d.level === 0 ? 3 : 2)
+    .attr('opacity', 0.9)
     .call(d3.drag()
       .on('start', dragstarted)
       .on('drag', dragged)
@@ -6871,6 +6905,12 @@ function initEventListeners() {
   
   // Network show labels
   document.getElementById('network-show-labels')?.addEventListener('change', () => {
+    if (ACTIVE_MODE === 'network') buildNetworkView();
+  });
+  
+  // Network depth control
+  document.getElementById('network-depth')?.addEventListener('change', () => {
+    console.log('Depth changed to:', document.getElementById('network-depth')?.value);
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
   
