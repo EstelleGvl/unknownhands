@@ -7971,12 +7971,12 @@ function buildStatisticalDashboard(mount, list) {
     // Scribal Units
     const withDates = getRecordsWithDates(list);
     const withScript = getCountByFieldExists(list, 'Normalised script(s)');
-    const withLanguage = getCountByFieldExists(list, 'Colophon language');
+    const withHighCertaintyAttribution = getCountWithHighCertaintyScribe(list);
     statsCards = [
       buildStatsCard('Total Records', list.length),
       buildStatsCard('Date Range', getDateRange(list)),
       buildStatsCard('With Script', withScript),
-      buildStatsCard('With Language', withLanguage)
+      buildStatsCard('With High Certainty Attribution', withHighCertaintyAttribution)
     ];
   } else if (entityFilter === 'ms') {
     // Manuscripts
@@ -7984,18 +7984,85 @@ function buildStatisticalDashboard(mount, list) {
     const withDigitization = getCountByFieldExists(list, 'Digitization Status');
     statsCards = [
       buildStatsCard('Total Records', list.length),
-      buildStatsCard('Date Range', getDateRange(list)),
       buildStatsCard('Avg Folios', avgFolios),
       buildStatsCard('Digitized', withDigitization)
     ];
-  } else if (entityFilter === 'pu') {
+  } else if (entityFilt  {
+    "label": "Scribal Units",
+    "type": "scribalUnits",
+    "statistics": [
+      {
+        "label": "Total",
+        "value": "COUNT(scribalUnits)"
+      },
+      {
+        "label": "With High Certainty Attribution",
+        "value": "COUNT(scribalUnits WHERE relationships.type = 'scribeOf' AND relationships.scribeCertainty = 'high')",
+        "description": "Scribal units with a high certainty scribe attribution"
+      },
+      {
+        "label": "With Attribution",
+        "value": "COUNT(scribalUnits WHERE HAS relationships.type = 'scribeOf')",
+        "description": "Scribal units with any scribe attribution"
+      },
+      {
+        "label": "With Transcription",
+        "value": "COUNT(scribalUnits WHERE transcription IS NOT NULL)"
+      }
+    ]
+  }  {
+    "label": "Scribal Units",
+    "type": "scribalUnits",
+    "statistics": [
+      {
+        "label": "Total",
+        "value": "COUNT(scribalUnits)"
+      },
+      {
+        "label": "With High Certainty Attribution",
+        "value": "COUNT(scribalUnits WHERE relationships.type = 'scribeOf' AND relationships.scribeCertainty = 'high')",
+        "description": "Scribal units with a high certainty scribe attribution"
+      },
+      {
+        "label": "With Attribution",
+        "value": "COUNT(scribalUnits WHERE HAS relationships.type = 'scribeOf')",
+        "description": "Scribal units with any scribe attribution"
+      },
+      {
+        "label": "With Transcription",
+        "value": "COUNT(scribalUnits WHERE transcription IS NOT NULL)"
+      }
+    ]
+  }  {
+    "label": "Scribal Units",
+    "type": "scribalUnits",
+    "statistics": [
+      {
+        "label": "Total",
+        "value": "COUNT(scribalUnits)"
+      },
+      {
+        "label": "With High Certainty Attribution",
+        "value": "COUNT(scribalUnits WHERE relationships.type = 'scribeOf' AND relationships.scribeCertainty = 'high')",
+        "description": "Scribal units with a high certainty scribe attribution"
+      },
+      {
+        "label": "With Attribution",
+        "value": "COUNT(scribalUnits WHERE HAS relationships.type = 'scribeOf')",
+        "description": "Scribal units with any scribe attribution"
+      },
+      {
+        "label": "With Transcription",
+        "value": "COUNT(scribalUnits WHERE transcription IS NOT NULL)"
+      }
+    ]
+  }er === 'pu') {
     // Production Units
     const withLocation = getCountByFieldExists(list, 'Production unit location');
     const withCountry = getCountByFieldExists(list, 'PU country');
     statsCards = [
       buildStatsCard('Total Records', list.length),
       buildStatsCard('Date Range', getDateRange(list)),
-      buildStatsCard('With Location', withLocation),
       buildStatsCard('With Country', withCountry)
     ];
   } else if (entityFilter === 'hp') {
@@ -8003,9 +8070,7 @@ function buildStatisticalDashboard(mount, list) {
     const withGender = getCountByFieldExists(list, 'Gender');
     statsCards = [
       buildStatsCard('Total Records', list.length),
-      buildStatsCard('Date Range', getDateRange(list)),
       buildStatsCard('With Gender', withGender),
-      buildStatsCard('With Dates', getRecordsWithDates(list))
     ];
   } else if (entityFilter === 'tx') {
     // Texts
@@ -8015,7 +8080,6 @@ function buildStatisticalDashboard(mount, list) {
       buildStatsCard('Total Records', list.length),
       buildStatsCard('With Genre', withGenre),
       buildStatsCard('With Subgenre', withSubgenre),
-      buildStatsCard('Date Range', getDateRange(list))
     ];
   } else if (entityFilter === 'hi') {
     // Holding Institutions
@@ -8047,8 +8111,8 @@ function buildStatisticalDashboard(mount, list) {
   
   let chartsHtml = '';
   
-  // Temporal Distribution - only for entities with dates
-  if (entityFilter === 'su' || entityFilter === 'pu' || entityFilter === 'ms' || entityFilter === 'hp' || entityFilter === 'tx') {
+  // Temporal Distribution - only for scribal units and production units
+  if (entityFilter === 'su' || entityFilter === 'pu') {
     chartsHtml += `
       <div style="margin-top: 1.5rem;">
         <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Temporal Distribution</h3>
@@ -8254,6 +8318,22 @@ function getAverageFolios(list) {
   return Math.round(avg);
 }
 
+function getCountWithHighCertaintyScribe(list) {
+  return list.filter(r => {
+    const recId = String(r.rec_ID);
+    const rels = REL_INDEX.bySource[recId] || [];
+    
+    // Check if any relationship is "scribeOf" with high certainty
+    return rels.some(rel => {
+      const relType = getVal(rel, 'Relationship type');
+      const scribeCertainty = getVal(rel, 'scribe certainty');
+      
+      return relType && relType.toLowerCase().includes('scribe') && 
+             scribeCertainty && scribeCertainty.toLowerCase() === 'high';
+    });
+  }).length;
+}
+
 function getDateRange(list) {
   const dates = list.map(r => {
     const tpq = getVal(r, 'Normalized terminus post quem');
@@ -8387,31 +8467,34 @@ function buildFieldDistributionChart(list, fieldName, isResource = false) {
 }
 
 function buildTemporalChart(list) {
-  // Extract years and create histogram
-  const years = [];
+  // Extract centuries from "Normalized century of production" field
+  // Records can have multiple centuries, so we count each occurrence
+  const bins = {};
+  let totalRecords = 0;
+  
   list.forEach(r => {
-    const tpq = getVal(r, 'Normalized terminus post quem');
-    const taq = getVal(r, 'Normalized terminus ante quem');
-    const dateStr = tpq || taq;
-    if (dateStr) {
-      const match = String(dateStr).match(/(\d{3,4})/);
-      if (match) {
-        const year = parseInt(match[1]);
-        if (year >= 800 && year <= 1800) years.push(year);
-      }
+    const centuries = getValsAll(r, 'Normalized century of production');
+    if (centuries && centuries.length > 0) {
+      totalRecords++;
+      centuries.forEach(centuryStr => {
+        // Parse century strings like "9th c.", "13th-14th c.", "9", "13", etc.
+        const matches = String(centuryStr).match(/(\d+)/g);
+        if (matches) {
+          matches.forEach(match => {
+            const centuryNum = parseInt(match);
+            if (centuryNum >= 8 && centuryNum <= 16) {
+              const centuryYear = centuryNum * 100;
+              bins[centuryYear] = (bins[centuryYear] || 0) + 1;
+            }
+          });
+        }
+      });
     }
   });
   
-  if (years.length === 0) {
+  if (Object.keys(bins).length === 0) {
     return '<p style="color: #666; font-style: italic;">No temporal data available</p>';
   }
-  
-  // Create century bins
-  const bins = {};
-  years.forEach(year => {
-    const century = Math.floor(year / 100) * 100;
-    bins[century] = (bins[century] || 0) + 1;
-  });
   
   const sortedCenturies = Object.keys(bins).map(Number).sort((a, b) => a - b);
   const maxCount = Math.max(...Object.values(bins));
@@ -8419,13 +8502,14 @@ function buildTemporalChart(list) {
   const bars = sortedCenturies.map(century => {
     const count = bins[century];
     const height = (count / maxCount) * 200;
-    const pct = Math.round((count / years.length) * 100);
+    const centuryNum = Math.floor(century / 100);
+    const centuryLabel = `${centuryNum}th c.`;
     
     return `
       <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
         <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">${count}</div>
-        <div style="width: 80%; min-height: ${height}px; background: linear-gradient(to top, #d4af37, #f4d03f); border-radius: 4px 4px 0 0; transition: min-height 0.3s;" title="${century}s: ${count} records (${pct}%)"></div>
-        <div style="font-size: 0.875rem; font-weight: 500; margin-top: 0.5rem;">${century}s</div>
+        <div style="width: 80%; min-height: ${height}px; background: linear-gradient(to top, #d4af37, #f4d03f); border-radius: 4px 4px 0 0; transition: min-height 0.3s;" title="${centuryLabel}: ${count} occurrences"></div>
+        <div style="font-size: 0.875rem; font-weight: 500; margin-top: 0.5rem;">${centuryLabel}</div>
       </div>
     `;
   }).join('');
