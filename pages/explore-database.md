@@ -251,13 +251,25 @@ banner:
             <div id="network-search-results" style="max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 0.25rem;"></div>
           </div>
           
-          <div class="viz-controls" style="padding:.5rem .75rem;border-bottom:1px solid #eee;">
+          <div class="viz-controls" id="network-controls" style="padding:.5rem .75rem;border-bottom:1px solid #eee;background:#fff;transition:background 0.3s, color 0.3s;">
             <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.5rem;">
               <label style="display:flex;gap:.5rem;align-items:center;">
                 Depth: <input type="number" id="network-depth" min="1" max="3" value="2" style="width:4rem;padding:.25rem .5rem;border:1px solid #ddd;border-radius:.25rem;">
               </label>
+              <label style="display:flex;gap:.5rem;align-items:center;font-size:.875rem;">
+                Color by:
+                <select id="network-color-scheme" style="padding:.25rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
+                  <option value="type">Entity Type</option>
+                  <option value="century">Century</option>
+                  <option value="region">Region</option>
+                  <option value="order">Religious Order</option>
+                </select>
+              </label>
               <label style="display:flex;gap:.5rem;align-items:center;">
-                <input type="checkbox" id="network-show-labels" checked> Show labels
+                <input type="checkbox" id="network-show-labels" checked> Labels
+              </label>
+              <label style="display:flex;gap:.5rem;align-items:center;">
+                <input type="checkbox" id="network-dark-mode"> Dark
               </label>
               <button id="network-filters-toggle" class="chip" style="padding:.25rem .5rem;">Filters</button>
               <button id="network-zoom-in" class="chip" style="padding:.25rem .5rem;" title="Zoom in">Zoom In</button>
@@ -272,6 +284,14 @@ banner:
                 <option value="gephi">Gephi (2 CSV files)</option>
                 <option value="r">R (CSV + script)</option>
               </select>
+            </div>
+            <div style="display:flex;gap:.75rem;align-items:center;padding-top:.5rem;border-top:1px solid #eee;">
+              <label style="display:flex;gap:.5rem;align-items:center;font-size:.85rem;flex:1;">
+                <span style="min-width:80px;">Link Density:</span>
+                <input type="range" id="network-link-density" min="0" max="100" value="100" style="flex:1;" title="Adjust link visibility - higher values show more connections">
+                <span id="network-link-density-value" style="min-width:35px;text-align:right;">100%</span>
+              </label>
+            </div>
             </div>
             
             <!-- Advanced Filters Panel (collapsible) -->
@@ -364,40 +384,9 @@ banner:
           <div style="position:relative;">
             <div id="network-mount" style="cursor: grab;"></div>
             <div id="network-node-details" style="display:none;position:absolute;top:10px;left:10px;max-width:350px;background:rgba(255,255,255,0.98);border:1px solid #ddd;border-radius:.5rem;padding:.75rem;font-size:.85rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);z-index:1000;"></div>
-            <div id="network-legend" style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.95);border:1px solid #ddd;border-radius:.5rem;padding:.75rem;font-size:.85rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
-              <div style="font-weight:600;margin-bottom:.5rem;">Entity Types</div>
-              <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e6b800;display:inline-block;"></span> Scribal Units</div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#3498db;display:inline-block;"></span> Manuscripts</div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e74c3c;display:inline-block;"></span> Production Units</div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#2ecc71;display:inline-block;"></span> Holding Institutions</div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#9b59b6;display:inline-block;"></span> Monastic Institutions</div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#f39c12;display:inline-block;"></span> Historical People</div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#1abc9c;display:inline-block;"></span> Texts</div>
-              </div>
-              <div style="font-weight:600;margin-bottom:.5rem;padding-top:.5rem;border-top:1px solid #eee;">Interactions</div>
-              <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
-                <div style="font-size:.8rem;color:#666;">
-                  <strong style="color:#333;">Click</strong> nodes to view details
-                </div>
-                <div style="font-size:.8rem;color:#666;">
-                  <strong style="color:#333;">Drag</strong> nodes to rearrange
-                </div>
-                <div style="font-size:.8rem;color:#666;">
-                  <strong style="color:#333;">Scroll</strong> to zoom in/out
-                </div>
-              </div>
-              <div style="font-weight:600;margin-bottom:.5rem;padding-top:.5rem;border-top:1px solid #eee;">Connection Types</div>
-              <div style="display:flex;flex-direction:column;gap:.35rem;">
-                <div style="display:flex;align-items:center;gap:.5rem;">
-                  <svg width="20" height="2"><line x1="0" y1="1" x2="20" y2="1" stroke="#999" stroke-width="2"/></svg>
-                  <span style="font-size:.8rem;">Relationships</span>
-                </div>
-                <div style="display:flex;align-items:center;gap:.5rem;">
-                  <svg width="20" height="2"><line x1="0" y1="1" x2="20" y2="1" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/></svg>
-                  <span style="font-size:.8rem;">Pointer fields</span>
-                </div>
-              </div>
+            <div id="network-legend" style="position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.95);border:1px solid #ddd;border-radius:.5rem;padding:.75rem;font-size:.85rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);max-width:220px;">
+              <!-- Legend content will be dynamically generated -->
+              <div id="network-legend-content"></div>
             </div>
           </div>
         </div>
@@ -2270,22 +2259,97 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   // Store zoom for reset button
   svg.datum({ zoom, initialTransform: d3.zoomIdentity });
   
-  // Color scale by record type
-  const colorScale = d3.scaleOrdinal()
+  // Get selected color scheme
+  const colorScheme = document.getElementById('network-color-scheme')?.value || 'type';
+  
+  // Color scale functions
+  const typeColorScale = d3.scaleOrdinal()
     .domain(['su', 'ms', 'pu', 'hi', 'mi', 'hp', 'tx'])
     .range(['#e6b800', '#3498db', '#e74c3c', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c']);
   
+  const centuryColorScale = d3.scaleOrdinal()
+    .domain(['12th', '13th', '14th', '15th', '16th', '17th', '18th'])
+    .range(['#8e44ad', '#e74c3c', '#e67e22', '#f39c12', '#f1c40f', '#2ecc71', '#3498db']);
+  
+  const regionColorScale = d3.scaleOrdinal()
+    .domain(['germany', 'france', 'italy', 'england', 'spain', 'low countries', 'switzerland', 'austria', 'sweden', 'belgium', 'netherlands'])
+    .range(['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#e67e22', '#9b59b6', '#95a5a6', '#c0392b', '#16a085', '#d35400', '#27ae60']);
+  
+  const orderColorScale = d3.scaleOrdinal()
+    .domain(['cistercian', 'dominican', 'franciscan', 'benedictine', 'augustinian', 'carmelite', 'carthusian', 'premonstratensian'])
+    .range(['#95a5a6', '#34495e', '#8B4513', '#2c3e50', '#c0392b', '#d35400', '#7f8c8d', '#2980b9']);
+  
+  // Function to get node color based on scheme
+  const getNodeColor = (d) => {
+    if (colorScheme === 'type') {
+      return typeColorScale(d.type);
+    } else if (colorScheme === 'century') {
+      const century = getVal(d.rec, 'Normalized century of production');
+      if (!century) return '#999'; // Gray for no data
+      return centuryColorScale(century.toLowerCase());
+    } else if (colorScheme === 'region') {
+      let country = '';
+      if (d.type === 'pu') country = getVal(d.rec, 'PU country') || '';
+      else if (d.type === 'hi' || d.type === 'mi') country = getVal(d.rec, 'Country') || '';
+      if (!country) return '#999'; // Gray for no data
+      return regionColorScale(country.toLowerCase());
+    } else if (colorScheme === 'order') {
+      let order = '';
+      if (d.type === 'mi') {
+        order = getVal(d.rec, 'Religious order') || '';
+      } else if (d.type === 'pu') {
+        const monastery = getRes(d.rec, 'Monastic Institution');
+        if (monastery) order = getVal(monastery, 'Religious order') || '';
+      }
+      if (!order) return '#999'; // Gray for no data
+      return orderColorScale(order.toLowerCase());
+    }
+    return '#999';
+  };
+  
   // Force simulation - use visibleNodes and visibleLinks
+  
+  // Apply link density filter
+  const linkDensity = parseInt(document.getElementById('network-link-density')?.value || 100);
+  let filteredLinks = visibleLinks;
+  
+  if (linkDensity < 100) {
+    // Calculate node degrees to identify important links
+    const nodeDegreeMap = new Map();
+    visibleNodes.forEach(n => nodeDegreeMap.set(n.id, 0));
+    visibleLinks.forEach(l => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      nodeDegreeMap.set(sid, (nodeDegreeMap.get(sid) || 0) + 1);
+      nodeDegreeMap.set(tid, (nodeDegreeMap.get(tid) || 0) + 1);
+    });
+    
+    // Prioritize links connected to high-degree nodes and relationship records
+    const linkScores = visibleLinks.map((l, i) => {
+      const sid = typeof l.source === 'object' ? l.source.id : l.source;
+      const tid = typeof l.target === 'object' ? l.target.id : l.target;
+      const score = (nodeDegreeMap.get(sid) || 0) + (nodeDegreeMap.get(tid) || 0) + (l.linkType === 'relationship' ? 10 : 0);
+      return { link: l, score, index: i };
+    });
+    
+    // Sort by score and take top percentage
+    linkScores.sort((a, b) => b.score - a.score);
+    const numToShow = Math.max(1, Math.floor(visibleLinks.length * (linkDensity / 100)));
+    filteredLinks = linkScores.slice(0, numToShow).map(item => item.link);
+    
+    console.log(`Link density ${linkDensity}%: showing ${filteredLinks.length} of ${visibleLinks.length} links`);
+  }
+  
   const simulation = d3.forceSimulation(visibleNodes)
-    .force('link', d3.forceLink(visibleLinks).id(d => d.id).distance(100))
+    .force('link', d3.forceLink(filteredLinks).id(d => d.id).distance(100))
     .force('charge', d3.forceManyBody().strength(-300))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(35));
   
-  // Draw links
+  // Draw links (use filteredLinks)
   const link = g.append('g')
     .selectAll('line')
-    .data(visibleLinks)
+    .data(filteredLinks)
     .join('line')
     .attr('stroke', d => d.linkType === 'pointer' ? '#bbb' : '#999')
     .attr('stroke-opacity', d => d.linkType === 'pointer' ? 0.4 : 0.6)
@@ -2341,13 +2405,13 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     return Math.min(14, Math.max(6, 6 + degree * 0.8));
   };
   
-  // Draw nodes - use visibleNodes with dynamic sizing
+  // Draw nodes - use visibleNodes with dynamic sizing and color scheme
   const node = g.append('g')
     .selectAll('circle')
     .data(visibleNodes)
     .join('circle')
     .attr('r', d => getNodeRadius(d))
-    .attr('fill', d => colorScale(d.type))
+    .attr('fill', d => getNodeColor(d))
     .attr('stroke', d => d.level === 0 ? '#000' : '#fff')
     .attr('stroke-width', d => d.level === 0 ? 3 : 2)
     .attr('opacity', 0.9)
@@ -2424,6 +2488,9 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   
   // Update visual feedback
   updateNetworkFeedback(visibleNodes.length, visibleLinks.length);
+  
+  // Update legend based on color scheme
+  updateNetworkLegend(colorScheme);
 }
 
 // Update network visual feedback
@@ -2437,6 +2504,94 @@ function updateNetworkFeedback(nodeCount, linkCount) {
   if (linkCountEl) {
     linkCountEl.textContent = `${linkCount} link${linkCount !== 1 ? 's' : ''}`;
   }
+}
+
+// Update network legend based on color scheme
+function updateNetworkLegend(scheme) {
+  const legendContent = document.getElementById('network-legend-content');
+  if (!legendContent) return;
+  
+  let html = '';
+  
+  if (scheme === 'type') {
+    html = `
+      <div style="font-weight:600;margin-bottom:.5rem;">Entity Types</div>
+      <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e6b800;"></span> Scribal Units</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#3498db;"></span> Manuscripts</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e74c3c;"></span> Production Units</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#2ecc71;"></span> Holding Institutions</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#9b59b6;"></span> Monastic Institutions</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#f39c12;"></span> Historical People</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#1abc9c;"></span> Texts</div>
+      </div>
+    `;
+  } else if (scheme === 'century') {
+    html = `
+      <div style="font-weight:600;margin-bottom:.5rem;">Century</div>
+      <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#8e44ad;"></span> 12th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e74c3c;"></span> 13th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e67e22;"></span> 14th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#f39c12;"></span> 15th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#f1c40f;"></span> 16th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#2ecc71;"></span> 17th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#3498db;"></span> 18th century</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#999;"></span> No data</div>
+      </div>
+    `;
+  } else if (scheme === 'region') {
+    html = `
+      <div style="font-weight:600;margin-bottom:.5rem;">Geographic Region</div>
+      <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#e74c3c;"></span> Germany</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#3498db;"></span> France</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#2ecc71;"></span> Italy</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#f39c12;"></span> England</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#9b59b6;"></span> Low Countries</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#16a085;"></span> Sweden</div>
+        <div style="font-size:.75rem;color:#666;font-style:italic;margin-top:.25rem;">+ other regions</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#999;"></span> No location data</div>
+      </div>
+    `;
+  } else if (scheme === 'order') {
+    html = `
+      <div style="font-weight:600;margin-bottom:.5rem;">Religious Order</div>
+      <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#95a5a6;"></span> Cistercian</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#34495e;"></span> Dominican</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#8B4513;"></span> Franciscan</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#2c3e50;"></span> Benedictine</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#c0392b;"></span> Augustinian</div>
+        <div style="font-size:.75rem;color:#666;font-style:italic;margin-top:.25rem;">+ other orders</div>
+        <div style="display:flex;align-items:center;gap:.5rem;"><span style="width:12px;height:12px;border-radius:50%;background:#999;"></span> Non-monastic</div>
+      </div>
+    `;
+  }
+  
+  // Add common sections
+  html += `
+    <div style="font-weight:600;margin-bottom:.5rem;padding-top:.5rem;border-top:1px solid #eee;">Interactions</div>
+    <div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem;">
+      <div style="font-size:.8rem;color:#666;"><strong style="color:#333;">Click</strong> to view details</div>
+      <div style="font-size:.8rem;color:#666;"><strong style="color:#333;">Drag</strong> to rearrange</div>
+      <div style="font-size:.8rem;color:#666;"><strong style="color:#333;">Scroll</strong> to zoom</div>
+    </div>
+    <div style="font-weight:600;margin-bottom:.5rem;padding-top:.5rem;border-top:1px solid #eee;">Connections</div>
+    <div style="display:flex;flex-direction:column;gap:.35rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <svg width="20" height="2"><line x1="0" y1="1" x2="20" y2="1" stroke="#999" stroke-width="2"/></svg>
+        <span style="font-size:.8rem;">Relationships</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;">
+        <svg width="20" height="2"><line x1="0" y1="1" x2="20" y2="1" stroke="#bbb" stroke-width="1.5" stroke-dasharray="3,3"/></svg>
+        <span style="font-size:.8rem;">Pointer fields</span>
+      </div>
+      <div style="font-size:.75rem;color:#666;font-style:italic;margin-top:.25rem;">Node size = connection count</div>
+    </div>
+  `;
+  
+  legendContent.innerHTML = html;
 }
 
 /* ============================================================
@@ -6845,6 +7000,14 @@ function initEventListeners() {
       const el = document.getElementById(id);
       if (el) el.value = '';
     });
+    // Reset color scheme and link density
+    const colorScheme = document.getElementById('network-color-scheme');
+    if (colorScheme) colorScheme.value = 'type';
+    const linkDensity = document.getElementById('network-link-density');
+    if (linkDensity) {
+      linkDensity.value = 100;
+      document.getElementById('network-link-density-value').textContent = '100%';
+    }
     // Update content filter
     updateContentFilter();
     // Rebuild
@@ -6911,6 +7074,51 @@ function initEventListeners() {
   // Network depth control
   document.getElementById('network-depth')?.addEventListener('change', () => {
     console.log('Depth changed to:', document.getElementById('network-depth')?.value);
+    if (ACTIVE_MODE === 'network') buildNetworkView();
+  });
+  
+  // Network color scheme selector
+  document.getElementById('network-color-scheme')?.addEventListener('change', () => {
+    console.log('Color scheme changed to:', document.getElementById('network-color-scheme')?.value);
+    if (ACTIVE_MODE === 'network') buildNetworkView();
+  });
+  
+  // Network dark mode toggle
+  document.getElementById('network-dark-mode')?.addEventListener('change', (e) => {
+    const isDark = e.target.checked;
+    const mount = document.getElementById('network-mount');
+    const controls = document.getElementById('network-controls');
+    const legend = document.getElementById('network-legend');
+    
+    if (isDark) {
+      mount.style.background = '#0a0e1a';
+      controls.style.background = '#1a1e2a';
+      controls.style.color = '#e0e0e0';
+      if (legend) {
+        legend.style.background = 'rgba(26, 30, 42, 0.95)';
+        legend.style.color = '#e0e0e0';
+      }
+    } else {
+      mount.style.background = '#fff';
+      controls.style.background = '#fff';
+      controls.style.color = '#333';
+      if (legend) {
+        legend.style.background = 'rgba(255, 255, 255, 0.95)';
+        legend.style.color = '#333';
+      }
+    }
+    
+    // Update link colors for dark mode
+    if (ACTIVE_MODE === 'network') buildNetworkView();
+  });
+  
+  // Network link density slider
+  document.getElementById('network-link-density')?.addEventListener('input', (e) => {
+    const value = e.target.value;
+    document.getElementById('network-link-density-value').textContent = value + '%';
+  });
+  
+  document.getElementById('network-link-density')?.addEventListener('change', () => {
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
   
