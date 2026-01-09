@@ -2315,6 +2315,11 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   });
   svg.call(zoom);
   
+  // Store references on mount element for zoom controls
+  mount._svg = svg;
+  mount._zoom = zoom;
+  mount._g = g;
+  
   // Store zoom for reset button
   svg.datum({ zoom, initialTransform: d3.zoomIdentity });
   
