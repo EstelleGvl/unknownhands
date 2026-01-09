@@ -6285,11 +6285,34 @@ function exportMapAsPng(containerId, filename) {
   
   // Reset map to show all bounds before exporting to prevent coordinate misplacement
   if (window.globalMap && window.globalMapBounds) {
-    window.globalMap.fitBounds(window.globalMapBounds, { padding: [50, 50] });
+    window.globalMap.fitBounds(window.globalMapBounds, { padding: [50, 50], animate: false });
+    
+    // Wait for map to finish rendering at new bounds
+    // Listen for moveend event to know when map has finished repositioning
+    const handleMoveEnd = () => {
+      window.globalMap.off('moveend', handleMoveEnd);
+      
+      // Additional wait for tiles to load
+      setTimeout(() => {
+        captureAndExport();
+      }, 800);
+    };
+    
+    window.globalMap.on('moveend', handleMoveEnd);
+    
+    // Fallback timeout in case moveend doesn't fire
+    setTimeout(() => {
+      window.globalMap.off('moveend', handleMoveEnd);
+      captureAndExport();
+    }, 2000);
+  } else {
+    // No bounds available, capture as-is
+    setTimeout(() => {
+      captureAndExport();
+    }, 500);
   }
   
-  // Wait for map to render at new bounds
-  setTimeout(() => {
+  function captureAndExport() {
     // Use html2canvas to capture the map
     html2canvas(mapElement, {
       useCORS: true,
@@ -6304,7 +6327,7 @@ function exportMapAsPng(containerId, filename) {
         
         // Restore original view
         if (window.globalMap && currentZoom && currentCenter) {
-          window.globalMap.setView(currentCenter, currentZoom);
+          window.globalMap.setView(currentCenter, currentZoom, { animate: false });
         }
       }, 'image/png');
     }).catch(error => {
@@ -6313,12 +6336,12 @@ function exportMapAsPng(containerId, filename) {
       
       // Restore original view on error too
       if (window.globalMap && currentZoom && currentCenter) {
-        window.globalMap.setView(currentCenter, currentZoom);
+        window.globalMap.setView(currentCenter, currentZoom, { animate: false });
       }
       
       alert('Failed to export map. Please try again or use a screenshot tool.');
     });
-  }, 500); // Wait 500ms for tiles to load at new bounds
+  }
 }
 
 /**
@@ -8398,7 +8421,7 @@ function buildEntityDistributionChart(list) {
           <span style="color: #666;">${count} (${pct}%)</span>
         </div>
         <div style="width: 100%; height: 24px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
-          <div style="width: ${width}%; height: 100%; background: ${color}; transition: width 0.3s;"></div>
+          <div style="width: ${width}%; height: 100%; background: ${color};"></div>
         </div>
       </div>
     `;
@@ -8468,7 +8491,7 @@ function buildFieldDistributionChart(list, fieldName, isResource = false) {
           <span style="color: #666;">${count} (${pct}%)</span>
         </div>
         <div style="width: 100%; height: 24px; background: #e0e0e0; border-radius: 4px; overflow: hidden;">
-          <div style="width: ${width}%; height: 100%; background: ${color}; transition: width 0.3s;"></div>
+          <div style="width: ${width}%; height: 100%; background: ${color};"></div>
         </div>
       </div>
     `;
