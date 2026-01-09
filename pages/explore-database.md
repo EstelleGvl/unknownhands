@@ -7987,7 +7987,7 @@ function buildStatisticalDashboard(mount, list) {
       buildStatsCard('Avg Folios', avgFolios),
       buildStatsCard('Digitized', withDigitization)
     ];
-  } else if (entityFilt  {
+  } else if (entityFilt
     "label": "Scribal Units",
     "type": "scribalUnits",
     "statistics": [
