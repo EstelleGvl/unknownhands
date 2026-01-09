@@ -243,9 +243,9 @@ banner:
           
           <!-- Search panel (primary interface) -->
           <div id="network-search-panel" style="padding: 0.75rem; background: #fff; border-bottom: 1px solid #dee2e6;">
-            <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">1. Pick a Record</div>
+            <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">Pick a Record to Explore</div>
             <label style="display: block; font-weight: 400; font-size: 0.8rem; margin-bottom: 0.5rem; color: #666;">
-              Search for any manuscript, scribe, institution, or text to start exploring
+              Search for any manuscript, scribe, institution, or text
             </label>
             <input type="search" id="network-search-input" placeholder="Type manuscript name, scribe, institution, text..." style="width: 100%; padding: 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; margin-bottom: 0.5rem;">
             <div id="network-search-results" style="max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 0.25rem;"></div>
@@ -299,7 +299,7 @@ banner:
               
               <!-- Section 2: Show These Types -->
               <div style="margin-bottom:1rem;">
-                <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">2. Show These Types</div>
+                <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">Show These Entity Types</div>
                 <div style="font-size:.8rem;color:#666;margin-bottom:.6rem;">Select which types of entities to include in the network</div>
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem;">
                   <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
@@ -340,34 +340,6 @@ banner:
                 </div>
               </div>
               
-              <!-- Section 3: Refine View -->
-              <div style="margin-bottom:1rem;padding-top:1rem;border-top:1px solid #dee2e6;">
-                <div style="font-weight:600;font-size:.95rem;margin-bottom:.3rem;color:#2c3e50;">3. Refine View (Optional)</div>
-                <div style="font-size:.8rem;color:#666;margin-bottom:.6rem;">Filter by geography, time period, or content</div>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📍 Geography</label>
-                    <select id="network-filter-country" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any country</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Filters Production Units and Institutions</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📅 Time Period</label>
-                    <select id="network-filter-century" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any century</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;">Filters Scribal Units and Production Units</div>
-                  </div>
-                  <div>
-                    <label style="display:block;font-size:.85rem;margin-bottom:.25rem;color:#666;font-weight:500;">📚 Content</label>
-                    <select id="network-filter-content" style="width:100%;padding:.4rem .6rem;border:1px solid #ddd;border-radius:.25rem;font-size:.85rem;">
-                      <option value="">Any content</option>
-                    </select>
-                    <div style="font-size:.75rem;color:#999;margin-top:.2rem;" id="content-filter-help">Adapts based on selected entity types</div>
-                  </div>
-                </div>
-              </div>
               
               <!-- Actions and Feedback -->
               <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #dee2e6;display:flex;justify-content:space-between;align-items:center;">
@@ -2205,20 +2177,6 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
   // Center node (level 0) is always visible
   let visibleNodes = nodes.filter(n => n.level === 0 || activeEntityTypes.includes(n.type));
   
-  // Apply field filters (geography, time period, content) to further refine visible nodes
-  const fieldFilters = getActiveFieldFilters();
-  const hasFieldFilters = Object.values(fieldFilters).some(v => v !== null);
-  
-  if (hasFieldFilters) {
-    console.log('Applying field filters to network:', fieldFilters);
-    visibleNodes = visibleNodes.filter(n => {
-      // Always show center node
-      if (n.level === 0) return true;
-      // Check if node matches field filters
-      return recordMatchesFilters(n.rec, n.type);
-    });
-  }
-  
   const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
   
   // Filter links to only show those between visible nodes
@@ -2421,6 +2379,9 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
       .on('end', dragended));
   
   // Add labels
+  const mount = document.getElementById('network-mount');
+  const isDarkMode = mount?.dataset.darkMode === 'true';
+  
   const label = g.append('g')
     .selectAll('text')
     .data(visibleNodes)
@@ -2431,6 +2392,7 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     })
     .attr('font-size', d => d.level === 0 ? 12 : 10)
     .attr('font-weight', d => d.level === 0 ? 'bold' : 'normal')
+    .attr('fill', isDarkMode ? '#e0e0e0' : '#333')
     .attr('dx', 15)
     .attr('dy', 4)
     .style('display', showLabels ? 'block' : 'none');
@@ -4862,140 +4824,17 @@ function getActiveEntityFilters() {
   return selected;
 }
 
-// Populate filter dropdowns with unique values from data
-function populateFilterDropdowns() {
-  console.log('Populating filter dropdowns...');
-  
-  // Helper to extract unique values
-  const getUniqueValues = (entityType, fieldName, useGetValsAll = false) => {
-    const values = new Set();
-    if (!DATA[entityType]) return values;
-    DATA[entityType].forEach(rec => {
-      if (useGetValsAll) {
-        const vals = getValsAll(rec, fieldName);
-        vals.forEach(v => { if (v) values.add(v.trim()); });
-      } else {
-        const val = getVal(rec, fieldName);
-        if (val) values.add(val.trim());
-      }
-    });
-    return Array.from(values).sort();
-  };
-  
-  // Country (PU, HI, MI)
-  const countries = new Set([
-    ...getUniqueValues('pu', 'PU country'),
-    ...getUniqueValues('hi', 'Country'),
-    ...getUniqueValues('mi', 'Country')
-  ]);
-  populateDropdown('network-filter-country', Array.from(countries).sort(), 'Any country');
-  
-  // Century (SU, PU)
-  const centuries = new Set([
-    ...getUniqueValues('su', 'Normalized century of production', true),
-    ...getUniqueValues('pu', 'Normalized century of production', true)
-  ]);
-  populateDropdown('network-filter-century', Array.from(centuries).sort(), 'Any century');
-  
-  // Content filter - will be populated dynamically based on selected entity types
-  updateContentFilter();
-  
-  console.log('✅ Filter dropdowns populated');
-}
-
-// Helper to populate a dropdown
-function populateDropdown(elementId, values, placeholder = 'Any') {
-  const select = document.getElementById(elementId);
-  if (!select) {
-    console.warn('Dropdown element not found:', elementId);
-    return;
-  }
-  
-  select.innerHTML = `<option value="">${placeholder}</option>`;
-  values.forEach(value => {
-    const option = document.createElement('option');
-    option.value = value.toLowerCase();
-    option.textContent = value;
-    select.appendChild(option);
-  });
-}
-
-// Update content filter based on selected entity types
-function updateContentFilter() {
-  const contentSelect = document.getElementById('network-filter-content');
-  const helpText = document.getElementById('content-filter-help');
-  if (!contentSelect || !helpText) return;
-  
-  const checkedTypes = Array.from(document.querySelectorAll('.network-entity-filter:checked'))
-    .map(cb => cb.value);
-  
-  // Determine what content filter to show based on selected types
-  let filterType = 'none';
-  let values = [];
-  let label = 'Any content';
-  let help = 'Select entity types to enable content filtering';
-  
-  if (checkedTypes.includes('tx')) {
-    // If texts are selected, show genre filter
-    filterType = 'genre';
-    values = getUniqueValues('tx', 'Genre');
-    label = 'Any genre';
-    help = 'Filters Texts by genre';
-  } else if (checkedTypes.includes('mi')) {
-    // If monastic institutions selected, show religious order filter
-    filterType = 'order';
-    values = getUniqueValues('mi', 'Religious order');
-    label = 'Any order';
-    help = 'Filters Monastic Institutions by religious order';
-  } else if (checkedTypes.includes('ms')) {
-    // If manuscripts selected, show material filter
-    filterType = 'material';
-    values = getUniqueValues('ms', 'Material');
-    label = 'Any material';
-    help = 'Filters Manuscripts by writing support material';
-  } else if (checkedTypes.includes('su')) {
-    // If scribal units selected, show script type filter
-    filterType = 'script';
-    values = getUniqueValues('su', 'Script');
-    label = 'Any script';
-    help = 'Filters Scribal Units by script type';
-  }
-  
-  // Store the current filter type as data attribute
-  contentSelect.setAttribute('data-filter-type', filterType);
-  
-  // Populate dropdown
-  populateDropdown('network-filter-content', values, label);
-  
-  // Update help text
-  helpText.textContent = help;
-}
-
-// Get active field filters
+// Get active field filters (simplified - always returns empty filters)
 function getActiveFieldFilters() {
-  const contentSelect = document.getElementById('network-filter-content');
-  const contentFilterType = contentSelect?.getAttribute('data-filter-type') || 'none';
-  const contentValue = contentSelect?.value || null;
-  
-  const filters = {
-    // Core filters
-    century: document.getElementById('network-filter-century')?.value || null,
-    country: document.getElementById('network-filter-country')?.value || null,
-    
-    // Dynamic content filter - set the appropriate field based on filter type
-    genre: contentFilterType === 'genre' ? contentValue : null,
-    material: contentFilterType === 'material' ? contentValue : null,
-    script: contentFilterType === 'script' ? contentValue : null,
-    order: contentFilterType === 'order' ? contentValue : null
+  // Since we removed the Refine View UI, always return empty filters
+  return {
+    century: null,
+    country: null,
+    genre: null,
+    material: null,
+    script: null,
+    order: null
   };
-  
-  // Log active filters for debugging
-  const activeFilters = Object.entries(filters).filter(([k, v]) => v !== null && v !== '');
-  if (activeFilters.length > 0) {
-    console.log('Active field filters:', Object.fromEntries(activeFilters));
-  }
-  
-  return filters;
 }
 
 // Check if a record matches field filters
@@ -6966,27 +6805,11 @@ function initEventListeners() {
     }
   });
   
-  // Network entity type filters - also update content filter when changed
+  // Network entity type filters
   document.querySelectorAll('.network-entity-filter').forEach(checkbox => {
     checkbox.addEventListener('change', () => {
-      updateContentFilter(); // Update content filter based on new selection
       if (ACTIVE_MODE === 'network') buildNetworkView();
     });
-  });
-  
-  // Network field filters (simplified system)
-  const dropdownFilters = ['network-filter-country', 'network-filter-century', 'network-filter-content'];
-  console.log('Setting up', dropdownFilters.length, 'dropdown filters');
-  dropdownFilters.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('change', () => {
-        console.log('Dropdown changed:', id, '=', el.value);
-        if (ACTIVE_MODE === 'network') buildNetworkView();
-      });
-    } else {
-      console.warn('Dropdown filter element not found:', id);
-    }
   });
   
   // Clear all filters
@@ -6994,12 +6817,6 @@ function initEventListeners() {
     console.log('Clearing all filters');
     // Reset entity type checkboxes
     document.querySelectorAll('.network-entity-filter').forEach(cb => cb.checked = true);
-    // Reset simplified filters
-    const allFilterIds = ['network-filter-country', 'network-filter-century', 'network-filter-content'];
-    allFilterIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
     // Reset color scheme and link density
     const colorScheme = document.getElementById('network-color-scheme');
     if (colorScheme) colorScheme.value = 'type';
@@ -7008,8 +6825,6 @@ function initEventListeners() {
       linkDensity.value = 100;
       document.getElementById('network-link-density-value').textContent = '100%';
     }
-    // Update content filter
-    updateContentFilter();
     // Rebuild
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
@@ -7097,7 +6912,10 @@ function initEventListeners() {
       if (legend) {
         legend.style.background = 'rgba(26, 30, 42, 0.95)';
         legend.style.color = '#e0e0e0';
+        legend.style.borderColor = '#3a3e4a';
       }
+      // Store dark mode state for label rendering
+      mount.dataset.darkMode = 'true';
     } else {
       mount.style.background = '#fff';
       controls.style.background = '#fff';
@@ -7105,10 +6923,12 @@ function initEventListeners() {
       if (legend) {
         legend.style.background = 'rgba(255, 255, 255, 0.95)';
         legend.style.color = '#333';
+        legend.style.borderColor = '#ddd';
       }
+      mount.dataset.darkMode = 'false';
     }
     
-    // Update link colors for dark mode
+    // Rebuild network to update label colors
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
   
@@ -16513,9 +16333,6 @@ async function boot(){
   // Initialize all event listeners
   initModeNavigation();
   initEventListeners();
-  
-  // Populate filter dropdowns after data is loaded
-  populateFilterDropdowns();
   
   console.log('✅ Event listeners initialized');
   
