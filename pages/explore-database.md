@@ -13430,7 +13430,6 @@ function buildThematicAnalysis(mount) {
       <div style="background: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         <h3 style="margin-bottom: 1.5rem; color: #333; font-size: 1.1rem;">Example Colophons by Theme</h3>
         <p style="font-size: 0.8rem; color: #666; margin-bottom: 1.5rem;">
-          Click "Show More Examples" to see additional colophons for each theme.
         </p>
         <div style="display: flex; flex-direction: column; gap: 2rem;">
           ${sortedThemes.slice(0, 6).map(([themeName, count]) => {
