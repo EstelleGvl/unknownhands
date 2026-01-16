@@ -156,9 +156,11 @@ show_title: false
     <div id="mirador" aria-label="IIIF Viewer"></div>
     <div id="splitter" class="splitter" aria-hidden="true"></div>
     <aside id="text-pane" aria-label="Transcription">
-      <div class="toolbar">
+      <div class="toolbar" style="flex-wrap: wrap;">
         <strong>Transcription</strong>
         <button id="btn-show-bboxes" class="chip tiny" type="button">Show regions</button>
+        <button id="btn-copy-text" class="chip tiny" type="button" title="Copy full transcription">📋 Copy Text</button>
+        <button id="btn-share-link" class="chip tiny" type="button" title="Copy link to this page">🔗 Share Link</button>
         <a id="btn-database" href="#" class="chip tiny" style="text-decoration:none; display:none;">📖 Database</a>
         <a href="{{ site.baseurl | default: '' }}/search-transcriptions/" class="chip tiny" style="text-decoration:none; margin-left:auto;">🔍 Search Text</a>
       </div>
@@ -239,6 +241,8 @@ show_title: false
   const $content   = document.getElementById('text-content');
   const $btnBoxes  = document.getElementById('btn-show-bboxes');
   const $btnDatabase = document.getElementById('btn-database');
+  const $btnCopyText = document.getElementById('btn-copy-text');
+  const $btnShareLink = document.getElementById('btn-share-link');
 
   // Set up database link if we can extract manuscript slug from manifest URL
   if (manifest && $btnDatabase) {
@@ -322,12 +326,70 @@ show_title: false
 
   /* 4) Render transcription for the current canvas(es) */
   let showBoxes = false;
+  let currentTranscriptionText = ''; // Store current transcription for copying
+  
   $btnBoxes.addEventListener('click', ()=>{
     showBoxes = !showBoxes;
     $btnBoxes.classList.toggle('is-on', showBoxes);
     const canvases = currentCanvasIds();
     if (canvases.length) renderAllText(canvases);
   });
+  
+  // Copy transcription text to clipboard
+  $btnCopyText.addEventListener('click', async ()=>{
+    if (!currentTranscriptionText) {
+      showTemporaryFeedback($btnCopyText, 'No text to copy', 'error');
+      return;
+    }
+    
+    try {
+      await navigator.clipboard.writeText(currentTranscriptionText);
+      showTemporaryFeedback($btnCopyText, 'Copied!', 'success');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      showTemporaryFeedback($btnCopyText, 'Copy failed', 'error');
+    }
+  });
+  
+  // Generate and copy shareable link to current canvas
+  $btnShareLink.addEventListener('click', async ()=>{
+    const canvases = currentCanvasIds();
+    if (!canvases.length) {
+      showTemporaryFeedback($btnShareLink, 'No page selected', 'error');
+      return;
+    }
+    
+    const params = new URLSearchParams(location.search);
+    const currentCanvas = canvases[0]; // Use first visible canvas
+    
+    // Build shareable URL with canvas parameter
+    const shareUrl = new URL(location.href);
+    shareUrl.searchParams.set('canvas', currentCanvas);
+    
+    try {
+      await navigator.clipboard.writeText(shareUrl.toString());
+      showTemporaryFeedback($btnShareLink, 'Link copied!', 'success');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      showTemporaryFeedback($btnShareLink, 'Copy failed', 'error');
+    }
+  });
+  
+  // Helper to show temporary feedback on buttons
+  function showTemporaryFeedback(button, message, type = 'success') {
+    const originalText = button.textContent;
+    button.textContent = message;
+    button.style.background = type === 'success' ? '#d4edda' : '#f8d7da';
+    button.style.borderColor = type === 'success' ? '#c3e6cb' : '#f5c6cb';
+    button.style.color = type === 'success' ? '#155724' : '#721c24';
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.style.background = '';
+      button.style.borderColor = '';
+      button.style.color = '';
+    }, 2000);
+  }
 
   async function renderAllText(canvasIds){
     if (!canvasIds.length) {
@@ -380,11 +442,15 @@ show_title: false
     if (!allRows.length) {
       $status.textContent = 'No transcription for this page.';
       $content.innerHTML = '';
+      currentTranscriptionText = '';
       return;
     }
 
     const esc = s => String(s).replace(/[&<>"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     $status.textContent = `${allRows.length} line${allRows.length===1?'':'s'}`;
+    
+    // Store plain text for copying
+    currentTranscriptionText = allRows.map(r => r.txt).join('\n');
     
     $content.innerHTML = allRows.map((r, idx)=>{
       const lineId = `line-${idx}`;

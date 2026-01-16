@@ -1119,7 +1119,6 @@ fetch(`${BASE}/data/manifest-annos-map.json`)
   .then(r => r.ok ? r.json() : {})
   .then(map => {
     manifestAnnosMap = map;
-    console.log('Loaded manifest-annos map:', Object.keys(map).length, 'entries');
   })
   .catch(err => console.warn('Could not load manifest-annos map:', err));
 
@@ -2294,8 +2293,6 @@ function buildNetworkDiagram(centerRec, centerType, depth = 2, relTypeFilter = n
     linkScores.sort((a, b) => b.score - a.score);
     const numToShow = Math.max(1, Math.floor(visibleLinks.length * (linkDensity / 100)));
     filteredLinks = linkScores.slice(0, numToShow).map(item => item.link);
-    
-    console.log(`Link density ${linkDensity}%: showing ${filteredLinks.length} of ${visibleLinks.length} links`);
   }
   
   const simulation = d3.forceSimulation(visibleNodes)
@@ -3270,16 +3267,13 @@ function setMode(mode) {
 }
 
 function initModeNavigation() {
-  console.log('Setting up mode navigation listeners...');
   // Set up main navigation listeners
   document.querySelectorAll('.main-nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const mode = btn.dataset.mode;
-      console.log('Mode button clicked:', mode);
       if (mode) setMode(mode);
     });
   });
-  console.log('✓ Mode navigation listeners attached');
 }
 
 /* ---------- Switch entity ---------- */
@@ -3444,7 +3438,6 @@ function updateMapControls(viewType) {
 }
 
 async function buildMap(){
-  console.log('buildMap() called');
   await ensureLeaflet();
 
   // Get selected map view - default to 'ms-current'
@@ -3836,8 +3829,6 @@ function renderMapLayers() {
     return m.year >= timeStart && m.year <= timeEnd;
   });
   
-  console.log(`Time filter: ${timeStart}-${timeEnd}, Total markers: ${MAP_MARKERS_DATA.length}, Filtered: ${filtered.length}`);
-  
   // Update time range display
   const rangeDisplay = document.getElementById('map-time-range');
   if (rangeDisplay) {
@@ -4126,7 +4117,6 @@ let TIMELINE_SVG = null; // Reference to SVG element for brushing
 let TIMELINE_SELECTED = null; // Currently selected record for highlighting connections
 
 function buildTimeline(){
-  console.log('buildTimeline() called');
   // Only render where supported
   if (!supportsTimeline(ENTITY)) return;
 
@@ -4378,11 +4368,6 @@ function buildTimeline(){
         lang = getVal(item.rec, 'Language of Text');
       }
       
-      // Debug: log what we're getting
-      if (lang && Math.random() < 0.01) { // Log 1% of items to avoid spam
-        console.log('Language value:', lang, 'for entity:', item.entity, 'recID:', item.rec.rec_ID);
-      }
-      
       // Handle array values and termLabel
       if (!lang) return '#6b7280';
       const langStr = String(lang).trim();
@@ -4408,11 +4393,6 @@ function buildTimeline(){
     } else if (colorBy === 'script') {
       // Get script from proper field
       let script = getVal(item.rec, 'Normalised script(s)') || getVal(item.rec, 'Script Comments');
-      
-      // Debug: log what we're getting
-      if (script && Math.random() < 0.01) { // Log 1% of items to avoid spam
-        console.log('Script value:', script, 'for entity:', item.entity, 'recID:', item.rec.rec_ID);
-      }
       
       if (!script) return '#6b7280';
       const scriptStr = String(script).trim();
@@ -4621,22 +4601,18 @@ function updateTimelineLegend(colorBy) {
 
 function setupTimelineItemClicks(mount) {
   const items = mount.querySelectorAll('.timeline-item');
-  console.log(`Setting up click handlers for ${items.length} timeline items`);
   
   items.forEach(item => {
     item.addEventListener('click', (e) => {
       e.stopPropagation();
       const recID = item.getAttribute('data-recid'); // Keep as string
-      console.log('Timeline item clicked:', recID, 'Currently selected:', TIMELINE_SELECTED);
       
       if (TIMELINE_SELECTED === recID) {
         // Deselect if clicking same item
         TIMELINE_SELECTED = null;
-        console.log('Deselected');
       } else {
         // Select new item
         TIMELINE_SELECTED = recID;
-        console.log('Selected new item:', recID);
         
         // Show record details in sidebar (if not already visible)
         // Try to find record in appropriate entity index
@@ -4662,7 +4638,6 @@ function setupTimelineItemClicks(mount) {
   if (svg) {
     svg.addEventListener('click', (e) => {
       if (e.target === svg) {
-        console.log('Background clicked, deselecting');
         TIMELINE_SELECTED = null;
         buildTimeline();
       }
@@ -4782,8 +4757,6 @@ function updateRelationshipFilter(relTypes) {
 }
 
 function buildNetworkView(){
-  console.log('buildNetworkView() called');
-  
   const viewSelector = document.getElementById('network-view-selector');
   const networkView = viewSelector?.value || 'search';
   
@@ -4815,11 +4788,9 @@ function getActiveEntityFilters() {
   
   // If none are checked, return all entity types (show everything)
   if (selected.length === 0) {
-    console.log('No entity types selected - showing all');
     return ['su', 'ms', 'pu', 'hi', 'mi', 'hp', 'tx'];
   }
   
-  console.log('Active entity types:', selected);
   return selected;
 }
 
@@ -4844,24 +4815,13 @@ function recordMatchesFilters(rec, type) {
   const hasAnyFilter = Object.values(filters).some(v => v !== null);
   if (!hasAnyFilter) return true;
   
-  // Debug: Log first few filter checks
-  if (window.filterDebugCount === undefined) window.filterDebugCount = 0;
-  const shouldLog = window.filterDebugCount < 3;
-  if (shouldLog) {
-    console.log(`Checking record (${window.filterDebugCount + 1}/3):`, { type, id: rec.rec_ID, filters });
-  }
-  
   // === CORE FILTERS (SIMPLIFIED) ===
   
   // Century filter (scribal units, production units)
   if (filters.century && (type === 'su' || type === 'pu')) {
     const centuries = getValsAll(rec, 'Normalized century of production');
     const match = centuries.some(c => c && c.toLowerCase().includes(filters.century));
-    if (!match) {
-      if (shouldLog) console.log('  ❌ Century mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
+    if (!match) return false;
   }
   
   // Country filter (production units, institutions)
@@ -4869,11 +4829,7 @@ function recordMatchesFilters(rec, type) {
     let country = '';
     if (type === 'pu') country = getVal(rec, 'PU country') || '';
     else if (type === 'hi' || type === 'mi') country = getVal(rec, 'Country') || '';
-    if (!country.toLowerCase().includes(filters.country.toLowerCase())) {
-      if (shouldLog) console.log('  ❌ Country mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
+    if (!country.toLowerCase().includes(filters.country.toLowerCase())) return false;
   }
   
   // === DYNAMIC CONTENT FILTERS ===
@@ -4881,46 +4837,25 @@ function recordMatchesFilters(rec, type) {
   // Genre filter (texts)
   if (filters.genre && type === 'tx') {
     const genre = (getVal(rec, 'Genre') || '').toLowerCase();
-    if (!genre.includes(filters.genre)) {
-      if (shouldLog) console.log('  ❌ Genre mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
+    if (!genre.includes(filters.genre)) return false;
   }
   
   // Material filter (manuscripts)
   if (filters.material && type === 'ms') {
     const material = (getVal(rec, 'Material') || '').toLowerCase();
-    if (!material.includes(filters.material)) {
-      if (shouldLog) console.log('  ❌ Material mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
+    if (!material.includes(filters.material)) return false;
   }
   
   // Script type filter (scribal units)
   if (filters.script && type === 'su') {
     const script = (getVal(rec, 'Script') || '').toLowerCase();
-    if (!script.includes(filters.script)) {
-      if (shouldLog) console.log('  ❌ Script mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
+    if (!script.includes(filters.script)) return false;
   }
   
   // Religious order filter (monastic institutions)
   if (filters.order && type === 'mi') {
     const order = (getVal(rec, 'Religious order') || '').toLowerCase();
-    if (!order.includes(filters.order)) {
-      if (shouldLog) console.log('  ❌ Order mismatch');
-      window.filterDebugCount++;
-      return false;
-    }
-  }
-  
-  if (shouldLog) {
-    console.log('  ✅ PASSED all filters');
-    window.filterDebugCount++;
+    if (!order.includes(filters.order)) return false;
   }
   
   return true;
@@ -5243,10 +5178,6 @@ function buildSampledNetwork(entityTypes, sampleSize) {
   
   mount.innerHTML = '<div style="padding:1rem;text-align:center;color:#666;">Building connected sample network...</div>';
   
-  // Reset debug counter for filtering logs
-  window.filterDebugCount = 0;
-  console.log('Starting buildSampledNetwork with:', { entityTypes, sampleSize });
-  
   // Handle entity type filtering
   let types;
   if (entityTypes === null || entityTypes === undefined) {
@@ -5275,8 +5206,6 @@ function buildSampledNetwork(entityTypes, sampleSize) {
       adjacency.set(id, []);
     });
   });
-  
-  console.log(`Indexed ${nodeInfo.size} nodes after filtering`);
   
   // Build adjacency lists
   DATA.rel.forEach(rel => {
@@ -5376,7 +5305,6 @@ function buildSampledNetwork(entityTypes, sampleSize) {
     }
   });
   
-  console.log(`Sample network: ${nodes.length} nodes, ${links.length} links`);
   renderD3Network(mount, nodes, links);
 }
 
@@ -5386,10 +5314,6 @@ function buildHubsNetwork(entityTypes, topN) {
   if (!mount) return;
   
   mount.innerHTML = '<div style="padding:1rem;text-align:center;color:#666;">Finding most connected entities...</div>';
-  
-  // Reset debug counter for filtering logs
-  window.filterDebugCount = 0;
-  console.log('Starting buildHubsNetwork with:', { entityTypes, topN });
   
   // Handle entity type filtering
   let types;
@@ -5423,8 +5347,6 @@ function buildHubsNetwork(entityTypes, topN) {
       });
     });
   });
-  
-  console.log(`Indexed ${nodeData.size} nodes after filtering`);
   
   // Count connections efficiently
   DATA.rel.forEach(rel => {
@@ -5461,8 +5383,6 @@ function buildHubsNetwork(entityTypes, topN) {
     mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#666;">No connected entities found.</div>';
     return;
   }
-  
-  console.log('Top hubs:', topHubs.map(h => `${MAP[h.type].title(h.rec)} (${h.connectionCount} connections)`));
   
   // Include hubs and their immediate neighbors for context
   const selectedIds = new Set(topHubs.map(h => h.id));
@@ -5525,7 +5445,6 @@ function buildHubsNetwork(entityTypes, topN) {
     }
   });
   
-  console.log(`Hub network: ${nodes.length} nodes (${topHubs.length} hubs), ${links.length} links`);
   renderD3Network(mount, nodes, links);
 }
 
@@ -5862,43 +5781,7 @@ function renderD3ClusterNetwork(mount, nodes, links) {
   }
 }
 
-/* Network control event handlers - MOVED TO initEventListeners()
-document.getElementById('network-refresh')?.addEventListener('click', () => {
-  if (ACTIVE_MODE === 'network') buildNetworkView();
-});
-
-document.getElementById('network-show-labels')?.addEventListener('change', () => {
-  if (ACTIVE_MODE === 'network') buildNetworkView();
-});
-
-document.getElementById('network-rel-filter')?.addEventListener('change', () => {
-  if (ACTIVE_MODE === 'network') buildNetworkView();
-});
-
-document.getElementById('network-clear-filter')?.addEventListener('click', () => {
-  const select = document.getElementById('network-rel-filter');
-  if (select) {
-    select.value = '';
-    if (ACTIVE_MODE === 'network') buildNetworkView();
-  }
-});
-
-document.getElementById('network-reset-layout')?.addEventListener('click', () => {
-  const svg = d3.select('#network-mount svg');
-  const data = svg.datum();
-  if (data && data.zoom) {
-    svg.transition().duration(750).call(data.zoom.transform, d3.zoomIdentity);
-  }
-});
-
-document.getElementById('network-export')?.addEventListener('click', () => {
-  if (!NETWORK_CURRENT_REC || !NETWORK_CURRENT_TYPE) return;
-  exportNetworkForAnalysis(NETWORK_CURRENT_REC, NETWORK_CURRENT_TYPE);
-});
-*/
-
 // Export current network for analysis
-// Export current network view
 let CURRENT_NETWORK_DATA = { nodes: [], links: [] }; // Store current network data
 
 function exportCurrentNetwork(format) {
@@ -6293,11 +6176,9 @@ function exportAnalyticsVisualization(format) {
     if (format === 'png') {
       // Ensure html2canvas is loaded
       if (typeof html2canvas === 'undefined') {
-        console.log('Loading html2canvas...');
         const script = document.createElement('script');
         script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
         script.onload = () => {
-          console.log('html2canvas loaded, attempting export...');
           exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
             console.error('Export error:', err);
             alert('Export failed: ' + err.message);
@@ -6309,7 +6190,6 @@ function exportAnalyticsVisualization(format) {
         };
         document.head.appendChild(script);
       } else {
-        console.log('html2canvas already loaded, attempting export...');
         exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
           console.error('Export error:', err);
           alert('Export failed: ' + err.message);
@@ -6333,10 +6213,6 @@ function exportAnalyticsVisualization(format) {
  * Export HTML-based visualization as PNG using html2canvas
  */
 async function exportHtmlVisualizationAsPng(element, filename) {
-  console.log('Starting export with html2canvas...');
-  console.log('Element:', element);
-  console.log('Filename:', filename);
-  
   try {
     // Check if html2canvas is available
     if (typeof html2canvas === 'undefined') {
@@ -6348,25 +6224,21 @@ async function exportHtmlVisualizationAsPng(element, filename) {
     
     // Ensure element is visible
     const rect = element.getBoundingClientRect();
-    console.log('Element dimensions:', rect.width, 'x', rect.height);
     
     if (rect.width === 0 || rect.height === 0) {
       throw new Error('Element has no visible dimensions');
     }
     
-    console.log('Calling html2canvas...');
     const canvas = await html2canvas(element, {
       backgroundColor: '#ffffff',
       scale: 2,
-      logging: true, // Enable logging for debugging
+      logging: false,
       useCORS: true,
       allowTaint: false,
       removeContainer: true,
       windowWidth: element.scrollWidth,
       windowHeight: element.scrollHeight
     });
-    
-    console.log('Canvas created:', canvas.width, 'x', canvas.height);
     
     // Convert to blob and download
     canvas.toBlob(blob => {
@@ -6376,7 +6248,6 @@ async function exportHtmlVisualizationAsPng(element, filename) {
         return;
       }
       
-      console.log('Blob created, downloading...');
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -6385,7 +6256,6 @@ async function exportHtmlVisualizationAsPng(element, filename) {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      console.log('Download complete');
     }, 'image/png');
   } catch (error) {
     console.error('Export failed:', error);
@@ -6537,12 +6407,6 @@ function exportTreeItemAsPng(treeItem, msId) {
   });
 }
 
-/* Network refresh button - MOVED TO initEventListeners()
-document.getElementById('network-refresh')?.addEventListener('click', () => {
-  if (ACTIVE_VIEW === 'network') buildNetworkView();
-});
-*/
-
 /* ---------- CSV ---------- */
 const csvCell = v => `"${String(v ?? '').replace(/"/g,'""')}"`;
 const access = {
@@ -6638,14 +6502,11 @@ function downloadCSVFromList(){
 
 /* ---------- Events Initialization ---------- */
 function initEventListeners() {
-  console.log('Setting up event listeners...');
-  
   // Entity switching
   const entitySwitch = document.getElementById('entity-switch');
   if (entitySwitch) {
     entitySwitch.addEventListener('click', (e)=>{
       const btn = e.target.closest('.entity-btn'); if (!btn) return;
-      console.log('Entity button clicked:', btn.dataset.entity);
       switchEntity(btn.dataset.entity);
     });
   } else {
@@ -6813,7 +6674,6 @@ function initEventListeners() {
   
   // Clear all filters
   document.getElementById('network-clear-filters')?.addEventListener('click', () => {
-    console.log('Clearing all filters');
     // Reset entity type checkboxes
     document.querySelectorAll('.network-entity-filter').forEach(cb => cb.checked = true);
     // Reset color scheme and link density
@@ -6887,13 +6747,11 @@ function initEventListeners() {
   
   // Network depth control
   document.getElementById('network-depth')?.addEventListener('change', () => {
-    console.log('Depth changed to:', document.getElementById('network-depth')?.value);
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
   
   // Network color scheme selector
   document.getElementById('network-color-scheme')?.addEventListener('change', () => {
-    console.log('Color scheme changed to:', document.getElementById('network-color-scheme')?.value);
     if (ACTIVE_MODE === 'network') buildNetworkView();
   });
   
@@ -7040,8 +6898,6 @@ function initEventListeners() {
   document.getElementById('analytics-export-png')?.addEventListener('click', () => {
     exportAnalyticsVisualization('png');
   });
-  
-  console.log('✓ All event listeners attached');
 }
 
 /* ---------- Path Finding Dialog ---------- */
@@ -8170,24 +8026,6 @@ function getRecordsWithDates(list) {
   return `${withDates} (${pct}%)`;
 }
 
-function getCountByFieldExists(list, fieldName) {
-  return list.filter(r => {
-    const val = getVal(r, fieldName);
-    return val && val !== '—' && val !== '';
-  }).length;
-}
-
-function getCountByField(list, fieldName, values) {
-  return list.filter(r => {
-    const val = getVal(r, fieldName);
-    return val && values.includes(val);
-  }).length;
-}
-
-function getUniqueFieldCount(list, fieldName) {
-  return new Set(list.map(r => r[field])).size;
-}
-
 function getCountByField(list, fieldName, values) {
   return list.filter(r => {
     const val = getVal(r, fieldName);
@@ -8255,34 +8093,6 @@ function getCountWithHighCertaintyScribe(list) {
              scribeCertainty && scribeCertainty.toLowerCase() === 'high';
     });
   }).length;
-}
-
-function getDateRange(list) {
-  const dates = list.map(r => {
-    const tpq = getVal(r, 'Normalized terminus post quem');
-    const taq = getVal(r, 'Normalized terminus ante quem');
-    return tpq || taq;
-  }).filter(Boolean);
-  
-  if (dates.length === 0) return '—';
-  
-  const years = dates.map(d => {
-    const match = String(d).match(/(\d{3,4})/);
-    return match ? parseInt(match[1]) : null;
-  }).filter(y => y && y >= 800 && y <= 1800);
-  
-  if (years.length === 0) return '—';
-  return `${Math.min(...years)}–${Math.max(...years)}`;
-}
-
-function getRecordsWithDates(list) {
-  const withDates = list.filter(r => {
-    const tpq = getVal(r, 'Normalized terminus post quem');
-    const taq = getVal(r, 'Normalized terminus ante quem');
-    return tpq || taq;
-  }).length;
-  const pct = list.length > 0 ? Math.round((withDates / list.length) * 100) : 0;
-  return `${withDates} (${pct}%)`;
 }
 
 function buildEntityDistributionChart(list) {
@@ -10194,14 +10004,6 @@ function analyzeCollaborationVsFeatures(msRecords, suRecords, puRecords, vizType
 function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, colorVar, vizType) {
   const dataPoints = [];
   
-  // Debug: Check input data
-  console.log('analyzeCustomVariables called:', {
-    msCount: msRecords.length,
-    puCount: puRecords.length,
-    suCount: suRecords.length,
-    xVar, yVar, colorVar, vizType
-  });
-  
   // Helper to extract value by variable name
   function extractValue(ms, pu, varName) {
     // Dimensional variables
@@ -10370,18 +10172,8 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
         const yVal = extractValue(ms, pu, yVar);
         const colorVal = extractColorValue(ms, pu, colorVar);
         
-        // Debug logging (first record only)
         if (dataPoints.length === 0) {
-          console.log('Debug first extraction:', {
-            msId,
-            puId: pu.rec_ID,
-            xVar, xVal,
-            yVar, yVal,
-            colorVar, colorVal,
-            msTitle: MAP.ms?.title(ms),
-            puHasDetails: !!pu.details,
-            puDetailsLength: pu.details?.length
-          });
+          // First extraction check (no logging)
         }
         
         if (xVal !== null && yVal !== null) {
@@ -10395,8 +10187,6 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
       }
     });
   });
-  
-  console.log(`Codicology: Found ${dataPoints.length} data points for ${xVar} vs ${yVar}`);
   
   if (dataPoints.length === 0) {
     return `
@@ -10604,84 +10394,6 @@ function analyzeCustomVariables(msRecords, puRecords, suRecords, xVar, yVar, col
   }
   
   return '<div style="padding: 2rem; text-align: center; color: #666;">Visualization type not supported for this configuration</div>';
-}
-
-// Visualization helper: Stats Table
-function buildStatsTable(title, stats, unit) {
-  const rows = Object.entries(stats).map(([category, s]) => `
-    <tr>
-      <td style="padding: 0.5rem; font-weight: 600; border-bottom: 1px solid #dee2e6;">${category}</td>
-      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.n}</td>
-      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.mean.toFixed(1)} ${unit}</td>
-      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.median} ${unit}</td>
-      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.min} ${unit}</td>
-      <td style="padding: 0.5rem; border-bottom: 1px solid #dee2e6; text-align: right;">${s.max} ${unit}</td>
-    </tr>
-  `).join('');
-  
-  return `
-    <div style="padding: 1.5rem;">
-      <h3 style="margin-bottom: 1rem;">${title}</h3>
-      <table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 0.5rem; overflow: hidden;">
-        <thead style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white;">
-          <tr>
-            <th style="padding: 0.75rem; text-align: left;">Category</th>
-            <th style="padding: 0.75rem; text-align: right;">N</th>
-            <th style="padding: 0.75rem; text-align: right;">Mean</th>
-            <th style="padding: 0.75rem; text-align: right;">Median</th>
-            <th style="padding: 0.75rem; text-align: right;">Min</th>
-            <th style="padding: 0.75rem; text-align: right;">Max</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows}
-        </tbody>
-      </table>
-    </div>
-  `;
-}
-
-// Visualization helper: Box Plot
-function buildBoxPlot(title, dataByCategory, xLabel, yLabel) {
-  const categories = Object.keys(dataByCategory);
-  const maxValue = Math.max(...categories.flatMap(c => dataByCategory[c]));
-  
-  const boxes = categories.map(category => {
-    const values = [...dataByCategory[category]].sort((a, b) => a - b);
-    const n = values.length;
-    const q1 = values[Math.floor(n * 0.25)];
-    const median = values[Math.floor(n * 0.5)];
-    const q3 = values[Math.floor(n * 0.75)];
-    const min = values[0];
-    const max = values[n - 1];
-    
-    const scale = 300 / maxValue;
-    
-    return `
-      <div style="flex: 1; display: flex; flex-direction: column; align-items: center;">
-        <div style="position: relative; width: 60px; height: 320px; margin-bottom: 0.5rem;">
-          <div style="position: absolute; left: 28px; top: ${320 - max * scale}px; height: ${(max - min) * scale}px; width: 2px; background: #666;"></div>
-          <div style="position: absolute; left: 10px; top: ${320 - q3 * scale}px; width: 40px; height: ${(q3 - q1) * scale}px; background: rgba(212, 175, 55, 0.3); border: 2px solid #d4af37;"></div>
-          <div style="position: absolute; left: 8px; top: ${320 - median * scale}px; width: 44px; height: 3px; background: #e74c3c;"></div>
-          <div style="position: absolute; left: 24px; top: ${320 - max * scale - 5}px; width: 10px; height: 2px; background: #666;"></div>
-          <div style="position: absolute; left: 24px; top: ${320 - min * scale - 1}px; width: 10px; height: 2px; background: #666;"></div>
-        </div>
-        <div style="font-size: 0.8rem; font-weight: 600; text-align: center;">${category}</div>
-        <div style="font-size: 0.7rem; color: #666;">n=${values.length}</div>
-      </div>
-    `;
-  }).join('');
-  
-  return `
-    <div style="padding: 1.5rem;">
-      <h3 style="margin-bottom: 0.5rem;">${title}</h3>
-      <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem;">Box shows Q1-Q3 range (IQR), red line is median, whiskers extend to min/max</p>
-      <div style="display: flex; gap: 2rem; justify-content: center; align-items: flex-end; padding: 1rem; background: #f8f9fa; border-radius: 0.5rem;">
-        ${boxes}
-      </div>
-      <div style="text-align: center; margin-top: 0.5rem; font-size: 0.875rem; color: #666;">${yLabel}</div>
-    </div>
-  `;
 }
 
 
@@ -11163,8 +10875,6 @@ let CURRENT_MULTILINGUALISM_TAB = 'overview';
 
 // Main entry point for multilingualism mode
 function buildMultilingualism() {
-  console.log('Building multilingualism view, tab:', CURRENT_MULTILINGUALISM_TAB);
-  
   // Initialize tab navigation if first time
   if (!window.multilingualismTabsInitialized) {
     initMultilingualismTabs();
@@ -11460,12 +11170,6 @@ function getPUsForSU(su) {
 // ===== OVERVIEW TAB =====
 
 function buildMultilingualismOverview(mount) {
-  console.log('Building multilingualism overview...');
-  console.log('Mount element:', mount);
-  console.log('Available DATA:', Object.keys(DATA || {}));
-  console.log('SU count:', DATA.su?.length || 0);
-  console.log('PU count:', DATA.pu?.length || 0);
-  
   // Aggregate data
   const stats = {
     totalLanguages: new Set(),
@@ -11482,19 +11186,6 @@ function buildMultilingualismOverview(mount) {
   const suByMs = {};
   const scribeLanguages = {};
   const institutionLanguages = {};
-  
-  console.log('Checking first 3 SUs for language data...');
-  allSUs.slice(0, 3).forEach((su, idx) => {
-    const langInfo = getLanguageInfo(su, 'su');
-    console.log(`  SU #${idx + 1} (${su.rec_ID}):`, {
-      title: MAP.su?.title(su),
-      colophonLangs: langInfo.colophon,
-      textLangs: langInfo.text,
-      allLangs: langInfo.all,
-      hasColophonDivergence: langInfo.hasColophonDivergence,
-      detailCount: su.details?.length || 0
-    });
-  });
   
   allSUs.forEach(su => {
     const langInfo = getLanguageInfo(su, 'su');
@@ -11575,16 +11266,6 @@ function buildMultilingualismOverview(mount) {
   const sortedLanguages = Object.entries(stats.languageCounts)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 15);
-  
-  console.log('Overview stats:', {
-    totalLanguages: stats.totalLanguages.size,
-    multilingualMss: stats.multilingualMss,
-    multilingualScribes: stats.multilingualScribes,
-    multilingualInstitutions: stats.multilingualInstitutions,
-    colophonDivergences: stats.colophonDivergences,
-    languageCount: Object.keys(stats.languageCounts).length,
-    topLanguages: sortedLanguages.slice(0, 5)
-  });
   
   // === PATTERN ANALYSIS ===
   // Analyze geographical, temporal, and institutional patterns of multilingualism
@@ -11726,13 +11407,6 @@ function buildMultilingualismOverview(mount) {
     }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
-  
-  console.log('Pattern Analysis:', {
-    countries: topCountries.length,
-    periods: periodsSorted.length,
-    orders: topOrders.length,
-    institutions: topInstitutions.length
-  });
   
   // Render overview
   mount.innerHTML = `
@@ -11960,8 +11634,6 @@ function getMSForSU(su) {
 // ===== MULTILINGUAL MANUSCRIPTS TAB =====
 
 function buildMultilingualManuscripts(mount) {
-  console.log('Building multilingual manuscripts view...');
-  
   // Strategy: For each manuscript, collect ALL languages from:
   // - All PUs in the manuscript (their colophons)
   // - All SUs in those PUs (their colophons)  
@@ -11969,8 +11641,6 @@ function buildMultilingualManuscripts(mount) {
   
   const allMSs = DATA.ms || [];
   const msLanguageData = [];
-  
-  console.log('Total manuscripts to check:', allMSs.length);
   
   allMSs.forEach(ms => {
     const msId = String(ms.rec_ID);
@@ -11989,8 +11659,6 @@ function buildMultilingualManuscripts(mount) {
     
     if (puIds.size === 0) return; // No PUs in this manuscript
     
-    console.log(`MS "${msTitle}" has ${puIds.size} PUs`);
-    
     // Collect languages organized by PU
     const puData = {};
     const allMsLanguages = new Set();
@@ -12001,12 +11669,6 @@ function buildMultilingualManuscripts(mount) {
       
       const puTitle = MAP.pu?.title(pu) || 'Untitled PU';
       const puLangInfo = getLanguageInfo(pu, 'pu');
-      
-      console.log(`  PU "${puTitle}":`, {
-        colophonLangs: puLangInfo.colophon,
-        textLangs: puLangInfo.text,
-        allLangs: puLangInfo.all
-      });
       
       puData[puId] = {
         id: puId,
@@ -12030,13 +11692,7 @@ function buildMultilingualManuscripts(mount) {
           const suLangInfo = getLanguageInfo(su, 'su');
           const scribes = getScribesForSU(su);
           
-          console.log(`    SU "${suTitle}":`, {
-            colophonLangs: suLangInfo.colophon,
-            textLangs: suLangInfo.text,
-            allLangs: suLangInfo.all,
-            scribes: scribes.map(s => s.scribeName)
-          });
-          
+          // Track scribes and languages
           puData[puId].sus.push({
             id: suId,
             title: suTitle,
@@ -12062,8 +11718,6 @@ function buildMultilingualManuscripts(mount) {
       const multilingualPUs = Object.values(puData).filter(pu => pu.languages.size > 1);
       const multilingualismType = multilingualPUs.length > 0 ? 'within-pu' : 'cross-pu';
       
-      console.log(`✅ Found multilingual MS: "${msTitle}" with ${allMsLanguages.size} languages`);
-      
       msLanguageData.push({
         id: msId,
         title: msTitle,
@@ -12079,8 +11733,6 @@ function buildMultilingualManuscripts(mount) {
   
   // Sort by language count (most multilingual first)
   msLanguageData.sort((a, b) => b.languageCount - a.languageCount);
-  
-  console.log('Found', msLanguageData.length, 'multilingual manuscripts');
   
   if (msLanguageData.length === 0) {
     mount.innerHTML = `
@@ -12234,8 +11886,6 @@ function buildMultilingualManuscripts(mount) {
 }
 
 function buildScribalMultilingualism(mount) {
-  console.log('Building scribal multilingualism view...');
-  
   // Collect scribe language data
   const allSUs = DATA.su || [];
   const scribeData = {};
@@ -12425,8 +12075,6 @@ function buildScribalMultilingualism(mount) {
 }
 
 function buildInstitutionalMultilingualism(mount) {
-  console.log('Building institutional multilingualism view...');
-  
   // Collect institution language data via PU -> Institution relationships
   const allPUs = DATA.pu || [];
   const institutionData = {};
@@ -12612,8 +12260,6 @@ function buildInstitutionalMultilingualism(mount) {
 }
 
 function buildColophonTextDivergence(mount) {
-  console.log('Building colophon-text divergence view...');
-  
   // Find SUs where colophon language differs from text language(s)
   const allSUs = DATA.su || [];
   const divergences = [];
@@ -12794,8 +12440,6 @@ function buildColophonAnalysis() {
   const mount = document.getElementById('colophon-mount');
   if (!mount) return;
   
-  console.log('Building Colophon Analysis...');
-  
   // Set up tab navigation
   document.querySelectorAll('.colophon-tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -12873,16 +12517,8 @@ function hasColophon(su) {
 
 // 1. OVERVIEW TAB
 function buildColophonOverview(mount) {
-  console.log('Building Colophon Overview...');
-  
   const allSUs = DATA.su || [];
-  
-  // Debug: Check first few SUs
-  console.log('First SU sample:', allSUs[0]);
-  console.log('Colophon presence value for first SU:', getVal(allSUs[0], 'Colophon presence'));
-  
   const colophonSUs = allSUs.filter(su => hasColophon(su));
-  console.log('✅ Found', colophonSUs.length, 'SUs with colophons');
   
   // Basic statistics
   const stats = {
@@ -12960,8 +12596,6 @@ function buildColophonOverview(mount) {
   const topRegions = Object.entries(stats.byRegion)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10);
-  
-  console.log('Colophon stats:', stats);
   
   // Calculate relative percentages (colophons vs total manuscripts)
   const allMSs = DATA.ms || [];
@@ -13118,8 +12752,6 @@ function buildColophonOverview(mount) {
 
 // 2. SENTIMENT ANALYSIS TAB
 function buildSentimentAnalysis(mount) {
-  console.log('Building Sentiment Analysis...');
-  
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
   
@@ -13321,8 +12953,6 @@ function buildSentimentAnalysis(mount) {
 
 // 3. THEMATIC ANALYSIS TAB
 function buildThematicAnalysis(mount) {
-  console.log('Building Thematic Analysis...');
-  
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
   
@@ -13484,8 +13114,6 @@ function buildThematicAnalysis(mount) {
 
 // 4. LINGUISTIC FEATURES TAB
 function buildLinguisticFeatures(mount) {
-  console.log('Building Linguistic Features...');
-  
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
   
@@ -13661,8 +13289,6 @@ function buildLinguisticFeatures(mount) {
 
 // 5. COMPARATIVE PATTERNS TAB
 function buildComparativePatterns(mount) {
-  console.log('Building Comparative Patterns...');
-  
   const allSUs = DATA.su || [];
   const allMSs = DATA.ms || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
@@ -13958,8 +13584,6 @@ function buildComparativePatterns(mount) {
 
 // 6. EXPLORE FORMULAE TAB
 async function buildExploreFormulae(mount) {
-  console.log('Building Explore Formulae...');
-  
   mount.innerHTML = '<div style="padding: 2rem; text-align: center; color: #666;">Loading formula data...</div>';
   
   // Get all SUs with colophons for matching
@@ -13968,8 +13592,6 @@ async function buildExploreFormulae(mount) {
     const transcription = getVal(su, 'Colophon transcription') || '';
     return transcription.trim().length > 0;
   });
-  
-  console.log('Colophon SUs for formula matching:', colophonSUs.length);
   
   // PREDEFINED FORMULAS TO SEARCH FOR
   const predefinedFormulas = [
@@ -14030,8 +13652,6 @@ async function buildExploreFormulae(mount) {
     { formula: 'Lob sye Gott', language: 'German', variants: ['lob sye', 'sye gott', 'lob gott'] },
     { formula: 'zu lob vnd erenn', language: 'German', variants: ['zu lob', 'vnd erenn', 'lob vnd'] }
   ];
-  
-  console.log('Searching for ' + predefinedFormulas.length + ' predefined formulas...');
   
   // Function to check if text contains any variant (fuzzy match)
   const containsFormula = (text, variants) => {
@@ -14108,12 +13728,6 @@ async function buildExploreFormulae(mount) {
       countries: Array.from(countries)
     };
   });
-  
-  console.log('=== FORMULA SEARCH RESULTS ===');
-  formulaResults.forEach((result, idx) => {
-    console.log((idx + 1) + '. [' + result.language + '] "' + result.formula + '": ' + result.count + ' manuscripts');
-  });
-  console.log('=== END RESULTS ===');
   
   // Organize formulas by language
   const formulasByLanguage = {};
@@ -15686,7 +15300,6 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
   
   // Toggle network visualization
   window.toggleNetworkView = function() {
-    console.log('Network view toggled');
     if (!window.formulaMapData) {
       console.error('No formula map data');
       alert('Please wait for the map to finish loading');
@@ -15701,8 +15314,6 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
       console.error('Network button not found');
       return;
     }
-    
-    console.log('Network active:', window.networkActive);
     
     if (window.networkActive) {
       // Remove network lines
@@ -15771,8 +15382,6 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
       btn.style.color = 'white';
       btn.style.borderColor = '#d4af37';
       
-      console.log('Network view activated, drew', window.networkLines.length, 'connections');
-      
       // Show feedback to user
       if (window.networkLines.length === 0) {
         alert('No connections found. Locations need to share at least one formula to be connected.');
@@ -15834,8 +15443,6 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
 }
 
 function buildBrowseColophons(mount) {
-  console.log('Building Browse Colophons...');
-  
   const allSUs = DATA.su || [];
   const colophonSUs = allSUs.filter(su => hasColophon(su));
   
@@ -15891,13 +15498,7 @@ function buildBrowseColophons(mount) {
     return MAP.mi.title(mi) || mi.rec_Title;
   }).filter(Boolean))].sort();
   
-  console.log('Browse Colophons - COUNTS:', 
-    'Languages:', languages.length,
-    'Centuries:', centuries.length, 
-    'Countries:', countries.length,
-    'Institutions:', monasticInstitutions.length
-  );
-  
+  // Build filter UI
   // Pagination state
   let currentPage = 1;
   const itemsPerPage = 20;
@@ -16222,7 +15823,6 @@ function buildBrowseColophons(mount) {
 
 /* ---------- Boot ---------- */
 async function boot(){
-  console.log('🚀 Boot function started');
   $status.textContent='Loading data…';
   const [su, ms, pu, hi, mi, hp, tx, rel] = await Promise.all([
     fetchHeuristRecords(SU_ENDPOINT, EXPECT_TYPE.su),
@@ -16238,7 +15838,6 @@ async function boot(){
   indexAll(); buildTypeMap(); indexPointers(); indexRelationships();
   
   // Filter Historical People to only show those linked to Scribal Units via "scribe of" relationship
-  console.log('Filtering Historical People to show only scribes...');
   const linkedHPIds = new Set();
   DATA.rel.forEach(rel => {
     const src = getRes(rel, 'Source record');
@@ -16256,10 +15855,8 @@ async function boot(){
     }
   });
   DATA.hp = DATA.hp.filter(hp => linkedHPIds.has(String(hp.rec_ID)));
-  console.log(`✅ Filtered Historical People: ${DATA.hp.length} scribes (from ${hp.length} total)`);
   
   // Filter Monastic Institutions to show only those linked to PUs or HPs
-  console.log('Filtering Monastic Institutions to show only those linked to PUs or HPs...');
   const linkedMIIds = new Set();
   
   // Check for PUs pointing to MIs (pointer field)
@@ -16297,10 +15894,8 @@ async function boot(){
   });
   
   DATA.mi = DATA.mi.filter(mi => linkedMIIds.has(String(mi.rec_ID)));
-  console.log(`✅ Filtered Monastic Institutions: ${DATA.mi.length} linked (from ${mi.length} total)`);
   
   // Filter Texts to show only those linked to PUs or SUs via "contains" relationship
-  console.log('Filtering Texts to show only those linked to PUs or SUs...');
   const linkedTXIds = new Set();
   
   DATA.rel.forEach(rel => {
@@ -16321,25 +15916,18 @@ async function boot(){
   });
   
   DATA.tx = DATA.tx.filter(tx => linkedTXIds.has(String(tx.rec_ID)));
-  console.log(`✅ Filtered Texts: ${DATA.tx.length} linked (from ${tx.length} total)`);
   
   // Re-index after filtering
   indexAll(); buildTypeMap(); indexPointers();
-  
-  console.log('Data loaded and filtered. Initializing event listeners...');
   
   // Initialize all event listeners
   initModeNavigation();
   initEventListeners();
   
-  console.log('✅ Event listeners initialized');
-  
   buildFacets(DATA.su, FACETS.su);
   render(DATA.su, 'su');
   updateAvailableViews();
   $status.textContent='';
-  
-  console.log('Boot complete! Page ready.');
   
   // Check for URL parameters to auto-navigate to a specific record
   const params = new URLSearchParams(window.location.search);
@@ -16356,8 +15944,7 @@ async function boot(){
         if (arkMatch) {
           const msSlug = 'irht-' + arkMatch[1];
           if (msSlug === slugParam) {
-            // Found it! Jump to this manuscript
-            console.log('Auto-navigating to manuscript:', ms.rec_ID);
+            // Auto-navigate to matched manuscript
             setTimeout(() => jumpTo('ms', String(ms.rec_ID)), 100);
             break;
           }
