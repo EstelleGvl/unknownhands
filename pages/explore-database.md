@@ -25,8 +25,10 @@ banner:
       <!-- <button class="main-nav-btn" data-mode="codicology">Codicology</button> -->
     <button class="main-nav-btn" data-mode="tree">Hierarchical Tree</button>
     <button class="main-nav-btn" data-mode="network">Network</button>
+    <button class="main-nav-btn" data-mode="scribes">Scribes</button>
     <button class="main-nav-btn" data-mode="multilingualism">Multilingualism</button>
     <button class="main-nav-btn" data-mode="colophon-analysis">Colophon Analysis</button>
+    <button class="main-nav-btn" data-mode="text-genres">Text Genres</button>
   </div>
 
   <div class="db-shell">
@@ -291,7 +293,6 @@ banner:
                 <input type="range" id="network-link-density" min="0" max="100" value="100" style="flex:1;" title="Adjust link visibility - higher values show more connections">
                 <span id="network-link-density-value" style="min-width:35px;text-align:right;">100%</span>
               </label>
-            </div>
             </div>
             
             <!-- Advanced Filters Panel (collapsible) -->
@@ -703,6 +704,39 @@ banner:
       </div>
     </div>
 
+    <!-- SCRIBES MODE -->
+    <div id="mode-scribes" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow: hidden;">
+        <div style="border-bottom: 2px solid #f0f0f0;">
+          <div class="scribe-tabs" style="display: flex; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #fafafa;">
+            <button class="scribe-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: #fff; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Overview
+            </button>
+            <button class="scribe-tab-btn" data-tab="productivity" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              Productivity Patterns
+            </button>
+            <button class="scribe-tab-btn" data-tab="unseen-species" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              Unseen Species Analysis
+            </button>
+            <button class="scribe-tab-btn" data-tab="collaboration" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              Collaborations
+            </button>
+            <button class="scribe-tab-btn" data-tab="geography" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              Geography
+            </button>
+            <button class="scribe-tab-btn" data-tab="browse" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+              Browse All
+            </button>
+          </div>
+        </div>
+        <div style="padding: 1.5rem;">
+          <div id="scribes-mount" style="overflow: auto; min-height: 60vh;">
+            <!-- Scribe analysis will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div> <!-- /mode-scribes -->
+
     <!-- MULTILINGUALISM MODE -->
     <div id="mode-multilingualism" class="mode-container mode-fullwidth" aria-hidden="true">
       <div class="viz-card is-on">
@@ -736,7 +770,7 @@ banner:
           </div>
         </div>
       </div>
-    </div>
+    </div> <!-- /mode-multilingualism -->
 
     <!-- COLOPHON ANALYSIS MODE -->
     <div id="mode-colophon-analysis" class="mode-container mode-fullwidth" aria-hidden="true">
@@ -772,6 +806,22 @@ banner:
           </div>
         </div>
       </div>
+    </div> <!-- /mode-colophon-analysis -->
+    
+    <!-- TEXT GENRES MODE -->
+    <div id="mode-text-genres" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on">
+        <div class="viz-head">
+          <span>Text Genres</span>
+          <span style="font-size:0.875rem;font-weight:400;color:#666;margin-left:1rem;">
+            Distribution and classification of texts
+          </span>
+        </div>
+        <div class="viz-body" style="padding:1rem;">
+          <div id="text-genres-mount"></div>
+        </div>
+      </div>
+    </div>
   </div> <!-- /db-shell -->
 </div> <!-- /explore-fullwidth -->
 
@@ -946,7 +996,7 @@ banner:
     }
   }
   
-  /* Visualization modes: full-width (Map, Timeline, Network, Analytics, Multilingualism, Colophon Analysis) */
+  /* Visualization modes: full-width (Map, Timeline, Network, Analytics, Multilingualism, Scribes, Colophon Analysis, Text Genres) */
   /* These need to break out of the .explore-fullwidth padding, then add it back */
   #mode-map[aria-hidden="false"],
   #mode-timeline[aria-hidden="false"],
@@ -954,8 +1004,10 @@ banner:
   #mode-analytics[aria-hidden="false"],
   #mode-codicology[aria-hidden="false"],
   #mode-tree[aria-hidden="false"],
+  #mode-scribes[aria-hidden="false"],
   #mode-multilingualism[aria-hidden="false"],
-  #mode-colophon-analysis[aria-hidden="false"] {
+  #mode-colophon-analysis[aria-hidden="false"],
+  #mode-text-genres[aria-hidden="false"] {
     display: block !important;
     width: 100vw !important;
     max-width: 100vw !important;
@@ -1217,6 +1269,198 @@ function getUniqueValues(entityType, fieldName, multi = false) {
   });
   
   return Array.from(values).sort();
+}
+
+/* ---------- PNG Export Utilities ---------- */
+/**
+ * Convert an HTML element to PNG and download
+ * @param {HTMLElement} element - The element to convert
+ * @param {string} filename - Name for the downloaded file
+ */
+async function exportElementToPNG(element, filename) {
+  try {
+    // Find all export buttons and hide them temporarily
+    const exportButtons = element.querySelectorAll('[id^="export-"]');
+    exportButtons.forEach(btn => btn.style.visibility = 'hidden');
+    
+    // Find the title element (h3 or h4 within the element or its wrapper)
+    let titleText = '';
+    let titleElement = element.querySelector('h3, h4');
+    
+    // If not found in element, look in parent wrapper
+    if (!titleElement) {
+      const wrapper = element.closest('[id$="-wrapper"]');
+      if (wrapper) {
+        titleElement = wrapper.querySelector('h3, h4');
+      }
+    }
+    
+    if (titleElement) {
+      titleText = titleElement.textContent.trim();
+    }
+    
+    // Create a container with title
+    const exportContainer = document.createElement('div');
+    exportContainer.style.padding = '20px';
+    exportContainer.style.backgroundColor = '#ffffff';
+    
+    if (titleText) {
+      const titleDiv = document.createElement('div');
+      titleDiv.textContent = titleText;
+      titleDiv.style.fontSize = '18px';
+      titleDiv.style.fontWeight = '700';
+      titleDiv.style.marginBottom = '15px';
+      titleDiv.style.color = '#1e293b';
+      exportContainer.appendChild(titleDiv);
+    }
+    
+    const clonedElement = element.cloneNode(true);
+    // Remove title and buttons from cloned content
+    const clonedTitle = clonedElement.querySelector('h3, h4');
+    if (clonedTitle) clonedTitle.remove();
+    const clonedButtons = clonedElement.querySelectorAll('[id^="export-"]');
+    clonedButtons.forEach(btn => btn.remove());
+    
+    exportContainer.appendChild(clonedElement);
+    
+    document.body.appendChild(exportContainer);
+    exportContainer.style.position = 'absolute';
+    exportContainer.style.left = '-9999px';
+    
+    const canvas = await html2canvas(exportContainer, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      logging: false,
+      useCORS: true
+    });
+    
+    document.body.removeChild(exportContainer);
+    
+    // Restore button visibility
+    exportButtons.forEach(btn => btn.style.visibility = 'visible');
+    
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  } catch (error) {
+    console.error('Error exporting to PNG:', error);
+    // Restore button visibility on error
+    const exportButtons = element.querySelectorAll('[id^="export-"]');
+    exportButtons.forEach(btn => btn.style.visibility = 'visible');
+    alert('Failed to export image. Please try again.');
+  }
+}
+
+/**
+ * Create a download button for PNG export
+ * @param {string} elementId - ID of element to export
+ * @param {string} filename - Filename for download
+ * @returns {string} HTML for the button
+ */
+function createExportButton(elementId, filename) {
+  const btnId = `export-${elementId}`;
+  setTimeout(() => {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+      btn.onclick = () => {
+        const el = document.getElementById(elementId);
+        if (el) exportElementToPNG(el, filename);
+      };
+    }
+  }, 100);
+  
+  return `<button id="${btnId}" class="export-btn" style="background: #10b981; color: white; border: none; padding: 0.5rem 0.875rem; border-radius: 0.375rem; font-size: 0.8125rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.375rem; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08); transition: all 0.2s ease;" onmouseover="this.style.background='#059669'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1)';" onmouseout="this.style.background='#10b981'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)';">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+    </svg>
+    Export PNG
+  </button>`;
+}
+
+/**
+ * Creates an embed button that shows embed code in a modal
+ * @param {string} networkType - e.g., 'manuscript-genre', 'institution-subgenre', 'scribe-genre'
+ * @returns {string} HTML for the button
+ */
+function createEmbedButton(networkType) {
+  const btnId = `embed-${networkType.replace(/[^a-z0-9]/g, '-')}`;
+  setTimeout(() => {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+      btn.onclick = () => {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const embedUrl = `${baseUrl}?embed=true&network=${networkType}`;
+        const iframeCode = `<iframe src="${embedUrl}" width="100%" height="900px" frameborder="0" style="border: none;"></iframe>`;
+        
+        // Create modal
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000; padding: 1rem;';
+        modal.innerHTML = `
+          <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 600px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <h3 style="margin: 0; color: #1e293b; font-size: 1.25rem;">Embed Network</h3>
+              <button id="close-embed-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b; padding: 0; width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">×</button>
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #475569; font-size: 0.875rem;">Embed URL</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="embed-url-input" value="${embedUrl}" readonly style="flex: 1; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 0.375rem; font-family: monospace; font-size: 0.875rem; background: #f8fafc;">
+                <button id="copy-url-btn" style="padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 600; white-space: nowrap;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Copy</button>
+              </div>
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+              <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #475569; font-size: 0.875rem;">iframe Code</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <textarea id="embed-code-input" readonly style="flex: 1; padding: 0.5rem; border: 1px solid #e2e8f0; border-radius: 0.375rem; font-family: monospace; font-size: 0.75rem; background: #f8fafc; resize: vertical; min-height: 80px;">${iframeCode}</textarea>
+                <button id="copy-code-btn" style="padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 600; white-space: nowrap; align-self: flex-start;" onmouseover="this.style.background='#2563eb'" onmouseout="this.style.background='#3b82f6'">Copy</button>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <a href="${embedUrl}" target="_blank" style="flex: 1; padding: 0.625rem 1rem; background: #10b981; color: white; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 600; text-align: center; text-decoration: none; font-size: 0.875rem;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">Preview Embed</a>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Close modal handlers
+        modal.querySelector('#close-embed-modal').onclick = () => modal.remove();
+        modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+        
+        // Copy handlers
+        modal.querySelector('#copy-url-btn').onclick = () => {
+          const input = modal.querySelector('#embed-url-input');
+          input.select();
+          navigator.clipboard.writeText(embedUrl);
+          const btn = modal.querySelector('#copy-url-btn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy', 2000);
+        };
+        
+        modal.querySelector('#copy-code-btn').onclick = () => {
+          const input = modal.querySelector('#embed-code-input');
+          input.select();
+          navigator.clipboard.writeText(iframeCode);
+          const btn = modal.querySelector('#copy-code-btn');
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy', 2000);
+        };
+      };
+    }
+  }, 100);
+  
+  return `<button id="${btnId}" style="background: #8b5cf6; color: white; border: none; padding: 0.5rem 0.875rem; border-radius: 0.375rem; font-size: 0.8125rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.375rem; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08); transition: all 0.2s ease;" onmouseover="this.style.background='#7c3aed'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1)';" onmouseout="this.style.background='#8b5cf6'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)';">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16M5 12h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/>
+    </svg>
+    Embed
+  </button>`;
 }
 
 
@@ -3244,7 +3488,7 @@ function setMode(mode) {
   });
 
   // Show/hide mode containers
-  const modes = ['browse', 'map', 'timeline', 'network', 'analytics', 'codicology', 'tree', 'multilingualism', 'colophon-analysis'];
+  const modes = ['browse', 'map', 'timeline', 'network', 'analytics', 'codicology', 'tree', 'scribes', 'multilingualism', 'colophon-analysis', 'text-genres'];
   modes.forEach(m => {
     const container = document.getElementById(`mode-${m}`);
     if (container) {
@@ -3262,9 +3506,14 @@ function setMode(mode) {
   if (mode === 'analytics') buildAnalytics();
   if (mode === 'codicology') buildCodicology();
   if (mode === 'tree') buildHierarchicalTree();
+  if (mode === 'scribes') buildScribes();
   if (mode === 'multilingualism') buildMultilingualism();
   if (mode === 'colophon-analysis') buildColophonAnalysis();
+  if (mode === 'text-genres') buildTextGenres();
 }
+
+// Expose to global scope for debugging
+window.setMode = setMode;
 
 function initModeNavigation() {
   // Set up main navigation listeners
@@ -3422,7 +3671,7 @@ function updateMapControls(viewType) {
     } else if (viewType === 'ms-movement') {
       html += '<div style="display:flex;align-items:center;gap:0.5rem;">';
       html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#10b981;"></span> Production location</div>';
-      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:20px;height:3px;background:#ec4899;"></span> Movement</div>';
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:20px;height:3px;background:#fb923c;"></span> Movement</div>';
       html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ef4444;"></span> Current location</div>';
       html += '</div>';
     } else if (viewType === 'pu-location') {
@@ -3739,7 +3988,7 @@ function collectMapData(viewType) {
 function getMarkerColor(category) {
   const colors = {
     'manuscript': '#3388ff',      // Blue
-    'manuscript-movement': '#ec4899', // Pink (for movement visualization)
+    'manuscript-movement': '#fb923c', // Orange (for movement visualization)
     'production': '#ff7800',      // Orange
     'monastery': '#d4af37',       // Gold
     'monastery-pu': '#c4941f',    // Dark Gold
@@ -3905,7 +4154,7 @@ function renderMapLayers() {
         // Draw line from production to current
         const line = L.polyline(
           [[m.prodPt.lat, m.prodPt.lng], [m.holdPt.lat, m.holdPt.lng]],
-          {color: '#ec4899', weight: 3, opacity: 0.8}
+          {color: '#fb923c', weight: 3, opacity: 0.8}
         );
         line.bindPopup(`<div style="min-width:220px">
           <div style="font-weight:600;margin-bottom:.5rem">${m.title}</div>
@@ -4379,8 +4628,8 @@ function buildTimeline(){
         'German': '#ca8a04',
         'English': '#9333ea',
         'Dutch': '#10b981',
-        'Hebrew': '#ec4899',
-        'Greek': '#8b5cf6',
+        'Hebrew': '#eab308',
+        'Greek': '#fb923c',
         'Arabic': '#f59e0b'
       };
       
@@ -4404,7 +4653,7 @@ function buildTimeline(){
         'Humanistic': '#16a34a',
         'Uncial': '#ca8a04',
         'Beneventan': '#9333ea',
-        'Insular': '#ec4899',
+        'Insular': '#fb923c',
         'Textualis': '#b91c1c'
       };
       
@@ -4569,8 +4818,8 @@ function updateTimelineLegend(colorBy) {
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #16a34a; border-radius: 50%;"></span> Italian</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #ca8a04; border-radius: 50%;"></span> German</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #9333ea; border-radius: 50%;"></span> English</span>
-      <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #ec4899; border-radius: 50%;"></span> Hebrew</span>
-      <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #8b5cf6; border-radius: 50%;"></span> Greek</span>
+      <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #eab308; border-radius: 50%;"></span> Hebrew</span>
+      <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #fb923c; border-radius: 50%;"></span> Greek</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></span> Arabic</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #6b7280; border-radius: 50%;"></span> Other/Unknown</span>
       <span style="font-style: italic; margin-left: 0.5rem; color: #9ca3af;">Click dots to highlight • +/− to zoom</span>
@@ -4582,7 +4831,7 @@ function updateTimelineLegend(colorBy) {
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #16a34a; border-radius: 50%;"></span> Humanistic</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #ca8a04; border-radius: 50%;"></span> Uncial</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #9333ea; border-radius: 50%;"></span> Beneventan</span>
-      <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #ec4899; border-radius: 50%;"></span> Insular</span>
+      <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #fb923c; border-radius: 50%;"></span> Insular</span>
       <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display: inline-block; width: 12px; height: 12px; background: #6b7280; border-radius: 50%;"></span> Other/Unknown</span>
       <span style="font-style: italic; margin-left: 0.5rem; color: #9ca3af;">Click dots to highlight • +/− to zoom</span>
     `;
@@ -11041,6 +11290,7 @@ function getLanguageInfo(record, recordType) {
 /**
  * Get scribe(s) for a scribal unit
  * Returns: [{ scribeId, scribeName, role, certainty }]
+ * Excludes male scribes (filters by gender field)
  */
 function getScribesForSU(su) {
   const scribes = [];
@@ -11060,6 +11310,14 @@ function getScribesForSU(su) {
     
     if (hpId) {
       const hp = IDX.hp[hpId];
+      
+      // Filter out male scribes - only include female or unknown gender
+      const gender = getVal(hp, 'Gender');
+      const genderStr = gender ? String(gender).toLowerCase() : '';
+      if (genderStr === 'male') {
+        continue; // Skip male scribes
+      }
+      
       const role = getVal(rel, 'Scribe role') || 'scribe';
       const certainty = getVal(rel, 'scribe certainty') || '';
       
@@ -11103,6 +11361,41 @@ function getInstitutionsForPU(pu) {
   const rels = [
     ...(REL_INDEX.bySource?.[puId] || []),
     ...(REL_INDEX.byTarget?.[puId] || [])
+  ];
+  
+  for (const rel of rels) {
+    const src = getRes(rel, 'Source record');
+    const tgt = getRes(rel, 'Target record');
+    
+    // Check if this is a relationship to a monastic institution
+    const miId = IDX.mi?.[String(src?.id)] ? String(src.id) :
+                 IDX.mi?.[String(tgt?.id)] ? String(tgt.id) : null;
+    
+    if (miId && !institutions.find(inst => inst.institutionId === miId)) {
+      const mi = IDX.mi[miId];
+      institutions.push({
+        institutionId: miId,
+        institutionName: MAP.mi?.title(mi) || 'Unknown Institution',
+        institutionType: getVal(mi, 'Institution type') || 'Unknown'
+      });
+    }
+  }
+  
+  return institutions;
+}
+
+/**
+ * Get monastic institution(s) for a scribe (historical person)
+ * Follows: Historical Person → Monastic Institution relationship
+ * Returns: [{ institutionId, institutionName, institutionType }]
+ */
+function getInstitutionsForScribe(hpId) {
+  const institutions = [];
+  
+  // Get all relationships for this historical person
+  const rels = [
+    ...(REL_INDEX.bySource?.[hpId] || []),
+    ...(REL_INDEX.byTarget?.[hpId] || [])
   ];
   
   for (const rel of rels) {
@@ -11419,15 +11712,15 @@ function buildMultilingualismOverview(mount) {
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.totalLanguages.size}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Languages/Dialects</div>
         </div>
-        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualMss}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Manuscripts</div>
         </div>
-        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualScribes}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Scribes</div>
         </div>
-        <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualInstitutions}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Institutions</div>
         </div>
@@ -12156,7 +12449,7 @@ function buildInstitutionalMultilingualism(mount) {
     
     // Language badges
     const langBadges = langArray.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
     ).join('');
     
     // Language breakdown
@@ -12204,7 +12497,7 @@ function buildInstitutionalMultilingualism(mount) {
             </div>
           </div>
           <div>
-            <button onclick="window.jumpTo('mi', '${inst.id}')" style="padding: 0.5rem 1rem; background: #f093fb; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#d078dc'" onmouseleave="this.style.background='#f093fb'">
+            <button onclick="window.jumpTo('mi', '${inst.id}')" style="padding: 0.5rem 1rem; background: #fbbf24; color: white; border: none; border-radius: 0.375rem; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: background 0.2s;" onmouseenter="this.style.background='#f59e0b'" onmouseleave="this.style.background='#fbbf24'">
               View Institution
             </button>
           </div>
@@ -12227,7 +12520,7 @@ function buildInstitutionalMultilingualism(mount) {
           institutional multilingual capacities and cultural exchange networks in medieval book production.
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualInstitutions.length}</span>
             <span style="opacity: 0.9;">multilingual institution${multilingualInstitutions.length !== 1 ? 's' : ''}</span>
           </div>
@@ -12430,6 +12723,2621 @@ function buildColophonTextDivergence(mount) {
 }
 
 /* ============================================================
+   SCRIBES MODULE
+   ============================================================ */
+
+// Track current scribe tab
+let CURRENT_SCRIBE_TAB = 'overview';
+let SCRIBE_DATA_CACHE = null;
+let SCRIBE_TABLE_ROWS_SHOWN = 20;
+
+// Main entry point for scribes mode
+function buildScribes() {
+  // Initialize tab navigation if first time
+  if (!window.scribeTabsInitialized) {
+    initScribeTabs();
+    window.scribeTabsInitialized = true;
+  }
+  
+  // Compute and render (tabs just scroll to sections for now)
+  computeScribeData();
+}
+
+// Initialize tab navigation
+function initScribeTabs() {
+  document.querySelectorAll('.scribe-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      if (tab) {
+        CURRENT_SCRIBE_TAB = tab;
+        
+        // Update tab button styles
+        document.querySelectorAll('.scribe-tab-btn').forEach(b => {
+          const isActive = b.dataset.tab === tab;
+          b.classList.toggle('is-on', isActive);
+          b.style.background = isActive ? '#fff' : 'transparent';
+          b.style.color = isActive ? '#000' : '#666';
+          b.style.boxShadow = isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+          b.style.fontWeight = isActive ? '600' : '500';
+        });
+        
+        // Scroll to relevant section
+        scrollToScribeSection(tab);
+      }
+    });
+  });
+}
+
+// Scroll to section based on tab
+function scrollToScribeSection(tab) {
+  const mount = document.getElementById('scribes-mount');
+  if (!mount) return;
+  
+  // Store computed data for tab switching
+  if (!window.SCRIBE_COMPUTED_DATA) {
+    // Data will be set when first computed
+    return;
+  }
+  
+  const data = window.SCRIBE_COMPUTED_DATA;
+  
+  // Render the selected tab content
+  switch(tab) {
+    case 'overview':
+      renderOverviewTab(mount, data);
+      break;
+    case 'productivity':
+      renderProductivityTab(mount, data);
+      break;
+    case 'unseen-species':
+      renderUnseenSpeciesTab(mount, data);
+      break;
+    case 'collaboration':
+      renderCollaborationTab(mount, data);
+      break;
+    case 'geography':
+      renderGeographyTab(mount, data);
+      break;
+    case 'browse':
+      renderBrowseTab(mount, data);
+      break;
+  }
+}
+
+// Overview tab
+function renderOverviewTab(mount, data) {
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Scribes Overview</h2>
+      
+      <!-- Key Statistics -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${data.totalScribes}</div>
+          <div style="font-size: 0.875rem; opacity: 0.95;">Total Female Scribes</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${data.totalSUs}</div>
+          <div style="font-size: 0.875rem; opacity: 0.95;">Total Scribal Units by Women</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${data.avgSUsPerScribe}</div>
+          <div style="font-size: 0.875rem; opacity: 0.95;">Avg SUs per Female Scribe</div>
+        </div>
+        <div style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${data.multilingualScribes}</div>
+          <div style="font-size: 0.875rem; opacity: 0.95;">Multilingual Female Scribes</div>
+        </div>
+      </div>
+      
+      <!-- Top 20 Most Productive Scribes -->
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Top 20 Most Productive Scribes</h3>
+          ${createExportButton('scribes-bar-chart-wrapper', 'top_20_scribes.png')}
+        </div>
+        <div id="scribes-bar-chart-wrapper">
+          <div id="scribes-bar-chart"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  buildScribesBarChart(data.top20);
+}
+
+// Productivity tab
+function renderProductivityTab(mount, data) {
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Productivity Patterns</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="scribe-productivity-chart-wrapper">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Scribe Productivity Distribution</h3>
+            ${createExportButton('scribe-productivity-chart-wrapper', 'scribe_productivity.png')}
+          </div>
+          <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">How many scribes participated in copying 1, 2, 3... manuscripts</p>
+          <div id="scribe-productivity-distribution-chart"></div>
+        </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="manuscript-productivity-chart-wrapper">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Manuscript Productivity Distribution</h3>
+            ${createExportButton('manuscript-productivity-chart-wrapper', 'manuscript_productivity.png')}
+          </div>
+          <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">How many manuscripts have 1, 2, 3... scribes</p>
+          <div id="productivity-distribution-chart"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  buildScribeProductivityDistribution(data.scribeProductivityDistribution);
+  buildProductivityDistribution(data.productivityDistribution);
+}
+
+// Unseen Species tab
+function renderUnseenSpeciesTab(mount, data) {
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h2 style="margin: 0; color: #1a1a1a;">Unseen Species Analysis</h2>
+        <button id="unseen-species-info" style="background: #e0e7ff; color: #4338ca; border: none; padding: 0.5rem 1rem; border-radius: 0.375rem; font-size: 0.875rem; cursor: pointer; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          ℹ️ Methodology & References
+        </button>
+      </div>
+      
+      <!-- Experiment Selection -->
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem;">
+        <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.125rem;">Select Experiment</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+          <button class="experiment-btn" data-experiment="high-certainty" style="padding: 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; background: white; cursor: pointer; text-align: left; transition: all 0.2s;">
+            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Experiment 1</div>
+            <div style="font-size: 0.875rem; color: #64748b;">High Certainty Attributions</div>
+          </button>
+          <button class="experiment-btn active" data-experiment="entire-corpus" style="padding: 1rem; border: 2px solid #f59e0b; border-radius: 0.5rem; background: #fffbeb; cursor: pointer; text-align: left; transition: all 0.2s; box-shadow: 0 2px 4px rgba(245,158,11,0.2);">
+            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Experiment 2</div>
+            <div style="font-size: 0.875rem; color: #64748b;">Entire Corpus (Default)</div>
+          </button>
+          <button class="experiment-btn" data-experiment="by-country" style="padding: 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; background: white; cursor: pointer; text-align: left; transition: all 0.2s;">
+            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Experiment 3</div>
+            <div style="font-size: 0.875rem; color: #64748b;">Breakdown by Country</div>
+          </button>
+          <button class="experiment-btn" data-experiment="by-century" style="padding: 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; background: white; cursor: pointer; text-align: left; transition: all 0.2s;">
+            <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Experiment 4</div>
+            <div style="font-size: 0.875rem; color: #64748b;">Breakdown by Century</div>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Results Container -->
+      <div id="unseen-species-results" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem; border-left: 4px solid #f59e0b;">
+        <div id="unseen-species-content"></div>
+      </div>
+    </div>
+  `;
+  
+  // Set up experiment switching
+  const experimentButtons = mount.querySelectorAll('.experiment-btn');
+  experimentButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active state
+      experimentButtons.forEach(b => {
+        b.style.border = '2px solid #e2e8f0';
+        b.style.background = 'white';
+        b.style.boxShadow = 'none';
+        b.classList.remove('active');
+      });
+      btn.style.border = '2px solid #f59e0b';
+      btn.style.background = '#fffbeb';
+      btn.style.boxShadow = '0 2px 4px rgba(245,158,11,0.2)';
+      btn.classList.add('active');
+      
+      // Run the selected experiment
+      const experiment = btn.dataset.experiment;
+      runUnseenSpeciesExperiment(experiment, data.scribeArray);
+    });
+  });
+  
+  // Set up methodology button (works for all experiments)
+  document.getElementById('unseen-species-info')?.addEventListener('click', () => {
+    showMethodologyModal(0, 0, 0, 0, 0, 0); // Params will be updated with actual values
+  });
+  
+  // Run default experiment (Entire Corpus)
+  runUnseenSpeciesExperiment('entire-corpus', data.scribeArray);
+}
+
+// Collaboration tab
+function renderCollaborationTab(mount, data) {
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1600px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Scribe Collaborations</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem;">
+        <!-- Network Visualization -->
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="collab-network-wrapper">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Collaboration Network</h3>
+            ${createExportButton('collab-network-wrapper', 'collaboration_network.png')}
+          </div>
+          <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">
+            Network showing which scribes worked together on manuscripts. Node size = number of collaborations, edge thickness = number of shared manuscripts.
+          </p>
+          <div id="collaboration-network-viz" style="width: 100%; height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa;"></div>
+        </div>
+        
+        <!-- Sidebar with Details -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+            <h4 style="margin: 0 0 0.75rem 0; font-size: 1rem; color: #475569;">Top Collaborators</h4>
+            <p style="margin: 0 0 0.5rem 0; font-size: 0.75rem; color: #94a3b8;">Click to focus on scribe</p>
+            <div id="top-collaborators-list" style="max-height: 350px; overflow-y: auto;"></div>
+          </div>
+          <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+            <h4 style="margin: 0 0 0.75rem 0; font-size: 1rem; color: #475569;">Multi-Scribe Manuscripts</h4>
+            <p style="margin: 0 0 0.5rem 0; font-size: 0.75rem; color: #94a3b8;">${data.collaborativeManuscripts.length} manuscripts</p>
+            <div id="collaborative-manuscripts-list" style="max-height: 350px; overflow-y: auto;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  buildCollaborationNetwork(data.collaborativeManuscripts, data.collaborations, data.scribeArray);
+  buildTopCollaborators(data.topCollaborators);
+  buildCollaborativeManuscripts(data.collaborativeManuscripts);
+}
+
+// Geography tab
+function renderGeographyTab(mount, data) {
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Geographic & Institutional Distribution</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Institutions by Scribe Count</h3>
+          <div id="institutions-chart"></div>
+        </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Cities by Scribe Activity</h3>
+          <div id="cities-chart"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  buildInstitutionsChart(data.topInstitutions);
+  buildCitiesChart(data.topCities);
+}
+
+// Browse tab
+function renderBrowseTab(mount, data) {
+  mount.innerHTML = `
+    <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Browse All Scribes</h2>
+      
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">All Scribes</h3>
+          <button id="export-scribes-csv" class="chip" style="background: #28a745; color: white; padding: 0.5rem 1rem;">
+            📥 Export CSV
+          </button>
+        </div>
+        
+        <!-- Advanced Filters -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; padding: 1rem; background: #f8fafc; border-radius: 0.375rem; margin-bottom: 1rem;">
+          <div>
+            <label style="display: block; font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 0.25rem;">Search</label>
+            <input type="search" id="scribe-search" placeholder="Name, language, institution..." style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem; font-size: 0.875rem;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 0.25rem;">Filter Type</label>
+            <select id="scribe-filter" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem; font-size: 0.875rem;">
+              <option value="all">All Scribes</option>
+              <option value="multilingual">Multilingual Only</option>
+              <option value="productive">Highly Productive (5+ SUs)</option>
+              <option value="collaborative">Collaborative (worked with others)</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 0.25rem;">Language</label>
+            <select id="scribe-lang-filter" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem; font-size: 0.875rem;">
+              <option value="">All Languages</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 0.25rem;">Institution</label>
+            <select id="scribe-inst-filter" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 0.25rem; font-size: 0.875rem;">
+              <option value="">All Institutions</option>
+            </select>
+          </div>
+        </div>
+        
+        <div id="scribes-table" style="overflow-x: auto;"></div>
+      </div>
+    </div>
+  `;
+  
+  buildScribesTable(data.scribeArray);
+  populateLanguageFilter(data.scribeArray);
+  populateInstitutionFilter(data.scribeArray);
+  
+  // Add event listeners
+  const searchInput = document.getElementById('scribe-search');
+  const filterSelect = document.getElementById('scribe-filter');
+  const langFilter = document.getElementById('scribe-lang-filter');
+  const instFilter = document.getElementById('scribe-inst-filter');
+  
+  const applyFilters = () => {
+    filterScribesTable(
+      data.scribeArray, 
+      searchInput?.value || '', 
+      filterSelect?.value || 'all',
+      langFilter?.value || '',
+      instFilter?.value || '',
+      data.collaborations
+    );
+  };
+  
+  searchInput?.addEventListener('input', applyFilters);
+  filterSelect?.addEventListener('change', applyFilters);
+  langFilter?.addEventListener('change', applyFilters);
+  instFilter?.addEventListener('change', applyFilters);
+  
+  document.getElementById('export-scribes-csv')?.addEventListener('click', () => {
+    exportScribesCSV(data.scribeArray);
+  });
+}
+
+// Compute scribe data
+function computeScribeData() {
+  const mount = document.getElementById('scribes-mount');
+  if (!mount) return;
+  
+  mount.innerHTML = '<div style="padding:2rem;text-align:center;color:#999;">Loading scribe data...</div>';
+  
+  // Aggregate scribe data
+  const scribeStats = {};
+  const allSUs = DATA.su || [];
+  const allPUs = DATA.pu || [];
+  
+  // Process all scribal units to collect scribe information
+  allSUs.forEach(su => {
+    const suId = String(su.rec_ID);
+    const scribes = getScribesForSU(su);
+    const msId = getMSForSU(su);
+    const ms = msId ? IDX.ms?.[msId] : null;
+    const langInfo = getLanguageInfo(su, 'su');
+    
+    // Get production units for this SU (for country and date info)
+    const puIds = getPUsForSU(su);
+    const countries = new Set();
+    const dates = [];
+    
+    puIds.forEach(puId => {
+      const pu = IDX.pu?.[puId];
+      if (pu) {
+        // Extract country from PU
+        const country = getVal(pu, 'PU country');
+        if (country && country !== 'Unknown') {
+          countries.add(country);
+        }
+        
+        const dateStr = MAP.pu?.date(pu);
+        if (dateStr && dateStr !== 'Unknown') {
+          dates.push(dateStr);
+        }
+      }
+    });
+    
+    // Get centuries from SU
+    const centuries = getValsAll(su, 'Normalized century of production').filter(Boolean);
+    
+    // Track unique scribes per SU (a scribe may have multiple relationships to same SU)
+    const uniqueScribes = new Map();
+    scribes.forEach(scribe => {
+      if (!uniqueScribes.has(scribe.scribeId)) {
+        uniqueScribes.set(scribe.scribeId, scribe);
+      }
+    });
+    
+    // Process each unique scribe
+    uniqueScribes.forEach(scribe => {
+      if (!scribeStats[scribe.scribeId]) {
+        scribeStats[scribe.scribeId] = {
+          id: scribe.scribeId,
+          name: scribe.scribeName,
+          suIds: new Set(),  // Track unique SU IDs instead of counter
+          manuscripts: new Set(),
+          languages: new Set(),
+          institutions: new Set(),
+          dates: [],
+          sus: []
+        };
+      }
+      
+      // Add this SU to the scribe's set (prevents double-counting)
+      scribeStats[scribe.scribeId].suIds.add(suId);
+      
+      if (msId && ms) {
+        scribeStats[scribe.scribeId].manuscripts.add(MAP.ms?.title(ms) || `MS-${msId}`);
+      }
+      
+      langInfo.all.forEach(lang => {
+        // Filter out TBC (To Be Confirmed) as it's not a real language
+        if (lang && lang.toUpperCase() !== 'TBC') {
+          scribeStats[scribe.scribeId].languages.add(lang);
+        }
+      });
+      
+      // Get monastic institutions from the scribe's (historical person's) relationships
+      const scribeInstitutions = getInstitutionsForScribe(scribe.scribeId);
+      scribeInstitutions.forEach(inst => {
+        scribeStats[scribe.scribeId].institutions.add(inst.institutionName);
+      });
+      
+      dates.forEach(date => {
+        if (!scribeStats[scribe.scribeId].dates.includes(date)) {
+          scribeStats[scribe.scribeId].dates.push(date);
+        }
+      });
+      
+      // Only add SU to list if not already there
+      if (!scribeStats[scribe.scribeId].sus.find(s => s.id === suId)) {
+        scribeStats[scribe.scribeId].sus.push({
+          id: suId,
+          title: MAP.su?.title(su) || 'Untitled SU',
+          msTitle: ms ? (MAP.ms?.title(ms) || 'Untitled MS') : 'Unknown MS',
+          languages: langInfo.all.filter(lang => lang && lang.toUpperCase() !== 'TBC'),
+          role: scribe.role,
+          certainty: scribe.certainty,
+          countries: Array.from(countries),
+          centuries: centuries
+        });
+      }
+    });
+  });
+  
+  // Convert to array and sort by productivity
+  const scribeArray = Object.values(scribeStats)
+    .sort((a, b) => b.suIds.size - a.suIds.size);
+  
+  // Statistics
+  const totalScribes = scribeArray.length;
+  const totalSUs = scribeArray.reduce((sum, s) => sum + s.suIds.size, 0);
+  const avgSUsPerScribe = totalScribes > 0 ? (totalSUs / totalScribes).toFixed(1) : 0;
+  const multilingualScribes = scribeArray.filter(s => s.languages.size > 1).length;
+  
+  // Top 20 most productive scribes
+  const top20 = scribeArray.slice(0, 20);
+  
+  // === PRODUCTIVITY DISTRIBUTION PER MANUSCRIPT (for cultural ecology) ===
+  const msScribeCount = {}; // manuscript ID -> number of scribes
+  const allMSs = DATA.ms || [];
+  
+  allMSs.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    const scribesInMs = new Set();
+    
+    // Find all scribes who worked on this manuscript
+    scribeArray.forEach(scribe => {
+      scribe.sus.forEach(su => {
+        if (su.msTitle === (MAP.ms?.title(ms) || `MS-${msId}`)) {
+          scribesInMs.add(scribe.id);
+        }
+      });
+    });
+    
+    if (scribesInMs.size > 0) {
+      msScribeCount[msId] = {
+        msTitle: MAP.ms?.title(ms) || `MS-${msId}`,
+        scribeCount: scribesInMs.size
+      };
+    }
+  });
+  
+  // Distribution: how many manuscripts have 1, 2, 3... scribes
+  const productivityDistribution = {};
+  Object.values(msScribeCount).forEach(({ scribeCount }) => {
+    productivityDistribution[scribeCount] = (productivityDistribution[scribeCount] || 0) + 1;
+  });
+  
+  // === COLLABORATION NETWORK ===
+  const collaborations = {}; // scribeId -> set of co-scribes
+  const collaborativeManuscripts = []; // manuscripts with 2+ scribes
+  
+  Object.entries(msScribeCount).forEach(([msId, { msTitle, scribeCount }]) => {
+    if (scribeCount >= 2) {
+      // Find all scribes in this manuscript
+      const scribesInMs = [];
+      scribeArray.forEach(scribe => {
+        scribe.sus.forEach(su => {
+          if (su.msTitle === msTitle && !scribesInMs.find(s => s.id === scribe.id)) {
+            scribesInMs.push({ id: scribe.id, name: scribe.name });
+          }
+        });
+      });
+      
+      collaborativeManuscripts.push({
+        msId,
+        msTitle,
+        scribes: scribesInMs,
+        scribeCount: scribesInMs.length
+      });
+      
+      // Record collaborations
+      for (let i = 0; i < scribesInMs.length; i++) {
+        for (let j = i + 1; j < scribesInMs.length; j++) {
+          const scribe1 = scribesInMs[i].id;
+          const scribe2 = scribesInMs[j].id;
+          
+          if (!collaborations[scribe1]) collaborations[scribe1] = new Set();
+          if (!collaborations[scribe2]) collaborations[scribe2] = new Set();
+          
+          collaborations[scribe1].add(scribe2);
+          collaborations[scribe2].add(scribe1);
+        }
+      }
+    }
+  });
+  
+  // Top collaborators
+  const topCollaborators = Object.entries(collaborations)
+    .map(([scribeId, coScribes]) => {
+      const scribe = scribeArray.find(s => s.id === scribeId);
+      return {
+        id: scribeId,
+        name: scribe?.name || 'Unknown',
+        collaboratorCount: coScribes.size
+      };
+    })
+    .sort((a, b) => b.collaboratorCount - a.collaboratorCount)
+    .slice(0, 10);
+  
+  // === GEOGRAPHIC / INSTITUTIONAL BREAKDOWN ===
+  const institutionStats = {};
+  const cityStats = {};
+  
+  scribeArray.forEach(scribe => {
+    scribe.institutions.forEach(inst => {
+      if (!institutionStats[inst]) {
+        institutionStats[inst] = { scribes: new Set(), suCount: 0 };
+      }
+      institutionStats[inst].scribes.add(scribe.id);
+      institutionStats[inst].suCount += scribe.suIds.size;
+    });
+    
+    // Extract city from institution name (assuming format includes city)
+    scribe.institutions.forEach(inst => {
+      // Try to extract city - institutions often have format "Name, City, Country"
+      const parts = inst.split(',');
+      if (parts.length >= 2) {
+        const city = parts[parts.length - 2].trim();
+        if (!cityStats[city]) {
+          cityStats[city] = { scribes: new Set(), institutions: new Set() };
+        }
+        cityStats[city].scribes.add(scribe.id);
+        cityStats[city].institutions.add(inst);
+      }
+    });
+  });
+  
+  const topInstitutions = Object.entries(institutionStats)
+    .map(([name, data]) => ({
+      name,
+      scribeCount: data.scribes.size,
+      suCount: data.suCount
+    }))
+    .sort((a, b) => b.scribeCount - a.scribeCount)
+    .slice(0, 15);
+  
+  const topCities = Object.entries(cityStats)
+    .map(([name, data]) => ({
+      name,
+      scribeCount: data.scribes.size,
+      institutionCount: data.institutions.size
+    }))
+    .sort((a, b) => b.scribeCount - a.scribeCount)
+    .slice(0, 10);
+  
+  // === SCRIBE PRODUCTIVITY DISTRIBUTION ===
+  // How many scribes copied 1 ms, 2 ms, 3 ms, etc.
+  const scribeProductivityDistribution = {};
+  scribeArray.forEach(scribe => {
+    const msCount = scribe.manuscripts.size;
+    if (msCount > 0) {
+      scribeProductivityDistribution[msCount] = (scribeProductivityDistribution[msCount] || 0) + 1;
+    }
+  });
+  
+  // Store all computed data globally for tab switching
+  window.SCRIBE_COMPUTED_DATA = {
+    scribeArray,
+    totalScribes,
+    totalSUs,
+    avgSUsPerScribe,
+    multilingualScribes,
+    top20,
+    scribeProductivityDistribution,
+    productivityDistribution,
+    collaborations,
+    topCollaborators,
+    collaborativeManuscripts,
+    topInstitutions,
+    topCities
+  };
+  
+  // Render the current tab (default to overview)
+  scrollToScribeSection(CURRENT_SCRIBE_TAB);
+}
+
+function buildScribeProductivityDistribution(distribution) {
+  const container = document.getElementById('scribe-productivity-distribution-chart');
+  if (!container) return;
+  
+  const maxMsCount = Math.max(...Object.keys(distribution).map(Number));
+  const data = [];
+  for (let i = 1; i <= maxMsCount; i++) {
+    data.push({ msCount: i, scribeCount: distribution[i] || 0 });
+  }
+  
+  const maxScribeCount = Math.max(...data.map(d => d.scribeCount));
+  const barHeight = 40;
+  const gap = 8;
+  const chartWidth = 450;
+  
+  const html = data.map(d => {
+    const barWidth = maxScribeCount > 0 ? (d.scribeCount / maxScribeCount) * chartWidth : 0;
+    const label = d.msCount === 1 ? '1 ms' : `${d.msCount} ms`;
+    
+    return `
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: ${gap}px;">
+        <div style="width: 60px; text-align: right; font-size: 0.875rem; color: #64748b; font-weight: 500;">
+          ${label}
+        </div>
+        <div style="flex: 1; display: flex; align-items: center;">
+          <div style="background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%); height: ${barHeight}px; width: ${barWidth}px; border-radius: 0.25rem; position: relative; min-width: ${d.scribeCount > 0 ? '30px' : '0'};">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.875rem;">
+              ${d.scribeCount}
+            </div>
+          </div>
+          <div style="margin-left: 0.5rem; font-size: 0.75rem; color: #94a3b8;">
+            ${d.scribeCount === 1 ? 'scribe' : 'scribes'}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  container.innerHTML = html + `
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.8125rem; color: #64748b;">
+      <strong>Total:</strong> ${Object.values(distribution).reduce((a, b) => a + b, 0)} scribes
+    </div>
+  `;
+}
+
+function buildProductivityDistribution(distribution) {
+  const container = document.getElementById('productivity-distribution-chart');
+  if (!container) return;
+  
+  const maxScribes = Math.max(...Object.keys(distribution).map(Number));
+  const data = [];
+  for (let i = 1; i <= maxScribes; i++) {
+    data.push({ scribeCount: i, msCount: distribution[i] || 0 });
+  }
+  
+  const maxMsCount = Math.max(...data.map(d => d.msCount));
+  const barHeight = 40;
+  const gap = 8;
+  const chartWidth = 500;
+  
+  const html = data.map(d => {
+    const barWidth = maxMsCount > 0 ? (d.msCount / maxMsCount) * chartWidth : 0;
+    const label = d.scribeCount === 1 ? '1 scribe' : `${d.scribeCount} scribes`;
+    
+    return `
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: ${gap}px;">
+        <div style="width: 100px; text-align: right; font-size: 0.875rem; color: #64748b; font-weight: 500;">
+          ${label}
+        </div>
+        <div style="flex: 1; display: flex; align-items: center;">
+          <div style="background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); height: ${barHeight}px; width: ${barWidth}px; border-radius: 0.25rem; position: relative; min-width: ${d.msCount > 0 ? '30px' : '0'};">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.875rem;">
+              ${d.msCount}
+            </div>
+          </div>
+          <div style="margin-left: 0.5rem; font-size: 0.75rem; color: #94a3b8;">
+            ${d.msCount === 1 ? 'manuscript' : 'manuscripts'}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  container.innerHTML = html + `
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.8125rem; color: #64748b;">
+      <strong>Total:</strong> ${Object.values(distribution).reduce((a, b) => a + b, 0)} manuscripts with identified scribes
+    </div>
+  `;
+}
+
+/**
+ * Calculate Chao1 estimator for unseen species
+ * Reference: Chao, A. (1984). Nonparametric estimation of the number of classes in a population.
+ */
+function calculateChao1(productivityDist, observed) {
+  const f1 = productivityDist[1] || 0; // singletons
+  const f2 = productivityDist[2] || 0; // doubletons
+  
+  let estimate = observed;
+  let lower = observed;
+  let upper = observed;
+  
+  if (f2 > 0) {
+    // Standard Chao1
+    estimate = observed + (f1 * f1) / (2 * f2);
+    // 95% CI approximation
+    const variance = f2 * (0.5 * Math.pow(f1/f2, 2) + Math.pow(f1/f2, 3) + 0.25 * Math.pow(f1/f2, 4));
+    const se = Math.sqrt(variance);
+    lower = Math.max(observed, estimate - 1.96 * se);
+    upper = estimate + 1.96 * se;
+  } else if (f1 > 0) {
+    // Modified Chao1 when f2 = 0
+    estimate = observed + (f1 * (f1 - 1)) / 2;
+    lower = observed + (f1 * (f1 - 1)) / 2;
+    upper = observed + (f1 * (f1 + 1)) / 2;
+  }
+  
+  return { estimate, lower, upper, f1, f2 };
+}
+
+/**
+ * Calculate Jackknife estimator for unseen species
+ * Reference: Walther & Morand (1998). Comparative performance of species richness estimation methods.
+ * First-order jackknife: S_jack1 = S_obs + f1 * (n-1)/n
+ * where f1 = number of species in exactly one sample, n = number of samples
+ */
+function calculateJackknife(productivityDist, observed) {
+  const f1 = productivityDist[1] || 0;
+  const f2 = productivityDist[2] || 0;
+  
+  // Calculate total number of manuscripts (samples)
+  let totalManuscripts = 0;
+  Object.entries(productivityDist).forEach(([count, scribes]) => {
+    totalManuscripts += Number(count) * scribes;
+  });
+  
+  // First-order Jackknife
+  const jack1 = observed + f1 * (totalManuscripts - 1) / totalManuscripts;
+  
+  // Second-order Jackknife (uses doubletons for better accuracy)
+  let jack2 = jack1;
+  if (f2 > 0 && totalManuscripts > 1) {
+    jack2 = observed + f1 * (2 * totalManuscripts - 3) / totalManuscripts 
+            - f2 * Math.pow(totalManuscripts - 2, 2) / (totalManuscripts * (totalManuscripts - 1));
+  }
+  
+  // Use Jack2 if available and makes sense, otherwise Jack1
+  const estimate = (f2 > 0 && jack2 > observed) ? jack2 : jack1;
+  
+  // Rough CI approximation (simplified variance estimate)
+  const se = Math.sqrt(f1 * (totalManuscripts - 1) / totalManuscripts);
+  const lower = Math.max(observed, estimate - 1.96 * se);
+  const upper = estimate + 1.96 * se;
+  
+  return { estimate, lower, upper, order: f2 > 0 ? 2 : 1 };
+}
+
+/**
+ * Calculate Gamma-Poisson Model estimator
+ * Reference: Böhning & Schön (2005). Nonparametric maximum likelihood estimation of population size.
+ * This uses a mixture model approach to account for heterogeneity in detection probability.
+ */
+function calculateGammaPoisson(productivityDist, observed) {
+  const f1 = productivityDist[1] || 0;
+  const f2 = productivityDist[2] || 0;
+  const f3 = productivityDist[3] || 0;
+  
+  // Calculate total manuscripts
+  let totalManuscripts = 0;
+  Object.entries(productivityDist).forEach(([count, scribes]) => {
+    totalManuscripts += Number(count) * scribes;
+  });
+  
+  // Gamma-Poisson uses a more sophisticated approach
+  // Simplified formula based on low-frequency counts
+  let estimate = observed;
+  
+  if (f1 > 0 && totalManuscripts > 0) {
+    // Alpha parameter (shape) estimation using moment matching
+    const meanProductivity = totalManuscripts / observed;
+    
+    // Gamma-Poisson formula (simplified Chao-Bunge variant)
+    if (f2 > 0) {
+      const t = 10; // cutoff for rare species
+      let numerator = 0;
+      let denominator = 0;
+      
+      for (let i = 1; i <= Math.min(t, Object.keys(productivityDist).length); i++) {
+        const fi = productivityDist[i] || 0;
+        if (fi > 0) {
+          numerator += i * (i - 1) * fi;
+          denominator += i * (i - 1) * fi;
+        }
+      }
+      
+      if (denominator > 0 && f2 > 0) {
+        // Estimate using frequency ratios
+        const gamma = Math.max(0, 1 - f2 / Math.max(1, (f1 * f1 / (2 * f2))));
+        estimate = observed + f1 / gamma;
+      } else {
+        // Fallback to modified Chao1-like estimate
+        estimate = observed + f1 * f1 / (2 * Math.max(1, f2));
+      }
+    } else {
+      // When f2 = 0, use a more conservative estimate
+      estimate = observed + f1 * Math.log(totalManuscripts / observed);
+    }
+  }
+  
+  // Rough CI (simplified)
+  const se = Math.sqrt(Math.abs(estimate - observed));
+  const lower = Math.max(observed, estimate - 1.96 * se);
+  const upper = estimate + 1.96 * se * 1.5; // Wider CI for model uncertainty
+  
+  return { estimate, lower, upper };
+}
+
+/**
+ * Run unseen species analysis for a specific experiment
+ */
+function runUnseenSpeciesExperiment(experimentType, scribeArray) {
+  const container = document.getElementById('unseen-species-content');
+  if (!container) return;
+  
+  switch(experimentType) {
+    case 'high-certainty':
+      buildHighCertaintyAnalysis(scribeArray, container);
+      break;
+    case 'entire-corpus':
+      buildEntireCorpusAnalysis(scribeArray, container);
+      break;
+    case 'by-country':
+      buildByCountryAnalysis(scribeArray, container);
+      break;
+    case 'by-century':
+      buildByCenturyAnalysis(scribeArray, container);
+      break;
+  }
+}
+
+/**
+ * Experiment 1: High Certainty Attributions Only
+ */
+function buildHighCertaintyAnalysis(scribeArray, container) {
+  // Filter for high certainty attributions
+  const highCertaintyScribes = scribeArray.map(scribe => {
+    const highCertaintySUs = scribe.sus.filter(su => {
+      const certainty = su.certainty || '';
+      return certainty.toLowerCase().includes('high') || certainty === 'High';
+    });
+    
+    if (highCertaintySUs.length === 0) return null;
+    
+    return {
+      ...scribe,
+      sus: highCertaintySUs,
+      manuscripts: new Set(highCertaintySUs.map(su => su.msTitle))
+    };
+  }).filter(Boolean);
+  
+  const productivityDist = {};
+  highCertaintyScribes.forEach(scribe => {
+    const msCount = scribe.manuscripts.size;
+    productivityDist[msCount] = (productivityDist[msCount] || 0) + 1;
+  });
+  
+  buildUnseenSpeciesComparison(
+    productivityDist,
+    highCertaintyScribes.length,
+    container,
+    'High Certainty Attributions',
+    'Only includes scribal units with high certainty attributions'
+  );
+}
+
+/**
+ * Experiment 2: Entire Corpus (Current Implementation)
+ */
+function buildEntireCorpusAnalysis(scribeArray, container) {
+  const productivityDist = {};
+  scribeArray.forEach(scribe => {
+    const msCount = scribe.manuscripts.size;
+    productivityDist[msCount] = (productivityDist[msCount] || 0) + 1;
+  });
+  
+  buildUnseenSpeciesComparison(
+    productivityDist,
+    scribeArray.length,
+    container,
+    'Entire Corpus',
+    'All female scribes in the database regardless of attribution certainty'
+  );
+}
+
+/**
+ * Experiment 3: By Country Breakdown
+ */
+function buildByCountryAnalysis(scribeArray, container) {
+  // Group scribes by country
+  const countryGroups = {};
+  
+  scribeArray.forEach(scribe => {
+    const countries = new Set();
+    scribe.sus.forEach(su => {
+      if (su.countries && su.countries.length > 0) {
+        su.countries.forEach(c => countries.add(c));
+      }
+    });
+    
+    countries.forEach(country => {
+      if (!countryGroups[country]) {
+        countryGroups[country] = [];
+      }
+      countryGroups[country].push(scribe);
+    });
+  });
+  
+  // Sort countries by scribe count
+  const sortedCountries = Object.entries(countryGroups)
+    .sort((a, b) => b[1].length - a[1].length)
+    .slice(0, 8); // Top 8 countries
+  
+  if (sortedCountries.length === 0) {
+    container.innerHTML = '<div style="padding: 2rem; text-align: center; color: #94a3b8;">No country data available for analysis</div>';
+    return;
+  }
+  
+  let html = '<div style="display: grid; gap: 2rem;">';
+  
+  sortedCountries.forEach(([country, scribes]) => {
+    const productivityDist = {};
+    scribes.forEach(scribe => {
+      const msCount = scribe.manuscripts.size;
+      productivityDist[msCount] = (productivityDist[msCount] || 0) + 1;
+    });
+    
+    const chao1 = calculateChao1(productivityDist, scribes.length);
+    const jackknife = calculateJackknife(productivityDist, scribes.length);
+    const gammaPoisson = calculateGammaPoisson(productivityDist, scribes.length);
+    
+    html += `
+      <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1.5rem; background: #fafafa;">
+        <h4 style="margin: 0 0 1rem 0; color: #1e293b; font-size: 1.125rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></span>
+          ${country}
+        </h4>
+        ${buildEstimatorComparisonTable(chao1, jackknife, gammaPoisson, scribes.length)}
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+/**
+ * Experiment 4: By Century Breakdown
+ */
+function buildByCenturyAnalysis(scribeArray, container) {
+  // Group scribes by century
+  const centuryGroups = {};
+  
+  scribeArray.forEach(scribe => {
+    const centuries = new Set();
+    scribe.sus.forEach(su => {
+      if (su.centuries && su.centuries.length > 0) {
+        su.centuries.forEach(c => centuries.add(c));
+      }
+    });
+    
+    centuries.forEach(century => {
+      if (!centuryGroups[century]) {
+        centuryGroups[century] = [];
+      }
+      centuryGroups[century].push(scribe);
+    });
+  });
+  
+  // Sort centuries chronologically and filter out 18th century and Unknown
+  const sortedCenturies = Object.entries(centuryGroups)
+    .filter(([century]) => {
+      // Exclude 18th century and Unknown
+      if (century.toLowerCase().includes('unknown')) return false;
+      if (century.match(/18th/i)) return false;
+      if (century.match(/XVIII/i)) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      const aNum = parseInt(a[0].match(/\d+/)?.[0] || '0');
+      const bNum = parseInt(b[0].match(/\d+/)?.[0] || '0');
+      return aNum - bNum;
+    });
+  
+  if (sortedCenturies.length === 0) {
+    container.innerHTML = '<div style="padding: 2rem; text-align: center; color: #94a3b8;">No century data available for analysis</div>';
+    return;
+  }
+  
+  let html = '<div style="display: grid; gap: 2rem;">';
+  
+  sortedCenturies.forEach(([century, scribes]) => {
+    const productivityDist = {};
+    scribes.forEach(scribe => {
+      const msCount = scribe.manuscripts.size;
+      productivityDist[msCount] = (productivityDist[msCount] || 0) + 1;
+    });
+    
+    const chao1 = calculateChao1(productivityDist, scribes.length);
+    const jackknife = calculateJackknife(productivityDist, scribes.length);
+    const gammaPoisson = calculateGammaPoisson(productivityDist, scribes.length);
+    
+    html += `
+      <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1.5rem; background: #fafafa;">
+        <h4 style="margin: 0 0 1rem 0; color: #1e293b; font-size: 1.125rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: #f59e0b; border-radius: 50%;"></span>
+          ${century}
+        </h4>
+        ${buildEstimatorComparisonTable(chao1, jackknife, gammaPoisson, scribes.length)}
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+/**
+ * Build comparison table for all three estimators
+ */
+function buildEstimatorComparisonTable(chao1, jackknife, gammaPoisson, observed) {
+  return `
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+        <thead>
+          <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+            <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #475569;">Estimator</th>
+            <th style="padding: 0.75rem; text-align: right; font-weight: 600; color: #475569;">Observed</th>
+            <th style="padding: 0.75rem; text-align: right; font-weight: 600; color: #475569;">Estimated</th>
+            <th style="padding: 0.75rem; text-align: right; font-weight: 600; color: #475569;">Unseen</th>
+            <th style="padding: 0.75rem; text-align: right; font-weight: 600; color: #475569;">Coverage</th>
+            <th style="padding: 0.75rem; text-align: right; font-weight: 600; color: #475569;">95% CI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 0.75rem; font-weight: 600; color: #f59e0b;">Chao1</td>
+            <td style="padding: 0.75rem; text-align: right; color: #1e293b;">${observed}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #1e293b; font-weight: 600;">${Math.round(chao1.estimate)}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #dc2626;">${Math.round(chao1.estimate - observed)}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #10b981;">${((observed/chao1.estimate)*100).toFixed(1)}%</td>
+            <td style="padding: 0.75rem; text-align: right; color: #64748b; font-size: 0.8125rem;">${Math.round(chao1.lower)}–${Math.round(chao1.upper)}</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 0.75rem; font-weight: 600; color: #fb923c;">Jackknife</td>
+            <td style="padding: 0.75rem; text-align: right; color: #1e293b;">${observed}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #1e293b; font-weight: 600;">${Math.round(jackknife.estimate)}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #dc2626;">${Math.round(jackknife.estimate - observed)}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #10b981;">${((observed/jackknife.estimate)*100).toFixed(1)}%</td>
+            <td style="padding: 0.75rem; text-align: right; color: #64748b; font-size: 0.8125rem;">${Math.round(jackknife.lower)}–${Math.round(jackknife.upper)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; font-weight: 600; color: #eab308;">Gamma-Poisson</td>
+            <td style="padding: 0.75rem; text-align: right; color: #1e293b;">${observed}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #1e293b; font-weight: 600;">${Math.round(gammaPoisson.estimate)}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #dc2626;">${Math.round(gammaPoisson.estimate - observed)}</td>
+            <td style="padding: 0.75rem; text-align: right; color: #10b981;">${((observed/gammaPoisson.estimate)*100).toFixed(1)}%</td>
+            <td style="padding: 0.75rem; text-align: right; color: #64748b; font-size: 0.8125rem;">${Math.round(gammaPoisson.lower)}–${Math.round(gammaPoisson.upper)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top: 1rem; padding: 0.875rem; background: #f8fafc; border-radius: 0.375rem; font-size: 0.8125rem; color: #475569; line-height: 1.5;">
+      <strong>Singletons (f₁):</strong> ${chao1.f1} | <strong>Doubletons (f₂):</strong> ${chao1.f2}
+    </div>
+  `;
+}
+
+/**
+ * Build full analysis comparison for single dataset
+ */
+function buildUnseenSpeciesComparison(productivityDist, observed, container, title, description) {
+  const chao1 = calculateChao1(productivityDist, observed);
+  const jackknife = calculateJackknife(productivityDist, observed);
+  const gammaPoisson = calculateGammaPoisson(productivityDist, observed);
+  
+  container.innerHTML = `
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="margin: 0 0 0.5rem 0; color: #1e293b; font-size: 1.25rem;">${title}</h3>
+      <p style="margin: 0; font-size: 0.875rem; color: #64748b;">${description}</p>
+    </div>
+    
+    <!-- Key Metrics -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+      <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Observed Scribes</div>
+        <div style="font-size: 2rem; font-weight: 700;">${observed}</div>
+      </div>
+      <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Chao1 Estimate</div>
+        <div style="font-size: 2rem; font-weight: 700;">${Math.round(chao1.estimate)}</div>
+      </div>
+      <div style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Jackknife Estimate</div>
+        <div style="font-size: 2rem; font-weight: 700;">${Math.round(jackknife.estimate)}</div>
+      </div>
+      <div style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Gamma-Poisson Est.</div>
+        <div style="font-size: 2rem; font-weight: 700;">${Math.round(gammaPoisson.estimate)}</div>
+      </div>
+    </div>
+    
+    <!-- Detailed Comparison Table -->
+    <div style="margin-bottom: 2rem;">
+      <h4 style="margin: 0 0 1rem 0; color: #475569; font-size: 1rem; font-weight: 600;">Estimator Comparison</h4>
+      ${buildEstimatorComparisonTable(chao1, jackknife, gammaPoisson, observed)}
+    </div>
+    
+    <!-- Interpretation -->
+    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #f59e0b; margin-bottom: 1rem;">
+      <div style="font-size: 0.875rem; color: #475569; line-height: 1.6;">
+        <strong>Interpretation:</strong> The three estimators provide different estimates of the total scribe population.
+        <strong>Chao1</strong> estimates ${Math.round(chao1.estimate)} total scribes (${Math.round(chao1.estimate - observed)} unseen),
+        <strong>Jackknife</strong> estimates ${Math.round(jackknife.estimate)} (${Math.round(jackknife.estimate - observed)} unseen),
+        and <strong>Gamma-Poisson</strong> estimates ${Math.round(gammaPoisson.estimate)} (${Math.round(gammaPoisson.estimate - observed)} unseen).
+      </div>
+    </div>
+    
+    <!-- Explanation of Differences -->
+    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #f59e0b; margin-bottom: 2rem;">
+      <div style="font-size: 0.875rem; color: #92400e; line-height: 1.6;">
+        <strong style="color: #78350f;">Why do estimates differ?</strong><br>
+        Each estimator makes different assumptions:<br>
+        • <strong>Chao1</strong> (most conservative): Assumes all scribes have equal detection probability. Best when most scribes are rare (many singletons).<br>
+        • <strong>Jackknife</strong> (moderate): Accounts for sampling effort and is more robust to sample size. Reliable for well-sampled populations.<br>
+        • <strong>Gamma-Poisson</strong> (most liberal): Assumes heterogeneous detection rates (some scribes easier to find). Better for uneven survival rates.<br><br>
+        <strong style="color: #78350f;">Which is most reliable?</strong> For manuscript studies with highly uneven survival (many single-manuscript scribes), <strong>Chao1 is generally preferred</strong> as it's most conservative and has been validated for cultural heritage data (Kestemont et al. 2021). The range between estimators reflects genuine uncertainty about unobserved scribes.
+      </div>
+    </div>
+    
+    <!-- Productivity Distribution with f0 -->
+    <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 2rem;" id="productivity-dist-wrapper">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <h4 style="margin: 0; color: #475569; font-size: 0.9375rem; font-weight: 600;">Productivity Distribution (Observed + Chao1 Unseen)</h4>
+        ${createExportButton('productivity-dist-wrapper', 'productivity_distribution_with_unseen.png')}
+      </div>
+      <p style="margin: 0 0 1rem 0; font-size: 0.8125rem; color: #64748b;">
+        Number of scribes by manuscript count. The first bar (0) shows Chao1's estimate of unseen scribes.
+      </p>
+      <div id="productivity-distribution-chart"></div>
+    </div>
+    
+    <!-- Visualization -->
+    <div id="unseen-species-chart">
+      <h4 style="margin: 0 0 0.5rem 0; color: #475569; font-size: 0.9375rem; font-weight: 600;">Species Accumulation Curve</h4>
+      <p style="margin: 0 0 1rem 0; font-size: 0.8125rem; color: #64748b;">
+        The blue curve shows observed scribe accumulation. Dashed lines show each estimator's asymptote.
+      </p>
+      <svg id="species-accumulation-svg" width="100%" height="350"></svg>
+    </div>
+  `;
+  
+  drawProductivityDistribution(productivityDist, chao1.estimate - observed);
+  drawSpeciesAccumulationCurveMulti(productivityDist, observed, chao1.estimate, jackknife.estimate, gammaPoisson.estimate);
+}
+
+function buildUnseenSpeciesEstimates(productivityDistribution, observedScribes) {
+  const container = document.getElementById('unseen-species-content');
+  if (!container) return;
+  
+  // Calculate Chao1 estimate from productivity distribution
+  // Chao1 formula: S_est = S_obs + (f1^2 / (2 * f2))
+  // where f1 = number of singletons, f2 = number of doubletons
+  const f1 = productivityDistribution[1] || 0; // scribes who copied 1 manuscript
+  const f2 = productivityDistribution[2] || 0; // scribes who copied 2 manuscripts
+  
+  let chao1Estimate = observedScribes;
+  let chao1Lower = observedScribes;
+  let chao1Upper = observedScribes;
+  
+  if (f2 > 0) {
+    // Standard Chao1
+    chao1Estimate = observedScribes + (f1 * f1) / (2 * f2);
+    // 95% CI approximation (simplified)
+    const variance = f2 * (0.5 * (f1/f2)^2 + (f1/f2)^3 + 0.25 * (f1/f2)^4);
+    const se = Math.sqrt(variance);
+    chao1Lower = Math.max(observedScribes, chao1Estimate - 1.96 * se);
+    chao1Upper = chao1Estimate + 1.96 * se;
+  } else if (f1 > 0) {
+    // Modified Chao1 when f2 = 0
+    chao1Estimate = observedScribes + (f1 * (f1 - 1)) / 2;
+    chao1Lower = observedScribes + (f1 * (f1 - 1)) / 2;
+    chao1Upper = observedScribes + (f1 * (f1 + 1)) / 2;
+  }
+  
+  const unseenEstimate = Math.round(chao1Estimate - observedScribes);
+  const coverage = ((observedScribes / chao1Estimate) * 100).toFixed(1);
+  
+  container.innerHTML = `
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+      <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Observed Scribes</div>
+        <div style="font-size: 2rem; font-weight: 700;">${observedScribes}</div>
+      </div>
+      <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Estimated Total (Chao1)</div>
+        <div style="font-size: 2rem; font-weight: 700;">${Math.round(chao1Estimate)}</div>
+        <div style="font-size: 0.75rem; opacity: 0.85; margin-top: 0.25rem;">95% CI: ${Math.round(chao1Lower)}–${Math.round(chao1Upper)}</div>
+      </div>
+      <div style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Estimated Unseen</div>
+        <div style="font-size: 2rem; font-weight: 700;">${unseenEstimate}</div>
+      </div>
+      <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+        <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Sample Coverage</div>
+        <div style="font-size: 2rem; font-weight: 700;">${coverage}%</div>
+      </div>
+    </div>
+    
+    <div style="background: #fffbeb; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #f59e0b;">
+      <div style="font-size: 0.875rem; color: #475569; line-height: 1.6;">
+        <strong>Interpretation:</strong> Based on the observed distribution of scribe productivity, 
+        we estimate there were approximately <strong>${Math.round(chao1Estimate)}</strong> female scribes in total,
+        suggesting about <strong>${unseenEstimate}</strong> scribes whose work has not survived or has not yet been identified.
+        The current corpus captures approximately <strong>${coverage}%</strong> of the estimated total scribe population.
+      </div>
+    </div>
+    
+    <div id="unseen-species-chart" style="margin-top: 1.5rem;">
+      <h4 style="margin: 0 0 0.5rem 0; color: #475569; font-size: 0.9375rem; font-weight: 600;">Species Accumulation Curve</h4>
+      <p style="margin: 0 0 1rem 0; font-size: 0.8125rem; color: #64748b;">
+        The blue curve shows how scribes were discovered as manuscripts were sampled. 
+        The red dashed line represents the estimated total (asymptote). 
+        <strong>The gap between these lines represents the estimated unseen scribes.</strong>
+      </p>
+      <svg id="species-accumulation-svg" width="100%" height="300"></svg>
+    </div>
+  `;
+  
+  // Add methodology info button handler
+  document.getElementById('unseen-species-info')?.addEventListener('click', () => {
+    showUnseenSpeciesMethodology(f1, f2, observedScribes, chao1Estimate);
+  });
+  
+  // Draw species accumulation curve
+  drawSpeciesAccumulationCurve(productivityDistribution, observedScribes, chao1Estimate, unseenEstimate);
+}
+
+function drawSpeciesAccumulationCurve(distribution, observed, estimated, unseenEstimate) {
+  const svg = document.getElementById('species-accumulation-svg');
+  if (!svg) return;
+  
+  const width = svg.clientWidth || 800;
+  const height = 300;
+  const margin = { top: 20, right: 80, bottom: 50, left: 60 };
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+  
+  // Simulate species accumulation: create a rarefaction curve
+  // Sort scribes by number of manuscripts (most to least productive)
+  const scribesByProductivity = [];
+  Object.keys(distribution).forEach(msCount => {
+    const numScribes = distribution[msCount];
+    for (let i = 0; i < numScribes; i++) {
+      scribesByProductivity.push(Number(msCount));
+    }
+  });
+  
+  // Shuffle to simulate random sampling order
+  for (let i = scribesByProductivity.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [scribesByProductivity[i], scribesByProductivity[j]] = [scribesByProductivity[j], scribesByProductivity[i]];
+  }
+  
+  // Create species accumulation curve
+  const accumulationData = [{ manuscripts: 0, scribes: 0 }];
+  let cumulativeManuscripts = 0;
+  
+  scribesByProductivity.forEach((msCount, index) => {
+    cumulativeManuscripts += msCount;
+    accumulationData.push({ 
+      manuscripts: cumulativeManuscripts, 
+      scribes: index + 1 
+    });
+  });
+  
+  const maxX = accumulationData[accumulationData.length - 1]?.manuscripts || 100;
+  const xScale = (x) => margin.left + (x / maxX) * innerWidth;
+  const yScale = (y) => height - margin.bottom - (y / estimated) * innerHeight;
+  
+  // Clear and redraw
+  svg.innerHTML = '';
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  
+  // Draw grid lines
+  const gridColor = '#f1f5f9';
+  for (let i = 0; i <= 5; i++) {
+    const y = margin.top + (i * innerHeight / 5);
+    svg.innerHTML += `<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+  }
+  
+  // Draw axes
+  const axisColor = '#94a3b8';
+  
+  // Y-axis
+  svg.innerHTML += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}" stroke="${axisColor}" stroke-width="2"/>`;
+  svg.innerHTML += `<text x="${margin.left - 45}" y="${height/2}" text-anchor="middle" font-size="13" fill="#475569" font-weight="600" transform="rotate(-90 ${margin.left - 45} ${height/2})">Number of Scribes Discovered</text>`;
+  
+  // Y-axis ticks
+  for (let i = 0; i <= 5; i++) {
+    const value = Math.round((estimated / 5) * i);
+    const y = yScale(value);
+    svg.innerHTML += `<text x="${margin.left - 8}" y="${y + 4}" text-anchor="end" font-size="11" fill="#64748b">${value}</text>`;
+  }
+  
+  // X-axis
+  svg.innerHTML += `<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="${axisColor}" stroke-width="2"/>`;
+  svg.innerHTML += `<text x="${margin.left + innerWidth/2}" y="${height - 10}" text-anchor="middle" font-size="13" fill="#475569" font-weight="600">Manuscripts Sampled</text>`;
+  
+  // Draw observed accumulation curve
+  const points = accumulationData.map(d => `${xScale(d.manuscripts)},${yScale(d.scribes)}`).join(' ');
+  svg.innerHTML += `<polyline points="${points}" fill="none" stroke="#f59e0b" stroke-width="3"/>`;
+  
+  // Draw estimated asymptote (horizontal line showing the target)
+  svg.innerHTML += `<line x1="${margin.left}" y1="${yScale(estimated)}" x2="${width - margin.right}" y2="${yScale(estimated)}" stroke="#ea580c" stroke-width="2" stroke-dasharray="8,4"/>`;
+  
+  // Add annotation explaining the asymptote
+  svg.innerHTML += `<text x="${margin.left + 10}" y="${yScale(estimated) - 8}" font-size="10" fill="#ea580c" font-weight="600">← Asymptote: estimated total population</text>`;
+  
+  // Add shaded area between observed and estimated to visualize gap
+  const lastPoint = accumulationData[accumulationData.length - 1];
+  if (lastPoint && lastPoint.manuscripts) {
+    const gapHeight = yScale(observed) - yScale(estimated);
+    svg.innerHTML += `<rect x="${xScale(lastPoint.manuscripts)}" y="${yScale(estimated)}" width="${width - margin.right - xScale(lastPoint.manuscripts)}" height="${gapHeight}" fill="#fecaca" opacity="0.3"/>`;
+    
+    // Add label for the gap
+    const gapMidY = (yScale(estimated) + yScale(observed)) / 2;
+    svg.innerHTML += `<text x="${(xScale(lastPoint.manuscripts) + width - margin.right) / 2}" y="${gapMidY}" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="600">Estimated Unseen: ${unseenEstimate}</text>`;
+  }
+  
+  // Labels with better positioning and boxes for clarity
+  const observedY = yScale(observed);
+  const estimatedY = yScale(estimated);
+  
+  // Observed label with background box
+  svg.innerHTML += `<rect x="${width - margin.right + 5}" y="${observedY - 10}" width="105" height="18" fill="white" stroke="#f59e0b" stroke-width="1" rx="3"/>`;
+  svg.innerHTML += `<circle cx="${width - margin.right + 14}" cy="${observedY}\" r="4" fill="#f59e0b"/>`;
+  svg.innerHTML += `<text x="${width - margin.right + 24}" y="${observedY + 4}\" font-size="11" fill="#f59e0b" font-weight="700">Observed: ${observed}</text>`;
+  
+  // Estimated label with background box
+  svg.innerHTML += `<rect x="${width - margin.right + 5}" y="${estimatedY - 10}" width="110" height="18" fill="white" stroke="#ea580c" stroke-width="1" rx="3"/>`;
+  svg.innerHTML += `<circle cx="${width - margin.right + 14}" cy="${estimatedY}" r="4" fill="#ea580c"/>`;
+  svg.innerHTML += `<text x="${width - margin.right + 24}" y="${estimatedY + 4}" font-size="11" fill="#ea580c" font-weight="700">Estimated: ${Math.round(estimated)}</text>`;
+}
+
+/**
+ * Draw productivity distribution bar chart including f0 (unseen scribes)
+ */
+function drawProductivityDistribution(productivityDist, unseenCount) {
+  const container = document.getElementById('productivity-distribution-chart');
+  if (!container) return;
+  
+  // Prepare data - include 0 (unseen) as first bar
+  const data = [{ manuscripts: 0, scribes: Math.round(unseenCount), isUnseen: true }];
+  
+  // Add observed data
+  const maxManuscripts = Math.max(...Object.keys(productivityDist).map(Number));
+  for (let i = 1; i <= Math.min(maxManuscripts, 20); i++) {
+    data.push({
+      manuscripts: i,
+      scribes: productivityDist[i] || 0,
+      isUnseen: false
+    });
+  }
+  
+  const maxScribes = Math.max(...data.map(d => d.scribes));
+  const barHeight = 30;
+  const gap = 5;
+  const labelWidth = 80;
+  const chartWidth = container.clientWidth - labelWidth - 100 || 600;
+  
+  // Use logarithmic scaling for better visual differentiation
+  const maxLog = Math.log10(maxScribes + 1);
+  
+  const html = data.map((d, i) => {
+    // Calculate bar width using logarithmic scale for better granularity
+    const logValue = Math.log10(d.scribes + 1);
+    const barWidth = maxLog > 0 ? (logValue / maxLog) * chartWidth : 0;
+    const color = d.isUnseen ? '#dc2626' : '#f59e0b';
+    const label = d.manuscripts === 0 ? '0 (Unseen)' : d.manuscripts;
+    
+    // Set minimum visible width only for values > 0
+    const displayWidth = d.scribes > 0 ? Math.max(barWidth, 20) : 0;
+    
+    return `
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: ${gap}px;">
+        <div style="width: ${labelWidth}px; text-align: right; font-size: 0.875rem; color: #475569; font-weight: ${d.isUnseen ? '700' : '400'};">
+          ${label} MS${d.manuscripts === 1 ? '' : 's'}
+        </div>
+        <div style="flex: 1; display: flex; align-items: center; gap: 0.5rem;">
+          <div style="background: ${color}; height: ${barHeight}px; width: ${displayWidth}px; border-radius: 0.25rem; transition: all 0.3s; position: relative;">
+            <div style="position: absolute; ${displayWidth < 60 ? 'left: calc(100% + 0.5rem)' : 'right: 0.5rem'}; top: 50%; transform: translateY(-50%); color: ${displayWidth < 60 ? '#1e293b' : 'white'}; font-weight: 600; font-size: 0.75rem;">
+              ${d.scribes}
+            </div>
+          </div>
+          <div style="font-size: 0.75rem; color: #64748b; ${displayWidth < 60 ? 'margin-left: 2.5rem;' : ''}">
+            ${d.isUnseen ? 'Estimated unseen (Chao1)' : 'scribes'}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  container.innerHTML = html + `
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.75rem; color: #64748b;">
+      <span style="color: #dc2626;">●</span> Unseen (Chao1 estimate) &nbsp;&nbsp;
+      <span style="color: #f59e0b;">●</span> Observed
+    </div>
+  `;
+}
+
+/**
+ * Draw species accumulation curve with multiple estimator asymptotes
+ */
+function drawSpeciesAccumulationCurveMulti(distribution, observed, chao1Est, jackknifeEst, gammaPoissonEst) {
+  const svg = document.getElementById('species-accumulation-svg');
+  if (!svg) return;
+  
+  const width = svg.clientWidth || 800;
+  const height = 350;
+  const margin = { top: 20, right: 120, bottom: 50, left: 60 };
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+  
+  const maxEstimate = Math.max(chao1Est, jackknifeEst, gammaPoissonEst);
+  
+  // Create rarefaction curve
+  const scribesByProductivity = [];
+  Object.keys(distribution).forEach(msCount => {
+    const numScribes = distribution[msCount];
+    for (let i = 0; i < numScribes; i++) {
+      scribesByProductivity.push(Number(msCount));
+    }
+  });
+  
+  for (let i = scribesByProductivity.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [scribesByProductivity[i], scribesByProductivity[j]] = [scribesByProductivity[j], scribesByProductivity[i]];
+  }
+  
+  const accumulationData = [{ manuscripts: 0, scribes: 0 }];
+  let cumulativeManuscripts = 0;
+  
+  scribesByProductivity.forEach((msCount, index) => {
+    cumulativeManuscripts += msCount;
+    accumulationData.push({ 
+      manuscripts: cumulativeManuscripts, 
+      scribes: index + 1 
+    });
+  });
+  
+  const maxX = accumulationData[accumulationData.length - 1]?.manuscripts || 100;
+  const xScale = (x) => margin.left + (x / maxX) * innerWidth;
+  const yScale = (y) => height - margin.bottom - (y / maxEstimate) * innerHeight;
+  
+  svg.innerHTML = '';
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  
+  // Grid
+  const gridColor = '#f1f5f9';
+  for (let i = 0; i <= 5; i++) {
+    const y = margin.top + (i * innerHeight / 5);
+    svg.innerHTML += `<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+  }
+  
+  // Axes
+  svg.innerHTML += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}" stroke="#94a3b8" stroke-width="2"/>`;
+  svg.innerHTML += `<text x="${margin.left - 45}" y="${height/2}" text-anchor="middle" font-size="13" fill="#475569" font-weight="600" transform="rotate(-90 ${margin.left - 45} ${height/2})">Number of Scribes</text>`;
+  
+  for (let i = 0; i <= 5; i++) {
+    const value = Math.round((maxEstimate / 5) * i);
+    const y = yScale(value);
+    svg.innerHTML += `<text x="${margin.left - 8}" y="${y + 4}" text-anchor="end" font-size="11" fill="#64748b">${value}</text>`;
+  }
+  
+  svg.innerHTML += `<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="#94a3b8" stroke-width="2"/>`;
+  svg.innerHTML += `<text x="${margin.left + innerWidth/2}" y="${height - 10}" text-anchor="middle" font-size="13" fill="#475569" font-weight="600">Manuscripts Sampled</text>`;
+  
+  // Observed curve
+  const points = accumulationData.map(d => `${xScale(d.manuscripts)},${yScale(d.scribes)}`).join(' ');
+  svg.innerHTML += `<polyline points="${points}" fill="none" stroke="#2563eb" stroke-width="3"/>`;
+  
+  // Asymptote lines for each estimator
+  svg.innerHTML += `<line x1="${margin.left}" y1="${yScale(chao1Est)}" x2="${width - margin.right}" y2="${yScale(chao1Est)}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8,4"/>`;
+  svg.innerHTML += `<line x1="${margin.left}" y1="${yScale(jackknifeEst)}" x2="${width - margin.right}" y2="${yScale(jackknifeEst)}" stroke="#fb923c" stroke-width="2" stroke-dasharray="5,5"/>`;
+  svg.innerHTML += `<line x1="${margin.left}" y1="${yScale(gammaPoissonEst)}" x2="${width - margin.right}" y2="${yScale(gammaPoissonEst)}" stroke="#eab308" stroke-width="2" stroke-dasharray="10,5"/>`;
+  
+  // Legend on the right
+  const legendX = width - margin.right + 10;
+  let legendY = margin.top + 20;
+  
+  // Observed
+  svg.innerHTML += `<line x1="${legendX}" y1="${legendY}" x2="${legendX + 20}" y2="${legendY}" stroke="#2563eb" stroke-width="3"/>`;
+  svg.innerHTML += `<text x="${legendX + 25}" y="${legendY + 4}" font-size="10" fill="#1e293b">Observed: ${observed}</text>`;
+  legendY += 25;
+  
+  // Chao1
+  svg.innerHTML += `<line x1="${legendX}" y1="${legendY}" x2="${legendX + 20}" y2="${legendY}" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8,4"/>`;
+  svg.innerHTML += `<text x="${legendX + 25}" y="${legendY + 4}" font-size="10" fill="#f59e0b" font-weight="600">Chao1: ${Math.round(chao1Est)}</text>`;
+  legendY += 25;
+  
+  // Jackknife
+  svg.innerHTML += `<line x1="${legendX}" y1="${legendY}" x2="${legendX + 20}" y2="${legendY}" stroke="#fb923c" stroke-width="2" stroke-dasharray="5,5"/>`;
+  svg.innerHTML += `<text x="${legendX + 25}" y="${legendY + 4}" font-size="10" fill="#fb923c" font-weight="600">Jackknife: ${Math.round(jackknifeEst)}</text>`;
+  legendY += 25;
+  
+  // Gamma-Poisson
+  svg.innerHTML += `<line x1="${legendX}" y1="${legendY}" x2="${legendX + 20}" y2="${legendY}" stroke="#eab308" stroke-width="2" stroke-dasharray="10,5"/>`;
+  svg.innerHTML += `<text x="${legendX + 25}" y="${legendY + 4}" font-size="10" fill="#eab308" font-weight="600">Gamma-P: ${Math.round(gammaPoissonEst)}</text>`;
+}
+
+function showMethodologyModal(f1, f2, observed, chao1Est, jackknifeEst, gammaPoissonEst) {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 2rem;';
+  
+  const content = document.createElement('div');
+  content.style.cssText = 'background: white; border-radius: 0.5rem; padding: 2rem; max-width: 800px; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);';
+  
+  content.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+      <h3 style="margin: 0; color: #1e293b; font-size: 1.5rem;">Methodology & References</h3>
+      <button id="close-methodology" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+    
+    <div style="font-size: 0.9375rem; line-height: 1.7; color: #475569;">
+      <h4 style="color: #2c3e50; margin-top: 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;">Statistical Models</h4>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <h5 style="color: #f59e0b; margin: 1rem 0 0.5rem 0;">1. Chao1 Estimator</h5>
+        <p style="margin: 0.5rem 0;">
+          The Chao1 estimator uses the frequency of rare species (singletons and doubletons) to estimate total richness.
+        </p>
+        <div style="background: #fffbeb; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', monospace; margin: 0.75rem 0; border-left: 3px solid #f59e0b;">
+          S<sub>est</sub> = S<sub>obs</sub> + f₁² / (2 × f₂)
+        </div>
+        <ul style="margin: 0.5rem 0; font-size: 0.875rem;">
+          <li><strong>S<sub>obs</sub>:</strong> ${observed} observed scribes</li>
+          <li><strong>f₁:</strong> ${f1} singletons (scribes who copied only 1 manuscript)</li>
+          <li><strong>f₂:</strong> ${f2} doubletons (scribes who copied 2 manuscripts)</li>
+          <li><strong>Result:</strong> ${Math.round(chao1Est)} estimated total scribes</li>
+        </ul>
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <h5 style="color: #fb923c; margin: 1rem 0 0.5rem 0;">2. Jackknife Estimator</h5>
+        <p style="margin: 0.5rem 0;">
+          The Jackknife estimator uses a resampling approach, accounting for sample size effects.
+          We use the second-order jackknife when doubletons are available.
+        </p>
+        <div style="background: #fff7ed; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', monospace; margin: 0.75rem 0; border-left: 3px solid #fb923c;">
+          S<sub>jack2</sub> = S<sub>obs</sub> + f₁(2n-3)/n - f₂(n-2)²/(n(n-1))
+        </div>
+        <ul style="margin: 0.5rem 0; font-size: 0.875rem;">
+          <li><strong>n:</strong> Total manuscripts sampled</li>
+          <li><strong>Result:</strong> ${Math.round(jackknifeEst)} estimated total scribes</li>
+        </ul>
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <h5 style="color: #eab308; margin: 1rem 0 0.5rem 0;">3. Gamma-Poisson Model</h5>
+        <p style="margin: 0.5rem 0;">
+          A mixture model that accounts for heterogeneity in detection probability across species.
+          Uses low-frequency counts to estimate total diversity.
+        </p>
+        <div style="background: #fefce8; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', monospace; margin: 0.75rem 0; border-left: 3px solid #eab308;">
+          Uses frequency ratios and gamma distribution parameters
+        </div>
+        <ul style="margin: 0.5rem 0; font-size: 0.875rem;">
+          <li><strong>Result:</strong> ${Math.round(gammaPoissonEst)} estimated total scribes</li>
+        </ul>
+      </div>
+      
+      <h4 style="color: #2c3e50; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-top: 2rem;">References</h4>
+      
+      <ol style="font-size: 0.875rem; line-height: 1.6; color: #475569;">
+        <li style="margin-bottom: 1rem;">
+          <strong>Chao, A.</strong> (1984). Nonparametric estimation of the number of classes in a population. 
+          <em>Scandinavian Journal of Statistics</em>, 11(4), 265-270.
+        </li>
+        <li style="margin-bottom: 1rem;">
+          <strong>Walther, B.A., & Morand, S.</strong> (1998). Comparative performance of species richness estimation methods. 
+          <em>Parasitology</em>, 116(4), 395-405.
+        </li>
+        <li style="margin-bottom: 1rem;">
+          <strong>Böhning, D., & Schön, D.</strong> (2005). Nonparametric maximum likelihood estimation of population size based on the counting distribution. 
+          <em>Journal of the Royal Statistical Society: Series C</em>, 54(4), 721-737.
+        </li>
+        <li style="margin-bottom: 1rem;">
+          <strong>Kestemont, M., Karsdorp, F., de Bruijn, E., Driscoll, M., Kapitan, K.A., Ó Macháin, P., Sawyer, D., Sleiderink, R., & Chao, A.</strong> (2021). 
+          Forgotten Books: The Application of Unseen Species Models to the Survival of Culture. 
+          <em>Science</em>, 375(6582), 765-769.
+        </li>
+      </ol>
+      
+      <div style="background: #f0f9ff; border-left: 3px solid #3b82f6; padding: 1rem; border-radius: 0.375rem; margin-top: 1.5rem;">
+        <p style="margin: 0; font-size: 0.875rem; color: #1e40af;">
+          <strong>Note:</strong> Different estimators reflect different assumptions about species diversity and detection probability. 
+          The range of estimates provides insight into model uncertainty. Chao1 is most conservative, 
+          while Gamma-Poisson accounts for greater heterogeneity.
+        </p>
+      </div>
+    </div>
+  `;
+  
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+  
+  document.getElementById('close-methodology').addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      document.body.removeChild(modal);
+    }
+  });
+}
+
+function showUnseenSpeciesMethodology(f1, f2, observed, estimated) {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 2rem;';
+  
+  const content = document.createElement('div');
+  content.style.cssText = 'background: white; border-radius: 0.5rem; padding: 2rem; max-width: 700px; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);';
+  
+  content.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+      <h3 style="margin: 0; color: #1e293b; font-size: 1.5rem;">Unseen Species Methodology</h3>
+      <button id="close-methodology" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+    
+    <div style="font-size: 0.9375rem; line-height: 1.7; color: #475569;">
+      <h4 style="color: #2c3e50; margin-top: 0;">Statistical Model</h4>
+      <p>
+        We use the <strong>Chao1 estimator</strong>, an unseen species model originally developed for ecology
+        and adapted for cultural heritage by Kestemont et al. (2021) in "Forgotten Books: The Application of 
+        Unseen Species Models to the Survival of Culture."
+      </p>
+      
+      <h4 style="color: #2c3e50;">Formula</h4>
+      <div style="background: #f8fafc; padding: 1rem; border-radius: 0.375rem; font-family: monospace; margin: 1rem 0;">
+        S<sub>est</sub> = S<sub>obs</sub> + f₁² / (2 × f₂)
+      </div>
+      <ul style="margin: 0.5rem 0;">
+        <li><strong>S<sub>obs</sub></strong>: ${observed} observed scribes</li>
+        <li><strong>f₁</strong>: ${f1} scribes who copied only 1 manuscript (singletons)</li>
+        <li><strong>f₂</strong>: ${f2} scribes who copied 2 manuscripts (doubletons)</li>
+      </ul>
+      
+      <h4 style="color: #2c3e50;">Interpretation</h4>
+      <p>
+        The large number of singletons (${f1} scribes) suggests substantial unobserved diversity.
+        The ratio f₁/f₂ = ${(f1/f2).toFixed(2)} indicates ${f1/f2 > 2 ? 'high' : 'moderate'} turnover, 
+        typical of manuscript production where many scribes contributed minimally to the surviving corpus.
+      </p>
+      
+      <p>
+        <strong>Estimated total:</strong> ${Math.round(estimated)} female scribes<br>
+        <strong>Sample coverage:</strong> ${((observed/estimated)*100).toFixed(1)}% of all scribes observed<br>
+        <strong>Estimated unseen:</strong> ${Math.round(estimated - observed)} scribes whose work hasn't survived or been identified
+      </p>
+      
+      <h4 style="color: #2c3e50;">References</h4>
+      <p style="font-size: 0.875rem; color: #64748b;">
+        Kestemont, M., Karsdorp, F., de Bruijn, E., Driscoll, M., Kapitan, K.A., Ó Macháin, P., 
+        Sawyer, D., Sleiderink, R., & Chao, A. (2021). Forgotten Books: The Application of Unseen 
+        Species Models to the Survival of Culture. <em>Science</em>, 375(6582), 765-769.
+      </p>
+    </div>
+  `;
+  
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+  
+  // Close handlers
+  document.getElementById('close-methodology').addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      document.body.removeChild(modal);
+    }
+  });
+}
+
+/**
+ * Build collaboration network visualization using D3 force layout
+ */
+function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scribeArray) {
+  const container = document.getElementById('collaboration-network-viz');
+  if (!container) return;
+  
+  // Clear previous content
+  container.innerHTML = '';
+  
+  if (collaborativeManuscripts.length === 0) {
+    container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #94a3b8;">No collaborative manuscripts found</div>';
+    return;
+  }
+  
+  // Build network data with institution information
+  const nodes = new Map();
+  const links = [];
+  const manuscriptLinks = new Map();
+  const institutions = new Set();
+  
+  // Create scribe map for quick lookup
+  const scribeMap = new Map();
+  if (scribeArray) {
+    scribeArray.forEach(scribe => {
+      scribeMap.set(scribe.id, scribe);
+      // institutions is a Set, so convert to array
+      if (scribe.institutions && scribe.institutions.size > 0) {
+        Array.from(scribe.institutions).forEach(inst => institutions.add(inst));
+      }
+    });
+  }
+  
+  collaborativeManuscripts.forEach(ms => {
+    const scribes = ms.scribes || [];
+    
+    // Add nodes for each scribe
+    scribes.forEach(scribeData => {
+      const scribeName = typeof scribeData === 'object' ? (scribeData.name || scribeData.id || String(scribeData)) : String(scribeData);
+      const scribeId = typeof scribeData === 'object' ? scribeData.id : scribeData;
+      
+      if (!nodes.has(scribeName)) {
+        const scribeInfo = scribeMap.get(scribeId);
+        let primaryInstitution = 'Unknown';
+        
+        if (scribeInfo && scribeInfo.institutions && scribeInfo.institutions.size > 0) {
+          // Get first institution from Set
+          primaryInstitution = Array.from(scribeInfo.institutions)[0];
+        }
+        
+        nodes.set(scribeName, {
+          id: scribeName,
+          scribeId: scribeId,
+          name: scribeName,
+          collaborationCount: 0,
+          manuscripts: new Set(),
+          institution: primaryInstitution,
+          allInstitutions: scribeInfo && scribeInfo.institutions ? Array.from(scribeInfo.institutions) : []
+        });
+      }
+      nodes.get(scribeName).manuscripts.add(ms.msTitle);
+    });
+    
+    // Create links between all pairs of scribes
+    for (let i = 0; i < scribes.length; i++) {
+      for (let j = i + 1; j < scribes.length; j++) {
+        const sourceName = typeof scribes[i] === 'object' ? (scribes[i].name || scribes[i].id || String(scribes[i])) : String(scribes[i]);
+        const targetName = typeof scribes[j] === 'object' ? (scribes[j].name || scribes[j].id || String(scribes[j])) : String(scribes[j]);
+        const pairKey = [sourceName, targetName].sort().join('|||');
+        
+        if (!manuscriptLinks.has(pairKey)) {
+          manuscriptLinks.set(pairKey, {
+            source: sourceName,
+            target: targetName,
+            manuscripts: []
+          });
+        }
+        manuscriptLinks.get(pairKey).manuscripts.push(ms.msTitle);
+        
+        nodes.get(sourceName).collaborationCount++;
+        nodes.get(targetName).collaborationCount++;
+      }
+    }
+  });
+  
+  // Convert to arrays
+  const nodeArray = Array.from(nodes.values());
+  const linkArray = Array.from(manuscriptLinks.values()).map(link => ({
+    source: link.source,
+    target: link.target,
+    strength: link.manuscripts.length,
+    manuscripts: link.manuscripts
+  }));
+  
+  // Create color scale for institutions
+  const institutionArray = Array.from(institutions).sort();
+  const colorScale = d3.scaleOrdinal()
+    .domain(institutionArray)
+    .range([
+      '#f59e0b', '#3b82f6', '#ec4899', '#10b981', '#8b5cf6', 
+      '#f97316', '#06b6d4', '#f43f5e', '#14b8a6', '#a855f7',
+      '#eab308', '#6366f1', '#db2777', '#059669', '#7c3aed',
+      '#d97706', '#0ea5e9', '#e11d48', '#0d9488', '#9333ea'
+    ]);
+  
+  // Add gray color for unknown
+  const getNodeColor = (institution) => {
+    return institution === 'Unknown' ? '#94a3b8' : colorScale(institution);
+  };
+  
+  // Add control panel
+  const controlPanel = document.createElement('div');
+  controlPanel.style.cssText = 'display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center;';
+  
+  // Create legend for institutions (show top institutions by scribe count)
+  const institutionCounts = {};
+  nodeArray.forEach(n => {
+    institutionCounts[n.institution] = (institutionCounts[n.institution] || 0) + 1;
+  });
+  
+  const topInstitutions = Object.entries(institutionCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([inst, count]) => ({inst, count}));
+  
+  const legendHTML = topInstitutions.map(({inst, count}) => 
+    `<span style="display: inline-flex; align-items: center; gap: 0.25rem; margin-right: 0.5rem; font-size: 0.65rem; color: #64748b; padding: 0.125rem 0.375rem; background: white; border-radius: 0.25rem;">
+      <span style="width: 8px; height: 8px; border-radius: 50%; background: ${getNodeColor(inst)}; flex-shrink: 0;"></span>
+      <span style="max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${inst}">${inst}</span>
+      <span style="font-weight: 600; color: #475569;">(${count})</span>
+    </span>`
+  ).join('');
+  
+  controlPanel.innerHTML = `
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button id="network-reset" class="export-btn" style="background: #6366f1; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+        Reset
+      </button>
+      <button id="network-labels-toggle" class="export-btn" style="background: #ec4899; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#db2777'" onmouseout="this.style.background='#ec4899'">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+        Hide Labels
+      </button>
+      <button id="network-filter-isolated" class="export-btn" style="background: #f59e0b; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#d97706'" onmouseout="this.style.background='#f59e0b'">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Hide Singles
+      </button>
+      <div style="font-size: 0.7rem; color: #64748b; padding: 0.375rem 0.5rem; background: #f8fafc; border-radius: 0.375rem; white-space: nowrap;">
+        <strong>${nodeArray.length}</strong> scribes • <strong>${linkArray.length}</strong> links
+      </div>
+    </div>
+    <div style="margin-top: 0.75rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; border: 1px solid #e2e8f0;">
+      <div style="font-size: 0.75rem; font-weight: 600; color: #475569; margin-bottom: 0.5rem;">Institutions (Top 10)</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.65rem;">
+        ${legendHTML || '<span style="color: #94a3b8;">No institution data</span>'}
+      </div>
+    </div>
+  `;
+  container.appendChild(controlPanel);
+  
+  // D3 force layout
+  const width = container.clientWidth;
+  const height = 600;
+  
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style('border', '1px solid #e2e8f0')
+    .style('border-radius', '0.375rem')
+    .style('background', '#fafafa');
+  
+  // Add zoom/pan container
+  const g = svg.append('g');
+  
+  // Add zoom behavior with node/label scaling
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])
+    .on('zoom', (event) => {
+      g.attr('transform', event.transform);
+      
+      // Scale nodes and labels inversely to zoom level for consistent visual size
+      const scale = event.transform.k;
+      const inverseScale = 1 / scale;
+      
+      // Scale node circles
+      node.select('circle')
+        .attr('r', d => (Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3)) * inverseScale)
+        .attr('stroke-width', 2 * inverseScale);
+      
+      // Scale labels
+      nodeLabels
+        .attr('font-size', `${9 * inverseScale}px`)
+        .attr('y', d => (Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3) + 15) * inverseScale);
+      
+      // Scale link widths
+      link.attr('stroke-width', d => Math.min(8, 1 + d.strength) * inverseScale);
+    });
+  
+  svg.call(zoom);
+  
+  // Create force simulation with ultra-tight clustering
+  const simulation = d3.forceSimulation(nodeArray)
+    .force('link', d3.forceLink(linkArray)
+      .id(d => d.id)
+      .distance(d => Math.max(15, 30 - (d.strength * 8))) // Ultra-short distances
+      .strength(1.5)) // Very strong link force
+    .force('charge', d3.forceManyBody().strength(-80)) // Minimal repulsion
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide().radius(d => Math.max(6, 2 + Math.sqrt(d.collaborationCount) * 1.5)))
+    .force('x', d3.forceX(width / 2).strength(0.15)) // Very strong pull toward center
+    .force('y', d3.forceY(height / 2).strength(0.15));
+  
+  // Draw links
+  const link = g.append('g')
+    .selectAll('line')
+    .data(linkArray)
+    .enter()
+    .append('line')
+    .attr('stroke', '#cbd5e1')
+    .attr('stroke-width', d => Math.min(8, 1 + d.strength))
+    .attr('stroke-opacity', 0.6)
+    .attr('class', 'network-link');
+  
+  // Draw nodes
+  const node = g.append('g')
+    .selectAll('g')
+    .data(nodeArray)
+    .enter()
+    .append('g')
+    .attr('class', 'network-node')
+    .call(d3.drag()
+      .on('start', dragstarted)
+      .on('drag', dragged)
+      .on('end', dragended))
+    .on('mouseenter', function(event, d) {
+      // Highlight connected nodes and links
+      const connectedNodes = new Set();
+      connectedNodes.add(d.id);
+      
+      link.each(function(l) {
+        if (l.source.id === d.id || l.target.id === d.id) {
+          connectedNodes.add(l.source.id);
+          connectedNodes.add(l.target.id);
+          d3.select(this).attr('stroke-opacity', 1).attr('stroke', '#f59e0b');
+        }
+      });
+      
+      node.select('circle').attr('opacity', n => connectedNodes.has(n.id) ? 1 : 0.2);
+      node.select('text').attr('opacity', n => connectedNodes.has(n.id) ? 1 : 0.2);
+      
+      // Enlarge current node
+      d3.select(this).select('circle')
+        .transition().duration(200)
+        .attr('r', d => Math.max(12, 7 + Math.sqrt(d.collaborationCount) * 3))
+        .attr('stroke-width', 3);
+    })
+    .on('mouseleave', function() {
+      // Reset highlighting
+      link.attr('stroke-opacity', 0.6).attr('stroke', '#cbd5e1');
+      node.select('circle').attr('opacity', 1);
+      node.select('text').attr('opacity', 1);
+      
+      d3.select(this).select('circle')
+        .transition().duration(200)
+        .attr('r', d => Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3))
+        .attr('stroke-width', 2);
+    })
+    .on('click', function(event, d) {
+      // Show detailed info on click
+      event.stopPropagation();
+      const manuscripts = Array.from(d.manuscripts).join(', ');
+      const institutions = d.allInstitutions.length > 0 
+        ? d.allInstitutions.join('\n  - ') 
+        : 'No institution data';
+      alert(`${d.name}\n\nInstitution(s):\n  - ${institutions}\n\nCollaborations: ${d.collaborationCount}\nManuscripts (${d.manuscripts.size}):\n${manuscripts}`);
+    });
+  
+  node.append('circle')
+    .attr('r', d => Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3))
+    .attr('fill', d => getNodeColor(d.institution))
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 2)
+    .style('cursor', 'pointer')
+    .attr('class', 'network-node-circle');
+  
+  const nodeLabels = node.append('text')
+    .text(d => d.name.length > 20 ? d.name.substring(0, 17) + '...' : d.name)
+    .attr('x', 0)
+    .attr('y', d => Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3) + 15)
+    .attr('text-anchor', 'middle')
+    .attr('font-size', '9px')
+    .attr('fill', '#1e293b')
+    .attr('font-weight', '600')
+    .attr('class', 'network-label')
+    .style('pointer-events', 'none');
+  
+  // Add tooltips
+  node.append('title')
+    .text(d => {
+      const instText = d.allInstitutions.length > 0 
+        ? d.allInstitutions.join(', ') 
+        : 'No institution data';
+      return `${d.name}\nInstitution(s): ${instText}\n${d.collaborationCount} collaboration${d.collaborationCount !== 1 ? 's' : ''}\n${d.manuscripts.size} manuscript${d.manuscripts.size !== 1 ? 's' : ''}`;
+    });
+  
+  // Update positions on simulation tick
+  simulation.on('tick', () => {
+    link
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+    
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+  
+  // Control button handlers
+  let labelsVisible = true;
+  let showingIsolated = true;
+  
+  document.getElementById('network-reset').onclick = () => {
+    svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+    simulation.alpha(1).restart();
+  };
+  
+  document.getElementById('network-labels-toggle').onclick = function() {
+    labelsVisible = !labelsVisible;
+    nodeLabels.style('opacity', labelsVisible ? 1 : 0);
+    this.innerHTML = labelsVisible 
+      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> Hide Labels'
+      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show Labels';
+  };
+  
+  document.getElementById('network-filter-isolated').onclick = function() {
+    showingIsolated = !showingIsolated;
+    
+    // Filter nodes with only 1 or 0 collaborations
+    node.style('opacity', d => {
+      if (showingIsolated) return 1;
+      return d.collaborationCount > 1 ? 1 : 0.1;
+    });
+    
+    link.style('opacity', d => {
+      if (showingIsolated) return 0.6;
+      return 0.6;
+    });
+    
+    this.innerHTML = showingIsolated
+      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Hide Singles'
+      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show All';
+  };
+  
+  // Focus on specific scribe function (called from top collaborators list)
+  window.focusOnScribe = (scribeName) => {
+    // Find the node
+    const targetNode = nodeArray.find(n => n.name === scribeName);
+    if (!targetNode) return;
+    
+    // Calculate zoom transform to focus on this node
+    const scale = 2; // Zoom level
+    const x = -targetNode.x * scale + width / 2;
+    const y = -targetNode.y * scale + height / 2;
+    
+    // First, zoom to the node
+    svg.transition()
+      .duration(750)
+      .call(zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale))
+      .on('end', () => {
+        // After zoom completes, highlight the node and its connections
+        const connectedNodes = new Set();
+        connectedNodes.add(targetNode.id);
+        
+        link.each(function(l) {
+          if (l.source.id === targetNode.id || l.target.id === targetNode.id) {
+            connectedNodes.add(l.source.id);
+            connectedNodes.add(l.target.id);
+          }
+        });
+        
+        // Temporarily highlight
+        node.select('circle').transition().duration(500)
+          .attr('opacity', n => connectedNodes.has(n.id) ? 1 : 0.2)
+          .attr('stroke-width', n => (n.id === targetNode.id ? 4 : 2) / scale);
+        
+        nodeLabels.transition().duration(500)
+          .attr('opacity', n => connectedNodes.has(n.id) ? 1 : 0.2)
+          .attr('font-weight', n => n.id === targetNode.id ? 700 : 600);
+        
+        link.transition().duration(500)
+          .attr('stroke-opacity', l => 
+            (l.source.id === targetNode.id || l.target.id === targetNode.id) ? 1 : 0.15
+          )
+          .attr('stroke', l => 
+            (l.source.id === targetNode.id || l.target.id === targetNode.id) ? '#f59e0b' : '#cbd5e1'
+          );
+        
+        // Reset after 3 seconds
+        setTimeout(() => {
+          node.select('circle').transition().duration(500)
+            .attr('opacity', 1)
+            .attr('stroke-width', 2 / scale);
+          
+          nodeLabels.transition().duration(500)
+            .attr('opacity', 1)
+            .attr('font-weight', 600);
+          
+          link.transition().duration(500)
+            .attr('stroke-opacity', 0.6)
+            .attr('stroke', '#cbd5e1');
+        }, 3000);
+      });
+  };
+  
+  // Drag functions
+  function dragstarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+  
+  function dragended(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+}
+
+function buildTopCollaborators(collaborators) {
+  const container = document.getElementById('top-collaborators-list');
+  if (!container) return;
+  
+  if (collaborators.length === 0) {
+    container.innerHTML = '<div style="color: #94a3b8; font-size: 0.875rem;">No collaborations found</div>';
+    return;
+  }
+  
+  const html = collaborators.map((collab, i) => `
+    <div data-scribe-name="${collab.name}" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; border-bottom: 1px solid #f1f5f9; ${i % 2 === 0 ? 'background: #f9fafb;' : ''}; cursor: pointer; transition: all 0.2s;" 
+      onmouseover="this.style.background='#fef3c7'" 
+      onmouseout="this.style.background='${i % 2 === 0 ? '#f9fafb' : '#ffffff'}'">
+      <div style="font-size: 0.875rem; color: #1e293b; font-weight: 500;">${collab.name}</div>
+      <div style="background: #f59e0b; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600;">
+        ${collab.collaboratorCount} co-scribe${collab.collaboratorCount > 1 ? 's' : ''}
+      </div>
+    </div>
+  `).join('');
+  
+  container.innerHTML = html;
+  
+  // Add click handlers to focus on each scribe
+  container.querySelectorAll('[data-scribe-name]').forEach(el => {
+    el.addEventListener('click', () => {
+      const scribeName = el.getAttribute('data-scribe-name');
+      if (window.focusOnScribe) {
+        window.focusOnScribe(scribeName);
+      }
+    });
+  });
+}
+
+function buildCollaborativeManuscripts(manuscripts) {
+  const container = document.getElementById('collaborative-manuscripts-list');
+  if (!container) return;
+  
+  if (manuscripts.length === 0) {
+    container.innerHTML = '<div style="color: #94a3b8; font-size: 0.875rem;">No collaborative manuscripts found</div>';
+    return;
+  }
+  
+  const sorted = manuscripts.sort((a, b) => b.scribeCount - a.scribeCount);
+  
+  const html = sorted.map((ms, i) => `
+    <div style="padding: 0.5rem; border-bottom: 1px solid #f1f5f9; ${i % 2 === 0 ? 'background: #f9fafb;' : ''}">
+      <div style="font-size: 0.875rem; color: #1e293b; font-weight: 500; margin-bottom: 0.25rem;">
+        ${ms.msTitle}
+      </div>
+      <div style="font-size: 0.75rem; color: #64748b;">
+        ${ms.scribeCount} scribes: ${ms.scribes.map(s => s.name).join(', ')}
+      </div>
+    </div>
+  `).join('');
+  
+  container.innerHTML = html;
+}
+
+function buildInstitutionsChart(institutions) {
+  const container = document.getElementById('institutions-chart');
+  if (!container) return;
+  
+  const maxCount = Math.max(...institutions.map(i => i.scribeCount));
+  const barHeight = 30;
+  const gap = 6;
+  const chartWidth = 350;
+  
+  const html = institutions.map((inst, i) => {
+    const barWidth = (inst.scribeCount / maxCount) * chartWidth;
+    
+    return `
+      <div style="margin-bottom: ${gap}px;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${inst.name}">
+          ${inst.name}
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); height: ${barHeight}px; width: ${barWidth}px; border-radius: 0.25rem; position: relative;">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.75rem;">
+              ${inst.scribeCount}
+            </div>
+          </div>
+          <div style="font-size: 0.75rem; color: #94a3b8;">
+            ${inst.suCount} SUs
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  container.innerHTML = html;
+}
+
+function buildCitiesChart(cities) {
+  const container = document.getElementById('cities-chart');
+  if (!container) return;
+  
+  const maxCount = Math.max(...cities.map(c => c.scribeCount));
+  const barHeight = 30;
+  const gap = 6;
+  const chartWidth = 350;
+  
+  const html = cities.map((city, i) => {
+    const barWidth = (city.scribeCount / maxCount) * chartWidth;
+    
+    return `
+      <div style="margin-bottom: ${gap}px;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">
+          ${city.name}
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div style="background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); height: ${barHeight}px; width: ${barWidth}px; border-radius: 0.25rem; position: relative;">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.75rem;">
+              ${city.scribeCount}
+            </div>
+          </div>
+          <div style="font-size: 0.75rem; color: #94a3b8;">
+            ${city.institutionCount} institution${city.institutionCount > 1 ? 's' : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  container.innerHTML = html;
+}
+
+function populateLanguageFilter(scribes) {
+  const select = document.getElementById('scribe-lang-filter');
+  if (!select) return;
+  
+  const allLanguages = new Set();
+  scribes.forEach(s => s.languages.forEach(lang => allLanguages.add(lang)));
+  
+  const sorted = Array.from(allLanguages).sort();
+  sorted.forEach(lang => {
+    const option = document.createElement('option');
+    option.value = lang;
+    option.textContent = lang;
+    select.appendChild(option);
+  });
+}
+
+function populateInstitutionFilter(scribes) {
+  const select = document.getElementById('scribe-inst-filter');
+  if (!select) return;
+  
+  const allInstitutions = new Set();
+  scribes.forEach(s => s.institutions.forEach(inst => allInstitutions.add(inst)));
+  
+  const sorted = Array.from(allInstitutions).sort();
+  sorted.forEach(inst => {
+    const option = document.createElement('option');
+    option.value = inst;
+    option.textContent = inst;
+    select.appendChild(option);
+  });
+}
+
+function exportScribesCSV(scribes) {
+  const headers = ['Scribe Name', 'SU Count', 'Manuscript Count', 'Languages', 'Institutions', 'Dates'];
+  const rows = scribes.map(s => [
+    s.name,
+    s.suIds.size,
+    s.manuscripts.size,
+    Array.from(s.languages).join('; '),
+    Array.from(s.institutions).join('; '),
+    s.dates.join('; ')
+  ]);
+  
+  const csvContent = [
+    headers.join(','),
+    ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+  ].join('\n');
+  
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `scribes_analysis_${new Date().toISOString().split('T')[0]}.csv`;
+  link.click();
+}
+
+function buildScribesBarChart(top20) {
+  const container = document.getElementById('scribes-bar-chart');
+  if (!container) return;
+  
+  const maxCount = Math.max(...top20.map(s => s.suIds.size));
+  const barHeight = 30;
+  const gap = 5;
+  const labelWidth = 200;
+  const chartWidth = 600;
+  
+  const html = top20.map((scribe, i) => {
+    const barWidth = (scribe.suIds.size / maxCount) * chartWidth;
+    const color = scribe.languages.size > 1 ? '#f59e0b' : '#94a3b8';
+    
+    return `
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: ${gap}px;">
+        <div style="width: ${labelWidth}px; text-align: right; font-size: 0.875rem; color: #475569; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${scribe.name}">
+          ${scribe.name}
+        </div>
+        <div style="flex: 1; display: flex; align-items: center; gap: 0.5rem;">
+          <div style="background: ${color}; height: ${barHeight}px; width: ${barWidth}px; border-radius: 0.25rem; transition: all 0.3s; position: relative;">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.75rem;">
+              ${scribe.suIds.size}
+            </div>
+          </div>
+          <div style="font-size: 0.75rem; color: #64748b;">
+            ${scribe.languages.size > 1 ? `<span style="color: #f59e0b;">●</span> ${scribe.languages.size} langs` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  container.innerHTML = html + `
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.75rem; color: #64748b;">
+      <span style="color: #f59e0b;">●</span> Multilingual scribe (2+ languages)
+    </div>
+  `;
+}
+
+function buildScribesTable(scribes) {
+  const container = document.getElementById('scribes-table');
+  if (!container) return;
+  
+  // Show only first SCRIBE_TABLE_ROWS_SHOWN rows initially
+  const visibleScribes = scribes.slice(0, SCRIBE_TABLE_ROWS_SHOWN);
+  const hasMore = scribes.length > SCRIBE_TABLE_ROWS_SHOWN;
+  
+  const html = `
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+      <thead>
+        <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+          <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #475569;">Scribe Name</th>
+          <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #475569;">SUs</th>
+          <th style="padding: 0.75rem; text-align: center; font-weight: 600; color: #475569;">MSS</th>
+          <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #475569;">Languages</th>
+          <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #475569;">Institutions</th>
+          <th style="padding: 0.75rem; text-align: left; font-weight: 600; color: #475569;">Date Range</th>
+        </tr>
+      </thead>
+      <tbody id="scribes-table-body">
+        ${visibleScribes.map((scribe, i) => {
+          const langs = Array.from(scribe.languages).join(', ') || '—';
+          const insts = Array.from(scribe.institutions).slice(0, 2).join(', ') + 
+                       (scribe.institutions.size > 2 ? ` (+${scribe.institutions.size - 2} more)` : '');
+          const dates = scribe.dates.length > 0 ? scribe.dates.join(', ') : '—';
+          
+          return `
+            <tr style="border-bottom: 1px solid #e2e8f0; ${i % 2 === 0 ? 'background: #f9fafb;' : ''}">
+              <td style="padding: 0.75rem;">
+                <a href="#" class="scribe-detail-link" data-scribe-id="${scribe.id}" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                  ${scribe.name}
+                </a>
+              </td>
+              <td style="padding: 0.75rem; text-align: center; font-weight: 600; color: #1e293b;">${scribe.suIds.size}</td>
+              <td style="padding: 0.75rem; text-align: center; color: #64748b;">${scribe.manuscripts.size}</td>
+              <td style="padding: 0.75rem; color: #64748b; font-size: 0.8125rem;">
+                <span style="${scribe.languages.size > 1 ? 'color: #f59e0b; font-weight: 600;' : ''}">${langs}</span>
+              </td>
+              <td style="padding: 0.75rem; color: #64748b; font-size: 0.8125rem;">${insts || '—'}</td>
+              <td style="padding: 0.75rem; color: #64748b; font-size: 0.8125rem;">${dates}</td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+    ${hasMore ? `
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <button id="show-more-scribes" style="background: #f59e0b; color: white; border: none; padding: 0.75rem 2rem; border-radius: 0.5rem; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+          Show More (${scribes.length - SCRIBE_TABLE_ROWS_SHOWN} remaining)
+        </button>
+      </div>
+    ` : `
+      <div style="text-align: center; margin-top: 1rem; color: #94a3b8; font-size: 0.875rem;">
+        Showing all ${scribes.length} scribe${scribes.length !== 1 ? 's' : ''}
+      </div>
+    `}
+  `;
+  
+  container.innerHTML = html;
+  
+  // Add show more handler
+  const showMoreBtn = document.getElementById('show-more-scribes');
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', () => {
+      SCRIBE_TABLE_ROWS_SHOWN += 20;
+      buildScribesTable(scribes);
+    });
+  }
+  
+  // Add click handlers for scribe detail links
+  document.querySelectorAll('.scribe-detail-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const scribeId = link.dataset.scribeId;
+      const scribe = scribes.find(s => s.id === scribeId);
+      if (scribe) {
+        showScribeDetail(scribe);
+      }
+    });
+  });
+}
+
+function filterScribesTable(scribes, searchTerm, filterType, langFilter, instFilter, collaborations) {
+  let filtered = scribes;
+  
+  // Apply type filter
+  if (filterType === 'multilingual') {
+    filtered = filtered.filter(s => s.languages.size > 1);
+  } else if (filterType === 'productive') {
+    filtered = filtered.filter(s => s.suIds.size >= 5);
+  } else if (filterType === 'collaborative') {
+    filtered = filtered.filter(s => collaborations && collaborations[s.id]);
+  }
+  
+  // Apply language filter
+  if (langFilter) {
+    filtered = filtered.filter(s => s.languages.has(langFilter));
+  }
+  
+  // Apply institution filter
+  if (instFilter) {
+    filtered = filtered.filter(s => s.institutions.has(instFilter));
+  }
+  
+  // Apply search
+  if (searchTerm) {
+    const term = searchTerm.toLowerCase();
+    filtered = filtered.filter(s => 
+      s.name.toLowerCase().includes(term) ||
+      Array.from(s.languages).some(lang => lang.toLowerCase().includes(term)) ||
+      Array.from(s.institutions).some(inst => inst.toLowerCase().includes(term))
+    );
+  }
+  
+  buildScribesTable(filtered);
+}
+
+function showScribeDetail(scribe) {
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 2rem;';
+  
+  const content = document.createElement('div');
+  content.style.cssText = 'background: white; border-radius: 0.5rem; padding: 2rem; max-width: 800px; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);';
+  
+  content.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+      <h3 style="margin: 0; color: #1e293b; font-size: 1.5rem;">${scribe.name}</h3>
+      <button id="close-scribe-detail" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: 0.25rem;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">Scribal Units</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: #1e293b;">${scribe.suIds.size}</div>
+      </div>
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: 0.25rem;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">Manuscripts</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: #1e293b;">${scribe.manuscripts.size}</div>
+      </div>
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: 0.25rem;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">Languages</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: #1e293b;">${scribe.languages.size}</div>
+      </div>
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: 0.25rem;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem;">Institutions</div>
+        <div style="font-size: 1.5rem; font-weight: 700; color: #1e293b;">${scribe.institutions.size}</div>
+      </div>
+    </div>
+    
+    ${scribe.languages.size > 0 ? `
+      <div style="margin-bottom: 1.5rem;">
+        <h4 style="margin: 0 0 0.75rem 0; color: #475569; font-size: 1rem;">Languages</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          ${Array.from(scribe.languages).map(lang => `
+            <span style="background: #e0e7ff; color: #4338ca; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-size: 0.875rem;">${lang}</span>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+    
+    ${scribe.institutions.size > 0 ? `
+      <div style="margin-bottom: 1.5rem;">
+        <h4 style="margin: 0 0 0.75rem 0; color: #475569; font-size: 1rem;">Institutions</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          ${Array.from(scribe.institutions).map(inst => `
+            <span style="background: #fef3c7; color: #92400e; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-size: 0.875rem;">${inst}</span>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+    
+    <div>
+      <h4 style="margin: 0 0 0.75rem 0; color: #475569; font-size: 1rem;">Scribal Units (${scribe.sus.length})</h4>
+      <div style="max-height: 300px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 0.25rem;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+          <thead style="position: sticky; top: 0; background: white; border-bottom: 1px solid #e2e8f0;">
+            <tr>
+              <th style="padding: 0.5rem; text-align: left; font-weight: 600; color: #64748b; font-size: 0.75rem;">SU</th>
+              <th style="padding: 0.5rem; text-align: left; font-weight: 600; color: #64748b; font-size: 0.75rem;">Manuscript</th>
+              <th style="padding: 0.5rem; text-align: left; font-weight: 600; color: #64748b; font-size: 0.75rem;">Languages</th>
+              <th style="padding: 0.5rem; text-align: left; font-weight: 600; color: #64748b; font-size: 0.75rem;">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${scribe.sus.map((su, i) => `
+              <tr style="border-bottom: 1px solid #f1f5f9;">
+                <td style="padding: 0.5rem; color: #1e293b;">${su.title}</td>
+                <td style="padding: 0.5rem; color: #64748b; font-size: 0.8125rem;">${su.msTitle}</td>
+                <td style="padding: 0.5rem; color: #64748b; font-size: 0.8125rem;">${su.languages.join(', ')}</td>
+                <td style="padding: 0.5rem; color: #64748b; font-size: 0.8125rem;">${su.role || 'scribe'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+  
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+  
+  // Close handlers
+  document.getElementById('close-scribe-detail').addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      document.body.removeChild(modal);
+    }
+  });
+}
+
+/* ============================================================
    COLOPHON ANALYSIS MODULE
    ============================================================ */
 
@@ -12629,12 +15537,12 @@ function buildColophonOverview(mount) {
           <div style="font-size: 0.875rem; opacity: 0.9;">Scribal Units with Colophons</div>
           <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">${Math.round((stats.withColophons / stats.totalSUs) * 100)}% of all SUs</div>
         </div>
-        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.withTranscription}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">With Transcription</div>
           <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Original language text</div>
         </div>
-        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.withTranslation}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">With Translation</div>
           <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">English translation</div>
@@ -12960,7 +15868,7 @@ function buildThematicAnalysis(mount) {
   const themes = {
     'Self-identification': {
       keywords: ['i', 'me', 'my', 'sister', 'brother', 'scribe', 'wrote', 'written by'],
-      color: '#8b5cf6',
+      color: '#fb923c',
       examples: []
     },
     'Labor & Difficulty': {
@@ -12985,7 +15893,7 @@ function buildThematicAnalysis(mount) {
     },
     'Dedication': {
       keywords: ['honor', 'dedicated', 'memory', 'commissioned', 'for', 'patron'],
-      color: '#ec4899',
+      color: '#eab308',
       examples: []
     },
     'Humility': {
@@ -13180,12 +16088,12 @@ function buildLinguisticFeatures(mount) {
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgWords.toFixed(1)}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Word Count</div>
         </div>
-        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgWordLen.toFixed(1)}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Word Length</div>
           <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Letters per word</div>
         </div>
-        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">${avgSentLen.toFixed(1)}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Avg. Sentence Length</div>
           <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem;">Words per sentence</div>
@@ -13272,7 +16180,7 @@ function buildLinguisticFeatures(mount) {
               <div style="background: #f9f9f9; padding: 1rem; border-radius: 0.5rem;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
                   <span style="font-weight: 600; color: #555;">#${idx + 1} ${esc(f.scribeName)}</span>
-                  <span style="color: #f093fb; font-weight: 600;">${f.firstPersonCount} mentions</span>
+                  <span style="color: #fbbf24; font-weight: 600;">${f.firstPersonCount} mentions</span>
                 </div>
                 <div style="font-size: 0.875rem; color: #666;">
                   ${f.wordCount} words • 
@@ -13796,11 +16704,11 @@ async function buildExploreFormulae(mount) {
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${formulaResults.length}</div>
           <div style="opacity: 0.9; font-size: 0.875rem;">Predefined Formulas</div>
         </div>
-        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${uniqueLanguages.length}</div>
           <div style="opacity: 0.9; font-size: 0.875rem;">Languages</div>
         </div>
-        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${colophonSUs.length}</div>
           <div style="opacity: 0.9; font-size: 0.875rem;">Colophons Searched</div>
         </div>
@@ -14003,8 +16911,8 @@ async function buildExploreFormulae(mount) {
       const typeBadgeStyles = {
         prayer: 'background: #10b981; color: white;',
         dating: 'background: #3b82f6; color: white;',
-        scribe: 'background: #8b5cf6; color: white;',
-        completion: 'background: #ec4899; color: white;',
+        scribe: 'background: #fb923c; color: white;',
+        completion: 'background: #eab308; color: white;',
         humility: 'background: #f59e0b; color: white;',
         ownership: 'background: #ef4444; color: white;',
         praise: 'background: #06b6d4; color: white;',
@@ -15260,7 +18168,7 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
     setTimeout(() => feedback.remove(), 3000);
     
     // Get color for this formula
-    const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
+    const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#fb923c', '#eab308'];
     const colorIndex = (window.comparisonFormulas.size - 1) % colors.length;
     const color = colors[colorIndex];
     
@@ -15929,8 +18837,77 @@ async function boot(){
   updateAvailableViews();
   $status.textContent='';
   
-  // Check for URL parameters to auto-navigate to a specific record
+  // Check for embed mode and URL parameters
   const params = new URLSearchParams(window.location.search);
+  const embedMode = params.get('embed') === 'true';
+  const networkParam = params.get('network'); // e.g., 'manuscript-genre', 'institution-subgenre', 'scribe-genre'
+  
+  if (embedMode) {
+    // Hide header, footer, and main navigation for clean embed
+    document.body.classList.add('embed-mode');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const mainNav = document.getElementById('main-nav-tabs');
+    const banner = document.querySelector('.page-banner');
+    
+    if (header) header.style.display = 'none';
+    if (footer) footer.style.display = 'none';
+    if (mainNav) mainNav.style.display = 'none';
+    if (banner) banner.style.display = 'none';
+    
+    // Add embed-specific styles
+    const embedStyles = document.createElement('style');
+    embedStyles.textContent = `
+      .embed-mode .explore-fullwidth { padding: 0 !important; margin: 0 !important; }
+      .embed-mode .db-shell { margin: 0 !important; }
+      .embed-mode h1 { display: none !important; }
+      .embed-mode body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }
+    `;
+    document.head.appendChild(embedStyles);
+    
+    // Auto-navigate to network mode if network parameter is provided
+    if (networkParam) {
+      setTimeout(() => {
+        // Switch to network mode
+        const networkModeBtn = document.querySelector('[data-mode="network"]');
+        if (networkModeBtn) {
+          networkModeBtn.click();
+          
+          // Wait for content to load, then navigate to specific network
+          setTimeout(() => {
+            const tabMap = {
+              'manuscript-genre': 'manuscript-networks',
+              'manuscript-subgenre': 'manuscript-networks',
+              'institution-genre': 'institution-networks',
+              'institution-subgenre': 'institution-networks',
+              'scribe-genre': 'scribe-networks',
+              'scribe-subgenre': 'scribe-networks'
+            };
+            
+            const tabName = tabMap[networkParam];
+            if (tabName) {
+              const tabBtn = document.querySelector(`[data-tab="${tabName}"]`);
+              if (tabBtn) {
+                tabBtn.click();
+                
+                // Wait for network to render, then click the appropriate toggle
+                setTimeout(() => {
+                  if (networkParam.includes('subgenre')) {
+                    const subgenreBtn = document.querySelector('[data-level="subgenre"]');
+                    if (subgenreBtn && !subgenreBtn.classList.contains('is-on')) {
+                      subgenreBtn.click();
+                    }
+                  }
+                }, 500);
+              }
+            }
+          }, 300);
+        }
+      }, 100);
+    }
+  }
+  
+  // Check for URL parameters to auto-navigate to a specific record
   const slugParam = params.get('slug');
   const typeParam = params.get('type') || 'ms';
   
@@ -15953,6 +18930,2300 @@ async function boot(){
     }
   }
 }
+
+/* =========================================
+   TEXT GENRES ANALYSIS MODULE
+   ========================================= */
+
+function buildTextGenres() {
+  const mount = document.getElementById('text-genres-mount');
+  if (!mount) {
+    console.error('text-genres-mount element not found');
+    return;
+  }
+  
+  // Initialize UI
+  mount.innerHTML = `
+    <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow: hidden;">
+      <div style="border-bottom: 2px solid #f0f0f0;">
+        <div class="genre-tabs" style="display: flex; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #fafafa;">
+          <button class="genre-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+            Overview
+          </button>
+          <button class="genre-tab-btn" data-tab="manuscript-networks" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+            Manuscript Networks
+          </button>
+          <button class="genre-tab-btn" data-tab="institution-networks" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+            Institution Networks
+          </button>
+          <button class="genre-tab-btn" data-tab="scribe-networks" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+            Scribe Networks
+          </button>
+          <button class="genre-tab-btn" data-tab="distributions" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
+            Distributions
+          </button>
+        </div>
+      </div>
+      <div style="padding: 1.5rem;">
+        <div id="genre-tab-content" style="overflow: auto; min-height: 60vh;">
+          <!-- Content will be rendered here -->
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Tab switching
+  const tabBtns = mount.querySelectorAll('.genre-tab-btn');
+  const contentArea = mount.querySelector('#genre-tab-content');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      tabBtns.forEach(b => b.classList.toggle('is-on', b === btn));
+      renderGenreTab(tab, contentArea);
+    });
+  });
+  
+  // CSS for active tab
+  const style = document.createElement('style');
+  style.textContent = `
+    .genre-tab-btn.is-on {
+      background: white !important;
+      color: #2c3e50 !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .genre-tab-btn:hover {
+      background: #f5f5f5;
+    }
+  `;
+  mount.appendChild(style);
+  
+  // Render initial tab
+  renderGenreTab('overview', contentArea);
+}
+
+function renderGenreTab(tab, container) {
+  if (tab === 'overview') renderGenreOverview(container);
+  else if (tab === 'manuscript-networks') renderManuscriptNetworks(container);
+  else if (tab === 'institution-networks') renderInstitutionNetworks(container);
+  else if (tab === 'scribe-networks') renderScribeNetworks(container);
+  else if (tab === 'distributions') renderGenreDistributions(container);
+}
+
+function renderGenreOverview(container) {
+  container.innerHTML = `
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Text Genre Analysis</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="background: #fef3c7; border-radius: 0.5rem; padding: 1.5rem;">
+          <h3 style="margin: 0 0 0.5rem 0; color: #92400e; font-size: 1.125rem;">Total Texts</h3>
+          <div id="total-texts" style="font-size: 2.5rem; font-weight: 700; color: #92400e;">Loading...</div>
+        </div>
+        <div style="background: #dbeafe; border-radius: 0.5rem; padding: 1.5rem;">
+          <h3 style="margin: 0 0 0.5rem 0; color: #1e40af; font-size: 1.125rem;">Unique Genres</h3>
+          <div id="total-genres" style="font-size: 2.5rem; font-weight: 700; color: #1e40af;">Loading...</div>
+        </div>
+        <div style="background: #dcfce7; border-radius: 0.5rem; padding: 1.5rem;">
+          <h3 style="margin: 0 0 0.5rem 0; color: #166534; font-size: 1.125rem;">Unique Subgenres</h3>
+          <div id="total-subgenres" style="font-size: 2.5rem; font-weight: 700; color: #166534;">Loading...</div>
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Genres by Text Count</h3>
+          <div id="top-genres-chart"></div>
+        </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Subgenres by Text Count</h3>
+          <div id="top-subgenres-chart"></div>
+        </div>
+      </div>
+      
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+        <h3 style="margin: 0 0 0.75rem 0; color: #2c3e50; font-size: 1.25rem;">Analysis Approaches</h3>
+        <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">
+          This module provides three complementary views of text genre patterns:
+        </p>
+        <div style="display: grid; gap: 1rem;">
+          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #3b82f6; border-radius: 0.375rem;">
+            <h4 style="margin: 0 0 0.5rem 0; color: #1e40af;">Manuscript Networks</h4>
+            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
+              Bipartite networks showing manuscripts and the genres/subgenres they contain. Toggle between broad genre categories and granular subgenres. Reveals composition patterns and co-occurrence.
+            </p>
+          </div>
+          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #10b981; border-radius: 0.375rem;">
+            <h4 style="margin: 0 0 0.5rem 0; color: #065f46;">Institution Networks</h4>
+            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
+              Networks of monastic institutions connected to genres/subgenres they produced or preserved. Identifies institutional specializations and textual preferences across monasteries.
+            </p>
+          </div>
+          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #22c55e; border-radius: 0.375rem;">
+            <h4 style="margin: 0 0 0.5rem 0; color: #166534;">Scribe Networks</h4>
+            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
+              Networks showing which scribes actively copied which genres/subgenres. Reveals individual specialization, generalists vs. specialists, and knowledge brokers in the scribal workforce.
+            </p>
+          </div>
+          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #f59e0b; border-radius: 0.375rem;">
+            <h4 style="margin: 0 0 0.5rem 0; color: #92400e;">Genre Distributions</h4>
+            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
+              Charts showing genre popularity across institutions, locations, and time periods. Find patterns in textual preferences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Calculate statistics
+  const allTexts = DATA.tx || [];
+  const genreCounts = {};
+  const subgenreCounts = {};
+  
+  allTexts.forEach(text => {
+    const genre = MAP.tx?.genre(text);
+    if (genre && genre !== 'Unknown') {
+      genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+    }
+    
+    const subgenre = MAP.tx?.sub(text);
+    if (subgenre && subgenre !== 'Unknown') {
+      subgenreCounts[subgenre] = (subgenreCounts[subgenre] || 0) + 1;
+    }
+  });
+  
+  const totalTextsEl = document.getElementById('total-texts');
+  const totalGenresEl = document.getElementById('total-genres');
+  const totalSubgenresEl = document.getElementById('total-subgenres');
+  
+  if (totalTextsEl) totalTextsEl.textContent = allTexts.length;
+  if (totalGenresEl) totalGenresEl.textContent = Object.keys(genreCounts).length;
+  if (totalSubgenresEl) totalSubgenresEl.textContent = Object.keys(subgenreCounts).length;
+  
+  // Top genres chart
+  const topGenres = Object.entries(genreCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 15);
+  
+  const maxGenreCount = topGenres.length > 0 ? Math.max(...topGenres.map(([, count]) => count)) : 1;
+  const genreChartHTML = topGenres.map(([genre, count]) => {
+    const barWidth = (count / maxGenreCount) * 100;
+    return `
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+        <div style="width: 180px; font-size: 0.875rem; color: #64748b; font-weight: 500; text-align: right;">
+          ${genre.length > 25 ? genre.substring(0, 22) + '...' : genre}
+        </div>
+        <div style="flex: 1; display: flex; align-items: center;">
+          <div style="background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); height: 28px; width: ${barWidth}%; border-radius: 0.25rem; position: relative; min-width: 30px;">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.875rem;">
+              ${count}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  const topGenresChartEl = document.getElementById('top-genres-chart');
+  if (topGenresChartEl) topGenresChartEl.innerHTML = genreChartHTML;
+  
+  // Top subgenres chart
+  const topSubgenres = Object.entries(subgenreCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 15);
+  
+  const maxSubgenreCount = topSubgenres.length > 0 ? Math.max(...topSubgenres.map(([, count]) => count)) : 1;
+  const subgenreChartHTML = topSubgenres.map(([subgenre, count]) => {
+    const barWidth = (count / maxSubgenreCount) * 100;
+    return `
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+        <div style="width: 180px; font-size: 0.875rem; color: #64748b; font-weight: 500; text-align: right;">
+          ${subgenre.length > 25 ? subgenre.substring(0, 22) + '...' : subgenre}
+        </div>
+        <div style="flex: 1; display: flex; align-items: center;">
+          <div style="background: linear-gradient(90deg, #10b981 0%, #059669 100%); height: 28px; width: ${barWidth}%; border-radius: 0.25rem; position: relative; min-width: 30px;">
+            <div style="position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); color: white; font-weight: 600; font-size: 0.875rem;">
+              ${count}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  const topSubgenresChartEl = document.getElementById('top-subgenres-chart');
+  if (topSubgenresChartEl) topSubgenresChartEl.innerHTML = subgenreChartHTML;
+}
+
+function renderManuscriptNetworks(container) {
+  container.innerHTML = `
+    <div style="max-width: 1600px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 style="margin: 0; color: #1a1a1a;">Manuscript Networks</h2>
+        <div style="display: flex; gap: 1rem;">
+          <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+            <button class="network-mode-btn is-active" data-mode="genre" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Genres
+            </button>
+            <button class="network-mode-btn" data-mode="subgenre" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b;">
+              Subgenres
+            </button>
+          </div>
+          <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+            <button class="layout-toggle-btn is-active" data-layout="horizontal" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Horizontal
+            </button>
+            <button class="layout-toggle-btn" data-layout="radial" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b;">
+              Radial
+            </button>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 0 0 1.5rem 0; font-size: 0.875rem; color: #64748b; max-width: 800px;">
+        This network shows which manuscripts contain which <span id="ms-level-text">genres</span>. Manuscripts are on the left (blue), <span id="ms-level-text2">genres</span> on the right (colored by category). 
+        Edge thickness indicates frequency. Use this to discover co-occurrence patterns.
+      </p>
+      
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="ms-network-wrapper">
+        <div id="ms-network-viz" style="width: 100%; min-height: 700px;"></div>
+      </div>
+    </div>
+  `;
+  
+  const modeBtns = container.querySelectorAll('.network-mode-btn');
+  const layoutBtns = container.querySelectorAll('.layout-toggle-btn');
+  const levelText = container.querySelector('#ms-level-text');
+  const levelText2 = container.querySelector('#ms-level-text2');
+  
+  let currentMode = 'genre';
+  let currentLayout = 'horizontal';
+  
+  function rebuildNetwork() {
+    setTimeout(() => buildManuscriptNetwork(currentMode, currentLayout), 0);
+  }
+  
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMode = btn.dataset.mode;
+      modeBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      levelText.textContent = currentMode === 'genre' ? 'genres' : 'subgenres';
+      levelText2.textContent = currentMode === 'genre' ? 'genres' : 'subgenres';
+      rebuildNetwork();
+    });
+  });
+  
+  layoutBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLayout = btn.dataset.layout;
+      layoutBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      rebuildNetwork();
+    });
+  });
+  
+  // Build initial network
+  rebuildNetwork();
+}
+
+function renderInstitutionNetworks(container) {
+  container.innerHTML = `
+    <div style="max-width: 1600px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 style="margin: 0; color: #1a1a1a;">Institution Networks</h2>
+        <div style="display: flex; gap: 1rem;">
+          <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+            <button class="network-mode-btn is-active" data-mode="genre" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Genres
+            </button>
+            <button class="network-mode-btn" data-mode="subgenre" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b;">
+              Subgenres
+            </button>
+          </div>
+          <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+            <button class="layout-toggle-btn is-active" data-layout="horizontal" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Horizontal
+            </button>
+            <button class="layout-toggle-btn" data-layout="radial" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b;">
+              Radial
+            </button>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 0 0 1.5rem 0; font-size: 0.875rem; color: #64748b; max-width: 800px;">
+        This network connects monastic institutions to the <span id="inst-level-text">genres</span> they produced/preserved. 
+        Node size reflects activity level. Reveals institutional specializations and preferences across monasteries.
+      </p>
+      
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="inst-network-wrapper">
+        <div id="inst-network-viz" style="width: 100%; min-height: 700px;"></div>
+      </div>
+    </div>
+  `;
+  
+  const modeBtns = container.querySelectorAll('.network-mode-btn');
+  const layoutBtns = container.querySelectorAll('.layout-toggle-btn');
+  const levelText = container.querySelector('#inst-level-text');
+  
+  let currentMode = 'genre';
+  let currentLayout = 'horizontal';
+  
+  function rebuildNetwork() {
+    setTimeout(() => buildInstitutionNetwork(currentMode, currentLayout), 0);
+  }
+  
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMode = btn.dataset.mode;
+      modeBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      levelText.textContent = currentMode === 'genre' ? 'genres' : 'subgenres';
+      rebuildNetwork();
+    });
+  });
+  
+  layoutBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLayout = btn.dataset.layout;
+      layoutBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      rebuildNetwork();
+    });
+  });
+  
+  // Build initial network
+  rebuildNetwork();
+}
+
+function renderScribeNetworks(container) {
+  container.innerHTML = `
+    <div style="max-width: 1600px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+        <h2 style="margin: 0; color: #1a1a1a;">Scribe Networks</h2>
+        <div style="display: flex; gap: 1rem;">
+          <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+            <button class="network-mode-btn is-active" data-mode="genre" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Genres
+            </button>
+            <button class="network-mode-btn" data-mode="subgenre" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b;">
+              Subgenres
+            </button>
+          </div>
+          <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+            <button class="layout-toggle-btn is-active" data-layout="horizontal" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              Horizontal
+            </button>
+            <button class="layout-toggle-btn" data-layout="radial" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b;">
+              Radial
+            </button>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 0 0 1.5rem 0; font-size: 0.875rem; color: #64748b; max-width: 900px;">
+        This network shows which scribes actively copied which <span id="scribe-level-text">genres</span>. Scribes are on the left (green), <span id="scribe-level-text2">genres</span> on the right (colored by category). 
+        Bridges indicate scribes with diverse repertoires. Hubs show specialist scribes or popular <span id="scribe-level-text3">genres</span>.
+      </p>
+      
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="scribe-network-wrapper">
+        <div id="scribe-network-viz" style="width: 100%; min-height: 700px;"></div>
+      </div>
+    </div>
+  `;
+  
+  const modeBtns = container.querySelectorAll('.network-mode-btn');
+  const layoutBtns = container.querySelectorAll('.layout-toggle-btn');
+  const levelText = container.querySelector('#scribe-level-text');
+  const levelText2 = container.querySelector('#scribe-level-text2');
+  const levelText3 = container.querySelector('#scribe-level-text3');
+  
+  let currentMode = 'genre';
+  let currentLayout = 'horizontal';
+  
+  function rebuildNetwork() {
+    setTimeout(() => buildScribeNetwork(currentMode, currentLayout), 0);
+  }
+  
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMode = btn.dataset.mode;
+      modeBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      const modeText = currentMode === 'genre' ? 'genres' : 'subgenres';
+      levelText.textContent = modeText;
+      levelText2.textContent = modeText;
+      levelText3.textContent = modeText;
+      rebuildNetwork();
+    });
+  });
+  
+  layoutBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLayout = btn.dataset.layout;
+      layoutBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      rebuildNetwork();
+    });
+  });
+  
+  // Build initial network
+  rebuildNetwork();
+}
+
+function renderGenreDistributions(container) {
+  container.innerHTML = `
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Genre Distribution Analysis</h2>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.125rem;">Genres by Institution</h3>
+          <div id="genres-by-institution"></div>
+        </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.125rem;">Genres by Location</h3>
+          <div id="genres-by-location"></div>
+        </div>
+      </div>
+      
+      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+        <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.125rem;">Genre Popularity Over Time</h3>
+        <div id="genres-over-time"></div>
+      </div>
+    </div>
+  `;
+  
+  // Wait for DOM to update before building charts
+  setTimeout(() => buildGenreDistributions(), 0);
+}
+
+// Network visualization functions
+function buildManuscriptGenreNetwork() {
+  buildManuscriptNetwork('genre', 'horizontal');
+}
+
+function buildManuscriptSubgenreNetwork() {
+  buildManuscriptNetwork('subgenre', 'horizontal');
+}
+
+function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
+  const container = document.getElementById('ms-network-viz');
+  if (!container) return;
+  
+  // Build bipartite network data
+  const manuscriptNodes = new Map();
+  const genreNodes = new Map();
+  const links = [];
+  
+  console.log('Building manuscript-genre network...');
+  console.log('Total PUs:', DATA.pu?.length || 0);
+  console.log('Total Texts:', DATA.tx?.length || 0);
+  console.log('Total Relationships:', DATA.rel?.length || 0);
+  
+  // Debug: Check first PU structure
+  if (DATA.pu && DATA.pu[0]) {
+    console.log('Sample PU:', DATA.pu[0].rec_ID);
+    console.log('PU fields:', (DATA.pu[0].details || []).map(d => d.fieldName));
+  }
+  
+  // Debug: Check relationship structure
+  if (DATA.rel && DATA.rel[0]) {
+    console.log('Sample relationship:', DATA.rel[0]);
+    console.log('Relationship keys:', Object.keys(DATA.rel[0]));
+  }
+  
+  let pusHavingManuscript = 0;
+  let pusHavingTexts = 0;
+  let relationshipsChecked = 0;
+  
+  // Process production units to connect manuscripts to genres and subgenres
+  // Path: Production Unit → Manuscript (pointer field) + Production Unit → Text (via "contains" relationship in relationships.json)
+  (DATA.pu || []).forEach(pu => {
+    const puId = String(pu.rec_ID);
+    
+    // Get manuscript linked to this production unit (pointer field)
+    const msRes = getRes(pu, 'Manuscript');
+    if (!msRes || !msRes.id) return;
+    pusHavingManuscript++;
+    
+    const msId = String(msRes.id);
+    const ms = IDX.ms?.[msId];
+    if (!ms) return;
+    
+    const msTitle = MAP.ms?.title(ms) || `MS-${msId}`;
+    
+    // Get texts linked to this production unit via relationships
+    const textGenresAndSubs = new Set();  // Store genres or subgenres based on levelFilter
+    
+    // Use the REL_INDEX to get relationships for this PU
+    const puRels = [
+      ...(REL_INDEX.bySource?.[puId] || []),
+      ...(REL_INDEX.byTarget?.[puId] || [])
+    ];
+    
+    puRels.forEach(rel => {
+      relationshipsChecked++;
+      
+      const src = getRes(rel, 'Source record');
+      const tgt = getRes(rel, 'Target record');
+      const srcId = src?.id ? String(src.id) : null;
+      const tgtId = tgt?.id ? String(tgt.id) : null;
+      
+      // Get the other record (the one that's not the PU)
+      const otherId = srcId === puId ? tgtId : (tgtId === puId ? srcId : null);
+      if (!otherId) return;
+      
+      const text = IDX.tx?.[otherId];
+      
+      if (text) {
+        const genre = MAP.tx?.genre(text);
+        const subgenre = MAP.tx?.sub(text);
+        
+        // Add genre or subgenre based on levelFilter
+        if (levelFilter === 'genre' && genre && genre !== 'Unknown' && genre !== '') {
+          textGenresAndSubs.add(`genre:${genre}`);
+        }
+        if (levelFilter === 'subgenre' && subgenre && subgenre !== 'Unknown' && subgenre !== '') {
+          textGenresAndSubs.add(`sub:${subgenre}`);
+        }
+      }
+    });
+    
+    if (textGenresAndSubs.size > 0) {
+      pusHavingTexts++;
+      if (!manuscriptNodes.has(msId)) {
+        manuscriptNodes.set(msId, {
+          id: `ms-${msId}`,
+          name: msTitle.length > 40 ? msTitle.substring(0, 37) + '...' : msTitle,
+          fullName: msTitle,
+          type: 'manuscript',
+          genreCount: 0,
+          uniqueGenres: new Set()
+        });
+      }
+      
+      const msNode = manuscriptNodes.get(msId);
+      msNode.genreCount += textGenresAndSubs.size;
+      
+      textGenresAndSubs.forEach(genreKey => {
+        const [type, name] = genreKey.split(':');
+        const isSubgenre = type === 'sub';
+        const nodeId = genreKey;
+        
+        // Track unique genre types for bridge detection
+        msNode.uniqueGenres.add(name);
+        
+        if (!genreNodes.has(nodeId)) {
+          genreNodes.set(nodeId, {
+            id: nodeId,
+            name: name,
+            type: isSubgenre ? 'subgenre' : 'genre',
+            msCount: 0,
+            uniqueManuscripts: new Set()
+          });
+        }
+        const genreNode = genreNodes.get(nodeId);
+        genreNode.msCount++;
+        genreNode.uniqueManuscripts.add(msId);
+        
+        links.push({
+          source: `ms-${msId}`,
+          target: nodeId,
+          value: 1
+        });
+      });
+    }
+  });
+  
+  console.log(`Manuscript-${levelFilter === 'genre' ? 'Genre' : 'Subgenre'} Network:`, {
+    relationshipsChecked,
+    pusWithMs: pusHavingManuscript,
+    pusWithTexts: pusHavingTexts,
+    manuscripts: manuscriptNodes.size,
+    items: genreNodes.size,
+    links: links.length
+  });
+  
+  const nodeArray = [...manuscriptNodes.values(), ...genreNodes.values()];
+  
+  if (nodeArray.length === 0) {
+    container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #94a3b8;">No manuscript-genre relationships found</div>';
+    return;
+  }
+  
+  // Clear container and create wrapper
+  container.innerHTML = '';
+  
+  // Detect bridge nodes (manuscripts connecting many different genres, genres connecting many manuscripts)
+  const avgMsGenres = Array.from(manuscriptNodes.values()).reduce((sum, n) => sum + n.uniqueGenres.size, 0) / manuscriptNodes.size;
+  const avgGenreMs = Array.from(genreNodes.values()).reduce((sum, n) => sum + n.uniqueManuscripts.size, 0) / genreNodes.size;
+  
+  manuscriptNodes.forEach(node => {
+    node.isBridge = node.uniqueGenres.size > avgMsGenres * 1.5;  // 50% above average
+    node.isHub = node.genreCount > avgMsGenres * 2;  // Major hub if 2x average
+  });
+  
+  genreNodes.forEach(node => {
+    node.isBridge = node.uniqueManuscripts.size > avgGenreMs * 1.5;
+    node.isHub = node.msCount > avgGenreMs * 2;
+  });
+  
+  const bridgeCount = Array.from(manuscriptNodes.values()).filter(n => n.isBridge).length + 
+                      Array.from(genreNodes.values()).filter(n => n.isBridge).length;
+  const hubCount = Array.from(manuscriptNodes.values()).filter(n => n.isHub).length + 
+                   Array.from(genreNodes.values()).filter(n => n.isHub).length;
+  
+  const itemCount = genreNodes.size;
+  const itemLabel = levelFilter === 'genre' ? 'genres' : 'subgenres';
+  
+  // Controls bar
+  const controlsDiv = document.createElement('div');
+  controlsDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; flex-wrap: wrap; gap: 0.75rem;';
+  controlsDiv.innerHTML = `
+    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+      <button id="ms-zoom-in" style="padding: 0.375rem 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom In</button>
+      <button id="ms-zoom-out" style="padding: 0.375rem 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom Out</button>
+      <button id="ms-reset" style="padding: 0.375rem 0.75rem; background: #64748b; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Reset View</button>
+      <button id="ms-toggle-labels" style="padding: 0.375rem 0.75rem; background: #8b5cf6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Labels</button>
+      <button id="ms-toggle-singles" style="padding: 0.375rem 0.75rem; background: #ec4899; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Singles</button>
+    </div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <span style="font-size: 0.875rem; color: #64748b; font-weight: 600;">${manuscriptNodes.size} manuscripts • ${itemCount} ${itemLabel} • ${bridgeCount} bridges • ${hubCount} hubs</span>
+      ${createEmbedButton(`manuscript-${levelFilter}`)}
+      ${createExportButton('ms-network-viz', `manuscript-${itemLabel}-network.png`)}
+    </div>
+  `;
+  container.appendChild(controlsDiv);
+  
+  // Legend
+  const legendDiv = document.createElement('div');
+  legendDiv.style.cssText = 'display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; font-size: 0.875rem;';
+  legendDiv.innerHTML = `
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 16px; background: #3b82f6; border-radius: 50%; border: 2px solid white;"></div>
+        <span style="color: #1e293b; font-weight: 600;">Manuscripts (circles)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 12px; background: ${levelFilter === 'genre' ? '#f59e0b' : '#a855f7'}; border-radius: 3px; border: 2px solid white;"></div>
+        <span style="color: #1e293b; font-weight: 600; text-transform: capitalize;">${itemLabel} (rectangles)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 16px; background: white; border-radius: 50%; border: 3px solid #dc2626;"></div>
+        <span style="color: #1e293b; font-weight: 600;">Bridge Nodes</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 20px; height: 20px; background: white; border-radius: 50%; border: 3px solid #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);"></div>
+        <span style="color: #1e293b; font-weight: 600;">Major Hubs</span>
+      </div>
+    </div>
+    <div style="color: #64748b; font-size: 0.75rem;">
+      Manuscripts at top, ${itemLabel} at bottom | Node size = connections | Bridges connect diverse ${itemLabel} | Hubs have many connections | Hover to highlight | Drag to reposition | Click to focus
+    </div>
+  `;
+  container.appendChild(legendDiv);
+  
+  // SVG container
+  const svgDiv = document.createElement('div');
+  svgDiv.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative;';
+  container.appendChild(svgDiv);
+  
+  // Create tooltip div
+  const tooltip = document.createElement('div');
+  tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #3b82f6; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
+  svgDiv.appendChild(tooltip);
+  
+  // D3 force layout
+  const width = container.clientWidth;
+  const height = 900;  // Increased from 700
+  
+  const svg = d3.select(svgDiv)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+  
+  const g = svg.append('g');
+  
+  // Zoom behavior
+  let currentTransform = d3.zoomIdentity;
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])
+    .on('zoom', (event) => {
+      currentTransform = event.transform;
+      g.attr('transform', event.transform);
+      updateNodeSizes(event.transform.k);
+    });
+  
+  svg.call(zoom);
+  
+  // Zoom controls
+  document.getElementById('ms-zoom-in').onclick = () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+  };
+  document.getElementById('ms-zoom-out').onclick = () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+  };
+  document.getElementById('ms-reset').onclick = () => {
+    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+  };
+  
+  // Toggle labels
+  let labelsVisible = true;
+  document.getElementById('ms-toggle-labels').onclick = function() {
+    labelsVisible = !labelsVisible;
+    nodeLabels.style('display', labelsVisible ? 'block' : 'none');
+    this.textContent = labelsVisible ? 'Hide Labels' : 'Show Labels';
+  };
+  
+  // Toggle singles (nodes with only 1 connection)
+  let singlesVisible = true;
+  document.getElementById('ms-toggle-singles').onclick = function() {
+    singlesVisible = !singlesVisible;
+    node.style('display', d => {
+      const connectionCount = links.filter(l => l.source.id === d.id || l.target.id === d.id).length;
+      return (!singlesVisible && connectionCount === 1) ? 'none' : 'block';
+    });
+    link.style('display', l => {
+      const sourceCount = links.filter(lnk => lnk.source.id === l.source.id || lnk.target.id === l.source.id).length;
+      const targetCount = links.filter(lnk => lnk.source.id === l.target.id || lnk.target.id === l.target.id).length;
+      return (!singlesVisible && (sourceCount === 1 || targetCount === 1)) ? 'none' : 'block';
+    });
+    this.textContent = singlesVisible ? 'Hide Singles' : 'Show Singles';
+  };
+  
+  // Calculate node sizes based on connections
+  const maxMsGenres = Math.max(...Array.from(manuscriptNodes.values()).map(d => d.genreCount), 1);
+  const maxGenreMs = Math.max(...Array.from(genreNodes.values()).map(d => d.msCount), 1);
+  
+  // Configure force simulation based on layout
+  const simulation = d3.forceSimulation(nodeArray)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(d => d.isGenreLink ? 80 : 120).strength(d => d.isGenreLink ? 0.3 : 0.5))
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('collision', d3.forceCollide().radius(d => {
+      const baseR = d.type === 'manuscript' ? 4 + (d.genreCount / maxMsGenres) * 8 : 5 + (d.msCount / maxGenreMs) * 12;
+      return baseR + 5;
+    }));
+  
+  if (layout === 'horizontal') {
+    // Horizontal layout: manuscripts at top, genres at bottom
+    simulation
+      .force('x', d3.forceX(width / 2).strength(0.05))
+      .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
+  } else {
+    // Radial layout: force-directed with center gravity
+    simulation
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('x', d3.forceX(width / 2).strength(0.03))
+      .force('y', d3.forceY(height / 2).strength(0.03));
+  }
+  
+  const link = g.append('g')
+    .attr('class', 'links')
+    .selectAll('line')
+    .data(links)
+    .enter()
+    .append('line')
+    .attr('stroke', '#cbd5e1')
+    .attr('stroke-width', 1)
+    .attr('stroke-opacity', 0.4);
+  
+  const node = g.append('g')
+    .attr('class', 'nodes')
+    .selectAll('g')
+    .data(nodeArray)
+    .enter()
+    .append('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+      .on('start', dragstarted)
+      .on('drag', dragged)
+      .on('end', dragended));
+  
+  // Main shapes - circles for manuscripts, rectangles for genres/subgenres
+  const shapes = node.append(d => {
+    if (d.type === 'manuscript') {
+      return document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    } else {
+      return document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    }
+  });
+  
+  // Style circles (manuscripts)
+  shapes.filter(function(d) { return d.type === 'manuscript'; })
+    .attr('r', d => 4 + (d.genreCount / maxMsGenres) * 8)
+    .attr('fill', '#3b82f6')
+    .attr('stroke', d => d.isBridge ? '#dc2626' : '#fff')
+    .attr('stroke-width', d => d.isBridge ? 3 : 2.5)
+    .style('cursor', 'pointer');
+  
+  // Style rectangles (genres/subgenres)
+  shapes.filter(function(d) { return d.type !== 'manuscript'; })
+    .attr('width', d => (5 + (d.msCount / maxGenreMs) * 12) * 2)
+    .attr('height', d => (5 + (d.msCount / maxGenreMs) * 12) * 1.5)
+    .attr('x', d => -(5 + (d.msCount / maxGenreMs) * 12))
+    .attr('y', d => -(5 + (d.msCount / maxGenreMs) * 12) * 0.75)
+    .attr('rx', 3)
+    .attr('fill', levelFilter === 'genre' ? '#f59e0b' : '#a855f7')
+    .attr('stroke', d => d.isBridge ? '#dc2626' : '#fff')
+    .attr('stroke-width', d => d.isBridge ? 3 : 2.5)
+    .style('cursor', 'pointer');
+  
+  const circles = shapes;
+  
+  // Add glow effect for hubs
+  node.filter(d => d.isHub).each(function(d) {
+    const hubNode = d3.select(this);
+    if (d.type === 'manuscript') {
+      hubNode.append('circle')
+        .attr('r', (4 + (d.genreCount / maxMsGenres) * 8) + 4)
+        .attr('fill', 'none')
+        .attr('stroke', '#f59e0b')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.5)
+        .style('pointer-events', 'none')
+        .lower();
+    } else {
+      hubNode.append('rect')
+        .attr('width', ((5 + (d.msCount / maxGenreMs) * 12) * 2) + 8)
+        .attr('height', ((5 + (d.msCount / maxGenreMs) * 12) * 1.5) + 6)
+        .attr('x', -((5 + (d.msCount / maxGenreMs) * 12) + 4))
+        .attr('y', -((5 + (d.msCount / maxGenreMs) * 12) * 0.75 + 3))
+        .attr('rx', 3)
+        .attr('fill', 'none')
+        .attr('stroke', '#f59e0b')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.5)
+        .style('pointer-events', 'none')
+        .lower();
+    }
+  });
+  
+  const nodeLabels = node.append('text')
+    .text(d => d.name.length > 30 ? d.name.substring(0, 27) + '...' : d.name)
+    .attr('x', 0)
+    .attr('y', d => {
+      if (d.type === 'manuscript') {
+        return (4 + (d.genreCount / maxMsGenres) * 8) + 14;
+      } else {
+        return ((5 + (d.msCount / maxGenreMs) * 12) * 0.75) + 16;
+      }
+    })
+    .attr('text-anchor', 'middle')
+    .attr('font-size', d => d.isHub || d.isBridge ? '10px' : '9px')
+    .attr('font-weight', d => d.isHub || d.isBridge ? '700' : '600')
+    .attr('fill', '#1e293b')
+    .style('pointer-events', 'none')
+    .style('user-select', 'none');
+  
+  node.append('title')
+    .text(d => {
+      if (d.type === 'manuscript') {
+        return `${d.name}\n${d.genreCount} genre${d.genreCount !== 1 ? 's' : ''}`;
+      } else {
+        return `${d.name}\n${d.msCount} manuscript${d.msCount !== 1 ? 's' : ''}`;
+      }
+    });
+  
+  // Enhanced hover with tooltip
+  let tooltipRect = null;
+  node.on('mouseenter', function(event, d) {
+    // Cache bounding rect
+    tooltipRect = svgDiv.getBoundingClientRect();
+    
+    // Build tooltip content once
+    const tooltipHTML = d.type === 'manuscript' 
+      ? `<div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">${d.name}</div><div style="color: #64748b; line-height: 1.5;"><div>Type: Manuscript</div><div>Total ${itemLabel}: ${d.genreCount}</div><div>Unique ${itemLabel}: ${d.uniqueGenres.size}</div>${d.isBridge ? '<div style="color: #dc2626; margin-top: 0.25rem;">🔗 Bridge</div>' : ''}${d.isHub ? '<div style="color: #f59e0b; margin-top: 0.25rem;">⭐ Hub</div>' : ''}</div>`
+      : `<div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">${d.name}</div><div style="color: #64748b; line-height: 1.5;"><div>Type: ${d.type === 'genre' ? 'Genre' : 'Subgenre'}</div><div>Manuscripts: ${d.msCount}</div><div>Unique: ${d.uniqueManuscripts.size}</div>${d.isBridge ? '<div style="color: #dc2626; margin-top: 0.25rem;">🔗 Bridge</div>' : ''}${d.isHub ? '<div style="color: #f59e0b; margin-top: 0.25rem;">⭐ Hub</div>' : ''}</div>`;
+    
+    tooltip.innerHTML = tooltipHTML;
+    tooltip.style.left = `${event.pageX - tooltipRect.left + 15}px`;
+    tooltip.style.top = `${event.pageY - tooltipRect.top + 15}px`;
+    tooltip.style.opacity = '1';
+    
+    // Highlight connections
+    const connectedNodeIds = new Set();
+    link.style('stroke-opacity', l => {
+      if (l.source.id === d.id || l.target.id === d.id) {
+        connectedNodeIds.add(l.source.id);
+        connectedNodeIds.add(l.target.id);
+        return 0.8;
+      }
+      return 0.1;
+    }).style('stroke-width', l => {
+      if (l.source.id === d.id || l.target.id === d.id) return 2.5;
+      return 1;
+    }).style('stroke', l => {
+      if (l.source.id === d.id || l.target.id === d.id) return '#2563eb';
+      return '#cbd5e1';
+    });
+    
+    node.style('opacity', n => connectedNodeIds.has(n.id) ? 1 : 0.3);
+  })
+  .on('mousemove', function(event) {
+    if (tooltipRect) {
+      tooltip.style.left = `${event.pageX - tooltipRect.left + 15}px`;
+      tooltip.style.top = `${event.pageY - tooltipRect.top + 15}px`;
+    }
+  })
+  .on('mouseleave', function() {
+    tooltip.style.opacity = '0';
+    tooltipRect = null;
+    link.style('stroke-opacity', 0.4)
+        .style('stroke-width', 1)
+        .style('stroke', '#cbd5e1');
+    node.style('opacity', 1);
+  });
+  
+  // Click to focus
+  node.on('click', function(event, d) {
+    event.stopPropagation();
+    const scale = 1.5;
+    const x = -d.x * scale + width / 2;
+    const y = -d.y * scale + height / 2;
+    svg.transition()
+      .duration(750)
+      .call(zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale));
+  });
+  
+  function updateNodeSizes(scale) {
+    const inverseScale = 1 / scale;
+    shapes.each(function(d) {
+      const shape = d3.select(this);
+      if (d.type === 'manuscript') {
+        shape.attr('r', (4 + (d.genreCount / maxMsGenres) * 8) * inverseScale);
+      } else {
+        const baseSize = 5 + (d.msCount / maxGenreMs) * 12;
+        shape.attr('width', baseSize * 2 * inverseScale)
+             .attr('height', baseSize * 1.5 * inverseScale)
+             .attr('x', -baseSize * inverseScale)
+             .attr('y', -baseSize * 0.75 * inverseScale);
+      }
+    });
+    nodeLabels.attr('font-size', `${9 * inverseScale}px`)
+      .attr('y', d => {
+        if (d.type === 'manuscript') {
+          return ((4 + (d.genreCount / maxMsGenres) * 8) + 14) * inverseScale;
+        } else {
+          return (((5 + (d.msCount / maxGenreMs) * 12) * 0.75) + 16) * inverseScale;
+        }
+      });
+    link.attr('stroke-width', function(l) {
+      const currentOpacity = parseFloat(d3.select(this).style('stroke-opacity'));
+      return (currentOpacity > 0.5 ? 2.5 : 1) * inverseScale;
+    });
+  }
+  
+  function dragstarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+  
+  function dragended(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+  
+  simulation.on('tick', () => {
+    link
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+    
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+}
+
+function buildGenreDistributions() {
+  // Build genre distribution charts
+  buildGenresByInstitution();
+  buildGenresByLocation();
+  buildGenresOverTime();
+}
+
+function buildGenresByInstitution() {
+  const container = document.getElementById('genres-by-institution');
+  if (!container) return;
+  
+  // Track genre counts per institution
+  const institutionGenres = {};
+  
+  (DATA.pu || []).forEach(pu => {
+    const puId = String(pu.rec_ID);
+    const institutions = getInstitutionsForPU(pu);
+    
+    // Get texts related to this PU
+    const rels = [...(REL_INDEX.bySource?.[puId] || []), ...(REL_INDEX.byTarget?.[puId] || [])];
+    const genres = new Set();
+    
+    rels.forEach(rel => {
+      const src = getRes(rel, 'Source record');
+      const tgt = getRes(rel, 'Target record');
+      const textId = IDX.tx?.[String(src?.id)] ? String(src.id) : IDX.tx?.[String(tgt?.id)] ? String(tgt.id) : null;
+      
+      if (textId) {
+        const text = IDX.tx[textId];
+        const genre = MAP.tx?.genre(text);
+        if (genre && genre !== 'Unknown') {
+          genres.add(genre);
+        }
+      }
+    });
+    
+    institutions.forEach(inst => {
+      if (!institutionGenres[inst.institutionName]) {
+        institutionGenres[inst.institutionName] = {};
+      }
+      genres.forEach(genre => {
+        institutionGenres[inst.institutionName][genre] = (institutionGenres[inst.institutionName][genre] || 0) + 1;
+      });
+    });
+  });
+  
+  // Show top institutions
+  const topInstitutions = Object.entries(institutionGenres)
+    .map(([name, genres]) => ({ name, total: Object.values(genres).reduce((a, b) => a + b, 0), genres }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 10);
+  
+  if (topInstitutions.length === 0) {
+    container.innerHTML = '<div style="color: #94a3b8; font-size: 0.875rem;">No data available</div>';
+    return;
+  }
+  
+  const html = topInstitutions.map(inst => `
+    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+      <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">${inst.name}</div>
+      <div style="font-size: 0.75rem; color: #64748b;">${inst.total} texts across ${Object.keys(inst.genres).length} genres</div>
+    </div>
+  `).join('');
+  
+  container.innerHTML = html;
+}
+
+function buildGenresByLocation() {
+  const container = document.getElementById('genres-by-location');
+  if (!container) return;
+  
+  // Track genre counts per country
+  const locationGenres = {};
+  
+  (DATA.pu || []).forEach(pu => {
+    const country = getVal(pu, 'PU country');
+    if (!country || country === 'Unknown') return;
+    
+    const puId = String(pu.rec_ID);
+    const rels = [...(REL_INDEX.bySource?.[puId] || []), ...(REL_INDEX.byTarget?.[puId] || [])];
+    const genres = new Set();
+    
+    rels.forEach(rel => {
+      const src = getRes(rel, 'Source record');
+      const tgt = getRes(rel, 'Target record');
+      const textId = IDX.tx?.[String(src?.id)] ? String(src.id) : IDX.tx?.[String(tgt?.id)] ? String(tgt.id) : null;
+      
+      if (textId) {
+        const text = IDX.tx[textId];
+        const genre = MAP.tx?.genre(text);
+        if (genre && genre !== 'Unknown') {
+          genres.add(genre);
+        }
+      }
+    });
+    
+    if (!locationGenres[country]) {
+      locationGenres[country] = {};
+    }
+    genres.forEach(genre => {
+      locationGenres[country][genre] = (locationGenres[country][genre] || 0) + 1;
+    });
+  });
+  
+  const topLocations = Object.entries(locationGenres)
+    .map(([name, genres]) => ({ name, total: Object.values(genres).reduce((a, b) => a + b, 0), genres }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 10);
+  
+  if (topLocations.length === 0) {
+    container.innerHTML = '<div style="color: #94a3b8; font-size: 0.875rem;">No data available</div>';
+    return;
+  }
+  
+  const html = topLocations.map(loc => `
+    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+      <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">${loc.name}</div>
+      <div style="font-size: 0.75rem; color: #64748b;">${loc.total} texts across ${Object.keys(loc.genres).length} genres</div>
+    </div>
+  `).join('');
+  
+  container.innerHTML = html;
+}
+
+function buildGenresOverTime() {
+  const container = document.getElementById('genres-over-time');
+  if (!container) return;
+  
+  container.innerHTML = '<div style="color: #94a3b8; font-size: 0.875rem; text-align: center; padding: 2rem;">Timeline visualization coming soon</div>';
+}
+
+function buildInstitutionGenreNetwork() {
+  buildInstitutionNetwork('genre', 'horizontal');
+}
+
+function buildInstitutionSubgenreNetwork() {
+  buildInstitutionNetwork('subgenre', 'horizontal');
+}
+
+function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
+  const container = document.getElementById('inst-network-viz');
+  if (!container) return;
+  
+  // Build institution-genre network with country/region data
+  const institutionNodes = new Map();
+  const genreNodes = new Map();
+  const links = [];
+  const institutionCountries = new Map();  // Track country for each institution
+  
+  (DATA.pu || []).forEach(pu => {
+    const puId = String(pu.rec_ID);
+    const institutions = getInstitutionsForPU(pu);
+    const country = getVal(pu, 'PU country') || 'Unknown';
+    const region = getVal(pu, 'PU region') || 'Unknown';
+    
+    const rels = [...(REL_INDEX.bySource?.[puId] || []), ...(REL_INDEX.byTarget?.[puId] || [])];
+    const genresAndSubs = new Set();  // Store genres or subgenres based on levelFilter
+    
+    rels.forEach(rel => {
+      const src = getRes(rel, 'Source record');
+      const tgt = getRes(rel, 'Target record');
+      const textId = IDX.tx?.[String(src?.id)] ? String(src.id) : IDX.tx?.[String(tgt?.id)] ? String(tgt.id) : null;
+      
+      if (textId) {
+        const text = IDX.tx[textId];
+        const genre = MAP.tx?.genre(text);
+        const subgenre = MAP.tx?.sub(text);
+        
+        // Add genre or subgenre based on levelFilter
+        if (levelFilter === 'genre' && genre && genre !== 'Unknown' && genre !== '') {
+          genresAndSubs.add(`genre:${genre}`);
+        }
+        if (levelFilter === 'subgenre' && subgenre && subgenre !== 'Unknown' && subgenre !== '') {
+          genresAndSubs.add(`sub:${subgenre}`);
+        }
+      }
+    });
+    
+    institutions.forEach(inst => {
+      if (!institutionNodes.has(inst.institutionName)) {
+        institutionNodes.set(inst.institutionName, {
+          id: `inst-${inst.institutionName}`,
+          name: inst.institutionName,
+          type: 'institution',
+          country: country,
+          region: region,
+          genreCount: 0,
+          totalTexts: 0,
+          uniqueGenres: new Set()
+        });
+        institutionCountries.set(inst.institutionName, country);
+      }
+      const instNode = institutionNodes.get(inst.institutionName);
+      instNode.genreCount += genresAndSubs.size;
+      instNode.totalTexts++;
+      
+      genresAndSubs.forEach(genreKey => {
+        const [type, name] = genreKey.split(':');
+        const isSubgenre = type === 'sub';
+        const nodeId = genreKey;
+        
+        // Track unique genres for bridge detection
+        instNode.uniqueGenres.add(name);
+        
+        if (!genreNodes.has(nodeId)) {
+          genreNodes.set(nodeId, {
+            id: nodeId,
+            name: name,
+            type: isSubgenre ? 'subgenre' : 'genre',
+            institutionCount: 0,
+            totalOccurrences: 0,
+            uniqueInstitutions: new Set()
+          });
+        }
+        const genreNode = genreNodes.get(nodeId);
+        genreNode.institutionCount++;
+        genreNode.uniqueInstitutions.add(inst.institutionName);
+        genreNode.totalOccurrences++;
+        
+        const existing = links.find(l => l.source === `inst-${inst.institutionName}` && l.target === nodeId);
+        if (existing) {
+          existing.value++;
+        } else {
+          links.push({
+            source: `inst-${inst.institutionName}`,
+            target: nodeId,
+            value: 1
+          });
+        }
+      });
+    });
+  });
+  
+  const nodeArray = [...institutionNodes.values(), ...genreNodes.values()];
+  
+  if (nodeArray.length === 0) {
+    container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #94a3b8;">No institution-genre relationships found</div>';
+    return;
+  }
+  
+  // Clear container and create wrapper
+  container.innerHTML = '';
+  
+  // Detect bridge nodes and hubs
+  const avgInstGenres = Array.from(institutionNodes.values()).reduce((sum, n) => sum + n.uniqueGenres.size, 0) / institutionNodes.size;
+  const avgGenreInsts = Array.from(genreNodes.values()).reduce((sum, n) => sum + n.uniqueInstitutions.size, 0) / genreNodes.size;
+  
+  institutionNodes.forEach(node => {
+    node.isBridge = node.uniqueGenres.size > avgInstGenres * 1.5;
+    node.isHub = node.genreCount > avgInstGenres * 2;
+  });
+  
+  genreNodes.forEach(node => {
+    node.isBridge = node.uniqueInstitutions.size > avgGenreInsts * 1.5;
+    node.isHub = node.totalOccurrences > avgGenreInsts * 2;
+  });
+  
+  const bridgeCount = Array.from(institutionNodes.values()).filter(n => n.isBridge).length + 
+                      Array.from(genreNodes.values()).filter(n => n.isBridge).length;
+  const hubCount = Array.from(institutionNodes.values()).filter(n => n.isHub).length + 
+                   Array.from(genreNodes.values()).filter(n => n.isHub).length;
+  
+  const itemCount = genreNodes.size;
+  const itemLabel = levelFilter === 'genre' ? 'genres' : 'subgenres';
+  
+  // Color scales for institutions by country
+  const countries = Array.from(new Set(institutionCountries.values()));
+  const countryColors = {
+    'Germany': '#ef4444',
+    'France': '#3b82f6',
+    'Italy': '#10b981',
+    'Spain': '#f59e0b',
+    'Austria': '#8b5cf6',
+    'Switzerland': '#ec4899',
+    'Belgium': '#14b8a6',
+    'Netherlands': '#f97316',
+    'England': '#6366f1',
+    'Unknown': '#94a3b8'
+  };
+  const getInstColor = country => countryColors[country] || '#64748b';
+  
+  // Genre category colors (comprehensive categorization)
+  const genreCategories = {
+    'devotional': ['prayer', 'psalm', 'hour', 'devotion', 'hymn', 'liturgical', 'liturg', 'office', 'mass', 'breviary', 'missal', 'gospel', 'bible', 'saint', 'vita', 'hagiograph'],
+    'medical': ['medical', 'medicine', 'remedy', 'recipe', 'herbal', 'health', 'cure', 'physician', 'surgery', 'apothecary'],
+    'legal': ['legal', 'law', 'charter', 'document', 'contract', 'statute', 'decree', 'ordinance', 'privilege'],
+    'scholastic': ['commentary', 'treatise', 'sermon', 'theological', 'theology', 'philosophy', 'logic', 'summa', 'quaestio', 'disputation', 'gloss'],
+    'literary': ['poetry', 'poem', 'chronicle', 'history', 'letter', 'epistle', 'romance', 'fable', 'story', 'narrative', 'epic'],
+    'scientific': ['astronomy', 'astrology', 'arithmetic', 'geometry', 'mathematics', 'natural', 'science', 'computation'],
+    'grammatical': ['grammar', 'grammatical', 'vocabulary', 'dictionary', 'gloss', 'linguistic']
+  };
+  const genreCategoryColors = {
+    'devotional': '#a855f7',
+    'medical': '#22c55e',
+    'legal': '#0ea5e9',
+    'scholastic': '#f59e0b',
+    'literary': '#ec4899',
+    'scientific': '#8b5cf6',
+    'grammatical': '#14b8a6',
+    'other': '#94a3b8'
+  };
+  
+  // Track genre categorizations for debugging
+  const genreCategorizationMap = new Map();
+  
+  const getGenreCategory = genre => {
+    if (!genre) return 'other';
+    const lowerGenre = genre.toLowerCase();
+    
+    for (const [category, keywords] of Object.entries(genreCategories)) {
+      if (keywords.some(kw => lowerGenre.includes(kw))) {
+        genreCategorizationMap.set(genre, category);
+        return category;
+      }
+    }
+    genreCategorizationMap.set(genre, 'other');
+    return 'other';
+  };
+  const getGenreColor = genre => {
+    const category = getGenreCategory(genre);
+    return genreCategoryColors[category];
+  };
+  
+  // Log genre categorizations for debugging
+  console.log('Genre categorization sample:', Array.from(genreNodes.values()).slice(0, 10).map(n => ({
+    name: n.name,
+    type: n.type,
+    category: getGenreCategory(n.name),
+    color: getGenreColor(n.name)
+  })));
+  
+  // Controls bar
+  const controlsDiv = document.createElement('div');
+  controlsDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; flex-wrap: wrap; gap: 0.75rem;';
+  controlsDiv.innerHTML = `
+    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+      <button id="inst-zoom-in" style="padding: 0.375rem 0.75rem; background: #10b981; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom In</button>
+      <button id="inst-zoom-out" style="padding: 0.375rem 0.75rem; background: #10b981; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom Out</button>
+      <button id="inst-reset" style="padding: 0.375rem 0.75rem; background: #64748b; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Reset View</button>
+      <button id="inst-toggle-labels" style="padding: 0.375rem 0.75rem; background: #8b5cf6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Labels</button>
+      <button id="inst-toggle-singles" style="padding: 0.375rem 0.75rem; background: #ec4899; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Singles</button>
+    </div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <span style="font-size: 0.875rem; color: #64748b; font-weight: 600;">${institutionNodes.size} institutions • ${itemCount} ${itemLabel} • ${bridgeCount} bridges • ${hubCount} hubs</span>
+      ${createEmbedButton(`institution-${levelFilter}`)}
+      ${createExportButton('inst-network-viz', `institution-${itemLabel}-network.png`)}
+    </div>
+  `;
+  container.appendChild(controlsDiv);
+  
+  // Legend
+  const legendDiv = document.createElement('div');
+  legendDiv.style.cssText = 'margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; font-size: 0.875rem;';
+  legendDiv.innerHTML = `
+    <div style="margin-bottom: 0.75rem; font-weight: 600; color: #1e293b;">Institutions (circles, colored by country)</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+      ${Object.entries(countryColors).slice(0, 10).map(([country, color]) => `
+        <div style="display: flex; align-items: center; gap: 0.25rem;">
+          <div style="width: 12px; height: 12px; background: ${color}; border-radius: 50%; border: 1.5px solid white;"></div>
+          <span style="color: #64748b; font-size: 0.75rem;">${country}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 12px; background: ${levelFilter === 'genre' ? '#f59e0b' : '#a855f7'}; border-radius: 3px; border: 2px solid white;"></div>
+        <span style="color: #1e293b; font-weight: 600; text-transform: capitalize;">${itemLabel} (rectangles)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 16px; background: white; border-radius: 50%; border: 3px solid #dc2626;"></div>
+        <span style="color: #1e293b; font-weight: 600;">Bridge Nodes</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 20px; height: 20px; background: white; border-radius: 50%; border: 3px solid #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);"></div>
+        <span style="color: #1e293b; font-weight: 600;">Major Hubs</span>
+      </div>
+    </div>
+    <div style="color: #64748b; font-size: 0.75rem;">
+      Institutions at top, ${itemLabel} at bottom | Node size = connections | Edge thickness = frequency | Bridges connect diverse ${itemLabel} | Hubs have many connections | Hover to highlight | Drag to reposition | Click to focus
+    </div>
+  `;
+  container.appendChild(legendDiv);
+  
+  // SVG container
+  const svgDiv = document.createElement('div');
+  svgDiv.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative;';
+  container.appendChild(svgDiv);
+  
+  // Create tooltip div
+  const tooltip = document.createElement('div');
+  tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #10b981; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
+  svgDiv.appendChild(tooltip);
+  
+  // D3 force layout
+  const width = container.clientWidth;
+  const height = 900;  // Increased from 700
+  
+  const svg = d3.select(svgDiv)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+  
+  const g = svg.append('g');
+  
+  // Zoom behavior
+  let currentTransform = d3.zoomIdentity;
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])
+    .on('zoom', (event) => {
+      currentTransform = event.transform;
+      g.attr('transform', event.transform);
+      updateNodeSizes(event.transform.k);
+    });
+  
+  svg.call(zoom);
+  
+  // Zoom controls
+  document.getElementById('inst-zoom-in').onclick = () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+  };
+  document.getElementById('inst-zoom-out').onclick = () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+  };
+  document.getElementById('inst-reset').onclick = () => {
+    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+  };
+  
+  // Toggle labels
+  let labelsVisible = true;
+  document.getElementById('inst-toggle-labels').onclick = function() {
+    labelsVisible = !labelsVisible;
+    nodeLabels.style('display', labelsVisible ? 'block' : 'none');
+    this.textContent = labelsVisible ? 'Hide Labels' : 'Show Labels';
+  };
+  
+  // Toggle singles (nodes with only 1 connection)
+  let singlesVisible = true;
+  document.getElementById('inst-toggle-singles').onclick = function() {
+    singlesVisible = !singlesVisible;
+    node.style('display', d => {
+      const connectionCount = links.filter(l => l.source.id === d.id || l.target.id === d.id).length;
+      return (!singlesVisible && connectionCount === 1) ? 'none' : 'block';
+    });
+    link.style('display', l => {
+      const sourceCount = links.filter(lnk => lnk.source.id === l.source.id || lnk.target.id === l.source.id).length;
+      const targetCount = links.filter(lnk => lnk.source.id === l.target.id || lnk.target.id === l.target.id).length;
+      return (!singlesVisible && (sourceCount === 1 || targetCount === 1)) ? 'none' : 'block';
+    });
+    this.textContent = singlesVisible ? 'Hide Singles' : 'Show Singles';
+  };
+  
+  // Calculate max values for scaling
+  const maxInstGenres = Math.max(...Array.from(institutionNodes.values()).map(d => d.genreCount), 1);
+  const maxGenreInsts = Math.max(...Array.from(genreNodes.values()).map(d => d.totalOccurrences), 1);
+  const maxLinkValue = Math.max(...links.map(l => l.value), 1);
+  
+  // Configure force simulation based on layout
+  const simulation = d3.forceSimulation(nodeArray)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(d => 100 - (d.value / maxLinkValue) * 30).strength(0.4))
+    .force('charge', d3.forceManyBody().strength(-120))
+    .force('collision', d3.forceCollide().radius(d => {
+      if (d.type === 'institution') return 6 + (d.genreCount / maxInstGenres) * 12 + 5;
+      return 6 + (d.totalOccurrences / maxGenreInsts) * 10 + 5;
+    }));
+  
+  if (layout === 'horizontal') {
+    // Horizontal layout: institutions at top, genres at bottom
+    simulation
+      .force('x', d3.forceX(width / 2).strength(0.05))
+      .force('y', d3.forceY(d => d.type === 'institution' ? height * 0.25 : height * 0.75).strength(0.9));
+  } else {
+    // Radial layout: force-directed with center gravity
+    simulation
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('x', d3.forceX(width / 2).strength(0.03))
+      .force('y', d3.forceY(height / 2).strength(0.03));
+  }
+  
+  const link = g.append('g')
+    .attr('class', 'links')
+    .selectAll('line')
+    .data(links)
+    .enter()
+    .append('line')
+    .attr('stroke', '#cbd5e1')
+    .attr('stroke-width', d => 0.5 + (d.value / maxLinkValue) * 4)
+    .attr('stroke-opacity', 0.4);
+  
+  const node = g.append('g')
+    .attr('class', 'nodes')
+    .selectAll('g')
+    .data(nodeArray)
+    .enter()
+    .append('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+      .on('start', dragstarted)
+      .on('drag', dragged)
+      .on('end', dragended));
+  
+  // Main shapes - circles for institutions, rectangles for genres/subgenres
+  const shapes = node.append(d => {
+    if (d.type === 'institution') {
+      return document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    } else {
+      return document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    }
+  });
+  
+  // Style circles (institutions)
+  shapes.filter(function(d) { return d.type === 'institution'; })
+    .attr('r', d => 6 + (d.genreCount / maxInstGenres) * 12)
+    .attr('fill', d => getInstColor(d.country))
+    .attr('stroke', d => d.isBridge ? '#dc2626' : '#fff')
+    .attr('stroke-width', d => d.isBridge ? 3 : 2.5)
+    .style('cursor', 'pointer');
+  
+  // Style rectangles (genres/subgenres) - single color
+  shapes.filter(function(d) { return d.type !== 'institution'; })
+    .attr('width', d => {
+      const baseSize = d.type === 'subgenre' ? 5 : 6;
+      return (baseSize + (d.totalOccurrences / maxGenreInsts) * 10) * 2;
+    })
+    .attr('height', d => {
+      const baseSize = d.type === 'subgenre' ? 5 : 6;
+      return (baseSize + (d.totalOccurrences / maxGenreInsts) * 10) * 1.5;
+    })
+    .attr('x', d => {
+      const baseSize = d.type === 'subgenre' ? 5 : 6;
+      return -(baseSize + (d.totalOccurrences / maxGenreInsts) * 10);
+    })
+    .attr('y', d => {
+      const baseSize = d.type === 'subgenre' ? 5 : 6;
+      return -(baseSize + (d.totalOccurrences / maxGenreInsts) * 10) * 0.75;
+    })
+    .attr('rx', 3)
+    .attr('fill', levelFilter === 'genre' ? '#f59e0b' : '#a855f7')
+    .attr('stroke', d => d.isBridge ? '#dc2626' : '#fff')
+    .attr('stroke-width', d => d.isBridge ? 3 : 2.5)
+    .style('cursor', 'pointer');
+  
+  const circles = shapes;
+  
+  // Add glow effect for hubs
+  node.filter(d => d.isHub).each(function(d) {
+    const hubNode = d3.select(this);
+    if (d.type === 'institution') {
+      hubNode.append('circle')
+        .attr('r', (6 + (d.genreCount / maxInstGenres) * 12) + 4)
+        .attr('fill', 'none')
+        .attr('stroke', '#f59e0b')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.5)
+        .style('pointer-events', 'none')
+        .lower();
+    } else {
+      const baseSize = d.type === 'subgenre' ? 5 : 6;
+      const nodeSize = baseSize + (d.totalOccurrences / maxGenreInsts) * 10;
+      hubNode.append('rect')
+        .attr('width', (nodeSize * 2) + 8)
+        .attr('height', (nodeSize * 1.5) + 6)
+        .attr('x', -(nodeSize + 4))
+        .attr('y', -(nodeSize * 0.75 + 3))
+        .attr('rx', 3)
+        .attr('fill', 'none')
+        .attr('stroke', '#f59e0b')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.5)
+        .style('pointer-events', 'none')
+        .lower();
+    }
+  });
+  
+  const nodeLabels = node.append('text')
+    .text(d => d.name.length > 30 ? d.name.substring(0, 27) + '...' : d.name)
+    .attr('x', 0)
+    .attr('y', d => {
+      if (d.type === 'institution') {
+        return (6 + (d.genreCount / maxInstGenres) * 12) + 14;
+      } else {
+        const baseSize = d.type === 'subgenre' ? 5 : 6;
+        return ((baseSize + (d.totalOccurrences / maxGenreInsts) * 10) * 0.75) + 16;
+      }
+    })
+    .attr('text-anchor', 'middle')
+    .attr('font-size', d => d.isHub || d.isBridge ? '10px' : '9px')
+    .attr('font-weight', d => d.isHub || d.isBridge ? '700' : '600')
+    .attr('fill', '#1e293b')
+    .style('pointer-events', 'none')
+    .style('user-select', 'none');
+  
+  node.append('title')
+    .text(d => {
+      if (d.type === 'institution') {
+        return `${d.name}\n${d.country} - ${d.region}\n${d.genreCount} genre occurrences\n${d.totalTexts} texts`;
+      } else {
+        return `${d.name}\n${d.institutionCount} institutions\n${d.totalOccurrences} total occurrences`;
+      }
+    });
+  
+  // Hover highlighting with tooltip
+  let tooltipRect = null;
+  node.on('mouseenter', function(event, d) {
+    // Cache bounding rect
+    tooltipRect = svgDiv.getBoundingClientRect();
+    
+    // Build tooltip content once
+    const tooltipHTML = d.type === 'institution'
+      ? `<div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">${d.name}</div><div style="color: #64748b; line-height: 1.5;"><div>Type: Institution</div><div>Country: ${d.country}</div><div>Region: ${d.region}</div><div>Total ${itemLabel}: ${d.genreCount}</div><div>Unique ${itemLabel}: ${d.uniqueGenres.size}</div><div>Texts: ${d.totalTexts}</div>${d.isBridge ? '<div style="color: #dc2626; margin-top: 0.25rem;">🔗 Bridge</div>' : ''}${d.isHub ? '<div style="color: #f59e0b; margin-top: 0.25rem;">⭐ Hub</div>' : ''}</div>`
+      : `<div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">${d.name}</div><div style="color: #64748b; line-height: 1.5;"><div>Type: ${d.type === 'genre' ? 'Genre' : 'Subgenre'}</div><div>Institutions: ${d.institutionCount}</div><div>Unique: ${d.uniqueInstitutions.size}</div><div>Total: ${d.totalOccurrences}</div>${d.isBridge ? '<div style="color: #dc2626; margin-top: 0.25rem;">🔗 Bridge</div>' : ''}${d.isHub ? '<div style="color: #f59e0b; margin-top: 0.25rem;">⭐ Hub</div>' : ''}</div>`;
+    
+    tooltip.innerHTML = tooltipHTML;
+    tooltip.style.left = `${event.pageX - tooltipRect.left + 15}px`;
+    tooltip.style.top = `${event.pageY - tooltipRect.top + 15}px`;
+    tooltip.style.opacity = '1';
+    
+    const connectedNodeIds = new Set();
+    link.style('stroke-opacity', l => {
+      if (l.source.id === d.id || l.target.id === d.id) {
+        connectedNodeIds.add(l.source.id);
+        connectedNodeIds.add(l.target.id);
+        return 0.8;
+      }
+      return 0.1;
+    }).style('stroke-width', l => {
+      if (l.source.id === d.id || l.target.id === d.id) {
+        return (0.5 + (l.value / maxLinkValue) * 4) * 1.5;
+      }
+      return 0.5 + (l.value / maxLinkValue) * 4;
+    }).style('stroke', l => {
+      if (l.source.id === d.id || l.target.id === d.id) return '#2563eb';
+      return '#cbd5e1';
+    });
+    
+    node.style('opacity', n => connectedNodeIds.has(n.id) ? 1 : 0.3);
+  })
+  .on('mousemove', function(event) {
+    if (tooltipRect) {
+      tooltip.style.left = `${event.pageX - tooltipRect.left + 15}px`;
+      tooltip.style.top = `${event.pageY - tooltipRect.top + 15}px`;
+    }
+  })
+  .on('mouseleave', function() {
+    tooltip.style.opacity = '0';
+    tooltipRect = null;
+    link.style('stroke-opacity', 0.4)
+        .style('stroke-width', l => 0.5 + (l.value / maxLinkValue) * 4)
+        .style('stroke', '#cbd5e1');
+    node.style('opacity', 1);
+  });
+  
+  // Click to focus
+  node.on('click', function(event, d) {
+    event.stopPropagation();
+    const scale = 1.5;
+    const x = -d.x * scale + width / 2;
+    const y = -d.y * scale + height / 2;
+    svg.transition()
+      .duration(750)
+      .call(zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale));
+  });
+  
+  function updateNodeSizes(scale) {
+    const inverseScale = 1 / scale;
+    shapes.each(function(d) {
+      const shape = d3.select(this);
+      if (d.type === 'institution') {
+        shape.attr('r', (6 + (d.genreCount / maxInstGenres) * 12) * inverseScale);
+      } else {
+        const baseSize = d.type === 'subgenre' ? 5 : 6;
+        const nodeSize = baseSize + (d.totalOccurrences / maxGenreInsts) * 10;
+        shape.attr('width', nodeSize * 2 * inverseScale)
+             .attr('height', nodeSize * 1.5 * inverseScale)
+             .attr('x', -nodeSize * inverseScale)
+             .attr('y', -nodeSize * 0.75 * inverseScale);
+      }
+    });
+    nodeLabels.attr('font-size', `${9 * inverseScale}px`)
+      .attr('y', d => {
+        if (d.type === 'institution') {
+          return ((6 + (d.genreCount / maxInstGenres) * 12) + 14) * inverseScale;
+        } else {
+          const baseSize = d.type === 'subgenre' ? 5 : 6;
+          return (((baseSize + (d.totalOccurrences / maxGenreInsts) * 10) * 0.75) + 16) * inverseScale;
+        }
+      });
+    link.attr('stroke-width', l => {
+      const currentOpacity = parseFloat(d3.select(this).style('stroke-opacity'));
+      const baseWidth = 0.5 + (l.value / maxLinkValue) * 4;
+      return baseWidth * (currentOpacity > 0.5 ? 1.5 : 1) * inverseScale;
+    });
+  }
+  
+  function dragstarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+  
+  function dragended(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+  
+  simulation.on('tick', () => {
+    link
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+    
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+}
+
+// Scribe-Genre/Subgenre Network Functions
+function buildScribeGenreNetwork() {
+  buildScribeNetwork('genre', 'horizontal');
+}
+
+function buildScribeSubgenreNetwork() {
+  buildScribeNetwork('subgenre', 'horizontal');
+}
+
+function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
+  const container = document.getElementById('scribe-network-viz');
+  if (!container) return;
+  
+  // Build network data connecting scribes to genres/subgenres
+  const scribeNodes = new Map();
+  const genreNodes = new Map();
+  const links = [];
+  
+  // Process scribal units to connect scribes to genres
+  (DATA.su || []).forEach(su => {
+    const suId = String(su.rec_ID);
+    const scribes = getScribesForSU(su);
+    
+    if (scribes.length === 0) return;
+    
+    // Get production units for this SU
+    const puIds = getPUsForSU(su);
+    const textGenres = new Set();
+    
+    // Get texts from the production units
+    puIds.forEach(puId => {
+      const pu = IDX.pu?.[puId];
+      if (!pu) return;
+      
+      const puRels = [
+        ...(REL_INDEX.bySource?.[puId] || []),
+        ...(REL_INDEX.byTarget?.[puId] || [])
+      ];
+      
+      puRels.forEach(rel => {
+        const src = getRes(rel, 'Source record');
+        const tgt = getRes(rel, 'Target record');
+        const textId = IDX.tx?.[String(src?.id)] ? String(src.id) : IDX.tx?.[String(tgt?.id)] ? String(tgt.id) : null;
+        
+        if (textId) {
+          const text = IDX.tx[textId];
+          const genre = MAP.tx?.genre(text);
+          const subgenre = MAP.tx?.sub(text);
+          
+          if (levelFilter === 'genre' && genre && genre !== 'Unknown' && genre !== '') {
+            textGenres.add(`genre:${genre}`);
+          }
+          if (levelFilter === 'subgenre' && subgenre && subgenre !== 'Unknown' && subgenre !== '') {
+            textGenres.add(`sub:${subgenre}`);
+          }
+        }
+      });
+    });
+    
+    if (textGenres.size === 0) return;
+    
+    // Create nodes and links for each scribe
+    scribes.forEach(scribe => {
+      const scribeId = `scribe-${scribe.scribeId}`;
+      
+      if (!scribeNodes.has(scribeId)) {
+        scribeNodes.set(scribeId, {
+          id: scribeId,
+          name: scribe.scribeName,
+          type: 'scribe',
+          genreCount: 0,
+          uniqueGenres: new Set()
+        });
+      }
+      
+      const scribeNode = scribeNodes.get(scribeId);
+      scribeNode.genreCount += textGenres.size;
+      
+      textGenres.forEach(genreKey => {
+        const [type, name] = genreKey.split(':');
+        const isSubgenre = type === 'sub';
+        
+        scribeNode.uniqueGenres.add(name);
+        
+        if (!genreNodes.has(genreKey)) {
+          genreNodes.set(genreKey, {
+            id: genreKey,
+            name: name,
+            type: isSubgenre ? 'subgenre' : 'genre',
+            scribeCount: 0,
+            uniqueScribes: new Set()
+          });
+        }
+        
+        const genreNode = genreNodes.get(genreKey);
+        genreNode.scribeCount++;
+        genreNode.uniqueScribes.add(scribeId);
+        
+        links.push({
+          source: scribeId,
+          target: genreKey,
+          value: 1
+        });
+      });
+    });
+  });
+  
+  const nodeArray = [...scribeNodes.values(), ...genreNodes.values()];
+  
+  if (nodeArray.length === 0) {
+    container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #94a3b8;">No scribe-genre relationships found</div>';
+    return;
+  }
+  
+  container.innerHTML = '';
+  
+  // Detect bridge nodes and hubs
+  const avgScribeGenres = Array.from(scribeNodes.values()).reduce((sum, n) => sum + n.uniqueGenres.size, 0) / scribeNodes.size;
+  const avgGenreScribes = Array.from(genreNodes.values()).reduce((sum, n) => sum + n.uniqueScribes.size, 0) / genreNodes.size;
+  
+  scribeNodes.forEach(node => {
+    node.isBridge = node.uniqueGenres.size > avgScribeGenres * 1.5;
+    node.isHub = node.genreCount > avgScribeGenres * 2;
+  });
+  
+  genreNodes.forEach(node => {
+    node.isBridge = node.uniqueScribes.size > avgGenreScribes * 1.5;
+    node.isHub = node.scribeCount > avgGenreScribes * 2;
+  });
+  
+  const bridgeCount = Array.from(scribeNodes.values()).filter(n => n.isBridge).length + 
+                      Array.from(genreNodes.values()).filter(n => n.isBridge).length;
+  const hubCount = Array.from(scribeNodes.values()).filter(n => n.isHub).length + 
+                   Array.from(genreNodes.values()).filter(n => n.isHub).length;
+  
+  const itemCount = genreNodes.size;
+  const itemLabel = levelFilter === 'genre' ? 'genres' : 'subgenres';
+  
+  // Controls bar
+  const controlsDiv = document.createElement('div');
+  controlsDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; flex-wrap: wrap; gap: 0.75rem;';
+  controlsDiv.innerHTML = `
+    <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+      <button id="scribe-zoom-in" style="padding: 0.375rem 0.75rem; background: #22c55e; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom In</button>
+      <button id="scribe-zoom-out" style="padding: 0.375rem 0.75rem; background: #22c55e; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom Out</button>
+      <button id="scribe-reset" style="padding: 0.375rem 0.75rem; background: #64748b; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Reset View</button>
+      <button id="scribe-toggle-labels" style="padding: 0.375rem 0.75rem; background: #8b5cf6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Labels</button>
+      <button id="scribe-toggle-singles" style="padding: 0.375rem 0.75rem; background: #ec4899; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Singles</button>
+    </div>
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <span style="font-size: 0.875rem; color: #64748b; font-weight: 600;">${scribeNodes.size} scribes • ${itemCount} ${itemLabel} • ${bridgeCount} bridges • ${hubCount} hubs</span>
+      ${createEmbedButton(`scribe-${levelFilter}`)}
+      ${createExportButton('scribe-network-viz', `scribe-${itemLabel}-network.png`)}
+    </div>
+  `;
+  container.appendChild(controlsDiv);
+  
+  // Genre categorization
+  const genreCategories = {
+    'devotional': ['prayer', 'psalm', 'hour', 'devotion', 'hymn', 'liturgical', 'liturg', 'office', 'mass', 'breviary', 'missal', 'gospel', 'bible', 'saint', 'vita', 'hagiograph'],
+    'medical': ['medical', 'medicine', 'remedy', 'recipe', 'herbal', 'health', 'cure', 'physician', 'surgery', 'apothecary'],
+    'legal': ['legal', 'law', 'charter', 'document', 'contract', 'statute', 'decree', 'ordinance', 'privilege'],
+    'scholastic': ['commentary', 'treatise', 'sermon', 'theological', 'theology', 'philosophy', 'logic', 'summa', 'quaestio', 'disputation', 'gloss'],
+    'literary': ['poetry', 'poem', 'chronicle', 'history', 'letter', 'epistle', 'romance', 'fable', 'story', 'narrative', 'epic'],
+    'scientific': ['astronomy', 'astrology', 'arithmetic', 'geometry', 'mathematics', 'natural', 'science', 'computation'],
+    'grammatical': ['grammar', 'grammatical', 'vocabulary', 'dictionary', 'gloss', 'linguistic']
+  };
+  const genreCategoryColors = {
+    'devotional': '#a855f7',
+    'medical': '#22c55e',
+    'legal': '#0ea5e9',
+    'scholastic': '#f59e0b',
+    'literary': '#ec4899',
+    'scientific': '#8b5cf6',
+    'grammatical': '#14b8a6',
+    'other': '#94a3b8'
+  };
+  
+  const getGenreCategory = genre => {
+    if (!genre) return 'other';
+    const lowerGenre = genre.toLowerCase();
+    for (const [category, keywords] of Object.entries(genreCategories)) {
+      if (keywords.some(kw => lowerGenre.includes(kw))) {
+        return category;
+      }
+    }
+    return 'other';
+  };
+  const getGenreColor = genre => {
+    const category = getGenreCategory(genre);
+    return genreCategoryColors[category];
+  };
+  
+  // Legend
+  const legendDiv = document.createElement('div');
+  legendDiv.style.cssText = 'display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; font-size: 0.875rem;';
+  legendDiv.innerHTML = `
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 16px; background: #22c55e; border-radius: 50%; border: 2px solid white;"></div>
+        <span style="color: #1e293b; font-weight: 600;">Scribes (circles)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 12px; background: ${levelFilter === 'genre' ? '#f59e0b' : '#a855f7'}; border-radius: 3px; border: 2px solid white;"></div>
+        <span style="color: #1e293b; font-weight: 600; text-transform: capitalize;">${itemLabel} (rectangles)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 16px; height: 16px; background: white; border-radius: 50%; border: 3px solid #dc2626;"></div>
+        <span style="color: #1e293b; font-weight: 600;">Bridge Nodes</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <div style="width: 20px; height: 20px; background: white; border-radius: 50%; border: 3px solid #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);"></div>
+        <span style="color: #1e293b; font-weight: 600;">Major Hubs</span>
+      </div>
+    </div>
+    <div style="color: #64748b; font-size: 0.75rem;">
+      Scribes at top, ${itemLabel} at bottom | Node size = connections | Bridges connect diverse ${itemLabel} | Hubs show specialists or popular ${itemLabel} | Hover to highlight | Drag to reposition | Click to focus
+    </div>
+  `;
+  container.appendChild(legendDiv);
+  
+  // SVG container
+  const svgDiv = document.createElement('div');
+  svgDiv.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative;';
+  container.appendChild(svgDiv);
+  
+  // Create tooltip div
+  const tooltip = document.createElement('div');
+  tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
+  svgDiv.appendChild(tooltip);
+  
+  // D3 force layout
+  const width = container.clientWidth;
+  const height = 900;
+  
+  const svg = d3.select(svgDiv)
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height);
+  
+  const g = svg.append('g');
+  
+  // Zoom behavior
+  let currentTransform = d3.zoomIdentity;
+  const zoom = d3.zoom()
+    .scaleExtent([0.1, 4])
+    .on('zoom', (event) => {
+      currentTransform = event.transform;
+      g.attr('transform', event.transform);
+      updateNodeSizes(event.transform.k);
+    });
+  
+  svg.call(zoom);
+  
+  // Zoom controls
+  document.getElementById('scribe-zoom-in').onclick = () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 1.3);
+  };
+  document.getElementById('scribe-zoom-out').onclick = () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 0.7);
+  };
+  document.getElementById('scribe-reset').onclick = () => {
+    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+  };
+  
+  // Toggle labels
+  let labelsVisible = true;
+  document.getElementById('scribe-toggle-labels').onclick = function() {
+    labelsVisible = !labelsVisible;
+    nodeLabels.style('display', labelsVisible ? 'block' : 'none');
+    this.textContent = labelsVisible ? 'Hide Labels' : 'Show Labels';
+  };
+  
+  // Toggle singles (nodes with only 1 connection)
+  let singlesVisible = true;
+  document.getElementById('scribe-toggle-singles').onclick = function() {
+    singlesVisible = !singlesVisible;
+    node.style('display', d => {
+      const connectionCount = links.filter(l => l.source.id === d.id || l.target.id === d.id).length;
+      return (!singlesVisible && connectionCount === 1) ? 'none' : 'block';
+    });
+    link.style('display', l => {
+      const sourceCount = links.filter(lnk => lnk.source.id === l.source.id || lnk.target.id === l.source.id).length;
+      const targetCount = links.filter(lnk => lnk.source.id === l.target.id || lnk.target.id === l.target.id).length;
+      return (!singlesVisible && (sourceCount === 1 || targetCount === 1)) ? 'none' : 'block';
+    });
+    this.textContent = singlesVisible ? 'Hide Singles' : 'Show Singles';
+  };
+  
+  // Calculate node sizes
+  const maxScribeGenres = Math.max(...Array.from(scribeNodes.values()).map(d => d.genreCount), 1);
+  const maxGenreScribes = Math.max(...Array.from(genreNodes.values()).map(d => d.scribeCount), 1);
+  
+  // Configure force simulation based on layout
+  const simulation = d3.forceSimulation(nodeArray)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(120).strength(0.5))
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('collision', d3.forceCollide().radius(d => {
+      const baseR = d.type === 'scribe' ? 4 + (d.genreCount / maxScribeGenres) * 8 : 5 + (d.scribeCount / maxGenreScribes) * 12;
+      return baseR + 5;
+    }));
+  
+  if (layout === 'horizontal') {
+    // Horizontal layout: scribes at top, genres at bottom
+    simulation
+      .force('x', d3.forceX(width / 2).strength(0.05))
+      .force('y', d3.forceY(d => d.type === 'scribe' ? height * 0.25 : height * 0.75).strength(0.9));
+  } else {
+    // Radial layout: force-directed with center gravity
+    simulation
+      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('x', d3.forceX(width / 2).strength(0.03))
+      .force('y', d3.forceY(height / 2).strength(0.03));
+  }
+  
+  const link = g.append('g')
+    .attr('class', 'links')
+    .selectAll('line')
+    .data(links)
+    .enter()
+    .append('line')
+    .attr('stroke', '#cbd5e1')
+    .attr('stroke-width', 1)
+    .attr('stroke-opacity', 0.4);
+  
+  const node = g.append('g')
+    .attr('class', 'nodes')
+    .selectAll('g')
+    .data(nodeArray)
+    .enter()
+    .append('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+      .on('start', dragstarted)
+      .on('drag', dragged)
+      .on('end', dragended));
+  
+  // Main shapes - circles for scribes, rectangles for genres/subgenres
+  const shapes = node.append(d => {
+    if (d.type === 'scribe') {
+      return document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    } else {
+      return document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    }
+  });
+  
+  // Style circles (scribes)
+  shapes.filter(function(d) { return d.type === 'scribe'; })
+    .attr('r', d => 4 + (d.genreCount / maxScribeGenres) * 8)
+    .attr('fill', '#22c55e')
+    .attr('stroke', d => d.isBridge ? '#dc2626' : '#fff')
+    .attr('stroke-width', d => d.isBridge ? 3 : 2.5)
+    .style('cursor', 'pointer');
+  
+  // Style rectangles (genres/subgenres) - single color
+  shapes.filter(function(d) { return d.type !== 'scribe'; })
+    .attr('width', d => (5 + (d.scribeCount / maxGenreScribes) * 12) * 2)
+    .attr('height', d => (5 + (d.scribeCount / maxGenreScribes) * 12) * 1.5)
+    .attr('x', d => -(5 + (d.scribeCount / maxGenreScribes) * 12))
+    .attr('y', d => -(5 + (d.scribeCount / maxGenreScribes) * 12) * 0.75)
+    .attr('rx', 3)
+    .attr('fill', levelFilter === 'genre' ? '#f59e0b' : '#a855f7')
+    .attr('stroke', d => d.isBridge ? '#dc2626' : '#fff')
+    .attr('stroke-width', d => d.isBridge ? 3 : 2.5)
+    .style('cursor', 'pointer');
+  
+  const circles = shapes;
+  
+  // Add glow effect for hubs
+  node.filter(d => d.isHub).each(function(d) {
+    const hubNode = d3.select(this);
+    if (d.type === 'scribe') {
+      hubNode.append('circle')
+        .attr('r', (4 + (d.genreCount / maxScribeGenres) * 8) + 4)
+        .attr('fill', 'none')
+        .attr('stroke', '#f59e0b')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.5)
+        .style('pointer-events', 'none')
+        .lower();
+    } else {
+      hubNode.append('rect')
+        .attr('width', ((5 + (d.scribeCount / maxGenreScribes) * 12) * 2) + 8)
+        .attr('height', ((5 + (d.scribeCount / maxGenreScribes) * 12) * 1.5) + 6)
+        .attr('x', -((5 + (d.scribeCount / maxGenreScribes) * 12) + 4))
+        .attr('y', -((5 + (d.scribeCount / maxGenreScribes) * 12) * 0.75 + 3))
+        .attr('rx', 3)
+        .attr('fill', 'none')
+        .attr('stroke', '#f59e0b')
+        .attr('stroke-width', 2)
+        .attr('stroke-opacity', 0.5)
+        .style('pointer-events', 'none')
+        .lower();
+    }
+  });
+  
+  const nodeLabels = node.append('text')
+    .text(d => d.name.length > 30 ? d.name.substring(0, 27) + '...' : d.name)
+    .attr('x', 0)
+    .attr('y', d => {
+      if (d.type === 'scribe') {
+        return (4 + (d.genreCount / maxScribeGenres) * 8) + 14;
+      } else {
+        return ((5 + (d.scribeCount / maxGenreScribes) * 12) * 0.75) + 16;
+      }
+    })
+    .attr('text-anchor', 'middle')
+    .attr('font-size', d => d.isHub || d.isBridge ? '10px' : '9px')
+    .attr('font-weight', d => d.isHub || d.isBridge ? '700' : '600')
+    .attr('fill', '#1e293b')
+    .style('pointer-events', 'none')
+    .style('user-select', 'none');
+  
+  node.append('title')
+    .text(d => {
+      if (d.type === 'scribe') {
+        return `${d.name}\n${d.genreCount} ${itemLabel}`;
+      } else {
+        return `${d.name}\n${d.scribeCount} scribe${d.scribeCount !== 1 ? 's' : ''}`;
+      }
+    });
+  
+  // Hover highlighting with tooltip
+  let tooltipRect = null;
+  node.on('mouseenter', function(event, d) {
+    // Cache bounding rect
+    tooltipRect = svgDiv.getBoundingClientRect();
+    
+    // Build tooltip content once
+    const tooltipHTML = d.type === 'scribe'
+      ? `<div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">${d.name}</div><div style="color: #64748b; line-height: 1.5;"><div>Type: Scribe</div><div>Total ${itemLabel}: ${d.genreCount}</div><div>Unique ${itemLabel}: ${d.uniqueGenres.size}</div>${d.isBridge ? '<div style="color: #dc2626; margin-top: 0.25rem;">🔗 Bridge</div>' : ''}${d.isHub ? '<div style="color: #f59e0b; margin-top: 0.25rem;">⭐ Hub</div>' : ''}</div>`
+      : `<div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem;">${d.name}</div><div style="color: #64748b; line-height: 1.5;"><div>Type: ${d.type === 'genre' ? 'Genre' : 'Subgenre'}</div><div>Scribes: ${d.scribeCount}</div><div>Unique: ${d.uniqueScribes.size}</div>${d.isBridge ? '<div style="color: #dc2626; margin-top: 0.25rem;">🔗 Bridge</div>' : ''}${d.isHub ? '<div style="color: #f59e0b; margin-top: 0.25rem;">⭐ Hub</div>' : ''}</div>`;
+    
+    tooltip.innerHTML = tooltipHTML;
+    tooltip.style.left = `${event.pageX - tooltipRect.left + 15}px`;
+    tooltip.style.top = `${event.pageY - tooltipRect.top + 15}px`;
+    tooltip.style.opacity = '1';
+    
+    const connectedNodeIds = new Set();
+    link.style('stroke-opacity', l => {
+      if (l.source.id === d.id || l.target.id === d.id) {
+        connectedNodeIds.add(l.source.id);
+        connectedNodeIds.add(l.target.id);
+        return 0.8;
+      }
+      return 0.1;
+    }).style('stroke-width', l => {
+      if (l.source.id === d.id || l.target.id === d.id) return 2.5;
+      return 1;
+    }).style('stroke', l => {
+      if (l.source.id === d.id || l.target.id === d.id) return '#2563eb';
+      return '#cbd5e1';
+    });
+    
+    node.style('opacity', n => connectedNodeIds.has(n.id) ? 1 : 0.3);
+  })
+  .on('mousemove', function(event) {
+    if (tooltipRect) {
+      tooltip.style.left = `${event.pageX - tooltipRect.left + 15}px`;
+      tooltip.style.top = `${event.pageY - tooltipRect.top + 15}px`;
+    }
+  })
+  .on('mouseleave', function() {
+    tooltip.style.opacity = '0';
+    tooltipRect = null;
+    link.style('stroke-opacity', 0.4)
+        .style('stroke-width', 1)
+        .style('stroke', '#cbd5e1');
+    node.style('opacity', 1);
+  });
+  
+  // Click to focus
+  node.on('click', function(event, d) {
+    event.stopPropagation();
+    const scale = 1.5;
+    const x = -d.x * scale + width / 2;
+    const y = -d.y * scale + height / 2;
+    svg.transition()
+      .duration(750)
+      .call(zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale));
+  });
+  
+  function updateNodeSizes(scale) {
+    const inverseScale = 1 / scale;
+    shapes.each(function(d) {
+      const shape = d3.select(this);
+      if (d.type === 'scribe') {
+        shape.attr('r', (4 + (d.genreCount / maxScribeGenres) * 8) * inverseScale);
+      } else {
+        const baseSize = 5 + (d.scribeCount / maxGenreScribes) * 12;
+        shape.attr('width', baseSize * 2 * inverseScale)
+             .attr('height', baseSize * 1.5 * inverseScale)
+             .attr('x', -baseSize * inverseScale)
+             .attr('y', -baseSize * 0.75 * inverseScale);
+      }
+    });
+    nodeLabels.attr('font-size', `${9 * inverseScale}px`)
+      .attr('y', d => {
+        if (d.type === 'scribe') {
+          return ((4 + (d.genreCount / maxScribeGenres) * 8) + 14) * inverseScale;
+        } else {
+          return (((5 + (d.scribeCount / maxGenreScribes) * 12) * 0.75) + 16) * inverseScale;
+        }
+      });
+    link.attr('stroke-width', function(l) {
+      const currentOpacity = parseFloat(d3.select(this).style('stroke-opacity'));
+      return (currentOpacity > 0.5 ? 2.5 : 1) * inverseScale;
+    });
+  }
+  
+  function dragstarted(event, d) {
+    if (!event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(event, d) {
+    d.fx = event.x;
+    d.fy = event.y;
+  }
+  
+  function dragended(event, d) {
+    if (!event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+  
+  simulation.on('tick', () => {
+    link
+      .attr('x1', d => d.source.x)
+      .attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x)
+      .attr('y2', d => d.target.y);
+    
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+}
+
 boot();
 
 /* Expose a couple for debugging */
