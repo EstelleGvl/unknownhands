@@ -18967,6 +18967,10 @@ async function boot(){
     // Hide header, footer, and main navigation for clean embed
     document.body.classList.add('embed-mode');
     
+    // Force full width on html and body elements
+    document.documentElement.style.cssText = 'width: 100%; max-width: 100%; margin: 0; padding: 0;';
+    document.body.style.cssText = 'width: 100%; max-width: 100%; margin: 0; padding: 0; overflow-x: hidden;';
+    
     // Hide all page elements except the network
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
@@ -19018,7 +19022,6 @@ async function boot(){
       .embed-mode .genre-tabs { display: none !important; }
       .embed-mode .scribe-tabs { display: none !important; }
       .embed-mode .mode-container > div:first-child { border: none !important; }
-      .embed-mode .network-mode-btn { display: none !important; }
       .embed-mode .viz-head { display: none !important; }
       .embed-mode .mode-container { 
         width: 100% !important; 
@@ -19066,9 +19069,6 @@ async function boot(){
               
               // Wait for network to render, then apply embed-specific changes
               setTimeout(() => {
-                // Hide genre/subgenre toggle buttons
-                document.querySelectorAll('.network-mode-btn').forEach(btn => btn.style.display = 'none');
-                
                 // Hide description paragraphs
                 const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
                 descParagraphs.forEach(p => p.style.display = 'none');
@@ -19127,8 +19127,6 @@ async function boot(){
                 tabBtn.click();
                 
                 setTimeout(() => {
-                  document.querySelectorAll('.network-mode-btn').forEach(btn => btn.style.display = 'none');
-                  
                   const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
                   descParagraphs.forEach(p => p.style.display = 'none');
                   
@@ -19408,7 +19406,7 @@ function renderGenreOverview(container) {
 
 function renderManuscriptNetworks(container) {
   container.innerHTML = `
-    <div style="max-width: 1600px; margin: 0 auto;">
+    <div style="width: 100%; max-width: 100%; margin: 0; padding: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
         <h2 style="margin: 0; color: #1a1a1a;">Manuscript Networks</h2>
         <div style="display: flex; gap: 1rem;">
@@ -19487,7 +19485,7 @@ function renderManuscriptNetworks(container) {
 
 function renderInstitutionNetworks(container) {
   container.innerHTML = `
-    <div style="max-width: 1600px; margin: 0 auto;">
+    <div style="width: 100%; max-width: 100%; margin: 0; padding: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
         <h2 style="margin: 0; color: #1a1a1a;">Institution Networks</h2>
         <div style="display: flex; gap: 1rem;">
@@ -19564,7 +19562,7 @@ function renderInstitutionNetworks(container) {
 
 function renderScribeNetworks(container) {
   container.innerHTML = `
-    <div style="max-width: 1600px; margin: 0 auto;">
+    <div style="width: 100%; max-width: 100%; margin: 0; padding: 0;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
         <h2 style="margin: 0; color: #1a1a1a;">Scribe Networks</h2>
         <div style="display: flex; gap: 1rem;">
