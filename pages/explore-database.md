@@ -19939,18 +19939,9 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #3b82f6; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use actual container width with delay for proper calculation
-  let width = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth, 1200);
-  const height = 900;  // Increased from 700
-  
-  // Force recalculation in case initial width is wrong
-  requestAnimationFrame(() => {
-    const actualWidth = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth);
-    if (actualWidth > width) {
-      width = actualWidth;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-    }
-  });
+  // D3 force layout - use large fixed viewBox for better scaling
+  const width = 1800;  // Fixed large width for viewBox
+  const height = 900;
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -19962,11 +19953,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Update viewBox on resize
   const resizeObserver = new ResizeObserver(() => {
-    const newWidth = svgDiv.clientWidth;
-    if (newWidth && newWidth !== width) {
-      width = newWidth;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-    }
+    // Keep fixed viewBox for consistent scaling
   });
   resizeObserver.observe(svgDiv);
   
@@ -20662,18 +20649,9 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #10b981; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use actual container width with delay for proper calculation
-  let width = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth, 1200);
-  const height = 900;  // Increased from 700
-  
-  // Force recalculation in case initial width is wrong
-  requestAnimationFrame(() => {
-    const actualWidth = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth);
-    if (actualWidth > width) {
-      width = actualWidth;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-    }
-  });
+  // D3 force layout - use large fixed viewBox for better scaling
+  const width = 1800;  // Fixed large width for viewBox
+  const height = 900;
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20685,11 +20663,7 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Update viewBox on resize
   const resizeObserver = new ResizeObserver(() => {
-    const newWidth = svgDiv.clientWidth;
-    if (newWidth && newWidth !== width) {
-      width = newWidth;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-    }
+    // Keep fixed viewBox for consistent scaling
   });
   resizeObserver.observe(svgDiv);
   
@@ -21243,18 +21217,9 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use actual container width with delay for proper calculation
-  let width = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth, 1200);
+  // D3 force layout - use large fixed viewBox for better scaling
+  const width = 1800;  // Fixed large width for viewBox
   const height = 900;
-  
-  // Force recalculation in case initial width is wrong
-  requestAnimationFrame(() => {
-    const actualWidth = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth);
-    if (actualWidth > width) {
-      width = actualWidth;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-    }
-  });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -21266,13 +21231,11 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Update viewBox on resize
   const resizeObserver = new ResizeObserver(() => {
-    const newWidth = svgDiv.clientWidth;
-    if (newWidth && newWidth !== width) {
-      width = newWidth;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-    }
+    // Keep fixed viewBox for consistent scaling
   });
   resizeObserver.observe(svgDiv);
+  
+  const g = svg.append('g');
   
   const g = svg.append('g');
   
