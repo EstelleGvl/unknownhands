@@ -18841,6 +18841,7 @@ async function boot(){
   const params = new URLSearchParams(window.location.search);
   const embedMode = params.get('embed') === 'true';
   const networkParam = params.get('network'); // e.g., 'manuscript-genre', 'institution-subgenre', 'scribe-genre'
+  const modeParam = params.get('mode'); // e.g., 'text-genres', 'scribes'
   
   if (embedMode) {
     // Hide header, footer, and main navigation for clean embed
@@ -18862,18 +18863,32 @@ async function boot(){
       .embed-mode .db-shell { margin: 0 !important; }
       .embed-mode h1 { display: none !important; }
       .embed-mode body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }
+      .embed-mode .genre-tabs { display: none !important; }
+      .embed-mode .scribe-tabs { display: none !important; }
+      .embed-mode .mode-container > div:first-child { border: none !important; }
+      .embed-mode .network-mode-btn { display: none !important; }
+      .embed-mode .layout-toggle-container { display: none !important; }
+      .embed-mode .viz-head { display: none !important; }
     `;
     document.head.appendChild(embedStyles);
     
-    // Auto-navigate to network mode if network parameter is provided
-    if (networkParam) {
+    // Handle different embed modes
+    if (modeParam === 'text-genres' || modeParam === 'scribes') {
+      // Embed from Text Genres or Scribes mode
       setTimeout(() => {
-        // Switch to network mode
+        const modeBtnSelector = `[data-mode="${modeParam}"]`;
+        const modeBtn = document.querySelector(modeBtnSelector);
+        if (modeBtn) {
+          modeBtn.click();
+        }
+      }, 100);
+    } else if (networkParam) {
+      // Embed from Network mode
+      setTimeout(() => {
         const networkModeBtn = document.querySelector('[data-mode="network"]');
         if (networkModeBtn) {
           networkModeBtn.click();
           
-          // Wait for content to load, then navigate to specific network
           setTimeout(() => {
             const tabMap = {
               'manuscript-genre': 'manuscript-networks',
@@ -18890,13 +18905,30 @@ async function boot(){
               if (tabBtn) {
                 tabBtn.click();
                 
-                // Wait for network to render, then click the appropriate toggle
                 setTimeout(() => {
+                  document.querySelectorAll('.network-mode-btn').forEach(btn => btn.style.display = 'none');
+                  document.querySelectorAll('.layout-toggle-btn').forEach(btn => btn.style.display = 'none');
+                  const layoutContainer = document.querySelector('.layout-toggle-container');
+                  if (layoutContainer) layoutContainer.style.display = 'none';
+                  
+                  const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
+                  descParagraphs.forEach(p => p.style.display = 'none');
+                  
                   if (networkParam.includes('subgenre')) {
                     const subgenreBtn = document.querySelector('[data-level="subgenre"]');
                     if (subgenreBtn && !subgenreBtn.classList.contains('is-on')) {
                       subgenreBtn.click();
                     }
+                  }
+                  
+                  const layoutParam = params.get('layout');
+                  if (layoutParam === 'radial') {
+                    setTimeout(() => {
+                      const radialBtn = document.querySelector('[data-layout="radial"]');
+                      if (radialBtn && !radialBtn.classList.contains('is-active')) {
+                        radialBtn.click();
+                      }
+                    }, 200);
                   }
                 }, 500);
               }
