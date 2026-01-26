@@ -10,6 +10,35 @@ banner:
   caption: "Christine of Pizan writing at her desk. BnF, français 603, f. 81v"
 ---
 
+<script>
+// Immediately check for embed mode and hide elements BEFORE page renders
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('embed') === 'true') {
+    document.documentElement.classList.add('embed-mode');
+    // Add styles immediately
+    const style = document.createElement('style');
+    style.textContent = `
+      .embed-mode header,
+      .embed-mode footer,
+      .embed-mode nav,
+      .embed-mode .page-header,
+      .embed-mode .site-header,
+      .embed-mode .page-banner,
+      .embed-mode [class*="banner"],
+      .embed-mode .site-title,
+      .embed-mode .site-nav {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+})();
+</script>
+
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
