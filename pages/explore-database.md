@@ -14,7 +14,10 @@ banner:
 // Immediately check for embed mode and hide elements BEFORE page renders
 (function() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get('embed') === 'true') {
+  const isEmbed = params.get('embed') === 'true';
+  const inIframe = window.self !== window.top;
+  
+  if (isEmbed || inIframe) {
     document.documentElement.classList.add('embed-mode');
     // Add styles immediately
     const style = document.createElement('style');
@@ -37,6 +40,9 @@ banner:
       .embed-mode body {
         margin: 0 !important;
         padding: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
       }
       
       .embed-mode .explore-fullwidth {
@@ -72,6 +78,18 @@ banner:
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
+      }
+      
+      .embed-mode #ms-network-viz,
+      .embed-mode #inst-network-viz,
+      .embed-mode #scribe-network-viz {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .embed-mode svg {
+        width: 100% !important;
+        height: auto !important;
       }
     `;
     document.head.appendChild(style);
@@ -14722,13 +14740,16 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
   container.appendChild(controlPanel);
   
   // D3 force layout
-  const width = container.clientWidth;
+  const width = container.clientWidth || 1200;
   const height = 600;
   
   const svg = d3.select(container)
     .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .style('width', '100%')
+    .style('height', 'auto')
+    .style('display', 'block')
     .style('border', '1px solid #e2e8f0')
     .style('border-radius', '0.375rem')
     .style('background', '#fafafa');
@@ -19881,13 +19902,16 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   svgDiv.appendChild(tooltip);
   
   // D3 force layout
-  const width = container.clientWidth;
+  const width = container.clientWidth || 1200;
   const height = 900;  // Increased from 700
   
   const svg = d3.select(svgDiv)
     .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .style('width', '100%')
+    .style('height', 'auto')
+    .style('display', 'block');
   
   const g = svg.append('g');
   
@@ -20582,13 +20606,16 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   svgDiv.appendChild(tooltip);
   
   // D3 force layout
-  const width = container.clientWidth;
+  const width = container.clientWidth || 1200;
   const height = 900;  // Increased from 700
   
   const svg = d3.select(svgDiv)
     .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .style('width', '100%')
+    .style('height', 'auto')
+    .style('display', 'block');
   
   const g = svg.append('g');
   
@@ -21141,13 +21168,16 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   svgDiv.appendChild(tooltip);
   
   // D3 force layout
-  const width = container.clientWidth;
+  const width = container.clientWidth || 1200;
   const height = 900;
   
   const svg = d3.select(svgDiv)
     .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .style('width', '100%')
+    .style('height', 'auto')
+    .style('display', 'block');
   
   const g = svg.append('g');
   
