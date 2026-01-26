@@ -91,6 +91,14 @@ banner:
         box-sizing: border-box !important;
       }
       
+      .embed-mode #ms-network-wrapper,
+      .embed-mode #inst-network-wrapper,
+      .embed-mode #scribe-network-wrapper {
+        padding: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+      
       .embed-mode svg {
         width: 100% !important;
         height: auto !important;
@@ -19073,6 +19081,19 @@ async function boot(){
                 const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
                 descParagraphs.forEach(p => p.style.display = 'none');
                 
+                // Force width recalculation
+                setTimeout(() => {
+                  const containers = document.querySelectorAll('#ms-network-viz, #inst-network-viz, #scribe-network-viz');
+                  containers.forEach(container => {
+                    const svg = container.querySelector('svg');
+                    if (svg && container.clientWidth) {
+                      const width = container.clientWidth;
+                      const height = 900;
+                      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+                    }
+                  });
+                }, 500);
+                
                 // Apply network-specific parameters
                 if (networkParam && networkParam.includes('subgenre')) {
                   const subgenreBtn = document.querySelector('[data-level="subgenre"]');
@@ -19129,6 +19150,19 @@ async function boot(){
                 setTimeout(() => {
                   const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
                   descParagraphs.forEach(p => p.style.display = 'none');
+                  
+                  // Force width recalculation
+                  setTimeout(() => {
+                    const containers = document.querySelectorAll('#ms-network-viz, #inst-network-viz, #scribe-network-viz');
+                    containers.forEach(container => {
+                      const svg = container.querySelector('svg');
+                      if (svg && container.clientWidth) {
+                        const width = container.clientWidth;
+                        const height = 900;
+                        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+                      }
+                    });
+                  }, 500);
                   
                   if (networkParam.includes('subgenre')) {
                     const subgenreBtn = document.querySelector('[data-level="subgenre"]');
@@ -19905,9 +19939,18 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #3b82f6; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use actual container width
-  let width = svgDiv.clientWidth || container.clientWidth || 1200;
+  // D3 force layout - use actual container width with delay for proper calculation
+  let width = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth, 1200);
   const height = 900;  // Increased from 700
+  
+  // Force recalculation in case initial width is wrong
+  requestAnimationFrame(() => {
+    const actualWidth = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth);
+    if (actualWidth > width) {
+      width = actualWidth;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+    }
+  });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20619,9 +20662,18 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #10b981; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use actual container width
-  let width = svgDiv.clientWidth || container.clientWidth || 1200;
+  // D3 force layout - use actual container width with delay for proper calculation
+  let width = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth, 1200);
   const height = 900;  // Increased from 700
+  
+  // Force recalculation in case initial width is wrong
+  requestAnimationFrame(() => {
+    const actualWidth = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth);
+    if (actualWidth > width) {
+      width = actualWidth;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+    }
+  });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -21191,9 +21243,18 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use actual container width
-  let width = svgDiv.clientWidth || container.clientWidth || 1200;
+  // D3 force layout - use actual container width with delay for proper calculation
+  let width = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth, 1200);
   const height = 900;
+  
+  // Force recalculation in case initial width is wrong
+  requestAnimationFrame(() => {
+    const actualWidth = Math.max(svgDiv.clientWidth, container.clientWidth, svgDiv.offsetWidth);
+    if (actualWidth > width) {
+      width = actualWidth;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+    }
+  });
   
   const svg = d3.select(svgDiv)
     .append('svg')
