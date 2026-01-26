@@ -70,7 +70,7 @@ banner:
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        padding: 1rem !important;
+        padding: 0.5rem !important;
         box-sizing: border-box !important;
       }
       
@@ -78,6 +78,7 @@ banner:
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
+        padding: 0 !important;
       }
       
       .embed-mode #ms-network-viz,
@@ -85,11 +86,16 @@ banner:
       .embed-mode #scribe-network-viz {
         width: 100% !important;
         max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
       }
       
       .embed-mode svg {
         width: 100% !important;
         height: auto !important;
+        max-width: 100% !important;
+        display: block !important;
       }
     `;
     document.head.appendChild(style);
@@ -19893,7 +19899,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative;';
+  svgDiv.style.cssText = 'width: 100%; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
   
   // Create tooltip div
@@ -19901,8 +19907,8 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #3b82f6; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout
-  const width = container.clientWidth || 1200;
+  // D3 force layout - use actual container width
+  let width = svgDiv.clientWidth || container.clientWidth || 1200;
   const height = 900;  // Increased from 700
   
   const svg = d3.select(svgDiv)
@@ -19912,6 +19918,16 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', 'auto')
     .style('display', 'block');
+  
+  // Update viewBox on resize
+  const resizeObserver = new ResizeObserver(() => {
+    const newWidth = svgDiv.clientWidth;
+    if (newWidth && newWidth !== width) {
+      width = newWidth;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+    }
+  });
+  resizeObserver.observe(svgDiv);
   
   const g = svg.append('g');
   
@@ -20597,7 +20613,7 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative;';
+  svgDiv.style.cssText = 'width: 100%; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
   
   // Create tooltip div
@@ -20605,8 +20621,8 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #10b981; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout
-  const width = container.clientWidth || 1200;
+  // D3 force layout - use actual container width
+  let width = svgDiv.clientWidth || container.clientWidth || 1200;
   const height = 900;  // Increased from 700
   
   const svg = d3.select(svgDiv)
@@ -20616,6 +20632,16 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', 'auto')
     .style('display', 'block');
+  
+  // Update viewBox on resize
+  const resizeObserver = new ResizeObserver(() => {
+    const newWidth = svgDiv.clientWidth;
+    if (newWidth && newWidth !== width) {
+      width = newWidth;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+    }
+  });
+  resizeObserver.observe(svgDiv);
   
   const g = svg.append('g');
   
@@ -21159,7 +21185,7 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative;';
+  svgDiv.style.cssText = 'width: 100%; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
   
   // Create tooltip div
@@ -21167,8 +21193,8 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout
-  const width = container.clientWidth || 1200;
+  // D3 force layout - use actual container width
+  let width = svgDiv.clientWidth || container.clientWidth || 1200;
   const height = 900;
   
   const svg = d3.select(svgDiv)
@@ -21178,6 +21204,16 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', 'auto')
     .style('display', 'block');
+  
+  // Update viewBox on resize
+  const resizeObserver = new ResizeObserver(() => {
+    const newWidth = svgDiv.clientWidth;
+    if (newWidth && newWidth !== width) {
+      width = newWidth;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+    }
+  });
+  resizeObserver.observe(svgDiv);
   
   const g = svg.append('g');
   
