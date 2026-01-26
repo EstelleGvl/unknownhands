@@ -18883,16 +18883,18 @@ async function boot(){
     // Add embed-specific styles
     const embedStyles = document.createElement('style');
     embedStyles.textContent = `
-      .embed-mode .explore-fullwidth { padding: 0 !important; margin: 0 !important; }
-      .embed-mode .db-shell { margin: 0 !important; }
+      .embed-mode .explore-fullwidth { padding: 0 !important; margin: 0 auto !important; max-width: 100% !important; }
+      .embed-mode .db-shell { margin: 0 auto !important; }
       .embed-mode h1 { display: none !important; }
       .embed-mode body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }
       .embed-mode .genre-tabs { display: none !important; }
       .embed-mode .scribe-tabs { display: none !important; }
       .embed-mode .mode-container > div:first-child { border: none !important; }
       .embed-mode .network-mode-btn { display: none !important; }
-      .embed-mode .layout-toggle-container { display: none !important; }
       .embed-mode .viz-head { display: none !important; }
+      .embed-mode .mode-container { width: 100% !important; max-width: 100% !important; }
+      .embed-mode #genre-tab-content { padding: 0 !important; }
+      .embed-mode #genre-tab-content > div { max-width: 100% !important; margin: 0 auto !important; }
     `;
     document.head.appendChild(embedStyles);
     
@@ -18913,11 +18915,6 @@ async function boot(){
               setTimeout(() => {
                 // Hide genre/subgenre toggle buttons
                 document.querySelectorAll('.network-mode-btn').forEach(btn => btn.style.display = 'none');
-                
-                // Hide layout toggle buttons
-                document.querySelectorAll('.layout-toggle-btn').forEach(btn => btn.style.display = 'none');
-                const layoutContainer = document.querySelector('.layout-toggle-container');
-                if (layoutContainer) layoutContainer.style.display = 'none';
                 
                 // Hide description paragraphs
                 const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
@@ -18978,9 +18975,6 @@ async function boot(){
                 
                 setTimeout(() => {
                   document.querySelectorAll('.network-mode-btn').forEach(btn => btn.style.display = 'none');
-                  document.querySelectorAll('.layout-toggle-btn').forEach(btn => btn.style.display = 'none');
-                  const layoutContainer = document.querySelector('.layout-toggle-container');
-                  if (layoutContainer) layoutContainer.style.display = 'none';
                   
                   const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
                   descParagraphs.forEach(p => p.style.display = 'none');
