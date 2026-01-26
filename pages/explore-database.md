@@ -18870,31 +18870,73 @@ async function boot(){
   if (embedMode) {
     // Hide header, footer, and main navigation for clean embed
     document.body.classList.add('embed-mode');
+    
+    // Hide all page elements except the network
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
     const mainNav = document.getElementById('main-nav-tabs');
     const banner = document.querySelector('.page-banner');
+    const pageHeader = document.querySelector('.page-header');
+    const siteHeader = document.querySelector('.site-header');
+    const navBar = document.querySelector('nav');
+    const allBanners = document.querySelectorAll('[class*="banner"]');
     
     if (header) header.style.display = 'none';
     if (footer) footer.style.display = 'none';
     if (mainNav) mainNav.style.display = 'none';
     if (banner) banner.style.display = 'none';
+    if (pageHeader) pageHeader.style.display = 'none';
+    if (siteHeader) siteHeader.style.display = 'none';
+    if (navBar) navBar.style.display = 'none';
+    allBanners.forEach(b => b.style.display = 'none');
     
     // Add embed-specific styles
     const embedStyles = document.createElement('style');
     embedStyles.textContent = `
-      .embed-mode .explore-fullwidth { padding: 0 !important; margin: 0 auto !important; max-width: 100% !important; }
-      .embed-mode .db-shell { margin: 0 auto !important; }
+      .embed-mode header,
+      .embed-mode footer,
+      .embed-mode nav,
+      .embed-mode .page-header,
+      .embed-mode .site-header,
+      .embed-mode .page-banner,
+      .embed-mode [class*="banner"] { display: none !important; }
+      
+      .embed-mode .explore-fullwidth { 
+        padding: 1rem !important; 
+        margin: 0 auto !important; 
+        max-width: 100% !important; 
+      }
+      .embed-mode .db-shell { 
+        margin: 0 auto !important; 
+        max-width: 1400px !important;
+        width: 100% !important;
+      }
       .embed-mode h1 { display: none !important; }
-      .embed-mode body { margin: 0 !important; padding: 0 !important; overflow-x: hidden !important; }
+      .embed-mode body { 
+        margin: 0 !important; 
+        padding: 0 !important; 
+        overflow-x: hidden !important; 
+      }
       .embed-mode .genre-tabs { display: none !important; }
       .embed-mode .scribe-tabs { display: none !important; }
       .embed-mode .mode-container > div:first-child { border: none !important; }
       .embed-mode .network-mode-btn { display: none !important; }
       .embed-mode .viz-head { display: none !important; }
-      .embed-mode .mode-container { width: 100% !important; max-width: 100% !important; }
-      .embed-mode #genre-tab-content { padding: 0 !important; }
-      .embed-mode #genre-tab-content > div { max-width: 100% !important; margin: 0 auto !important; }
+      .embed-mode .mode-container { 
+        width: 100% !important; 
+        max-width: 100% !important; 
+      }
+      .embed-mode #genre-tab-content { 
+        padding: 0 1rem !important; 
+        margin: 0 auto !important;
+      }
+      .embed-mode #genre-tab-content > div { 
+        max-width: 1400px !important; 
+        margin: 0 auto !important; 
+      }
+      .embed-mode .mode-container > .viz-card {
+        box-shadow: none !important;
+      }
     `;
     document.head.appendChild(embedStyles);
     
