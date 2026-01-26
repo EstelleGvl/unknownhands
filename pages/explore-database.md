@@ -1396,7 +1396,22 @@ function createEmbedButton(networkType) {
     if (btn) {
       btn.onclick = () => {
         const baseUrl = window.location.origin + window.location.pathname;
-        const embedUrl = `${baseUrl}?embed=true&network=${networkType}`;
+        
+        // Determine if we're in text-genres mode or network mode
+        const activeMode = document.querySelector('.main-nav-btn.is-on');
+        const isTextGenresMode = activeMode && activeMode.dataset.mode === 'text-genres';
+        
+        let embedUrl;
+        if (isTextGenresMode) {
+          // Generate URL for text-genres mode with specific tab
+          const activeTab = document.querySelector('.genre-tab-btn.is-on');
+          const tabName = activeTab ? activeTab.dataset.tab : 'manuscript-networks';
+          embedUrl = `${baseUrl}?embed=true&mode=text-genres&tab=${tabName}&network=${networkType}`;
+        } else {
+          // Generate URL for network mode
+          embedUrl = `${baseUrl}?embed=true&network=${networkType}`;
+        }
+        
         const iframeCode = `<iframe src="${embedUrl}" width="100%" height="900px" frameborder="0" style="border: none;"></iframe>`;
         
         // Create modal
@@ -1407,6 +1422,14 @@ function createEmbedButton(networkType) {
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
               <h3 style="margin: 0; color: #1e293b; font-size: 1.25rem;">Embed Network</h3>
               <button id="close-embed-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b; padding: 0; width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">×</button>
+            </div>
+            <div style="margin-bottom: 1rem; padding: 0.75rem; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0.375rem;">
+              <p style="margin: 0; font-size: 0.875rem; color: #92400e; line-height: 1.5;">
+                <strong>Note:</strong> All interactive features are preserved in embed mode:
+                <br>• Hover tooltips with metadata
+                <br>• Hide Labels & Hide Singles buttons
+                <br>• Zoom controls
+              </p>
             </div>
             <div style="margin-bottom: 1.5rem;">
               <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #475569; font-size: 0.875rem;">Embed URL</label>
@@ -18842,6 +18865,7 @@ async function boot(){
   const embedMode = params.get('embed') === 'true';
   const networkParam = params.get('network'); // e.g., 'manuscript-genre', 'institution-subgenre', 'scribe-genre'
   const modeParam = params.get('mode'); // e.g., 'text-genres', 'scribes'
+  const tabParam = params.get('tab'); // e.g., 'manuscript-networks', 'institution-networks'
   
   if (embedMode) {
     // Hide header, footer, and main navigation for clean embed
@@ -18873,11 +18897,58 @@ async function boot(){
     document.head.appendChild(embedStyles);
     
     // Handle different embed modes
-    if (modeParam === 'text-genres' || modeParam === 'scribes') {
-      // Embed from Text Genres or Scribes mode
+    if (modeParam === 'text-genres' && tabParam) {
+      // Embed specific network from Text Genres mode
       setTimeout(() => {
-        const modeBtnSelector = `[data-mode="${modeParam}"]`;
-        const modeBtn = document.querySelector(modeBtnSelector);
+        const modeBtn = document.querySelector('[data-mode="text-genres"]');
+        if (modeBtn) {
+          modeBtn.click();
+          
+          setTimeout(() => {
+            const tabBtn = document.querySelector(`.genre-tab-btn[data-tab="${tabParam}"]`);
+            if (tabBtn) {
+              tabBtn.click();
+              
+              // Wait for network to render, then apply embed-specific changes
+              setTimeout(() => {
+                // Hide genre/subgenre toggle buttons
+                document.querySelectorAll('.network-mode-btn').forEach(btn => btn.style.display = 'none');
+                
+                // Hide layout toggle buttons
+                document.querySelectorAll('.layout-toggle-btn').forEach(btn => btn.style.display = 'none');
+                const layoutContainer = document.querySelector('.layout-toggle-container');
+                if (layoutContainer) layoutContainer.style.display = 'none';
+                
+                // Hide description paragraphs
+                const descParagraphs = document.querySelectorAll('#genre-tab-content > div > p');
+                descParagraphs.forEach(p => p.style.display = 'none');
+                
+                // Apply network-specific parameters
+                if (networkParam && networkParam.includes('subgenre')) {
+                  const subgenreBtn = document.querySelector('[data-level="subgenre"]');
+                  if (subgenreBtn && !subgenreBtn.classList.contains('is-on')) {
+                    subgenreBtn.click();
+                  }
+                }
+                
+                const layoutParam = params.get('layout');
+                if (layoutParam === 'radial') {
+                  setTimeout(() => {
+                    const radialBtn = document.querySelector('[data-layout="radial"]');
+                    if (radialBtn && !radialBtn.classList.contains('is-active')) {
+                      radialBtn.click();
+                    }
+                  }, 200);
+                }
+              }, 500);
+            }
+          }, 300);
+        }
+      }, 100);
+    } else if (modeParam === 'scribes') {
+      // Embed from Scribes mode
+      setTimeout(() => {
+        const modeBtn = document.querySelector('[data-mode="scribes"]');
         if (modeBtn) {
           modeBtn.click();
         }
