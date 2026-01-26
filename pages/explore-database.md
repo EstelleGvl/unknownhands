@@ -33,6 +33,46 @@ banner:
         height: 0 !important;
         overflow: hidden !important;
       }
+      
+      .embed-mode body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .embed-mode .explore-fullwidth {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      
+      .embed-mode .db-shell {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .embed-mode .mode-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .embed-mode #genre-tab-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+        box-sizing: border-box !important;
+      }
+      
+      .embed-mode #genre-tab-content > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+      }
     `;
     document.head.appendChild(style);
   }
@@ -18931,14 +18971,16 @@ async function boot(){
       .embed-mode [class*="banner"] { display: none !important; }
       
       .embed-mode .explore-fullwidth { 
-        padding: 1rem !important; 
-        margin: 0 auto !important; 
+        padding: 0 !important; 
+        margin: 0 !important; 
+        width: 100% !important;
         max-width: 100% !important; 
       }
       .embed-mode .db-shell { 
-        margin: 0 auto !important; 
-        max-width: 1400px !important;
+        margin: 0 !important;
+        padding: 0 !important;
         width: 100% !important;
+        max-width: 100% !important;
       }
       .embed-mode h1 { display: none !important; }
       .embed-mode body { 
@@ -18953,18 +18995,31 @@ async function boot(){
       .embed-mode .viz-head { display: none !important; }
       .embed-mode .mode-container { 
         width: 100% !important; 
-        max-width: 100% !important; 
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
       .embed-mode #genre-tab-content { 
-        padding: 0 1rem !important; 
-        margin: 0 auto !important;
+        padding: 1rem !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
       .embed-mode #genre-tab-content > div { 
-        max-width: 1400px !important; 
-        margin: 0 auto !important; 
+        width: 100% !important;
+        max-width: 100% !important; 
+        margin: 0 !important; 
       }
       .embed-mode .mode-container > .viz-card {
         box-shadow: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .embed-mode .viz-body {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
       }
     `;
     document.head.appendChild(embedStyles);
