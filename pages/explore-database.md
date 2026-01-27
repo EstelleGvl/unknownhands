@@ -19373,11 +19373,14 @@ function buildTextGenres() {
     return;
   }
   
-  // Initialize UI
+  // Check if we're in embed mode
+  const isEmbedMode = document.documentElement.classList.contains('embed-mode');
+  
+  // Initialize UI with conditional styling based on embed mode
   mount.innerHTML = `
-    <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); overflow: hidden;">
+    <div style="background: ${isEmbedMode ? 'transparent' : 'white'}; border-radius: ${isEmbedMode ? '0' : '0.5rem'}; box-shadow: ${isEmbedMode ? 'none' : '0 2px 4px rgba(0,0,0,0.08)'}; overflow: hidden;">
       <div style="border-bottom: 2px solid #f0f0f0;">
-        <div class="genre-tabs" style="display: flex; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #fafafa;">
+        <div class="genre-tabs" style="display: flex; gap: 0.5rem; padding: 0.75rem ${isEmbedMode ? '0' : '1.5rem'}; background: #fafafa;">
           <button class="genre-tab-btn is-on" data-tab="overview" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #666;">
             Overview
           </button>
@@ -19395,7 +19398,7 @@ function buildTextGenres() {
           </button>
         </div>
       </div>
-      <div style="padding: 1.5rem;">
+      <div style="padding: ${isEmbedMode ? '0' : '1.5rem'};">
         <div id="genre-tab-content" style="overflow: auto; min-height: 60vh;">
           <!-- Content will be rendered here -->
         </div>
