@@ -20227,38 +20227,55 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   }
   
   // Resize handler to recenter when container size changes
+  let resizeTimeout;
+  let lastResizeWidth = width;
+  let lastResizeHeight = height;
+  const RESIZE_THRESHOLD = 10; // Only resize if change exceeds 10px
+  const RESIZE_DEBOUNCE = 150; // Wait 150ms after last resize event
+  
   function resizeAndRecenter() {
-    const { w, h } = getSize(svgDiv);
-    console.log('[MS Network] resizeAndRecenter called:', { w, h, currentWidth: width, currentHeight: height });
-    if (w <= 1 || h <= 1) {
-      console.log('[MS Network] resizeAndRecenter skipped - container too small');
-      return;
-    }
-    if (w === width && h === height) {
-      console.log('[MS Network] resizeAndRecenter skipped - dimensions unchanged');
-      return;
-    }
-    
-    console.log('[MS Network] Resizing from', width, 'x', height, 'to', w, 'x', h);
-    width = w;
-    height = h;
-    svg.attr('viewBox', `0 0 ${width} ${height}`);
-    
-    if (layout === 'horizontal') {
-      simulation
-        .force('x', d3.forceX(width / 2).strength(0.05))
-        .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
-    } else {
-      simulation
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('x', d3.forceX(width / 2).strength(0.03))
-        .force('y', d3.forceY(height / 2).strength(0.03));
-    }
-    simulation.alpha(0.3).restart();
-    
-    // CRITICAL: Reset zoom transform to fix offset issue
-    console.log('[MS Network] Resetting zoom transform to identity');
-    svg.call(zoom.transform, d3.zoomIdentity);
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const { w, h } = getSize(svgDiv);
+      console.log('[MS Network] resizeAndRecenter called:', { w, h, currentWidth: width, currentHeight: height });
+      
+      if (w <= 1 || h <= 1) {
+        console.log('[MS Network] resizeAndRecenter skipped - container too small');
+        return;
+      }
+      
+      // Use threshold to prevent micro-changes from triggering resize
+      const widthDiff = Math.abs(w - lastResizeWidth);
+      const heightDiff = Math.abs(h - lastResizeHeight);
+      
+      if (widthDiff < RESIZE_THRESHOLD && heightDiff < RESIZE_THRESHOLD) {
+        console.log('[MS Network] resizeAndRecenter skipped - change below threshold:', { widthDiff, heightDiff });
+        return;
+      }
+      
+      console.log('[MS Network] Resizing from', width, 'x', height, 'to', w, 'x', h);
+      lastResizeWidth = w;
+      lastResizeHeight = h;
+      width = w;
+      height = h;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+      
+      if (layout === 'horizontal') {
+        simulation
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
+      } else {
+        simulation
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('x', d3.forceX(width / 2).strength(0.03))
+          .force('y', d3.forceY(height / 2).strength(0.03));
+      }
+      simulation.alpha(0.3).restart();
+      
+      // CRITICAL: Reset zoom transform to fix offset issue
+      console.log('[MS Network] Resetting zoom transform to identity');
+      svg.call(zoom.transform, d3.zoomIdentity);
+    }, RESIZE_DEBOUNCE);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
@@ -21011,30 +21028,56 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   }
   
   // Resize handler to recenter when container size changes
+  let resizeTimeout;
+  let lastResizeWidth = width;
+  let lastResizeHeight = height;
+  const RESIZE_THRESHOLD = 10; // Only resize if change exceeds 10px
+  const RESIZE_DEBOUNCE = 150; // Wait 150ms after last resize event
+  
   function resizeAndRecenter() {
-    const { w, h } = getSize(svgDiv);
-    if (w <= 1 || h <= 1) return;
-    if (w === width && h === height) return;
-    
-    width = w;
-    height = h;
-    svg.attr('viewBox', `0 0 ${width} ${height}`);
-    
-    if (layout === 'horizontal') {
-      simulation
-        .force('x', d3.forceX(width / 2).strength(0.05))
-        .force('y', d3.forceY(d => d.type === 'institution' ? height * 0.25 : height * 0.75).strength(0.9));
-    } else {
-      simulation
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('x', d3.forceX(width / 2).strength(0.03))
-        .force('y', d3.forceY(height / 2).strength(0.03));
-    }
-    simulation.alpha(0.3).restart();
-    
-    // CRITICAL: Reset zoom transform to fix offset issue
-    svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
-    setTimeout(() => fitToView(), 100);
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const { w, h } = getSize(svgDiv);
+      console.log('[Inst Network] resizeAndRecenter called:', { w, h, currentWidth: width, currentHeight: height });
+      
+      if (w <= 1 || h <= 1) {
+        console.log('[Inst Network] resizeAndRecenter skipped - container too small');
+        return;
+      }
+      
+      // Use threshold to prevent micro-changes from triggering resize
+      const widthDiff = Math.abs(w - lastResizeWidth);
+      const heightDiff = Math.abs(h - lastResizeHeight);
+      
+      if (widthDiff < RESIZE_THRESHOLD && heightDiff < RESIZE_THRESHOLD) {
+        console.log('[Inst Network] resizeAndRecenter skipped - change below threshold:', { widthDiff, heightDiff });
+        return;
+      }
+      
+      console.log('[Inst Network] Resizing from', width, 'x', height, 'to', w, 'x', h);
+      lastResizeWidth = w;
+      lastResizeHeight = h;
+      width = w;
+      height = h;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+      
+      if (layout === 'horizontal') {
+        simulation
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(d => d.type === 'institution' ? height * 0.25 : height * 0.75).strength(0.9));
+      } else {
+        simulation
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('x', d3.forceX(width / 2).strength(0.03))
+          .force('y', d3.forceY(height / 2).strength(0.03));
+      }
+      simulation.alpha(0.3).restart();
+      
+      // CRITICAL: Reset zoom transform to fix offset issue
+      console.log('[Inst Network] Resetting zoom transform to identity');
+      svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
+      setTimeout(() => fitToView(), 100);
+    }, RESIZE_DEBOUNCE);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
@@ -21644,30 +21687,56 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   }
   
   // Resize handler to recenter when container size changes
+  let resizeTimeout;
+  let lastResizeWidth = width;
+  let lastResizeHeight = height;
+  const RESIZE_THRESHOLD = 10; // Only resize if change exceeds 10px
+  const RESIZE_DEBOUNCE = 150; // Wait 150ms after last resize event
+  
   function resizeAndRecenter() {
-    const { w, h } = getSize(svgDiv);
-    if (w <= 1 || h <= 1) return;
-    if (w === width && h === height) return;
-    
-    width = w;
-    height = h;
-    svg.attr('viewBox', `0 0 ${width} ${height}`);
-    
-    if (layout === 'horizontal') {
-      simulation
-        .force('x', d3.forceX(width / 2).strength(0.05))
-        .force('y', d3.forceY(d => d.type === 'scribe' ? height * 0.25 : height * 0.75).strength(0.9));
-    } else {
-      simulation
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force('x', d3.forceX(width / 2).strength(0.03))
-        .force('y', d3.forceY(height / 2).strength(0.03));
-    }
-    simulation.alpha(0.3).restart();
-    
-    // CRITICAL: Reset zoom transform to fix offset issue
-    svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
-    setTimeout(() => fitToView(), 100);
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const { w, h } = getSize(svgDiv);
+      console.log('[Scribe Network] resizeAndRecenter called:', { w, h, currentWidth: width, currentHeight: height });
+      
+      if (w <= 1 || h <= 1) {
+        console.log('[Scribe Network] resizeAndRecenter skipped - container too small');
+        return;
+      }
+      
+      // Use threshold to prevent micro-changes from triggering resize
+      const widthDiff = Math.abs(w - lastResizeWidth);
+      const heightDiff = Math.abs(h - lastResizeHeight);
+      
+      if (widthDiff < RESIZE_THRESHOLD && heightDiff < RESIZE_THRESHOLD) {
+        console.log('[Scribe Network] resizeAndRecenter skipped - change below threshold:', { widthDiff, heightDiff });
+        return;
+      }
+      
+      console.log('[Scribe Network] Resizing from', width, 'x', height, 'to', w, 'x', h);
+      lastResizeWidth = w;
+      lastResizeHeight = h;
+      width = w;
+      height = h;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+      
+      if (layout === 'horizontal') {
+        simulation
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(d => d.type === 'scribe' ? height * 0.25 : height * 0.75).strength(0.9));
+      } else {
+        simulation
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('x', d3.forceX(width / 2).strength(0.03))
+          .force('y', d3.forceY(height / 2).strength(0.03));
+      }
+      simulation.alpha(0.3).restart();
+      
+      // CRITICAL: Reset zoom transform to fix offset issue
+      console.log('[Scribe Network] Resetting zoom transform to identity');
+      svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
+      setTimeout(() => fitToView(), 100);
+    }, RESIZE_DEBOUNCE);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
