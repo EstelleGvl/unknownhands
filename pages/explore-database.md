@@ -1501,6 +1501,7 @@ function createEmbedButton(networkType) {
         // Determine if we're in text-genres mode or network mode
         const activeMode = document.querySelector('.main-nav-btn.is-on');
         const isTextGenresMode = activeMode && activeMode.dataset.mode === 'text-genres';
+        const isScribesMode = activeMode && activeMode.dataset.mode === 'scribes';
         
         let embedUrl;
         if (isTextGenresMode) {
@@ -1508,6 +1509,11 @@ function createEmbedButton(networkType) {
           const activeTab = document.querySelector('.genre-tab-btn.is-on');
           const tabName = activeTab ? activeTab.dataset.tab : 'manuscript-networks';
           embedUrl = `${baseUrl}?embed=true&mode=text-genres&tab=${tabName}&network=${networkType}`;
+        } else if (isScribesMode) {
+          // Generate URL for scribes mode with specific tab
+          const activeTab = document.querySelector('.scribe-tab-btn.is-on');
+          const tabName = activeTab ? activeTab.dataset.tab : 'overview';
+          embedUrl = `${baseUrl}?embed=true&mode=scribes&tab=${tabName}`;
         } else {
           // Generate URL for network mode
           embedUrl = `${baseUrl}?embed=true&network=${networkType}`;
