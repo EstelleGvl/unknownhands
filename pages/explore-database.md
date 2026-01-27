@@ -21106,44 +21106,45 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   const links = [];
   
   // Process scribal units to connect scribes to genres
+  // Note: Scribal units are directly linked to texts via relationship records,
+  // because scribes don't necessarily copy all texts in a production unit
   (DATA.su || []).forEach(su => {
     const suId = String(su.rec_ID);
     const scribes = getScribesForSU(su);
     
     if (scribes.length === 0) return;
     
-    // Get production units for this SU
-    const puIds = getPUsForSU(su);
+    // Get texts directly linked to this scribal unit via relationships
+    const suRels = [
+      ...(REL_INDEX.bySource?.[suId] || []),
+      ...(REL_INDEX.byTarget?.[suId] || [])
+    ];
+    
     const textGenres = new Set();
     
-    // Get texts from the production units
-    puIds.forEach(puId => {
-      const pu = IDX.pu?.[puId];
-      if (!pu) return;
+    suRels.forEach(rel => {
+      const src = getRes(rel, 'Source record');
+      const tgt = getRes(rel, 'Target record');
+      const srcId = src?.id ? String(src.id) : null;
+      const tgtId = tgt?.id ? String(tgt.id) : null;
       
-      const puRels = [
-        ...(REL_INDEX.bySource?.[puId] || []),
-        ...(REL_INDEX.byTarget?.[puId] || [])
-      ];
+      // Get the other record (the one that's not the SU)
+      const otherId = srcId === suId ? tgtId : (tgtId === suId ? srcId : null);
+      if (!otherId) return;
       
-      puRels.forEach(rel => {
-        const src = getRes(rel, 'Source record');
-        const tgt = getRes(rel, 'Target record');
-        const textId = IDX.tx?.[String(src?.id)] ? String(src.id) : IDX.tx?.[String(tgt?.id)] ? String(tgt.id) : null;
+      const text = IDX.tx?.[otherId];
+      
+      if (text) {
+        const genre = MAP.tx?.genre(text);
+        const subgenre = MAP.tx?.sub(text);
         
-        if (textId) {
-          const text = IDX.tx[textId];
-          const genre = MAP.tx?.genre(text);
-          const subgenre = MAP.tx?.sub(text);
-          
-          if (levelFilter === 'genre' && genre && genre !== 'Unknown' && genre !== '') {
-            textGenres.add(`genre:${genre}`);
-          }
-          if (levelFilter === 'subgenre' && subgenre && subgenre !== 'Unknown' && subgenre !== '') {
-            textGenres.add(`sub:${subgenre}`);
-          }
+        if (levelFilter === 'genre' && genre && genre !== 'Unknown' && genre !== '') {
+          textGenres.add(`genre:${genre}`);
         }
-      });
+        if (levelFilter === 'subgenre' && subgenre && subgenre !== 'Unknown' && subgenre !== '') {
+          textGenres.add(`sub:${subgenre}`);
+        }
+      }
     });
     
     if (textGenres.size === 0) return;
