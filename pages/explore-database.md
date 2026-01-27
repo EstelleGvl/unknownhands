@@ -50,6 +50,7 @@ banner:
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
+        transform: none !important;
       }
       
       .embed-mode .db-shell {
