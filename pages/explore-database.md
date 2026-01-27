@@ -20106,9 +20106,10 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // D3 force layout - use container dimensions for viewBox
   let { w: width, h: height } = getSize(svgDiv);
-  if (width === 1 || height === 1) {
-    width = 1800;
-    height = 900;
+  // Wait for real dimensions if container not yet sized
+  if (width <= 50 || height <= 50) {
+    width = 1200;
+    height = 700;
   }
   
   const svg = d3.select(svgDiv)
@@ -20133,6 +20134,32 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   svg.call(zoom);
   
+  // Fit network to view - centers and scales to fit container
+  function fitToView() {
+    const { w, h } = getSize(svgDiv);
+    if (w <= 1 || h <= 1) return;
+    
+    try {
+      const bbox = g.node().getBBox();
+      if (!bbox.width || !bbox.height) return;
+      
+      const pad = 40;
+      const scale = Math.min(
+        (w - pad) / bbox.width,
+        (h - pad) / bbox.height,
+        1.5  // Don't zoom in too much
+      );
+      
+      const tx = (w / 2) - scale * (bbox.x + bbox.width / 2);
+      const ty = (h / 2) - scale * (bbox.y + bbox.height / 2);
+      
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    } catch (e) {
+      // If bbox fails, just reset to identity
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    }
+  }
+  
   // Zoom controls
   document.getElementById('ms-zoom-in').onclick = () => {
     svg.transition().duration(300).call(zoom.scaleBy, 1.3);
@@ -20141,7 +20168,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     svg.transition().duration(300).call(zoom.scaleBy, 0.7);
   };
   document.getElementById('ms-reset').onclick = () => {
-    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    fitToView();
   };
   
   // Toggle labels
@@ -20197,23 +20224,28 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Resize handler to recenter when container size changes
   function resizeAndRecenter() {
     const { w, h } = getSize(svgDiv);
-    if (w > 1 && h > 1 && (w !== width || h !== height)) {
-      width = w;
-      height = h;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-      
-      if (layout === 'horizontal') {
-        simulation
-          .force('x', d3.forceX(width / 2).strength(0.05))
-          .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
-      } else {
-        simulation
-          .force('center', d3.forceCenter(width / 2, height / 2))
-          .force('x', d3.forceX(width / 2).strength(0.03))
-          .force('y', d3.forceY(height / 2).strength(0.03));
-      }
-      simulation.alpha(0.3).restart();
+    if (w <= 1 || h <= 1) return;
+    if (w === width && h === height) return;
+    
+    width = w;
+    height = h;
+    svg.attr('viewBox', `0 0 ${width} ${height}`);
+    
+    if (layout === 'horizontal') {
+      simulation
+        .force('x', d3.forceX(width / 2).strength(0.05))
+        .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
+    } else {
+      simulation
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('x', d3.forceX(width / 2).strength(0.03))
+        .force('y', d3.forceY(height / 2).strength(0.03));
     }
+    simulation.alpha(0.3).restart();
+    
+    // CRITICAL: Reset zoom transform to fix offset issue
+    svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
+    setTimeout(() => fitToView(), 100);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
@@ -20440,6 +20472,11 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       .attr('y2', d => d.target.y);
     
     node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+  
+  // Fit to view after simulation stabilizes
+  simulation.on('end', () => {
+    setTimeout(() => fitToView(), 100);
   });
 }
 
@@ -20844,9 +20881,10 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // D3 force layout - use container dimensions for viewBox
   let { w: width, h: height } = getSize(svgDiv);
-  if (width === 1 || height === 1) {
-    width = 1800;
-    height = 900;
+  // Wait for real dimensions if container not yet sized
+  if (width <= 50 || height <= 50) {
+    width = 1200;
+    height = 700;
   }
   
   const svg = d3.select(svgDiv)
@@ -20871,6 +20909,32 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   svg.call(zoom);
   
+  // Fit network to view - centers and scales to fit container
+  function fitToView() {
+    const { w, h } = getSize(svgDiv);
+    if (w <= 1 || h <= 1) return;
+    
+    try {
+      const bbox = g.node().getBBox();
+      if (!bbox.width || !bbox.height) return;
+      
+      const pad = 40;
+      const scale = Math.min(
+        (w - pad) / bbox.width,
+        (h - pad) / bbox.height,
+        1.5  // Don't zoom in too much
+      );
+      
+      const tx = (w / 2) - scale * (bbox.x + bbox.width / 2);
+      const ty = (h / 2) - scale * (bbox.y + bbox.height / 2);
+      
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    } catch (e) {
+      // If bbox fails, just reset to identity
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    }
+  }
+  
   // Zoom controls
   document.getElementById('inst-zoom-in').onclick = () => {
     svg.transition().duration(300).call(zoom.scaleBy, 1.3);
@@ -20879,7 +20943,7 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     svg.transition().duration(300).call(zoom.scaleBy, 0.7);
   };
   document.getElementById('inst-reset').onclick = () => {
-    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    fitToView();
   };
   
   // Toggle labels
@@ -20936,23 +21000,28 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Resize handler to recenter when container size changes
   function resizeAndRecenter() {
     const { w, h } = getSize(svgDiv);
-    if (w > 1 && h > 1 && (w !== width || h !== height)) {
-      width = w;
-      height = h;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-      
-      if (layout === 'horizontal') {
-        simulation
-          .force('x', d3.forceX(width / 2).strength(0.05))
-          .force('y', d3.forceY(d => d.type === 'institution' ? height * 0.25 : height * 0.75).strength(0.9));
-      } else {
-        simulation
-          .force('center', d3.forceCenter(width / 2, height / 2))
-          .force('x', d3.forceX(width / 2).strength(0.03))
-          .force('y', d3.forceY(height / 2).strength(0.03));
-      }
-      simulation.alpha(0.3).restart();
+    if (w <= 1 || h <= 1) return;
+    if (w === width && h === height) return;
+    
+    width = w;
+    height = h;
+    svg.attr('viewBox', `0 0 ${width} ${height}`);
+    
+    if (layout === 'horizontal') {
+      simulation
+        .force('x', d3.forceX(width / 2).strength(0.05))
+        .force('y', d3.forceY(d => d.type === 'institution' ? height * 0.25 : height * 0.75).strength(0.9));
+    } else {
+      simulation
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('x', d3.forceX(width / 2).strength(0.03))
+        .force('y', d3.forceY(height / 2).strength(0.03));
     }
+    simulation.alpha(0.3).restart();
+    
+    // CRITICAL: Reset zoom transform to fix offset issue
+    svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
+    setTimeout(() => fitToView(), 100);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
@@ -21199,6 +21268,11 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     
     node.attr('transform', d => `translate(${d.x},${d.y})`);
   });
+  
+  // Fit to view after simulation stabilizes
+  simulation.on('end', () => {
+    setTimeout(() => fitToView(), 100);
+  });
 }
 
 // Scribe-Genre/Subgenre Network Functions
@@ -21441,9 +21515,10 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // D3 force layout - use container dimensions for viewBox
   let { w: width, h: height } = getSize(svgDiv);
-  if (width === 1 || height === 1) {
-    width = 1800;
-    height = 900;
+  // Wait for real dimensions if container not yet sized
+  if (width <= 50 || height <= 50) {
+    width = 1200;
+    height = 700;
   }
   
   const svg = d3.select(svgDiv)
@@ -21468,6 +21543,32 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   svg.call(zoom);
   
+  // Fit network to view - centers and scales to fit container
+  function fitToView() {
+    const { w, h } = getSize(svgDiv);
+    if (w <= 1 || h <= 1) return;
+    
+    try {
+      const bbox = g.node().getBBox();
+      if (!bbox.width || !bbox.height) return;
+      
+      const pad = 40;
+      const scale = Math.min(
+        (w - pad) / bbox.width,
+        (h - pad) / bbox.height,
+        1.5  // Don't zoom in too much
+      );
+      
+      const tx = (w / 2) - scale * (bbox.x + bbox.width / 2);
+      const ty = (h / 2) - scale * (bbox.y + bbox.height / 2);
+      
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+    } catch (e) {
+      // If bbox fails, just reset to identity
+      svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    }
+  }
+  
   // Zoom controls
   document.getElementById('scribe-zoom-in').onclick = () => {
     svg.transition().duration(300).call(zoom.scaleBy, 1.3);
@@ -21476,7 +21577,7 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
     svg.transition().duration(300).call(zoom.scaleBy, 0.7);
   };
   document.getElementById('scribe-reset').onclick = () => {
-    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    fitToView();
   };
   
   // Toggle labels
@@ -21532,23 +21633,28 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Resize handler to recenter when container size changes
   function resizeAndRecenter() {
     const { w, h } = getSize(svgDiv);
-    if (w > 1 && h > 1 && (w !== width || h !== height)) {
-      width = w;
-      height = h;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-      
-      if (layout === 'horizontal') {
-        simulation
-          .force('x', d3.forceX(width / 2).strength(0.05))
-          .force('y', d3.forceY(d => d.type === 'scribe' ? height * 0.25 : height * 0.75).strength(0.9));
-      } else {
-        simulation
-          .force('center', d3.forceCenter(width / 2, height / 2))
-          .force('x', d3.forceX(width / 2).strength(0.03))
-          .force('y', d3.forceY(height / 2).strength(0.03));
-      }
-      simulation.alpha(0.3).restart();
+    if (w <= 1 || h <= 1) return;
+    if (w === width && h === height) return;
+    
+    width = w;
+    height = h;
+    svg.attr('viewBox', `0 0 ${width} ${height}`);
+    
+    if (layout === 'horizontal') {
+      simulation
+        .force('x', d3.forceX(width / 2).strength(0.05))
+        .force('y', d3.forceY(d => d.type === 'scribe' ? height * 0.25 : height * 0.75).strength(0.9));
+    } else {
+      simulation
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force('x', d3.forceX(width / 2).strength(0.03))
+        .force('y', d3.forceY(height / 2).strength(0.03));
     }
+    simulation.alpha(0.3).restart();
+    
+    // CRITICAL: Reset zoom transform to fix offset issue
+    svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
+    setTimeout(() => fitToView(), 100);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
@@ -21774,6 +21880,11 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
       .attr('y2', d => d.target.y);
     
     node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+  
+  // Fit to view after simulation stabilizes
+  simulation.on('end', () => {
+    setTimeout(() => fitToView(), 100);
   });
 }
 
