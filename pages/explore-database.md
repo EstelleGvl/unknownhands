@@ -70,7 +70,7 @@ banner:
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        padding: 0.5rem !important;
+        padding: 0 !important;
         box-sizing: border-box !important;
       }
       
@@ -78,6 +78,11 @@ banner:
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* Remove padding from parent wrapper in embed mode */
+      .embed-mode #text-genres-mount > div > div:last-child {
         padding: 0 !important;
       }
       
@@ -20032,7 +20037,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'width: 100%; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
+  svgDiv.style.cssText = 'width: 100%; max-width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
   
   // Create tooltip div
@@ -20049,7 +20054,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('preserveAspectRatio', 'xMidYMid meet')
     .style('width', '100%')
-    .style('height', 'auto')
+    .style('height', '100%')
     .style('display', 'block');
   
   // Update viewBox on resize
@@ -20742,7 +20747,7 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'width: 100%; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
+  svgDiv.style.cssText = 'width: 100%; max-width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
   
   // Create tooltip div
@@ -20759,7 +20764,7 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('preserveAspectRatio', 'xMidYMid meet')
     .style('width', '100%')
-    .style('height', 'auto')
+    .style('height', '100%')
     .style('display', 'block');
   
   // Update viewBox on resize
@@ -21311,7 +21316,7 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'width: 100%; max-width: 100%; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
+  svgDiv.style.cssText = 'width: 100%; max-width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
   
   // Create tooltip div
@@ -21328,7 +21333,7 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('preserveAspectRatio', 'xMidYMid meet')
     .style('width', '100%')
-    .style('height', 'auto')
+    .style('height', '100%')
     .style('display', 'block');
   
   // Update viewBox on resize
