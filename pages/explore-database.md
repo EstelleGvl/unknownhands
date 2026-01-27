@@ -37,6 +37,10 @@ banner:
         overflow: hidden !important;
       }
       
+      .embed-mode * {
+        box-sizing: border-box !important;
+      }
+      
       .embed-mode html,
       .embed-mode body {
         margin: 0 !important;
@@ -53,8 +57,11 @@ banner:
         padding: 0 !important;
         margin: 0 !important;
         margin-left: 0 !important;
+        margin-right: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
         transform: none !important;
-        box-sizing: border-box !important;
+        position: relative !important;
       }
       
       .embed-mode .db-shell {
