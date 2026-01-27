@@ -66,6 +66,37 @@ banner:
         padding: 0 !important;
       }
       
+      .embed-mode .viz-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      
+      .embed-mode .viz-body {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .embed-mode #text-genres-mount {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      .embed-mode #text-genres-mount > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+      
       .embed-mode #genre-tab-content {
         width: 100% !important;
         max-width: 100% !important;
