@@ -19170,6 +19170,53 @@ async function boot(){
         const modeBtn = document.querySelector('[data-mode="scribes"]');
         if (modeBtn) {
           modeBtn.click();
+          
+          // If a specific tab is requested (e.g., collaboration)
+          if (tabParam) {
+            setTimeout(() => {
+              const tabBtn = document.querySelector(`.scribe-tab-btn[data-tab="${tabParam}"]`);
+              if (tabBtn) {
+                tabBtn.click();
+                
+                // Handle layout parameter for collaboration network
+                setTimeout(() => {
+                  const layoutParam = params.get('layout');
+                  if (layoutParam === 'force') {
+                    const forceBtn = document.querySelector('[data-layout="force"].collab-layout-toggle-btn');
+                    if (forceBtn && !forceBtn.classList.contains('is-active')) {
+                      forceBtn.click();
+                    }
+                  }
+                }, 500);
+              }
+            }, 300);
+          }
+        }
+      }, 100);
+    } else if (networkParam === 'scribe-collaborations') {
+      // Embed scribe collaborations network
+      setTimeout(() => {
+        const scribesBtn = document.querySelector('[data-mode="scribes"]');
+        if (scribesBtn) {
+          scribesBtn.click();
+          
+          setTimeout(() => {
+            const collabTab = document.querySelector('.scribe-tab-btn[data-tab="collaboration"]');
+            if (collabTab) {
+              collabTab.click();
+              
+              // Handle layout parameter
+              setTimeout(() => {
+                const layoutParam = params.get('layout');
+                if (layoutParam === 'force') {
+                  const forceBtn = document.querySelector('[data-layout="force"].collab-layout-toggle-btn');
+                  if (forceBtn && !forceBtn.classList.contains('is-active')) {
+                    forceBtn.click();
+                  }
+                }
+              }, 500);
+            }
+          }, 300);
         }
       }, 100);
     } else if (networkParam) {
