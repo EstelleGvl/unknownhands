@@ -19872,8 +19872,13 @@ function buildManuscriptSubgenreNetwork() {
 }
 
 function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
+  console.log('[MS Network] Building network with levelFilter:', levelFilter, 'layout:', layout);
   const container = document.getElementById('ms-network-viz');
-  if (!container) return;
+  if (!container) {
+    console.error('[MS Network] Container #ms-network-viz not found');
+    return;
+  }
+  console.log('[MS Network] Container found, building network...');
   
   // Build bipartite network data
   const manuscriptNodes = new Map();
@@ -20224,9 +20229,17 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Resize handler to recenter when container size changes
   function resizeAndRecenter() {
     const { w, h } = getSize(svgDiv);
-    if (w <= 1 || h <= 1) return;
-    if (w === width && h === height) return;
+    console.log('[MS Network] resizeAndRecenter called:', { w, h, currentWidth: width, currentHeight: height });
+    if (w <= 1 || h <= 1) {
+      console.log('[MS Network] resizeAndRecenter skipped - container too small');
+      return;
+    }
+    if (w === width && h === height) {
+      console.log('[MS Network] resizeAndRecenter skipped - dimensions unchanged');
+      return;
+    }
     
+    console.log('[MS Network] Resizing from', width, 'x', height, 'to', w, 'x', h);
     width = w;
     height = h;
     svg.attr('viewBox', `0 0 ${width} ${height}`);
@@ -20244,8 +20257,8 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     simulation.alpha(0.3).restart();
     
     // CRITICAL: Reset zoom transform to fix offset issue
-    svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
-    setTimeout(() => fitToView(), 100);
+    console.log('[MS Network] Resetting zoom transform to identity');
+    svg.call(zoom.transform, d3.zoomIdentity);
   }
   
   window.addEventListener('resize', resizeAndRecenter);
