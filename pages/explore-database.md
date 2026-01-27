@@ -14727,21 +14727,34 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
   ).join('');
   
   controlPanel.innerHTML = `
-    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-      <button id="network-reset" class="export-btn" style="background: #6366f1; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
-        Reset
-      </button>
-      <button id="network-labels-toggle" class="export-btn" style="background: #ec4899; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#db2777'" onmouseout="this.style.background='#ec4899'">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-        Hide Labels
-      </button>
-      <button id="network-filter-isolated" class="export-btn" style="background: #f59e0b; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#d97706'" onmouseout="this.style.background='#f59e0b'">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Hide Singles
-      </button>
-      <div style="font-size: 0.7rem; color: #64748b; padding: 0.375rem 0.5rem; background: #f8fafc; border-radius: 0.375rem; white-space: nowrap;">
-        <strong>${nodeArray.length}</strong> scribes • <strong>${linkArray.length}</strong> links
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <button id="network-reset" class="export-btn" style="background: #6366f1; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+          Reset
+        </button>
+        <button id="network-labels-toggle" class="export-btn" style="background: #ec4899; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#db2777'" onmouseout="this.style.background='#ec4899'">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+          Hide Labels
+        </button>
+        <button id="network-filter-isolated" class="export-btn" style="background: #f59e0b; color: white; border: none; padding: 0.375rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem; transition: all 0.2s;" onmouseover="this.style.background='#d97706'" onmouseout="this.style.background='#f59e0b'">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Hide Singles
+        </button>
+        <div style="font-size: 0.7rem; color: #64748b; padding: 0.375rem 0.5rem; background: #f8fafc; border-radius: 0.375rem; white-space: nowrap;">
+          <strong>${nodeArray.length}</strong> scribes • <strong>${linkArray.length}</strong> links
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
+          <button class="collab-layout-toggle-btn is-active" data-layout="radial" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
+            Radial
+          </button>
+          <button class="collab-layout-toggle-btn" data-layout="force" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b; font-size: 0.75rem;">
+            Force
+          </button>
+        </div>
+        ${createEmbedButton('scribe-collaborations')}
       </div>
     </div>
     <div style="margin-top: 0.75rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; border: 1px solid #e2e8f0;">
@@ -14753,9 +14766,9 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
   `;
   container.appendChild(controlPanel);
   
-  // D3 force layout
-  const width = container.clientWidth || 1200;
-  const height = 600;
+  // D3 force layout - use large fixed viewBox for better scaling
+  const width = 1800;
+  const height = 900;
   
   const svg = d3.select(container)
     .append('svg')
@@ -15009,6 +15022,41 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
         }, 3000);
       });
   };
+  
+  // Layout toggle functionality
+  const layoutBtns = container.querySelectorAll('.collab-layout-toggle-btn');
+  let currentLayout = 'radial';
+  
+  layoutBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentLayout = btn.dataset.layout;
+      layoutBtns.forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.style.background = b === btn ? 'white' : 'transparent';
+        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.color = b === btn ? '#1e293b' : '#64748b';
+      });
+      
+      // Update simulation forces based on layout
+      if (currentLayout === 'radial') {
+        // Radial layout - tight clustering around center
+        simulation
+          .force('charge', d3.forceManyBody().strength(-80))
+          .force('x', d3.forceX(width / 2).strength(0.15))
+          .force('y', d3.forceY(height / 2).strength(0.15))
+          .force('link', d3.forceLink(linkArray).id(d => d.id).distance(d => Math.max(15, 30 - (d.strength * 8))).strength(1.5));
+      } else {
+        // Force layout - more spread out
+        simulation
+          .force('charge', d3.forceManyBody().strength(-300))
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(height / 2).strength(0.05))
+          .force('link', d3.forceLink(linkArray).id(d => d.id).distance(80).strength(0.5));
+      }
+      
+      simulation.alpha(1).restart();
+    });
+  });
   
   // Drag functions
   function dragstarted(event, d) {
