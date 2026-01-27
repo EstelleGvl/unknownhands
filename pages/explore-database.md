@@ -17,8 +17,13 @@ banner:
   const isEmbed = params.get('embed') === 'true';
   const inIframe = window.self !== window.top;
   
+  // Debug logging
+  console.log("Embed detection:", { isEmbed, inIframe, willActivate: isEmbed || inIframe });
+  
   if (isEmbed || inIframe) {
     document.documentElement.classList.add('embed-mode');
+    console.log("embed-mode class added to html element");
+    
     // Add styles immediately
     const style = document.createElement('style');
     style.textContent = `
@@ -41,116 +46,92 @@ banner:
         box-sizing: border-box !important;
       }
       
-      .embed-mode html,
-      .embed-mode body {
+      html.embed-mode body {
         margin: 0 !important;
         padding: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        overflow-x: hidden !important;
-        box-sizing: border-box !important;
+        overflow: hidden !important;
       }
       
-      .embed-mode .explore-fullwidth {
+      html.embed-mode .explore-fullwidth {
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
+        max-width: none !important;
         margin: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
         transform: none !important;
-        position: relative !important;
-      }
-      
-      .embed-mode .db-shell {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
         padding: 0 !important;
       }
       
-      .embed-mode .mode-container {
+      html.embed-mode .db-shell,
+      html.embed-mode .mode-container,
+      html.embed-mode .viz-card,
+      html.embed-mode .viz-body {
         width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      
-      .embed-mode .viz-card {
-        width: 100% !important;
-        max-width: 100% !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0 !important;
         box-shadow: none !important;
+        border-radius: 0 !important;
       }
       
-      .embed-mode .viz-body {
+      html.embed-mode #text-genres-mount {
         width: 100% !important;
-        max-width: 100% !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0 !important;
       }
       
-      .embed-mode #text-genres-mount {
+      html.embed-mode #text-genres-mount > div {
         width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      
-      .embed-mode #text-genres-mount > div {
-        width: 100% !important;
-        max-width: 100% !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0 !important;
         border-radius: 0 !important;
         box-shadow: none !important;
       }
       
-      .embed-mode #genre-tab-content {
+      html.embed-mode #genre-tab-content {
         width: 100% !important;
-        max-width: 100% !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0 !important;
-        box-sizing: border-box !important;
+        overflow: hidden !important;
+        height: calc(100vh - 120px) !important;
+        min-height: 0 !important;
       }
       
-      .embed-mode #genre-tab-content > div {
+      html.embed-mode #genre-tab-content > div {
         width: 100% !important;
-        max-width: 100% !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0 !important;
+        height: 100% !important;
       }
       
-      /* Remove padding from parent wrapper in embed mode */
-      .embed-mode #text-genres-mount > div > div:last-child {
-        padding: 0 !important;
-      }
-      
-      .embed-mode #ms-network-viz,
-      .embed-mode #inst-network-viz,
-      .embed-mode #scribe-network-viz {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-      }
-      
-      .embed-mode #ms-network-wrapper,
-      .embed-mode #inst-network-wrapper,
-      .embed-mode #scribe-network-wrapper {
+      html.embed-mode #ms-network-wrapper,
+      html.embed-mode #inst-network-wrapper,
+      html.embed-mode #scribe-network-wrapper {
         padding: 0 !important;
         background: transparent !important;
         box-shadow: none !important;
+        height: 100% !important;
       }
       
-      .embed-mode svg {
+      html.embed-mode #ms-network-viz,
+      html.embed-mode #inst-network-viz,
+      html.embed-mode #scribe-network-viz {
         width: 100% !important;
-        height: auto !important;
-        max-width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+        min-height: 0 !important;
+      }
+      
+      html.embed-mode svg {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
         display: block !important;
       }
     `;
@@ -1168,13 +1149,21 @@ banner:
 
   .explore-fullwidth{width:100vw;max-width:100vw;margin-left:50%;transform:translateX(-50%);padding:0 4vw;}
   
-  /* Override explore-fullwidth for embed mode */
-  .embed-mode .explore-fullwidth {
+  /* Override explore-fullwidth for embed mode - use html.embed-mode for higher specificity */
+  html.embed-mode .explore-fullwidth {
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: none !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     transform: none !important;
+    padding: 0 !important;
+  }
+  
+  html.embed-mode .db-shell,
+  html.embed-mode .mode-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
     padding: 0 !important;
   }
   
