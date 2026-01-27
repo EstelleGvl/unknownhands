@@ -136,6 +136,14 @@ banner:
       }
     `;
     document.head.appendChild(style);
+    
+    // Force layout recalculation AFTER embed CSS is applied
+    // Multiple dispatches catch delayed network renders from navigation timeouts
+    requestAnimationFrame(() => {
+      window.dispatchEvent(new Event('resize'));
+      setTimeout(() => window.dispatchEvent(new Event('resize')), 250);
+      setTimeout(() => window.dispatchEvent(new Event('resize')), 800);
+    });
   }
 })();
 </script>
@@ -20090,9 +20098,18 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #3b82f6; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use large fixed viewBox for better scaling
-  const width = 1800;  // Fixed large width for viewBox
-  const height = 900;
+  // Get actual container dimensions
+  function getSize(el) {
+    const r = el.getBoundingClientRect();
+    return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
+  }
+  
+  // D3 force layout - use container dimensions for viewBox
+  let { w: width, h: height } = getSize(svgDiv);
+  if (width === 1 || height === 1) {
+    width = 1800;
+    height = 900;
+  }
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20101,12 +20118,6 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  // Update viewBox on resize
-  const resizeObserver = new ResizeObserver(() => {
-    // Keep fixed viewBox for consistent scaling
-  });
-  resizeObserver.observe(svgDiv);
   
   const g = svg.append('g');
   
@@ -20182,6 +20193,31 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       .force('x', d3.forceX(width / 2).strength(0.03))
       .force('y', d3.forceY(height / 2).strength(0.03));
   }
+  
+  // Resize handler to recenter when container size changes
+  function resizeAndRecenter() {
+    const { w, h } = getSize(svgDiv);
+    if (w > 1 && h > 1 && (w !== width || h !== height)) {
+      width = w;
+      height = h;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+      
+      if (layout === 'horizontal') {
+        simulation
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
+      } else {
+        simulation
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('x', d3.forceX(width / 2).strength(0.03))
+          .force('y', d3.forceY(height / 2).strength(0.03));
+      }
+      simulation.alpha(0.3).restart();
+    }
+  }
+  
+  window.addEventListener('resize', resizeAndRecenter);
+  new ResizeObserver(resizeAndRecenter).observe(svgDiv);
   
   const link = g.append('g')
     .attr('class', 'links')
@@ -20800,9 +20836,18 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #10b981; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use large fixed viewBox for better scaling
-  const width = 1800;  // Fixed large width for viewBox
-  const height = 900;
+  // Get actual container dimensions
+  function getSize(el) {
+    const r = el.getBoundingClientRect();
+    return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
+  }
+  
+  // D3 force layout - use container dimensions for viewBox
+  let { w: width, h: height } = getSize(svgDiv);
+  if (width === 1 || height === 1) {
+    width = 1800;
+    height = 900;
+  }
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20811,12 +20856,6 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  // Update viewBox on resize
-  const resizeObserver = new ResizeObserver(() => {
-    // Keep fixed viewBox for consistent scaling
-  });
-  resizeObserver.observe(svgDiv);
   
   const g = svg.append('g');
   
@@ -20893,6 +20932,31 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
       .force('x', d3.forceX(width / 2).strength(0.03))
       .force('y', d3.forceY(height / 2).strength(0.03));
   }
+  
+  // Resize handler to recenter when container size changes
+  function resizeAndRecenter() {
+    const { w, h } = getSize(svgDiv);
+    if (w > 1 && h > 1 && (w !== width || h !== height)) {
+      width = w;
+      height = h;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+      
+      if (layout === 'horizontal') {
+        simulation
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(d => d.type === 'institution' ? height * 0.25 : height * 0.75).strength(0.9));
+      } else {
+        simulation
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('x', d3.forceX(width / 2).strength(0.03))
+          .force('y', d3.forceY(height / 2).strength(0.03));
+      }
+      simulation.alpha(0.3).restart();
+    }
+  }
+  
+  window.addEventListener('resize', resizeAndRecenter);
+  new ResizeObserver(resizeAndRecenter).observe(svgDiv);
   
   const link = g.append('g')
     .attr('class', 'links')
@@ -21369,9 +21433,18 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   tooltip.style.cssText = 'position: absolute; background: white; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 0.75rem; font-size: 0.875rem; pointer-events: none; opacity: 0; transition: opacity 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; max-width: 300px;';
   svgDiv.appendChild(tooltip);
   
-  // D3 force layout - use large fixed viewBox for better scaling
-  const width = 1800;  // Fixed large width for viewBox
-  const height = 900;
+  // Get actual container dimensions
+  function getSize(el) {
+    const r = el.getBoundingClientRect();
+    return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
+  }
+  
+  // D3 force layout - use container dimensions for viewBox
+  let { w: width, h: height } = getSize(svgDiv);
+  if (width === 1 || height === 1) {
+    width = 1800;
+    height = 900;
+  }
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -21380,12 +21453,6 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  // Update viewBox on resize
-  const resizeObserver = new ResizeObserver(() => {
-    // Keep fixed viewBox for consistent scaling
-  });
-  resizeObserver.observe(svgDiv);
   
   const g = svg.append('g');
   
@@ -21461,6 +21528,31 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
       .force('x', d3.forceX(width / 2).strength(0.03))
       .force('y', d3.forceY(height / 2).strength(0.03));
   }
+  
+  // Resize handler to recenter when container size changes
+  function resizeAndRecenter() {
+    const { w, h } = getSize(svgDiv);
+    if (w > 1 && h > 1 && (w !== width || h !== height)) {
+      width = w;
+      height = h;
+      svg.attr('viewBox', `0 0 ${width} ${height}`);
+      
+      if (layout === 'horizontal') {
+        simulation
+          .force('x', d3.forceX(width / 2).strength(0.05))
+          .force('y', d3.forceY(d => d.type === 'scribe' ? height * 0.25 : height * 0.75).strength(0.9));
+      } else {
+        simulation
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force('x', d3.forceX(width / 2).strength(0.03))
+          .force('y', d3.forceY(height / 2).strength(0.03));
+      }
+      simulation.alpha(0.3).restart();
+    }
+  }
+  
+  window.addEventListener('resize', resizeAndRecenter);
+  new ResizeObserver(resizeAndRecenter).observe(svgDiv);
   
   const link = g.append('g')
     .attr('class', 'links')
