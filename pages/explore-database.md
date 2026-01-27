@@ -37,12 +37,14 @@ banner:
         overflow: hidden !important;
       }
       
+      .embed-mode html,
       .embed-mode body {
         margin: 0 !important;
         padding: 0 !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
+        width: 100% !important;
+        max-width: 100% !important;
         overflow-x: hidden !important;
+        box-sizing: border-box !important;
       }
       
       .embed-mode .explore-fullwidth {
@@ -50,7 +52,9 @@ banner:
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
+        margin-left: 0 !important;
         transform: none !important;
+        box-sizing: border-box !important;
       }
       
       .embed-mode .db-shell {
