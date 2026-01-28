@@ -20272,9 +20272,10 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       }
       simulation.alpha(0.3).restart();
       
-      // CRITICAL: Reset zoom transform to fix offset issue
-      console.log('[MS Network] Resetting zoom transform to identity');
-      svg.call(zoom.transform, d3.zoomIdentity);
+      // CRITICAL: Fit to view to properly center after resize
+      console.log('[MS Network] Calling fitToView() to center visualization');
+      // Wait for simulation to settle a bit before fitting
+      setTimeout(() => fitToView(), 300);
     }, RESIZE_DEBOUNCE);
   }
   
@@ -21073,10 +21074,10 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
       }
       simulation.alpha(0.3).restart();
       
-      // CRITICAL: Reset zoom transform to fix offset issue
-      console.log('[Inst Network] Resetting zoom transform to identity');
-      svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
-      setTimeout(() => fitToView(), 100);
+      // CRITICAL: Fit to view to properly center after resize
+      console.log('[Inst Network] Calling fitToView() to center visualization');
+      // Wait for simulation to settle a bit before fitting
+      setTimeout(() => fitToView(), 300);
     }, RESIZE_DEBOUNCE);
   }
   
@@ -21732,10 +21733,10 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
       }
       simulation.alpha(0.3).restart();
       
-      // CRITICAL: Reset zoom transform to fix offset issue
-      console.log('[Scribe Network] Resetting zoom transform to identity');
-      svg.transition().duration(0).call(zoom.transform, d3.zoomIdentity);
-      setTimeout(() => fitToView(), 100);
+      // CRITICAL: Fit to view to properly center after resize
+      console.log('[Scribe Network] Calling fitToView() to center visualization');
+      // Wait for simulation to settle a bit before fitting
+      setTimeout(() => fitToView(), 300);
     }, RESIZE_DEBOUNCE);
   }
   
