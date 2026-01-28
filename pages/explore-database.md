@@ -20528,8 +20528,6 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   });
   
   // In embed mode, also call fitToView after a delay to ensure proper centering
-  const params = new URLSearchParams(window.location.search);
-  const isEmbedMode = params.get('embed') === 'true' || window.self !== window.top;
   if (isEmbedMode) {
     console.log('[MS Network] Embed mode detected, scheduling fitToView()');
     setTimeout(() => {
