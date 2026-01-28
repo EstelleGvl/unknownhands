@@ -20112,16 +20112,18 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
   }
   
-  // Get initial dimensions
+  // Get container dimensions for viewBox
+  function getSize(el) {
+    const r = el.getBoundingClientRect();
+    return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
+  }
+  
   let { w: width, h: height } = getSize(svgDiv);
-  console.log('[MS Network] Initial container size:', { width, height });
-  console.log('[MS Network] svgDiv.getBoundingClientRect():', svgDiv.getBoundingClientRect());
+  console.log('[MS Network] Container dimensions:', { width, height });
   if (width <= 50 || height <= 50) {
-    console.log('[MS Network] Container too small, using fallback dimensions');
     width = 1200;
     height = 700;
   }
-  console.log('[MS Network] Final dimensions for viewBox and simulation:', { width, height });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20177,6 +20179,12 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       console.log('[MS Network] fitToView - applying transform...');
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
       console.log('[MS Network] fitToView - transform applied');
+      
+      // Verify transform was applied
+      setTimeout(() => {
+        const actualTransform = g.attr('transform');
+        console.log('[MS Network] Actual transform on <g> after 600ms:', actualTransform);
+      }, 600);
     } catch (e) {
       // If bbox fails, just reset to identity
       console.log('[MS Network] fitToView - error:', e);
