@@ -20280,7 +20280,10 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   }
   
   window.addEventListener('resize', resizeAndRecenter);
-  new ResizeObserver(resizeAndRecenter).observe(svgDiv);
+  // Only use ResizeObserver in non-embed mode to avoid interference
+  if (!isEmbedMode) {
+    new ResizeObserver(resizeAndRecenter).observe(svgDiv);
+  }
   
   const link = g.append('g')
     .attr('class', 'links')
@@ -21082,7 +21085,10 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   }
   
   window.addEventListener('resize', resizeAndRecenter);
-  new ResizeObserver(resizeAndRecenter).observe(svgDiv);
+  // Only use ResizeObserver in non-embed mode to avoid interference
+  if (!isEmbedMode) {
+    new ResizeObserver(resizeAndRecenter).observe(svgDiv);
+  }
   
   const link = g.append('g')
     .attr('class', 'links')
@@ -21741,7 +21747,10 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   }
   
   window.addEventListener('resize', resizeAndRecenter);
-  new ResizeObserver(resizeAndRecenter).observe(svgDiv);
+  // Only use ResizeObserver in non-embed mode to avoid interference
+  if (!isEmbedMode) {
+    new ResizeObserver(resizeAndRecenter).observe(svgDiv);
+  }
   
   const link = g.append('g')
     .attr('class', 'links')
