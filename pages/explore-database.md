@@ -20098,18 +20098,8 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  if (isEmbedMode) {
-    // In embed mode: fill remaining height after legend
-    svgDiv.style.cssText = 'width: 100%; height: calc(100% - 120px); border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
-  } else {
-    svgDiv.style.cssText = 'width: 100%; max-width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
-  }
+  svgDiv.style.cssText = 'width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
   container.appendChild(svgDiv);
-  
-  // Force reflow in embed mode to get correct dimensions
-  if (isEmbedMode) {
-    svgDiv.offsetHeight; // Force reflow
-  }
   
   // Create tooltip div
   const tooltip = document.createElement('div');
@@ -20119,20 +20109,15 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Get actual container dimensions
   function getSize(el) {
     const r = el.getBoundingClientRect();
-    console.log('[MS Network getSize] BoundingClientRect:', r);
     return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
   }
   
-  // D3 force layout - use container dimensions for viewBox
+  // Get initial dimensions
   let { w: width, h: height } = getSize(svgDiv);
-  console.log('[MS Network] Initial dimensions from getSize:', { width, height, isEmbedMode });
-  // Wait for real dimensions if container not yet sized
   if (width <= 50 || height <= 50) {
-    console.log('[MS Network] Container too small, using fallback dimensions');
-    width = isEmbedMode ? 800 : 1200;
-    height = isEmbedMode ? 600 : 700;
+    width = 1200;
+    height = 700;
   }
-  console.log('[MS Network] Final initial dimensions:', { width, height });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20141,8 +20126,6 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  console.log('[MS Network] SVG created with viewBox:', `0 0 ${width} ${height}`);
   
   const g = svg.append('g');
   
@@ -20161,19 +20144,11 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Fit network to view - centers and scales to fit container
   function fitToView() {
     const { w, h } = getSize(svgDiv);
-    console.log('[MS Network fitToView] Container size:', { w, h });
-    if (w <= 1 || h <= 1) {
-      console.log('[MS Network fitToView] Container too small, aborting');
-      return;
-    }
+    if (w <= 1 || h <= 1) return;
     
     try {
       const bbox = g.node().getBBox();
-      console.log('[MS Network fitToView] Network bounding box:', bbox);
-      if (!bbox.width || !bbox.height) {
-        console.log('[MS Network fitToView] Invalid bbox, aborting');
-        return;
-      }
+      if (!bbox.width || !bbox.height) return;
       
       const pad = 40;
       const scale = Math.min(
@@ -20185,11 +20160,9 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       const tx = (w / 2) - scale * (bbox.x + bbox.width / 2);
       const ty = (h / 2) - scale * (bbox.y + bbox.height / 2);
       
-      console.log('[MS Network fitToView] Applying transform:', { scale, tx, ty });
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
     } catch (e) {
       // If bbox fails, just reset to identity
-      console.log('[MS Network fitToView] Error getting bbox:', e);
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
     }
   }
@@ -20253,65 +20226,6 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       .force('center', d3.forceCenter(width / 2, height / 2))
       .force('x', d3.forceX(width / 2).strength(0.03))
       .force('y', d3.forceY(height / 2).strength(0.03));
-  }
-  
-  // Resize handler to recenter when container size changes
-  let resizeTimeout;
-  let lastResizeWidth = width;
-  let lastResizeHeight = height;
-  const RESIZE_THRESHOLD = 10; // Only resize if change exceeds 10px
-  const RESIZE_DEBOUNCE = 150; // Wait 150ms after last resize event
-  
-  function resizeAndRecenter() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      const { w, h } = getSize(svgDiv);
-      console.log('[MS Network] resizeAndRecenter called:', { w, h, currentWidth: width, currentHeight: height });
-      
-      if (w <= 1 || h <= 1) {
-        console.log('[MS Network] resizeAndRecenter skipped - container too small');
-        return;
-      }
-      
-      // Use threshold to prevent micro-changes from triggering resize
-      const widthDiff = Math.abs(w - lastResizeWidth);
-      const heightDiff = Math.abs(h - lastResizeHeight);
-      
-      if (widthDiff < RESIZE_THRESHOLD && heightDiff < RESIZE_THRESHOLD) {
-        console.log('[MS Network] resizeAndRecenter skipped - change below threshold:', { widthDiff, heightDiff });
-        return;
-      }
-      
-      console.log('[MS Network] Resizing from', width, 'x', height, 'to', w, 'x', h);
-      lastResizeWidth = w;
-      lastResizeHeight = h;
-      width = w;
-      height = h;
-      svg.attr('viewBox', `0 0 ${width} ${height}`);
-      
-      if (layout === 'horizontal') {
-        simulation
-          .force('x', d3.forceX(width / 2).strength(0.05))
-          .force('y', d3.forceY(d => d.type === 'manuscript' ? height * 0.25 : height * 0.75).strength(0.9));
-      } else {
-        simulation
-          .force('center', d3.forceCenter(width / 2, height / 2))
-          .force('x', d3.forceX(width / 2).strength(0.03))
-          .force('y', d3.forceY(height / 2).strength(0.03));
-      }
-      simulation.alpha(0.3).restart();
-      
-      // CRITICAL: Fit to view to properly center after resize
-      console.log('[MS Network] Calling fitToView() to center visualization');
-      // Wait for simulation to settle a bit before fitting
-      setTimeout(() => fitToView(), 300);
-    }, RESIZE_DEBOUNCE);
-  }
-  
-  window.addEventListener('resize', resizeAndRecenter);
-  // Only use ResizeObserver in non-embed mode to avoid interference
-  if (!isEmbedMode) {
-    new ResizeObserver(resizeAndRecenter).observe(svgDiv);
   }
   
   const link = g.append('g')
@@ -20539,18 +20453,8 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Fit to view after simulation stabilizes
   simulation.on('end', () => {
-    console.log('[MS Network] Simulation ended, calling fitToView()');
     setTimeout(() => fitToView(), 100);
   });
-  
-  // In embed mode, also call fitToView after a delay to ensure proper centering
-  if (isEmbedMode) {
-    console.log('[MS Network] Embed mode detected, scheduling fitToView()');
-    setTimeout(() => {
-      console.log('[MS Network] Calling fitToView() for embed mode');
-      fitToView();
-    }, 1500);  // Wait for simulation to have positioned nodes
-  }
 }
 
 function buildGenreDistributions() {
