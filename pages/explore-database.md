@@ -20098,8 +20098,18 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // SVG container
   const svgDiv = document.createElement('div');
-  svgDiv.style.cssText = 'width: 100%; max-width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
+  if (isEmbedMode) {
+    // In embed mode: fill remaining height after legend
+    svgDiv.style.cssText = 'width: 100%; height: calc(100% - 120px); border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
+  } else {
+    svgDiv.style.cssText = 'width: 100%; max-width: 100%; min-height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa; overflow: hidden; position: relative; box-sizing: border-box;';
+  }
   container.appendChild(svgDiv);
+  
+  // Force reflow in embed mode to get correct dimensions
+  if (isEmbedMode) {
+    svgDiv.offsetHeight; // Force reflow
+  }
   
   // Create tooltip div
   const tooltip = document.createElement('div');
@@ -20109,16 +20119,20 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Get actual container dimensions
   function getSize(el) {
     const r = el.getBoundingClientRect();
+    console.log('[MS Network getSize] BoundingClientRect:', r);
     return { w: Math.max(1, r.width), h: Math.max(1, r.height) };
   }
   
   // D3 force layout - use container dimensions for viewBox
   let { w: width, h: height } = getSize(svgDiv);
+  console.log('[MS Network] Initial dimensions from getSize:', { width, height, isEmbedMode });
   // Wait for real dimensions if container not yet sized
   if (width <= 50 || height <= 50) {
-    width = 1200;
-    height = 700;
+    console.log('[MS Network] Container too small, using fallback dimensions');
+    width = isEmbedMode ? 800 : 1200;
+    height = isEmbedMode ? 600 : 700;
   }
+  console.log('[MS Network] Final initial dimensions:', { width, height });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20127,6 +20141,8 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
+  
+  console.log('[MS Network] SVG created with viewBox:', `0 0 ${width} ${height}`);
   
   const g = svg.append('g');
   
