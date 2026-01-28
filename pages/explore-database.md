@@ -20024,6 +20024,9 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Clear container and create wrapper
   container.innerHTML = '';
   
+  // Detect embed mode
+  const isEmbedMode = document.documentElement.classList.contains('embed-mode');
+  
   // Detect bridge nodes (manuscripts connecting many different genres, genres connecting many manuscripts)
   const avgMsGenres = Array.from(manuscriptNodes.values()).reduce((sum, n) => sum + n.uniqueGenres.size, 0) / manuscriptNodes.size;
   const avgGenreMs = Array.from(genreNodes.values()).reduce((sum, n) => sum + n.uniqueManuscripts.size, 0) / genreNodes.size;
@@ -20845,6 +20848,9 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     color: getGenreColor(n.name)
   })));
   
+  // Detect embed mode
+  const isEmbedMode = document.documentElement.classList.contains('embed-mode');
+  
   // Controls bar
   const controlsDiv = document.createElement('div');
   controlsDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; flex-wrap: wrap; gap: 0.75rem;';
@@ -21476,6 +21482,9 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   const itemCount = genreNodes.size;
   const itemLabel = levelFilter === 'genre' ? 'genres' : 'subgenres';
+  
+  // Detect embed mode
+  const isEmbedMode = document.documentElement.classList.contains('embed-mode');
   
   // Controls bar
   const controlsDiv = document.createElement('div');
