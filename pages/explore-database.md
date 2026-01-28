@@ -20145,11 +20145,19 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Fit network to view - centers and scales to fit container
   function fitToView() {
     const { w, h } = getSize(svgDiv);
-    if (w <= 1 || h <= 1) return;
+    console.log('[MS Network fitToView] Container size:', { w, h });
+    if (w <= 1 || h <= 1) {
+      console.log('[MS Network fitToView] Container too small, aborting');
+      return;
+    }
     
     try {
       const bbox = g.node().getBBox();
-      if (!bbox.width || !bbox.height) return;
+      console.log('[MS Network fitToView] Network bounding box:', bbox);
+      if (!bbox.width || !bbox.height) {
+        console.log('[MS Network fitToView] Invalid bbox, aborting');
+        return;
+      }
       
       const pad = 40;
       const scale = Math.min(
@@ -20161,9 +20169,11 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       const tx = (w / 2) - scale * (bbox.x + bbox.width / 2);
       const ty = (h / 2) - scale * (bbox.y + bbox.height / 2);
       
+      console.log('[MS Network fitToView] Applying transform:', { scale, tx, ty });
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
     } catch (e) {
       // If bbox fails, just reset to identity
+      console.log('[MS Network fitToView] Error getting bbox:', e);
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
     }
   }
@@ -20513,8 +20523,20 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Fit to view after simulation stabilizes
   simulation.on('end', () => {
+    console.log('[MS Network] Simulation ended, calling fitToView()');
     setTimeout(() => fitToView(), 100);
   });
+  
+  // In embed mode, also call fitToView after a delay to ensure proper centering
+  const params = new URLSearchParams(window.location.search);
+  const isEmbedMode = params.get('embed') === 'true' || window.self !== window.top;
+  if (isEmbedMode) {
+    console.log('[MS Network] Embed mode detected, scheduling fitToView()');
+    setTimeout(() => {
+      console.log('[MS Network] Calling fitToView() for embed mode');
+      fitToView();
+    }, 1500);  // Wait for simulation to have positioned nodes
+  }
 }
 
 function buildGenreDistributions() {
