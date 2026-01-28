@@ -20114,10 +20114,14 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Get initial dimensions
   let { w: width, h: height } = getSize(svgDiv);
+  console.log('[MS Network] Initial container size:', { width, height });
+  console.log('[MS Network] svgDiv.getBoundingClientRect():', svgDiv.getBoundingClientRect());
   if (width <= 50 || height <= 50) {
+    console.log('[MS Network] Container too small, using fallback dimensions');
     width = 1200;
     height = 700;
   }
+  console.log('[MS Network] Final dimensions for viewBox and simulation:', { width, height });
   
   const svg = d3.select(svgDiv)
     .append('svg')
@@ -20144,11 +20148,20 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Fit network to view - centers and scales to fit container
   function fitToView() {
     const { w, h } = getSize(svgDiv);
-    if (w <= 1 || h <= 1) return;
+    console.log('[MS Network] fitToView - container size:', { w, h });
+    console.log('[MS Network] fitToView - svgDiv.getBoundingClientRect():', svgDiv.getBoundingClientRect());
+    if (w <= 1 || h <= 1) {
+      console.log('[MS Network] fitToView - container too small, aborting');
+      return;
+    }
     
     try {
       const bbox = g.node().getBBox();
-      if (!bbox.width || !bbox.height) return;
+      console.log('[MS Network] fitToView - network bbox:', bbox);
+      if (!bbox.width || !bbox.height) {
+        console.log('[MS Network] fitToView - invalid bbox, aborting');
+        return;
+      }
       
       const pad = 40;
       const scale = Math.min(
@@ -20160,9 +20173,13 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
       const tx = (w / 2) - scale * (bbox.x + bbox.width / 2);
       const ty = (h / 2) - scale * (bbox.y + bbox.height / 2);
       
+      console.log('[MS Network] fitToView - calculated transform:', { scale, tx, ty });
+      console.log('[MS Network] fitToView - applying transform...');
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+      console.log('[MS Network] fitToView - transform applied');
     } catch (e) {
       // If bbox fails, just reset to identity
+      console.log('[MS Network] fitToView - error:', e);
       svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
     }
   }
@@ -20453,6 +20470,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   
   // Fit to view after simulation stabilizes
   simulation.on('end', () => {
+    console.log('[MS Network] Simulation ended, calling fitToView in 100ms');
     setTimeout(() => fitToView(), 100);
   });
 }
