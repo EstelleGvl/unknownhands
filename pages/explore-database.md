@@ -3570,8 +3570,13 @@ function computeList(){
   const cfg  = FACETS[ENTITY];
   const map  = MAP[ENTITY];
   let list = DATA[ENTITY] || [];
+  console.log('[computeList] ENTITY:', ENTITY, 'DATA[ENTITY] length:', list.length);
+  console.log('[computeList] Full DATA object keys:', Object.keys(DATA));
+  console.log('[computeList] DATA.ms length:', DATA.ms?.length, 'DATA.pu length:', DATA.pu?.length);
   list = applyFacets(list, cfg);
+  console.log('[computeList] After applyFacets:', list.length, 'records');
   list = applySearch(list, map, $search.value.trim(), $field.value);
+  console.log('[computeList] After applySearch:', list.length, 'records');
   return list;
 }
 function renderCurrent(){
@@ -3580,6 +3585,12 @@ function renderCurrent(){
 }
 function recompute(clearFacets = false){
   const cfg = FACETS[ENTITY];
+  
+  // If switching entities, clear the facet DOM first to prevent old facets from being read
+  if (clearFacets) {
+    $mount.innerHTML = '';
+  }
+  
   const prevState = clearFacets ? {} : readFacetState(cfg);
   const fullList = DATA[ENTITY] || []; // Use full unfiltered data for facet counts
   const filteredList = computeList(); // Use filtered data for results
