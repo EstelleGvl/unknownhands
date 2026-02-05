@@ -3578,9 +3578,9 @@ function renderCurrent(){
   const list = computeList();
   render(list, ENTITY);
 }
-function recompute(){
+function recompute(clearFacets = false){
   const cfg = FACETS[ENTITY];
-  const prevState = readFacetState(cfg);
+  const prevState = clearFacets ? {} : readFacetState(cfg);
   const fullList = DATA[ENTITY] || []; // Use full unfiltered data for facet counts
   const filteredList = computeList(); // Use filtered data for results
   buildFacets(fullList, cfg, prevState); // Build facets from full dataset
@@ -3726,8 +3726,8 @@ function switchEntity(ent){
   document.querySelectorAll('#entity-switch .entity-btn').forEach(c=>c.classList.toggle('is-on', c.dataset.entity===ent));
   $search.value=''; $field.value=''; $sort.value='';
   page=1;
-  console.log('[switchEntity] Calling recompute()...');
-  recompute();
+  console.log('[switchEntity] Calling recompute() with clearFacets=true...');
+  recompute(true); // Clear facets when switching entities
   console.log('[switchEntity] Calling updateAvailableViews()...');
   updateAvailableViews();
   console.log('[switchEntity] Switch complete');
