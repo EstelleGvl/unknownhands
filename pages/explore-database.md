@@ -3473,8 +3473,12 @@ let page=1, pageSize=24;
 let selectedCard=null;
 
 function render(list, type, selectId=null){
-  console.log('[render] Called with:', { listLength: list.length, type, selectId });
+  console.log('[render] Called - type:', type, 'list length:', list.length, 'selectId:', selectId);
   const map = MAP[type];
+  if (!map) {
+    console.error('[render] No MAP found for type:', type);
+    return;
+  }
   const sort = $sort.value;
   if (sort && sorters(map)[sort]) list=[...list].sort(sorters(map)[sort]);
 
