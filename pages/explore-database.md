@@ -11684,10 +11684,14 @@ function buildMultilingualismOverview(mount) {
   
   // Process all SUs
   const allSUs = DATA.su || [];
+  const allPUs = DATA.pu || [];
+  const allMSs = DATA.ms || [];
+  
   const suByMs = {};
   const scribeLanguages = {};
   const institutionLanguages = {};
   
+  // Process all SUs for language counts and scribe tracking
   allSUs.forEach(su => {
     const langInfo = getLanguageInfo(su, 'su');
     
@@ -11702,13 +11706,6 @@ function buildMultilingualismOverview(mount) {
       stats.colophonDivergences++;
     }
     
-    // Group SUs by manuscript for multilingual MS detection
-    const msId = getMSForSU(su);
-    if (msId) {
-      if (!suByMs[msId]) suByMs[msId] = [];
-      suByMs[msId].push(langInfo);
-    }
-    
     // Track scribe languages
     const scribes = getScribesForSU(su);
     scribes.forEach(scribe => {
@@ -11719,13 +11716,44 @@ function buildMultilingualismOverview(mount) {
     });
   });
   
-  // Count multilingual manuscripts
-  Object.values(suByMs).forEach(suLangs => {
-    const msLangs = new Set();
-    suLangs.forEach(langInfo => {
-      langInfo.all.forEach(lang => msLangs.add(lang));
+  // Count multilingual manuscripts (using SAME logic as buildMultilingualManuscripts)
+  // For each MS, collect all languages from its PUs and their SUs
+  allMSs.forEach(ms => {
+    const msId = String(ms.rec_ID);
+    
+    // Find all PUs in this manuscript
+    const puIds = new Set();
+    allPUs.forEach(pu => {
+      const puMsId = getMSForSU(pu);
+      if (puMsId === msId) puIds.add(String(pu.rec_ID));
     });
-    if (msLangs.size > 1) stats.multilingualMss++;
+    
+    if (puIds.size === 0) return;
+    
+    // Collect all languages in this manuscript
+    const allMsLanguages = new Set();
+    
+    puIds.forEach(puId => {
+      const pu = IDX.pu[puId];
+      if (!pu) return;
+      
+      const puLangInfo = getLanguageInfo(pu, 'pu');
+      puLangInfo.all.forEach(lang => allMsLanguages.add(lang));
+      
+      // Find all SUs in this PU
+      allSUs.forEach(su => {
+        const suPUs = getPUsForSU(su);
+        if (suPUs.includes(puId)) {
+          const suLangInfo = getLanguageInfo(su, 'su');
+          suLangInfo.all.forEach(lang => allMsLanguages.add(lang));
+        }
+      });
+    });
+    
+    // Count as multilingual if 2+ languages
+    if (allMsLanguages.size > 1) {
+      stats.multilingualMss++;
+    }
   });
   
   // Count multilingual scribes
@@ -11733,22 +11761,66 @@ function buildMultilingualismOverview(mount) {
     if (scribe.languages.size > 1) stats.multilingualScribes++;
   });
   
-  // Process PUs for institutional multilingualism
-  const allPUs = DATA.pu || [];
+  // Process institutions comprehensively (PUs, SUs, scribes, manuscripts)
+  // Build comprehensive institution language data matching buildInstitutionalMultilingualism
+  const comprehensiveInstitutionData = {};
+  
+  // Process all PUs
   allPUs.forEach(pu => {
+    const puId = String(pu.rec_ID);
     const langInfo = getLanguageInfo(pu, 'pu');
+    const msId = getMSForSU(pu);
     const institutions = getInstitutionsForPU(pu);
     
     institutions.forEach(inst => {
-      if (!institutionLanguages[inst.institutionId]) {
-        institutionLanguages[inst.institutionId] = { name: inst.institutionName, languages: new Set() };
+      if (!comprehensiveInstitutionData[inst.institutionId]) {
+        comprehensiveInstitutionData[inst.institutionId] = {
+          id: inst.institutionId,
+          name: inst.institutionName,
+          languages: new Set(),
+          manuscripts: new Set(),
+          scribes: new Set()
+        };
       }
-      langInfo.all.forEach(lang => institutionLanguages[inst.institutionId].languages.add(lang));
+      
+      const instData = comprehensiveInstitutionData[inst.institutionId];
+      if (msId) instData.manuscripts.add(msId);
+      langInfo.all.forEach(lang => instData.languages.add(lang));
     });
   });
   
-  // Count multilingual institutions
-  Object.values(institutionLanguages).forEach(inst => {
+  // Process all SUs to add their languages and scribes
+  allSUs.forEach(su => {
+    const langInfo = getLanguageInfo(su, 'su');
+    if (langInfo.all.length === 0) return;
+    
+    const msId = getMSForSU(su);
+    const puIds = getPUsForSU(su);
+    const scribes = getScribesForSU(su);
+    
+    // Get institutions from the PUs this SU belongs to
+    const institutions = new Set();
+    puIds.forEach(puId => {
+      const pu = IDX.pu[puId];
+      if (pu) {
+        const puInsts = getInstitutionsForPU(pu);
+        puInsts.forEach(inst => institutions.add(JSON.stringify(inst)));
+      }
+    });
+    
+    institutions.forEach(instStr => {
+      const inst = JSON.parse(instStr);
+      if (!comprehensiveInstitutionData[inst.institutionId]) return;
+      
+      const instData = comprehensiveInstitutionData[inst.institutionId];
+      if (msId) instData.manuscripts.add(msId);
+      langInfo.all.forEach(lang => instData.languages.add(lang));
+      scribes.forEach(scribe => instData.scribes.add(scribe.scribeId));
+    });
+  });
+  
+  // Count multilingual institutions (institutions with 2+ languages from ANY source)
+  Object.values(comprehensiveInstitutionData).forEach(inst => {
     if (inst.languages.size > 1) stats.multilingualInstitutions++;
   });
   
@@ -11777,10 +11849,7 @@ function buildMultilingualismOverview(mount) {
     byInstitution: {}
   };
   
-  // Get all manuscripts for pattern analysis (PUs and SUs already defined above)
-  const allMSs = DATA.ms || [];
-  
-  // Analyze multilingual manuscripts by patterns
+  // Analyze multilingual manuscripts by patterns (allMSs, allPUs, allSUs already declared above)
   allMSs.forEach(ms => {
     const msId = String(ms.rec_ID);
     const msTitle = MAP.ms?.title(ms) || 'Untitled';
@@ -12576,16 +12645,24 @@ function buildScribalMultilingualism(mount) {
 }
 
 function buildInstitutionalMultilingualism(mount) {
-  // Collect institution language data via PU -> Institution relationships
+  // Collect institution language data from ALL sources:
+  // 1. PU colophon languages
+  // 2. SU colophon languages  
+  // 3. Text languages from relationships
+  // 4. Manuscripts produced at the institution (even if monolingual individually)
+  // 5. Scribes working at the institution
+  
   const allPUs = DATA.pu || [];
+  const allSUs = DATA.su || [];
   const institutionData = {};
   
+  // Process all PUs
   allPUs.forEach(pu => {
+    const puId = String(pu.rec_ID);
     const langInfo = getLanguageInfo(pu, 'pu');
-    if (langInfo.all.length === 0) return;
+    const msId = getMSForSU(pu); // PUs are also SUs
     
     const institutions = getInstitutionsForPU(pu);
-    const msId = getMSForSU(pu); // PUs are also SUs
     
     institutions.forEach(inst => {
       if (!institutionData[inst.institutionId]) {
@@ -12594,39 +12671,131 @@ function buildInstitutionalMultilingualism(mount) {
           name: inst.institutionName,
           languages: new Set(),
           manuscripts: new Set(),
+          scribes: new Set(),
           pus: [],
-          languageDetails: {} // language -> list of PUs
+          languageDetails: {}, // language -> list of sources (PU/SU/scribe)
+          scribeLanguages: {}, // scribeId -> Set of languages
+          msLanguages: {} // msId -> Set of languages
         };
       }
       
-      // Add languages
+      const instData = institutionData[inst.institutionId];
+      
+      // Track manuscript
+      if (msId) {
+        instData.manuscripts.add(msId);
+        if (!instData.msLanguages[msId]) {
+          instData.msLanguages[msId] = new Set();
+        }
+      }
+      
+      // Add PU languages
       langInfo.all.forEach(lang => {
-        institutionData[inst.institutionId].languages.add(lang);
+        instData.languages.add(lang);
+        if (msId) instData.msLanguages[msId].add(lang);
         
-        if (!institutionData[inst.institutionId].languageDetails[lang]) {
-          institutionData[inst.institutionId].languageDetails[lang] = [];
+        if (!instData.languageDetails[lang]) {
+          instData.languageDetails[lang] = [];
         }
         
-        institutionData[inst.institutionId].languageDetails[lang].push({
-          puId: String(pu.rec_ID),
-          puTitle: MAP.pu?.title(pu) || 'Untitled PU',
+        instData.languageDetails[lang].push({
+          type: 'pu',
+          id: puId,
+          title: MAP.pu?.title(pu) || 'Untitled PU',
           msId: msId,
-          msTitle: msId && IDX.ms?.[msId] ? (MAP.ms?.title(IDX.ms[msId]) || 'Untitled MS') : 'Unknown MS'
+          msTitle: msId && IDX.ms?.[msId] ? (MAP.ms?.title(IDX.ms[msId]) || 'Untitled MS') : 'Unknown MS',
+          sources: []
         });
       });
       
-      if (msId) institutionData[inst.institutionId].manuscripts.add(msId);
-      
-      institutionData[inst.institutionId].pus.push({
-        id: String(pu.rec_ID),
+      instData.pus.push({
+        id: puId,
         title: MAP.pu?.title(pu) || 'Untitled PU',
-        languages: langInfo.all,
+        languages: Array.from(langInfo.all),
         ms: msId
       });
     });
   });
   
-  // Filter to multilingual institutions
+  // Process all SUs
+  allSUs.forEach(su => {
+    const suId = String(su.rec_ID);
+    const langInfo = getLanguageInfo(su, 'su');
+    if (langInfo.all.length === 0) return;
+    
+    const msId = getMSForSU(su);
+    const puIds = getPUsForSU(su);
+    const scribes = getScribesForSU(su);
+    
+    // Get institutions from the PUs this SU belongs to
+    const institutions = new Set();
+    puIds.forEach(puId => {
+      const pu = IDX.pu[puId];
+      if (pu) {
+        const puInsts = getInstitutionsForPU(pu);
+        puInsts.forEach(inst => institutions.add(JSON.stringify(inst)));
+      }
+    });
+    
+    institutions.forEach(instStr => {
+      const inst = JSON.parse(instStr);
+      if (!institutionData[inst.institutionId]) return; // Should already exist from PU processing
+      
+      const instData = institutionData[inst.institutionId];
+      
+      // Track manuscript
+      if (msId) {
+        instData.manuscripts.add(msId);
+        if (!instData.msLanguages[msId]) {
+          instData.msLanguages[msId] = new Set();
+        }
+      }
+      
+      // Add SU languages
+      langInfo.all.forEach(lang => {
+        instData.languages.add(lang);
+        if (msId) instData.msLanguages[msId].add(lang);
+        
+        if (!instData.languageDetails[lang]) {
+          instData.languageDetails[lang] = [];
+        }
+        
+        // Check if we already have this info from PU
+        const existingEntry = instData.languageDetails[lang].find(entry => 
+          entry.msId === msId && entry.type === 'pu'
+        );
+        
+        if (!existingEntry) {
+          instData.languageDetails[lang].push({
+            type: 'su',
+            id: suId,
+            title: MAP.su?.title(su) || 'Untitled SU',
+            msId: msId,
+            msTitle: msId && IDX.ms?.[msId] ? (MAP.ms?.title(IDX.ms[msId]) || 'Untitled MS') : 'Unknown MS',
+            sources: []
+          });
+        }
+      });
+      
+      // Track scribes and their languages
+      scribes.forEach(scribe => {
+        instData.scribes.add(scribe.scribeId);
+        
+        if (!instData.scribeLanguages[scribe.scribeId]) {
+          instData.scribeLanguages[scribe.scribeId] = {
+            name: scribe.scribeName,
+            languages: new Set()
+          };
+        }
+        
+        langInfo.all.forEach(lang => {
+          instData.scribeLanguages[scribe.scribeId].languages.add(lang);
+        });
+      });
+    });
+  });
+  
+  // Filter to multilingual institutions (institutions with 2+ languages across ALL sources)
   const multilingualInstitutions = Object.values(institutionData)
     .filter(inst => inst.languages.size > 1)
     .sort((a, b) => b.languages.size - a.languages.size);
@@ -12654,6 +12823,21 @@ function buildInstitutionalMultilingualism(mount) {
     const langArray = Array.from(inst.languages).sort();
     const msCount = inst.manuscripts.size;
     const puCount = inst.pus.length;
+    const scribeCount = inst.scribes.size;
+    
+    // Count multilingual scribes
+    const multilingualScribes = Object.values(inst.scribeLanguages)
+      .filter(scribe => scribe.languages.size > 1);
+    
+    // Count multilingual manuscripts (manuscripts with 2+ languages)
+    const multilingualMss = Object.entries(inst.msLanguages)
+      .filter(([msId, langs]) => langs.size > 1);
+    
+    // Determine type of multilingualism
+    const types = [];
+    if (multilingualMss.length > 0) types.push(`${multilingualMss.length} multilingual manuscript${multilingualMss.length !== 1 ? 's' : ''}`);
+    if (multilingualScribes.length > 0) types.push(`${multilingualScribes.length} multilingual scribe${multilingualScribes.length !== 1 ? 's' : ''}`);
+    if (msCount > 1 && langArray.length > 1) types.push('institutional specialization');
     
     // Language badges
     const langBadges = langArray.map(lang =>
@@ -12661,26 +12845,26 @@ function buildInstitutionalMultilingualism(mount) {
     ).join('');
     
     // Language breakdown
-    const langBreakdown = Object.entries(inst.languageDetails).map(([lang, pus]) => {
-      const puList = pus.slice(0, 5).map(pu => // Show first 5
+    const langBreakdown = Object.entries(inst.languageDetails).map(([lang, sources]) => {
+      const sourceList = sources.slice(0, 5).map(src => // Show first 5
         `<div style="font-size: 0.75rem; color: #666; padding: 0.25rem 0; border-bottom: 1px solid #f0f0f0;">
-          <span style="font-weight: 600;">${pu.puTitle}</span> 
+          <span style="font-weight: 600;">${src.title}</span> 
           <span style="color: #999;">in</span> 
-          <span style="color: #d4af37;">${pu.msTitle}</span>
+          <span style="color: #d4af37;">${src.msTitle}</span>
         </div>`
       ).join('');
       
-      const moreCount = pus.length - 5;
+      const moreCount = sources.length - 5;
       const moreText = moreCount > 0 ? `<div style="font-size: 0.7rem; color: #999; padding: 0.5rem 0; font-style: italic;">...and ${moreCount} more</div>` : '';
       
       return `
         <div style="margin-bottom: 1rem;">
           <div style="font-weight: 600; color: #333; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
             <span style="padding: 0.2rem 0.6rem; background: #fce4ec; color: #c2185b; border-radius: 0.75rem; font-size: 0.8rem;">${lang}</span>
-            <span style="font-size: 0.8rem; color: #666;">${pus.length} production unit${pus.length !== 1 ? 's' : ''}</span>
+            <span style="font-size: 0.8rem; color: #666;">${sources.length} source${sources.length !== 1 ? 's' : ''}</span>
           </div>
           <div style="margin-left: 1rem; max-height: 200px; overflow-y: auto;">
-            ${puList}
+            ${sourceList}
             ${moreText}
           </div>
         </div>
@@ -12698,10 +12882,13 @@ function buildInstitutionalMultilingualism(mount) {
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
               ${langBadges}
             </div>
-            <div style="display: flex; gap: 1.5rem; font-size: 0.8rem; color: #666;">
+            <div style="display: flex; gap: 1.5rem; font-size: 0.8rem; color: #666; margin-bottom: 0.5rem;">
               <span><strong>${langArray.length}</strong> language${langArray.length !== 1 ? 's' : ''}</span>
               <span><strong>${msCount}</strong> manuscript${msCount !== 1 ? 's' : ''}</span>
-              <span><strong>${puCount}</strong> production unit${puCount !== 1 ? 's' : ''}</span>
+              <span><strong>${scribeCount}</strong> scribe${scribeCount !== 1 ? 's' : ''}</span>
+            </div>
+            <div style="font-size: 0.75rem; color: #888; font-style: italic;">
+              ${types.join(' • ')}
             </div>
           </div>
           <div>
