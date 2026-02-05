@@ -3473,6 +3473,7 @@ let page=1, pageSize=24;
 let selectedCard=null;
 
 function render(list, type, selectId=null){
+  console.log('[render] Called with:', { listLength: list.length, type, selectId });
   const map = MAP[type];
   const sort = $sort.value;
   if (sort && sorters(map)[sort]) list=[...list].sort(sorters(map)[sort]);
@@ -3712,13 +3713,20 @@ function initModeNavigation() {
 
 /* ---------- Switch entity ---------- */
 function switchEntity(ent){
-  if (ENTITY===ent) return;
+  console.log('[switchEntity] Switching from', ENTITY, 'to', ent);
+  if (ENTITY===ent) {
+    console.log('[switchEntity] Already on this entity, returning');
+    return;
+  }
   ENTITY = ent;
   document.querySelectorAll('#entity-switch .entity-btn').forEach(c=>c.classList.toggle('is-on', c.dataset.entity===ent));
   $search.value=''; $field.value=''; $sort.value='';
   page=1;
+  console.log('[switchEntity] Calling recompute()...');
   recompute();
+  console.log('[switchEntity] Calling updateAvailableViews()...');
   updateAvailableViews();
+  console.log('[switchEntity] Switch complete');
 }
 
 /* ---------- Map (Leaflet) ---------- */
