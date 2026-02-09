@@ -281,10 +281,6 @@ banner:
               <input type="checkbox" id="map-show-heatmap">
               <span style="font-size: 0.875rem;">Heatmap</span>
             </label>
-            <label id="map-control-routes" style="display: flex; align-items: center; gap: 0.25rem; margin: 0;">
-              <input type="checkbox" id="map-show-routes">
-              <span style="font-size: 0.875rem;">Show Routes</span>
-            </label>
             <button class="chip" id="map-reset-view" style="margin-left: auto;">Reset View</button>
             <button class="chip" id="map-export-image" style="background: #28a745; color: white;">📷 Export PNG</button>
           </div>
@@ -3843,10 +3839,9 @@ function getSuggestedMapView(entity) {
 
 // Update map controls visibility and legend based on view type
 function updateMapControls(viewType) {
-  // Show/hide connection lines and routes (only for movement views)
+  // Show/hide connection lines (only for movement views)
   const isMovementView = viewType === 'ms-movement';
   const connectionsControl = document.getElementById('map-control-connections');
-  const routesControl = document.getElementById('map-control-routes');
   const connectionsCheckbox = document.getElementById('map-show-connections');
   
   if (connectionsControl) {
@@ -3855,9 +3850,6 @@ function updateMapControls(viewType) {
     if (isMovementView && connectionsCheckbox) {
       connectionsCheckbox.checked = true;
     }
-  }
-  if (routesControl) {
-    routesControl.style.display = isMovementView ? 'flex' : 'none';
   }
   
   // Show/hide time controls (only for production views)
@@ -3885,9 +3877,9 @@ function updateMapControls(viewType) {
     } else if (viewType === 'pu-location') {
       html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ff7800;"></span> Production Unit</div>';
     } else if (viewType === 'pu-monastery') {
-      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#c026d3;"></span> Monastery (with PUs)</div>';
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#c4941f;"></span> Monastery (with PUs)</div>';
     } else if (viewType === 'mi-all') {
-      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#9333ea;"></span> Monastic Institution</div>';
+      html += '<div style="display:flex;align-items:center;gap:0.25rem;"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#d4af37;"></span> Monastic Institution</div>';
     }
     
     legendItems.innerHTML = html;
@@ -12437,13 +12429,15 @@ function buildMultilingualManuscripts(mount) {
       </div>
       
       <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: #555; line-height: 1.8;">
-        <strong>Legend:</strong><br>
-        <span style="margin-right: 1.5rem;">🟣 Purple = Manuscript-level languages</span>
-        <span style="margin-right: 1.5rem;">🔵 Blue = Production Unit languages</span>
-        <span style="margin-right: 1.5rem;">🟠 Orange = Scribal Unit languages</span><br>
-        <span style="margin-right: 1.5rem;">Notebook icon = From colophon</span>
-        <span style="margin-right: 1.5rem;">Book icon = From linked text</span>
-        <span style="margin-right: 1.5rem;">Red badge = Colophon-text divergence</span>
+        <strong>How to Read the Cards:</strong><br>
+        <div style="margin-top: 0.5rem;">
+          • <strong>Gold badges at top</strong> = All languages found in this manuscript<br>
+          • <strong>Green badge</strong> = Within-PU multilingualism (multiple languages in same production unit)<br>
+          • <strong>Orange badge</strong> = Cross-PU compilation (different languages in different production units)<br>
+          • <strong>Blue badges in breakdown</strong> = Languages from Production Unit colophons/texts<br>
+          • <strong>Orange badges in breakdown</strong> = Languages from Scribal Unit colophons/texts<br>
+          • <strong>Red "Colophon≠Text" badge</strong> = Colophon language differs from text language
+        </div>
       </div>
       
       ${msCards}

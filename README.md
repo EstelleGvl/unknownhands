@@ -118,51 +118,52 @@
 
 
 
-## 2. Technology Stack### Jekyll Website
+## 2. Technology Stack
 
-A modular static site using:
+### Backend (Build-Time)
 
-### Backend (Build-Time)- **Jekyll** for content and layout
-
-- **Ruby 3.2+** with Jekyll 4.3- **JavaScript** for dynamic functionality
-
-- **Python 3.8+** for data processing scripts- **Mirador 3** for IIIF viewing
-
+- **Ruby 3.2+** with Jekyll 4.3
+- **Python 3.8+** for data processing scripts
 - **Bundler** for Ruby gem management
+- **pip/conda** for Python package management
 
-- **pip/conda** for Python package management#### Main pages:
+### Frontend
 
-| Page | Function | Linked Data |
+- **HTML5/CSS3** with responsive design
+- **JavaScript (ES6+)** for interactive features
+- **Bootstrap 4** for UI components and responsive grid
+- **D3.js v7** for all data visualizations:
+  - Force-directed network graphs (Scribes, Network Explorer, Text Genres)
+  - Hierarchical tree layouts (Production Unit trees)
+  - Geographic maps (Leaflet integration)
+  - Bar charts and statistical visualizations
+  - Bipartite graph layouts (Text Genres networks)
+- **Mirador 3** for IIIF image viewing
+- **OpenSeadragon** for deep zoom in IIIF viewer
+- **ElasticLunr.js** for client-side full-text search
+- **html2canvas** for high-resolution PNG export (300 DPI)
+- **Papa Parse** for CSV import/export with UTF-8 support
+- **Leaflet** with Leaflet.markercluster for interactive maps
+- **jQuery 3.2.1** for DOM manipulation
 
-### Frontend|------|-----------|--------------|
+### Data Formats
 
-- **HTML5/CSS3** with responsive design| `/explore-database/` | Browse Heurist records with facets and filters. | `data/records.json` |
-
-- **JavaScript (ES6+)** for interactive features| `/viewer/` | View digitized manuscript images with synchronized transcriptions. | IIIF manifest + `mapping.json` |
-
-- **Bootstrap 4** for UI components| `/search-transcriptions/` | Search across all transcriptions, show folio and viewer link. | `data/search_index.json` |
-
-- **D3.js** for data visualizations
-
-- **Mirador 3** for IIIF image viewing---
-
-- **OpenSeadragon** for deep zoom
-
-- **ElasticLunr.js** for client-side search## 3. Data Flow Summary
-
-
-
-### Data Formats1. **Heurist** → exports structured records.
-
-- **IIIF Presentation API** (v2/v3)2. **eScriptorium** → exports transcriptions as PAGE-XML.
-
-- **Web Annotation Data Model**3. **Python scripts** → normalize and transform both into standardized IIIF-compliant JSON.
-
-- **PAGE-XML** (PRImA format)4. **Static site build** → Jekyll + JavaScript use these data files to create interactive interfaces.
-
+- **IIIF Presentation API** (v2/v3)
+- **Web Annotation Data Model**
+- **PAGE-XML** (PRImA format)
 - **JSON/YAML** for data interchange
+- **CSV** for database exports
 
-- **CSV** for database exports---
+---
+
+## 3. Data Flow Summary
+
+1. **Heurist** → exports structured records.
+2. **eScriptorium** → exports transcriptions as PAGE-XML.
+3. **Python scripts** → normalize and transform both into standardized IIIF-compliant JSON.
+4. **Static site build** → Jekyll + JavaScript use these data files to create interactive interfaces.
+
+---
 
 
 
@@ -484,12 +485,18 @@ The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
 **Explore Database** (`/pages/explore-database.md`)
 - Multi-entity database browser with 7 record types
 - Faceted filtering and full-text search
-- 5 visualization modes:
+- Dynamic facet system with type-aware rendering (enum, enum-multi, enum-search, year-range, num-range, text, resource, relationship-enum-multi)
+- Entity switching with automatic facet DOM clearing to prevent state persistence bugs
+- 9 visualization modes:
   1. **Browse & Search** — Grid view with filters
-  2. **Map** — Geographic distribution (8 view modes)
-  3. **Timeline** — Temporal analysis (4 view modes)
-  4. **Network** — Entity relationships
-  5. **Analytics** — Statistical analyses (3 modules)
+  2. **Analytics** — Statistical dashboard with entity filtering
+  3. **Map** — Geographic distribution (8 view modes)
+  4. **Hierarchical Tree** — Production unit hierarchies within manuscripts
+  5. **Network** — Custom entity relationship networks
+  6. **Scribes** — Scribal network analysis and statistics
+  7. **Multilingualism** — Language analysis across 5 dimensions
+  8. **Text Genres** — Genre relationships via bipartite networks
+  9. **Colophon Analysis** — Sentiment, thematic, and linguistic analysis
 
 **Viewer** (`/pages/viewer.md`)
 - IIIF image viewer using Mirador 3
@@ -547,13 +554,26 @@ The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
 ### 5.1 Database Explorer (Explore Database Page)
 
 #### Browse & Search Mode
-- **7 Entity Types:** Scribal Units, Manuscripts, Production Units, Holding Institutions, Monastic Institutions, Historical People, Texts
-- **Dynamic Facets:** Auto-generated filters based on record type
-- **Search Options:** Full-text search across all fields or specific field search
-- **Sorting:** Multiple sort criteria (title, date, etc.)
-- **Pagination:** Configurable results per page
-- **Export:** CSV download of filtered results
-- **Details Panel:** Click any record to see full metadata
+- **7 Entity Types:** Scribal Units (SU), Manuscripts (MS), Production Units (PU), Holding Institutions (HI), Monastic Institutions (MI), Historical People (HP), Texts (TX)
+- **Dynamic Facet System:** 
+  - Auto-generated filters based on record type and field metadata
+  - Type-aware rendering: `enum` (single select), `enum-multi` (checkboxes), `enum-search` (searchable dropdown), `year-range` (dual slider), `num-range` (min/max inputs), `text` (input), `resource` (entity links), `relationship-enum-multi` (related entity multiselect)
+  - Facet state management with URL parameter serialization
+  - Entity switching triggers facet DOM clearing to prevent checkbox persistence bugs
+- **Search Options:** 
+  - Full-text search across all entity fields
+  - Field-specific search with dropdown selector
+  - Search combines with active facet filters (AND logic)
+- **Sorting:** Multiple sort criteria (title, date, relevance)
+- **Pagination:** Configurable results per page (10/25/50/100)
+- **Export:** CSV download of filtered results with field selection
+- **Details Panel:** Click any record to see full metadata, relationships, and navigation links
+
+**Technical Implementation:**
+- Client-side filtering with indexed data structures for performance
+- Facet computation via `computeList()` function that tracks unique values and counts
+- `recompute(clearFacets=false)` function handles filter state updates
+- `switchEntity(newType)` clears facet DOM before recomputation to prevent type conflicts (e.g., PU and MS both having "Watermark" facet with different types)
 
 #### Map Mode (8 Views)
 1. **Manuscripts - Current Location:** Where manuscripts are held today
@@ -566,11 +586,12 @@ The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
 8. **Combined View:** All entity types on one map
 
 **Features:**
-- Interactive Leaflet maps with clustering
-- Click markers for record details
-- Color-coded by entity type
-- Zoom to fit all markers
+- Interactive Leaflet maps with Leaflet.markercluster plugin
+- Click markers for record details in popup
+- Color-coded by entity type with custom icons
+- Zoom to fit all markers automatically
 - Export visible data as CSV
+- Export map as PNG (300 DPI)
 
 #### Timeline Mode (4 Views)
 1. **Manuscripts Timeline:** Distribution over centuries
@@ -581,49 +602,237 @@ The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
 **Features:**
 - Interactive bar charts (D3.js)
 - Hover for counts and details
-- Click bars to filter records
-- Export timeline data
+- Click bars to filter records to that time period
+- Export timeline visualization as PNG (300 DPI)
+- Export timeline data as CSV
 
-#### Network Mode
-- **Entity Relationships:** Visualizes connections between records
-- **Interactive Graph:** Drag nodes, zoom, pan
-- **Relationship Types:** Shows connection labels (e.g., "Produced by", "Contains")
-- **Click Nodes:** View record details
-- **Filters:** Show/hide relationship types
+#### Network Explorer Mode
 
-#### Analytics Mode (5 Modules)
+**Custom Multi-Entity Network Builder**
+- User selects entity types to include (any combination of 7 entity types)
+- User selects relationship types to visualize
+- Dynamic force-directed graph generation with D3.js
 
-**Paleographic Analysis**
-- Script distribution across time periods
-- Script correlations with geography/gender
-- Visualization: stats tables, bar charts, heatmaps
+**Interactive Features:**
+- Drag nodes to reposition
+- Zoom and pan with mouse wheel and drag
+- Hover nodes for tooltip with metadata
+- Click nodes for full record details
+- Relationship labels on edges (e.g., "Produced by", "Contains", "Written by")
+- Filter panel to show/hide specific relationship types
+- Color coding by entity type
+- Node sizing by connection count or custom metric
 
-**Gender Analysis**
-- Gender distribution in scribal production
-- Gender vs. geography patterns
-- Gender vs. script correlations
-- Temporal gender patterns
+**Export Options:**
+- PNG (300 DPI)
+- SVG vector format
 
-**Multilingualism Module** *(NEW)*
-- Overview: Distribution of languages across manuscripts and scribal units
-- Manuscripts Tab: Language patterns per manuscript with filtering
-- Scribes Tab: Language attribution at scribal unit level (colophon vs. text language)
-- Institutions Tab: Linguistic diversity by monastic institution
-- Colophon-Text Divergence: Analysis of cases where colophon and text languages differ
-- Pattern Analysis: Geographical, temporal, and religious order correlations
-- Icons: 📝 (colophon language) and 📖 (text language) for clear attribution
+**Use Cases:**
+- Visualize manuscript production networks (PUs → Manuscripts → Institutions)
+- Trace scribe relationships (Scribes → SUs → Manuscripts → Monasteries)
+- Explore text transmission (Texts → Manuscripts → Scribes)
+- Discover historical people connections (People → Institutions → Manuscripts)
 
-**Colophon Analysis Module** *(NEW)*
-- Overview: Statistical summary of colophon presence and characteristics
-- Sentiment Analysis: Emotional tone detection (humility, pride, labor, religious, temporal, dedication)
-  - Most/Least Expressive Colophons with expandable lists
-  - Matched keyword display for transparency
-  - "View SU" buttons for quick navigation
-- Thematic Analysis: 8 themes (religious devotion, scribal identity, labor & completion, temporal markers, institutional context, dedication & patronage, personal expression, mistakes & corrections)
-  - Expandable example colophons per theme
-- Linguistic Features: Word count, sentence complexity, first-person usage analysis
-- Comparative Patterns: Regional and temporal variations with sentiment percentages
-- Browse Colophons: Filterable colophon viewer with expand/collapse cards and copy-to-clipboard functionality
+#### Analytics Mode
+
+**Statistical Dashboard**
+- Entity-specific analytics with filter dropdown
+- Distribution charts and temporal patterns
+- Interactive visualizations with D3.js
+- Export as high-resolution PNG (300 DPI)
+
+#### Hierarchical Tree Mode
+
+**Production Unit Hierarchy Visualization**
+- D3.js hierarchical tree layout showing manuscript structure
+- Expandable/collapsible nodes for production units
+- Visual representation of parent-child relationships
+- Click nodes for detailed metadata
+- Export tree as PNG (300 DPI)
+
+**Technical Implementation:**
+- Builds tree from parent_id relationships in production units
+- Handles multiple root nodes (manuscripts with multiple top-level PUs)
+- Dynamic layout with automatic spacing
+
+#### Scribes Mode *(NEW)*
+
+**Scribal Network & Statistics**
+- Force-directed network graph (D3.js) showing scribe-scribe connections
+- Connection criteria: scribes who worked together (same manuscripts or monasteries)
+- Node properties:
+  - Size: proportional to manuscript/SU count
+  - Color: entity type differentiation
+  - Label: scribe name/identifier
+- Interactive features: zoom, pan, drag nodes, hover tooltips
+- Statistical overview panel:
+  - Total scribes count
+  - Network connectivity metrics
+  - Collaboration patterns
+  - Institutional distribution
+- Export: PNG (300 DPI), SVG, CSV
+
+**Use Cases:**
+- Identify scribal collaboration networks
+- Discover scribes who worked at multiple institutions
+- Map scribal workshop relationships
+- Analyze geographical distribution of scribal activity
+
+#### Text Genres Network Analysis *(NEW)*
+
+**Three Bipartite Network Visualizations:**
+
+1. **Manuscript-Genre Network**
+   - Left nodes: Manuscripts
+   - Right nodes: Genres
+   - Edges: "manuscript contains genre" relationships
+   - Reveals genre co-occurrence patterns within manuscripts
+
+2. **Institution-Subgenre Network**
+   - Left nodes: Monastic/Holding Institutions
+   - Right nodes: Text Subgenres
+   - Edges: "institution produced subgenre" relationships
+   - Shows institutional specialization patterns
+
+3. **Scribe-Genre Network**
+   - Left nodes: Scribes (Scribal Units)
+   - Right nodes: Genres
+   - Edges: "scribe copied genre" relationships
+   - Identifies scribe genre specialization vs. versatility
+
+**Layout Options:**
+- **Horizontal Bipartite:** Two-column layout with clear entity separation
+- **Radial:** Circular arrangement with central genre nodes
+
+**Interactive Features:**
+- D3.js force simulation with collision detection
+- Zoom/pan with d3-zoom
+- Node hover: highlight connected edges and nodes
+- Link hover: emphasize specific connections
+- Click nodes: display metadata tooltips
+- Dynamic filtering by entity or genre
+
+**Export Options:**
+- **PNG:** 300 DPI high-resolution images for publication
+- **SVG:** Vector format for further editing
+- **Embed Codes:** Iframe snippets for external websites
+
+**Technical Implementation:**
+- Builds bipartite graphs from entity-genre relationships in dataset
+- Force layout with custom positioning for bipartite structure
+- Optional radial transformation using polar coordinates
+- Debounced rendering for performance with large networks
+
+#### Multilingualism Analysis Module
+
+**Comprehensive Language Tracking**
+
+5 analytical tabs providing multi-dimensional linguistic analysis:
+
+**1. Overview Tab**
+- Statistical summary of language distribution across corpus
+- Multilingual manuscript count (manuscripts with 2+ languages from ANY source)
+- Language frequency charts
+- Temporal and geographic patterns
+- PU-based manuscript counting for consistency with other tabs
+
+**2. Multilingual Manuscripts Tab**
+- Lists all manuscripts containing multiple languages
+- Sources include: Production Unit colophons, Scribal Unit colophons, Text languages, Scribe languages
+- Expandable cards showing language breakdown per manuscript
+- Language attribution icons: 📝 (colophon) / 📖 (text)
+- Filtering by language, date range, institution
+- Count consistent with Overview tab (PU-based grouping)
+
+**3. Scribal Multilingualism Tab**
+- Individual scribes who wrote in multiple languages
+- Tracks languages across a scribe's entire body of work
+- Distinguishes colophon language from text language
+- Shows language diversity even when individual SUs are monolingual
+- Scribe name, all languages used, SU count
+
+**4. Institutional Multilingualism Tab**
+- **Most comprehensive implementation:** tracks ALL language sources
+  - Production Unit colophon languages
+  - Scribal Unit colophon languages  
+  - Text languages from manuscript relationships
+  - Scribe languages (all scribes working at institution)
+  - Manuscript-level language aggregation
+- **Multilingualism Types:**
+  - Multilingual manuscripts count (MSS with 2+ languages)
+  - Multilingual scribes count (scribes using 2+ languages)
+  - Institutional specialization (institution produces 2+ languages across corpus)
+- **Display:** Institution name, all languages, MS count, scribe count, multilingualism type indicators
+- **Detailed breakdown:** Expandable production-by-language view
+- **Sorting:** By name or language diversity
+
+**5. Colophon-Text Divergence Tab**
+- Cases where colophon language ≠ text language
+- Code-switching analysis
+- Geographical and temporal patterns
+- Religious order correlations
+
+**Technical Implementation:**
+- Language sourcing from multiple entity types with deduplication
+- Set-based language aggregation for accuracy
+- Multilingual manuscript detection: `languages.size >= 2`
+- Comprehensive institutional tracking: merges PU, SU, text, scribe, and manuscript languages
+- Production-by-language grouping for institutional detail view
+- Consistent counting logic across all tabs (PU-based for manuscripts)
+
+#### Colophon Analysis Module
+
+**7 Analytical Tabs:**
+
+**1. Overview Tab**
+- Statistical summary: colophon presence, average length, language distribution
+- Corpus-wide metrics
+
+**2. Sentiment Analysis Tab**
+- Keyword-based emotional tone detection
+- 6 sentiment categories: humility, pride, labor, religious, temporal, dedication
+- Most/least expressive colophons with expandable detail cards
+- Matched keyword display for methodological transparency
+- Sentiment score calculation and distribution charts
+- "View SU" navigation buttons
+
+**3. Thematic Analysis Tab**
+- 8 colophon themes with example excerpts
+- Themes: religious devotion, scribal identity, labor & completion, temporal markers, institutional context, dedication & patronage, personal expression, mistakes & corrections
+- Expandable colophon examples per theme
+- Theme co-occurrence patterns
+
+**4. Linguistic Features Tab**
+- Word count distribution
+- Sentence complexity metrics
+- First-person pronoun usage analysis
+- Comparative statistics by region/period
+
+**5. Comparative Patterns Tab**
+- Regional sentiment variations
+- Temporal patterns in colophon expression
+- Religious order correlations
+- Gender-based analysis
+- Sentiment percentage breakdowns
+
+**6. Browse Colophons Tab**
+- Filterable colophon viewer (by language, date, institution, sentiment)
+- Expandable/collapsible cards
+- Copy-to-clipboard for transcriptions and translations
+- Full-text search within colophons
+- Direct links to viewer for manuscript context
+
+**7. Explore Formulae Tab**
+- Standardized formulaic pattern discovery
+- Cross-linguistic formula comparison
+- Regional and temporal formula distribution
+- Formula frequency analysis
+
+**Technical Implementation:**
+- Keyword dictionaries for sentiment detection with weighted scoring
+- Text parsing and tokenization for linguistic metrics
+- Regex-based formula extraction
+- Interactive D3.js visualizations for pattern analysis
 
 **Visualization Types:**
 - Statistics tables (mean, median, min, max)
@@ -636,11 +845,24 @@ The IIIF viewer (Mirador 3) displays transcriptions alongside manuscript images:
 - Language distribution pie/bar charts
 - Interactive expandable lists
 
-**Export Capabilities:**
-- Export visualizations as high-quality PNG (300 DPI)
-- Export statistical data as CSV
-- Export network graphs as SVG
-- Copy colophon texts to clipboard
+**Export Capabilities Across All Modes:**
+- **PNG Export:** All visualizations export as 300 DPI high-resolution images suitable for publication (maps, networks, trees, charts, analytics dashboards)
+- **SVG Export:** Vector format for network graphs and select visualizations
+- **CSV Export:** Statistical data tables, filtered record lists, search results
+- **Embed Codes:** Iframe snippets for Text Genres networks (with query parameters preserving network type and filters)
+- **Copy to Clipboard:** Colophon transcriptions, translations, and metadata
+
+**Technical Implementation:**
+- PNG export via `html2canvas` library with scale factor 3.125 (300 DPI at standard screen resolution)
+- SVG export via DOM serialization of D3.js-generated elements
+- CSV export via JavaScript `Papa.unparse()` with UTF-8 BOM for Excel compatibility
+- Embed code generation with URL parameter encoding
+
+**Gender Analysis**
+- Gender distribution in scribal production
+- Gender vs. geography patterns
+- Gender vs. script correlations
+- Temporal gender patterns
 
 ### 5.2 IIIF Viewer
 
@@ -829,11 +1051,15 @@ JEKYLL_ENV=production bundle exec jekyll build
 **Built With:**
 - [Jekyll](https://jekyllrb.com/) — Static site generator
 - [Wax](https://minicomp.github.io/wax/) — Minimal computing framework
-- [IIIF](https://iiif.io/) — Image interoperability
-- [Mirador](https://projectmirador.org/) — IIIF viewer
-- [D3.js](https://d3js.org/) — Data visualization
-- [Leaflet](https://leafletjs.com/) — Interactive maps
-- [Bootstrap](https://getbootstrap.com/) — UI framework
+- [IIIF](https://iiif.io/) — Image interoperability standard
+- [Mirador 3](https://projectmirador.org/) — IIIF viewer for manuscript images and transcriptions
+- [D3.js v7](https://d3js.org/) — Data visualization (networks, trees, charts)
+- [Leaflet](https://leafletjs.com/) — Interactive maps with clustering
+- [Bootstrap 4](https://getbootstrap.com/) — UI framework and responsive design
+- [ElasticLunr.js](http://elasticlunr.com/) — Client-side search engine
+- [html2canvas](https://html2canvas.hertzen.com/) — High-resolution image export
+- [Papa Parse](https://www.papaparse.com/) — CSV parsing and generation
+- [jQuery](https://jquery.com/) — DOM manipulation library
 
 **Project Team:**
 - **Director:** Estelle Guéville, Yale University, Medieval Studies, Digital Humanities
@@ -853,4 +1079,4 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ---
 
-*Last updated: December 2025*
+*Last updated: February 2026*

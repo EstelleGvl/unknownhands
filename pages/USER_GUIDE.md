@@ -11,9 +11,9 @@ banner:
 ---
 
 
-# Unknown Hands — User Guide
+# *Unknown Hands* - User Guide
 
-**Welcome to Unknown Hands!** This guide will help you explore and analyze our database of pre-modern female scribal production. Whether you're a researcher, student, or simply curious about medieval manuscripts, this manual will show you how to get the most out of our interactive platform.
+**Welcome to *Unknown Hands*!** This guide will help you explore and analyze our database of pre-modern female scribal production. Whether you're a researcher, student, or simply curious about medieval manuscripts, this manual will show you how to get the most out of our interactive platform.
 
 ---
 
@@ -23,43 +23,50 @@ banner:
 2. [Browse & Search](#2-browse--search)
 3. [Analytics Tools](#3-analytics-tools)
 4. [Map Visualizations](#4-map-visualizations)
-5. [Codicological Analysis](#5-codicological-analysis)
-6. [Hierarchical Tree Explorer](#6-hierarchical-tree-explorer)
-7. [Network Explorer](#7-network-explorer)
+5. [Hierarchical Tree Explorer](#5-hierarchical-tree-explorer)
+6. [Network Explorer](#6-network-explorer)
+7. [Scribes Mode](#7-scribes-mode)
 8. [Multilingualism Analysis](#8-multilingualism-analysis)
-9. [Colophon Analysis](#9-colophon-analysis)
-10. [IIIF Viewer & Mirador](#10-iiif-viewer--mirador)
-11. [Search Transcriptions](#11-search-transcriptions)
-12. [Tips & Tricks](#12-tips--tricks)
-13. [FAQ](#13-frequently-asked-questions)
+9. [Text Genres Network Analysis](#9-text-genres-network-analysis)
+10. [Colophon Analysis](#10-colophon-analysis)
+11. [IIIF Viewer & Mirador](#11-iiif-viewer--mirador)
+12. [Search Transcriptions](#12-search-transcriptions)
+13. [Tips & Tricks](#13-tips--tricks)
+14. [FAQ](#14-frequently-asked-questions)
 
 ---
 
-## 1. Getting Started
+<details markdown="1" id="1-getting-started">
+<summary><strong>1. Getting Started</strong></summary>
 
-### What is Unknown Hands?
+### What is *Unknown Hands*?
 
-Unknown Hands is a digital research platform documenting the work of female scribes who created manuscripts before 1600. Our database includes:
+Unknown Hands is a digital research platform documenting the work of female scribes before 1600. Our database includes:
 1. **Scribal Units (SU)** — The core unit of analysis in the database. A specific manuscript section written by a scribe.
 2. **Manuscripts (MS)** — Physical codices (books) at least partially written by or associated with women.
-3. **Production Units (PU)** — Manufacturing contexts of specific manuscript sections(where/when/how manuscripts were made)
-4. **Holding Institutions (HI)** — Libraries and archives holding these manuscripts
-5. **Monastic Institutions (MI)** — Historical production locations (monasteries, convents)
-6. **Historical People (HP)** — Scribes, patrons, owners
-7. **Texts (TX)** — Literary works contained in manuscripts
+3. **Production Units (PU)** — Manufacturing contexts of specific manuscript sections (where/when/how manuscripts were made).
+4. **Holding Institutions (HI)** — Libraries and archives holding these manuscripts.
+5. **Monastic Institutions (MI)** — Historical production locations (monasteries, convents).
+6. **Historical People (HP)** — Scribes, authors, patrons, owners.
+7. **Texts (TX)** — Literary works contained in manuscripts.
 
 ### Navigating the Site
 
 **Main Navigation Bar** (top of page):
-- **[About](/unknownhands/about/)** — Learn about the project
-- **[Explore Database](/unknownhands/explore-database/)** — Interactive data explorer (this guide's focus)
-- **[Viewer](/unknownhands/viewer/)** — View manuscript images with transcriptions
-- **[Search Transcriptions](/unknownhands/search-transcriptions/)** — Full-text search across all transcribed manuscripts
-- **[Team](/unknownhands/team/)**, **[Publications](/unknownhands/publications/)**, - **[Participate](/unknownhands/participate/)** — Project information
+- **[About](/unknownhands/about/)** — Learn about the project.
+- **[Explore Database](/unknownhands/explore-database/)** — Interactive data explorer (this guide's focus).
+- **[Viewer](/unknownhands/viewer/)** — View manuscript images with transcriptions.
+- **[Search Transcriptions](/unknownhands/search-transcriptions/)** — Full-text search across all transcribed manuscripts.
+- **[Team](/unknownhands/team/)** - The people behind the project.
+- **[Publications](/unknownhands/publications/)** - Scholarly articles and books based on the project.
+- **[Participate](/unknownhands/participate/)** — How to get involved in the project.
+
+</details>
 
 ---
 
-## 2. Browse & Search
+<details markdown="1" id="2-browse--search">
+<summary><strong>2. Browse & Search</strong></summary>
 
 ### Accessing Browse Mode
 
@@ -91,6 +98,9 @@ Filters appear on the left side and change based on record type.
 1. Select or enter filter values
 2. Results update automatically
 3. Click **"Clear all filters"** to reset
+4. You can apply multiple filters at once to narrow results. Example: Filter Scribal Units by "Scribe role (from relationships)" = "Main scribe" AND "Text language (from relationships)" = "Latin"
+5. You can unselect filters by clicking them again to broaden results
+
 
 ### Searching Records
 
@@ -221,9 +231,12 @@ These filters allow you to search based on metadata stored in the relationships 
 - Go to specific page
 - Shows records per page (default: 20)
 
+</details>
+
 ---
 
-## 3. Analytics Tools
+<details markdown="1" id="3-analytics-tools">
+<summary><strong>3. Analytics Tools</strong></summary>
 
 ### Accessing Analytics Mode
 
@@ -241,88 +254,142 @@ These filters allow you to search based on metadata stored in the relationships 
 **Features:**
 - **Entity Filter:** Select specific entity types (Manuscripts, Scribal Units, etc.)
 - **Interactive Visualizations:** Statistical charts and graphs
-- **Export:** Save dashboard as image (PNG) for presentations or publications
+- **Export:** Save dashboard as high-resolution image (PNG, 300 DPI) suitable for publications
 
 **Use Cases:**
 - Understanding corpus composition
-- Identifying temporal patterns
+- Identifying geotemporal patterns
 - Finding gaps in the data
 - Dataset completeness analysis
 - Identifying trends across entity types
 
+</details>
+
 ---
 
-## 4. Map Visualizations
+<details markdown="1" id="4-map-visualizations">
+<summary><strong>4. Map Visualizations</strong></summary>
 
 ### Accessing Map Mode
 
 1. In **Explore Database**, click **Map** tab (top navigation)
-2. Map loads showing manuscript locations
+2. Map loads showing manuscript locations across all database records
 
-### Changing Map Views
+### Map View Options
 
-**Map View Selector** (top of map):
+**Map View Selector** (dropdown menu at top):
 
-**6 Different Views:**
+**5 Different Views:**
 
 1. **Manuscripts - Current Location (Holdings)**
-   - Where manuscripts are held today
-   - Shows holding institutions
-   - Use to find MSS near you
+   - Shows where manuscripts are held today
+   - Each blue marker represents a manuscript at its current holding institution
+   - Use to find manuscripts near a specific location
 
-2. **Manuscripts - Production Location**
-   - Where manuscripts were created
-   - Historical geography
-   - See production centers
+2. **Manuscripts - Movement (Production → Current)**
+   - Visualizes manuscript movement from production location to current holding.
+   - Shows only manuscripts where BOTH production and current locations are known AND different.
+   - Routes connect production site to current location.
+   - Orange markers indicate manuscripts that have moved.
+   - Red markers indicate current location and green markers indicate production location.
+   - Reveals historical migration patterns and manuscript circulation.
 
-3. **Manuscripts - Movement (Production → Current)**
-   - Visualizes manuscript movement from production location to current holding
-   - Shows historical migration patterns and helps understand manuscript circulation and collection history
-   - Arrows connect origin to current location
+3. **Production Units - All Locations**
+   - Maps all Production Units at their creation locations.
+   - Orange markers indicate production locations.
+   - Shows where manuscript sections were actually made.
+   - If linked to a monastery, the monastery name appears in the subtitle
+   - Time period filter allows you to see production locations active during specific times.
 
-4. **Production Units - All Locations**
-   - All Production Unit geographic data
+4. **Production Units - By Monastery**
+   - Groups Production Units by their associated monastic institution
+   - Each marker represents a monastery with one or more Production Units
+   - Shows count of Production Units created at each monastery
+   - Reveals which monasteries were most productive
+   - Time period filter allows you to see production locations active during specific times.
 
-5. **Production Units - By Monastery**
-   - Groups PUs by monastic institution
-   - See which monasteries were productive
 
-6. **Monastic Institutions**
-   - All monasteries and convents
-   - Historical religious centers
+5. **Monastic Institutions**
+   - Maps all monasteries and convents in the database
+   - Green markers indicate monastic locations
+   - Shows count of linked Production Units (if any)
+   - Reveals the geographic distribution of female religious houses
+
+**Note:** Map views show all data from the entire database, regardless of current filters/search in other modes.
+
+### Map Controls & Features
+
+**Display Options:**
+
+- **Clustering** (checkbox, enabled by default)
+  - Groups nearby markers into numbered clusters
+  - Click clusters to zoom in and see individual markers
+  - Disable to show all individual markers at once
+
+- **Connection Lines** (checkbox)
+  - Available in Movement view
+  - Draws lines between connected locations
+  - Shows relationships between production and holding sites
+
+- **Heatmap** (checkbox)
+  - Displays density visualization overlay
+  - Brighter colors indicate higher concentration of records
+  - Useful for identifying geographic patterns
+
+- **Show Routes** (checkbox)
+  - Available in Movement view
+  - Draws curves connecting production to current locations
+  - Animates manuscript migration paths
+
+**Time Period Filter:**
+
+- **Dual range sliders** control start and end years (800-1600)
+- Filters markers by manuscript/production dates
+- **Current range** displayed above sliders
+- **Clear button** resets to full date range
+- Only shows records with known dates within selected period
+
+**Color Legend:**
+
+- Displayed below controls
+- Shows marker colors for different entity types
+- Updates based on selected map view
 
 ### Using the Map
 
-**Markers:**
-- **Circles with numbers** — Clusters (multiple records in same location)
-- **Individual icons** — Single records
-- **Colors** — Different entity types
-- **Heatmap** option available for density visualization
+**Navigation:**
+- **Zoom:** Mouse wheel, +/- buttons, or double-click
+- **Pan:** Click and drag map
+- **Reset View:** Click "Reset View" button to fit all visible markers
 
-**Interactions:**
-- **Zoom:** Mouse wheel or +/- buttons
-- **Pan:** Click and drag
-- **Click cluster:** Zooms in to show individual markers
-- **Click marker:** Opens popup with record details
-- **Popup:** Click record name to view full details and "Open in results" button to see details in results view.
-- **Reset view:** Zoom to fit button
-- 
+**Markers:**
+- **Numbered clusters** — Multiple records at similar location (click to expand)
+- **Individual markers** — Single record (color indicates entity type)
+- **Click marker** — Opens popup with record details
+
+**Popups:**
+- Show record title and location
+- Click record name to view full details page
+- Click "Open in results" to see in Browse mode
 
 ### Exporting Maps
 
 **Export as Image:**
-1. Click **"Export PNG"** button (top right of map)
-2. High-resolution PNG image downloads
-3. Use in presentations, publications, or reports
+1. Click **"📷 Export PNG"** button (green button at top right)
+2. High-resolution PNG image (300 DPI) downloads automatically
+3. Captures current view, including:
+   - Visible area and zoom level
+   - Active markers and clusters
+   - Heatmap (if enabled)
+   - Routes/connections (if enabled)
+   - Color legend
+
+</details>
 
 ---
 
-## 5. Codicological Analysis (Not currently available)
-
-
----
-
-## 6. Hierarchical Tree Explorer
+<details markdown="1" id="5-hierarchical-tree-explorer">
+<summary><strong>5. Hierarchical Tree Explorer</strong></summary>
 
 ### Accessing Hierarchical Tree Mode
 
@@ -373,185 +440,722 @@ Check boxes to show only manuscripts with specific characteristics:
 
 **Export as Image:**
 - Click **"Export as Image"** button
-- Exports current tree view as PNG
-- Useful for presenting manuscript structure
+- Exports current tree view as high-resolution PNG (300 DPI)
+- Suitable for publications and presentations
+
+</details>
 
 ---
 
-## 7. Network Explorer
+<details markdown="1" id="6-network-explorer">
+<summary><strong>6. Network Explorer</strong></summary>
 
 ### Accessing Network Mode
 
-1. Click **Network** tab
-2. Network graph loads (may take a moment for large datasets)
+1. Click **Network** tab in Explore Database
+2. Network visualization loads with search interface
 
-### Understanding the Network
+### Two Network Views
 
-**What You See:**
-- **Nodes (circles)** — Individual records
-- **Lines (edges)** — Relationships between records
-- **Colors** — Entity types
-- **Node size** — Can represent number of connections
+**Network View Selector** (dropdown at top):
 
-**Relationship Types:**
-- "Produced by" — Production Unit → Monastic Institution (monastery)
-- "Contains" — Manuscript → Scribal Unit
-- "Is part of" — Scribal Unit → Production Unit
-- "Held by" — Manuscript → Holding Institution
-- And more...
+1. **Search & Explore from Record** (Recommended)
+   - Search for any manuscript, scribe, institution, or text
+   - Select a record to explore its network
+   - Shows relationships radiating from chosen starting point
+   - Ideal for focused exploration
 
-### Interacting with the Network
+2. **Cluster View by Entity Type**
+   - Shows broader overview of entity relationships
+   - Visualizes overall database structure
+   - Groups related entities together
 
-**Navigation:**
-- **Zoom:** Mouse wheel
-- **Pan:** Click and drag background
-- **Move nodes:** Click and drag individual nodes
-- **Reset view:** Zoom to fit button
+### Building Your Network (Search Mode)
+
+**Step 1: Search for a Record**
+- Type in the search box: manuscript name, scribe, institution, or text
+- Results appear as you type
+- Click any result to select it as your starting point
+
+**Step 2: Configure Network**
+
+**Depth Control:**
+- Set **Depth** (1-3) to control how many relationship levels to show
+- Depth 1: Shows only direct connections
+- Depth 2: Shows connections and their connections (recommended)
+- Depth 3: Shows extended network (may be very large)
+
+**Color Options:**
+- **Entity Type** — Color by record type (manuscripts, scribes, institutions)
+- **Century** — Color by date of production
+- **Region** — Color by geographic origin
+- **Religious Order** — Color by monastic affiliation
+
+### Network Controls & Features
+
+**Display Options:**
+- **Labels** (checkbox) — Show/hide node labels
+- **Dark Mode** (checkbox) — Toggle dark background for better visibility
+- **Link Density** (slider) — Adjust how many connections are visible (0-100%)
+  - Lower values hide weaker connections
+  - Higher values show all relationships
+
+**Entity Type Filters:**
+Show/hide specific entity types:
+- Scribal Units (yellow)
+- Manuscripts (blue)
+- Production Units (red)
+- Holding Institutions (green)
+- Monastic Institutions (purple)
+- Historical People (orange)
+- Texts (teal)
+
+**Click "Filters" button** to access advanced filtering panel
+
+### Navigation & Interaction
+
+**Map Controls:**
+- **Zoom In/Out** — Buttons or mouse wheel
+- **Reset View** — Return to default zoom (100%)
+- **Fit to Screen** — Auto-zoom to show entire network
+- **Pan** — Click and drag background
+- **Move nodes** — Click and drag individual nodes
 
 **Exploring Connections:**
-1. **Click a node** — Highlights that record and its immediate connections, opens a pop-up with details and a link to view full records in Browse mode.
-2. **Relationship labels** — Hover over lines to see relationship type
+- **Click a node** — Shows details panel with record information
+- **Node details panel** appears at top-left with:
+  - Record title and type
+  - Key metadata
+  - "View Scribal Unit" or "View Full Record" button
+- **Link lines** connect related records
+- **Color legend** appears at top-right showing what colors mean
 
-**Filtering:**
-- Click on filters to select which entity types to show:
-  - Manuscripts
-  - Scribal Units
-  - Production Units
-  - Holding Institutions
-  - Monastic Institutions
-  - Historical People
-  - Texts
-- Network updates to show filtered relationships
-- Example: Show only MSS and holding institutions
+**Rebuild Network:**
+- Click **"Rebuild Network"** button after changing filters
+- Network regenerates with new settings
 
 ### Use Cases
 
 **Finding Related Records:**
-- Start with one manuscript
+- Search for a manuscript
 - See which scribal units it contains
-- Trace to production units
-- Find other MSS from same monastery
+- Trace to production units and monasteries
+- Find other manuscripts from same scriptorium
 
 **Identifying Hubs:**
-- Large nodes = highly connected records
-- Important manuscripts, productive monasteries
-- Key figures in network
+- Larger nodes = more connections
+- Identifies important manuscripts, productive monasteries, prolific scribes
 
 **Pattern Discovery:**
-- Clusters = closely related groups
-- Isolated nodes = unique records
-- Dense areas = production centers
+- Clusters reveal closely related groups
+- Isolated nodes show unique records
+- Dense areas indicate production centers
+- Color patterns reveal temporal or geographic groupings
 
-### Exporting Network Visualizations
+### Exporting Networks
 
-**Export Options:**
-- **Export SVG** — Vector format, scalable without quality loss, ideal for publications
-- **Export PNG** — Raster image format, good for presentations and web use
+**Visual Exports:**
+- **📷 Export SVG** — Vector format, infinitely scalable, ideal for academic publications
+- **📷 Export PNG** — High-resolution raster (300 DPI), suitable for presentations
 
-Click the appropriate export button to download your current network view.
+**Data Exports:**
+- **Export Data dropdown** menu offers:
+  - **Gephi (2 CSV files)** — Nodes and edges files for Gephi network analysis software
+  - **R (CSV + script)** — Network data plus R script for statistical analysis
+
+**What Gets Exported:**
+- Current visible network (respects filters)
+- Node positions and relationships
+- All metadata for further analysis
+- Color scheme and labels (in image exports)
+
+### Network Statistics
+
+**Filter Feedback** (bottom of filters panel):
+- **Node count** — Number of records in current network
+- **Link count** — Number of connections shown
+- Updates in real-time as you change filters
+
+**Reset All Filters** button clears all filters and returns to full view
+
+</details>
 
 ---
 
-## 8. Multilingualism Analysis
+<details markdown="1" id="7-scribes-mode">
+<summary><strong>7. Scribes Mode</strong></summary>
+
+### Accessing Scribes Mode
+
+1. In **Explore Database**, click **Scribes** tab (top navigation)
+2. View loads showing scribal analysis interface with six tabs
+
+### What is Scribes Mode?
+
+Explore female scribes through comprehensive statistical analyses, network visualizations, and detailed data. This mode focuses specifically on the women who copied medieval manuscripts, their productivity patterns, collaborations, and geographic distribution.
+
+### Six Analysis Tabs
+
+Select a tab at the top to explore different aspects:
+
+#### 1. Overview
+
+**Purpose:** Get a comprehensive snapshot of female scribal activity
+
+**Key Statistics:**
+- **Total Female Scribes** — Number of identified female scribes in the database
+- **Total Scribal Units by Women** — Number of manuscript sections attributed to female scribes
+- **Average SUs per Female Scribe** — Mean productivity across all scribes
+- **Multilingual Female Scribes** — Scribes who worked in multiple languages
+
+**Visualization:**
+- **Top 20 Most Productive Scribes** — Bar chart showing scribes ranked by number of scribal units produced
+- Hover over bars to see scribe details
+- Click "Export PNG" to download chart (300 DPI)
+
+**Use this to:** 
+- Understand the overall scope of female scribal activity
+- Identify the most prolific female scribes at a glance
+- Compare productivity across the dataset
+
+#### 2. Productivity Patterns
+
+**Purpose:** Analyze patterns in scribal and manuscript production
+
+**Two Distribution Charts:**
+
+**Scribe Productivity Distribution:**
+- Shows how many scribes produced 1, 2, 3+ scribal units
+- Reveals that most scribes produced few units, while a few were highly productive
+- X-axis: Number of scribal units | Y-axis: Number of scribes
+
+**Manuscript Productivity Distribution:**
+- Shows how many manuscripts have 1, 2, 3+ scribes
+- Reveals collaboration patterns in manuscript production
+- X-axis: Number of scribes per manuscript | Y-axis: Number of manuscripts
+
+**Export:** Both charts can be exported as high-resolution PNG (300 DPI)
+
+**Use this to:**
+- Study scribal productivity patterns
+- Understand the distribution of labor
+- Identify manuscripts with multiple scribes
+- Compare individual vs. collaborative production
+
+#### 3. Unseen Species Analysis
+
+**Purpose:** Estimate how many female scribes remain undiscovered using cultural ecology methods
+
+**What is Unseen Species Analysis?**
+
+Applies biodiversity estimation techniques to manuscript data. Just as ecologists estimate total species from sampling, this analysis projects the likely total population of female scribes based on observed patterns.
+
+**Four Experiments:**
+
+**Experiment 1: High Certainty Attributions**
+- Uses only scribes with highest attribution confidence
+- Most conservative estimate
+- Minimizes false positives
+
+**Experiment 2: Entire Corpus (Default)**
+- Analyzes all scribes in the database
+- Balanced approach between comprehensiveness and accuracy
+- Recommended for general understanding
+
+**Experiment 3: Breakdown by Country**
+- Separate estimates for each geographic region
+- Reveals where more scribes likely remain to be found
+- Identifies regional gaps in current knowledge
+
+**Experiment 4: Breakdown by Century**
+- Temporal distribution of estimates
+- Shows which periods have more undiscovered scribes
+- Identifies chronological gaps in the data
+
+**Results Display:**
+- **Observed Scribes:** Current count in database
+- **Estimated Total:** Projected total population (with confidence intervals)
+- **Unseen Species:** Estimated number yet to be discovered
+- **Discovery Curve:** Visualization of accumulation pattern
+- **Statistical Metrics:** Chao1 estimator, confidence intervals
+
+**Methodology Button:** Click "ℹ️ Methodology & References" to see detailed explanation of statistical methods and academic sources
+
+**Use this to:**
+- Assess completeness of current knowledge
+- Understand scale of undiscovered female scribal activity
+- Identify where more research is needed
+- Support grant proposals and research planning
+
+#### 4. Collaborations
+
+**Purpose:** Explore which scribes worked together on manuscripts
+
+**Features:**
+
+**Collaboration Network Visualization:**
+- Interactive network graph showing scribe-to-scribe connections
+- **Nodes (circles):** Individual scribes
+- **Node size:** Number of collaborations (larger = more collaborative)
+- **Edges (lines):** Shared manuscripts
+- **Edge thickness:** Number of manuscripts worked on together
+- Zoom, pan, and hover to explore
+- Click nodes to see scribe details
+
+**Top Collaborators Panel:**
+- List of scribes ranked by number of collaborations
+- Click any scribe to focus network view on them
+- Shows collaboration partners and shared manuscripts
+
+**Multi-Scribe Manuscripts Panel:**
+- Lists all manuscripts with 2+ female scribes
+- Click to see which scribes worked together
+- Reveals collaborative production workshops
+
+**Export:** Network can be exported as high-resolution PNG (300 DPI)
+
+**Use this to:**
+- Identify scribal workshops and partnerships
+- Find scribes who frequently collaborated
+- Study patterns of collaborative manuscript production
+- Understand scribal communities
+
+#### 5. Geography
+
+**Purpose:** Explore geographic and institutional distribution of scribes
+
+**Two Charts:**
+
+**Top Institutions by Scribe Count:**
+- Bar chart showing monasteries/convents with most female scribes
+- Ranked by number of scribes associated with each institution
+- Reveals major centers of female scribal activity
+
+**Top Cities by Scribe Activity:**
+- Bar chart showing cities with most scribal production
+- Ranked by total scribal activity
+- Maps geographic centers of female book production
+
+**Use this to:**
+- Identify major scriptoria and production centers
+- Compare institutional productivity
+- Study geographic distribution of female scribes
+- Find regional patterns in scribal activity
+
+#### 6. Browse All
+
+**Purpose:** Search, filter, and export the complete scribe dataset
+
+**Advanced Filtering:**
+
+**Search Box:**
+- Search by scribe name, language, or institution
+- Real-time filtering as you type
+
+**Filter Type Dropdown:**
+- **All Scribes** — Show everyone
+- **Multilingual Only** — Scribes who worked in 2+ languages
+- **Highly Productive (5+ SUs)** — Most prolific scribes
+- **Collaborative** — Scribes who worked with others
+
+**Language Filter:**
+- Filter by specific language (Latin, French, German, etc.)
+- Shows scribes who worked in that language
+
+**Institution Filter:**
+- Filter by monastery/convent
+- Shows scribes associated with specific institutions
+
+**Table Display:**
+- Sortable columns: Name, Languages, Institution, SU Count, etc.
+- Click any scribe row to view full details
+- Responsive design for easy browsing
+
+**Export CSV:**
+- Click "📥 Export CSV" button to download full dataset
+- Includes all scribe data and metadata
+- Respects current filters
+- Suitable for statistical analysis in Excel, R, Python, etc.
+
+**Use this to:**
+- Find specific scribes
+- Generate custom filtered lists
+- Export data for further analysis
+- Conduct systematic research across all scribes
+
+### General Tips
+
+**Navigation:**
+- Use tabs to switch between different analytical perspectives
+- Charts and visualizations are interactive — hover and click to explore
+- Export buttons preserve current view with high quality (300 DPI)
+
+**Comparison Strategy:**
+- Start with **Overview** to understand the big picture
+- Use **Productivity Patterns** to see distribution patterns
+- Explore **Unseen Species** to assess data completeness
+- Examine **Collaborations** to find networks
+- Check **Geography** for regional patterns
+- Use **Browse All** for detailed investigation
+
+### Exporting Data & Visualizations
+
+**Chart Exports:**
+- Click "Export PNG" button on any visualization
+- Downloads high-resolution image (300 DPI)
+- Suitable for publications, presentations, and reports
+
+**Data Export:**
+- Use **Browse All** tab → **Export CSV** button
+- Downloads complete dataset with current filters applied
+- Compatible with Excel, R, Python, Gephi, and other analysis tools
+
+</details>
+
+---
+
+<details markdown="1" id="8-multilingualism-analysis">
+<summary><strong>8. Multilingualism Analysis</strong></summary>
 
 ### Accessing Multilingualism Mode
 
 1. In **Explore Database**, click **Multilingualism** tab (top navigation)
-2. View loads showing the Multilingualism Explorer
+2. View loads showing the Multilingualism Explorer with five tab options
+3. Select a tab to explore different aspects of linguistic diversity
 
 ### What is Multilingualism Analysis?
 
-Explore language patterns and linguistic diversity across manuscripts, scribal units, and institutions. Examine how scribes worked with multiple languages and when they code-switched between languages in colophons versus texts.
+Explore language patterns and linguistic diversity across manuscripts, scribes, and institutions. Examine how scribes worked with multiple languages and when they code-switched between languages in colophons versus texts. This mode tracks languages from all sources: production unit colophons, scribal unit colophons, text languages, and scribe attributions.
 
 ### Five Analysis Tabs
 
-#### 1. Overview Tab
+#### 1. Overview
 
-**Purpose:** Get a quick snapshot of linguistic diversity
+**Purpose:** Get a comprehensive snapshot of linguistic diversity across the entire corpus
 
-**Features:**
-- **Total Language Count:** Number of unique languages in the database
-- **Language Distribution:** Top languages with manuscript/Scribal Unit counts
-- **Key Statistics:** Overall linguistic diversity metrics
-- **Visualization:** Bar chart showing language frequency
+**Five Key Statistics (Stat Cards):**
+- **Languages/Dialects:** Total count of unique languages and dialects in the database
+- **Multilingual Manuscripts:** Number of manuscripts containing 2+ languages
+- **Multilingual Scribes:** Number of scribes who worked in 2+ languages
+- **Multilingual Institutions:** Number of institutions that produced texts in 2+ languages
+- **Colophon-Text Divergences:** Count of cases where colophon language ≠ text language
 
-**Use this to:** Understand the overall linguistic composition of the collection
+**Language Distribution Chart:**
+- Bar chart showing the 15 most common languages
+- Each bar shows occurrence count (from colophons, texts, and all sources)
+- Gold gradient bars with language names and counts
 
-#### 2. Multilingual Manuscripts Tab
+**Pattern Analysis Section (4 Subsections):**
 
-**Purpose:** Find and analyze manuscripts containing multiple languages
+**1. Geographical Distribution**
+- Top 10 countries by multilingual production units
+- Shows count of multilingual PUs and number of unique languages per country
+- Blue gradient bars
 
-**Features:**
-- View all multilingual manuscripts in the database
-- See which languages appear in each manuscript
-- **Filtering Options:**
-  - Filter by specific language (dropdown)
-  - Filter by century
-  - Filter by region
-  - Text search for manuscript names
-- **Display:** Manuscript title, languages present, century, region
-- **Sort:** By manuscript name or number of languages
+**2. Temporal Distribution** 
+- Multilingual production organized by century
+- Shows count and language diversity for each time period
+- Green gradient bars
+- Sorted chronologically
+
+**3. Religious Order Patterns**
+- Top 8 religious orders by multilingual manuscript production
+- Shows PU count, language diversity, and institution count per order
+- Purple/pink gradient bars
+
+**4. Top Institutions**
+- Top 10 individual institutions by multilingual activity
+- Shows multilingual PU count, languages used, religious order, and location
+- Orange gradient bars
+
+**Use this to:** 
+- Understand the overall linguistic composition of the collection
+- Identify geographical, temporal, and institutional patterns in multilingualism
+- See which regions, periods, and religious orders were most linguistically diverse
+- Get oriented before exploring specific manuscripts, scribes, or institutions
+
+#### 2. Multilingual Manuscripts
+
+**Purpose:** Find and analyze manuscripts containing two or more languages
+
+**What Counts as Multilingual:**
+A manuscript is classified as multilingual if it contains **2 or more languages** from ANY of these sources:
+- Production unit colophon languages
+- Scribal unit colophon languages
+- Text languages from manuscript contents
+- Combined languages across all PUs and SUs within the manuscript
+
+**Multilingualism Types Detected:**
+- **Within-PU Multilingualism:** At least one production unit contains multiple languages (e.g., Latin text with vernacular colophon within same PU)
+- **Cross-PU Multilingualism:** Languages differ across production units (e.g., one PU entirely in Latin, another entirely in German)
+
+**Display Format:**
+- Manuscript cards showing:
+  - Manuscript title and ID
+  - All languages present (colored language badges)
+  - Language count and PU count
+  - Multilingualism type indicator
+  - Number of multilingual PUs
+
+**Expandable Breakdown:**
+- Click to expand and see detailed PU-by-PU breakdown
+- Each PU shows:
+  - PU title
+  - Languages in that PU
+  - Colophon languages vs. text languages
+  - Associated scribal units
+  - Scribe attributions (if available)
+
+**Filtering & Search:**
+- **Language dropdown:** Filter to manuscripts containing a specific language
+- **Century filter:** Filter by time period
+- **Region filter:** Filter by geographic location
+- **Text search:** Search manuscript titles
+
+**Sorting:**
+- Sort by manuscript name
+- Sort by number of languages (most multilingual first)
 
 **Use this to:**
-- Find manuscripts in specific languages
+- Find manuscripts in specific language combinations
 - Identify the most linguistically diverse manuscripts
-- Study language combinations (e.g., Latin + vernacular)
+- Study language co-occurrence patterns (e.g., Latin + vernacular pairings)
+- Compare within-PU vs. cross-PU multilingualism
+- Trace how language use changed within a single manuscript
 
-#### 3. Scribal Multilingualism Tab
+#### 3. Scribal Multilingualism
 
-**Purpose:** Examine language use at the scribal unit level
+**Purpose:** Examine scribes who worked in multiple languages and analyze their linguistic practices
 
-**Key Distinction:**
-- **Colophon language** — Language of the scribe's note/signature
-- **Text language** — Language of the main content copied
+**What is Tracked:**
+- **Scribes** (historical persons) and the languages they used across all their work
+- Distinction between **colophon language** (language of the scribe's note) and **text language** (language of content copied)
+- Multilingual scribes (those who worked in 2+ languages) are highlighted
 
-**Features:**
-- Shows scribal units with their attributed languages
-- Distinguish between colophon and text languages
-- **Filters:** Language, century, region, text search
-- Identify scribes who worked in multiple languages
+**Display Format:**
+- **Scribe cards** (colored language badges showing all languages used)
+- Sorted by language diversity (most multilingual scribes first)
+
+**Information Shown:**
+- **Scribe name and ID**
+- **Language count** (how many different languages the scribe used)
+- **Language badges** (blue gradient badges for each language)
+- **Manuscript count** (how many different manuscripts the scribe worked on)
+- **Scribal Unit count** (total SUs attributed to this scribe)
+
+**Expandable Language Breakdown:**
+- Click to expand each scribe card
+- See which specific SUs used which languages
+- Each language section shows:
+  - Scribal units in that language
+  - Associated manuscripts
+  - Scribe role (if specified)
+  - Certainty level (if available)
+
+**Focus on Multilingual Scribes:**
+- Tab prioritizes scribes with 2+ languages
+- Shows versatile scribes who code-switched or worked across linguistic boundaries
+- Reveals individual linguistic abilities and specialization patterns
+
+**Filtering & Search:**
+- **Language filter:** Show only scribes who used a specific language
+- **Minimum languages:** Filter by linguistic diversity level
+- **Text search:** Search scribe names
+- **Institution filter:** Filter scribes by associated institution (if linked)
 
 **Use this to:**
-- Find scribes who worked in multiple languages
+- Find scribes who worked in multiple languages (knowledge brokers)
 - Identify cases where colophon language differs from text language
 - Study individual scribal linguistic abilities
+- Compare multilingual vs. monolingual scribes
+- Discover which scribe worked in the most languages
+- Analyze whether scribes switched languages between different manuscripts or within the same manuscript
 
-#### 4. Institutional Multilingualism Tab
+#### 4. Institutional Multilingualism
 
-**Purpose:** Analyze linguistic diversity by monastery/convent
+**Purpose:** Comprehensively analyze linguistic diversity by monastery/convent
 
-**Features:**
-- See which institutions had multilingual production
-- Count of unique languages per institution
-- **Display:** Institution name, location, languages used, Scribal Unit count
-- **Sort:** By name or language diversity score
+**What is Tracked:**
+
+The platform tracks institutional multilingualism through multiple sources to provide the most complete picture possible. An institution is considered multilingual if it has **2 or more languages** from ANY of these sources:
+
+**Language Sources:**
+1. **Production Unit Colophon Languages:** Languages appearing in PU colophons
+2. **Scribal Unit Colophon Languages:** Languages appearing in SU colophons
+3. **Text Languages:** Languages of manuscript contents (from relationship data)
+4. **Scribe Languages:** Languages used by scribes working at the institution
+5. **Manuscript Languages:** All languages aggregated from manuscripts produced at the institution
+
+**Three Types of Multilingualism:**
+
+1. **Multilingual Manuscripts:** Manuscripts containing texts in multiple languages (any format: main text in multiple languages, main text in one language and colophon in another, colophons in multiple languages, etc.)
+
+2. **Multilingual Scribes:** Individual scribes who wrote in multiple languages across their work, even if each individual manuscript section is monolingual
+
+3. **Institutional Specialization:** Institutions producing manuscripts in different languages even when each manuscript is monolingual (languages diverse at institutional level, not individual manuscript level)
+
+**Display Format:**
+
+**Institution Cards** showing:
+- **Institution name** and ID
+- **All languages used** (colored language badges)
+- **Language count** (total unique languages)
+- **Manuscript count** (manuscripts produced at the institution)
+- **Scribe count** (scribes working at the institution)
+- **Multilingualism type indicators** (which of the three types apply)
+
+**Expandable Language Breakdown:**
+- Click to expand any institution card
+- See **language-by-language breakdown** showing:
+  - Which specific production units use each language
+  - Which scribal units use each language
+  - Which manuscripts contain each language
+  - Which scribes worked in each language
+- Organized by language with source details (PU/SU/manuscript level)
+
+**Example:**
+A monastery might be multilingual because:
+- It has one manuscript with Latin text and German colophon (multilingual manuscript)
+- It has a scribe who wrote in both Latin and French across different manuscripts (multilingual scribe)
+- It produced some manuscripts entirely in Latin and others entirely in German (institutional specialization)
+
+**Filtering & Search:**
+- **Language filter:** Show only institutions using a specific language
+- **Minimum languages:** Filter by linguistic diversity level
+- **Religious order filter:** Filter by monastic order (Benedictine, Cistercian, etc.)
+- **Country/region filter:** Filter by geographic location
+- **Text search:** Search institution names
+
+**Sorting:**
+- Sort by institution name
+- Sort by language diversity (institutions with most languages first)
+- Sort by manuscript count
+- Sort by scribe count
 
 **Use this to:**
-- Find centers of multilingual manuscript production
+- Find centers of multilingual manuscript production with complete data
 - Compare linguistic diversity across religious institutions
-- Identify regional patterns in institutional multilingualism
+- Identify all three types of institutional multilingualism (multilingual manuscripts, multilingual scribes, institutional specialization)
+- Understand the full scope of language use at medieval scriptoria
+- Study regional patterns in institutional linguistic practices
+- Discover which institutions were the most linguistically diverse
+- Compare monasteries vs. convents in terms of linguistic diversity
 
-#### 5. Colophon-Text Divergence Tab
+#### 5. Colophon-Text Divergence
 
-**Purpose:** Specialized analysis of language code-switching
+**Purpose:** Specialized analysis of language code-switching between colophons and texts
 
 **What It Shows:**
-- Cases where **colophon language ≠ text language**
-- Scribes who wrote notes in one language but copied texts in another
-- Examples: Latin text with vernacular colophon, or vice versa
+Cases where **colophon language ≠ text language**—when scribes wrote their notes/signatures in one language but copied the main text in a different language.
 
-**Features:**
-- List of all divergent cases
-- Context: Century, region, institution
-- Percentage of colophons showing divergence
-- Regional and temporal patterns
+**Examples of Divergence:**
+- Latin text with vernacular (German, French, Italian) colophon
+- Vernacular text with Latin colophon
+- Any case where scribe's personal note language differs from the content they copied
+
+**Divergence Detection:**
+- System compares colophon language field vs. text language field for each scribal unit
+- Divergence is identified when colophon language is NOT in the set of text languages
+- Requires both colophon language and text language to be recorded
+
+**Display Format:**
+
+**Divergence Cards** (one per divergent scribal unit):
+- **Card border:** Pink/rose left accent border
+- **Card header:**
+  - Divergence number (for reference)
+  - Scribal unit title
+  - Associated manuscript title (in gold)
+- **Visual language comparison:**
+  - **Colophon Language:** Pink/yellow gradient badges
+  - **Text Language(s):** Purple/blue gradient badges
+  - Arrow symbol (→) showing the divergence direction
+- **Scribe information:** Scribe name(s), role, certainty level (if available)
+- **View SU button:** Jump directly to the scribal unit record for details
+
+**Information Shown:**
+- Scribal unit ID and title
+- Manuscript ID and title
+- Colophon language(s) with colored badges
+- Text language(s) with different colored badges
+- Scribe attribution(s)
+- Production unit count
+
+**Sorting:**
+- Sorted alphabetically by manuscript title
+- Groups divergences from the same manuscript together
+
+**Interactive Features:**
+- **Hover effect:** Cards lift and shadow increases on hover
+- **View SU button:** Click to jump to the full scribal unit record
+- **Expandable details:** See full context for each divergence
 
 **Use this to:**
 - Study language choices and code-switching in medieval scribal practice
-- Understand when scribes used vernacular vs. Latin
-- Identify patterns in scribal language selection
+- Understand when scribes used vernacular vs. Latin in their personal notes
+- Identify patterns in scribal language selection (did they use their native language for colophons even when copying Latin texts?)
+- Compare colophon language preferences across regions, time periods, or institutions
+- Find cases where scribe's linguistic identity differs from the text they were copying
+- Discover whether certain text types prompted more divergence (e.g., religious vs. secular)
 
-### Example Research Questions
+**Research Questions:**
+- Did scribes prefer to write colophons in their vernacular even when copying Latin texts?
+- Were certain languages more common in colophons vs. main texts?
+- Did divergence patterns change over time or vary by region?
+- Which institutions had more colophon-text divergence?
+- Were female scribes more or less likely to code-switch in colophons?
+
+### General Tips
+
+**Start with Overview:** Tab 1 provides orientation—see the big picture before diving into specific manuscripts, scribes, or institutions
+
+**Understand the Three Types:** Multilingualism can occur at manuscript level (within-manuscript), scribe level (individual scribes working in multiple languages), or institutional level (languages diverse across an institution's production)
+
+**Use Filters Strategically:** Each tab has specific filters—use them to narrow down to your research focus (e.g., filter to a specific language, century, or religious order)
+
+**Expand for Details:** All tabs with cards (Manuscripts, Scribes, Institutions, Divergences) have expandable sections—click to see detailed breakdowns
+
+**Compare Across Tabs:** Cross-reference findings—see which institutions had multilingual scribes, which manuscripts they produced, and whether colophon-text divergence was common
+
+**Check Both Colophon and Text Languages:** Pay attention to the distinction—colophon language reveals scribe's personal linguistic choice, while text language shows what they were copying
+
+**Look for Patterns:** Use the Pattern Analysis in Tab 1 to identify geographical, temporal, and institutional trends before exploring individual records
+
+### Exporting Data & Visualizations
+
+**No Direct Export from Multilingualism Mode:**
+- Multilingualism tabs display data as interactive cards (not charts)
+- No built-in PNG/SVG export buttons in this mode
+
+**Alternative Export Options:**
+
+**1. Export via Browse All Mode:**
+- Switch to **Browse All** mode
+- Use filters to select:
+  - Manuscripts by language
+  - Scribes by language
+  - Institutions by language
+- Click **Download CSV** to export filtered results with language data
+
+**2. Export Colophon Data:**
+- In Browse All, filter to records with colophon language values
+- Export as CSV to analyze colophon-text relationships in external tools
+
+**3. Manual Data Collection:**
+- Use "View SU" or "View MS" buttons to jump to specific records
+- Export individual records or collections from Browse All mode
+
+**4. Statistical Analysis:**
+- Copy data from Overview tab (language counts, pattern statistics)
+- Use the displayed numbers for reports and publications
+- Screenshot the Pattern Analysis charts if needed (browser screenshot tools)
+
+**For Publications:**
+- Take screenshots of multilingualism cards for visual examples
+- Export underlying data via Browse All mode for statistical analysis
+- Cite specific divergence cases or multilingual scribes using record IDs
+
+### Research Questions Addressed
 
 - Were manuscripts from Italy more multilingual than those from Germany?
 - Did multilingualism increase in the 15th century?
@@ -559,10 +1163,252 @@ Explore language patterns and linguistic diversity across manuscripts, scribal u
 - How common was it for scribes to use different languages in colophons vs. texts?
 - Which language combinations were most common?
 - Were certain religious orders more linguistically diverse?
+- Did female scribes show different patterns of multilingualism compared to male scribes?
+- Which individual scribes were the most linguistically versatile?
+- Was colophon-text divergence more common in certain regions or time periods?
+- Were multilingual manuscripts more common in border regions or cosmopolitan centers?
+
+</details>
 
 ---
 
-## 9. Colophon Analysis
+<details markdown="1" id="9-text-genres-network-analysis">
+<summary><strong>9. Text Genres Network Analysis</strong></summary>
+
+### Accessing Text Genres Mode
+
+1. In **Explore Database**, click **Text Genres** tab (top navigation)
+2. View loads showing the tab selector
+3. Select a tab to explore different aspects of text genre patterns
+
+### What is Text Genres Analysis?
+
+The Text Genres mode reveals how texts of different genres circulated through manuscripts, institutions, and scribes. Using bipartite network visualizations and statistical summaries, this mode helps identify patterns of textual specialization, diversity, and co-occurrence across the medieval manuscript ecosystem.
+
+### Five Analysis Tabs
+
+#### 1. Overview
+
+**Purpose:** Get a comprehensive snapshot of text genre distribution in the database
+
+**Statistics Provided:**
+- **Total Texts:** Number of text records in the database
+- **Unique Genres:** Count of distinct genre categories
+- **Unique Subgenres:** Count of specific subgenre classifications
+
+**Visualizations:**
+- **Top Genres by Text Count:** Bar chart (orange gradient) showing the 15 most common genres
+- **Top Subgenres by Text Count:** Bar chart (green gradient) showing the 15 most common subgenres
+- **Analysis Approaches:** Four info cards explaining the purpose of each network tab
+
+**Use this to:** 
+- Understand the overall composition of texts and genres in the database
+- See which genres and subgenres are most represented
+- Choose which analysis approach to explore next
+
+#### 2. Manuscript Networks
+
+**Purpose:** Show which manuscripts contain which genres/subgenres through bipartite network visualization
+
+**Network Structure:**
+- **Left side (blue circles):** Manuscripts
+- **Right side (colored rectangles):** Genres or subgenres (colored by category)
+- **Edges:** Connections showing which manuscripts contain which genres/subgenres (thickness indicates frequency)
+
+**Mode Controls:**
+- **Genres / Subgenres Toggle:** Switch between viewing broad genre categories or granular subgenres
+- **Horizontal / Radial Toggle:** Change network layout style
+
+**Visualizations:**
+- Bipartite network with manuscripts on left, genres/subgenres on right
+- Bridge nodes (manuscripts connecting many different genres, or genres appearing in many manuscripts)
+- Hub nodes (major hubs with 2x average connections)
+- Network statistics displayed: manuscript count, genre/subgenre count, bridge count, hub count
+
+**Interactive Controls:**
+- Zoom In / Zoom Out buttons
+- Reset View button
+- Hide Labels toggle
+- Hide Singles toggle (remove nodes with only one connection)
+- Export button for PNG export
+- Embed button for full-screen view
+
+**Use this to:**
+- Find all manuscripts containing a specific genre
+- Identify manuscripts with diverse genre content (bridge manuscripts)
+- See genre co-occurrence patterns across manuscripts
+- Discover which genres appear together frequently
+- Study manuscript compilation patterns
+
+#### 3. Institution Networks
+
+**Purpose:** Show which monastic institutions produced or preserved which genres/subgenres
+
+**Network Structure:**
+- **Institutions:** Connected to the genres/subgenres they produced or preserved
+- **Node size:** Reflects activity level (larger = more texts or greater genre diversity)
+- **Edges:** Show institutional connections to specific genres/subgenres
+
+**Mode Controls:**
+- **Genres / Subgenres Toggle:** Switch between viewing broad genre categories or granular subgenres
+- **Horizontal / Radial Toggle:** Change network layout style
+
+**Visualizations:**
+- Bipartite network connecting institutions to genres/subgenres
+- Bridge nodes indicate institutions with diverse genre production or genres produced across many institutions
+- Hub nodes indicate major centers of production or widely produced genres
+- Network statistics displayed
+
+**Interactive Controls:**
+- Zoom In / Zoom Out buttons
+- Reset View button
+- Hide Labels toggle
+- Hide Singles toggle
+- Export button for PNG export
+- Embed button for full-screen view
+
+**Use this to:**
+- Identify institutional specializations in specific genres/subgenres
+- Find which monasteries produced particular text types
+- Map institutional patterns in genre production
+- Compare genre diversity across institutions
+- Discover connections between monastic orders and textual preferences
+
+#### 4. Scribe Networks
+
+**Purpose:** Show which scribes actively copied which genres/subgenres
+
+**Network Structure:**
+- **Left side (green):** Scribes
+- **Right side (colored by category):** Genres or subgenres
+- **Edges:** Show which scribes copied which genres/subgenres (connections indicate active copying)
+
+**Mode Controls:**
+- **Genres / Subgenres Toggle:** Switch between viewing broad genre categories or granular subgenres
+- **Horizontal / Radial Toggle:** Change network layout style
+
+**Visualizations:**
+- Bipartite network with scribes on left, genres/subgenres on right
+- Bridge nodes reveal "knowledge brokers" (scribes with diverse repertoires connecting different genres)
+- Hub nodes show specialist scribes or popular genres
+- Distinguishes generalists (scribes working across many genres) from specialists (focused on few genres)
+
+**Interactive Controls:**
+- Zoom In / Zoom Out buttons
+- Reset View button
+- Hide Labels toggle
+- Hide Singles toggle
+- Export button for PNG export
+- Embed button for full-screen view
+
+**Use this to:**
+- Find scribes specialized in particular genres
+- Identify versatile scribes working across multiple genres (knowledge brokers)
+- Discover which genres were most commonly copied
+- Study scribal specialization vs. generalist patterns
+- Map relationships between individual scribes and text types
+
+#### 5. Distributions
+
+**Purpose:** Statistical summaries of genre distributions across institutions, locations, and time periods
+
+**Three Information Panels:**
+
+**1. Genres by Institution (Top 10)**
+- Lists top 10 institutions by text count
+- Shows total texts and genre count for each institution
+- Reveals which institutions had the most textual activity
+
+**2. Genres by Location (Top 10)**
+- Lists top 10 countries by text count
+- Shows total texts and genre count for each country
+- Reveals geographic concentrations of text production
+
+**3. Genre Popularity Over Time**
+- Placeholder: "Timeline visualization coming soon"
+- Not yet implemented
+
+**Use this to:**
+- Identify which institutions had the most diverse genre collections
+- Compare genre activity across different countries
+- See concentrations of textual production by institution and location
+
+**Note:** This tab provides simple statistical summaries (not interactive visualizations). For data export of distributions, use the **Browse All** mode to filter by genre and export CSV.
+
+### Layout Options (Tabs 2, 3, 4)
+
+The network tabs (Manuscript Networks, Institution Networks, Scribe Networks) offer two layout styles:
+
+#### Horizontal Bipartite Layout
+- **Structure:** Two columns with entities on left, genres/subgenres on right
+- **Advantages:** Clear visual separation, easy to trace individual connections
+- **Best for:** Detailed analysis of specific connections and patterns
+
+#### Radial Layout
+- **Structure:** Entities arranged in circle with genres/subgenres radiating from center
+- **Advantages:** Compact visualization, emphasizes clustering and hub-and-spoke patterns
+- **Best for:** Overview of network structure and identifying central genres
+
+### Understanding Network Patterns
+
+**Bridge Nodes (marked with red outline):** Entities connecting many different genres, or genres appearing across many entities—these are "knowledge brokers" or widely distributed texts
+
+**Hub Nodes (marked with orange outline + glow):** Major hubs with 2x the average number of connections—indicates prolific scribes, major institutions, or extremely popular genres
+
+**Dense Connections:** Genres connected to many entities indicate widespread production or copying
+
+**Isolated Nodes:** Rare genres or specialized scribes/institutions
+
+**Clusters:** Groups of entities sharing similar genre interests
+
+### Exporting Data & Visualizations
+
+**Network Visualizations (Tabs 2, 3, 4):**
+- Click the **📷 Export** button in the top-right corner of any network visualization
+- Exports current view as a PNG file with filename matching the network type
+- Export preserves current zoom level, visible labels, and filtered view
+- Suitable for inclusion in publications and presentations
+
+**Distribution Data (Tab 5):**
+- Tab 5 shows simple lists (no export button)
+- To export genre distribution data as CSV: use **Browse All** mode → filter by genre → click **Download CSV**
+
+**General Data Export:**
+- For comprehensive genre data: go to **Browse All** mode
+- Use filters to select specific texts, genres, or entities
+- Click **Download CSV** to export filtered results
+
+### General Tips
+
+**Start with Overview:** Tab 1 provides orientation—see which genres are most common before exploring networks
+
+**Use Mode Toggles:** Switch between "Genres" (broad categories) and "Subgenres" (granular classifications) to adjust detail level
+
+**Try Both Layouts:** Horizontal layout shows clear two-column structure; Radial layout reveals clustering patterns
+
+**Look for Bridges:** Bridge nodes (red outline) are key—they connect different parts of the network and reveal versatile manuscripts, institutions, or scribes
+
+**Hide Singles for Clarity:** If the network is cluttered, click "Hide Singles" to remove nodes with only one connection
+
+**Combine with Other Modes:** Use Text Genres networks to identify patterns, then switch to **Browse All** to see detailed records
+
+### Research Questions Addressed
+
+- Which genres were most widely produced across the collection?
+- Did certain institutions specialize in particular genres or subgenres?
+- Which scribes worked across multiple genres vs. specializing in one or two?
+- How diverse were individual manuscripts in genre content?
+- What genre combinations frequently appear together in manuscripts?
+- Which subgenres characterize specific monastic scriptoria?
+- Are there regional or institutional patterns in genre production?
+- Who were the "knowledge brokers" (scribes or institutions working across many genres)?
+
+</details>
+
+---
+
+<details markdown="1" id="10-colophon-analysis">
+<summary><strong>10. Colophon Analysis</strong></summary>
 
 ### Accessing Colophon Analysis Mode
 
@@ -714,7 +1560,50 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - Find patterns in colophon conventions
 - Answer questions like: "Did 15th-century colophons express more labor/fatigue than 13th-century ones?"
 
-#### 6. Browse Colophons Tab
+### Example Research Questions
+
+- Which regions had the most humble colophons?
+- Did colophon length increase over time?
+- Were 15th-century colophons more personal than 13th-century ones?
+- What percentage of colophons express labor/fatigue?
+- Which scribes wrote the longest colophons?
+- How did religious sentiment vary by century and region?
+- Are there gender differences in colophon expression?
+
+### Export Features
+
+- **Copy to Clipboard:** Any colophon text (transcription or translation)
+- **Visualizations:** All charts can be exported as high-resolution PNG images (300 DPI)
+- **Filtered Results:** Export through main Browse mode for CSV
+
+#### 6. Explore Formulae Tab
+
+**Purpose:** Discover and analyze standardized formulaic patterns in colophons across languages and regions
+
+**What are Colophon Formulae?**
+
+Standardized phrases, expressions, and linguistic patterns that scribes commonly used in their colophons. These recurring formulas reveal:
+- Traditional scribal practices and conventions
+- Regional and linguistic patterns
+- Cross-cultural influences and transmission of scribal culture
+- Common themes in medieval self-expression
+
+Formulae can be complete phrases ("Qui scripsit scribat semper cum Domino vivat") or shorter fragments ("anno domini", "finito libro").
+
+**Features:**
+- Pattern detection across all colophons
+- Frequency analysis of common formulae
+- Identification of Latin vs. vernacular patterns
+- Regional distribution of specific formulae
+- Examples of each formula in context
+
+**Use this to:**
+- Identify standardized scribal conventions
+- Study the transmission of formulaic expressions
+- Compare Latin and vernacular formulaic traditions
+- Find regional variations in scribal self-presentation
+
+#### 7. Browse Colophons Tab
 
 **Purpose:** Read, search, and filter colophons in detail
 
@@ -743,39 +1632,6 @@ Colophons are invaluable for understanding medieval scribal culture and self-exp
 - Copy colophon text for citation in your research
 - Browse colophons by language or period
 - Collect examples for analysis
-
-### Example Research Questions
-
-- Which regions had the most humble colophons?
-- Did colophon length increase over time?
-- Were 15th-century colophons more personal than 13th-century ones?
-- What percentage of colophons express labor/fatigue?
-- Which scribes wrote the longest colophons?
-- How did religious sentiment vary by century and region?
-- Are there gender differences in colophon expression?
-
-### Export Features
-
-- **Copy to Clipboard:** Any colophon text (transcription or translation)
-- **Visualizations:** All charts can be exported as images
-- **Filtered Results:** Export through main Browse mode for CSV
-
-#### 7. 📖 Explore Formulae Tab
-
-**Purpose:** Discover and analyze standardized formulaic patterns in colophons across languages and regions
-
-**Accessing:**
-- Click the **Explore Formulae** sub-tab within Colophon Analysis
-
-**What are Colophon Formulae?**
-
-Standardized phrases, expressions, and linguistic patterns that scribes commonly used in their colophons. These recurring formulas reveal:
-- Traditional scribal practices and conventions
-- Regional and linguistic patterns
-- Cross-cultural influences and transmission of scribal culture
-- Common themes in medieval self-expression
-
-Formulae can be complete phrases ("Qui scripsit scribat semper cum Domino vivat") or shorter fragments ("anno domini", "finito libro").
 
 **Overview Statistics:**
 
@@ -923,12 +1779,15 @@ Gender-Specific Formulas:
 ### Export Features
 
 - **Copy to Clipboard:** Any colophon text (transcription or translation)
-- **Visualizations:** All charts can be exported as images
+- **Visualizations:** All charts can be exported as high-resolution PNG images (300 DPI)
 - **Filtered Results:** Export through main Browse mode for CSV
+
+</details>
 
 ---
 
-## 10. IIIF Viewer & Mirador
+<details markdown="1" id="11-iiif-viewer--mirador">
+<summary><strong>11. IIIF Viewer & Mirador</strong></summary>
 
 ### What is the IIIF Viewer?
 
@@ -1011,9 +1870,12 @@ View high-resolution manuscript images with synchronized transcriptions. Uses **
 - Export individual images (right-click)
 - Download manifest URL for use in other IIIF viewers
 
+</details>
+
 ---
 
-## 11. Search Transcriptions
+<details markdown="1" id="12-search-transcriptions">
+<summary><strong>12. Search Transcriptions</strong></summary>
 
 ### Accessing Transcription Search
 
@@ -1110,9 +1972,12 @@ The transcription search includes a comparison tool for analyzing multiple resul
 - Includes manuscript metadata and page numbers
 - Use for text analysis, concordances, or further research
 
+</details>
+
 ---
 
-## 12. Tips & Tricks
+<details markdown="1" id="13-tips--tricks">
+<summary><strong>13. Tips & Tricks</strong></summary>
 
 ### Power User Techniques
 
@@ -1247,9 +2112,12 @@ All visualizations support high-resolution export at ~300 DPI minimum, suitable 
   - All analytics visualizations
   - Hierarchical tree views (per-manuscript export)
 
+</details>
+
 ---
 
-## 13. Frequently Asked Questions
+<details markdown="1" id="14-frequently-asked-questions">
+<summary><strong>14. Frequently Asked Questions</strong></summary>
 
 ### General Questions
 
@@ -1319,6 +2187,12 @@ A: The analysis is keyword-based and designed for exploratory research. It ident
 **Q: What does 📝 and 📖 mean in the Multilingualism module?**
 A: 📝 indicates colophon language (the language of the scribe's note), while 📖 indicates text language (the language of the main content being copied). This distinction helps identify code-switching.
 
+**Q: What's the difference between Scribes Mode and the Network Explorer?**
+A: Scribes Mode focuses specifically on scribal networks and statistics. It shows scribe-scribe connections (scribes who worked together or in the same monasteries) and provides detailed statistics about scribal productivity, collaboration patterns, and institutional affiliations. The Network Explorer is more general-purpose and allows you to build custom networks between any entity types.
+
+**Q: How do the Text Genres networks work?**
+A: The Text Genres module visualizes relationships between manuscripts, institutions, scribes, and text genres through three different bipartite networks. You can see which manuscripts contain which genres, which institutions specialized in which subgenres, and which scribes copied which genres. Each network is interactive with zoom, pan, filtering, and export capabilities.
+
 **Q: How do I export a visualization for my publication?**
 A: Click the "Export" button on any visualization. It will download as a high-quality PNG (300 DPI) suitable for publication. Available for maps, timelines, networks, and all analytics charts. Please cite appropriately.
 
@@ -1354,5 +2228,7 @@ This platform is the result of collaboration between medievalists, digital human
 ---
 
 *Unknown Hands User Guide v2.0*  
-*Last updated: December 2025*  
+*Last updated: February 2026*  
 *Estelle Guéville, Yale University*
+
+</details>

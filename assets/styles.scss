@@ -44,6 +44,54 @@ $parallax-height: 350px;
 $footer-height:   250px;
 
 /*
+User Guide Collapsible Sections
+*/
+
+details {
+  margin: $more-margin 0;
+  border-left: 3px solid $accent-light;
+  padding-left: $margin;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: $accent-dark;
+  }
+}
+
+details summary {
+  font-family: $heading-font;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $accent-dark;
+  cursor: pointer;
+  padding: $less-margin 0;
+  list-style: none;
+  transition: color 0.2s ease;
+  user-select: none;
+
+  &:hover {
+    color: $accent-light;
+  }
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+    color: $accent-light;
+    font-size: 0.9rem;
+  }
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/*
 font & asset import
 */
 
