@@ -17,4 +17,19 @@
   <!-- Mirador 3 via unpkg CDN -->
   <link rel="stylesheet" href="https://unpkg.com/mirador@3/dist/mirador.min.css">
   <script src="https://unpkg.com/mirador@3/dist/mirador.min.js"></script>
+  
+  <!-- Umami Analytics - Free, open source, privacy-friendly analytics -->
+  <!-- After deploying Umami, replace YOUR_UMAMI_URL and YOUR_WEBSITE_ID with your actual values -->
+  <script async src="https://umami-production-4d64.up.railway.app/script.js" data-website-id="8bc98449-add7-458f-99ac-5c3f4803f4f9"></script>
+  <script>
+    // Analytics helper function - wraps Umami for compatibility with tracking code
+    window.plausible = function(eventName, eventData) {
+      if (window.umami) {
+        // Umami format: umami.track(eventName, properties)
+        // Convert from Plausible format {props: {...}} to Umami format {...}
+        const data = eventData?.props || eventData || {};
+        umami.track(eventName, data);
+      }
+    };
+  </script>
 </head>

@@ -17,6 +17,51 @@ banner:
 
 ---
 
+## Quick Start Guide
+
+**New to *Unknown Hands*?** Start here for a 5-minute introduction to the platform.
+
+### What You'll Find Here
+
+*Unknown Hands* documents the work of **female scribes before 1600**, bringing together manuscripts, scribes, institutions, texts, and production contexts into a rich, interconnected database with powerful analytical tools.
+
+### Your First Steps
+
+**1. Browse the Data (Start Here!)**
+- Click **[Explore Database](/unknownhands/explore-database/)** in the top navigation
+- You'll land in **Browse & Search** mode showing all Scribal Units
+- Try clicking on a record card to see detailed information
+- Use the **entity switcher** (top left) to explore Manuscripts, Scribes, or other record types
+
+**2. Try These Key Features**
+- **Search:** Use the search box at the top to find specific manuscripts, scribes, or locations
+- **Map:** Click the **Map** button to see where manuscripts were produced and where they're held today
+- **Network:** Click **Network** to discover connections between scribes, institutions, and manuscripts
+- **Analytics:** Explore production patterns, date distributions, and geographic spread
+
+**3. Specialized Analysis Modes**
+
+Once you're comfortable browsing, try these advanced features:
+- **Scribes Mode** — Deep dive into scribe productivity, collaborations, and geographic distribution
+- **Multilingualism** — Analyze manuscripts produced in multiple languages
+- **Text Genres** — Explore what kinds of texts female scribes were copying
+- **Colophon Analysis** — Study scribal colophons (signatures) in detail
+
+### Tips for Success
+
+- **Start broad, then filter:** Begin by browsing all records, then narrow down using filters on the left
+- **Export your findings:** Most visualizations can be exported as PNG, SVG, or CSV files
+- **Check the detail panel:** Click any record to see full information in the right panel
+- **Use the entity switcher:** Different perspectives (manuscripts vs. scribes vs. institutions) reveal different insights
+
+### Need More Help?
+
+- **Full documentation:** Read the detailed sections below for comprehensive guides to each feature
+- **Can't find something?** Try the [Search Transcriptions](/unknownhands/search-transcriptions/) tool for full-text search of manuscript contents
+- **Questions?** Check the [FAQ](#14-frequently-asked-questions) section at the bottom
+
+---
+
 ## Table of Contents
 
 1. [Getting Started](#1-getting-started)

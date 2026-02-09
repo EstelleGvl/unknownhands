@@ -3679,6 +3679,11 @@ function setMode(mode) {
   if (ACTIVE_MODE === mode) return;
   ACTIVE_MODE = mode;
 
+  // Track mode navigation
+  if (window.plausible) {
+    plausible('Mode Changed', { props: { mode: mode } });
+  }
+
   // Update main navigation buttons
   document.querySelectorAll('.main-nav-btn').forEach(btn => {
     btn.classList.toggle('is-on', btn.dataset.mode === mode);
@@ -3729,6 +3734,12 @@ function switchEntity(ent){
     console.log('[switchEntity] Already on this entity, returning');
     return;
   }
+  
+  // Track entity switch
+  if (window.plausible) {
+    plausible('Entity Changed', { props: { from: ENTITY, to: ent } });
+  }
+  
   ENTITY = ent;
   document.querySelectorAll('#entity-switch .entity-btn').forEach(c=>c.classList.toggle('is-on', c.dataset.entity===ent));
   $search.value=''; $field.value=''; $sort.value='';
@@ -6239,6 +6250,11 @@ function exportCurrentNetwork(format) {
     return;
   }
   
+  // Track network export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Network', format: format } });
+  }
+  
   const filename = `network_export_${Date.now()}`;
   
   if (format === 'gephi') {
@@ -6361,6 +6377,11 @@ function exportSvgAsSvg(svgElement, filename) {
     return;
   }
   
+  // Track SVG export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Visualization', format: 'SVG' } });
+  }
+  
   // Clone the SVG to avoid modifying the original
   const svgClone = svgElement.cloneNode(true);
   
@@ -6423,6 +6444,11 @@ function exportSvgAsPng(svgElement, filename, scaleFactor = 3) {
   if (!svgElement) {
     alert('No visualization to export');
     return;
+  }
+  
+  // Track PNG export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Visualization', format: 'PNG', dpi: scaleFactor * 100 } });
   }
   
   // Get the bounding box for proper sizing
@@ -6595,6 +6621,11 @@ function exportMapAsPng(containerId, filename) {
  */
 function exportAnalyticsVisualization(format) {
   const analyticsMount = document.getElementById('analytics-mount');
+  
+  // Track analytics export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Analytics', format: format } });
+  }
   
   if (!analyticsMount) {
     alert('No analytics visualization to export');
@@ -6940,6 +6971,11 @@ function buildCSV(list, picks, includeHeader){
   return (includeHeader ? headers+'\n' : '') + rows.join('\n');
 }
 function downloadCSVFromList(){
+  // Track CSV export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Browse', format: 'CSV', entity: ENTITY } });
+  }
+  
   const picks = selectedFieldAccessors();
   if (!picks.length){ alert('Select at least one field.'); return; }
   const list = computeList();
@@ -6993,7 +7029,15 @@ function initEventListeners() {
   // Sort and filter
   if ($sort) $sort.addEventListener('change',()=>{ page=1; renderCurrent(); updateAvailableViews(); });
   if ($field) $field.addEventListener('change',()=>{ page=1; renderCurrent(); updateAvailableViews(); });
-  if ($search) $search.addEventListener('input', debounce(()=>{ page=1; renderCurrent(); updateAvailableViews(); }, 200));
+  if ($search) $search.addEventListener('input', debounce(()=>{ 
+    if ($search.value.length > 2) {
+      // Track search usage (only for meaningful searches)
+      if (window.plausible) {
+        plausible('Search', { props: { entity: ENTITY, query_length: $search.value.length } });
+      }
+    }
+    page=1; renderCurrent(); updateAvailableViews(); 
+  }, 200));
   
   // Facet clicks
   if ($mount) {
