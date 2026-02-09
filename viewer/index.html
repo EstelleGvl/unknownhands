@@ -237,6 +237,20 @@ show_title: false
   const targetCanvas = params.get('canvas') || '';  // for deep linking from search
   const targetLine   = params.get('line')   || '';  // highlight specific line
 
+  // Track manuscript viewer usage
+  if (manifest && window.plausible) {
+    // Extract manuscript identifier from manifest URL
+    const arkMatch = manifest.match(/ark:\/\d+\/([^\/]+)/);
+    const manifestId = arkMatch ? 'irht-' + arkMatch[1] : manifest.substring(0, 50);
+    plausible('Manuscript Viewed', { 
+      props: { 
+        manuscript: manifestId,
+        has_transcriptions: !!mappingUrl,
+        deep_link: !!targetCanvas
+      } 
+    });
+  }
+
   const $status    = document.getElementById('text-status');
   const $content   = document.getElementById('text-content');
   const $btnBoxes  = document.getElementById('btn-show-bboxes');

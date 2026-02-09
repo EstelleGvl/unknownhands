@@ -3356,6 +3356,18 @@ function showDetails(rec, type){
     $viz.innerHTML = `<h3 class="db-viz-title">Details</h3><div class="db-viz-body muted">No record selected.</div>`;
     return;
   }
+  
+  // Track record engagement
+  if (window.plausible) {
+    plausible('Record Viewed', { 
+      props: { 
+        entity: type, 
+        record_id: rec.rec_ID || rec.id,
+        title: (MAP[type].title(rec) || 'Untitled').substring(0, 100)
+      } 
+    });
+  }
+  
   const map = MAP[type];
   let html = `<h3 class="db-viz-title">${esc(map.title(rec)||'Untitled')}</h3>`;
 
