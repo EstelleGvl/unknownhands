@@ -2184,12 +2184,6 @@ A: Our sentiment analysis uses keyword matching to detect emotional tones in col
 **Q: How accurate is the colophon sentiment analysis?**
 A: The analysis is keyword-based and designed for exploratory research. It identifies potential emotional content but should be verified by reading the full colophon text. All matched keywords are displayed for transparency.
 
-**Q: What does 📝 and 📖 mean in the Multilingualism module?**
-A: 📝 indicates colophon language (the language of the scribe's note), while 📖 indicates text language (the language of the main content being copied). This distinction helps identify code-switching.
-
-**Q: What's the difference between Scribes Mode and the Network Explorer?**
-A: Scribes Mode focuses specifically on scribal networks and statistics. It shows scribe-scribe connections (scribes who worked together or in the same monasteries) and provides detailed statistics about scribal productivity, collaboration patterns, and institutional affiliations. The Network Explorer is more general-purpose and allows you to build custom networks between any entity types.
-
 **Q: How do the Text Genres networks work?**
 A: The Text Genres module visualizes relationships between manuscripts, institutions, scribes, and text genres through three different bipartite networks. You can see which manuscripts contain which genres, which institutions specialized in which subgenres, and which scribes copied which genres. Each network is interactive with zoom, pan, filtering, and export capabilities.
 
