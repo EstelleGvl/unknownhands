@@ -6546,6 +6546,13 @@ function exportMapAsPng(containerId, filename) {
     return;
   }
   
+  // Track map export
+  if (window.plausible) {
+    const viewSelector = document.getElementById('map-view-selector');
+    const mapView = viewSelector ? viewSelector.value : 'unknown';
+    plausible('Export', { props: { type: 'Map', format: 'PNG', view: mapView } });
+  }
+  
   // Show loading indicator
   const originalCursor = mapElement.style.cursor;
   mapElement.style.cursor = 'wait';
@@ -6755,6 +6762,11 @@ function exportTreeItemAsSvg(treeItem, msId) {
     return;
   }
   
+  // Track tree SVG export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Tree', format: 'SVG', manuscript: msId } });
+  }
+  
   // Clone the tree item
   const clone = treeItem.cloneNode(true);
   
@@ -6840,6 +6852,11 @@ function exportTreeItemAsPng(treeItem, msId) {
   if (!treeItem) {
     alert('No tree item to export');
     return;
+  }
+  
+  // Track tree PNG export
+  if (window.plausible) {
+    plausible('Export', { props: { type: 'Tree', format: 'PNG', manuscript: msId } });
   }
   
   // Clone the tree item to avoid modifying original
@@ -7043,6 +7060,14 @@ function initEventListeners() {
   if ($mount) {
     $mount.addEventListener('click',e=>{
       const chip=e.target.closest('.chip'); if (!chip) return;
+      const isActive = chip.classList.contains('is-on');
+      const facetText = chip.textContent.trim();
+      
+      // Track facet usage
+      if (window.plausible && !isActive) { // Only track when activating (not deactivating)
+        plausible('Facet Used', { props: { entity: ENTITY, facet: facetText.substring(0, 50) } });
+      }
+      
       chip.classList.toggle('is-on'); page=1; recompute(); updateAvailableViews();
     });
     $mount.addEventListener('change', debounce(()=>{ page=1; recompute(); updateAvailableViews(); },150));
@@ -7325,6 +7350,12 @@ function initEventListeners() {
   
   // Network SVG export
   document.getElementById('network-export-svg')?.addEventListener('click', () => {
+    // Track network SVG export
+    if (window.plausible) {
+      const depth = document.getElementById('network-depth')?.value || '1';
+      plausible('Export', { props: { type: 'Network', format: 'SVG', depth: depth } });
+    }
+    
     const mount = document.getElementById('network-mount');
     // Check for SVG either as D3 selection or direct query
     let svg = null;
@@ -7345,6 +7376,12 @@ function initEventListeners() {
   
   // Network PNG export
   document.getElementById('network-export-png')?.addEventListener('click', () => {
+    // Track network PNG export
+    if (window.plausible) {
+      const depth = document.getElementById('network-depth')?.value || '1';
+      plausible('Export', { props: { type: 'Network', format: 'PNG', depth: depth } });
+    }
+    
     const mount = document.getElementById('network-mount');
     // Check for SVG either as D3 selection or direct query
     let svg = null;
@@ -7365,6 +7402,11 @@ function initEventListeners() {
   
   // Timeline SVG export
   document.getElementById('timeline-export-svg')?.addEventListener('click', () => {
+    // Track timeline SVG export
+    if (window.plausible) {
+      plausible('Export', { props: { type: 'Timeline', format: 'SVG' } });
+    }
+    
     const mount = document.getElementById('timeline-mount');
     const svg = mount?.querySelector('svg');
     if (svg) {
@@ -7377,6 +7419,11 @@ function initEventListeners() {
   
   // Timeline PNG export
   document.getElementById('timeline-export-png')?.addEventListener('click', () => {
+    // Track timeline PNG export
+    if (window.plausible) {
+      plausible('Export', { props: { type: 'Timeline', format: 'PNG' } });
+    }
+    
     const mount = document.getElementById('timeline-mount');
     const svg = mount?.querySelector('svg');
     if (svg) {
@@ -7944,6 +7991,11 @@ if (codicologyExportBtn) {
   codicologyExportBtn.addEventListener('click', async () => {
     const mount = document.getElementById('codicology-mount');
     if (!mount) return;
+    
+    // Track codicology export
+    if (window.plausible) {
+      plausible('Export', { props: { type: 'Codicology', format: 'PNG' } });
+    }
     
     // Import html2canvas dynamically if not already loaded
     if (typeof html2canvas === 'undefined') {
@@ -18371,6 +18423,11 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
   window.exportMapDataAsCSV = function() {
     if (!window.formulaMapData) return;
     
+    // Track CSV export from formula map
+    if (window.plausible) {
+      plausible('Export', { props: { type: 'Formula Map', format: 'CSV' } });
+    }
+    
     const { markers, locationData } = window.formulaMapData;
     const searchTerm = document.getElementById('formula-search-box')?.value.toLowerCase().trim() || '';
     const selectedLanguage = document.getElementById('language-filter')?.value || '';
@@ -18458,6 +18515,11 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
   // Export map as high-resolution PNG
   window.exportMapAsPNG = function() {
     if (!window.formulaMapData) return;
+    
+    // Track formula map PNG export
+    if (window.plausible) {
+      plausible('Export', { props: { type: 'Formula Map', format: 'PNG' } });
+    }
     
     const { map } = window.formulaMapData;
     const btn = document.getElementById('export-png-btn');
