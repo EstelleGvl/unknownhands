@@ -4325,12 +4325,6 @@ function renderMapLayers() {
       const markerColor = getMarkerColor(m.category);
       const marker = L.circleMarker([m.pt.lat, m.pt.lng], {radius:6, fillColor: markerColor, fillOpacity: 0.7, color: '#fff', weight: 1});
       marker.bindPopup(createMarkerPopup(m));
-      
-      // Add click handler to recenter map and open popup
-      marker.on('click', (e) => {
-        MAP_INSTANCE.setView([m.pt.lat, m.pt.lng], Math.max(MAP_INSTANCE.getZoom(), 6), { animate: true });
-      });
-      
       marker.on('popupopen', (e)=>{
         const btn = e.popup.getElement().querySelector('[data-jump]');
         if (btn) {
@@ -4349,12 +4343,6 @@ function renderMapLayers() {
       const markerColor = getMarkerColor(m.category);
       const marker = L.circleMarker([m.pt.lat, m.pt.lng], {radius:6, fillColor: markerColor, fillOpacity: 0.7, color: '#fff', weight: 1});
       marker.bindPopup(createMarkerPopup(m));
-      
-      // Add click handler to recenter map and open popup
-      marker.on('click', (e) => {
-        MAP_INSTANCE.setView([m.pt.lat, m.pt.lng], Math.max(MAP_INSTANCE.getZoom(), 6), { animate: true });
-      });
-      
       marker.on('popupopen', (e)=>{
         const btn = e.popup.getElement().querySelector('[data-jump]');
         if (btn) {
@@ -6388,173 +6376,6 @@ cat("\\nPlot saved to: ${filename}_plot.pdf\\n")
   }
 }
 
-/**
- * Export network data for Gephi
- * @param {Array} nodes - Array of node objects
- * @param {Array} links - Array of link objects
- * @param {string} basename - Base name for the export files
- */
-function exportNetworkForGephi(nodes, links, basename) {
-  if (!nodes || nodes.length === 0) {
-    alert('No network data to export');
-    return;
-  }
-  
-  // Track export
-  if (window.plausible) {
-    plausible('Export', { props: { type: 'Network Data', format: 'Gephi' } });
-  }
-  
-  const filename = basename || `network_export_${Date.now()}`;
-  
-  // Gephi CSV format - nodes
-  const nodesCsv = [
-    'Id,Label,Type',
-    ...nodes.map(n => 
-      `"${n.id || n.name}","${(n.fullName || n.name || n.id || '').replace(/"/g, '""')}","${n.type || 'unknown'}"`
-    )
-  ].join('\n');
-  
-  // Gephi CSV format - edges
-  const edgesCsv = [
-    'Source,Target,Type,Weight',
-    ...links.map(l => {
-      const sourceId = l.source?.id || l.source;
-      const targetId = l.target?.id || l.target;
-      const weight = l.weight || l.value || 1;
-      return `"${sourceId}","${targetId}","${l.type || 'related'}","${weight}"`;
-    })
-  ].join('\n');
-  
-  downloadFile(nodesCsv, `${filename}_nodes.csv`, 'text/csv');
-  setTimeout(() => {
-    downloadFile(edgesCsv, `${filename}_edges.csv`, 'text/csv');
-    alert('✅ Gephi Export Complete!\n\n' +
-          `Downloaded 2 files:\n` +
-          `${filename}_nodes.csv (${nodes.length} nodes)\n` +
-          `${filename}_edges.csv (${links.length} edges)\n\n` +
-          'To import into Gephi:\n' +
-          '1. Open Gephi → New Project\n' +
-          '2. File → Import Spreadsheet\n' +
-          '3. Select edges CSV, choose "Edges table"\n' +
-          '4. Import spreadsheet again, select nodes CSV, choose "Nodes table"');
-  }, 100);
-}
-
-/**
- * Export network data for R analysis
- * @param {Array} nodes - Array of node objects
- * @param {Array} links - Array of link objects
- * @param {string} basename - Base name for the export files
- */
-function exportNetworkForR(nodes, links, basename) {
-  if (!nodes || nodes.length === 0) {
-    alert('No network data to export');
-    return;
-  }
-  
-  // Track export
-  if (window.plausible) {
-    plausible('Export', { props: { type: 'Network Data', format: 'R' } });
-  }
-  
-  const filename = basename || `network_export_${Date.now()}`;
-  
-  // R format - edge list with labels
-  const rCsv = [
-    'from_id,to_id,from_label,to_label,relationship,weight',
-    ...links.map(l => {
-      const sourceId = l.source?.id || l.source;
-      const targetId = l.target?.id || l.target;
-      const sourceNode = nodes.find(n => (n.id || n.name) === sourceId);
-      const targetNode = nodes.find(n => (n.id || n.name) === targetId);
-      const weight = l.weight || l.value || 1;
-      return `"${sourceId}","${targetId}","${(sourceNode?.fullName || sourceNode?.name || '').replace(/"/g, '""')}","${(targetNode?.fullName || targetNode?.name || '').replace(/"/g, '""')}","${l.type || 'related'}","${weight}"`;
-    })
-  ].join('\n');
-  
-  const rScript = `# Network Analysis Script
-# Generated: ${new Date().toISOString()}
-# Nodes: ${nodes.length}
-# Edges: ${links.length}
-
-library(igraph)
-library(tidyverse)
-
-# Load data
-edges <- read_csv("${filename}.csv")
-
-# Create graph
-g <- graph_from_data_frame(edges[,1:2], directed = FALSE)
-
-# Add edge attributes
-E(g)$relationship <- edges$relationship
-E(g)$weight <- as.numeric(edges$weight)
-
-# Basic statistics
-cat("Network Statistics:\\n")
-cat("Nodes:", vcount(g), "\\n")
-cat("Edges:", ecount(g), "\\n")
-cat("Density:", round(edge_density(g), 4), "\\n")
-cat("\\n")
-
-# Centrality measures
-V(g)$degree <- degree(g)
-V(g)$betweenness <- betweenness(g, normalized = TRUE)
-V(g)$closeness <- closeness(g, normalized = TRUE)
-
-# Top nodes by degree
-top_degree <- sort(V(g)$degree, decreasing = TRUE)[1:min(10, vcount(g))]
-cat("Top nodes by degree:\\n")
-print(top_degree)
-
-# Community detection
-communities <- cluster_louvain(g, weights = E(g)$weight)
-cat("\\nCommunities detected:", length(communities), "\\n")
-
-# Visualization
-pdf("${filename}_plot.pdf", width = 12, height = 10)
-plot(g, 
-     vertex.size = sqrt(V(g)$degree) * 3,
-     vertex.label.cex = 0.6,
-     vertex.label.color = "black",
-     vertex.color = membership(communities),
-     edge.width = sqrt(E(g)$weight),
-     edge.curved = 0.2,
-     layout = layout_with_fr(g),
-     main = "Network Visualization")
-dev.off()
-
-cat("\\nPlot saved to: ${filename}_plot.pdf\\n")
-
-# Export node metrics
-node_metrics <- data.frame(
-  id = V(g)$name,
-  degree = V(g)$degree,
-  betweenness = V(g)$betweenness,
-  closeness = V(g)$closeness,
-  community = membership(communities)
-)
-write_csv(node_metrics, "${filename}_metrics.csv")
-cat("Node metrics saved to: ${filename}_metrics.csv\\n")
-`;
-  
-  downloadFile(rCsv, `${filename}.csv`, 'text/csv');
-  setTimeout(() => {
-    downloadFile(rScript, `${filename}.R`, 'text/plain');
-    alert('✅ R Export Complete!\n\n' +
-          `Downloaded 2 files:\n` +
-          `${filename}.csv (${links.length} edges)\n` +
-          `${filename}.R (analysis script)\n\n` +
-          'To use in R:\n' +
-          '1. Place both files in the same folder\n' +
-          '2. Open the .R file in RStudio\n' +
-          '3. Install packages if needed:\n' +
-          '   install.packages(c("igraph", "tidyverse"))\n' +
-          '4. Run the script');
-  }, 100);
-}
-
 /* ---------- High-Quality Image Export Functions ---------- */
 
 /**
@@ -6888,41 +6709,6 @@ function exportAnalyticsVisualization(format) {
 }
 
 /**
- * Export chart/visualization wrapper as PNG
- */
-function exportChartAsPng(wrapper, filename) {
-  // Convert string ID to element if needed
-  const element = typeof wrapper === 'string' ? document.getElementById(wrapper) : wrapper;
-  
-  if (!element) {
-    alert('No chart element found');
-    console.error('Element not found:', wrapper);
-    return;
-  }
-  
-  // Load html2canvas if not already loaded
-  if (typeof html2canvas === 'undefined') {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-    script.onload = () => {
-      exportHtmlVisualizationAsPng(element, filename).catch(err => {
-        console.error('Export error:', err);
-        alert('Export failed. Please try again.');
-      });
-    };
-    script.onerror = () => {
-      alert('Failed to load export library. Please check your internet connection.');
-    };
-    document.head.appendChild(script);
-  } else {
-    exportHtmlVisualizationAsPng(element, filename).catch(err => {
-      console.error('Export error:', err);
-      alert('Export failed. Please try again.');
-    });
-  }
-}
-
-/**
  * Export HTML-based visualization as PNG using html2canvas
  */
 async function exportHtmlVisualizationAsPng(element, filename) {
@@ -6932,40 +6718,26 @@ async function exportHtmlVisualizationAsPng(element, filename) {
       throw new Error('html2canvas library is not loaded');
     }
     
-    // Hide export buttons temporarily
-    const exportButtons = element.querySelectorAll('[id^="export-"]');
-    exportButtons.forEach(btn => btn.style.visibility = 'hidden');
+    // Wait for any animations or rendering to complete
+    await new Promise(resolve => setTimeout(resolve, 300));
     
-    // Get the actual rendered width of the element
-    const elementWidth = element.offsetWidth;
+    // Ensure element is visible
+    const rect = element.getBoundingClientRect();
     
-    // Create a container for the cloned content
-    const exportContainer = document.createElement('div');
-    exportContainer.style.cssText = `position: absolute; left: -9999px; background: white; padding: 1.5rem; width: ${elementWidth}px;`;
+    if (rect.width === 0 || rect.height === 0) {
+      throw new Error('Element has no visible dimensions');
+    }
     
-    // Clone the element
-    const clonedElement = element.cloneNode(true);
-    clonedElement.style.width = `${elementWidth}px`;
-    clonedElement.style.maxWidth = 'none';
-    
-    // Remove export buttons from cloned content
-    const clonedButtons = clonedElement.querySelectorAll('[id^="export-"]');
-    clonedButtons.forEach(btn => btn.remove());
-    
-    exportContainer.appendChild(clonedElement);
-    document.body.appendChild(exportContainer);
-    
-    const canvas = await html2canvas(exportContainer, {
+    const canvas = await html2canvas(element, {
       backgroundColor: '#ffffff',
       scale: 2,
       logging: false,
-      useCORS: true
+      useCORS: true,
+      allowTaint: false,
+      removeContainer: true,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight
     });
-    
-    document.body.removeChild(exportContainer);
-    
-    // Restore button visibility
-    exportButtons.forEach(btn => btn.style.visibility = 'visible');
     
     // Convert to blob and download
     canvas.toBlob(blob => {
@@ -6986,10 +6758,8 @@ async function exportHtmlVisualizationAsPng(element, filename) {
     }, 'image/png');
   } catch (error) {
     console.error('Export failed:', error);
-    // Restore button visibility on error
-    const exportButtons = element.querySelectorAll('[id^="export-"]');
-    exportButtons.forEach(btn => btn.style.visibility = 'visible');
-    throw error;
+    console.error('Error details:', error.message, error.stack);
+    throw error; // Re-throw so the caller can handle it
   }
 }
 
@@ -7680,9 +7450,9 @@ function initEventListeners() {
   document.getElementById('analytics-export-png')?.addEventListener('click', () => {
     exportAnalyticsVisualization('png');
   });
-  
-  // Path Finding Dialog
+}
 
+/* ---------- Path Finding Dialog ---------- */
 const $pathDialog = document.getElementById('path-dialog');
 const $pathFrom = document.getElementById('path-from');
 const $pathSearch = document.getElementById('path-search');
@@ -12310,11 +12080,8 @@ function buildMultilingualismOverview(mount) {
   
   // Render overview
   mount.innerHTML = `
-    <div id="multilingualism-overview" style="padding: 1.5rem; max-width: 1200px; margin: 0 auto;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h2 style="margin: 0; color: #1a1a1a;">Multilingualism in the Corpus</h2>
-        <button class="chip" id="export-multilingualism-overview" style="background:#28a745;color:white;font-size:.875rem;font-weight:600;">Export PNG</button>
-      </div>
+    <div style="padding: 1.5rem; max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Multilingualism in the Corpus</h2>
       
       <!-- Key Statistics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
@@ -12499,15 +12266,6 @@ function buildMultilingualismOverview(mount) {
       </div>
     </div>
   `;
-  
-  // Set up export button event listener  
-  const exportBtn = document.getElementById('export-multilingualism-overview');
-  if (exportBtn) {
-    exportBtn.addEventListener('click', () => {
-      if (window.plausible) plausible('Export', {props: {type: 'Multilingualism Overview', format: 'PNG'}});
-      exportChartAsPng('multilingualism-overview', 'multilingualism-overview.png');
-    });
-  }
 }
 
 // Helper function to get manuscript ID for a scribal unit
@@ -13696,8 +13454,11 @@ function renderCollaborationTab(mount, data) {
       
       <div style="display: grid; grid-template-columns: 1fr 350px; gap: 1.5rem;">
         <!-- Network Visualization -->
-        <div style="background: white; border-radius: 0.5rem; box-shadow: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="collab-network-wrapper">
-          <h3 style="margin: 0 0 0.5rem 0; color: #2c3e50; font-size: 1.25rem;">Collaboration Network</h3>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="collab-network-wrapper">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Collaboration Network</h3>
+            ${createExportButton('collab-network-wrapper', 'collaboration_network.png')}
+          </div>
           <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">
             Network showing which scribes worked together on manuscripts. Node size = number of collaborations, edge thickness = number of shared manuscripts.
           </p>
@@ -13733,18 +13494,12 @@ function renderGeographyTab(mount, data) {
       <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Geographic & Institutional Distribution</h2>
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="institutions-chart-wrapper">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Top Institutions by Scribe Count</h3>
-            <button class="chip" id="export-institutions-chart" style="background:#28a745;color:white;">Export PNG</button>
-          </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Institutions by Scribe Count</h3>
           <div id="institutions-chart"></div>
         </div>
-        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="cities-chart-wrapper">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Top Cities by Scribe Activity</h3>
-            <button class="chip" id="export-cities-chart" style="background:#28a745;color:white;">Export PNG</button>
-          </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Cities by Scribe Activity</h3>
           <div id="cities-chart"></div>
         </div>
       </div>
@@ -13753,24 +13508,6 @@ function renderGeographyTab(mount, data) {
   
   buildInstitutionsChart(data.topInstitutions);
   buildCitiesChart(data.topCities);
-  
-  // Set up export button event listeners
-  const instExportBtn = document.getElementById('export-institutions-chart');
-  const citiesExportBtn = document.getElementById('export-cities-chart');
-  
-  if (instExportBtn) {
-    instExportBtn.addEventListener('click', () => {
-      if (window.plausible) plausible('Export', {props: {type: 'Scribes Geography', subtype: 'Institutions Chart', format: 'PNG'}});
-      exportChartAsPng('institutions-chart-wrapper', `scribes-institutions-${Date.now()}.png`);
-    });
-  }
-  
-  if (citiesExportBtn) {
-    citiesExportBtn.addEventListener('click', () => {
-      if (window.plausible) plausible('Export', {props: {type: 'Scribes Geography', subtype: 'Cities Chart', format: 'PNG'}});
-      exportChartAsPng('cities-chart-wrapper', `scribes-cities-${Date.now()}.png`);
-    });
-  }
 }
 
 // Browse tab
@@ -15381,7 +15118,7 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
           <strong>${nodeArray.length}</strong> scribes • <strong>${linkArray.length}</strong> links
         </div>
       </div>
-      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
         <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
           <button class="collab-layout-toggle-btn is-active" data-layout="radial" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
             Radial
@@ -15390,13 +15127,6 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
             Force
           </button>
         </div>
-        <button id="collab-export-svg" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export SVG</button>
-        <button id="collab-export-png" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export PNG</button>
-        <select id="collab-export-data" style="padding:.375rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.75rem;cursor:pointer;background:white;">
-          <option value="">Export Data...</option>
-          <option value="gephi">Gephi (2 CSV files)</option>
-          <option value="r">R (CSV + script)</option>
-        </select>
         ${createEmbedButton('scribe-collaborations')}
       </div>
     </div>
@@ -15521,14 +15251,13 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
         .attr('stroke-width', 2);
     })
     .on('click', function(event, d) {
-      // Recenter view on clicked node
+      // Show detailed info on click
       event.stopPropagation();
-      const scale = 1.5;
-      const x = -d.x * scale + width / 2;
-      const y = -d.y * scale + height / 2;
-      svg.transition()
-        .duration(750)
-        .call(zoom.transform, d3.zoomIdentity.translate(x, y).scale(scale));
+      const manuscripts = Array.from(d.manuscripts).join(', ');
+      const institutions = d.allInstitutions.length > 0 
+        ? d.allInstitutions.join('\n  - ') 
+        : 'No institution data';
+      alert(`${d.name}\n\nInstitution(s):\n  - ${institutions}\n\nCollaborations: ${d.collaborationCount}\nManuscripts (${d.manuscripts.size}):\n${manuscripts}`);
     });
   
   node.append('circle')
@@ -15718,60 +15447,6 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
     if (!event.active) simulation.alphaTarget(0);
     d.fx = null;
     d.fy = null;
-  }
-  
-  // Attach export button event listeners (after buttons are created)
-  const collabSvgBtn = document.getElementById('collab-export-svg');
-  const collabPngBtn = document.getElementById('collab-export-png');
-  const collabDataSelect = document.getElementById('collab-export-data');
-  
-  if (collabSvgBtn) {
-    collabSvgBtn.addEventListener('click', () => {
-      if (window.plausible) {
-        plausible('Export', { props: { type: 'Scribe Collaborations', format: 'SVG' } });
-      }
-      const svgElement = svg.node();
-      if (svgElement) {
-        const filename = `unknownhands-scribe-collaborations-${Date.now()}.svg`;
-        exportSvgAsSvg(svgElement, filename);
-      } else {
-        alert('No collaboration network to export');
-      }
-    });
-  }
-  
-  if (collabPngBtn) {
-    collabPngBtn.addEventListener('click', () => {
-      if (window.plausible) {
-        plausible('Export', { props: { type: 'Scribe Collaborations', format: 'PNG' } });
-      }
-      const svgElement = svg.node();
-      if (svgElement) {
-        const filename = `unknownhands-scribe-collaborations-${Date.now()}.png`;
-        exportSvgAsPng(svgElement, filename, 3);
-      } else {
-        alert('No collaboration network to export');
-      }
-    });
-  }
-  
-  if (collabDataSelect) {
-    collabDataSelect.addEventListener('change', function(e) {
-      const format = this.value;
-      if (!format) return;
-      
-      if (window.plausible) {
-        plausible('Export', { props: { type: 'Scribe Collaborations', format: format.toUpperCase() } });
-      }
-      
-      if (format === 'gephi') {
-        exportNetworkForGephi(nodeArray, linkArray, 'scribe-collaborations');
-      } else if (format === 'r') {
-        exportNetworkForR(nodeArray, linkArray, 'scribe-collaborations');
-      }
-      
-      this.value = ''; // Reset dropdown
-    });
   }
 }
 
@@ -16400,11 +16075,8 @@ function buildColophonOverview(mount) {
   
   // Render
   mount.innerHTML = `
-    <div id="colophon-overview" style="max-width: 1200px; margin: 0 auto;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h2 style="margin: 0; color: #1a1a1a;">Colophon Analysis Overview</h2>
-        <button class="chip" id="export-colophon-overview" style="background:#28a745;color:white;font-size:.875rem;font-weight:600;">Export PNG</button>
-      </div>
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Colophon Analysis Overview</h2>
       
       <!-- Key Statistics -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
@@ -16532,15 +16204,6 @@ function buildColophonOverview(mount) {
       </div>
     </div>
   `;
-  
-  // Set up export button event listener
-  const exportBtn = document.getElementById('export-colophon-overview');
-  if (exportBtn) {
-    exportBtn.addEventListener('click', () => {
-      if (window.plausible) plausible('Export', {props: {type: 'Colophon Overview', format: 'PNG'}});
-      exportChartAsPng('colophon-overview', 'colophon-overview.png');
-    });
-  }
 }
 
 // 2. SENTIMENT ANALYSIS TAB
@@ -18426,12 +18089,6 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
         `;
         
         marker.bindPopup(popupContent);
-        
-        // Add click handler to recenter map
-        marker.on('click', () => {
-          map.setView(coords, Math.max(map.getZoom(), 5), { animate: true });
-        });
-        
         marker.addTo(map);
         markers.push(marker);
         bounds.push(coords);
@@ -18758,12 +18415,6 @@ return false;" style="color: #d4af37; text-decoration: none; cursor: pointer;" o
         `;
         
         marker.bindPopup(popupContent);
-        
-        // Add click handler to recenter map
-        marker.on('click', () => {
-          map.setView(coords, Math.max(map.getZoom(), 5), { animate: true });
-        });
-        
         if (markerClusterGroup) {
           markerClusterGroup.addLayer(marker);
         } else {
@@ -20143,18 +19794,12 @@ function renderGenreOverview(container) {
       </div>
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="top-genres-wrapper">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Top Genres by Text Count</h3>
-            <button class="chip" id="export-genre-chart" style="background:#28a745;color:white;font-size:.75rem;">Export PNG</button>
-          </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Genres by Text Count</h3>
           <div id="top-genres-chart"></div>
         </div>
-        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;" id="top-subgenres-wrapper">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">Top Subgenres by Text Count</h3>
-            <button class="chip" id="export-subgenre-chart" style="background:#28a745;color:white;font-size:.75rem;">Export PNG</button>
-          </div>
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+          <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.25rem;">Top Subgenres by Text Count</h3>
           <div id="top-subgenres-chart"></div>
         </div>
       </div>
@@ -20272,24 +19917,6 @@ function renderGenreOverview(container) {
   
   const topSubgenresChartEl = document.getElementById('top-subgenres-chart');
   if (topSubgenresChartEl) topSubgenresChartEl.innerHTML = subgenreChartHTML;
-  
-  // Set up export button event listeners for overview charts
-  const genreExportBtn = document.getElementById('export-genre-chart');
-  const subgenreExportBtn = document.getElementById('export-subgenre-chart');
-  
-  if (genreExportBtn) {
-    genreExportBtn.addEventListener('click', () => {
-      if (window.plausible) plausible('Export', {props: {type: 'Genre Chart', format: 'PNG'}});
-      exportChartAsPng('top-genres-wrapper', 'top-genres-chart.png');
-    });
-  }
-  
-  if (subgenreExportBtn) {
-    subgenreExportBtn.addEventListener('click', () => {
-      if (window.plausible) plausible('Export', {props: {type: 'Subgenre Chart', format: 'PNG'}});
-      exportChartAsPng('top-subgenres-wrapper', 'top-subgenres-chart.png');
-    });
-  }
 }
 
 function renderManuscriptNetworks(container) {
@@ -20758,89 +20385,10 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     <div style="display: flex; gap: 0.5rem; align-items: center;">
       <span style="font-size: 0.875rem; color: #64748b; font-weight: 600;">${manuscriptNodes.size} manuscripts • ${itemCount} ${itemLabel} • ${bridgeCount} bridges • ${hubCount} hubs</span>
       ${createEmbedButton(`manuscript-${levelFilter}`)}
-      <button id="ms-export-svg" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export SVG</button>
-      <button id="ms-export-png" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export PNG</button>
-      <select id="ms-export-data" style="padding:.375rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.75rem;cursor:pointer;background:white;">
-        <option value="">Export Data...</option>
-        <option value="gephi">Gephi (2 CSV files)</option>
-        <option value="r">R (CSV + script)</option>
-      </select>
+      ${createExportButton('ms-network-viz', `manuscript-${itemLabel}-network.png`)}
     </div>
   `;
   container.appendChild(controlsDiv);
-  
-  // Set up export button event listeners
-  const msSvgBtn = document.getElementById('ms-export-svg');
-  const msPngBtn = document.getElementById('ms-export-png');
-  const msDataSelect = document.getElementById('ms-export-data');
-  
-  if (msSvgBtn) {
-    msSvgBtn.addEventListener('click', () => {
-      try {
-        if (window.plausible) plausible('Export', {props: {type: 'Manuscript-Genre Network', format: 'SVG'}});
-        console.log('[MS Network Export] Button clicked, container:', container);
-        // Try stored reference first, then querySelector
-        let svg = container._svgElement;
-        if (!svg) {
-          console.log('[MS Network Export] No stored SVG ref, trying querySelector...');
-          svg = container?.querySelector('svg');
-        }
-        console.log('[MS Network Export] SVG found:', svg);
-        if (svg) {
-          console.log('[MS Network Export] Calling exportSvgAsSvg...');
-          exportSvgAsSvg(svg, `manuscript-genre-network-${Date.now()}.svg`);
-          console.log('[MS Network Export] Export function called successfully');
-        } else {
-          alert('No network visualization to export\n\nContainer ID: ' + (container?.id || 'unknown'));
-        }
-      } catch (error) {
-        console.error('[MS Network Export] Error:', error);
-        alert('Export failed: ' + error.message);
-      }
-    });
-  }
-  
-  if (msPngBtn) {
-    msPngBtn.addEventListener('click', () => {
-      try {
-        if (window.plausible) plausible('Export', {props: {type: 'Manuscript-Genre Network', format: 'PNG'}});
-        console.log('[MS Network Export] PNG button clicked, container:', container);
-        // Try stored reference first, then querySelector
-        let svg = container._svgElement;
-        if (!svg) {
-          console.log('[MS Network Export] No stored SVG ref, trying querySelector...');
-          svg = container?.querySelector('svg');
-        }
-        console.log('[MS Network Export] SVG found:', svg);
-        if (svg) {
-          console.log('[MS Network Export] Calling exportSvgAsPng...');
-          exportSvgAsPng(svg, `manuscript-genre-network-${Date.now()}.png`, 3);
-          console.log('[MS Network Export] Export function called successfully');
-        } else {
-          alert('No network visualization to export\n\nContainer ID: ' + (container?.id || 'unknown'));
-        }
-      } catch (error) {
-        console.error('[MS Network Export] Error:', error);
-        alert('Export failed: ' + error.message);
-      }
-    });
-  }
-  
-  if (msDataSelect) {
-    msDataSelect.addEventListener('change', (e) => {
-      const format = e.target.value;
-      if (!format) return;
-      console.log('[MS Network Export] Data export requested, format:', format);
-      console.log('[MS Network Export] nodeArray length:', nodeArray?.length, 'links length:', links?.length);
-      if (window.plausible) plausible('Export', {props: {type: 'Manuscript-Genre Network', format: format.toUpperCase()}});
-      if (format === 'gephi') {
-        exportNetworkForGephi(nodeArray, links, `manuscript-genre-network-${Date.now()}`);
-      } else if (format === 'r') {
-        exportNetworkForR(nodeArray, links, `manuscript-genre-network-${Date.now()}`);
-      }
-      e.target.value = '';
-    });
-  }
   
   // Legend
   const legendDiv = document.createElement('div');
@@ -20906,9 +20454,6 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  // Store reference to SVG for export (similar to main Network module)
-  container._svgElement = svg.node();
   
   const g = svg.append('g');
   
@@ -21256,9 +20801,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   // Fit to view after simulation stabilizes
   simulation.on('end', () => {
     console.log('[MS Network] Simulation ended, calling fitToView in 100ms');
-    setTimeout(() => {
-      fitToView();
-    }, 100);
+    setTimeout(() => fitToView(), 100);
   });
 }
 
@@ -21610,89 +21153,10 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     <div style="display: flex; gap: 0.5rem; align-items: center;">
       <span style="font-size: 0.875rem; color: #64748b; font-weight: 600;">${institutionNodes.size} institutions • ${itemCount} ${itemLabel} • ${bridgeCount} bridges • ${hubCount} hubs</span>
       ${createEmbedButton(`institution-${levelFilter}`)}
-      <button id="inst-export-svg" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export SVG</button>
-      <button id="inst-export-png" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export PNG</button>
-      <select id="inst-export-data" style="padding:.375rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.75rem;cursor:pointer;background:white;">
-        <option value="">Export Data...</option>
-        <option value="gephi">Gephi (2 CSV files)</option>
-        <option value="r">R (CSV + script)</option>
-      </select>
+      ${createExportButton('inst-network-viz', `institution-${itemLabel}-network.png`)}
     </div>
   `;
   container.appendChild(controlsDiv);
-  
-  // Set up export button event listeners
-  const instSvgBtn = document.getElementById('inst-export-svg');
-  const instPngBtn = document.getElementById('inst-export-png');
-  const instDataSelect = document.getElementById('inst-export-data');
-  
-  if (instSvgBtn) {
-    instSvgBtn.addEventListener('click', () => {
-      try {
-        if (window.plausible) plausible('Export', {props: {type: 'Institution-Genre Network', format: 'SVG'}});
-        console.log('[Inst Network Export] Button clicked, container:', container);
-        // Try stored reference first, then querySelector
-        let svg = container._svgElement;
-        if (!svg) {
-          console.log('[Inst Network Export] No stored SVG ref, trying querySelector...');
-          svg = container?.querySelector('svg');
-        }
-        console.log('[Inst Network Export] SVG found:', svg);
-        if (svg) {
-          console.log('[Inst Network Export] Calling exportSvgAsSvg...');
-          exportSvgAsSvg(svg, `institution-genre-network-${Date.now()}.svg`);
-          console.log('[Inst Network Export] Export function called successfully');
-        } else {
-          alert('No network visualization to export\n\nContainer ID: ' + (container?.id || 'unknown'));
-        }
-      } catch (error) {
-        console.error('[Inst Network Export] Error:', error);
-        alert('Export failed: ' + error.message);
-      }
-    });
-  }
-  
-  if (instPngBtn) {
-    instPngBtn.addEventListener('click', () => {
-      try {
-        if (window.plausible) plausible('Export', {props: {type: 'Institution-Genre Network', format: 'PNG'}});
-        console.log('[Inst Network Export] PNG button clicked, container:', container);
-        // Try stored reference first, then querySelector
-        let svg = container._svgElement;
-        if (!svg) {
-          console.log('[Inst Network Export] No stored SVG ref, trying querySelector...');
-          svg = container?.querySelector('svg');
-        }
-        console.log('[Inst Network Export] SVG found:', svg);
-        if (svg) {
-          console.log('[Inst Network Export] Calling exportSvgAsPng...');
-          exportSvgAsPng(svg, `institution-genre-network-${Date.now()}.png`, 3);
-          console.log('[Inst Network Export] Export function called successfully');
-        } else {
-          alert('No network visualization to export\n\nContainer ID: ' + (container?.id || 'unknown'));
-        }
-      } catch (error) {
-        console.error('[Inst Network Export] Error:', error);
-        alert('Export failed: ' + error.message);
-      }
-    });
-  }
-  
-  if (instDataSelect) {
-    instDataSelect.addEventListener('change', (e) => {
-      const format = e.target.value;
-      if (!format) return;
-      console.log('[Inst Network Export] Data export requested, format:', format);
-      console.log('[Inst Network Export] nodeArray length:', nodeArray?.length, 'links length:', links?.length);
-      if (window.plausible) plausible('Export', {props: {type: 'Institution-Genre Network', format: format.toUpperCase()}});
-      if (format === 'gephi') {
-        exportNetworkForGephi(nodeArray, links, `institution-genre-network-${Date.now()}`);
-      } else if (format === 'r') {
-        exportNetworkForR(nodeArray, links, `institution-genre-network-${Date.now()}`);
-      }
-      e.target.value = '';
-    });
-  }
   
   // Legend
   const legendDiv = document.createElement('div');
@@ -21758,9 +21222,6 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  // Store reference to SVG for export (similar to main Network module)
-  container._svgElement = svg.node();
   
   const g = svg.append('g');
   
@@ -22327,89 +21788,10 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
     <div style="display: flex; gap: 0.5rem; align-items: center;">
       <span style="font-size: 0.875rem; color: #64748b; font-weight: 600;">${scribeNodes.size} scribes • ${itemCount} ${itemLabel} • ${bridgeCount} bridges • ${hubCount} hubs</span>
       ${createEmbedButton(`scribe-${levelFilter}`)}
-      <button id="scribe-export-svg" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export SVG</button>
-      <button id="scribe-export-png" class="chip" style="padding:.375rem .75rem;background:#28a745;color:white;font-size:.75rem;font-weight:600;">Export PNG</button>
-      <select id="scribe-export-data" style="padding:.375rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.75rem;cursor:pointer;background:white;">
-        <option value="">Export Data...</option>
-        <option value="gephi">Gephi (2 CSV files)</option>
-        <option value="r">R (CSV + script)</option>
-      </select>
+      ${createExportButton('scribe-network-viz', `scribe-${itemLabel}-network.png`)}
     </div>
   `;
   container.appendChild(controlsDiv);
-  
-  // Set up export button event listeners
-  const scribeSvgBtn = document.getElementById('scribe-export-svg');
-  const scribePngBtn = document.getElementById('scribe-export-png');
-  const scribeDataSelect = document.getElementById('scribe-export-data');
-  
-  if (scribeSvgBtn) {
-    scribeSvgBtn.addEventListener('click', () => {
-      try {
-        if (window.plausible) plausible('Export', {props: {type: 'Scribe-Genre Network', format: 'SVG'}});
-        console.log('[Scribe Network Export] Button clicked, container:', container);
-        // Try stored reference first, then querySelector
-        let svg = container._svgElement;
-        if (!svg) {
-          console.log('[Scribe Network Export] No stored SVG ref, trying querySelector...');
-          svg = container?.querySelector('svg');
-        }
-        console.log('[Scribe Network Export] SVG found:', svg);
-        if (svg) {
-          console.log('[Scribe Network Export] Calling exportSvgAsSvg...');
-          exportSvgAsSvg(svg, `scribe-genre-network-${Date.now()}.svg`);
-          console.log('[Scribe Network Export] Export function called successfully');
-        } else {
-          alert('No network visualization to export\n\nContainer ID: ' + (container?.id || 'unknown'));
-        }
-      } catch (error) {
-        console.error('[Scribe Network Export] Error:', error);
-        alert('Export failed: ' + error.message);
-      }
-    });
-  }
-  
-  if (scribePngBtn) {
-    scribePngBtn.addEventListener('click', () => {
-      try {
-        if (window.plausible) plausible('Export', {props: {type: 'Scribe-Genre Network', format: 'PNG'}});
-        console.log('[Scribe Network Export] PNG button clicked, container:', container);
-        // Try stored reference first, then querySelector
-        let svg = container._svgElement;
-        if (!svg) {
-          console.log('[Scribe Network Export] No stored SVG ref, trying querySelector...');
-          svg = container?.querySelector('svg');
-        }
-        console.log('[Scribe Network Export] SVG found:', svg);
-        if (svg) {
-          console.log('[Scribe Network Export] Calling exportSvgAsPng...');
-          exportSvgAsPng(svg, `scribe-genre-network-${Date.now()}.png`, 3);
-          console.log('[Scribe Network Export] Export function called successfully');
-        } else {
-          alert('No network visualization to export\n\nContainer ID: ' + (container?.id || 'unknown'));
-        }
-      } catch (error) {
-        console.error('[Scribe Network Export] Error:', error);
-        alert('Export failed: ' + error.message);
-      }
-    });
-  }
-  
-  if (scribeDataSelect) {
-    scribeDataSelect.addEventListener('change', (e) => {
-      const format = e.target.value;
-      if (!format) return;
-      console.log('[Scribe Network Export] Data export requested, format:', format);
-      console.log('[Scribe Network Export] nodeArray length:', nodeArray?.length, 'links length:', links?.length);
-      if (window.plausible) plausible('Export', {props: {type: 'Scribe-Genre Network', format: format.toUpperCase()}});
-      if (format === 'gephi') {
-        exportNetworkForGephi(nodeArray, links, `scribe-genre-network-${Date.now()}`);
-      } else if (format === 'r') {
-        exportNetworkForR(nodeArray, links, `scribe-genre-network-${Date.now()}`);
-      }
-      e.target.value = '';
-    });
-  }
   
   // Genre categorization
   const genreCategories = {
@@ -22506,9 +21888,6 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
     .style('width', '100%')
     .style('height', '100%')
     .style('display', 'block');
-  
-  // Store reference to SVG for export (similar to main Network module)
-  container._svgElement = svg.node();
   
   const g = svg.append('g');
   
