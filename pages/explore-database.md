@@ -1307,13 +1307,13 @@ banner:
    ============================================================ */
 (function(){
 /* ---------- Endpoints ---------- */
-const SU_ENDPOINT = "{{ site.heurist.su_json | default: '/data/scribal_units.json' | relative_url }}";
-const MS_ENDPOINT = "{{ site.heurist.ms_json | default: '/data/manuscripts.json'   | relative_url }}";
-const PU_ENDPOINT = "{{ site.heurist.pu_json | default: '/data/production_units.json' | relative_url }}";
-const HI_ENDPOINT = "{{ site.heurist.holding_json | default: '/data/holding_institutions.json' | relative_url }}";
-const MI_ENDPOINT = "{{ site.heurist.monastic_json | default: '/data/monastic_institutions.json' | relative_url }}";
-const HP_ENDPOINT = "{{ site.heurist.people_json | default: '/data/historical_people.json' | relative_url }}";
-const TX_ENDPOINT = "{{ site.heurist.texts_json | default: '/data/texts.json' | relative_url }}";
+const SU_ENDPOINT = "{{ site.heurist.su_json | default: '/data/heurist/scribal_units.json' | relative_url }}";
+const MS_ENDPOINT = "{{ site.heurist.ms_json | default: '/data/heurist/manuscripts.json'   | relative_url }}";
+const PU_ENDPOINT = "{{ site.heurist.pu_json | default: '/data/heurist/production_units.json' | relative_url }}";
+const HI_ENDPOINT = "{{ site.heurist.holding_json | default: '/data/heurist/holding_institutions.json' | relative_url }}";
+const MI_ENDPOINT = "{{ site.heurist.monastic_json | default: '/data/heurist/monastic_institutions.json' | relative_url }}";
+const HP_ENDPOINT = "{{ site.heurist.people_json | default: '/data/heurist/historical_people.json' | relative_url }}";
+const TX_ENDPOINT = "{{ site.heurist.texts_json | default: '/data/heurist/texts.json' | relative_url }}";
 const REL_ENDPOINT = "{{ site.heurist.relations_json | default: '/data/heurist/relationships.json' | relative_url }}";
 const BASE = "{{ site.baseurl | default: '' }}";
 
