@@ -136,7 +136,7 @@ These interactive charts provide an overview of current findings from *Unknown H
 
 <script>
 (() => {
-  const CSV_URL = "{{ '/assets/data/repositories.csv' | relative_url }}";
+  const CSV_URL = "{{ '/data/heurist/repositories.csv' | relative_url }}";
 
   // Init map
   const map = L.map('repoMap', { scrollWheelZoom: false }).setView([48.5, 10], 5);

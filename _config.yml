@@ -166,13 +166,13 @@ footer:
 
 # _config.yml
 heurist:
-  su_json: /assets/data/scribal_units.json
-  ms_json: /assets/data/manuscripts.json
-  pu_json: /assets/data/production_units.json
-  holding_json: /assets/data/holding_institutions.json
-  monastic_json: /assets/data/monastic_institutions.json
-  people_json: /assets/data/historical_people.json
-  texts_json: /assets/data/texts.json
-  relations_json: /assets/data/relationships.json
+  su_json: /data/heurist/scribal_units.json
+  ms_json: /data/heurist/manuscripts.json
+  pu_json: /data/heurist/production_units.json
+  holding_json: /data/heurist/holding_institutions.json
+  monastic_json: /data/heurist/monastic_institutions.json
+  people_json: /data/heurist/historical_people.json
+  texts_json: /data/heurist/texts.json
+  relations_json: /data/heurist/relationships.json
 
 iiif_proxy: "/.netlify/functions/iiif?url="

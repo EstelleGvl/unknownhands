@@ -590,11 +590,11 @@ Return ONLY valid JSON, no other text.`
     try {
       // Load all JSON files in parallel
       const [msRes, hiRes, miRes, hpRes, txRes] = await Promise.all([
-        fetch('{{ "/assets/data/manuscripts.json" | relative_url }}'),
-        fetch('{{ "/assets/data/holding_institutions.json" | relative_url }}'),
-        fetch('{{ "/assets/data/monastic_institutions.json" | relative_url }}'),
-        fetch('{{ "/assets/data/historical_people.json" | relative_url }}'),
-        fetch('{{ "/assets/data/texts.json" | relative_url }}')
+        fetch('{{ "/data/heurist/manuscripts.json" | relative_url }}'),
+        fetch('{{ "/data/heurist/holding_institutions.json" | relative_url }}'),
+        fetch('{{ "/data/heurist/monastic_institutions.json" | relative_url }}'),
+        fetch('{{ "/data/heurist/historical_people.json" | relative_url }}'),
+        fetch('{{ "/data/heurist/texts.json" | relative_url }}')
       ]);
       
       const [msData, hiData, miData, hpData, txData] = await Promise.all([

@@ -34,8 +34,8 @@ We also want to acknowledge [Dr. David Joseph Wrisley](https://nyuad.nyu.edu/en/
 We are also grateful for all the other informal collaborations, conversations, and shared expertise that continue to enrich the project on a daily basis.  
 
 
-<a href="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}" style="display:block; text-align:center;">
-  <img src="{{ '/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}"
+<a href="{{ '/assets/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}" style="display:block; text-align:center;">
+  <img src="{{ '/assets/img/75_cent_vi_43_f_0476.jpeg' | absolute_url }}"
        alt="Christine de Pizan at her desk"
        style="max-width:300px; height:auto; margin:0 auto; display:block;" 
        caption='St. Birgitta at the writing desk, Nuremberg, Stadtbibliothek, Cent. VI 43f, f. 326v'/>   
@@ -59,13 +59,13 @@ This project has been supported by fellowships, awards, and grants, including:
   <h2 id="affiliations">Affiliations</h2>
   <div class="logo-grid">
     <a href="https://www.yale.edu/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
     </a>
     <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
     </a>
     <a href="https://lamop.pantheonsorbonne.fr/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/lamop.png' | relative_url }}" alt="Logo of LAMOP" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/lamop.png' | relative_url }}" alt="Logo of LAMOP" loading="lazy" width="220" height="80">
     </a>
   </div>
 </div>
@@ -74,25 +74,25 @@ This project has been supported by fellowships, awards, and grants, including:
   <h2 id="funding">Funding & Fellowships</h2>
   <div class="logo-grid">
     <a href="https://www.yale.edu/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
     </a>
     <a href="https://medieval.yale.edu/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/medievalstudies.png' | relative_url }}" alt="Logo of Yale Medieval Studies" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/medievalstudies.png' | relative_url }}" alt="Logo of Yale Medieval Studies" loading="lazy" width="220" height="80">
     </a>
     <a href="https://macmillan.yale.edu/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/macmillan.png' | relative_url }}" alt="Logo of the Yale MacMillan Center" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/macmillan.png' | relative_url }}" alt="Logo of the Yale MacMillan Center" loading="lazy" width="220" height="80">
     </a>
     <a href="https://www.medievalart.org/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/icma.webp' | relative_url }}" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/icma.webp' | relative_url }}" alt="Logo of the International Center of Medieval Art (ICMA)" loading="lazy" width="220" height="80">
     </a>
     <a href="https://www.bnf.fr/" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/bnf.png' | relative_url }}" alt="Logo of Bibliothèque nationale de France" loading="lazy" width="220" height="80">
     </a>
     <a href="https://german.yale.edu/academics/undergraduate-program/language-program/study-abroad/external-summer-programs" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/maxkade.webp' | relative_url }}" alt="Logo of Max Kade foundation" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/maxkade.webp' | relative_url }}" alt="Logo of Max Kade foundation" loading="lazy" width="220" height="80">
     </a>
     <a href="https://macmillan.yale.edu/latam" target="_blank" rel="noopener">
-      <img src="{{ '/img/logos/clais.jpg' | relative_url }}" alt="Logo of Yale Council on Latin American & Iberian Studies (CLAIS)" loading="lazy" width="220" height="80">
+      <img src="{{ '/assets/img/logos/clais.jpg' | relative_url }}" alt="Logo of Yale Council on Latin American & Iberian Studies (CLAIS)" loading="lazy" width="220" height="80">
     </a>
   </div>
 </div>

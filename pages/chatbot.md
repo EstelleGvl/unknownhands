@@ -177,63 +177,63 @@ async function loadAllData() {
     
     // Load vocabulary (271KB)
     updateProgress('⏳ Loading vocabulary (271KB)...');
-    const vocabResponse = await fetch('{{ site.baseurl }}/assets/data/vocabulary.json');
+    const vocabResponse = await fetch('{{ site.baseurl }}/data/heurist/vocabulary.json');
     if (!vocabResponse.ok) throw new Error('Failed to load vocabulary: ' + vocabResponse.status);
     vocabulary = await vocabResponse.json();
     updateProgress('✅ Vocabulary loaded: ' + Object.keys(vocabulary.vocabulary).length + ' terms');
     
     // Load manuscripts (4.3MB)
     updateProgress('⏳ Loading manuscripts (4.3MB)...');
-    const msResp = await fetch('{{ site.baseurl }}/assets/data/manuscripts.json');
+    const msResp = await fetch('{{ site.baseurl }}/data/heurist/manuscripts.json');
     if (!msResp.ok) throw new Error('Failed to load manuscripts: ' + msResp.status);
     manuscripts = await msResp.json();
     updateProgress('✅ Manuscripts: ' + manuscripts.heurist.records.length + ' records');
     
     // Load production units (12MB)
     updateProgress('⏳ Loading production units (12MB)...');
-    const puResp = await fetch('{{ site.baseurl }}/assets/data/production_units.json');
+    const puResp = await fetch('{{ site.baseurl }}/data/heurist/production_units.json');
     if (!puResp.ok) throw new Error('Failed to load production units: ' + puResp.status);
     productionUnits = await puResp.json();
     updateProgress('✅ Production units: ' + productionUnits.heurist.records.length + ' records');
     
     // Load scribal units (28MB - largest file!)
     updateProgress('⏳ Loading scribal units (28MB - this may take a minute)...');
-    const suResp = await fetch('{{ site.baseurl }}/assets/data/scribal_units.json');
+    const suResp = await fetch('{{ site.baseurl }}/data/heurist/scribal_units.json');
     if (!suResp.ok) throw new Error('Failed to load scribal units: ' + suResp.status);
     scribalUnits = await suResp.json();
     updateProgress('✅ Scribal units: ' + scribalUnits.heurist.records.length + ' records');
     
     // Load texts (2.8MB)
     updateProgress('⏳ Loading texts (2.8MB)...');
-    const txtResp = await fetch('{{ site.baseurl }}/assets/data/texts.json');
+    const txtResp = await fetch('{{ site.baseurl }}/data/heurist/texts.json');
     if (!txtResp.ok) throw new Error('Failed to load texts: ' + txtResp.status);
     texts = await txtResp.json();
     updateProgress('✅ Texts: ' + texts.heurist.records.length + ' records');
     
     // Load people (2.7MB)
     updateProgress('⏳ Loading historical people (2.7MB)...');
-    const pplResp = await fetch('{{ site.baseurl }}/assets/data/historical_people.json');
+    const pplResp = await fetch('{{ site.baseurl }}/data/heurist/historical_people.json');
     if (!pplResp.ok) throw new Error('Failed to load people: ' + pplResp.status);
     people = await pplResp.json();
     updateProgress('✅ Historical people: ' + people.heurist.records.length + ' records');
     
     // Load holding institutions (327KB)
     updateProgress('⏳ Loading holding institutions (327KB)...');
-    const hiResp = await fetch('{{ site.baseurl }}/assets/data/holding_institutions.json');
+    const hiResp = await fetch('{{ site.baseurl }}/data/heurist/holding_institutions.json');
     if (!hiResp.ok) throw new Error('Failed to load holding institutions: ' + hiResp.status);
     holdingInstitutions = await hiResp.json();
     updateProgress('✅ Holding institutions: ' + holdingInstitutions.heurist.records.length + ' records');
     
     // Load monastic institutions (5.5MB)
     updateProgress('⏳ Loading monastic institutions (5.5MB)...');
-    const miResp = await fetch('{{ site.baseurl }}/assets/data/monastic_institutions.json');
+    const miResp = await fetch('{{ site.baseurl }}/data/heurist/monastic_institutions.json');
     if (!miResp.ok) throw new Error('Failed to load monastic institutions: ' + miResp.status);
     monasticInstitutions = await miResp.json();
     updateProgress('✅ Monastic institutions: ' + monasticInstitutions.heurist.records.length + ' records');
     
     // Load relationships (13MB)
     updateProgress('⏳ Loading relationships (13MB)...');
-    const relResp = await fetch('{{ site.baseurl }}/assets/data/relationships.json');
+    const relResp = await fetch('{{ site.baseurl }}/data/heurist/relationships.json');
     if (!relResp.ok) throw new Error('Failed to load relationships: ' + relResp.status);
     relationships = await relResp.json();
     updateProgress('✅ Relationships: ' + relationships.heurist.records.length + ' records');

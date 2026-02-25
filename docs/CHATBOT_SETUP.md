@@ -17,7 +17,7 @@ You already have Railway for Umami analytics, so we'll add the chatbot API there
 
 1. **Push these changes to GitHub:**
    ```bash
-   git add api/gemini.js pages/chatbot.md CHATBOT_SETUP.md
+   git add assets/js/gemini.js pages/chatbot.md
    git commit -m "Add Gemini chatbot API"
    git push
    ```

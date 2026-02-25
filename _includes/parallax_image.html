@@ -2,7 +2,7 @@
 {%- assign src = include.image | to_s | default: 'default.jpg' -%}
 {%- if src == '' -%}{% assign src = 'default.jpg' %}{%- endif -%}
 {%- if src | slice: 0, 1 != '/' -%}
-  {%- assign src = '/img/' | append: src -%}
+  {%- assign src = '/assets/img/' | append: src -%}
 {%- endif -%}
 
 {%- capture style -%}
