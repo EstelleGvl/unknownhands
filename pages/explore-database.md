@@ -1435,6 +1435,103 @@ async function exportElementToPNG(element, filename) {
     const exportButtons = element.querySelectorAll('[id^="export-"]');
     exportButtons.forEach(btn => btn.style.visibility = 'hidden');
     
+    // Check if element contains an SVG and adjust viewBox if needed
+    const svgElement = element.querySelector('svg');
+    let originalViewBox = null;
+    let originalPreserveAspectRatio = null;
+    let originalTransform = null;
+    let zoomInstance = null;
+    
+    if (svgElement) {
+      // Store original values
+      originalViewBox = svgElement.getAttribute('viewBox');
+      originalPreserveAspectRatio = svgElement.getAttribute('preserveAspectRatio');
+      
+      // Get and store the zoom instance to reset it
+      const gElement = svgElement.querySelector('g');
+      if (gElement) {
+        originalTransform = gElement.getAttribute('transform');
+        
+        // Reset zoom to identity (no transform)
+        try {
+          const d3Svg = d3.select(svgElement);
+          if (d3Svg.node().__zoom) {
+            // Store zoom state to restore later
+            zoomInstance = { ...d3Svg.node().__zoom };
+            // Reset to no transform
+            d3Svg.call(d3.zoom().transform, d3.zoomIdentity);
+          }
+        } catch (e) {
+          console.warn('Could not reset zoom:', e);
+        }
+      }
+      
+      // Wait for transform reset to take effect
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      // Calculate bounds from node positions (D3 uses transform on g elements, not cx/cy)
+      // Only do this for collaboration network
+      const isCollabNetwork = element.id === 'collab-network-wrapper' || element.closest('#collab-network-wrapper');
+      if (isCollabNetwork) {
+        try {
+          const nodeGroups = svgElement.querySelectorAll('.network-node');
+          if (nodeGroups.length > 0) {
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            
+            nodeGroups.forEach(nodeGroup => {
+              const transform = nodeGroup.getAttribute('transform');
+              if (transform) {
+                const match = transform.match(/translate\(([^,]+),([^)]+)\)/);
+                if (match) {
+                  const x = parseFloat(match[1]);
+                  const y = parseFloat(match[2]);
+                  
+                  // Get radius from child circle
+                  const circle = nodeGroup.querySelector('circle');
+                  const r = circle ? parseFloat(circle.getAttribute('r')) || 10 : 10;
+                  
+                  // Get label height
+                  const label = nodeGroup.querySelector('.network-label');
+                  const labelY = label ? parseFloat(label.getAttribute('y')) || 20 : 20;
+                  
+                  if (!isNaN(x) && !isNaN(y)) {
+                    // Account for node radius, label position, and text width
+                    minX = Math.min(minX, x - r - 60); // Extra space for text width
+                    maxX = Math.max(maxX, x + r + 60);
+                    minY = Math.min(minY, y - r - 10);
+                    maxY = Math.max(maxY, y + labelY + 10);
+                  }
+                }
+              }
+            });
+            
+            if (minX !== Infinity && maxX !== -Infinity) {
+              // Add generous padding around the content
+              const padding = 300;
+              minX -= padding;
+              minY -= padding;
+              const width = (maxX - minX) + (padding * 2);
+              const height = (maxY - minY) + (padding * 2);
+              
+              // Set new viewBox to encompass all content
+              svgElement.setAttribute('viewBox', `${minX} ${minY} ${width} ${height}`);
+              svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+              
+              // Set explicit dimensions for html2canvas to properly capture
+              // Use the viewBox aspect ratio to calculate appropriate export dimensions
+              const exportWidth = Math.min(width, 3000); // Cap at 3000px width
+              const exportHeight = (exportWidth * height) / width;
+              svgElement.style.width = `${exportWidth}px`;
+              svgElement.style.height = `${exportHeight}px`;
+              svgElement.style.minHeight = 'unset';
+            }
+          }
+        } catch (e) {
+          console.warn('Could not calculate SVG bounding box:', e);
+        }
+      }
+    }
+    
     // Find the title element (h3 or h4 within the element or its wrapper)
     let titleText = '';
     let titleElement = element.querySelector('h3, h4');
@@ -1487,6 +1584,44 @@ async function exportElementToPNG(element, filename) {
     });
     
     document.body.removeChild(exportContainer);
+    
+    // Restore original SVG attributes and zoom state
+    if (svgElement) {
+      if (originalViewBox !== null) {
+        svgElement.setAttribute('viewBox', originalViewBox);
+      }
+      if (originalPreserveAspectRatio !== null) {
+        svgElement.setAttribute('preserveAspectRatio', originalPreserveAspectRatio);
+      }
+      
+      // Restore original style dimensions
+      // Only apply collaboration network specific styles if this is the collaboration network
+      const isCollabNetwork = element.id === 'collab-network-wrapper' || element.closest('#collab-network-wrapper');
+      if (isCollabNetwork) {
+        svgElement.style.width = '100%';
+        svgElement.style.height = 'auto';
+        svgElement.style.minHeight = '800px';
+      } else {
+        // For other charts, restore standard dimensions
+        svgElement.style.width = '';
+        svgElement.style.height = '';
+        svgElement.style.minHeight = '';
+      }
+      
+      // Restore zoom transform
+      if (zoomInstance) {
+        try {
+          const d3Svg = d3.select(svgElement);
+          d3Svg.node().__zoom = zoomInstance;
+          const gElement = svgElement.querySelector('g');
+          if (gElement && originalTransform) {
+            gElement.setAttribute('transform', originalTransform);
+          }
+        } catch (e) {
+          console.warn('Could not restore zoom:', e);
+        }
+      }
+    }
     
     // Restore button visibility
     exportButtons.forEach(btn => btn.style.visibility = 'visible');
@@ -6463,10 +6598,48 @@ function exportSvgAsPng(svgElement, filename, scaleFactor = 3) {
     plausible('Export', { props: { type: 'Visualization', format: 'PNG', dpi: scaleFactor * 100 } });
   }
   
-  // Get the bounding box for proper sizing
-  const bbox = svgElement.getBBox();
-  const width = bbox.width;
-  const height = bbox.height;
+  // Prefer viewBox dimensions over getBBox() for accurate capture
+  let width, height, viewBoxX = 0, viewBoxY = 0;
+  const viewBox = svgElement.getAttribute('viewBox');
+  
+  if (viewBox) {
+    // Parse viewBox: "minX minY width height"
+    const parts = viewBox.trim().split(/\s+/);
+    if (parts.length === 4) {
+      viewBoxX = parseFloat(parts[0]);
+      viewBoxY = parseFloat(parts[1]);
+      width = parseFloat(parts[2]);
+      height = parseFloat(parts[3]);
+    }
+  }
+  
+  // Fallback to getBBox if viewBox not available or invalid
+  if (!width || !height || width === 0 || height === 0) {
+    try {
+      const bbox = svgElement.getBBox();
+      width = bbox.width;
+      height = bbox.height;
+      viewBoxX = bbox.x;
+      viewBoxY = bbox.y;
+    } catch (e) {
+      console.warn('getBBox failed:', e);
+    }
+  }
+  
+  // Fallback to clientWidth/clientHeight if still zero
+  if (!width || !height || width === 0 || height === 0) {
+    width = svgElement.clientWidth || svgElement.parentElement?.clientWidth || 800;
+    height = svgElement.clientHeight || svgElement.parentElement?.clientHeight || 600;
+    viewBoxX = 0;
+    viewBoxY = 0;
+  }
+  
+  // Final validation - ensure we have valid dimensions
+  if (width === 0 || height === 0) {
+    console.error('SVG has zero dimensions:', { viewBox, clientWidth: svgElement.clientWidth, clientHeight: svgElement.clientHeight });
+    alert('Cannot export: visualization has no visible dimensions. Please ensure the visualization is properly rendered.');
+    return;
+  }
   
   // Create a canvas with scaled dimensions
   const canvas = document.createElement('canvas');
@@ -6485,7 +6658,7 @@ function exportSvgAsPng(svgElement, filename, scaleFactor = 3) {
   const svgClone = svgElement.cloneNode(true);
   svgClone.setAttribute('width', width);
   svgClone.setAttribute('height', height);
-  svgClone.setAttribute('viewBox', `${bbox.x} ${bbox.y} ${width} ${height}`);
+  svgClone.setAttribute('viewBox', `${viewBoxX} ${viewBoxY} ${width} ${height}`);
   
   if (!svgClone.getAttribute('xmlns')) {
     svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
@@ -6657,55 +6830,57 @@ function exportAnalyticsVisualization(format) {
     return;
   }
   
-  // Check if element has dimensions
-  const rect = analyticsMount.getBoundingClientRect();
-  if (rect.width === 0 || rect.height === 0) {
-    alert('Visualization has no visible dimensions. Please ensure the visualization is properly rendered.');
-    return;
-  }
-  
-  // Try to find SVG element (most analytics use D3 SVG)
-  const svgElement = analyticsMount.querySelector('svg');
-  
-  const entityFilter = document.getElementById('entity-filter-select')?.value || 'su';
-  const filename = `unknownhands-analytics-${entityFilter}-${Date.now()}.${format}`;
-  
-  if (!svgElement) {
-    // If no SVG, use html2canvas for HTML content
-    if (format === 'png') {
-      // Ensure html2canvas is loaded
-      if (typeof html2canvas === 'undefined') {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-        script.onload = () => {
+  // Check if element has dimensions - with a small delay to ensure rendering
+  setTimeout(() => {
+    const rect = analyticsMount.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) {
+      alert('Visualization has no visible dimensions. Please ensure the Analytics view is active and the visualization is properly rendered.');
+      return;
+    }
+    
+    // Try to find SVG element (most analytics use D3 SVG)
+    const svgElement = analyticsMount.querySelector('svg');
+    
+    const entityFilter = document.getElementById('entity-filter-select')?.value || 'su';
+    const filename = `unknownhands-analytics-${entityFilter}-${Date.now()}.${format}`;
+    
+    if (!svgElement) {
+      // If no SVG, use html2canvas for HTML content
+      if (format === 'png') {
+        // Ensure html2canvas is loaded
+        if (typeof html2canvas === 'undefined') {
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+          script.onload = () => {
+            exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
+              console.error('Export error:', err);
+              alert('Export failed: ' + err.message);
+            });
+          };
+          script.onerror = () => {
+            console.error('Failed to load html2canvas');
+            alert('Failed to load export library. Please check your internet connection.');
+          };
+          document.head.appendChild(script);
+        } else {
           exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
             console.error('Export error:', err);
             alert('Export failed: ' + err.message);
           });
-        };
-        script.onerror = () => {
-          console.error('Failed to load html2canvas');
-          alert('Failed to load export library. Please check your internet connection.');
-        };
-        document.head.appendChild(script);
+        }
       } else {
-        exportHtmlVisualizationAsPng(analyticsMount, filename).catch(err => {
-          console.error('Export error:', err);
-          alert('Export failed: ' + err.message);
-        });
+        alert('This visualization type does not support SVG export. Please use PNG export instead.');
       }
-    } else {
-      alert('This visualization type does not support SVG export. Please use PNG export instead.');
+      return;
     }
-    return;
-  }
-  
-  // Export SVG
-  if (format === 'svg') {
-    exportSvgAsSvg(svgElement, filename);
-  } else if (format === 'png') {
-    exportSvgAsPng(svgElement, filename, 3);
-  }
+    
+    // Export SVG
+    if (format === 'svg') {
+      exportSvgAsSvg(svgElement, filename);
+    } else if (format === 'png') {
+      exportSvgAsPng(svgElement, filename, 3);
+    }
+  }, 100); // Small delay to ensure DOM is fully rendered
 }
 
 /**
@@ -6719,13 +6894,21 @@ async function exportHtmlVisualizationAsPng(element, filename) {
     }
     
     // Wait for any animations or rendering to complete
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     // Ensure element is visible
     const rect = element.getBoundingClientRect();
     
     if (rect.width === 0 || rect.height === 0) {
-      throw new Error('Element has no visible dimensions');
+      throw new Error('Element has no visible dimensions. Please ensure the visualization is fully rendered before exporting.');
+    }
+    
+    // Get scrollable dimensions
+    const scrollWidth = element.scrollWidth || rect.width;
+    const scrollHeight = element.scrollHeight || rect.height;
+    
+    if (scrollWidth === 0 || scrollHeight === 0) {
+      throw new Error('Element scroll dimensions are zero. Cannot export.');
     }
     
     const canvas = await html2canvas(element, {
@@ -6735,9 +6918,36 @@ async function exportHtmlVisualizationAsPng(element, filename) {
       useCORS: true,
       allowTaint: false,
       removeContainer: true,
-      windowWidth: element.scrollWidth,
-      windowHeight: element.scrollHeight
+      windowWidth: scrollWidth,
+      windowHeight: scrollHeight,
+      onclone: (clonedDoc) => {
+        // Ensure all elements with zero dimensions are handled
+        // This prevents the createPattern error
+        const allElements = clonedDoc.querySelectorAll('*');
+        allElements.forEach(el => {
+          const style = window.getComputedStyle(el);
+          const width = parseFloat(style.width);
+          const height = parseFloat(style.height);
+          
+          // If element has zero width or height, give it minimum dimensions or hide it
+          if ((width === 0 || height === 0) && el.tagName !== 'BR') {
+            // For divs used as visual bars/elements, ensure minimum size
+            if (el.style.background || el.style.backgroundColor) {
+              if (width === 0) el.style.minWidth = '1px';
+              if (height === 0) el.style.minHeight = '1px';
+            } else {
+              // Otherwise hide the element
+              el.style.display = 'none';
+            }
+          }
+        });
+      }
     });
+    
+    // Validate canvas dimensions
+    if (canvas.width === 0 || canvas.height === 0) {
+      throw new Error('Generated canvas has zero dimensions');
+    }
     
     // Convert to blob and download
     canvas.toBlob(blob => {
@@ -6890,30 +7100,69 @@ function exportTreeItemAsPng(treeItem, msId) {
   // Show cursor wait
   treeItem.style.cursor = 'wait';
   
-  // Use html2canvas to capture the clone
-  html2canvas(tempContainer, {
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#ffffff',
-    scale: 3, // 3x scale for ~300 DPI
-    logging: false
-  }).then(canvas => {
-    canvas.toBlob(function(blob) {
-      const msTitle = treeItem.getAttribute('data-ms-title') || 'manuscript';
-      const safeMsTitle = msTitle.replace(/[^a-z0-9]/gi, '-').toLowerCase();
-      const filename = `unknownhands-tree-${safeMsTitle}-${Date.now()}.png`;
-      downloadFile(blob, filename, 'image/png');
-      
-      // Cleanup
+  // Wait a bit for rendering
+  setTimeout(() => {
+    // Validate dimensions before capture
+    const rect = tempContainer.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) {
+      console.error('Tree item has zero dimensions');
       document.body.removeChild(tempContainer);
       treeItem.style.cursor = '';
-    }, 'image/png');
-  }).catch(error => {
-    console.error('Tree export error:', error);
-    document.body.removeChild(tempContainer);
-    treeItem.style.cursor = '';
-    alert('Failed to export tree. Please try again.');
-  });
+      alert('Cannot export: tree item has no visible dimensions.');
+      return;
+    }
+    
+    // Use html2canvas to capture the clone
+    html2canvas(tempContainer, {
+      useCORS: true,
+      allowTaint: false,
+      backgroundColor: '#ffffff',
+      scale: 3, // 3x scale for ~300 DPI
+      logging: false,
+      windowWidth: tempContainer.scrollWidth || rect.width,
+      windowHeight: tempContainer.scrollHeight || rect.height,
+      onclone: (clonedDoc) => {
+        // Ensure all elements with zero dimensions are handled
+        const allElements = clonedDoc.querySelectorAll('*');
+        allElements.forEach(el => {
+          const style = window.getComputedStyle(el);
+          const width = parseFloat(style.width);
+          const height = parseFloat(style.height);
+          
+          // If element has zero width or height, give it minimum dimensions or hide it
+          if ((width === 0 || height === 0) && el.tagName !== 'BR') {
+            if (el.style.background || el.style.backgroundColor) {
+              if (width === 0) el.style.minWidth = '1px';
+              if (height === 0) el.style.minHeight = '1px';
+            } else {
+              el.style.display = 'none';
+            }
+          }
+        });
+      }
+    }).then(canvas => {
+      // Validate canvas
+      if (canvas.width === 0 || canvas.height === 0) {
+        throw new Error('Generated canvas has zero dimensions');
+      }
+      
+      canvas.toBlob(function(blob) {
+        const msTitle = treeItem.getAttribute('data-ms-title') || 'manuscript';
+        const safeMsTitle = msTitle.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+        const filename = `unknownhands-tree-${safeMsTitle}-${Date.now()}.png`;
+        downloadFile(blob, filename, 'image/png');
+        
+        // Cleanup
+        document.body.removeChild(tempContainer);
+        treeItem.style.cursor = '';
+      }, 'image/png');
+    }).catch(error => {
+      console.error('Tree export error:', error);
+      document.body.removeChild(tempContainer);
+      treeItem.style.cursor = '';
+      alert('Failed to export tree: ' + error.message);
+    });
+  }, 200);
 }
 
 /* ---------- CSV ---------- */
@@ -8002,11 +8251,30 @@ const codicologyExportBtn = document.getElementById('codicology-export-png');
 if (codicologyExportBtn) {
   codicologyExportBtn.addEventListener('click', async () => {
     const mount = document.getElementById('codicology-mount');
-    if (!mount) return;
+    if (!mount) {
+      alert('No codicology visualization to export');
+      return;
+    }
+    
+    // Check if content exists
+    if (!mount.innerHTML.trim()) {
+      alert('No visualization content to export. Please generate a visualization first.');
+      return;
+    }
     
     // Track codicology export
     if (window.plausible) {
       plausible('Export', { props: { type: 'Codicology', format: 'PNG' } });
+    }
+    
+    // Wait a bit for rendering to complete
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Check dimensions
+    const rect = mount.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) {
+      alert('Visualization has no visible dimensions. Please ensure the Codicology view is active and the visualization is properly rendered.');
+      return;
     }
     
     // Import html2canvas dynamically if not already loaded
@@ -8022,8 +8290,35 @@ if (codicologyExportBtn) {
         backgroundColor: '#ffffff',
         scale: 2,
         logging: false,
-        useCORS: true
+        useCORS: true,
+        allowTaint: false,
+        windowWidth: mount.scrollWidth || rect.width,
+        windowHeight: mount.scrollHeight || rect.height,
+        onclone: (clonedDoc) => {
+          // Ensure all elements with zero dimensions are handled
+          const allElements = clonedDoc.querySelectorAll('*');
+          allElements.forEach(el => {
+            const style = window.getComputedStyle(el);
+            const width = parseFloat(style.width);
+            const height = parseFloat(style.height);
+            
+            // If element has zero width or height, give it minimum dimensions or hide it
+            if ((width === 0 || height === 0) && el.tagName !== 'BR') {
+              if (el.style.background || el.style.backgroundColor) {
+                if (width === 0) el.style.minWidth = '1px';
+                if (height === 0) el.style.minHeight = '1px';
+              } else {
+                el.style.display = 'none';
+              }
+            }
+          });
+        }
       });
+      
+      // Validate canvas dimensions
+      if (canvas.width === 0 || canvas.height === 0) {
+        throw new Error('Generated canvas has zero dimensions');
+      }
       
       const dataURL = canvas.toDataURL('image/png');
       const link = document.createElement('a');
@@ -8032,7 +8327,7 @@ if (codicologyExportBtn) {
       link.click();
     } catch (error) {
       console.error('Export failed:', error);
-      alert('Export failed. Please try again.');
+      alert('Export failed: ' + error.message + '\n\nPlease ensure the visualization is fully rendered and try again.');
     }
   });
 }
@@ -8791,14 +9086,15 @@ function buildTemporalChart(list) {
   
   const bars = sortedCenturies.map(century => {
     const count = bins[century];
-    const height = (count / maxCount) * 200;
+    // Ensure minimum height of 5px to avoid zero-dimension issues with html2canvas
+    const height = Math.max(5, (count / maxCount) * 200);
     const centuryNum = Math.floor(century / 100);
     const centuryLabel = `${centuryNum}th c.`;
     
     return `
-      <div style="display: flex; flex-direction: column; align-items: center; flex: 1;">
+      <div style="display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 40px;">
         <div style="font-size: 0.75rem; color: #666; margin-bottom: 0.25rem;">${count}</div>
-        <div style="width: 80%; min-height: ${height}px; background: linear-gradient(to top, #d4af37, #f4d03f); border-radius: 4px 4px 0 0; transition: min-height 0.3s;" title="${centuryLabel}: ${count} occurrences"></div>
+        <div style="width: 80%; height: ${height}px; background: linear-gradient(to top, #d4af37, #f4d03f); border-radius: 4px 4px 0 0; transition: height 0.3s;" title="${centuryLabel}: ${count} occurrences"></div>
         <div style="font-size: 0.875rem; font-weight: 500; margin-top: 0.5rem;">${centuryLabel}</div>
       </div>
     `;
@@ -8806,7 +9102,7 @@ function buildTemporalChart(list) {
   
   return `
     <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem;">
-      <div style="display: flex; align-items: flex-end; gap: 0.5rem; height: 250px;">
+      <div style="display: flex; align-items: flex-end; gap: 0.5rem; height: 250px; min-height: 250px;">
         ${bars}
       </div>
     </div>
@@ -13462,7 +13758,7 @@ function renderCollaborationTab(mount, data) {
           <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">
             Network showing which scribes worked together on manuscripts. Node size = number of collaborations, edge thickness = number of shared manuscripts.
           </p>
-          <div id="collaboration-network-viz" style="width: 100%; height: 700px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa;"></div>
+          <div id="collaboration-network-viz" style="width: 100%; min-height: 800px; border: 1px solid #e2e8f0; border-radius: 0.375rem; background: #fafafa;"></div>
         </div>
         
         <!-- Sidebar with Details -->
@@ -15139,9 +15435,9 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
   `;
   container.appendChild(controlPanel);
   
-  // D3 force layout - use large fixed viewBox for better scaling
-  const width = 1800;
-  const height = 900;
+  // D3 force layout - use fixed viewBox matching container aspect ratio
+  const width = 1600;
+  const height = 1000;
   
   const svg = d3.select(container)
     .append('svg')
@@ -15149,33 +15445,32 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
     .attr('preserveAspectRatio', 'xMidYMid meet')
     .style('width', '100%')
     .style('height', 'auto')
+    .style('min-height', '800px')
     .style('display', 'block')
-    .style('border', '1px solid #e2e8f0')
-    .style('border-radius', '0.375rem')
     .style('background', '#fafafa');
   
   // Add zoom/pan container
   const g = svg.append('g');
   
-  // Add zoom behavior with node/label scaling
+  // Add zoom behavior with inverse scaling to keep labels readable
   const zoom = d3.zoom()
     .scaleExtent([0.1, 4])
     .on('zoom', (event) => {
       g.attr('transform', event.transform);
       
-      // Scale nodes and labels inversely to zoom level for consistent visual size
+      // Scale labels and nodes inversely to zoom level for consistent visual size
       const scale = event.transform.k;
       const inverseScale = 1 / scale;
       
       // Scale node circles
       node.select('circle')
-        .attr('r', d => (Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3)) * inverseScale)
+        .attr('r', d => (Math.max(10, 6 + Math.sqrt(d.collaborationCount) * 3.5)) * inverseScale)
         .attr('stroke-width', 2 * inverseScale);
       
       // Scale labels
       nodeLabels
-        .attr('font-size', `${9 * inverseScale}px`)
-        .attr('y', d => (Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3) + 15) * inverseScale);
+        .attr('font-size', `${16 * inverseScale}px`)
+        .attr('y', d => (Math.max(10, 6 + Math.sqrt(d.collaborationCount) * 3.5) + 18) * inverseScale);
       
       // Scale link widths
       link.attr('stroke-width', d => Math.min(8, 1 + d.strength) * inverseScale);
@@ -15191,7 +15486,7 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
       .strength(1.5)) // Very strong link force
     .force('charge', d3.forceManyBody().strength(-80)) // Minimal repulsion
     .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(d => Math.max(6, 2 + Math.sqrt(d.collaborationCount) * 1.5)))
+    .force('collision', d3.forceCollide().radius(d => Math.max(8, 4 + Math.sqrt(d.collaborationCount) * 2)))
     .force('x', d3.forceX(width / 2).strength(0.15)) // Very strong pull toward center
     .force('y', d3.forceY(height / 2).strength(0.15));
   
@@ -15236,7 +15531,7 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
       // Enlarge current node
       d3.select(this).select('circle')
         .transition().duration(200)
-        .attr('r', d => Math.max(12, 7 + Math.sqrt(d.collaborationCount) * 3))
+        .attr('r', d => Math.max(14, 8 + Math.sqrt(d.collaborationCount) * 3.5))
         .attr('stroke-width', 3);
     })
     .on('mouseleave', function() {
@@ -15247,7 +15542,7 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
       
       d3.select(this).select('circle')
         .transition().duration(200)
-        .attr('r', d => Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3))
+        .attr('r', d => Math.max(10, 6 + Math.sqrt(d.collaborationCount) * 3.5))
         .attr('stroke-width', 2);
     })
     .on('click', function(event, d) {
@@ -15261,7 +15556,7 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
     });
   
   node.append('circle')
-    .attr('r', d => Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3))
+    .attr('r', d => Math.max(10, 6 + Math.sqrt(d.collaborationCount) * 3.5))
     .attr('fill', d => getNodeColor(d.institution))
     .attr('stroke', '#fff')
     .attr('stroke-width', 2)
@@ -15269,11 +15564,11 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
     .attr('class', 'network-node-circle');
   
   const nodeLabels = node.append('text')
-    .text(d => d.name.length > 20 ? d.name.substring(0, 17) + '...' : d.name)
+    .text(d => d.name.length > 25 ? d.name.substring(0, 22) + '...' : d.name)
     .attr('x', 0)
-    .attr('y', d => Math.max(8, 5 + Math.sqrt(d.collaborationCount) * 3) + 15)
+    .attr('y', d => Math.max(10, 6 + Math.sqrt(d.collaborationCount) * 3.5) + 18)
     .attr('text-anchor', 'middle')
-    .attr('font-size', '9px')
+    .attr('font-size', '16px')
     .attr('fill', '#1e293b')
     .attr('font-weight', '600')
     .attr('class', 'network-label')
