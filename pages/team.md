@@ -45,8 +45,9 @@ We are also grateful for all the other informal collaborations, conversations, a
 
 # Support and Recognition
 This project has been supported by fellowships, awards, and grants, including:
-  - [MacMillan International Dissertation Research Fellowship](https://macmillan.yale.edu/), Yale University (2025)
-  - [Bourse Mark Pigott – Humanités Numériques](https://www.bnf.fr/fr/appel-chercheurs-associes-2025-2026), Bibliothèque nationale de France (2025)
+  - Transkribus Scholarship, by READ-COOP SCE, which helped make the digital analysis and research for this piece possible (2026-2027)
+  - [MacMillan International Dissertation Research Fellowship](https://macmillan.yale.edu/), Yale University (2025-2026)
+  - [Bourse Mark Pigott – Humanités Numériques](https://www.bnf.fr/fr/appel-chercheurs-associes-2025-2026), Bibliothèque nationale de France (2025-2026)
   - [International Center of Medieval Art (ICMA) Student Travel Grant](https://www.medievalart.org/) (2025)
   - Latin American and Iberian Studies Summer Travel Grant, Yale University (2025)
   - Max Kade Summer Study & Travel Award, Yale University and Max Kade Foundation (2025)
@@ -73,6 +74,9 @@ This project has been supported by fellowships, awards, and grants, including:
 <div class="logo-wall" aria-labelledby="funding">
   <h2 id="funding">Funding & Fellowships</h2>
   <div class="logo-grid">
+    <a href="https://www.transkribus.org//" target="_blank" rel="noopener">
+      <img src="{{ '/assets/img/logos/transkribus.png' | relative_url }}" alt="Logo of Transkribus" loading="lazy" width="220" height="80">
+    </a>
     <a href="https://www.yale.edu/" target="_blank" rel="noopener">
       <img src="{{ '/assets/img/logos/yale.png' | relative_url }}" alt="Logo of Yale University" loading="lazy" width="220" height="80">
     </a>
