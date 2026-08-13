@@ -1,0 +1,90 @@
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    {{ site.title }}{% if page.label %} | {{ page.label }}{% elsif page.title %} | {{ page.title }}{% endif %}
+  </title>
+
+  <!-- canonical should be absolute -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+  <!-- internal assets should be relative -->
+  <!-- Use inline data URI favicon to avoid missing file errors -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg==">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
+
+  <script src="{{ '/assets/jquery-3.2.1.min.js' | relative_url }}"></script>
+  
+  <!-- Umami Analytics - Free, open source, privacy-friendly analytics -->
+  <script>
+    // Check if tracking is disabled before loading Umami
+    if (localStorage.getItem('disableTracking') !== 'true') {
+      // Load Umami script only if tracking is enabled
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://umami-production-4d64.up.railway.app/script.js';
+      script.setAttribute('data-website-id', '8bc98449-add7-458f-99ac-5c3f4803f4f9');
+      document.head.appendChild(script);
+    }
+  </script>
+  <script>
+    // Analytics helper function - wraps Umami for compatibility with tracking code
+    // Queue events if umami isn't loaded yet
+    (function() {
+      var queue = [];
+      var umamiReady = false;
+      
+      // Check if umami is ready periodically
+      var checkInterval = setInterval(function() {
+        if (window.umami) {
+          umamiReady = true;
+          clearInterval(checkInterval);
+          // Process queued events
+          queue.forEach(function(item) {
+            umami.track(item.name, item.data);
+          });
+          queue = [];
+        }
+      }, 100);
+      
+      // Clear interval after 10 seconds to avoid infinite checking
+      setTimeout(function() { clearInterval(checkInterval); }, 10000);
+      
+      window.plausible = function(eventName, eventData) {
+        // Check if user has disabled tracking
+        if (localStorage.getItem('disableTracking') === 'true') {
+          return; // Don't track anything
+        }
+        
+        var data = eventData?.props || eventData || {};
+        
+        if (window.umami && umamiReady) {
+          // Umami is ready, track immediately
+          umami.track(eventName, data);
+        } else {
+          // Queue for later
+          queue.push({ name: eventName, data: data });
+        }
+      };
+      
+      // Expose helper functions for enabling/disabling tracking
+      window.disableTracking = function() {
+        localStorage.setItem('disableTracking', 'true');
+        console.log('Analytics tracking disabled. Your activity will not be recorded.');
+      };
+      
+      window.enableTracking = function() {
+        localStorage.removeItem('disableTracking');
+        console.log('Analytics tracking enabled.');
+      };
+      
+      window.checkTracking = function() {
+        var isDisabled = localStorage.getItem('disableTracking') === 'true';
+        console.log('Analytics tracking is: ' + (isDisabled ? 'DISABLED' : 'ENABLED'));
+      };
+    })();
+  </script>
+</head>

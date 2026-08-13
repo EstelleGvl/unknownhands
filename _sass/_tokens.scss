@@ -1,0 +1,30 @@
+/* branding */
+$logo: url("/unknownhands/assets/img/sticker.webp");
+
+/* text */
+$body-font: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$heading-font: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+
+/* image size */
+$thumbnail-height: 140px;
+$thumbnail-width: 140px;
+
+/* colors */
+$text-color: #100c01;
+$bg-color: #ffffff;
+$neutral: #eae7de;
+$accent-light: #966d09;
+$accent-dark: #644906;
+
+/* viewport sizes */
+$max-width: 800px;
+
+/* margins */
+$less-margin: 1.0rem;
+$margin: 1.5rem;
+$more-margin: 2.0rem;
+$super-margin: 3.0rem;
+
+$viewer-height: 550px;
+$parallax-height: 350px;
+$footer-height: 250px;

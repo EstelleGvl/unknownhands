@@ -1,0 +1,1097 @@
+---
+layout: page
+permalink: /viewer/
+title: Viewer
+show_title: false
+---
+
+<link rel="stylesheet" href="https://unpkg.com/mirador@3.3.0/dist/mirador.min.css">
+<script src="https://unpkg.com/mirador@3.3.0/dist/mirador.min.js"></script>
+
+<style>
+  :root { --viewer-pad: 8vw; }
+
+  .viewer-fullwidth{
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 0 var(--viewer-pad);
+  }
+
+  /* Main container */
+  .viewer-wrap{
+    display:grid;
+    grid-template-columns: 1fr 10px 620px; /* Mirador | splitter | transcription */
+    gap:0;
+    max-width:95vw;         /* same feel as Explore page */
+    margin:0 auto;
+    height: calc(100vh - 180px);
+    min-height:640px;
+    border:1px solid #eee;
+    border-radius:.75rem;
+    overflow:hidden;
+    background:#fff;
+  }
+
+  /* Mirador cell */
+  #mirador, #text-pane{ min-width:0; min-height:640px; }
+  #mirador{ position:relative; z-index:1; }
+  #mirador > div{ height:100%; }
+  #region-overlay{
+    position:absolute;
+    inset:0;
+    z-index:1000;
+    pointer-events:none;
+  }
+  .region-box{
+    position:absolute;
+    box-sizing:border-box;
+    border:2px solid rgba(212, 175, 55, .95);
+    background:rgba(212, 175, 55, .12);
+    border-radius:2px;
+    opacity:.82;
+  }
+  .region-box.is-active{
+    border-color:#0b6bcb;
+    background:rgba(11, 107, 203, .16);
+    opacity:1;
+  }
+
+  /* Splitter */
+  .splitter{
+    cursor: col-resize;
+    background: repeating-linear-gradient(
+      90deg, #f4f4f4, #f4f4f4 1px, #ffffff 1px, #ffffff 3px
+    );
+  }
+
+  /* Sidebar */
+  #text-pane{
+    position:relative;
+    z-index:2;
+    border-left:1px solid #eee;
+    padding:.9rem 1rem;
+    background:#fff;
+    overflow:auto;
+    width:620px;        /* initial width */
+    min-width:420px;
+    height:100%;
+  }
+
+  .toolbar{ display:flex; gap:.5rem; align-items:center; margin-bottom:.5rem; }
+  .chip{ border:1px solid #ddd; background:#fff; padding:.3rem .7rem; border-radius:999px; cursor:pointer; }
+  .chip.is-on{ background:#e9f3ff; border-color:#b3d6ff; }
+  .tiny{ font-size:.9rem; }
+  .muted{ color:#666; }
+  .line{ padding:.15rem .2rem; border-radius:.35rem; line-height:1.35; }
+  .line:hover{ background:#fff7e6; }
+
+  /* Mobile stacking */
+  @media (max-width: 980px){
+    .viewer-fullwidth{ padding:0 4vw; }
+    .viewer-wrap{ grid-template-columns: 1fr; }
+    #splitter{ display:none; }
+    #text-pane{
+      border-left:none; border-top:1px solid #eee;
+      width:auto; min-width:0; height:45vh;
+    }
+  }
+
+  /* Manuscript Search Bar */
+  .manuscript-search-bar {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  .manuscript-search-bar input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    font-size: 0.9rem;
+  }
+  .manuscript-search-bar input:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+  }
+  .search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.375rem;
+    margin-top: 0.25rem;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: none;
+  }
+  .search-results-dropdown.is-open {
+    display: block;
+  }
+  .search-result-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .search-result-item:hover {
+    background: #f9f9f9;
+  }
+  .search-result-item.is-current {
+    background: #e9f3ff;
+    border-left: 3px solid #0066cc;
+    font-weight: 600;
+  }
+</style>
+
+<div class="viewer-fullwidth">
+  <!-- Manuscript Search Bar (above viewer) -->
+  <div class="manuscript-search-bar">
+    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+      <span style="font-weight: 600; color: #555;">Search Digitized Manuscripts</span>
+      <span id="manuscript-count" class="muted tiny" style="margin-left: auto;"></span>
+    </div>
+    <div style="position: relative;">
+      <input 
+        type="text" 
+        id="manuscript-search-input" 
+        placeholder="Type to search manuscripts with IIIF digitizations..." 
+      />
+      <div id="search-results-dropdown" class="search-results-dropdown"></div>
+    </div>
+  </div>
+  
+  <div class="viewer-wrap" id="viewer-wrap">
+    <div id="mirador" aria-label="IIIF Viewer"></div>
+    <div id="splitter" class="splitter" aria-hidden="true"></div>
+    <aside id="text-pane" aria-label="Transcription">
+      <div class="toolbar" style="flex-wrap: wrap;">
+        <strong>Transcription</strong>
+        <button id="btn-show-bboxes" class="chip tiny" type="button">Show regions</button>
+        <button id="btn-copy-text" class="chip tiny" type="button" title="Copy full transcription">Copy Text</button>
+        <button id="btn-share-link" class="chip tiny" type="button" title="Copy link to this page">Share Link</button>
+        <a id="btn-database" href="#" class="chip tiny" style="text-decoration:none; display:none;">Database</a>
+        <a href="{{ site.baseurl | default: '' }}/search-transcriptions/" class="chip tiny" style="text-decoration:none; margin-left:auto;">Search Text</a>
+      </div>
+      
+      <div id="text-status" class="muted tiny">Loading…</div>
+      <div id="text-content"></div>
+    </aside>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const wrap = document.getElementById('viewer-wrap');
+  const splitter = document.getElementById('splitter');
+  const sidebar = document.getElementById('text-pane');
+
+  if (wrap && splitter && sidebar) {
+    let dragging = false;
+    let startX = 0;
+    let startSidebar = 0;
+
+    function px(n){ return `${Math.round(n)}px`; }
+
+    splitter.addEventListener('mousedown', (e)=>{
+      dragging = true;
+      startX = e.clientX;
+      startSidebar = sidebar.getBoundingClientRect().width;
+      document.body.style.userSelect = 'none';
+      document.body.style.cursor = 'col-resize';
+    });
+
+    window.addEventListener('mousemove', (e)=>{
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      let w = startSidebar - dx;                   // drag splitter left/right
+      const max = Math.max(420, window.innerWidth - 520); // keep image pane usable
+      if (w < 360) w = 360;
+      if (w > max) w = max;
+      // re-define grid columns on the fly: [auto] [splitter] [sidebar]
+      wrap.style.gridTemplateColumns = `1fr 8px ${px(w)}`;
+      sidebar.style.width = px(w);
+    });
+
+    window.addEventListener('mouseup', ()=>{
+      if (!dragging) return;
+      dragging = false;
+      document.body.style.userSelect = '';
+      document.body.style.cursor = '';
+    });
+
+    // Safety: if theme scripts resize things, enforce a sensible grid
+    const enforce = ()=> {
+      const current = sidebar.getBoundingClientRect().width;
+      if (current < 40){
+        const w = Math.max(420, Math.min(560, Math.round(window.innerWidth * 0.32)));
+        wrap.style.gridTemplateColumns = `1fr 8px ${px(w)}`;
+        sidebar.style.width = px(w);
+      }
+    };
+    setTimeout(enforce, 300);
+    setTimeout(enforce, 1200);
+    window.addEventListener('resize', enforce);
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  const params     = new URLSearchParams(location.search);
+  const manifest   = params.get('manifest') || '';
+  const mappingUrl = params.get('annos')    || '';
+  const manuscriptSlug = params.get('ms') || '';
+  const targetCanvas = params.get('canvas') || '';  // for deep linking from search
+  const targetLine   = params.get('line')   || '';  // highlight specific line
+  const siteBaseUrl = '{{ site.baseurl | default: "" }}';
+  const iiifProxyBase = '{{ site.iiif_proxy | default: "" }}';
+  const staticImageFallbackHosts = new Set(['online-service.nuernberg.de']);
+
+  function withSiteBase(url){
+    if (!url || !siteBaseUrl || !url.startsWith('/')) return url;
+    if (url === siteBaseUrl || url.startsWith(`${siteBaseUrl}/`)) return url;
+    return `${siteBaseUrl}${url}`;
+  }
+
+  function needsStaticImageFallback(url){
+    try { return staticImageFallbackHosts.has(new URL(url).hostname.toLowerCase()); }
+    catch { return false; }
+  }
+
+  async function fetchManifestData(url){
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } catch (directError) {
+      if (!iiifProxyBase || !/^https:\/\//i.test(url)) throw directError;
+      const proxyResponse = await fetch(`${iiifProxyBase}${encodeURIComponent(url)}`);
+      if (!proxyResponse.ok) throw directError;
+      return await proxyResponse.json();
+    }
+  }
+
+  // Track manuscript viewer usage
+  if (manifest && window.plausible) {
+    const manifestId = manuscriptSlug || manifest.substring(0, 50);
+    plausible('Manuscript Viewed', { 
+      props: { 
+        manuscript: manifestId,
+        has_transcriptions: !!mappingUrl,
+        deep_link: !!targetCanvas
+      } 
+    });
+  }
+
+  const $status    = document.getElementById('text-status');
+  const $content   = document.getElementById('text-content');
+  const $btnBoxes  = document.getElementById('btn-show-bboxes');
+  const $btnDatabase = document.getElementById('btn-database');
+  const $btnCopyText = document.getElementById('btn-copy-text');
+  const $btnShareLink = document.getElementById('btn-share-link');
+  let $regionOverlay = null;
+
+  if (!manifest) {
+    $status.textContent = 'Missing ?manifest=… URL parameter.';
+  } else if (!mappingUrl) {
+    $status.textContent = 'No transcriptions available for this manuscript.';
+    $btnBoxes.style.display = 'none';
+  }
+
+  /* 1) Start Mirador inside the left grid cell */
+  const miradorManifest = manifest && needsStaticImageFallback(manifest) && iiifProxyBase
+    ? `${iiifProxyBase}${encodeURIComponent(manifest)}&staticImages=1`
+    : manifest;
+
+  const miradorConfig = {
+    id: 'mirador',
+    windows: [{ loadedManifest: miradorManifest }],
+    workspaceControlPanel: { enabled:false },
+    selectedTheme: 'light',
+  };
+  
+  // If canvas is specified, open directly to that canvas
+  if (targetCanvas) {
+    miradorConfig.windows[0].canvasId = targetCanvas;
+  }
+  
+  const mir = Mirador.viewer(miradorConfig);
+  window.__mir = mir; // for quick console checks
+
+  function ensureRegionOverlay(){
+    if ($regionOverlay && document.body.contains($regionOverlay)) return $regionOverlay;
+    const host = document.getElementById('mirador');
+    if (!host) return null;
+    $regionOverlay = document.createElement('div');
+    $regionOverlay.id = 'region-overlay';
+    $regionOverlay.setAttribute('aria-hidden', 'true');
+    host.appendChild($regionOverlay);
+    return $regionOverlay;
+  }
+
+  ensureRegionOverlay();
+
+  function setDatabaseLink(slug){
+    if (!slug || !$btnDatabase) return;
+    $btnDatabase.href = `${siteBaseUrl}/explore-database/?type=ms&slug=${encodeURIComponent(slug)}`;
+    $btnDatabase.style.display = 'inline-block';
+  }
+
+  function inferSlugFromMappingUrl(){
+    const match = String(mappingUrl || '').match(/\/data\/annos\/(ms-[^/]+)\/mapping\.json/);
+    return match ? match[1] : '';
+  }
+
+  function inferSlugFromRegistry(){
+    if (!manifest || !$btnDatabase) return;
+    fetch('{{ "/data/manifests.yml" | relative_url }}')
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(text => {
+        let currentSlug = '';
+        for (const line of text.split('\n')) {
+          const slugMatch = line.match(/^-\s+slug:\s*["']?([^"']+)["']?/);
+          if (slugMatch) currentSlug = slugMatch[1].trim();
+          const manifestMatch = line.match(/^\s+manifest:\s*["']?([^"']+)["']?/);
+          if (currentSlug && manifestMatch && manifestMatch[1].trim() === manifest) {
+            setDatabaseLink(currentSlug);
+            break;
+          }
+        }
+      })
+      .catch(err => console.warn('Could not resolve database link from registry:', err));
+  }
+
+  setDatabaseLink(manuscriptSlug || inferSlugFromMappingUrl());
+  if (!$btnDatabase?.href || $btnDatabase.style.display === 'none') {
+    inferSlugFromRegistry();
+  }
+
+  /* 2) Load mapping and build canvasId -> AP path map */
+  const byCanvas = new Map();
+  const transcriptRowsByCanvas = new Map();
+  let mappingArr = [];
+  const apCache  = new Map();
+  const canvasInfo = new Map();
+  let currentRows = [];
+  let renderSeq = 0;
+  let transcriptionSourcesReady = false;
+  let attemptedInitialTranscribedCanvas = false;
+
+  const normalize = (s) => {
+    try{ const u=new URL(s, location.href); u.hash=''; u.search=''; return u.toString().replace(/\/+$/,''); }
+    catch{ return String(s).replace(/[?#].*$/, '').replace(/\/+$/,''); }
+  };
+
+  function manifestLabelValue(label){
+    if (!label) return '';
+    if (typeof label === 'string') return label;
+    if (Array.isArray(label)) return label.join(' ');
+    if (typeof label === 'object') {
+      const first = Object.values(label).find(Boolean);
+      return Array.isArray(first) ? first.join(' ') : String(first || '');
+    }
+    return String(label);
+  }
+
+  function imageBodyFromAnnotation(anno){
+    let body = anno?.body || anno?.resource || anno?.items;
+    if (Array.isArray(body) && body.length) {
+      body = body[0]?.body || body[0]?.resource || body[0];
+    }
+    return body && typeof body === 'object' ? body : {};
+  }
+
+  function rememberCanvasInfo(canvas){
+    const id = canvas?.id || canvas?.['@id'];
+    if (!id) return;
+    const width = Number(canvas.width || 0);
+    const height = Number(canvas.height || 0);
+    const imageId = imageBodyFromAnnotation((canvas.items || canvas.images || [])[0]).id
+      || imageBodyFromAnnotation((canvas.items || canvas.images || [])[0])['@id']
+      || '';
+    const info = {
+      id,
+      width,
+      height,
+      label: manifestLabelValue(canvas.label),
+      imageId
+    };
+    canvasInfo.set(normalize(id), info);
+    canvasInfo.set(id, info);
+  }
+
+  function readManifestCanvases(data){
+    if (Array.isArray(data?.items)) {
+      data.items.forEach(item => {
+        if (item?.type === 'Canvas' || item?.['@type'] === 'sc:Canvas') {
+          rememberCanvasInfo(item);
+        } else if (Array.isArray(item?.items)) {
+          item.items.forEach(rememberCanvasInfo);
+        }
+      });
+    }
+    (data?.sequences || []).forEach(seq => (seq.canvases || []).forEach(rememberCanvasInfo));
+  }
+
+  function rememberTranscriptRow(doc){
+    const canvasId = doc?.canvas;
+    const txt = String(doc?.text || '').trim();
+    if (!canvasId || !txt) return;
+    const key = normalize(canvasId);
+    if (!transcriptRowsByCanvas.has(key)) transcriptRowsByCanvas.set(key, []);
+    transcriptRowsByCanvas.get(key).push({
+      txt,
+      box: null,
+      canvasId,
+      lineId: doc?.line_id || ''
+    });
+  }
+
+  if (manifest) {
+    fetchManifestData(manifest)
+      .then(readManifestCanvases)
+      .then(() => drawRegionOverlay())
+      .catch(err => console.warn('Could not load manifest dimensions for regions:', err));
+  }
+
+  // Annotation pages provide selectable regions, but are intentionally omitted
+  // from the public Jekyll artifact because the full directory is very large.
+  // Per-manuscript search files contain the same line text and are the reliable
+  // production fallback used by the transcription pane.
+  const sourceLoads = [];
+
+  if (mappingUrl) {
+    sourceLoads.push(fetch(withSiteBase(mappingUrl))
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(j => {
+        if (!j || !Array.isArray(j.items)) throw new Error('Bad mapping.json');
+        mappingArr = j.items.slice();
+        j.items.forEach(it => {
+          byCanvas.set(normalize(it.canvas), it.annotationPage);
+          byCanvas.set(it.canvas, it.annotationPage);
+        });
+      })
+      .catch(err => {
+        console.warn('Annotation mapping unavailable; using transcription corpus:', err);
+        $btnBoxes.style.display = 'none';
+      }));
+  }
+
+  const corpusSlug = manuscriptSlug || inferSlugFromMappingUrl();
+  if (corpusSlug) {
+    const corpusUrl = withSiteBase(`/assets/search/manuscripts/${encodeURIComponent(corpusSlug)}.json`);
+    sourceLoads.push(fetch(corpusUrl)
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(data => {
+        if (!Array.isArray(data?.docs)) throw new Error('Bad transcription corpus');
+        data.docs.forEach(rememberTranscriptRow);
+      })
+      .catch(err => {
+        console.warn('Per-manuscript transcription corpus unavailable:', err);
+      }));
+  }
+
+  Promise.allSettled(sourceLoads).then(() => {
+    transcriptionSourcesReady = true;
+    const canvases = currentCanvasIds();
+    const visibleHasText = canvases.some(canvasId =>
+      (transcriptRowsByCanvas.get(normalize(canvasId)) || []).length
+    );
+    if (!targetCanvas && canvases.length && !visibleHasText) {
+      const firstCanvas = firstUsefulTranscribedCanvas();
+      if (firstCanvas && openCanvas(firstCanvas)) {
+        renderAllText([firstCanvas]);
+        return;
+      }
+    }
+    if (canvases.length || targetCanvas) {
+      renderAllText(canvases);
+    } else if (!sourceLoads.length) {
+      $status.textContent = 'No transcriptions available for this manuscript.';
+    }
+  });
+
+  /* 3) Helpers to read current canvas from Mirador state */
+  function currentCanvasIds(){
+    const s = mir.store.getState();
+    const wId = s.windows && Object.keys(s.windows)[0];
+    if (!wId) return [];
+    const v = s.windows[wId]?.visibleCanvases;
+    return (Array.isArray(v) && v.length) ? v : [];
+  }
+  function currentCanvasIndex(){
+    const s = mir.store.getState();
+    const wId = s.windows && Object.keys(s.windows)[0];
+    const i = s.windows[wId]?.canvasIndex;
+    return Number.isFinite(i) ? i : 0;
+  }
+
+  function openCanvas(canvasId){
+    if (!canvasId || !Mirador?.actions?.setCanvas) return false;
+    const state = mir.store.getState();
+    const windowId = state.windows && Object.keys(state.windows)[0];
+    if (!windowId) return false;
+    mir.store.dispatch(Mirador.actions.setCanvas(windowId, canvasId));
+    return true;
+  }
+
+  function firstUsefulTranscribedCanvas(){
+    const entries = Array.from(transcriptRowsByCanvas.entries());
+    const substantive = entries.find(([, rows]) =>
+      rows.length >= 3 && rows.reduce((sum, row) => sum + row.txt.length, 0) >= 40
+    );
+    const selected = substantive || entries[0];
+    return selected?.[1]?.[0]?.canvasId || selected?.[0] || '';
+  }
+
+  /* 4) Render transcription for the current canvas(es) */
+  let showBoxes = false;
+  let currentTranscriptionText = ''; // Store current transcription for copying
+  
+  $btnBoxes.addEventListener('click', ()=>{
+    showBoxes = !showBoxes;
+    $btnBoxes.classList.toggle('is-on', showBoxes);
+    drawRegionOverlay();
+    const canvases = currentCanvasIds();
+    if (canvases.length) renderAllText(canvases);
+  });
+  
+  // Copy transcription text to clipboard
+  $btnCopyText.addEventListener('click', async ()=>{
+    if (!currentTranscriptionText) {
+      showTemporaryFeedback($btnCopyText, 'No text to copy', 'error');
+      return;
+    }
+    
+    try {
+      await navigator.clipboard.writeText(currentTranscriptionText);
+      showTemporaryFeedback($btnCopyText, 'Copied!', 'success');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      showTemporaryFeedback($btnCopyText, 'Copy failed', 'error');
+    }
+  });
+  
+  // Generate and copy shareable link to current canvas
+  $btnShareLink.addEventListener('click', async ()=>{
+    const canvases = currentCanvasIds();
+    if (!canvases.length) {
+      showTemporaryFeedback($btnShareLink, 'No page selected', 'error');
+      return;
+    }
+    
+    const params = new URLSearchParams(location.search);
+    const currentCanvas = canvases[0]; // Use first visible canvas
+    
+    // Build shareable URL with canvas parameter
+    const shareUrl = new URL(location.href);
+    shareUrl.searchParams.set('canvas', currentCanvas);
+    
+    try {
+      await navigator.clipboard.writeText(shareUrl.toString());
+      showTemporaryFeedback($btnShareLink, 'Link copied!', 'success');
+    } catch (err) {
+      console.error('Copy failed:', err);
+      showTemporaryFeedback($btnShareLink, 'Copy failed', 'error');
+    }
+  });
+  
+  // Helper to show temporary feedback on buttons
+  function showTemporaryFeedback(button, message, type = 'success') {
+    const originalText = button.textContent;
+    button.textContent = message;
+    button.style.background = type === 'success' ? '#d4edda' : '#f8d7da';
+    button.style.borderColor = type === 'success' ? '#c3e6cb' : '#f5c6cb';
+    button.style.color = type === 'success' ? '#155724' : '#721c24';
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.style.background = '';
+      button.style.borderColor = '';
+      button.style.color = '';
+    }, 2000);
+  }
+
+  function overlayRect(){
+    if (!$regionOverlay) return null;
+    const miradorRect = document.getElementById('mirador').getBoundingClientRect();
+    return {
+      left: 0,
+      top: 0,
+      width: miradorRect.width,
+      height: miradorRect.height,
+      viewportLeft: miradorRect.left,
+      viewportTop: miradorRect.top
+    };
+  }
+
+  function parseTileRegion(src){
+    const decoded = decodeURIComponent(String(src || ''));
+    const parts = decoded.split('/').filter(Boolean);
+    for (let i = 0; i < parts.length; i++) {
+      const match = parts[i].match(/^(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/);
+      if (match && parts[i + 1]) {
+        const marker = `/${parts[i]}/`;
+        const service = decoded.includes(marker) ? decoded.slice(0, decoded.indexOf(marker)) : '';
+        return {
+          x: Number(match[1]),
+          y: Number(match[2]),
+          w: Number(match[3]),
+          h: Number(match[4]),
+          service
+        };
+      }
+    }
+    return null;
+  }
+
+  function serviceMatchesCanvas(service, info){
+    if (!service || !info?.imageId) return true;
+    const source = normalize(service);
+    const image = normalize(info.imageId);
+    return source === image || source.startsWith(`${image}/`) || image.startsWith(`${source}/`);
+  }
+
+  function imageTransformFromTiles(viewRect, info){
+    if (!viewRect) return null;
+    const miradorRect = document.getElementById('mirador').getBoundingClientRect();
+    const candidates = Array.from(document.querySelectorAll('#mirador img'))
+      .map(img => ({ img, rect: img.getBoundingClientRect(), region: parseTileRegion(img.currentSrc || img.src) }))
+      .filter(({rect, region}) => region && serviceMatchesCanvas(region.service, info) && rect.width > 4 && rect.height > 4 && rect.bottom > miradorRect.top && rect.right > miradorRect.left && rect.top < miradorRect.bottom && rect.left < miradorRect.right);
+
+    if (!candidates.length) return null;
+
+    const estimates = candidates.map(({rect, region}) => {
+      const scaleX = rect.width / region.w;
+      const scaleY = rect.height / region.h;
+      const scale = (scaleX + scaleY) / 2;
+      return {
+        scale,
+        left: (rect.left - miradorRect.left) - (region.x * scale),
+        top: (rect.top - miradorRect.top) - (region.y * scale)
+      };
+    }).filter(t => Number.isFinite(t.scale) && t.scale > 0);
+
+    if (!estimates.length) return null;
+    estimates.sort((a, b) => a.scale - b.scale);
+    const mid = estimates[Math.floor(estimates.length / 2)];
+    return {
+      scale: mid.scale,
+      left: median(estimates.map(t => t.left)),
+      top: median(estimates.map(t => t.top))
+    };
+  }
+
+  function fallbackImageTransform(viewRect, info){
+    if (!viewRect || !info?.width || !info?.height) return null;
+    const scale = Math.min(viewRect.width / info.width, viewRect.height / info.height);
+    return {
+      left: viewRect.left + ((viewRect.width - (info.width * scale)) / 2),
+      top: viewRect.top + ((viewRect.height - (info.height * scale)) / 2),
+      scale
+    };
+  }
+
+  function median(values){
+    const sorted = values.filter(Number.isFinite).sort((a, b) => a - b);
+    if (!sorted.length) return 0;
+    return sorted[Math.floor(sorted.length / 2)];
+  }
+
+  function clearRegionOverlay(){
+    if ($regionOverlay) $regionOverlay.innerHTML = '';
+  }
+
+  let overlayFrame = null;
+  function scheduleRegionOverlay(activeIndex = null){
+    if (overlayFrame) cancelAnimationFrame(overlayFrame);
+    overlayFrame = requestAnimationFrame(() => {
+      overlayFrame = null;
+      drawRegionOverlay(activeIndex);
+    });
+  }
+
+  function drawRegionOverlay(activeIndex = null){
+    if (!$regionOverlay) return;
+    clearRegionOverlay();
+    if (!showBoxes || !currentRows.length) return;
+    const viewRect = overlayRect();
+    const visible = currentCanvasIds().map(normalize);
+    const rows = currentRows.filter(row => row.box && visible.includes(normalize(row.canvasId)));
+    const grouped = new Map();
+    rows.forEach(row => {
+      const key = normalize(row.canvasId);
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key).push(row);
+    });
+
+    grouped.forEach((groupRows, canvasKey) => {
+      const info = canvasInfo.get(canvasKey);
+      const transform = imageTransformFromTiles(viewRect, info) || fallbackImageTransform(viewRect, info);
+      if (!transform) return;
+      groupRows.forEach(row => {
+        const box = row.box;
+        const el = document.createElement('div');
+        el.className = `region-box${row.index === activeIndex ? ' is-active' : ''}`;
+        el.style.left = `${transform.left + (box.x * transform.scale)}px`;
+        el.style.top = `${transform.top + (box.y * transform.scale)}px`;
+        el.style.width = `${Math.max(1, box.w * transform.scale)}px`;
+        el.style.height = `${Math.max(1, box.h * transform.scale)}px`;
+        $regionOverlay.appendChild(el);
+      });
+    });
+  }
+
+  async function renderAllText(canvasIds){
+    const seq = ++renderSeq;
+    const requestedCanvasIds = Array.from(new Set(
+      [...canvasIds, targetCanvas].filter(Boolean)
+    ));
+
+    if (!requestedCanvasIds.length) {
+      $status.textContent = 'No page selected.';
+      $content.innerHTML = '';
+      return;
+    }
+
+    if (!transcriptionSourcesReady) {
+      $status.textContent = 'Loading transcriptions…';
+      return;
+    }
+
+    $status.textContent = 'Loading transcriptions…';
+    const allRows = [];
+    
+    for (const canvasId of requestedCanvasIds) {
+      const key = normalize(canvasId);
+      let apRel = byCanvas.get(key) || byCanvas.get(canvasId);
+      let rows = [];
+
+      // Fallback: index alignment
+      if (!apRel && mappingArr.length){
+        const idx = Math.min(Math.max(currentCanvasIndex(), 0), mappingArr.length-1);
+        apRel = mappingArr[idx]?.annotationPage;
+      }
+
+      if (apRel) {
+        try {
+          const base = new URL(withSiteBase(mappingUrl), location.href);
+          const apRelWithBase = withSiteBase(apRel);
+          const apUrl = new URL(apRelWithBase, base).toString();
+          const ap = apCache.has(apUrl)
+            ? apCache.get(apUrl)
+            : await fetch(apUrl).then(r => r.ok ? r.json() : Promise.reject(r.status));
+          apCache.set(apUrl, ap);
+
+          const items = Array.isArray(ap.items) ? ap.items : [];
+          const parseXYWH = (sel='') => { const m=/xywh=(\d+),(\d+),(\d+),(\d+)/.exec(sel); return m ? {x:+m[1],y:+m[2],w:+m[3],h:+m[4]} : null; };
+
+          rows = items.map(it=>{
+            const sel = it?.target?.selector?.value || '';
+            const box = parseXYWH(sel);
+            const txt = (it?.body?.value || '').trim();
+            return { txt, box, canvasId, lineId: '' };
+          }).filter(r=>r.txt);
+
+          rows.sort((a,b)=>(a.box?.y||0)-(b.box?.y||0) || (a.box?.x||0)-(b.box?.x||0));
+        } catch(e) {
+          console.warn('Annotation page unavailable; using transcription corpus:', apRel, e);
+        }
+      }
+
+      if (!rows.length) rows = transcriptRowsByCanvas.get(key) || [];
+      allRows.push(...rows);
+    }
+
+    if (seq !== renderSeq) return;
+
+    if (!allRows.length) {
+      if (!targetCanvas && !attemptedInitialTranscribedCanvas) {
+        attemptedInitialTranscribedCanvas = true;
+        const firstCanvas = firstUsefulTranscribedCanvas();
+        if (firstCanvas && !requestedCanvasIds.some(id => normalize(id) === normalize(firstCanvas)) && openCanvas(firstCanvas)) {
+          renderAllText([firstCanvas]);
+          return;
+        }
+      }
+      $status.textContent = 'No transcription for this page.';
+      $content.innerHTML = '';
+      currentTranscriptionText = '';
+      currentRows = [];
+      clearRegionOverlay();
+      return;
+    }
+
+    const esc = s => String(s).replace(/[&<>"]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    $status.textContent = `${allRows.length} line${allRows.length===1?'':'s'}`;
+    currentRows = allRows.map((row, index) => ({ ...row, index }));
+    
+    // Store plain text for copying
+    currentTranscriptionText = currentRows.map(r => r.txt).join('\n');
+    
+    $content.innerHTML = currentRows.map((r, idx)=>{
+      const lineId = r.lineId || `line-${idx}`;
+      const isTarget = targetLine && lineId === targetLine;
+      const highlightClass = isTarget ? ' style="background:#fff4cc; font-weight:bold;"' : '';
+      return `<div class="line" id="${lineId}" data-region-index="${idx}"${highlightClass}>${esc(r.txt)}</div>`;
+    }).join('');
+
+    $content.querySelectorAll('[data-region-index]').forEach(line => {
+      line.addEventListener('mouseenter', () => scheduleRegionOverlay(Number(line.dataset.regionIndex)));
+      line.addEventListener('mouseleave', () => scheduleRegionOverlay());
+    });
+    scheduleRegionOverlay();
+    
+    // Scroll to highlighted line if specified
+    if (targetLine) {
+      setTimeout(() => {
+        const lineElem = document.getElementById(targetLine);
+        if (lineElem) {
+          lineElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
+    }
+  }
+
+  // Re-render on canvas change
+  let lastCanvases = [];
+  mir.store.subscribe(()=>{
+    const canvases = currentCanvasIds();
+    const canvasStr = canvases.join(',');
+    const lastStr = lastCanvases.join(',');
+    if (canvasStr !== lastStr) {
+      lastCanvases = canvases;
+      renderAllText(canvases);
+    } else if (showBoxes) {
+      scheduleRegionOverlay();
+    }
+  });
+
+  window.addEventListener('resize', () => scheduleRegionOverlay());
+  document.getElementById('mirador')?.addEventListener('wheel', () => scheduleRegionOverlay(), { passive: true });
+  document.getElementById('mirador')?.addEventListener('mousemove', () => {
+    if (showBoxes) scheduleRegionOverlay();
+  });
+  document.getElementById('mirador')?.addEventListener('mouseup', () => scheduleRegionOverlay());
+  sidebar?.addEventListener('scroll', () => scheduleRegionOverlay(), { passive: true });
+  setInterval(() => {
+    if (showBoxes) scheduleRegionOverlay();
+  }, 750);
+
+  // First render kick (after Mirador finishes first layout)
+  setTimeout(()=>{ 
+    const canvases = currentCanvasIds(); 
+    if (canvases.length) renderAllText(canvases); 
+  }, 700);
+})();
+</script>
+
+<!-- Manuscript Navigation Script -->
+<script>
+(function(){
+  const $searchInput = document.getElementById('manuscript-search-input');
+  const $searchResults = document.getElementById('search-results-dropdown');
+  const $manuscriptCount = document.getElementById('manuscript-count');
+  
+  let manuscriptsData = [];
+  let manifestAnnosMap = {};
+  const baseUrl = '{{ site.baseurl | default: "" }}';
+  const currentManifest = new URLSearchParams(location.search).get('manifest');
+  
+  // Load manuscript data from the data/manuscripts.csv file
+  async function loadManuscripts() {
+    try {
+      // Load manifest-annos map first
+      try {
+        const mapResponse = await fetch(`${baseUrl}/data/manifest-annos-map.json`);
+        if (mapResponse.ok) {
+          manifestAnnosMap = await mapResponse.json();
+          console.log('Loaded manifest-annos map:', Object.keys(manifestAnnosMap).length, 'entries');
+        }
+      } catch (err) {
+        console.warn('Could not load manifest-annos map:', err);
+      }
+      
+      // Load from the data directory CSV file (web-accessible)
+      const response = await fetch(`${baseUrl}/data/manuscripts.csv`);
+      if (!response.ok) {
+        throw new Error('Failed to load manuscripts');
+      }
+      
+      const csvText = await response.text();
+      const lines = csvText.split('\n').filter(line => line.trim());
+      
+      // Parse CSV header
+      const headers = parseCSVLine(lines[0]);
+      
+      const firstIndex = (names) => names.map(name => headers.indexOf(name)).find(idx => idx !== -1) ?? -1;
+
+      // Find column indices. Supports both the older lightweight CSV and the
+      // Heurist relationship export.
+      const titleIdx = firstIndex(['Manuscript Record Title', 'Title', 'rec_Title']);
+      const manifestIdx = firstIndex(['IIIF Manifest Link(s)', 'IIIF Manifest', 'Manifest']);
+      const idIdx = firstIndex(['Manuscript H-ID', 'rec_ID', 'Heurist ID', 'Manuscript ID']);
+      const callIdx = firstIndex(['Call number', 'Call Number', 'Shelfmark']);
+      
+      if (titleIdx === -1 || manifestIdx === -1) {
+        throw new Error('Required columns not found in CSV');
+      }
+      
+      // Parse data rows
+      manuscriptsData = lines.slice(1).map(line => {
+        const cols = parseCSVLine(line);
+        return {
+          title: cols[titleIdx] || 'Untitled',
+          manifest: cols[manifestIdx] || '',
+          id: idIdx >= 0 ? (cols[idIdx] || '') : '',
+          slug: idIdx >= 0 && cols[idIdx] ? `ms-${cols[idIdx]}` : '',
+          callNumber: callIdx >= 0 ? (cols[callIdx] || '') : ''
+        };
+      }).filter(ms => {
+        // Only include manuscripts with IIIF manifests
+        return ms.manifest && ms.manifest.trim() !== '';
+      });
+      
+      $manuscriptCount.textContent = `${manuscriptsData.length} manuscripts available`;
+      console.log('Loaded manuscripts:', manuscriptsData.length);
+    } catch (error) {
+      console.error('Error loading manuscripts:', error);
+      $manuscriptCount.textContent = 'Error loading data';
+    }
+  }
+  
+  // Simple CSV parser that handles quoted fields
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+      
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          // Escaped quote
+          current += '"';
+          i++; // Skip next quote
+        } else {
+          // Toggle quote mode
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        // Field separator
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    
+    // Add last field
+    result.push(current.trim());
+    return result;
+  }
+  
+  // Search and display results
+  function performSearch(query) {
+    if (!query) {
+      $searchResults.innerHTML = '';
+      $searchResults.classList.remove('is-open');
+      return;
+    }
+    
+    const filtered = manuscriptsData.filter(ms => 
+      ms.title.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    if (filtered.length === 0) {
+      $searchResults.innerHTML = '<div style="padding:1rem; color:#666; text-align:center;">No manuscripts found</div>';
+      $searchResults.classList.add('is-open');
+      return;
+    }
+    
+    const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    
+    // Build the IIIF mapping URL if it exists
+    const getAnnosParam = (ms) => {
+      if (!ms.manifest) return '';
+      
+      // Check the manifest-annos map
+      if (manifestAnnosMap[ms.manifest]) {
+        return `&annos=${baseUrl}${manifestAnnosMap[ms.manifest]}`;
+      }
+      
+      return '';
+    };
+    
+    $searchResults.innerHTML = filtered.slice(0, 30).map(ms => {
+      const viewerUrl = ms.slug
+        ? `${baseUrl}/viewer/?ms=${encodeURIComponent(ms.slug)}&manifest=${encodeURIComponent(ms.manifest)}${getAnnosParam(ms)}`
+        : `${baseUrl}/viewer/?manifest=${encodeURIComponent(ms.manifest)}${getAnnosParam(ms)}`;
+      const isCurrent = currentManifest === ms.manifest;
+      const currentClass = isCurrent ? ' is-current' : '';
+      
+      return `
+        <a href="${viewerUrl}" class="search-result-item${currentClass}" style="display:block; text-decoration:none; color:#333;">
+          <div style="font-weight:${isCurrent ? '600' : '500'};">
+            ${isCurrent ? '▶ ' : ''}${esc(ms.title)}
+          </div>
+          ${ms.callNumber ? `<div style="font-size:0.75rem; color:#666; margin-top:0.25rem;">${esc(ms.callNumber)}</div>` : ''}
+          ${isCurrent ? '<div style="font-size:0.75rem; color:#0066cc; margin-top:0.25rem;">Currently viewing</div>' : ''}
+        </a>
+      `;
+    }).join('');
+    
+    $searchResults.classList.add('is-open');
+  }
+  
+  // Event listeners
+  $searchInput.addEventListener('input', (e) => {
+    performSearch(e.target.value.trim());
+  });
+  
+  $searchInput.addEventListener('focus', () => {
+    if ($searchInput.value.trim()) {
+      performSearch($searchInput.value.trim());
+    }
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!$searchInput.contains(e.target) && !$searchResults.contains(e.target)) {
+      $searchResults.classList.remove('is-open');
+    }
+  });
+  
+  // Allow Enter key to open first result
+  $searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const firstLink = $searchResults.querySelector('a');
+      if (firstLink) {
+        window.location.href = firstLink.href;
+      }
+    } else if (e.key === 'Escape') {
+      $searchResults.classList.remove('is-open');
+      $searchInput.blur();
+    }
+  });
+  
+  // Load manuscripts on page load
+  loadManuscripts();
+})();
+</script>

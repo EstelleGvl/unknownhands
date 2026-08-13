@@ -1,0 +1,19 @@
+[build]
+command = "bundle exec jekyll build"
+publish = "_site"
+
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+included_files = ["data/rag_data/colophon_embeddings.json"]
+
+[dev]
+command = "rbenv exec bundle exec jekyll serve --watch --skip-initial-build --baseurl= --port 4000"
+targetPort = 4000
+port = 8888
+autoLaunch = false
+
+[[headers]]
+for = "/*"
+  [headers.values]
+  Access-Control-Allow-Origin = "*"

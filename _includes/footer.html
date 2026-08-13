@@ -1,0 +1,52 @@
+<footer id='site-footer' class='page-footer container-fluid'>
+  <div class='site-inline-container'>
+    <div class='row align-items-start'>
+
+      <!-- Site title / description / copyright -->
+      <div class='col-12 col-md-3'>
+        <p class='footer-title'>{{ site.title }}</p>
+        <p class='footer-copyright'>
+          {% if site.copyright and site.copyright.size > 0 %}
+            &copy; {{ site.copyright }}<br>
+          {% endif %}
+        </p>
+      </div>
+
+      <!-- Links + logo -->
+      <div class='col-12 col-md-3'>
+        <p class='footer-title'>Links</p>
+        <p class='footer-links'>
+          {% for item in site.footer.links %}
+            {% assign href = item.link %}
+            {% if href contains '://' %}
+              {% assign url = href %}
+            {% else %}
+              {% assign url = href | relative_url %}
+            {% endif %}
+            <a href='{{ url }}'>{{ item.label }}</a>{% unless forloop.last %} / {% endunless %}
+          {% endfor %}
+        </p>
+
+        {% if site.footer.logos %}
+          <div class="footer-logos">
+            {% for logo in site.footer.logos %}
+              <img src="{{ logo.img | relative_url }}"
+                   alt="{{ logo.alt | default: site.title }}" 
+                   class="footer-logo">
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Citation (wider) -->
+      <div class='col-12 col-md-6'>
+        {% if site.footer.cite %}
+          <div class="footer-citation">
+            {{ site.footer.cite | markdownify }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</footer>

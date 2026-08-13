@@ -1,0 +1,624 @@
+<div class="explore-fullwidth">
+  <h1 class="mb-3 text-center">Explore the Database</h1>
+
+  <!-- Main Navigation Tabs -->
+  <div class="main-nav-tabs" id="main-nav-tabs" aria-label="Main Navigation">
+    <button type="button" class="main-nav-btn is-on" data-mode="browse">Browse & Search</button>
+    <button type="button" class="main-nav-btn" data-mode="analytics" data-mode-group="overview">Overview</button>
+    <button type="button" class="main-nav-btn" data-mode="tree">Manuscript Structure</button>
+    <button type="button" class="main-nav-btn" data-mode="scribes">Scribes</button>
+    <button type="button" class="main-nav-btn" data-mode="multilingualism">Multilingualism</button>
+    <button type="button" class="main-nav-btn" data-mode="colophon-analysis">Colophons</button>
+    <button type="button" class="main-nav-btn" data-mode="text-genres">Textual Genres</button>
+  </div>
+
+  <!-- Overview Navigation Tabs -->
+  <div class="overview-nav-tabs explore-module-tabs" id="overview-nav-tabs" aria-label="Overview views" hidden>
+    <button type="button" class="overview-nav-btn" data-mode="analytics">Summary</button>
+    <button type="button" class="overview-nav-btn" data-mode="map">Map</button>
+    <button type="button" class="overview-nav-btn" data-mode="network">Network</button>
+  </div>
+
+  <div class="db-shell">
+    <!-- BROWSE MODE -->
+    <div id="mode-browse" class="mode-container" aria-hidden="false">
+      <!-- FACETS (left) -->
+      <aside class="db-facets" aria-label="Filters">
+        <div class="entity-switcher">
+          <div class="entity-switcher-title">Record type</div>
+          <div class="entity-switcher-list" id="entity-switch">
+            <button class="entity-btn" data-entity="ms">Manuscripts</button>
+            <button class="entity-btn" data-entity="pu">Production Units</button>
+            <button class="entity-btn is-on" data-entity="su">Scribal Units</button>
+            <button class="entity-btn" data-entity="hi">Holding Institutions</button>
+            <button class="entity-btn" data-entity="mi">Monastic Institutions</button>
+            <button class="entity-btn" data-entity="hp">Historical People</button>
+            <button class="entity-btn" data-entity="tx">Texts</button>
+          </div>
+        </div>
+
+        <div id="facet-mount"></div>
+      </aside>
+
+      <!-- MAIN (center) + VIZ (right) wrapper for controls and content -->
+      <div class="db-main-viz-wrapper">
+        <!-- Controls - now spanning both middle and right panels -->
+        <div class="db-controls">
+          <input id="db-search" type="search" placeholder="Search…" aria-label="Search records" />
+          <select id="db-field" aria-label="Search field">
+            <option value="">All fields</option>
+            <option value="title">Title</option>
+            <option value="date">Date / Dating</option>
+            <option value="manuscript">Manuscript</option>
+            <option value="holding">Holding Institution</option>
+            <option value="place">Place (country / city)</option>
+            <option value="comments">Comments</option>
+          </select>
+          <select id="db-sort" aria-label="Sort">
+            <option value="">Sort: Default</option>
+            <option value="title_asc">Title A→Z</option>
+            <option value="title_desc">Title Z→A</option>
+            <option value="date_asc">Date ↑</option>
+            <option value="date_desc">Date ↓</option>
+          </select>
+          <button id="btn-clear" class="chip" type="button">Clear all filters</button>
+          <button id="btn-advanced-search" class="chip" type="button" aria-expanded="false" aria-controls="advanced-search-panel">Advanced Search</button>
+          <button id="btn-export" class="chip" type="button">Export CSV</button>
+        </div>
+
+        <div id="advanced-search-panel" class="advanced-search-panel" hidden>
+          <div class="advanced-search-head">
+            <label>
+              Return
+              <select id="advanced-result-type"></select>
+            </label>
+            <label>
+              Match
+              <select id="advanced-match-mode">
+                <option value="all">all conditions</option>
+                <option value="any">any condition</option>
+              </select>
+            </label>
+            <button id="advanced-add-condition" class="chip" type="button">Add condition</button>
+          </div>
+          <div id="advanced-condition-list" class="advanced-condition-list"></div>
+          <div class="advanced-search-actions">
+            <span id="advanced-search-status" class="muted"></span>
+            <button id="advanced-clear" class="chip" type="button">Clear advanced search</button>
+            <button id="advanced-apply" class="chip is-primary" type="button">Apply advanced search</button>
+          </div>
+        </div>
+
+        <!-- MAIN (center) -->
+        <section class="db-main">
+          <!-- Results list -->
+          <div id="pane-results" class="db-results-wrap">
+            <div id="db-status" class="db-status" role="status" aria-live="polite"></div>
+            <div id="db-results" class="db-grid"></div>
+          </div>
+        </section>
+
+        <!-- DETAILS (right) -->
+        <aside id="db-viz" class="db-viz">
+          <div id="details-wrap"></div>
+        </aside>
+        
+        <!-- Pagination - spans both middle and right panels -->
+        <div id="db-pager" class="db-pager" hidden>
+          <button id="db-prev" class="explore-action-btn explore-pagination-btn" disabled>Previous</button>
+          <span id="db-page">Page 1 / 1</span>
+          <button id="db-next" class="explore-action-btn explore-pagination-btn" disabled>Next</button>
+          <span class="pager-jump">
+            <label for="db-page-jump" class="text-sm">Go to:</label>
+            <input type="number" id="db-page-jump" min="1" />
+            <button id="db-page-go" class="pager-go-btn">Go</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP MODE -->
+    <div id="mode-map" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span id="map-title">Map Visualization</span>
+          <span class="explore-module-description">Exploring all entities across space</span>
+        </div>
+        <div class="viz-body explore-module-content explore-module-body explore-tool-body">
+          <!-- Map view selector -->
+          <div class="header-panel">
+            <label class="label-flex">
+              Map View:
+              <select id="map-view-selector" class="select-md">
+                <option value="ms-current">Manuscripts - Current Location (Holdings)</option>
+                <option value="ms-movement">Manuscripts - Movement (Production → Current)</option>
+                <option value="pu-location">Production Units - All Locations</option>
+                <option value="pu-monastery">Production Units - By Monastery</option>
+                <option value="mi-all">Monastic Institutions</option>
+              </select>
+            </label>
+            <div id="map-view-hint" class="text-muted">
+              Tip: Map views show all data from the entire database.
+            </div>
+          </div>
+          <!-- Map controls -->
+          <div class="control-panel-flex">
+            <label class="label-flex-sm">
+              <input type="checkbox" id="map-show-clusters" checked>
+              <span class="text-sm">Clustering</span>
+            </label>
+            <label id="map-control-connections" class="label-flex-sm">
+              <input type="checkbox" id="map-show-connections">
+              <span class="text-sm">Connection Lines</span>
+            </label>
+            <label class="label-flex-sm">
+              <input type="checkbox" id="map-show-heatmap">
+              <span class="text-sm">Heatmap</span>
+            </label>
+            <button class="chip btn-margin-auto" id="map-reset-view">Reset View</button>
+            <button class="explore-export-btn" id="map-export-image">Export PNG</button>
+          </div>
+          <!-- Time slider -->
+          <div id="map-time-controls" class="control-panel">
+            <div class="flex-between">
+              <label class="label-flex text-sm">Time Period:</label>
+              <span id="map-time-range" class="text-sm">All dates</span>
+              <button class="chip btn-xs" id="map-clear-time">Clear</button>
+            </div>
+            <div class="flex-row">
+              <input type="range" id="map-time-start" min="800" max="1600" value="800" step="10" class="range-input">
+              <input type="range" id="map-time-end" min="800" max="1600" value="1600" step="10" class="range-input">
+            </div>
+          </div>
+          <!-- Color Legend -->
+          <div class="legend-container">
+            <span class="legend-label">Legend:</span>
+            <div id="map-legend-items" class="legend-items">
+              <!-- Will be populated by JavaScript -->
+            </div>
+          </div>
+          <div id="map-mount"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE MODE -->
+    <div id="mode-timeline" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span id="timeline-title">Timeline Visualization</span>
+          <span class="explore-module-description">Exploring all entities across time</span>
+        </div>
+        <div class="viz-body explore-module-content explore-module-body explore-tool-body">
+          <!-- Timeline controls -->
+          <div class="control-panel-flex">
+            <label class="label-flex-sm">
+              <input type="checkbox" id="timeline-show-multi" checked>
+              <span class="text-sm">Multiple Bands</span>
+            </label>
+            <label class="label-flex-sm">
+              <input type="checkbox" id="timeline-show-ranges" checked>
+              <span class="text-sm">Show Ranges</span>
+            </label>
+            <label class="label-flex-sm">
+              <input type="checkbox" id="timeline-show-centuries" checked>
+              <span class="text-sm">Century Markers</span>
+            </label>
+            <label class="flex-row">
+              <span class="text-sm">Color by:</span>
+              <select id="timeline-color-by" class="input-sm">
+                <option value="entity">Entity Type</option>
+                <option value="language">Language</option>
+                <option value="script">Script Type</option>
+                <option value="certainty">Date Certainty</option>
+              </select>
+            </label>
+            <div class="flex-wrap margin-left-auto">
+              <button class="chip" id="timeline-zoom-out" title="Zoom out">−</button>
+              <button class="chip" id="timeline-zoom-in" title="Zoom in">+</button>
+              <button class="chip" id="timeline-reset-zoom">Reset Zoom</button>
+              <button class="explore-export-btn" id="timeline-export-svg">Export SVG</button>
+              <button class="explore-export-btn" id="timeline-export-png">Export PNG</button>
+            </div>
+          </div>
+          
+          <!-- Color Legend -->
+          <div id="timeline-legend" class="legend-container">
+            <!-- Will be populated by JavaScript -->
+          </div>
+          
+          <div id="timeline-mount"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NETWORK MODE -->
+    <div id="mode-network" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span>Network Visualization</span>
+          <span class="explore-module-description">Exploring relationships between entities</span>
+        </div>
+        <div class="viz-body explore-module-content explore-module-body explore-tool-body">
+          <!-- Network View Selector with practical options -->
+          <div class="header-panel">
+            <label class="label-flex">
+              Network View:
+              <select id="network-view-selector" class="select-md">
+                <option value="search">Search & Explore from Record (Recommended)</option>
+                <option value="clusters">Cluster View by Entity Type</option>
+              </select>
+            </label>
+          </div>
+          
+          <!-- Search panel (primary interface) -->
+          <div id="network-search-panel" class="control-panel">
+            <div class="network-help-text">Pick a Record to Explore</div>
+            <label class="text-muted network-help-subtext">Search for any manuscript, scribe, institution, or text</label>
+            <input type="search" id="network-search-input" placeholder="Type manuscript name, scribe, institution, text..." class="input-sm network-search-box">
+            <div id="network-search-results" class="network-search-results"></div>
+          </div>
+          
+          <div class="viz-controls" id="network-controls">
+            <div class="flex-wrap" style="margin-bottom:0.5rem;">
+              <label class="label-flex">
+                Depth: <input type="number" id="network-depth" min="1" max="3" value="2" class="network-depth-input">
+              </label>
+              <label class="label-flex text-sm">
+                Color by:
+                <select id="network-color-scheme" class="select-sm">
+                  <option value="type">Entity Type</option>
+                  <option value="century">Century</option>
+                  <option value="region">Region</option>
+                  <option value="order">Religious Order</option>
+                </select>
+              </label>
+              <label class="label-flex">
+                <input type="checkbox" id="network-show-labels" checked> Labels
+              </label>
+              <label class="label-flex">
+                <input type="checkbox" id="network-dark-mode"> Dark
+              </label>
+              <button id="network-filters-toggle" class="chip">Filters</button>
+              <button id="network-zoom-in" class="chip" title="Zoom in">Zoom In</button>
+              <button id="network-zoom-out" class="chip" title="Zoom out">Zoom Out</button>
+              <button id="network-zoom-reset" class="chip" title="Reset zoom to 100%">Reset View</button>
+              <button id="network-zoom-fit" class="chip" title="Fit entire network to screen">Fit to Screen</button>
+              <button id="network-refresh" class="chip" title="Rebuild network with current filters">Rebuild Network</button>
+              <button id="network-export-svg" class="explore-export-btn">Export SVG</button>
+              <button id="network-export-png" class="explore-export-btn">Export PNG</button>
+              <select id="network-export-format" class="select-sm network-select-sm">
+                <option value="">Export Data...</option>
+                <option value="gephi">Gephi (2 CSV files)</option>
+                <option value="r">R (CSV + script)</option>
+              </select>
+            </div>
+            <div class="network-link-density-container">
+              <label class="label-flex text-xs network-link-density-range">
+                <span class="network-link-density-label">Link Density:</span>
+                <input type="range" id="network-link-density" min="0" max="100" value="100" class="network-link-density-range" title="Adjust link visibility - higher values show more connections">
+                <span id="network-link-density-value" class="network-link-density-val">100%</span>
+              </label>
+            </div>
+            
+            <!-- Advanced Filters Panel (collapsible) -->
+            <div id="network-filters-panel" style="display:none;" class="control-panel">
+              
+              <!-- Section 2: Show These Types -->
+              <div style="margin-bottom:1rem;">
+                <div class="network-help-text">Show These Entity Types</div>
+                <div class="text-muted" style="font-size:.8rem;margin-bottom:.6rem;">Select which types of entities to include in the network</div>
+                <div class="grid-auto-fit">
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="su" checked>
+                    <span class="legend-dot" style="background:#e6b800;"></span>
+                    <span style="font-weight:500;">Scribal Units</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="ms" checked>
+                    <span class="legend-dot" style="background:#3498db;"></span>
+                    <span style="font-weight:500;">Manuscripts</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="pu" checked>
+                    <span class="legend-dot" style="background:#e74c3c;"></span>
+                    <span style="font-weight:500;">Production Units</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="hi" checked>
+                    <span class="legend-dot" style="background:#2ecc71;"></span>
+                    <span style="font-weight:500;">Holding Institutions</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="mi" checked>
+                    <span class="legend-dot" style="background:#9b59b6;"></span>
+                    <span style="font-weight:500;">Monastic Institutions</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="hp" checked>
+                    <span class="legend-dot" style="background:#f39c12;"></span>
+                    <span style="font-weight:500;">Historical People</span>
+                  </label>
+                  <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;padding:.35rem;background:white;border-radius:.25rem;cursor:pointer;">
+                    <input type="checkbox" class="network-entity-filter" value="tx" checked>
+                    <span class="legend-dot" style="background:#1abc9c;"></span>
+                    <span style="font-weight:500;">Texts</span>
+                  </label>
+                </div>
+              </div>
+              
+              
+              <!-- Actions and Feedback -->
+              <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid #dee2e6;display:flex;justify-content:space-between;align-items:center;">
+                <div id="network-filter-feedback" class="text-muted" style="font-size:.85rem;">
+                  <span id="network-node-count">0 nodes</span>, <span id="network-link-count">0 links</span>
+                </div>
+                <button id="network-clear-filters" class="chip" style="background:#6c757d;color:white;border:none;font-size:.85rem;">Reset All Filters</button>
+              </div>
+              
+            </div>
+          </div>
+          <div style="position:relative;">
+            <div id="network-mount" class="network-grab"></div>
+            <div id="network-node-details" class="network-node-details-card"></div>
+            <div id="network-legend" class="network-legend-card">
+              <!-- Legend content will be dynamically generated -->
+              <div id="network-legend-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS MODE -->
+    <div id="mode-analytics" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span>Statistical Dashboard</span>
+          <span class="explore-module-description">Statistical insights across the entire database</span>
+        </div>
+        <div class="viz-body explore-module-content explore-module-body explore-tool-body">
+          <!-- Analytics controls -->
+          <div class="header-panel">
+            <!-- Entity filter -->
+            <div id="entity-filter-panel" style="margin-bottom: 0.5rem;">
+              <label style="display: block; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.875rem;">
+                Filter by Entity Type:
+                <select id="entity-filter-select" style="margin-left: 0.5rem; padding: 0.375rem 0.5rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
+                  <option value="su">Scribal Units</option>
+                  <option value="ms">Manuscripts</option>
+                  <option value="pu">Production Units</option>
+                  <option value="hi">Holding Institutions</option>
+                  <option value="mi">Monastic Institutions</option>
+                  <option value="hp">Historical People</option>
+                  <option value="tx">Texts</option>
+                </select>
+              </label>
+            </div>
+            <div class="info-panel info-primary">
+              <strong>Statistical Dashboard:</strong> Provides quantitative overview of the corpus including record counts, date ranges, and key attributes by entity type. Helps identify dataset completeness, temporal distribution, and notable characteristics. Essential for understanding corpus composition and identifying trends or gaps in the data.
+            </div>
+          </div>
+
+          <!-- Analytics mount point -->
+          <div id="analytics-mount" style="overflow: auto;">
+            <!-- Visualization will be rendered here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIERARCHICAL TREE MODE -->
+    <div id="mode-tree" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span>Manuscript Structure</span>
+          <span class="explore-module-description">Physical structure, materials, construction, layout, and production practices</span>
+        </div>
+        <div class="tree-tabs explore-module-tabs">
+          <button type="button" class="tree-tab-btn is-on" data-tab="structure">Structure Explorer</button>
+          <button type="button" class="tree-tab-btn" data-tab="materials">Materials &amp; Format</button>
+          <button type="button" class="tree-tab-btn" data-tab="quires">Quire Construction</button>
+          <button type="button" class="tree-tab-btn" data-tab="layout">Page Layout</button>
+          <button type="button" class="tree-tab-btn" data-tab="practices">Production Practices</button>
+        </div>
+        <div class="viz-body explore-module-content explore-module-body explore-tool-body">
+          <section id="tree-structure-panel">
+          <!-- Tree controls -->
+          <div class="explore-tool-controls" style="padding: 0.75rem; background: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+            <!-- Tree search panel -->
+            <div style="margin-bottom: 0.5rem; padding: 0.75rem; background: white; border: 1px solid #dee2e6; border-radius: 0.25rem;">
+              <!-- Search Bar -->
+              <div style="margin-bottom: 0.75rem;">
+                <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: #333;">
+                  Search Manuscripts
+                </label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="text" id="tree-manuscript-search" placeholder="Type manuscript title, shelfmark, or ID..." style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem;">
+                  <button id="tree-search-clear" style="padding: 0.5rem 1rem; background: #6c757d; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; white-space: nowrap;">Clear</button>
+                </div>
+              </div>
+              
+              <!-- Filter Section -->
+              <div style="margin-bottom: 0.75rem; padding: 0.75rem; background: #f8f9fa; border-radius: 0.25rem;">
+                <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #333;">
+                  Filter by Structure
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-multi-pu" style="cursor: pointer;">
+                    <span>3+ Production Units</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-cross-ms-pu" style="cursor: pointer;">
+                    <span>PUs Across Multiple MSS</span>
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer; padding: 0.25rem;">
+                    <input type="checkbox" id="tree-filter-cross-pu-su" style="cursor: pointer;">
+                    <span>SUs Across Multiple PUs</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Sort Section -->
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label style="font-weight: 600; font-size: 0.875rem; color: #333; white-space: nowrap;">
+                  Sort by:
+                </label>
+                <select id="tree-sort-select" style="flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ced4da; border-radius: 0.25rem; font-size: 0.875rem; background: white;">
+                  <option value="default">Alphabetical</option>
+                  <option value="most-pus">Production Units (Most)</option>
+                  <option value="most-sus">Scribal Units (Most)</option>
+                  <option value="most-complex">Structural Complexity (Highest)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="tree-description" style="padding: 0.5rem; background: #e7f3ff; border-left: 3px solid #2196F3; font-size: 0.8rem; color: #555; border-radius: 0.25rem;">
+              <strong>Manuscript Structure:</strong> Explore the complete structural hierarchy of manuscripts showing relationships between manuscripts, production units, scribal units, and texts in an interactive tree visualization.
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+              <button class="explore-export-btn" id="tree-export-png">Export PNG</button>
+            </div>
+          </div>
+
+          <!-- Tree mount point -->
+          <div id="tree-mount" style="overflow: auto;">
+            <!-- Visualization will be rendered here -->
+          </div>
+          </section>
+          <section id="codicology-mount" hidden></section>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIBES MODE -->
+    <div id="mode-scribes" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span>Scribes</span>
+          <span class="explore-module-description">Patterns of production, collaboration, geography, and attribution</span>
+        </div>
+        <div class="scribe-tabs genre-tabs explore-module-tabs">
+          <button type="button" class="scribe-tab-btn is-on" data-tab="overview">Overview</button>
+          <button type="button" class="scribe-tab-btn" data-tab="productivity">Productivity Patterns</button>
+          <button type="button" class="scribe-tab-btn" data-tab="unseen-species">Unseen Species Analysis</button>
+          <button type="button" class="scribe-tab-btn" data-tab="collaboration">Collaborations</button>
+          <button type="button" class="scribe-tab-btn" data-tab="geography">Geography</button>
+          <button type="button" class="scribe-tab-btn" data-tab="browse">Browse All</button>
+        </div>
+        <div id="scribes-mount" class="explore-module-content explore-module-body" style="overflow: auto; min-height: 60vh;">
+          <!-- Scribe analysis will be rendered here -->
+        </div>
+      </div>
+    </div> <!-- /mode-scribes -->
+
+    <!-- MULTILINGUALISM MODE -->
+    <div id="mode-multilingualism" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span id="multilingualism-title">Multilingualism</span>
+          <span class="explore-module-description">Exploring linguistic diversity in medieval manuscript production</span>
+        </div>
+        <div class="explore-module-tabs">
+          <button type="button" class="multilingualism-tab-btn is-on" data-tab="overview">Overview</button>
+          <button type="button" class="multilingualism-tab-btn" data-tab="manuscripts">Multilingual Manuscripts</button>
+          <button type="button" class="multilingualism-tab-btn" data-tab="scribes">Scribal Multilingualism</button>
+          <button type="button" class="multilingualism-tab-btn" data-tab="institutions">Institutional Multilingualism</button>
+          <button type="button" class="multilingualism-tab-btn" data-tab="colophons">Colophon-Text Divergence</button>
+        </div>
+        <div id="multilingualism-mount" class="explore-module-content explore-module-body" style="overflow: auto; min-height: 60vh;">
+          <!-- Visualization will be rendered here -->
+        </div>
+      </div>
+    </div> <!-- /mode-multilingualism -->
+
+    <!-- COLOPHON ANALYSIS MODE -->
+    <div id="mode-colophon-analysis" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span>Colophons</span>
+          <span class="explore-module-description">Corpus coverage, primary evidence, formulaic traditions, and structured contexts</span>
+        </div>
+        <div class="colophon-tabs explore-module-tabs">
+          <button type="button" class="colophon-tab-btn is-on" data-tab="overview">Overview &amp; Method</button>
+          <button type="button" class="colophon-tab-btn" data-tab="browse">Browse &amp; Read</button>
+          <button type="button" class="colophon-tab-btn" data-tab="formulae">Formulae</button>
+          <button type="button" class="colophon-tab-btn" data-tab="contexts">Contexts</button>
+        </div>
+        <div id="colophon-mount" class="explore-module-content explore-module-body" style="overflow: auto; min-height: 60vh;">
+          <!-- Analysis will be rendered here -->
+        </div>
+      </div>
+    </div> <!-- /mode-colophon-analysis -->
+    
+    <!-- TEXT GENRES MODE -->
+    <div id="mode-text-genres" class="mode-container mode-fullwidth" aria-hidden="true">
+      <div class="viz-card is-on explore-module-shell">
+        <div class="viz-head">
+          <span>Textual Genres</span>
+          <span class="explore-module-description">Distribution and classification of texts</span>
+        </div>
+        <div id="text-genres-mount" class="explore-module-content"></div>
+      </div>
+    </div>
+  </div> <!-- /db-shell -->
+</div> <!-- /explore-fullwidth -->
+
+<!-- CSV dialog -->
+<dialog id="csv-dialog" style="max-width:680px;border:1px solid #ddd;border-radius:.75rem;padding:1rem;">
+  <form method="dialog">
+    <h3 style="margin:.25rem 0 .75rem;">Export CSV</h3>
+    <p class="muted" style="margin-top:-.25rem">Pick the columns to include.</p>
+    <div id="csv-fields" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.4rem 1rem;margin:.5rem 0 1rem;"></div>
+    <label style="display:flex;gap:.5rem;align-items:center;margin-bottom:.75rem;">
+      <input type="checkbox" id="csv-include-header" checked> Include header row
+    </label>
+    <div style="display:flex;gap:.5rem;justify-content:flex-end;">
+      <button type="button" id="csv-all"  class="chip">Select all</button>
+      <button type="button" id="csv-none" class="chip">Select none</button>
+      <button type="submit" id="csv-export-go" class="chip" style="background:#fff;">Export</button>
+      <button type="button" class="chip" onclick="this.closest('dialog').close()">Close</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Path Finding dialog -->
+<dialog id="path-dialog" style="max-width:720px;border:1px solid #ddd;border-radius:.75rem;padding:1.5rem;">
+  <form method="dialog">
+    <h3 style="margin:.25rem 0 .5rem;">Find Connection Between Records</h3>
+    <p class="muted" style="margin-top:-.25rem;line-height:1.5;margin-bottom:1rem;">
+      Discover how two entities are connected through relationships. For example, find the chain linking a scribe to a monastery, 
+      or see how two manuscripts are related through production units or institutions.
+    </p>
+    
+    <div id="path-from" style="padding:.75rem;background:#e8f4f8;border-left:3px solid #3498db;border-radius:.5rem;margin:.75rem 0;"></div>
+    
+    <div style="margin:1rem 0;">
+      <label style="display:block;font-weight:600;margin-bottom:.5rem;">
+        <span style="display:inline-block;background:#f39c12;color:white;border-radius:50%;width:1.5rem;height:1.5rem;text-align:center;line-height:1.5rem;font-size:.85rem;margin-right:.25rem;">2</span>
+        Search for destination record:
+      </label>
+      <input type="search" id="path-search" placeholder="Type name, manuscript title, or institution..." 
+        style="width:100%;padding:.5rem .75rem;border:1px solid #ddd;border-radius:.5rem;margin-bottom:.5rem;font-size:.95rem;">
+      <div id="path-results" style="max-height:200px;overflow:auto;border:1px solid #eee;border-radius:.5rem;"></div>
+    </div>
+    
+    <div style="margin:1rem 0;padding:.75rem;background:#f9f9f9;border-radius:.5rem;">
+      <label style="display:flex;gap:.75rem;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:.5rem;">
+          <strong>Maximum steps:</strong>
+          <span class="muted" style="font-size:.9rem;">(1 = direct connections only, 4 = up to 4 relationships apart)</span>
+        </span>
+        <input type="number" id="path-depth" min="1" max="5" value="4" 
+          style="width:4rem;padding:.35rem .5rem;border:1px solid #ddd;border-radius:.25rem;font-size:.95rem;">
+      </label>
+    </div>
+    
+    <div id="path-display" style="margin:1rem 0;"></div>
+    
+    <div style="display:flex;gap:.5rem;justify-content:flex-end;margin-top:1rem;">
+      <button type="button" class="chip" onclick="this.closest('dialog').close()" style="padding:.5rem 1rem;">Close</button>
+    </div>
+  </form>
+</dialog>

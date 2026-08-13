@@ -1,0 +1,373 @@
+---
+layout: page
+---
+
+<style>
+  .scribe-facts{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:.75rem 2rem;
+  }
+  .scribe-fact{
+    margin:0;
+  }
+  .scribe-fact strong{
+    display:block;
+    margin-bottom:.15rem;
+  }
+  .fingerprint-qc-toolbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    align-items:center;
+    margin:.75rem 0;
+  }
+  .fingerprint-qc-toolbar label{
+    margin:0;
+    font-size:.9rem;
+  }
+  .fingerprint-crops{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:10px;
+  }
+  .fingerprint-crop{
+    border:1px solid #ccc;
+    padding:2px;
+    max-width:190px;
+  }
+  .fingerprint-crop img{
+    height:80px;
+    width:auto;
+    max-width:180px;
+    background:#eee;
+    display:block;
+  }
+  .fingerprint-crop img.crop-missing{
+    min-width:120px;
+    border:2px solid #b94a48;
+  }
+  .crop-qc{
+    display:none;
+    font-size:.78rem;
+    line-height:1.35;
+    margin:.35rem 0 0;
+    color:#555;
+  }
+  .show-crop-qc .crop-qc{
+    display:block;
+  }
+  .crop-actions{
+    display:flex;
+    gap:.35rem;
+    flex-wrap:wrap;
+    margin-top:.25rem;
+  }
+  .crop-flag-button{
+    border:0;
+    background:transparent;
+    color:#8a5f00;
+    padding:0;
+    text-decoration:underline;
+    cursor:pointer;
+  }
+  .fingerprint-flag-dialog::backdrop{
+    background:rgba(0,0,0,.35);
+  }
+  .fingerprint-flag-dialog{
+    border:1px solid #ddd;
+    border-radius:.5rem;
+    max-width:520px;
+    width:calc(100% - 2rem);
+    padding:1rem;
+  }
+  .fingerprint-flag-dialog label{
+    display:block;
+    font-weight:600;
+    margin:.75rem 0 .25rem;
+  }
+  .fingerprint-flag-dialog select,
+  .fingerprint-flag-dialog input,
+  .fingerprint-flag-dialog textarea{
+    width:100%;
+    border:1px solid #ccc;
+    border-radius:.35rem;
+    padding:.45rem .55rem;
+  }
+  .fingerprint-flag-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:.5rem;
+    margin-top:1rem;
+  }
+  @media (max-width: 768px){
+    .scribe-facts{
+      grid-template-columns:1fr;
+    }
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12 mb-4">
+    <div class="mb-3">
+      {% if page.metadata.database_url and page.metadata.database_url != "" %}
+      <a class="btn btn-outline-primary btn-sm" href="{{ page.metadata.database_url | relative_url }}">Database Person Record</a>
+      {% endif %}
+    </div>
+
+    <div class="card p-3 mb-4">
+      <div class="scribe-facts">
+        <p class="scribe-fact"><strong>Person ID</strong> {{ page.scribe_id }}</p>
+        {% if page.metadata.person.gender and page.metadata.person.gender != "" %}<p class="scribe-fact"><strong>Gender</strong> {{ page.metadata.person.gender }}{% if page.metadata.person.gender_certainty and page.metadata.person.gender_certainty != "" %} <span class="text-muted">({{ page.metadata.person.gender_certainty }})</span>{% endif %}</p>{% endif %}
+        {% if page.metadata.religious_or_lay_status and page.metadata.religious_or_lay_status != "" %}<p class="scribe-fact"><strong>Religious / lay status</strong> {{ page.metadata.religious_or_lay_status }}</p>{% endif %}
+        {% if page.metadata.date and page.metadata.date != "" %}<p class="scribe-fact"><strong>Activity / copying date</strong> {{ page.metadata.date }}</p>{% endif %}
+        {% if page.metadata.place and page.metadata.place != "" %}<p class="scribe-fact"><strong>Place of production</strong> {{ page.metadata.place }}</p>{% endif %}
+        {% if page.metadata.script and page.metadata.script != "" %}<p class="scribe-fact"><strong>Script</strong> {{ page.metadata.script }}</p>{% endif %}
+        {% if page.metadata.authority_links and page.metadata.authority_links.size > 0 %}
+        <p class="scribe-fact"><strong>Authority links</strong>
+          {% for link in page.metadata.authority_links %}
+          <a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </p>
+        {% endif %}
+      </div>
+      {% if page.metadata.affiliations and page.metadata.affiliations.size > 0 %}
+      <div class="mt-3">
+        <strong>Monastic affiliation:</strong>
+        {% for inst in page.metadata.affiliations %}
+          {% if inst.url %}<a href="{{ inst.url | relative_url }}">{{ inst.name | default: inst.title }}</a>{% else %}{{ inst.name | default: inst.title }}{% endif %}
+          {% if inst.relationship %}<span class="text-muted">({{ inst.relationship }})</span>{% endif %}
+          {% unless forloop.last %}; {% endunless %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if page.metadata.person.short_biography and page.metadata.person.short_biography != "" %}
+      <p class="mt-3 mb-0">{{ page.metadata.person.short_biography }}</p>
+      {% endif %}
+    </div>
+
+    {% if page.manuscripts %}
+    <h3>Linked Manuscripts</h3>
+    <div class="row">
+      {% for manuscript in page.manuscripts %}
+      <div class="col-md-6 mb-3">
+        <div class="card h-100 p-3">
+          <h5>{{ manuscript.title }}</h5>
+          <p class="text-muted mb-2">Manuscript {{ manuscript.id }}{% if manuscript.scribal_unit_id %}; Scribal Unit {{ manuscript.scribal_unit_id }}{% endif %}</p>
+          {% if manuscript.source_range and manuscript.source_range != "" %}
+          <p><strong>Scribal-unit range used for extraction:</strong> {{ manuscript.source_range }}</p>
+          {% endif %}
+          {% if manuscript.scribal_unit.date and manuscript.scribal_unit.date != "" %}<p><strong>Date:</strong> {{ manuscript.scribal_unit.date }}</p>{% endif %}
+          {% assign production_city = manuscript.production_unit.city %}
+          {% assign production_country = manuscript.production_unit.country %}
+          {% if production_city != "" or production_country != "" %}
+          <p><strong>Production place:</strong> {{ production_city }}{% if production_city != "" and production_country != "" %}, {% endif %}{{ production_country }}</p>
+          {% endif %}
+          {% if manuscript.production_unit.material and manuscript.production_unit.material != "" %}<p><strong>Material:</strong> {{ manuscript.production_unit.material }}</p>{% endif %}
+          {% if manuscript.scribal_unit.script and manuscript.scribal_unit.script != "" %}<p><strong>Script:</strong> {{ manuscript.scribal_unit.script }}</p>{% endif %}
+          {% if manuscript.scribal_relationship.scribe_role and manuscript.scribal_relationship.scribe_role != "" %}<p><strong>Scribal role:</strong> {{ manuscript.scribal_relationship.scribe_role }}</p>{% endif %}
+          {% if manuscript.scribal_relationship.scribe_certainty and manuscript.scribal_relationship.scribe_certainty != "" %}<p><strong>Attribution certainty:</strong> {{ manuscript.scribal_relationship.scribe_certainty }}</p>{% endif %}
+          {% if manuscript.scribal_relationship.production_info and manuscript.scribal_relationship.production_info != "" %}<p><strong>Evidence:</strong> {{ manuscript.scribal_relationship.production_info }}</p>{% endif %}
+          <div>
+            {% if manuscript.viewer_url and manuscript.viewer_url != "" %}<a class="btn btn-outline-secondary btn-sm" href="{{ manuscript.viewer_url | relative_url }}">IIIF Viewer</a>{% endif %}
+            {% if manuscript.database_url and manuscript.database_url != "" %}<a class="btn btn-outline-secondary btn-sm" href="{{ manuscript.database_url | relative_url }}">Database Manuscript</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Paleographical Features</h3>
+    
+    {% for feature in page.features %}
+    <div class="card p-3 mb-4">
+      <h4 style="margin-top: 0; margin-bottom: 10px;">Treatment of "{{ feature.letter }}"</h4>
+      {% if feature.description %}
+      <p style="font-size: 0.9em; color: #555;">{{ feature.description }}</p>
+      {% endif %}
+      <div class="fingerprint-qc-toolbar">
+        <label><input type="checkbox" class="toggle-crop-qc"> Show crop metadata</label>
+      </div>
+      
+      {% for ms in feature.manuscripts %}
+      <div class="mb-3">
+        {% assign crop_samples = ms.samples %}
+        {% if crop_samples == nil or crop_samples.size == 0 %}
+          {% assign crop_samples = ms.images %}
+        {% endif %}
+        <strong>Manuscript:</strong> {{ ms.title }}
+        <small class="text-muted">({{ crop_samples.size }} example{% unless crop_samples.size == 1 %}s{% endunless %})</small><br>
+        <div class="fingerprint-crops">
+          {% if ms.samples and ms.samples.size > 0 %}
+          {% for sample in crop_samples %}
+          {% capture crop_id %}{{ page.name | replace: ".md", "" }}::{{ ms.slug }}::{{ feature.key }}::{{ forloop.index }}{% endcapture %}
+          <div class="fingerprint-crop">
+            <img src="{{ sample.image }}" alt="{{ feature.letter }} crop from {{ ms.title }}" loading="lazy">
+            <div class="crop-qc">
+              <div><strong>Source:</strong> {{ sample.source | default: "unknown" }}</div>
+              <div><strong>Level:</strong> {{ sample.coordinate_level | default: "unknown" }}</div>
+              {% if sample.quality %}<div><strong>Quality:</strong> {{ sample.quality }}</div>{% endif %}
+              {% if sample.page_index %}<div><strong>ALTO page:</strong> {{ sample.page_index }}</div>{% endif %}
+              {% if sample.xywh %}<div><strong>xywh:</strong> {{ sample.xywh | join: "," }}</div>{% endif %}
+              {% if sample.ink_density %}<div><strong>Ink density:</strong> {{ sample.ink_density }}</div>{% endif %}
+              {% if sample.segmentation_mismatch %}<div><strong>Segmentation mismatch:</strong> {{ sample.segmentation_mismatch }}</div>{% endif %}
+              <div class="crop-actions">
+                <a href="{{ sample.image }}" target="_blank" rel="noopener">Crop</a>
+                {% if ms.viewer_url and sample.canvas %}
+                {% assign encoded_canvas = sample.canvas | url_encode %}
+                <a href="{{ ms.viewer_url | append: '&canvas=' | append: encoded_canvas | relative_url }}" target="_blank" rel="noopener">Viewer</a>
+                {% endif %}
+                <button type="button"
+                        class="crop-flag-button"
+                        data-crop-id="{{ crop_id | strip | escape }}"
+                        data-scribe-id="{{ page.scribe_id | escape }}"
+                        data-scribe-title="{{ page.title | escape }}"
+                        data-scribe-url="{{ page.url | relative_url }}"
+                        data-grapheme="{{ feature.letter | escape }}"
+                        data-grapheme-key="{{ feature.key | escape }}"
+                        data-manuscript-title="{{ ms.title | escape }}"
+                        data-manuscript-slug="{{ ms.slug | escape }}"
+                        data-image="{{ sample.image | escape }}"
+                        data-canvas="{{ sample.canvas | escape }}"
+                        data-xywh="{{ sample.xywh | join: ',' | escape }}"
+                        data-page-index="{{ sample.page_index | escape }}"
+                        data-source="{{ sample.source | escape }}"
+                        data-coordinate-level="{{ sample.coordinate_level | escape }}"
+                        data-quality="{{ sample.quality | escape }}">Flag</button>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% else %}
+          {% for img_crop in ms.images %}
+          <div class="fingerprint-crop">
+            <img src="{{ img_crop }}" alt="{{ feature.letter }} crop from {{ ms.title }}" loading="lazy">
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{{ content }}
+<dialog class="fingerprint-flag-dialog" id="fingerprint-flag-dialog">
+  <form method="dialog" id="fingerprint-flag-form">
+    <h4>Flag Crop for Review</h4>
+    <p class="text-muted mb-2" id="fingerprint-flag-summary"></p>
+    <input type="hidden" name="payload" id="fingerprint-flag-payload">
+    <label for="fingerprint-flag-reason">Reason</label>
+    <select id="fingerprint-flag-reason" required>
+      <option value="wrong_grapheme">Wrong grapheme</option>
+      <option value="bad_crop">Bad crop / empty crop</option>
+      <option value="not_text">Not manuscript text</option>
+      <option value="later_addition">Later annotation or marginal addition</option>
+      <option value="uncertain">Uncertain</option>
+      <option value="other">Other</option>
+    </select>
+    <label for="fingerprint-flag-comment">Comment</label>
+    <textarea id="fingerprint-flag-comment" rows="4" placeholder="Optional note for review"></textarea>
+    <label for="fingerprint-flag-email">Email</label>
+    <input id="fingerprint-flag-email" type="email" placeholder="Optional, only if you want follow-up">
+    <p class="text-muted mt-2" id="fingerprint-flag-status"></p>
+    <div class="fingerprint-flag-actions">
+      <button type="button" class="btn btn-outline-secondary btn-sm" id="fingerprint-flag-cancel">Cancel</button>
+      <button type="submit" class="btn btn-outline-primary btn-sm">Submit Flag</button>
+    </div>
+  </form>
+</dialog>
+<script src="{{ '/assets/js/scribe-fingerprints.js' | relative_url }}"></script>
+<script>
+(function(){
+  document.querySelectorAll('.toggle-crop-qc').forEach(function(toggle){
+    toggle.addEventListener('change', function(){
+      var card = toggle.closest('.card');
+      if (card) card.classList.toggle('show-crop-qc', toggle.checked);
+    });
+  });
+  document.querySelectorAll('.fingerprint-crop img').forEach(function(img){
+    img.addEventListener('error', function(){
+      img.classList.add('crop-missing');
+      img.alt = img.alt + ' (image failed to load)';
+    });
+  });
+
+  var dialog = document.getElementById('fingerprint-flag-dialog');
+  var form = document.getElementById('fingerprint-flag-form');
+  var payloadField = document.getElementById('fingerprint-flag-payload');
+  var summary = document.getElementById('fingerprint-flag-summary');
+  var status = document.getElementById('fingerprint-flag-status');
+  var cancel = document.getElementById('fingerprint-flag-cancel');
+
+  function buttonPayload(button){
+    return {
+      crop_id: button.dataset.cropId,
+      scribe_id: button.dataset.scribeId,
+      scribe_title: button.dataset.scribeTitle,
+      scribe_url: button.dataset.scribeUrl,
+      grapheme: button.dataset.grapheme,
+      grapheme_key: button.dataset.graphemeKey,
+      manuscript_title: button.dataset.manuscriptTitle,
+      manuscript_slug: button.dataset.manuscriptSlug,
+      image: button.dataset.image,
+      canvas: button.dataset.canvas,
+      xywh: button.dataset.xywh,
+      page_index: button.dataset.pageIndex,
+      source: button.dataset.source,
+      coordinate_level: button.dataset.coordinateLevel,
+      quality: button.dataset.quality
+    };
+  }
+
+  document.querySelectorAll('.crop-flag-button').forEach(function(button){
+    button.addEventListener('click', function(){
+      var payload = buttonPayload(button);
+      payloadField.value = JSON.stringify(payload);
+      if (summary) summary.textContent = payload.scribe_title + ' · ' + payload.manuscript_title + ' · ' + payload.grapheme;
+      if (status) status.textContent = '';
+      if (dialog && dialog.showModal) dialog.showModal();
+    });
+  });
+
+  if (cancel) {
+    cancel.addEventListener('click', function(){
+      if (dialog) dialog.close();
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', function(event){
+      event.preventDefault();
+      var payload = JSON.parse(payloadField.value || '{}');
+      payload.reason = document.getElementById('fingerprint-flag-reason').value;
+      payload.comment = document.getElementById('fingerprint-flag-comment').value;
+      payload.reviewer_email = document.getElementById('fingerprint-flag-email').value;
+      payload.user_agent = navigator.userAgent;
+      if (status) status.textContent = 'Submitting...';
+      fetch('/.netlify/functions/fingerprint-flag', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(response){
+        return response.json().then(function(data){ return { ok: response.ok, data: data }; });
+      }).then(function(result){
+        if (!result.ok || !result.data.ok) throw new Error(result.data.error || 'Submission failed.');
+        if (status) status.textContent = 'Thank you. This crop has been flagged for review.';
+        setTimeout(function(){ if (dialog) dialog.close(); }, 900);
+      }).catch(function(error){
+        if (status) status.textContent = error.message;
+      });
+    });
+  }
+})();
+</script>

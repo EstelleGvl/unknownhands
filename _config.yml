@@ -1,0 +1,179 @@
+# ==============================================================
+# SITE CONFIGURATION
+# ==============================================================
+# Jekyll configuration files are written in YAML format.
+# Colons, tabs/spacing, and quotes are meaningful in YAML.
+# It is recommended you look at the following guide to avoid
+# syntax errors in this file:
+# ~> https://learnxinyminutes.com/docs/yaml/
+#
+#
+# Questions ?
+#
+# ---------------------------------------------------------------
+# MAIN SETTINGS
+# ---------------------------------------------------------------
+# Feel free to change these! For more info, refer to:
+# ~> https://jekyllrb.com/docs/configuration/options/
+
+title:            'Unknown Hands'
+description:      'Female Scribes in Pre-Modern Europe'
+url:              'https://estellegueville.com'
+baseurl:          '/unknownhands'
+copyright:        'Estelle Guéville, 2025'
+logo:             '/assets/img/sticker.webp'
+default_thumb:    '/assets/img/sticker.webp'
+
+# ---------------------------------------------------------------
+# BUILD SETTINGS
+# ---------------------------------------------------------------
+# Best not to mess with these unless you know what you're doing!
+
+permalink: 'pretty'
+sass:
+  style: compressed
+exclude: ["Gemfile*", "*.gemspec", "Rakefile", "vendor", "spec", "README.md", "LICENSE.txt", "Docker*", "scripts", "exports", ".venv", "data/annos", "assets/search/transcriptions.json"]
+webrick:
+  headers:
+    'Access-Control-Allow-Origin': '*'
+kramdown:
+ auto_ids:       true
+ footnote_nr:    1
+ entity_output:  as_char
+ footnote_backlink: "&#x21a9;&#xfe0e;"
+ toc_levels:     1..6
+ smart_quotes:   lsquo,rsquo,ldquo,rdquo
+ enable_coderay: false
+
+
+# --------------------------------------------------------------
+# COLLECTION SETTINGS
+# --------------------------------------------------------------
+# Unknown Hands uses Jekyll collections for structured content.
+# For more info, refer to:
+# ~> https://jekyllrb.com/docs/collections/
+
+collections:
+  exhibits:
+    output: true
+  scribes:
+    output: true
+    layout: 'scribe_profile'
+  unknownhands: # name of collection
+    output: true # makes sure pages are output as html files
+    layout: 'scribe_item' # the layout for the pages to use
+    metadata:
+      source: 'unknownhands.csv' # path to the metadata file within `_data`
+    images:
+      source: 'raw_images/unknownhands' # path to the directory of images within `_data`
+
+# --------------------------------------------------------------
+# SEARCH INDEX SETTINGS
+# --------------------------------------------------------------
+# You can create multiple search indexes below (though only one is
+# recommended!) by specifying
+# an `index` file to write it to and some `collections` for it to index
+# and running the relevant search-index generation task.
+
+search:
+  main:
+    index: '/search/index.json' # file the index will get written to
+    collections:
+      unknownhands:
+        content: false # whether or not to index page content
+        fields: # the metadata fields to index
+          - call_number
+          - label
+          - folio
+
+# --------------------------------------------------------------
+# SITE MENU SETTINGS
+# --------------------------------------------------------------
+# Each menu item needs a `label` (whats shown), and a `link`
+# (where it goes). An item can optionally have a dropdown
+# submenu via `sub`.
+
+menu:
+  - label: 'About'
+    sub:
+      - label: 'Unknown Hands'
+        link: '/about/'
+      - label: 'Team'
+        link: '/team/'
+#  - label: 'Exhibits'
+#    sub:
+#      - label: 'Inline Parallax Image'
+#        link: '/exhibits/a/'
+#      - label: 'Inline Image References'
+#        link: '/exhibits/b/'
+  - label: 'Explore'
+    sub:
+      - label: 'Data'
+        link: '/data/'
+#      - label: 'Chatbot'
+#        link: '/chatbot/'
+#      - label: 'Scribal Fingerprints'
+#        link: '/scribal-fingerprints/'
+#      - label: 'Explore the Database'
+#        link: '/explore-database/'
+#      - label: 'IIIF Viewer'
+#        link: '/viewer/'   
+#      - label: 'Search Transcriptions'
+#        link: '/search-transcriptions/'
+#      - label: 'Ask Questions (Chatbot)'
+#        link: '/chatbot/'
+#      - label: 'User Guide'
+#        link: '/userguide/'
+#       - label: 'Text Analysis'
+#         link: '/text-analysis/'
+      - label: 'Roadmap'
+        link: '/roadmap/'
+  - label: 'Resources'
+    sub: 
+      - label: 'Publications'
+        link: '/publications/'
+      - label: 'Bibliography'
+        link: '/bibliography/'
+  - label: 'Contact'
+    sub: 
+      - label: "Participate"
+        link: "/participate/"
+      - label: "Contact Us"
+        link: '/contact/'
+#  - label: 'Browse'
+#    link: '/collection/'
+#  - label: 'Search'
+#    link: '/search/'
+#  - label: 'Reuse'
+#    link: '/reuse/'
+
+# --------------------------------------------------------------
+# SITE FOOTER SETTINGS
+# --------------------------------------------------------------
+#
+
+footer:
+  links:
+    - label: 'Credits'
+      link: '/credits'
+  logos:
+    - img: '/assets/img/sticker.webp'
+      alt: 'Christine of Pizan writing'
+  cite: |
+    **Please cite as:**  
+    *Unknown Hands: Female Scribes in Pre-Modern Europe*, ed. Estelle Guéville, v.1.1 (2025), https://estellegueville.com/unknownhands.
+# FIN
+
+
+# _config.yml
+heurist:
+  su_json: /data/heurist/scribal_units.json
+  ms_json: /data/heurist/manuscripts.json
+  pu_json: /data/heurist/production_units.json
+  holding_json: /data/heurist/holding_institutions.json
+  monastic_json: /data/heurist/monastic_institutions.json
+  people_json: /data/heurist/historical_people.json
+  texts_json: /data/heurist/texts.json
+  relations_json: /data/heurist/relationships.json
+
+iiif_proxy: "/.netlify/functions/iiif?url="
