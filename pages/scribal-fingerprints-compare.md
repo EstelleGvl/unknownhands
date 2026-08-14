@@ -3,7 +3,7 @@ layout: page
 permalink: /scribal-fingerprints/compare/
 show_title: false
 banner:
-  image: "pizan.jpg"
+  image: "BnFfrançais603_81v.jpg"
   y: "50%"
   clickable: yes
   height: '400px'

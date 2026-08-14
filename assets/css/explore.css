@@ -6,6 +6,16 @@
    without becoming a scroll container. */
 html, body { overflow-x: clip; }
 
+/* Keep full-width Explore layouts inside the viewport. Without border-box,
+   width:100vw plus responsive padding produces an element wider than the
+   screen; this is especially noticeable when a window moves between monitors. */
+.explore-fullwidth,
+.explore-fullwidth *,
+.explore-fullwidth *::before,
+.explore-fullwidth *::after {
+  box-sizing: border-box;
+}
+
 /* === Main Navigation Tabs === */
 .main-nav-tabs {
   display: flex;
@@ -72,32 +82,45 @@ html, body { overflow-x: clip; }
 /* Facets=280px | Main+Viz wrapper=flexible (spans both middle and right columns) */
 #mode-browse[aria-hidden="false"] {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
   gap: 2rem;
-  align-items: start;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
 }
 
 /* Main+Viz wrapper contains controls (spanning full width) and then a 2-column layout */
 .db-main-viz-wrapper {
   display: grid;
-  grid-template-columns: minmax(400px, 1fr) minmax(800px, 2fr);
-  gap: 2rem;
+  grid-template-columns: minmax(min(100%, 20rem), 1fr) minmax(0, 2fr);
+  column-gap: 2rem;
+  row-gap: 0;
   align-items: start;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
 }
 
 /* Controls now span the full width of the main+viz area */
 .db-main-viz-wrapper .db-controls {
   grid-column: 1 / -1;
+  grid-row: 1;
 }
 
 /* Below controls: side-by-side main results and viz panels */
 .db-main-viz-wrapper > .db-main {
   grid-column: 1;
-  min-height: 400px;
+  grid-row: 2 / 4;
+  align-self: stretch;
+  min-height: 0;
+  min-width: 0;
 }
 
 .db-main-viz-wrapper > .db-viz {
   grid-column: 2;
+  grid-row: 2 / 5;
+  min-width: 0;
   align-self: start;
   position: sticky;
   top: 1rem;
@@ -109,10 +132,52 @@ html, body { overflow-x: clip; }
 /* Pagination under results */
 .db-main-viz-wrapper > .db-pager {
   grid-column: 1;
+  grid-row: 4;
   position: relative;
   z-index: 10;
   background: white;
+  margin-bottom: 0;
   padding-top: 0.5rem;
+  min-width: 0;
+  flex-wrap: wrap;
+  row-gap: 0.75rem;
+}
+
+.db-main-viz-wrapper > .db-pager > *,
+.db-main-viz-wrapper > .db-pager .pager-jump {
+  flex: 0 0 auto;
+}
+
+.db-main-viz-wrapper > .db-pager #db-page,
+.db-main-viz-wrapper > .db-pager .pager-jump {
+  white-space: nowrap;
+}
+
+.db-main-viz-wrapper > .db-pager .pager-jump {
+  margin-left: 0;
+}
+
+/* When advanced search opens, insert its row without changing the sticky
+   travel area or separating pagination from the results. */
+.db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) {
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+}
+
+.db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .advanced-search-panel {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .db-main {
+  grid-row: 3 / 5;
+}
+
+.db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .db-viz {
+  grid-row: 3 / 6;
+}
+
+.db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .db-pager {
+  grid-row: 5;
 }
 
 /* Responsive: stack on smaller screens */
@@ -120,14 +185,27 @@ html, body { overflow-x: clip; }
 @media (max-width: 1440px) {
   .db-main-viz-wrapper {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-rows: auto auto auto auto;
+    column-gap: 0;
+    row-gap: 0;
   }
+  .db-main-viz-wrapper > .db-main { grid-row: 2; }
+  .db-main-viz-wrapper > .db-pager { grid-row: 3; }
   .db-main-viz-wrapper > .db-viz {
     grid-column: 1;
+    grid-row: 4;
     position: static;
+    margin-top: 1.5rem;
     max-height: none;
     overflow: visible;
   }
+
+  .db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) {
+    grid-template-rows: auto auto auto auto auto;
+  }
+  .db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .db-main { grid-row: 3; }
+  .db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .db-pager { grid-row: 4; }
+  .db-main-viz-wrapper:has(> .advanced-search-panel:not([hidden])) > .db-viz { grid-row: 5; }
 }
 
 /* At 1200px: Also stack the facets sidebar */
@@ -161,7 +239,13 @@ html, body { overflow-x: clip; }
   box-sizing: border-box !important;
 }
 
-.explore-fullwidth{width:100vw;max-width:100vw;margin-left:50%;transform:translateX(-50%);padding:0 4vw;}
+.explore-fullwidth{
+  width:100vw;
+  max-width:100vw;
+  margin-left:50%;
+  transform:translateX(-50%);
+  padding:0 4vw;
+}
 
 /* Override explore-fullwidth for embed mode - use html.embed-mode for higher specificity */
 html.embed-mode .explore-fullwidth {
@@ -185,8 +269,18 @@ html.embed-mode .mode-container {
   padding: 0 !important;
 }
 
-/* db-shell is just a simple wrapper for mode containers */
-.db-shell{max-width:100%;margin:0 auto;}
+/* db-shell is just a simple wrapper for mode containers. The site theme also
+   defines .db-shell as a 340px/1fr grid for another page; neutralize that
+   unrelated rule here so the active Explore mode receives the full width. */
+.explore-fullwidth .db-shell{
+  display:block;
+  grid-template-columns:none;
+  gap:0;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin:0 auto;
+}
 
 /* Old .db-right styles - no longer used in new architecture */
 .db-right{
@@ -339,11 +433,12 @@ html.embed-mode .mode-container {
   }
 }
 
-.db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem;}
+.db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:1.25rem;min-width:0;}
 .db-card{border:1px solid #eee;border-radius:.75rem;overflow:hidden;background:#fff;display:flex;flex-direction:column;cursor:pointer;}
-.db-body{padding:.6rem .8rem;display:flex;flex-direction:column;gap:.35rem;}
-.db-title{font-weight:600;line-height:1.25;}
+.db-body{padding:.6rem .8rem;display:flex;flex-direction:column;gap:.35rem;min-width:0;}
+.db-title{font-weight:600;line-height:1.25;overflow-wrap:anywhere;}
 .db-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem;font-size:.9rem;color:#666;}
+.db-meta > *{min-width:0;overflow-wrap:anywhere;}
 .db-meta .yeardash { white-space: nowrap; }
 .db-meta .sep{ opacity:.6; }
 .db-card.is-selected{outline:2px solid #cda85c; outline-offset:2px;}
@@ -351,9 +446,43 @@ html.embed-mode .mode-container {
 .db-viz{border:1px solid #eee;border-radius:.75rem;background:#fff;padding:1rem;min-height:200px;max-height:calc(100vh - 2rem);overflow:auto;transition:margin-top .22s ease;}
 .db-viz-title{margin:.1rem 0 .6rem;}
 .section{margin-bottom:.75rem;}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:.4rem .75rem;}
-.kv dt{font-weight:600;}
-.kv dd{margin:0;}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem .75rem;min-width:0;}
+.kv dt{font-weight:600;min-width:0;overflow-wrap:anywhere;}
+.kv dd{margin:0;min-width:0;overflow-wrap:anywhere;}
+
+#details-wrap,
+.db-results-wrap,
+.db-viz section,
+.db-viz table {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.db-viz p,
+.db-viz li,
+.db-viz a,
+.db-viz td,
+.db-viz th {
+  overflow-wrap: anywhere;
+}
+
+.db-viz img,
+.db-viz svg,
+.db-viz canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .db-controls > * {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0 !important;
+  }
+
+  .kv {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 
 .db-main a, .db-results-wrap a, .db-viz a{ color: var(--uh-gold); font-weight:700; text-decoration:none; }
 .db-main a:hover, .db-results-wrap a:hover, .db-viz a:hover{ text-decoration:underline; }

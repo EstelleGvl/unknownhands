@@ -2,7 +2,7 @@
 layout: page
 show_title: false
 banner:
-  image: "pizan.jpg"
+  image: "BnFfrançais603_81v.jpg"
   y: "50%"
   clickable: yes
   height: '500px'

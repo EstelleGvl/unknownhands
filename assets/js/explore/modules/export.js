@@ -8,106 +8,23 @@ function init(Core) {
  * @param {string} filename - Name for the downloaded file
  */
 async function exportElementToPNG(element, filename) {
+  if (!element) {
+    alert('No visualization to export.');
+    return;
+  }
+
+  if (typeof html2canvas !== 'function') {
+    alert('The image export library did not load. Please refresh the page and try again.');
+    return;
+  }
+
+  const exportButtons = element.querySelectorAll('[id^="export-"], .export-btn');
+  const buttonVisibility = Array.from(exportButtons, btn => btn.style.visibility);
+  let exportContainer = null;
+
   try {
-    // Find all export buttons and hide them temporarily
-    const exportButtons = element.querySelectorAll('[id^="export-"], .export-btn');
     exportButtons.forEach(btn => btn.style.visibility = 'hidden');
-    
-    // Check if element contains an SVG and adjust viewBox if needed
-    const svgElement = element.querySelector('svg');
-    let originalViewBox = null;
-    let originalPreserveAspectRatio = null;
-    let originalTransform = null;
-    let zoomInstance = null;
-    
-    if (svgElement) {
-      // Store original values
-      originalViewBox = svgElement.getAttribute('viewBox');
-      originalPreserveAspectRatio = svgElement.getAttribute('preserveAspectRatio');
-      
-      // Get and store the zoom instance to reset it
-      const gElement = svgElement.querySelector('g');
-      if (gElement) {
-        originalTransform = gElement.getAttribute('transform');
-        
-        // Reset zoom to identity (no transform)
-        try {
-          const d3Svg = d3.select(svgElement);
-          if (d3Svg.node().__zoom) {
-            // Store zoom state to restore later
-            zoomInstance = { ...d3Svg.node().__zoom };
-            // Reset to no transform
-            d3Svg.call(d3.zoom().transform, d3.zoomIdentity);
-          }
-        } catch (e) {
-        }
-      }
-      
-      // Wait for transform reset to take effect
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // Calculate bounds from node positions (D3 uses transform on g elements, not cx/cy)
-      // Only do this for collaboration network
-      const isCollabNetwork = element.id === 'collab-network-wrapper' || element.closest('#collab-network-wrapper');
-      if (isCollabNetwork) {
-        try {
-          const nodeGroups = svgElement.querySelectorAll('.network-node');
-          if (nodeGroups.length > 0) {
-            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-            
-            nodeGroups.forEach(nodeGroup => {
-              const transform = nodeGroup.getAttribute('transform');
-              if (transform) {
-                const match = transform.match(/translate\(([^,]+),([^)]+)\)/);
-                if (match) {
-                  const x = parseFloat(match[1]);
-                  const y = parseFloat(match[2]);
-                  
-                  // Get radius from child circle
-                  const circle = nodeGroup.querySelector('circle');
-                  const r = circle ? parseFloat(circle.getAttribute('r')) || 10 : 10;
-                  
-                  // Get label height
-                  const label = nodeGroup.querySelector('.network-label');
-                  const labelY = label ? parseFloat(label.getAttribute('y')) || 20 : 20;
-                  
-                  if (!isNaN(x) && !isNaN(y)) {
-                    // Account for node radius, label position, and text width
-                    minX = Math.min(minX, x - r - 60); // Extra space for text width
-                    maxX = Math.max(maxX, x + r + 60);
-                    minY = Math.min(minY, y - r - 10);
-                    maxY = Math.max(maxY, y + labelY + 10);
-                  }
-                }
-              }
-            });
-            
-            if (minX !== Infinity && maxX !== -Infinity) {
-              // Add generous padding around the content
-              const padding = 300;
-              minX -= padding;
-              minY -= padding;
-              const width = (maxX - minX) + (padding * 2);
-              const height = (maxY - minY) + (padding * 2);
-              
-              // Set new viewBox to encompass all content
-              svgElement.setAttribute('viewBox', `${minX} ${minY} ${width} ${height}`);
-              svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-              
-              // Set explicit dimensions for html2canvas to properly capture
-              // Use the viewBox aspect ratio to calculate appropriate export dimensions
-              const exportWidth = Math.min(width, 3000); // Cap at 3000px width
-              const exportHeight = (exportWidth * height) / width;
-              svgElement.style.width = `${exportWidth}px`;
-              svgElement.style.height = `${exportHeight}px`;
-              svgElement.style.minHeight = 'unset';
-            }
-          }
-        } catch (e) {
-        }
-      }
-    }
-    
+
     // Find the title element (h3 or h4 within the element or its wrapper)
     let titleText = '';
     let titleElement = element.querySelector('h3, h4');
@@ -125,9 +42,18 @@ async function exportElementToPNG(element, filename) {
     }
     
     // Create a container with title
-    const exportContainer = document.createElement('div');
-    exportContainer.style.padding = '20px';
-    exportContainer.style.backgroundColor = '#ffffff';
+    exportContainer = document.createElement('div');
+    const sourceRect = element.getBoundingClientRect();
+    exportContainer.style.cssText = [
+      'position:fixed',
+      'left:-100000px',
+      'top:0',
+      'padding:20px',
+      'box-sizing:content-box',
+      'background:#ffffff',
+      `width:${Math.max(1, Math.ceil(sourceRect.width))}px`,
+      'pointer-events:none'
+    ].join(';');
     
     if (titleText) {
       const titleDiv = document.createElement('div');
@@ -143,79 +69,110 @@ async function exportElementToPNG(element, filename) {
     // Remove title and buttons from cloned content
     const clonedTitle = clonedElement.querySelector('h3, h4');
     if (clonedTitle) clonedTitle.remove();
-    const clonedButtons = clonedElement.querySelectorAll('[id^="export-"]');
+    const clonedButtons = clonedElement.querySelectorAll('[id^="export-"], .export-btn');
     clonedButtons.forEach(btn => btn.remove());
-    
+
     exportContainer.appendChild(clonedElement);
-    
     document.body.appendChild(exportContainer);
-    exportContainer.style.position = 'absolute';
-    exportContainer.style.left = '-9999px';
-    
+
+    // Export the complete collaboration network without changing the user's
+    // current pan/zoom state in the live visualization.
+    const sourceSvg = element.querySelector('svg');
+    const clonedSvg = clonedElement.querySelector('svg');
+    const isCollabNetwork = element.id === 'collab-network-wrapper' || element.closest('#collab-network-wrapper');
+    if (sourceSvg && clonedSvg && isCollabNetwork) {
+      const nodeGroups = sourceSvg.querySelectorAll('.network-node');
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      nodeGroups.forEach(nodeGroup => {
+        const match = (nodeGroup.getAttribute('transform') || '').match(/translate\(\s*([^,\s]+)[,\s]+([^)\s]+)\s*\)/);
+        if (!match) return;
+        const x = parseFloat(match[1]);
+        const y = parseFloat(match[2]);
+        const radius = parseFloat(nodeGroup.querySelector('circle')?.getAttribute('r')) || 10;
+        const labelY = parseFloat(nodeGroup.querySelector('.network-label')?.getAttribute('y')) || 20;
+        if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+        minX = Math.min(minX, x - radius - 60);
+        maxX = Math.max(maxX, x + radius + 60);
+        minY = Math.min(minY, y - radius - 10);
+        maxY = Math.max(maxY, y + labelY + 10);
+      });
+      if (Number.isFinite(minX) && Number.isFinite(maxX)) {
+        const padding = 300;
+        minX -= padding;
+        minY -= padding;
+        const width = maxX - minX + (padding * 2);
+        const height = maxY - minY + (padding * 2);
+        const exportWidth = Math.min(width, 3000);
+        clonedSvg.setAttribute('viewBox', `${minX} ${minY} ${width} ${height}`);
+        clonedSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        clonedSvg.style.width = `${exportWidth}px`;
+        clonedSvg.style.height = `${exportWidth * height / width}px`;
+        clonedSvg.style.minHeight = 'unset';
+        if (sourceSvg.__zoom) clonedSvg.querySelector('g')?.setAttribute('transform', 'translate(0,0) scale(1)');
+      }
+    }
+
+    // cloneNode() does not copy bitmap pixels. Preserve any canvas-based charts.
+    const sourceCanvases = element.querySelectorAll('canvas');
+    const clonedCanvases = clonedElement.querySelectorAll('canvas');
+    sourceCanvases.forEach((sourceCanvas, index) => {
+      const clonedCanvas = clonedCanvases[index];
+      if (!clonedCanvas || sourceCanvas.width < 1 || sourceCanvas.height < 1) return;
+      clonedCanvas.width = sourceCanvas.width;
+      clonedCanvas.height = sourceCanvas.height;
+      const context = clonedCanvas.getContext('2d');
+      if (context) context.drawImage(sourceCanvas, 0, 0);
+    });
+
+    // html2canvas 1.4.1 creates a temporary bitmap for CSS gradients. A bar
+    // narrower than one device pixel makes that bitmap 0px wide and causes
+    // createPattern() to throw. Keep non-zero data visible at one pixel; remove
+    // gradients from genuinely empty elements.
+    exportContainer.querySelectorAll('*').forEach(node => {
+      const style = getComputedStyle(node);
+      if (!/gradient\(/i.test(style.backgroundImage)) return;
+      const rect = node.getBoundingClientRect();
+      if (rect.width > 0 && rect.width < 1) node.style.minWidth = '1px';
+      if (rect.height > 0 && rect.height < 1) node.style.minHeight = '1px';
+      if (rect.width === 0 || rect.height === 0) node.style.backgroundImage = 'none';
+    });
+
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
     const canvas = await html2canvas(exportContainer, {
       backgroundColor: '#ffffff',
       scale: 2,
       logging: false,
-      useCORS: true
+      useCORS: true,
+      allowTaint: false,
+      imageTimeout: 15000,
+      removeContainer: true
     });
-    
-    document.body.removeChild(exportContainer);
-    
-    // Restore original SVG attributes and zoom state
-    if (svgElement) {
-      if (originalViewBox !== null) {
-        svgElement.setAttribute('viewBox', originalViewBox);
-      }
-      if (originalPreserveAspectRatio !== null) {
-        svgElement.setAttribute('preserveAspectRatio', originalPreserveAspectRatio);
-      }
-      
-      // Restore original style dimensions
-      // Only apply collaboration network specific styles if this is the collaboration network
-      const isCollabNetwork = element.id === 'collab-network-wrapper' || element.closest('#collab-network-wrapper');
-      if (isCollabNetwork) {
-        svgElement.style.width = '100%';
-        svgElement.style.height = 'auto';
-        svgElement.style.minHeight = '800px';
-      } else {
-        // For other charts, restore standard dimensions
-        svgElement.style.width = '';
-        svgElement.style.height = '';
-        svgElement.style.minHeight = '';
-      }
-      
-      // Restore zoom transform
-      if (zoomInstance) {
-        try {
-          const d3Svg = d3.select(svgElement);
-          d3Svg.node().__zoom = zoomInstance;
-          const gElement = svgElement.querySelector('g');
-          if (gElement && originalTransform) {
-            gElement.setAttribute('transform', originalTransform);
-          }
-        } catch (e) {
-        }
-      }
-    }
-    
-    // Restore button visibility
-    exportButtons.forEach(btn => btn.style.visibility = 'visible');
-    
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob);
+
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(result => {
+        if (result) resolve(result);
+        else reject(new Error('The browser could not create the PNG file.'));
+      }, 'image/png');
+    });
+
+    const url = URL.createObjectURL(blob);
+    try {
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+    } finally {
       URL.revokeObjectURL(url);
-    });
+    }
   } catch (error) {
-    // Restore button visibility on error
-    const exportButtons = element.querySelectorAll('[id^="export-"], .export-btn');
-    exportButtons.forEach(btn => btn.style.visibility = 'visible');
-    alert('Failed to export image. Please try again.');
+    console.error('Failed to export image:', error);
+    alert(`Failed to export image: ${error.message || 'Please try again.'}`);
+  } finally {
+    if (exportContainer && exportContainer.isConnected) exportContainer.remove();
+    exportButtons.forEach((btn, index) => btn.style.visibility = buttonVisibility[index]);
   }
 }
 

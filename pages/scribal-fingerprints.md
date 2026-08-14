@@ -3,7 +3,7 @@ layout: page
 permalink: /scribal-fingerprints/
 title: "Scribal Fingerprints"
 banner:
-  image: "pizan.jpg"
+  image: "BnFfrançais603_81v.jpg"
   y: "50%"
   clickable: yes
   height: '400px'
