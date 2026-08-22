@@ -693,7 +693,7 @@ show_title: false
         <details class="metric-guide">
           <summary>How the rolling distance metrics differ</summary>
           <dl>
-            <dt>Burrows’ Classic Delta</dt><dd>Mean absolute difference after each feature is divided by its standard deviation across the individual reference samples. It is corpus-dependent and needs at least two samples in both A and B.</dd>
+            <dt>Burrows’ Classic Delta</dt><dd>Mean absolute difference after each feature is divided by its standard deviation across the loaded A and B reference profiles. One reference in each role is sufficient; adding further samples changes the estimated feature variation.</dd>
             <dt>Eder’s Delta</dt><dd>Modifies Classic Delta by weighting high-frequency features more strongly and suppressing unstable rare features; it was designed with highly inflected languages in mind.</dd>
             <dt>Argamon’s Linear Delta</dt><dd>A Euclidean-style Delta on standardized frequencies. Larger standardized departures have more influence than under Classic Delta.</dd>
             <dt>Eder’s Simple</dt><dd>Manhattan distance after square-root transformation. It reduces the dominance of very frequent features and does not depend on corpus standard deviations.</dd>
@@ -824,10 +824,10 @@ show_title: false
 
   <div class="card method-guide">
     <h3>Method, interpretation, and limits</h3>
-    <p>This laboratory is designed for hypothesis generation. It measures patterns in transcribed character or word sequences—not handwriting, ductus, or graphical letterforms. Results can combine effects from textual content, genre, exemplar or textual tradition, dialect, chronology, scribal language, layout, transcription conventions, and HTR error.</p>
+    <p>This laboratory is designed for hypothesis generation. It measures patterns in transcribed character or word sequences. Results can combine effects from textual content, genre, exemplar or textual tradition, dialect, chronology, scribal language, layout, transcription conventions, and HTR error.</p>
     <p>Scribe selections use only manuscript ranges that can be mapped to transcribed pages. Certainty and range information remain visible in the corpus list. Where several samples assigned to one scribe come from the same manuscript, they are not independent witnesses; any future supervised validation must hold out entire manuscripts rather than random chunks.</p>
     <p><strong>Relation to <em>stylo</em>:</strong> PCA, rolling comparison, hierarchical clustering, and frequency-band consensus follow workflows described by Eder, Rybicki, and Kestemont. They are implemented locally in JavaScript and are not calls to the R package, so defaults and numerical details should not be assumed to reproduce a particular <em>stylo</em> version exactly.</p>
-    <p><strong>Delta terminology:</strong> Burrows’ Delta and Classic Delta name the same measure. Delta is a distance metric rather than a plot type, so it can be used in both the rolling and clustering workflows when enough individual reference samples are available to estimate feature variation.</p>
+    <p><strong>Delta terminology:</strong> Burrows’ Delta and Classic Delta name the same measure.</p>
     <details>
       <summary><strong>Selected scholarly references</strong></summary>
       <ul>
@@ -837,6 +837,16 @@ show_title: false
         <li>Maciej Eder, “Does size matter? Authorship attribution, small samples, big problem” (2015), <a href="https://doi.org/10.1093/llc/fqt066" target="_blank" rel="noopener">Digital Scholarship in the Humanities</a>.</li>
         <li>Marwa Altakrori et al., “The Topic Confusion Task: A Novel Evaluation Scenario for Authorship Attribution” (2021), <a href="https://aclanthology.org/2021.findings-emnlp.359/" target="_blank" rel="noopener">Findings of EMNLP</a>.</li>
         <li>Greta Franzini et al., “Attributing Authorship in the Noisy Digitized Correspondence of Jacob and Wilhelm Grimm” (2018), <a href="https://www.frontiersin.org/journals/digital-humanities/articles/10.3389/fdigh.2018.00004/full" target="_blank" rel="noopener">Frontiers in Digital Humanities</a>.</li>
+        <li>Estelle Guéville and David Joseph Wrisley, “Everyone Leaves a Trace: Exploring Transcriptions of Medieval Manuscripts with Computational Methods,” <em>Digital Studies in Language and Literature</em> 1, nos. 1–2 (2024): 36–54, <a href="https://doi.org/10.1515/dsll-2024-0012" target="_blank" rel="noopener">https://doi.org/10.1515/dsll-2024-0012</a>.</li>
+        <li>Estelle Guéville and David Joseph Wrisley, “Transcribing Medieval Manuscripts for Machine Learning,” <em>Journal of Data Mining &amp; Digital Humanities</em>, “On the Way to the Future of Digital Manuscript Studies” (July 2024), <a href="https://doi.org/10.46298/jdmdh.9805" target="_blank" rel="noopener">https://doi.org/10.46298/jdmdh.9805</a>.</li>
+
+        <li>Wouter Haverals and Mike Kestemont, “From Exemplar to Copy: The Scribal Appropriation of a Hadewijch Manuscript Computationally Explored,” <em>Journal of Data Mining &amp; Digital Humanities</em>, “On the Way to the Future of Digital Manuscript Studies: Experiences and Challenges” (April 2023): 10206, <a href="https://doi.org/10.46298/jdmdh.10206" target="_blank" rel="noopener">https://doi.org/10.46298/jdmdh.10206</a>.</li>
+        <li>Wouter Haverals and Mike Kestemont, “Silent Voices: A Digital Study of the Herne Charterhouse Scribal Community (ca. 1350–1400),” <em>Queeste</em> 27, no. 2 (2020): 186–95, <a href="https://doi.org/10.5117/QUE2020.2.006.HAVE" target="_blank" rel="noopener">https://doi.org/10.5117/QUE2020.2.006.HAVE</a>.</li>
+        <li>Mike Kestemont, <em>A Computational Analysis of the Scribal Profiles in Two of the Oldest Manuscripts of Hadewijch’s Letters</em> (2015).</li>
+        <li>Mike Kestemont, Sara Moens, and Jeroen Deploige, “Collaborative Authorship in the Twelfth Century: A Stylometric Study of Hildegard of Bingen and Guibert of Gembloux,” <em>Digital Scholarship in the Humanities</em> 30, no. 2 (2015): 199–224, <a href="https://doi.org/10.1093/llc/fqt063" target="_blank" rel="noopener">https://doi.org/10.1093/llc/fqt063</a>.</li>
+        <li>Mike Kestemont and Thorsten Ries, “A Computational Approach to Authorship Verification of Johann Wolfgang Goethe’s Contributions to the <em>Frankfurter Gelehrte Anzeigen</em> (1772–73),” <em>Journal of European Periodical Studies</em> 4, no. 1 (2019), <a href="https://doi.org/10.21825/jeps.v4i1.10188" target="_blank" rel="noopener">https://doi.org/10.21825/jeps.v4i1.10188</a>.</li>
+        <li>Eveline Leclercq and Mike Kestemont, “Advances in Distant Diplomatics: A Stylometric Approach to Medieval Charters,” <em>Interfaces: A Journal of Medieval European Literatures</em>, no. 8 (December 2021): 214–44, <a href="https://doi.org/10.54103/interfaces-08-10" target="_blank" rel="noopener">https://doi.org/10.54103/interfaces-08-10</a>.</li>
+        <li>David Joseph Wrisley and Estelle Guéville, <em>Medieval Manuscripts and the Computational Humanities: Big Data, Scribes, and the “Paris Bible”</em> (Arc Humanities Press, 2026), <a href="https://doi.org/10.17302/MFSK1586" target="_blank" rel="noopener">https://doi.org/10.17302/MFSK1586</a>.</li>
       </ul>
     </details>
   </div>
@@ -2815,8 +2825,8 @@ async function runRollingStyloAnalysis() {
     const labelB = document.getElementById('rolling-corpus-b-label').value || 'Corpus B';
     const labelTest = document.getElementById('rolling-test-label').value || 'Test Text';
     const deltaMetrics = new Set(['classic-delta', 'eder-delta', 'argamon-delta']);
-    if (deltaMetrics.has(config.distance) && (rollingReferenceSamplesA.length < 2 || rollingReferenceSamplesB.length < 2)) {
-      throw new Error('Delta-family distances require at least two individually selected reference samples in both A and B. Add separate samples rather than one concatenated or pasted reference.');
+    if (deltaMetrics.has(config.distance) && (rollingReferenceSamplesA.length + rollingReferenceSamplesB.length < 2)) {
+      throw new Error('Delta-family distances require two reference profiles in total: one in A and one in B.');
     }
     
     console.log('Rolling stylometry config:', config);
@@ -2896,6 +2906,9 @@ async function runRollingStyloAnalysis() {
       const variance = values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / Math.max(1, values.length - 1);
       return Math.sqrt(variance);
     });
+    if (deltaMetrics.has(config.distance) && !featureScale.some(scale => scale > 1e-15)) {
+      throw new Error('Reference A and Reference B have no varying retained features. Choose different references or adjust the feature settings.');
+    }
     const metricContext = { featureScale, featureCount: sortedNgrams.length };
     
     // Slide window through test text
