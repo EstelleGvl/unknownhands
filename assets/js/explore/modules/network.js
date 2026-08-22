@@ -400,7 +400,7 @@ function buildSubsetNetwork(subsetType) {
             <div style="display:flex;flex-direction:column;gap:0.75rem;">
               <button id="network-sample-btn" class="chip">Show Reproducible Sample — Display 100 well-connected entities</button>
               <button id="network-hubs-btn" class="chip">Show Network Hubs — Display the 50 most connected entities</button>
-              <button id="network-search-mode-btn" class="chip btn-warning">Search & Explore — Start from a specific record (Recommended)</button>
+              <button id="network-search-mode-btn" class="chip is-primary">Start from a record</button>
             </div>
           </div>
         </div>

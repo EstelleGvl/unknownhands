@@ -30,47 +30,38 @@ banner:
 **1. Browse the Data (Start Here!)**
 - Click **[Explore Database](/unknownhands/explore-database/)** in the top navigation
 - You'll land in **Browse & Search** mode showing all Scribal Units
-- Try clicking on a record card to see detailed information
-- Use the **entity switcher** (top left) to explore Manuscripts, Scribes, or other record types
+- Try clicking on a record card to see detailed information.
+- Use the **entity switcher** (top left) to explore Manuscripts, Scribes, or other record types.
 
 **2. Try These Key Features**
 - **Search:** Use the search box at the top to find specific manuscripts, scribes, or locations
-- **Overview:** Use **Summary**, **Map**, and **Network** to explore the corpus from three general perspectives
-- **Chatbot:** Use the [AI Chatbot](/unknownhands/chatbot/) for natural-language questions about colophons and thematic patterns
+- **Overview:** Use **Summary**, **Map**, and **Network** to explore the corpus from three general perspectives.
+- **Chatbot:** Use the [AI Chatbot](/unknownhands/chatbot/) for natural-language questions about colophons.
 
 **3. Specialized Analysis Modes**
 
 Once you're comfortable browsing, try these advanced features:
-- **Scribes Mode** — Deep dive into scribe productivity, collaborations, and geographic distribution
-- **Multilingualism** — Analyze manuscripts produced in multiple languages
-- **Textual Genres** — Explore what kinds of texts female scribes were copying
-- **Colophons** — Study scribal colophons (signatures) in detail
+- **Scribes Mode** — Deep dive into scribe productivity, collaborations, and geographic distribution.
+- **Multilingualism** — Analyze manuscripts produced in multiple languages.
+- **Textual Genres** — Explore what kinds of texts female scribes were copying.
+- **Colophons** — Study scribal colophons (signatures) in detail.
 
 ### Tips for Success
 
-- **Start broad, then filter:** Begin by browsing all records, then narrow down using filters on the left
-- **Export your findings:** Every visualization has its own export control; PNG is standard, with SVG or data formats available where applicable
-- **Check the detail panel:** Click any record to see full information in the right panel
-- **Use the entity switcher:** Different perspectives (manuscripts vs. scribes vs. institutions) reveal different insights
-- **Share a specific view:** The page URL updates as you change modes and subtabs, so you can bookmark or copy a link to the exact view
-- **On smaller screens:** Swipe or horizontally scroll the tab row to reach additional modes and subtabs
-
-### Common Explore Behavior
-
-- **Stable navigation:** The primary tabs are Browse & Search, Overview, Manuscript Structure, Scribes, Multilingualism, Colophons, and Textual Genres. Overview contains Summary, Map, and Network as secondary views.
-- **Remembered subtabs:** When you return to a research module, its most recently selected subtab is restored.
-- **Shareable views:** Primary modes and subtabs are reflected in the URL. Copy the current address to link directly to the same view.
-- **Accessible tabs:** Tab controls expose their selected state, support keyboard focus, and remain reachable on narrower screens through wrapping or horizontal scrolling.
-- **Known-data visualizations:** Categories labelled Unknown or TBC are omitted from charts, maps, networks, and other visual summaries. They may still remain available as source records in Browse & Search.
-- **Accurate proportions:** Horizontal bars show each category's percentage of the relevant known total. The largest category is not automatically presented as 100% unless it genuinely represents the entire total.
-- **Local exports:** Export buttons belong to individual visualization cards. There is no single export button for an entire module page, and the button itself is hidden from the downloaded image.
-- **Responsive cards:** Charts use the full available content width when that improves readability; summary cards share the same centered dimensions and visual treatment.
-- **Paginated results:** Large result-oriented tabs show manageable pages with Previous and Next controls rather than rendering every record at once.
+- **Start broad, then filter:** Begin by browsing all records, then narrow down using filters on the left.
+- **Export your findings:** Every visualization has its own export control; PNG is standard, with SVG or data formats available where applicable.
+- **Check the detail panel:** Click any record to see full information in the right panel.
+- **Use the entity switcher:** Different perspectives (manuscripts vs. scribes vs. institutions) show different insights.
+- **Share a specific view:** The page URL updates as you change modes and subtabs, so you can bookmark or copy a link to the exact view.
+- **On smaller screens:** Swipe or horizontally scroll the tab row to reach additional modes and subtabs.
 
 ### Using This Guide
 
-- **Full documentation:** Read the detailed sections below for comprehensive guides to each feature
-- **Questions?** Check the [FAQ](#15-frequently-asked-questions) section at the bottom
+- **Remembered subtabs:** When you return to a research module, its most recently selected subtab is restored.
+- **Shareable views:** Primary modes and subtabs are reflected in the URL. Copy the current address to link directly to the same view.
+- **Known-data visualizations:** Categories labelled **Unknown** or **TBC** are omitted from charts, maps, networks, and other visual summaries. They may still remain available as source records in Browse & Search.
+- **Full documentation:** Read the detailed sections below for comprehensive guides to each feature.
+- **Questions?** Check the [FAQ](#13-frequently-asked-questions) section at the bottom or contact us through the [Contact](/unknownhands/contact) page in the top navigation.
 
 ---
 
@@ -78,19 +69,17 @@ Once you're comfortable browsing, try these advanced features:
 
 1. [Getting Started](#1-getting-started)
 2. [Browse & Search](#2-browse--search)
-3. [Overview: Summary](#3-analytics-tools)
-4. [Overview: Map](#4-map-visualizations)
-5. [Manuscript Structure](#5-hierarchical-tree-explorer)
-6. [Overview: Network](#6-network-explorer)
-7. [Scribes Mode](#7-scribes-mode)
-8. [Multilingualism Analysis](#8-multilingualism-analysis)
-9. [Textual Genres](#9-text-genres-network-analysis)
-10. [Colophons](#10-colophon-analysis)
-11. [IIIF Viewer & Mirador](#11-iiif-viewer--mirador)
-12. [Search Transcriptions](#12-search-transcriptions)
-13. [Semantic RAG Chatbot](#13-semantic-rag-chatbot)
-14. [Tips & Tricks](#14-tips--tricks)
-15. [FAQ](#15-frequently-asked-questions)
+3. [Overview](#3-analytics-tools)
+4. [Manuscript Structure](#4-hierarchical-tree-explorer)
+5. [Scribes Mode](#5-scribes-mode)
+6. [Multilingualism Analysis](#6-multilingualism-analysis)
+7. [Textual Genres](#7-text-genres-network-analysis)
+8. [Colophons](#8-colophon-analysis)
+9. [IIIF Viewer & Mirador](#9-iiif-viewer--mirador)
+10. [Search Transcriptions](#10-search-transcriptions)
+11. [Semantic RAG Chatbot](#11-semantic-rag-chatbot)
+12. [Tips & Tricks](#12-tips--tricks)
+13. [FAQ](#13-frequently-asked-questions)
 
 ---
 
@@ -127,12 +116,12 @@ The research interfaces documented below are under active development and are th
 
 ### Accessing Browse Mode
 
-1. Open the **Explore the Database** research interface directly; it is not currently listed in the public navigation
-2. The default view is **Browse & Search**
+1. Open the **Explore the Database** research interface.
+2. The default view is **Browse & Search**.
 3. You'll see three panels:
-   - **Left:** Filters (facets)
-   - **Center:** Record list
-   - **Right:** Detail view (when you select a record)
+   - **Left:** Filters (facets).
+   - **Center:** Record list.
+   - **Right:** Detail view (when you select a record).
 
 ### Switching Record Types
 
@@ -327,7 +316,11 @@ These filters allow you to search based on metadata stored in the relationships 
 ---
 
 <details markdown="1" id="3-analytics-tools">
-<summary><strong>3. Overview: Summary</strong></summary>
+<summary><strong>3. Overview</strong></summary>
+
+<span id="overview-summary"></span>
+
+## Summary
 
 ### Accessing the Summary
 
@@ -354,12 +347,11 @@ These filters allow you to search based on metadata stored in the relationships 
 - Dataset completeness analysis
 - Identifying trends across entity types
 
-</details>
+<hr>
 
----
+<span id="4-map-visualizations"></span>
 
-<details markdown="1" id="4-map-visualizations">
-<summary><strong>4. Overview: Map</strong></summary>
+## Map
 
 ### Accessing Map Mode
 
@@ -475,85 +467,11 @@ These filters allow you to search based on metadata stored in the relationships 
    - Routes/connections (if enabled)
    - Color legend
 
-</details>
+<hr>
 
----
+<span id="6-network-explorer"></span>
 
-<details markdown="1" id="5-hierarchical-tree-explorer">
-<summary><strong>5. Manuscript Structure</strong></summary>
-
-### Accessing Manuscript Structure
-
-1. In **Explore Database**, click **Manuscript Structure** in the top navigation
-2. Choose **Structure Explorer**, **Materials & Format**, **Quire Construction**, **Page Layout**, or **Production Practices**
-
-### What is Manuscript Structure?
-
-Explore the complete structural hierarchy of manuscripts, showing relationships between:
-- **Manuscripts** (top level)
-- **Production Units** (sections of manuscripts)
-- **Scribal Units** (individual scribes' work)
-
-This visualization reveals the complex internal structure of medieval manuscripts and how scribes collaborated.
-
-The other subtabs provide live codicological analyses calculated from the same
-JSON exports used by Browse & Search:
-
-- **Materials & Format** separates Production-Unit material observations from Manuscript-level page dimensions and includes colophons and subgenres by material.
-- **Quire Construction** retains the controlled quire vocabulary, treating mixed or multi-valued classifications as **Varia**, and compares quire types by century, country, and subgenre.
-- **Page Layout** keeps Manuscript-level page dimensions distinct from Production-Unit-level justification measurements. When one Manuscript contains several Production Units, its page size intentionally recurs in each relevant Production-Unit comparison.
-- **Production Practices** reports ruling, catchwords, and signatures. Presence rates use only explicit TRUE/FALSE observations and show coverage separately.
-
-All codicological charts exclude unknown and TBC values. Uncertain normalized
-dates and places contribute once to every plausible century or country. Each
-visualization has its own PNG export control. Collaboration and
-collaboration-sequence analysis remain under **Scribes → Collaborations**, with
-a cross-link from Production Practices.
-
-### Searching Manuscripts
-
-**Search Bar:**
-1. Type manuscript title, shelfmark, or ID
-2. Results highlight matching manuscripts in the tree
-3. Click **"Clear"** to reset search
-
-### Filtering by Structure
-
-**Filter by Structure Panel:**
-
-Check boxes to show only manuscripts with specific characteristics:
-
-- **3+ Production Units** — Complex composite manuscripts
-- **Interleaved Units** — Non-sequential Production Unit arrangements
-- **Production Units Across Multiple Manuscripts** — Production units spanning multiple manuscripts
-- **Scribal Units Across Multiple Production Units** — Scribes working across production units
-
-**Use Cases:**
-- Find manuscripts with complex codicological history
-- Identify collaboration patterns
-- Study manuscript assembly practices
-
-### Sorting Options
-
-**Sort by:**
-- **Alphabetical** (default) — Manuscript titles A-Z
-- **Production Units (Most)** — Manuscripts with most PUs first
-- **Scribal Units (Most)** — Manuscripts with most SUs first
-- **Structural Complexity (Highest)** — Most intricate hierarchies first
-
-### Exporting
-
-**Export PNG or SVG:**
-- Use the **Export PNG** or **Export SVG** button on an individual manuscript tree
-- Exports that manuscript's current tree view
-- Suitable for publications and presentations
-
-</details>
-
----
-
-<details markdown="1" id="6-network-explorer">
-<summary><strong>6. Overview: Network</strong></summary>
+## Network
 
 ### Accessing Network Mode
 
@@ -688,12 +606,86 @@ Show/hide specific entity types:
 
 **Reset All Filters** button clears all filters and returns to full view
 
+
 </details>
 
 ---
 
-<details markdown="1" id="7-scribes-mode">
-<summary><strong>7. Scribes Mode</strong></summary>
+<details markdown="1" id="4-hierarchical-tree-explorer">
+<summary><strong>4. Manuscript Structure</strong></summary>
+
+### Accessing Manuscript Structure
+
+1. In **Explore Database**, click **Manuscript Structure** in the top navigation
+2. Choose **Structure Explorer**, **Materials & Format**, **Quire Construction**, **Page Layout**, or **Production Practices**
+
+### What is Manuscript Structure?
+
+Explore the complete structural hierarchy of manuscripts, showing relationships between:
+- **Manuscripts** (top level)
+- **Production Units** (sections of manuscripts)
+- **Scribal Units** (individual scribes' work)
+
+This visualization reveals the complex internal structure of medieval manuscripts and how scribes collaborated.
+
+The other subtabs provide live codicological analyses calculated from the same
+JSON exports used by Browse & Search:
+
+- **Materials & Format** separates Production-Unit material observations from Manuscript-level page dimensions and includes colophons and subgenres by material.
+- **Quire Construction** retains the controlled quire vocabulary, treating mixed or multi-valued classifications as **Varia**, and compares quire types by century, country, and subgenre.
+- **Page Layout** keeps Manuscript-level page dimensions distinct from Production-Unit-level justification measurements. When one Manuscript contains several Production Units, its page size intentionally recurs in each relevant Production-Unit comparison.
+- **Production Practices** reports ruling, catchwords, and signatures. Presence rates use only explicit TRUE/FALSE observations and show coverage separately.
+
+All codicological charts exclude unknown and TBC values. Uncertain normalized
+dates and places contribute once to every plausible century or country. Each
+visualization has its own PNG export control. Collaboration and
+collaboration-sequence analysis remain under **Scribes → Collaborations**, with
+a cross-link from Production Practices.
+
+### Searching Manuscripts
+
+**Search Bar:**
+1. Type manuscript title, shelfmark, or ID
+2. Results highlight matching manuscripts in the tree
+3. Click **"Clear"** to reset search
+
+### Filtering by Structure
+
+**Filter by Structure Panel:**
+
+Check boxes to show only manuscripts with specific characteristics:
+
+- **3+ Production Units** — Complex composite manuscripts
+- **Interleaved Units** — Non-sequential Production Unit arrangements
+- **Production Units Across Multiple Manuscripts** — Production units spanning multiple manuscripts
+- **Scribal Units Across Multiple Production Units** — Scribes working across production units
+
+**Use Cases:**
+- Find manuscripts with complex codicological history
+- Identify collaboration patterns
+- Study manuscript assembly practices
+
+### Sorting Options
+
+**Sort by:**
+- **Alphabetical** (default) — Manuscript titles A-Z
+- **Production Units (Most)** — Manuscripts with most PUs first
+- **Scribal Units (Most)** — Manuscripts with most SUs first
+- **Structural Complexity (Highest)** — Most intricate hierarchies first
+
+### Exporting
+
+**Export PNG or SVG:**
+- Use the **Export PNG** or **Export SVG** button on an individual manuscript tree
+- Exports that manuscript's current tree view
+- Suitable for publications and presentations
+
+</details>
+
+---
+
+<details markdown="1" id="5-scribes-mode">
+<summary><strong>5. Scribes Mode</strong></summary>
 
 ### Accessing Scribes Mode
 
@@ -928,8 +920,8 @@ Applies biodiversity estimation techniques to manuscript data. Just as ecologist
 
 ---
 
-<details markdown="1" id="8-multilingualism-analysis">
-<summary><strong>8. Multilingualism Analysis</strong></summary>
+<details markdown="1" id="6-multilingualism-analysis">
+<summary><strong>6. Multilingualism Analysis</strong></summary>
 
 ### Accessing Multilingualism Mode
 
@@ -1286,8 +1278,8 @@ Cases where **colophon language ≠ text language**—when scribes wrote their n
 
 ---
 
-<details markdown="1" id="9-text-genres-network-analysis">
-<summary><strong>9. Textual Genres</strong></summary>
+<details markdown="1" id="7-text-genres-network-analysis">
+<summary><strong>7. Textual Genres</strong></summary>
 
 ### Accessing Textual Genres
 
@@ -1524,8 +1516,8 @@ The network tabs (Manuscript Networks, Institution Networks, Scribe Networks) of
 
 ---
 
-<details markdown="1" id="10-colophon-analysis">
-<summary><strong>10. Colophons</strong></summary>
+<details markdown="1" id="8-colophon-analysis">
+<summary><strong>8. Colophons</strong></summary>
 
 ### Accessing Colophons
 
@@ -1579,8 +1571,8 @@ The module does not calculate sentiment, rhetorical character, first-person expr
 
 ---
 
-<details markdown="1" id="11-iiif-viewer--mirador">
-<summary><strong>11. IIIF Viewer & Mirador</strong></summary>
+<details markdown="1" id="9-iiif-viewer--mirador">
+<summary><strong>9. IIIF Viewer & Mirador</strong></summary>
 
 ### What is the IIIF Viewer?
 
@@ -1669,8 +1661,8 @@ View high-resolution manuscript images with synchronized transcriptions. Uses **
 
 ---
 
-<details markdown="1" id="12-search-transcriptions">
-<summary><strong>12. Search Transcriptions</strong></summary>
+<details markdown="1" id="10-search-transcriptions">
+<summary><strong>10. Search Transcriptions</strong></summary>
 
 ### Accessing Transcription Search
 
@@ -1774,8 +1766,8 @@ The transcription search includes a comparison tool for analyzing multiple resul
 
 ---
 
-<details markdown="1" id="13-semantic-rag-chatbot">
-<summary><strong>13. Semantic RAG Chatbot</strong></summary>
+<details markdown="1" id="11-semantic-rag-chatbot">
+<summary><strong>11. Semantic RAG Chatbot</strong></summary>
 
 ### Accessing the Chatbot
 
@@ -1829,31 +1821,8 @@ The public website sends the question to a secure Netlify backend before it reac
 
 ---
 
-<details markdown="1" id="14-tips--tricks">
-<summary><strong>14. Tips & Tricks</strong></summary>
-
-### Power User Techniques
-
-#### Research Workflows
-
-**Finding Manuscripts to Study:**
-1. Filter by location (Holding Institution)
-2. Filter by digitization status (IIIF available)
-3. Export list for research trip planning
-
-**Comparative Analysis:**
-1. Filter to specific date range (e.g., 1400-1450)
-2. Filter to specific region (e.g., Italy)
-3. Run multiple analytics to characterize corpus
-4. Export data for publication
-
-**Following Relationships:**
-1. Find a scribe (Historical Person)
-2. Click to see their Scribal Units
-3. From Scribal Unit, see Production Units
-4. From Production Unit, see Manuscripts
-5. From Manuscript, see Holding Institution
-6. Plan to view manuscripts in person
+<details markdown="1" id="12-tips--tricks">
+<summary><strong>12. Tips & Tricks</strong></summary>
 
 ### Keyboard Shortcuts
 
@@ -1892,11 +1861,6 @@ The platform provides multiple export options for data and visualizations suitab
 - Clean, structured data ready for analysis
 - Column headers for easy reference
 
-**Use Cases:**
-- Statistical analysis in R, Python, SPSS
-- Create custom visualizations
-- Build research datasets
-- Cite specific subsets in publications
 
 #### High-Resolution Image Export
 
@@ -1972,8 +1936,8 @@ Every visualization provides its own export control. Export the chart, map, netw
 
 ---
 
-<details markdown="1" id="15-frequently-asked-questions">
-<summary><strong>15. Frequently Asked Questions</strong></summary>
+<details markdown="1" id="13-frequently-asked-questions">
+<summary><strong>13. Frequently Asked Questions</strong></summary>
 
 ### General Questions
 
@@ -2011,9 +1975,6 @@ A: Normalized fields have standardized values for analysis. Example: "Normalized
 **Q: Which browsers are supported?**
 A: Modern browsers: Chrome, Firefox, Safari, Edge. Latest versions recommended.
 
-**Q: Why is the map/timeline loading slowly?**
-A: Large datasets take time. Try filtering to a subset. Clear browser cache if persistent.
-
 **Q: Can I use the data in my research?**
 A: Yes! Data is open access. Please cite appropriately. See license information on [Credits](/unknownhands/credits) page.
 
@@ -2033,12 +1994,6 @@ A: Not directly through the website. Contact the team if you have data to contri
 
 **Q: Will there be more analysis types?**
 A: Yes! We're continuously developing new analytical tools based on user feedback.
-
-**Q: Does the Colophons module perform sentiment or rhetorical analysis?**
-A: No. Translation-dependent expression, punctuation, sentence-length, and sentiment measurements were removed because they could reflect translation and editorial practice rather than the historical text. Use Browse & Read to inspect the primary evidence.
-
-**Q: What is counted as a colophon?**
-A: The scribal-unit record is the canonical source. Repeated transcription or translation fields are represented as separate readable colophon instances. Production-unit fields provide context but are not counted as a second colophon source.
 
 **Q: How do the Text Genres networks work?**
 A: The Text Genres module visualizes relationships between manuscripts, institutions, scribes, and text genres through three different bipartite networks. You can see which manuscripts contain which genres, which institutions specialized in which subgenres, and which scribes copied which genres. Each network is interactive with zoom, pan, filtering, and export capabilities.

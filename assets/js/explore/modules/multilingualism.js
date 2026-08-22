@@ -788,30 +788,30 @@ function buildMultilingualismOverview(mount) {
       
       <!-- Key Statistics -->
       <div class="explore-metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.totalLanguages.size}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Languages/Dialects</div>
         </div>
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualMss}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Manuscripts</div>
         </div>
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualScribes}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Scribes</div>
         </div>
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.multilingualInstitutions}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Multilingual Institutions</div>
         </div>
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">${stats.colophonDivergences}</div>
           <div style="font-size: 0.875rem; opacity: 0.9;">Colophon-Text Divergences</div>
         </div>
       </div>
       
       <!-- Language Distribution Chart -->
-      <div id="multilingual-languages-chart" class="explore-visualization-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+      <div id="multilingual-languages-chart" class="explore-visualization-card" style="margin-bottom: 2rem;">
         <div class="explore-viz-card-header">
           <h3 style="margin: 0 0 0.25rem; color: #333;">Most Common Languages</h3>
           ${createExportButton('multilingual-languages-chart', 'multilingual-language-distribution.png')}
@@ -827,7 +827,7 @@ function buildMultilingualismOverview(mount) {
                   <span style="color: #666;">${count} occurrences · ${percentage.toFixed(1)}%</span>
                 </div>
                 <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                  <div style="background: linear-gradient(90deg, #d4af37, #c4941f); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                  <div style="background:#b88912;height:100%;width:${percentage}%;transition:width 0.3s;"></div>
                 </div>
               </div>
             `;
@@ -839,11 +839,11 @@ function buildMultilingualismOverview(mount) {
       <div style="margin-bottom: 2rem;">
         <h2 style="margin-bottom: 1rem; color: #1a1a1a; font-size: 1.5rem;">Multilingualism Patterns</h2>
         <p style="color: #666; line-height: 1.6; margin-bottom: 1.5rem;">
-          Exploring geographical, temporal, and institutional patterns reveals how multilingualism was distributed across different contexts.
+          Recorded language combinations by place, period, and institution.
         </p>
         
         <!-- Geographical Patterns -->
-        <div id="multilingual-geography-chart" class="explore-visualization-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+        <div id="multilingual-geography-chart" class="explore-visualization-card" style="margin-bottom: 1.5rem;">
           <div class="explore-viz-card-header" style="margin-bottom:1rem;">
           <h3 style="margin:0; color: #333;">Geographical Distribution</h3>
           ${createExportButton('multilingual-geography-chart', 'multilingual-geography.png')}
@@ -859,7 +859,7 @@ function buildMultilingualismOverview(mount) {
                       <span style="color: #666;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''} · ${percentage.toFixed(1)}% • ${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
                     </div>
                     <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                      <div style="background: linear-gradient(90deg, #4facfe, #00f2fe); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                      <div style="background:#3b82a0;height:100%;width:${percentage}%;transition:width 0.3s;"></div>
                     </div>
                   </div>
                 `;
@@ -869,7 +869,7 @@ function buildMultilingualismOverview(mount) {
         </div>
         
         <!-- Temporal Patterns -->
-        <div id="multilingual-temporal-chart" class="explore-visualization-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+        <div id="multilingual-temporal-chart" class="explore-visualization-card" style="margin-bottom: 1.5rem;">
           <div class="explore-viz-card-header" style="margin-bottom:1rem;">
           <h3 style="margin:0; color: #333;">Temporal Distribution</h3>
           ${createExportButton('multilingual-temporal-chart', 'multilingual-temporal-distribution.png')}
@@ -885,7 +885,7 @@ function buildMultilingualismOverview(mount) {
                       <span style="color: #666;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''} · ${percentage.toFixed(1)}% • ${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
                     </div>
                     <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                      <div style="background: linear-gradient(90deg, #43e97b, #38f9d7); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                      <div style="background:#3f8067;height:100%;width:${percentage}%;transition:width 0.3s;"></div>
                     </div>
                   </div>
                 `;
@@ -895,7 +895,7 @@ function buildMultilingualismOverview(mount) {
         </div>
         
         <!-- Religious Order Patterns -->
-        <div id="multilingual-orders-chart" class="explore-visualization-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+        <div id="multilingual-orders-chart" class="explore-visualization-card" style="margin-bottom: 1.5rem;">
           <div class="explore-viz-card-header" style="margin-bottom:1rem;">
           <h3 style="margin:0; color: #333; display: flex; align-items: center; gap: 0.5rem;">
             Religious Order Patterns
@@ -913,7 +913,7 @@ function buildMultilingualismOverview(mount) {
                       <span style="color: #666;">${item.count} multilingual PU${item.count !== 1 ? 's' : ''} · ${percentage.toFixed(1)}% • ${item.instCount} institution${item.instCount !== 1 ? 's' : ''} • ${item.langCount} language${item.langCount !== 1 ? 's' : ''}</span>
                     </div>
                     <div style="background: #f0f0f0; height: 24px; border-radius: 4px; overflow: hidden;">
-                      <div style="background: linear-gradient(90deg, #fa709a, #fee140); height: 100%; width: ${percentage}%; transition: width 0.3s;"></div>
+                      <div style="background:#9b6b73;height:100%;width:${percentage}%;transition:width 0.3s;"></div>
                     </div>
                   </div>
                 `;
@@ -923,7 +923,7 @@ function buildMultilingualismOverview(mount) {
         </div>
         
         <!-- Top Multilingual Institutions -->
-        <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
+        <div class="explore-panel-card" style="margin-bottom: 1.5rem;">
           <h3 style="margin-bottom: 1rem; color: #333;">Most Multilingual Institutions</h3>
           ${topInstitutions.length > 0 ? `
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
@@ -944,21 +944,6 @@ function buildMultilingualismOverview(mount) {
           ` : '<p style="color: #999; font-style: italic;">No institutional data available</p>'}
         </div>
         
-      </div>
-      
-      <!-- Description -->
-      <div style="background: #f8f9fa; padding: 1.5rem; border-left: 4px solid #d4af37; border-radius: 0.375rem; margin-bottom: 1.5rem;">
-        <p style="margin: 0; color: #555; line-height: 1.6;">
-          This module explores linguistic diversity in medieval manuscript production. Navigate through the tabs above to investigate:
-          <strong>Multilingual Manuscripts</strong> with texts in multiple languages,
-          <strong>Scribal Multilingualism</strong> showing women copying in different languages,
-          <strong>Institutional Multilingualism</strong> revealing scriptoria producing diverse linguistic works, and
-          <strong>Colophon-Text Divergence</strong> highlighting cases where colophons were written in a different language than the main text.
-        </p>
-      </div>
-      
-      <div style="text-align: center; padding: 1rem; color: #999; font-size: 0.875rem;">
-        Click on the tabs above to explore each aspect of multilingualism in detail.
       </div>
     </div>
   `;
@@ -1116,7 +1101,7 @@ function buildMultilingualManuscripts(mount) {
   // Build only the cards needed for the current page.
   const msCards = manuscriptPage.items.map((ms, idx) => {
     const langBadges = ms.languages.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #d4af37, #c4941f); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display:inline-block;padding:0.25rem 0.55rem;background:#f2efe7;color:#574a2a;border:1px solid #d8d2c5;border-radius:0.2rem;font-size:0.75rem;margin-right:0.5rem;margin-bottom:0.5rem;font-weight:600;">${lang}</span>`
     ).join('');
     
     // Multilingualism type badge
@@ -1185,7 +1170,7 @@ function buildMultilingualManuscripts(mount) {
     }).join('');
     
     return `
-      <div class="ms-card" style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+      <div class="ms-card explore-panel-card" style="margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
           <div style="flex: 1; min-width: 300px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
@@ -1220,20 +1205,11 @@ function buildMultilingualManuscripts(mount) {
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
         <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Multilingual Manuscripts</h2>
-        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
-          Manuscripts containing texts in multiple languages. The badge indicates whether multilingualism 
-          occurs <strong>within production units</strong> (scribes working across languages) or represents 
-          a <strong>cross-PU compilation</strong> (different units with different languages assembled together).
-        </p>
         <div class="explore-summary-grid">
-          <div class="explore-summary-card">
-            <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${msLanguageData.length}</span>
-            <span style="opacity: 0.9;">multilingual manuscript${msLanguageData.length !== 1 ? 's' : ''}</span>
-          </div>
         </div>
       </div>
       
-      <div style="background: #f8f9fa; padding: 1rem; border-radius: 0.375rem; margin-bottom: 1.5rem; font-size: 0.875rem; color: #555; line-height: 1.8;">
+      <div class="editorial-note">
         <strong>How to Read the Cards:</strong><br>
         <div style="margin-top: 0.5rem;">
           • <strong>Gold badges at top</strong> = All languages found in this manuscript<br>
@@ -1341,7 +1317,7 @@ function buildScribalMultilingualism(mount) {
     
     // Language badges
     const langBadges = langArray.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display:inline-block;padding:0.25rem 0.55rem;background:#eef3f5;color:#365663;border:1px solid #cbd9df;border-radius:0.2rem;font-size:0.75rem;margin-right:0.5rem;margin-bottom:0.5rem;font-weight:600;">${lang}</span>`
     ).join('');
     
     // Language breakdown
@@ -1373,7 +1349,7 @@ function buildScribalMultilingualism(mount) {
     }).join('');
     
     return `
-      <div class="scribe-card" style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+      <div class="scribe-card explore-panel-card" style="margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
           <div style="flex: 1; min-width: 250px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
@@ -1408,16 +1384,12 @@ function buildScribalMultilingualism(mount) {
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
         <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Scribal Multilingualism</h2>
-        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
-          Scribes who worked across multiple languages, demonstrating linguistic competence and cultural mediation 
-          in medieval manuscript production. This reveals the multilingual capabilities of individual scribes.
-        </p>
         <div class="explore-summary-grid">
-          <div class="explore-summary-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div class="explore-summary-card">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualScribes.length}</span>
             <span style="opacity: 0.9;">multilingual scribe${multilingualScribes.length !== 1 ? 's' : ''}</span>
           </div>
-          <div class="explore-summary-card" style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div class="explore-summary-card">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${allScribes.length}</span>
             <span style="opacity: 0.9;">total scribe${allScribes.length !== 1 ? 's' : ''} with language data</span>
           </div>
@@ -1425,11 +1397,10 @@ function buildScribalMultilingualism(mount) {
       </div>
       
       ${multilingualScribes.length === 0 ? `
-        <div style="background: #fff3cd; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107; margin-bottom: 2rem;">
+        <div class="editorial-note">
           <div style="font-weight: 600; margin-bottom: 0.5rem; color: #856404;">No Multilingual Scribes Found</div>
           <p style="color: #856404; margin: 0; line-height: 1.6;">
-            While ${allScribes.length} scribe${allScribes.length !== 1 ? 's have' : ' has'} language data, 
-            none worked in multiple languages. This could indicate specialization or incomplete data recording.
+            No records meet the current definition. Missing language data may affect this result.
           </p>
         </div>
       ` : ''}
@@ -1642,7 +1613,7 @@ function buildInstitutionalMultilingualism(mount) {
     
     // Language badges
     const langBadges = langArray.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display:inline-block;padding:0.25rem 0.55rem;background:#f2efe7;color:#574a2a;border:1px solid #d8d2c5;border-radius:0.2rem;font-size:0.75rem;margin-right:0.5rem;margin-bottom:0.5rem;font-weight:600;">${lang}</span>`
     ).join('');
     
     // Language breakdown
@@ -1673,7 +1644,7 @@ function buildInstitutionalMultilingualism(mount) {
     }).join('');
     
     return `
-      <div class="institution-card" style="background: white; border: 1px solid #e0e0e0; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+      <div class="institution-card explore-panel-card" style="margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
           <div style="flex: 1; min-width: 250px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
@@ -1711,16 +1682,12 @@ function buildInstitutionalMultilingualism(mount) {
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
         <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Institutional Multilingualism</h2>
-        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
-          Monastic institutions and scriptoria that produced manuscripts in multiple languages, revealing 
-          institutional multilingual capacities and cultural exchange networks in medieval book production.
-        </p>
         <div class="explore-summary-grid">
-          <div class="explore-summary-card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div class="explore-summary-card">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${multilingualInstitutions.length}</span>
             <span style="opacity: 0.9;">multilingual institution${multilingualInstitutions.length !== 1 ? 's' : ''}</span>
           </div>
-          <div class="explore-summary-card" style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; display: inline-block;">
+          <div class="explore-summary-card">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${allInstitutions.length}</span>
             <span style="opacity: 0.9;">total institution${allInstitutions.length !== 1 ? 's' : ''} with language data</span>
           </div>
@@ -1728,11 +1695,10 @@ function buildInstitutionalMultilingualism(mount) {
       </div>
       
       ${multilingualInstitutions.length === 0 ? `
-        <div style="background: #fff3cd; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ffc107; margin-bottom: 2rem;">
+        <div class="editorial-note">
           <div style="font-weight: 600; margin-bottom: 0.5rem; color: #856404;">No Multilingual Institutions Found</div>
           <p style="color: #856404; margin: 0; line-height: 1.6;">
-            While ${allInstitutions.length} institution${allInstitutions.length !== 1 ? 's have' : ' has'} language data, 
-            none produced manuscripts in multiple languages. This could indicate institutional specialization or incomplete data recording.
+            No records meet the current definition. Missing language data may affect this result.
           </p>
         </div>
       ` : ''}
@@ -1809,11 +1775,11 @@ function buildColophonTextDivergence(mount) {
   // Build only the cards needed for the current page.
   const divergenceCards = divergencePage.items.map((div, idx) => {
     const colophonBadges = div.colophonLangs.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #fa709a, #fee140); color: #333; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display:inline-block;padding:0.25rem 0.55rem;background:#f5eeee;color:#68454b;border:1px solid #dfcccc;border-radius:0.2rem;font-size:0.75rem;margin-right:0.5rem;margin-bottom:0.5rem;font-weight:600;">${lang}</span>`
     ).join('');
     
     const textBadges = div.textLangs.map(lang =>
-      `<span style="display: inline-block; padding: 0.3rem 0.75rem; background: linear-gradient(135deg, #30cfd0, #330867); color: white; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.5rem; margin-bottom: 0.5rem; font-weight: 600;">${lang}</span>`
+      `<span style="display:inline-block;padding:0.25rem 0.55rem;background:#eef3f5;color:#365663;border:1px solid #cbd9df;border-radius:0.2rem;font-size:0.75rem;margin-right:0.5rem;margin-bottom:0.5rem;font-weight:600;">${lang}</span>`
     ).join('');
     
     const scribeInfo = div.scribes.length > 0
@@ -1826,7 +1792,7 @@ function buildColophonTextDivergence(mount) {
       : '<span style="font-size: 0.8rem; color: #999;">No scribe attribution</span>';
     
     return `
-      <div class="divergence-card" style="background: white; border: 1px solid #e0e0e0; border-left: 4px solid #fa709a; border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.12)';" onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)';">
+      <div class="divergence-card explore-panel-card" style="margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
           <div style="flex: 1; min-width: 250px;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
@@ -1885,11 +1851,6 @@ function buildColophonTextDivergence(mount) {
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
         <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Colophon-Text Language Divergence</h2>
-        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
-          Scribal units where the colophon language differs from the text language(s), revealing interesting 
-          linguistic practices such as scribes writing colophons in their native language while copying texts 
-          in other languages, or institutional practices regarding colophon composition.
-        </p>
         <div class="explore-summary-grid">
           <div class="explore-summary-card">
             <span style="font-size: 1.5rem; font-weight: 700; margin-right: 0.5rem;">${divergences.length}</span>

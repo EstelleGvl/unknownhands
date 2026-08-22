@@ -12,14 +12,14 @@ banner:
 
 # Browse Graphemes
 
-Compare candidate letterforms across scribes and manuscripts. These crops are reviewable candidates generated from ALTO coordinates; they should be checked visually before being used as firm paleographical evidence.
+Compare candidate letterforms across scribes and manuscripts.
 
 <style>
   .grapheme-tools{ display:grid; grid-template-columns:repeat(5, minmax(140px, 1fr)); gap:.75rem; align-items:end; margin:1.25rem 0; }
   .grapheme-tools label{ display:block; font-weight:600; font-size:.9rem; margin-bottom:.25rem; }
   .grapheme-tools select,
-  .grapheme-tools input{ width:100%; border:1px solid #d8d8d8; border-radius:.35rem; padding:.45rem .55rem; }
-  .grapheme-group{ border:1px solid #e2e2e2; border-radius:.5rem; padding:1rem; margin:1rem 0; }
+  .grapheme-tools input{ width:100%; border:1px solid #d8d8d8; border-radius:2px; padding:.45rem .55rem; }
+  .grapheme-group{ border:1px solid #e2e2e2; border-radius:.2rem; padding:1rem; margin:1rem 0; }
   .grapheme-crops{ display:flex; flex-wrap:wrap; gap:.5rem; }
   .grapheme-crop{ width:96px; border:1px solid #ddd; padding:2px; background:#fff; }
   .grapheme-crop img{ width:100%; height:88px; object-fit:contain; background:#f5f5f5; display:block; }

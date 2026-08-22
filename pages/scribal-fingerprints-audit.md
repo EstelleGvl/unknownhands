@@ -12,7 +12,7 @@ banner:
 
 # Scribal Fingerprint Quality Audit
 
-This page summarizes the automatically generated fingerprint profiles and highlights profiles that may need closer visual review. It does not validate every IIIF image request in advance; instead, it checks the structure of each profile, the number of candidate crops, missing graphemes, and whether a profile depends on folio-range extraction.
+This page summarizes the automatically generated fingerprint profiles. It checks the structure of each profile, the number of candidate crops, missing graphemes, and whether a profile depends on folio-range extraction.
 
 {% assign target_graphemes = "a|b|c|d|e|g|h|l|o|p|q|r|s|t|long s|rotund r|insular d" | split: "|" %}
 
@@ -31,7 +31,7 @@ This page summarizes the automatically generated fingerprint profiles and highli
   .audit-table th,
   .audit-table td{ border-top:1px solid #e5e5e5; padding:.55rem .45rem; vertical-align:top; }
   .audit-table th{ text-align:left; background:#fafafa; }
-  .audit-warnings span{ display:inline-block; border:1px solid #e1c46b; background:#fff8dd; border-radius:999px; padding:.1rem .45rem; margin:.1rem .15rem .1rem 0; font-size:.82rem; }
+  .audit-warnings span{ display:inline-block; border:1px solid #e1c46b; background:#fff8dd; border-radius:2px; padding:.1rem .45rem; margin:.1rem .15rem .1rem 0; font-size:.82rem; }
   .audit-ok{ color:#497a39; font-weight:600; }
   .audit-muted{ color:#777; }
   @media (max-width: 900px){

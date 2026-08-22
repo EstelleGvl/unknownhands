@@ -19,7 +19,7 @@ banner:
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   background: #f8f8f8;
-  border-radius: 4px;
+  border-radius: 2px;
   cursor: pointer;
 }
 .saved-search-item:hover {
@@ -39,12 +39,13 @@ banner:
 .ms-group {
   margin-bottom: 2rem;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 3px;
   overflow: hidden;
 }
 .ms-group-header {
-  background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%);
-  color: white;
+  background: #fff;
+  color: #3f3a31;
+  border-bottom: 1px solid #d8d2c5;
   padding: 1rem;
   cursor: pointer;
   display: flex;
@@ -53,16 +54,17 @@ banner:
   user-select: none;
 }
 .ms-group-header:hover {
-  background: linear-gradient(135deg, #c4941f 0%, #b8871a 100%);
+  background: #f8f7f3;
 }
 .ms-group-title {
   font-weight: 500;
   font-size: 1.1rem;
 }
 .ms-group-count {
-  background: rgba(255,255,255,0.3);
+  background: #f2efe7;
+  border: 1px solid #d8d2c5;
   padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  border-radius: 3px;
   font-size: 0.9rem;
 }
 .ms-group-body {
@@ -114,7 +116,7 @@ mark.search-highlight {
 }
 .comparison-content {
   background: white;
-  border-radius: 8px;
+  border-radius: 3px;
   max-width: 95vw;
   max-height: 90vh;
   overflow: auto;
@@ -134,8 +136,8 @@ mark.search-highlight {
   gap: 1.5rem;
 }
 .comparison-item {
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
   padding: 1rem;
 }
 .comparison-item-header {
@@ -143,6 +145,19 @@ mark.search-highlight {
   color: #d4af37;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
+}
+.search-primary {
+  width: 100%;
+  padding: 0.7rem;
+  color: #fff;
+  background: #9a6b08;
+  border-color: #9a6b08;
+}
+.search-primary:hover,
+.search-primary:focus-visible {
+  color: #fff;
+  background: #785305;
+  border-color: #785305;
 }
 </style>
 
@@ -155,7 +170,7 @@ mark.search-highlight {
       <!-- Saved Searches -->
       <div class="facet">
         <div class="facet-title" style="display:flex; justify-content:space-between; align-items:center;">
-          <span>Saved Searches</span>
+          <span>Saved searches</span>
           <button id="save-search-btn" class="chip" style="font-size:0.8rem; padding:0.25rem 0.5rem;" title="Save current search">
             Save
           </button>
@@ -204,18 +219,18 @@ mark.search-highlight {
       </div>
 
       <div class="facet">
-        <div class="facet-title">Selected for Comparison (<span id="comparison-count">0</span>)</div>
-        <button id="compare-btn" class="chip" style="width:100%; background:#d4af37; color:white; border:none; padding:0.75rem; margin-bottom:0.5rem;" disabled>
-          Compare Selected
+        <div class="facet-title">Selected for comparison (<span id="comparison-count">0</span>)</div>
+        <button id="compare-btn" class="chip search-primary" style="margin-bottom:0.5rem;" disabled>
+          Compare selected
         </button>
         <button id="clear-selection-btn" class="chip" style="width:100%; padding:0.5rem; font-size:0.9rem;" disabled>
-          Clear Selection
+          Clear selection
         </button>
       </div>
 
       <div class="facet">
-        <button id="export-btn" class="chip" style="width:100%; background:#d4af37; color:white; border:none; padding:0.75rem;">
-          Export Results
+        <button id="export-btn" class="chip search-primary">
+          Export results
         </button>
       </div>
     </aside>
@@ -244,7 +259,7 @@ mark.search-highlight {
   let isLoaded = false;
   
   const $corpusInfo = document.getElementById('corpus-info');
-  $corpusInfo.innerHTML = '<em>Loading search index...</em>';
+  $corpusInfo.innerHTML = '<em>Loading search index…</em>';
   
   // Load manifests data for correct URLs
   async function loadManifests() {
@@ -554,8 +569,8 @@ mark.search-highlight {
     modal.innerHTML = `
       <div class="comparison-content">
         <div class="comparison-header">
-          <h2 style="margin:0; color:#d4af37;">Compare ${items.length} Results</h2>
-          <button onclick="this.closest('.comparison-modal').remove()" style="padding:0.5rem 1rem; border:none; background:#d4af37; color:white; border-radius:4px; cursor:pointer; font-size:1rem;">Close</button>
+          <h2 style="margin:0; color:#725500;">Compare ${items.length} results</h2>
+          <button class="chip" onclick="this.closest('.comparison-modal').remove()">Close</button>
         </div>
         <div class="comparison-grid">
           ${items.map(d => {

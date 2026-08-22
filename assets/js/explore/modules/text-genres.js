@@ -181,61 +181,28 @@ function renderGenreOverview(container) {
       <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Text Subgenre Analysis</h2>
       
       <div class="explore-metric-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-        <div class="explore-metric-card" style="background: #fef3c7; border-radius: 0.5rem; padding: 1.5rem;">
+        <div class="explore-metric-card">
           <h3 style="margin: 0 0 0.5rem 0; color: #92400e; font-size: 1.125rem;">Total Texts</h3>
           <div id="total-texts" style="font-size: 2.5rem; font-weight: 700; color: #92400e;">Loading...</div>
         </div>
-        <div class="explore-metric-card" style="background: #dbeafe; border-radius: 0.5rem; padding: 1.5rem;">
+        <div class="explore-metric-card">
           <h3 style="margin: 0 0 0.5rem 0; color: #1e40af; font-size: 1.125rem;">Texts with Known Subgenre</h3>
           <div id="texts-with-subgenre" style="font-size: 2.5rem; font-weight: 700; color: #1e40af;">Loading...</div>
         </div>
-        <div class="explore-metric-card" style="background: #dcfce7; border-radius: 0.5rem; padding: 1.5rem;">
+        <div class="explore-metric-card">
           <h3 style="margin: 0 0 0.5rem 0; color: #166534; font-size: 1.125rem;">Unique Subgenres</h3>
           <div id="total-subgenres" style="font-size: 2.5rem; font-weight: 700; color: #166534;">Loading...</div>
         </div>
       </div>
       
       <div class="explore-chart-grid explore-chart-grid--stacked" style="margin-bottom: 1.5rem;">
-        <div id="top-subgenres-chart-wrapper" class="explore-visualization-card" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+        <div id="top-subgenres-chart-wrapper" class="explore-visualization-card">
           <div class="explore-viz-card-header">
             <h3 style="margin: 0 0 0.25rem 0; color: #2c3e50; font-size: 1.25rem;">Top Subgenres by Text Count</h3>
             ${createExportButton('top-subgenres-chart-wrapper', 'top-text-subgenres.png')}
           </div>
           <p style="margin: 0 0 1rem; color: #64748b; font-size: 0.75rem;">Bar length shows the share of known subgenre assignments.</p>
           <div id="top-subgenres-chart"></div>
-        </div>
-      </div>
-      
-      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
-        <h3 style="margin: 0 0 0.75rem 0; color: #2c3e50; font-size: 1.25rem;">Analysis Approaches</h3>
-        <p style="margin: 0 0 1rem 0; font-size: 0.875rem; color: #64748b;">
-          This module provides three complementary views of text genre patterns:
-        </p>
-        <div style="display: grid; gap: 1rem;">
-          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #3b82f6; border-radius: 0.375rem;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #1e40af;">Manuscript Networks</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
-              Bipartite networks showing manuscripts and the genres or subgenres they contain. Switch classification level to compare broad composition with more granular co-occurrence patterns.
-            </p>
-          </div>
-          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #10b981; border-radius: 0.375rem;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #065f46;">Institution Networks</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
-              Networks of monastic institutions connected to genres or subgenres they produced or preserved. Identifies institutional specializations and textual preferences across monasteries.
-            </p>
-          </div>
-          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #22c55e; border-radius: 0.375rem;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #166534;">Scribe Networks</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
-              Networks showing which scribes actively copied which genres or subgenres. Reveals individual specialization, generalists vs. specialists, and knowledge brokers in the scribal workforce.
-            </p>
-          </div>
-          <div style="padding: 1rem; background: #f8fafc; border-left: 3px solid #f59e0b; border-radius: 0.375rem;">
-            <h4 style="margin: 0 0 0.5rem 0; color: #92400e;">Subgenre Distributions</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: #64748b;">
-              Charts showing subgenre composition and popularity across institutions, locations, and time periods.
-            </p>
-          </div>
         </div>
       </div>
     </div>
@@ -422,7 +389,7 @@ function renderGenreDistributions(container) {
       <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Subgenre Distribution Analysis</h2>
       
       <div class="explore-chart-grid explore-chart-grid--stacked" style="margin-bottom: 1.5rem;">
-        <div id="genres-by-institution-wrapper" class="explore-visualization-card" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+        <div id="genres-by-institution-wrapper" class="explore-visualization-card">
           <div class="explore-viz-card-header" style="margin-bottom:1rem;">
             <h3 style="margin: 0; color: #2c3e50; font-size: 1.125rem;">Subgenres by Institution</h3>
             ${createExportButton('genres-by-institution-wrapper', 'subgenres-by-institution.png')}
@@ -430,7 +397,7 @@ function renderGenreDistributions(container) {
           <p class="explore-chart-note">Top institutions by known text–institution assignments with a subgenre. Bar length is the institution's share of all known assignments; colored segments show its internal subgenre composition.</p>
           <div id="genres-by-institution"></div>
         </div>
-        <div id="genres-by-location-wrapper" class="explore-visualization-card" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+        <div id="genres-by-location-wrapper" class="explore-visualization-card">
           <div class="explore-viz-card-header" style="margin-bottom:1rem;">
             <h3 style="margin: 0; color: #2c3e50; font-size: 1.125rem;">Subgenres by Location</h3>
             ${createExportButton('genres-by-location-wrapper', 'subgenres-by-location.png')}
@@ -440,7 +407,7 @@ function renderGenreDistributions(container) {
         </div>
       </div>
       
-      <div id="genres-over-time-wrapper" class="explore-visualization-card" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+      <div id="genres-over-time-wrapper" class="explore-visualization-card">
         <div class="explore-viz-card-header" style="margin-bottom:.5rem;">
           <h3 style="margin:0;color:#2c3e50;font-size:1.125rem;">Subgenre Popularity Over Time</h3>
           ${createExportButton('genres-over-time-wrapper', 'subgenre-popularity-over-time.png')}
@@ -623,10 +590,10 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   controlsDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; flex-wrap: wrap; gap: 0.75rem;';
   controlsDiv.innerHTML = `
     <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-      <button id="ms-zoom-in" style="padding: 0.375rem 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom In</button>
-      <button id="ms-zoom-out" style="padding: 0.375rem 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom Out</button>
+      <button id="ms-zoom-in" class="explore-action-btn explore-action-btn--compact">Zoom in</button>
+      <button id="ms-zoom-out" class="explore-action-btn explore-action-btn--compact">Zoom out</button>
       <button id="ms-reset" style="padding: 0.375rem 0.75rem; background: #64748b; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Reset View</button>
-      <button id="ms-toggle-labels" style="padding: 0.375rem 0.75rem; background: #8b5cf6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Labels</button>
+      <button id="ms-toggle-labels" class="explore-action-btn explore-action-btn--compact">Hide labels</button>
       <button id="ms-toggle-singles" style="padding: 0.375rem 0.75rem; background: #ec4899; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Singles</button>
     </div>
     <div style="display: flex; gap: 0.5rem; align-items: center;">
@@ -766,7 +733,7 @@ function buildManuscriptNetwork(levelFilter = 'genre', layout = 'horizontal') {
   document.getElementById('ms-toggle-labels').onclick = function() {
     labelsVisible = !labelsVisible;
     nodeLabels.style('display', labelsVisible ? 'block' : 'none');
-    this.textContent = labelsVisible ? 'Hide Labels' : 'Show Labels';
+    this.textContent = labelsVisible ? 'Hide labels' : 'Show labels';
   };
   
   // Toggle singles (nodes with only 1 connection)
@@ -1469,10 +1436,10 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   controlsDiv.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.375rem; flex-wrap: wrap; gap: 0.75rem;';
   controlsDiv.innerHTML = `
     <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-      <button id="inst-zoom-in" style="padding: 0.375rem 0.75rem; background: #10b981; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom In</button>
-      <button id="inst-zoom-out" style="padding: 0.375rem 0.75rem; background: #10b981; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom Out</button>
+      <button id="inst-zoom-in" class="explore-action-btn explore-action-btn--compact">Zoom in</button>
+      <button id="inst-zoom-out" class="explore-action-btn explore-action-btn--compact">Zoom out</button>
       <button id="inst-reset" style="padding: 0.375rem 0.75rem; background: #64748b; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Reset View</button>
-      <button id="inst-toggle-labels" style="padding: 0.375rem 0.75rem; background: #8b5cf6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Labels</button>
+      <button id="inst-toggle-labels" class="explore-action-btn explore-action-btn--compact">Hide labels</button>
       <button id="inst-toggle-singles" style="padding: 0.375rem 0.75rem; background: #ec4899; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Singles</button>
     </div>
     <div style="display: flex; gap: 0.5rem; align-items: center;">
@@ -1604,7 +1571,7 @@ function buildInstitutionNetwork(levelFilter = 'genre', layout = 'horizontal') {
   document.getElementById('inst-toggle-labels').onclick = function() {
     labelsVisible = !labelsVisible;
     nodeLabels.style('display', labelsVisible ? 'block' : 'none');
-    this.textContent = labelsVisible ? 'Hide Labels' : 'Show Labels';
+    this.textContent = labelsVisible ? 'Hide labels' : 'Show labels';
   };
   
   // Toggle singles (nodes with only 1 connection)
@@ -2108,7 +2075,7 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
       <button id="scribe-zoom-in" style="padding: 0.375rem 0.75rem; background: #22c55e; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom In</button>
       <button id="scribe-zoom-out" style="padding: 0.375rem 0.75rem; background: #22c55e; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Zoom Out</button>
       <button id="scribe-reset" style="padding: 0.375rem 0.75rem; background: #64748b; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Reset View</button>
-      <button id="scribe-toggle-labels" style="padding: 0.375rem 0.75rem; background: #8b5cf6; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Labels</button>
+      <button id="scribe-toggle-labels" class="explore-action-btn explore-action-btn--compact">Hide labels</button>
       <button id="scribe-toggle-singles" style="padding: 0.375rem 0.75rem; background: #ec4899; color: white; border: none; border-radius: 0.25rem; cursor: pointer; font-size: 0.875rem; font-weight: 600;">Hide Singles</button>
     </div>
     <div style="display: flex; gap: 0.5rem; align-items: center;">
@@ -2271,7 +2238,7 @@ function buildScribeNetwork(levelFilter = 'genre', layout = 'horizontal') {
   document.getElementById('scribe-toggle-labels').onclick = function() {
     labelsVisible = !labelsVisible;
     nodeLabels.style('display', labelsVisible ? 'block' : 'none');
-    this.textContent = labelsVisible ? 'Hide Labels' : 'Show Labels';
+    this.textContent = labelsVisible ? 'Hide labels' : 'Show labels';
   };
   
   // Toggle singles (nodes with only 1 connection)

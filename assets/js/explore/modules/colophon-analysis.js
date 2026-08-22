@@ -250,8 +250,6 @@ function buildColophonOverview(mount) {
   mount.innerHTML = `
     <div style="max-width: 1200px; margin: 0 auto;">
       <h2 style="margin-bottom: 0.75rem; color: #1a1a1a;">Colophon Corpus: Overview &amp; Method</h2>
-      <p style="color: #666; margin-bottom: 2rem; line-height: 1.6;">This page distinguishes source records from individual readable texts and documents the coverage used by the other Colophons views.</p>
-
       <div class="explore-metric-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem;">
         <div class="explore-metric-card"><div style="font-size:2rem;font-weight:700;">${flaggedSUs.length}</div><div>Scribal units flagged with colophons</div></div>
         <div class="explore-metric-card"><div style="font-size:2rem;font-weight:700;">${instances.length}</div><div>Readable colophon instances</div></div>
@@ -287,7 +285,7 @@ function buildColophonOverview(mount) {
         }).join('')}
       </div>
 
-      <div style="background:#fff8e7;border-left:4px solid #d4af37;padding:1.25rem;color:#555;line-height:1.65;">
+      <div class="editorial-note">
         <h3 style="margin:0 0 .75rem;color:#333;font-size:1rem;">Unit of analysis and exclusions</h3>
         <ul style="margin:0;padding-left:1.25rem;">
           <li>The canonical source is the <strong>scribal-unit record</strong>; linked production-unit fields provide geographic and institutional context only.</li>
@@ -344,14 +342,13 @@ function buildComparativePatterns(mount) {
 
   const prevalenceRows = (entries, labelFormatter = value => value) => entries.map(([label, data]) => {
     const percentage = data.total ? data.flagged / data.total * 100 : 0;
-    return `<div style="margin:.8rem 0;"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin-bottom:.25rem;"><strong>${esc(labelFormatter(label))}</strong><span>${data.flagged}/${data.total} scribal units · ${percentage.toFixed(1)}%</span></div><div style="height:1.35rem;background:#eef0f2;border-radius:.3rem;overflow:hidden;"><div style="height:100%;width:${percentage}%;background:linear-gradient(90deg,#d4af37,#c4941f);"></div></div></div>`;
+    return `<div style="margin:.8rem 0;"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin-bottom:.25rem;"><strong>${esc(labelFormatter(label))}</strong><span>${data.flagged}/${data.total} scribal units · ${percentage.toFixed(1)}%</span></div><div style="height:1.35rem;background:#eef0f2;border-radius:.15rem;overflow:hidden;"><div style="height:100%;width:${percentage}%;background:#b88912;"></div></div></div>`;
   }).join('');
 
   mount.innerHTML = `
     <div style="max-width:1200px;margin:0 auto;">
       <h2 style="margin-bottom:.75rem;color:#1a1a1a;">Structured Contexts</h2>
-      <p style="color:#666;margin-bottom:1rem;line-height:1.6;">These views use catalogued dates, production locations, and colophon languages. They do not infer rhetoric, sentiment, punctuation, or textual complexity.</p>
-      <div style="background:#fff8e7;border-left:4px solid #d4af37;padding:1rem 1.25rem;margin-bottom:2rem;color:#555;line-height:1.6;"><strong>Denominators:</strong> prevalence charts compare scribal units flagged with colophons against all scribal units with the same known context. Language composition uses readable colophon instances with both a known language and century. Scribal units linked to more than one country are counted once in each relevant country.</div>
+      <div class="editorial-note"><strong>Denominators:</strong> prevalence charts compare scribal units flagged with colophons against all scribal units with the same known context. Language composition uses readable colophon instances with both a known language and century. Scribal units linked to more than one country are counted once in each relevant country.</div>
 
       <div id="colophon-century-context" class="explore-visualization-card" style="margin-bottom:2rem;">
         <div class="explore-viz-card-header"><h3 style="margin:0;">Colophon prevalence by century</h3>${createExportButton('colophon-century-context', 'colophon-prevalence-by-century.png')}</div>
@@ -580,32 +577,27 @@ async function buildExploreFormulae(mount) {
   mount.innerHTML = `
     <div style="max-width: 1400px; margin: 0 auto;">
       <div style="margin-bottom: 2rem;">
-        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Formulae</h2>
-        <p style="color: #666; line-height: 1.6; max-width: 900px;">
-          Browse ${formulaResults.length} predefined formulaic patterns across ${uniqueLanguages.length} languages. 
-          Formulae are searched in colophon transcriptions using predefined, case-insensitive textual variants.
-          Zero matches indicate the pattern is not present in the current corpus.
-        </p>
+        <h2 style="margin-bottom: 0.5rem; color: #1a1a1a;">Formulae</h2>These views use catalogued dates
       </div>
       
       <!-- Statistics Overview -->
       <div class="explore-metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${formulaResults.length}</div>
           <div style="opacity: 0.9; font-size: 0.875rem;">Predefined Formulas</div>
         </div>
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${uniqueLanguages.length}</div>
           <div style="opacity: 0.9; font-size: 0.875rem;">Languages</div>
         </div>
-        <div class="explore-metric-card" style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="explore-metric-card">
           <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">${colophonSUs.length}</div>
           <div style="opacity: 0.9; font-size: 0.875rem;">Colophons Searched</div>
         </div>
       </div>
       
       <!-- Filters -->
-      <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+      <div class="explore-panel-card" style="margin-bottom: 2rem;">
         <h3 style="font-size: 1rem; font-weight: 600; color: #333; margin-bottom: 1rem;">Filter Formulas</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
           <div>
@@ -651,7 +643,7 @@ async function buildExploreFormulae(mount) {
       
       <!-- Global Formula Map (Collapsible) -->
       <div style="background: white; border: 1px solid #e5e7eb; border-radius: 0.5rem; margin-bottom: 2rem; overflow: hidden;">
-        <button id="toggle-global-map" style="width: 100%; padding: 1rem; background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); border: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; color: #374151;">
+        <button id="toggle-global-map" style="width:100%;padding:1rem;background:#f7f7f5;border:0;border-bottom:1px solid #e4e1db;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;color:#374151;">
           <span>Global Formula Distribution Map</span>
           <span id="map-toggle-icon" style="font-size: 1.25rem;">▼</span>
         </button>
@@ -708,7 +700,7 @@ async function buildExploreFormulae(mount) {
           </div>
           
           <!-- Comparison Mode Info -->
-          <div id="comparison-info" style="display: none; padding: 0.75rem; background: #fef3c7; border: 1px solid #fbbf24; border-radius: 0.375rem; margin-bottom: 1rem; font-size: 0.875rem;">
+          <div id="comparison-info" class="editorial-note" style="display:none;">
             <strong>Comparison Mode Active:</strong> <span id="comparison-count">0</span> formulas selected.
             <span style="color: #92400e;">Click on formulas in the map popups below to add them to comparison (max 6).</span>
             <button id="clear-comparison" style="margin-left: 1rem; padding: 0.25rem 0.5rem; background: #d97706; color: white; border: none; border-radius: 0.25rem; font-size: 0.75rem; cursor: pointer;">
@@ -726,7 +718,7 @@ async function buildExploreFormulae(mount) {
               Filter by Century
             </label>
             <input type="range" id="century-slider" min="0" max="100" value="0" step="1" 
-                   style="width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #d4af37 0%, #c4941f 100%); outline: none; -webkit-appearance: none;">
+                   style="width:100%;height:8px;border-radius:2px;background:#b88912;outline:none;-webkit-appearance:none;">
             <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
               <span id="century-label-start" style="font-size: 0.75rem; color: #6b7280;">All Centuries</span>
               <span id="century-label-end" style="font-size: 0.75rem; color: #6b7280;"></span>
@@ -812,7 +804,7 @@ async function buildExploreFormulae(mount) {
       const typeBadgeStyle = typeBadgeStyles[type] || typeBadgeStyles.other;
       const hasMatches = count > 0;
       
-      let html = '<div id="' + cardId + '" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 1.5rem; transition: all 0.2s;">';
+      let html = '<div id="' + cardId + '" class="explore-panel-card">';
       html += '<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">';
       html += '<div style="flex: 1;">';
       html += '<div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">';
@@ -922,7 +914,7 @@ async function buildExploreFormulae(mount) {
           html += '<div class="explore-metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">';
           
           // Countries card
-          html += '<div class="explore-metric-card" style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">';
+          html += '<div class="explore-metric-card">';
           html += '<div style="font-size: 0.875rem; font-weight: 600; opacity: 0.9; margin-bottom: 0.75rem;">Countries</div>';
           html += '<div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">' + sortedCountries.length + '</div>';
           html += '<div style="font-size: 0.875rem; opacity: 0.9;">';
@@ -932,7 +924,7 @@ async function buildExploreFormulae(mount) {
           
           // Centuries card
           if (sortedCenturies.length > 0) {
-            html += '<div class="explore-metric-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">';
+            html += '<div class="explore-metric-card">';
             html += '<div style="font-size: 0.875rem; font-weight: 600; opacity: 0.9; margin-bottom: 0.75rem;">Centuries</div>';
             html += '<div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">' + sortedCenturies.length + '</div>';
             html += '<div style="font-size: 0.875rem; opacity: 0.9;">';
@@ -943,7 +935,7 @@ async function buildExploreFormulae(mount) {
           
           // Monastic Institutions card
           if (monasticInstitutions.size > 0) {
-            html += '<div class="explore-metric-card" style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; padding: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">';
+            html += '<div class="explore-metric-card">';
             html += '<div style="font-size: 0.875rem; font-weight: 600; opacity: 0.9; margin-bottom: 0.75rem;">Monasteries</div>';
             html += '<div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">' + monasticInstitutions.size + '</div>';
             html += '<div style="font-size: 0.75rem; opacity: 0.9; line-height: 1.4;">';
@@ -977,7 +969,7 @@ async function buildExploreFormulae(mount) {
             html += '<span style="font-size: 0.75rem; color: #6b7280; font-weight: 600;">' + count + ' (' + percentage + '%)</span>';
             html += '</div>';
             html += '<div style="background: #e5e7eb; border-radius: 0.25rem; height: 1.5rem; overflow: hidden;">';
-            html += '<div style="background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); height: 100%; width: ' + percentage + '%; transition: width 0.3s ease;"></div>';
+            html += '<div style="background:#b88912;height:100%;width:' + percentage + '%;transition:width 0.3s ease;"></div>';
             html += '</div>';
             html += '</div>';
           });
@@ -999,7 +991,7 @@ async function buildExploreFormulae(mount) {
               const barHeightPx = (count / matchCount * 120);
               html += '<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 0.25rem;">';
               html += '<div style="font-size: 0.625rem; color: #6b7280; font-weight: 600;">' + count + '</div>';
-              html += '<div style="background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%); width: 100%; max-width: 40px; height: ' + barHeightPx + 'px; border-radius: 0.25rem 0.25rem 0 0; min-height: 2px;"></div>';
+              html += '<div style="background:#b88912;width:100%;max-width:40px;height:' + barHeightPx + 'px;border-radius:0.15rem 0.15rem 0 0;min-height:2px;"></div>';
               html += '<div style="font-size: 0.625rem; color: #374151; writing-mode: vertical-rl; transform: rotate(180deg); margin-top: 0.25rem;">' + esc(century) + '</div>';
               html += '</div>';
             });
@@ -2267,7 +2259,6 @@ function buildBrowseColophons(mount) {
   mount.innerHTML = `
     <div style="max-width:1200px;margin:0 auto;">
       <h2 style="margin-bottom:.75rem;color:#1a1a1a;">Browse &amp; Read</h2>
-      <p style="color:#666;margin-bottom:1rem;line-height:1.6;">Each result represents one readable colophon instance. When a scribal-unit record contains repeated colophon fields, the instances are displayed separately and linked back to the same source record.</p>
       <div id="colophon-count-top" style="color:#666;margin-bottom:1.5rem;"></div>
       <div class="explore-visualization-card" style="margin-bottom:1.5rem;">
         <h3 style="font-size:1rem;margin:0 0 1rem;">Filter readable colophons</h3>

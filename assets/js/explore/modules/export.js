@@ -226,17 +226,14 @@ function createEmbedButton(networkType) {
         const modal = document.createElement('div');
         modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000; padding: 1rem;';
         modal.innerHTML = `
-          <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 600px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);">
+          <div style="background: white; border: 1px solid #d8dde5; border-radius: 0.2rem; padding: 2rem; max-width: 600px; width: 100%; box-shadow: 0 12px 30px rgba(0,0,0,0.14);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
               <h3 style="margin: 0; color: #1e293b; font-size: 1.25rem;">Embed Network</h3>
               <button id="close-embed-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b; padding: 0; width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem;" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='none'">×</button>
             </div>
-            <div style="margin-bottom: 1rem; padding: 0.75rem; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0.375rem;">
+            <div class="editorial-note">
               <p style="margin: 0; font-size: 0.875rem; color: #92400e; line-height: 1.5;">
-                <strong>Note:</strong> All interactive features are preserved in embed mode:
-                <br>• Hover tooltips with metadata
-                <br>• Hide Labels & Hide Singles buttons
-                <br>• Zoom controls
+                <strong>Embed behavior:</strong> Tooltips, label and singleton controls, and zoom controls remain available.
               </p>
             </div>
             <div style="margin-bottom: 1.5rem;">
@@ -254,7 +251,7 @@ function createEmbedButton(networkType) {
               </div>
             </div>
             <div style="display: flex; gap: 0.75rem;">
-              <a href="${embedUrl}" target="_blank" style="flex: 1; padding: 0.625rem 1rem; background: #10b981; color: white; border: none; border-radius: 0.375rem; cursor: pointer; font-weight: 600; text-align: center; text-decoration: none; font-size: 0.875rem;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">Preview Embed</a>
+              <a href="${embedUrl}" target="_blank" class="explore-action-btn explore-action-btn--primary" style="flex: 1; text-align: center; text-decoration: none;">Preview embed</a>
             </div>
           </div>
         `;
@@ -286,7 +283,7 @@ function createEmbedButton(networkType) {
     }
   }, 100);
   
-  return `<button id="${btnId}" style="background: #8b5cf6; color: white; border: none; padding: 0.5rem 0.875rem; border-radius: 0.375rem; font-size: 0.8125rem; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 0.375rem; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08); transition: all 0.2s ease;" onmouseover="this.style.background='#7c3aed'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1)';" onmouseout="this.style.background='#8b5cf6'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)';">
+  return `<button id="${btnId}" class="explore-action-btn explore-action-btn--secondary explore-action-btn--compact">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16M5 12h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/>
     </svg>

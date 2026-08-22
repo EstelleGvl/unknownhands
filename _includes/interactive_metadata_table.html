@@ -1,4 +1,29 @@
 <link rel="stylesheet" type="text/css" href="{{ '/assets/datatables/datatables.css' | absolute_url }}" />
+<style>
+  /* Keep legacy DataTables controls consistent with the site's flat controls. */
+  .dataTables_wrapper .paginate_button,
+  .dataTables_wrapper .paginate_button.current,
+  .dataTables_wrapper .paginate_button:hover,
+  button.dt-button,
+  div.dt-button,
+  a.dt-button {
+    background-image: none !important;
+    box-shadow: none !important;
+    border-radius: 2px !important;
+  }
+  .dataTables_wrapper .paginate_button.current {
+    background-color: #fff !important;
+    border-color: #9a6b08 !important;
+  }
+  .dataTables_wrapper .paginate_button:hover:not(.disabled),
+  button.dt-button:hover:not(.disabled),
+  div.dt-button:hover:not(.disabled),
+  a.dt-button:hover:not(.disabled) {
+    background-color: #f4f1ea !important;
+    border-color: #9a6b08 !important;
+    color: #303847 !important;
+  }
+</style>
 <script type="text/javascript" src="{{ 'assets/datatables/datatables.min.js' | absolute_url }}"></script>
 
 <table id='{{ include.collection }}-datatable' class='datatable display'></table>

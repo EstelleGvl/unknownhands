@@ -231,8 +231,8 @@ window.ExploreHierarchicalTree = (function() {
               });
 
               const suStyle = isCrossPUSU
-                ? 'margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 3px dashed #ff9800; border-right: 3px dashed #ff9800; margin-top: 0.5rem; border-radius: 0.375rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 6px rgba(255,152,0,0.3); position: relative;'
-                : 'margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: #fffbea; border-left: 3px solid #f4d03f; margin-top: 0.5rem; border-radius: 0.375rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);';
+                ? 'margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: #fff8eb; border-left: 3px dashed #ff9800; border-right: 3px dashed #ff9800; margin-top: 0.5rem; border-radius: 0.2rem; display: flex; align-items: center; gap: 0.5rem; position: relative;'
+                : 'margin-left: 3rem; padding: 0.75rem 0.75rem 0.75rem 1rem; background: #fffbea; border-left: 3px solid #f4d03f; margin-top: 0.5rem; border-radius: 0.2rem; display: flex; align-items: center; gap: 0.5rem;';
 
               const crossPUIndicator = isCrossPUSU
                 ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #ff9800; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">SPANS ${suPUs.length} PUs</div>
@@ -251,8 +251,8 @@ window.ExploreHierarchicalTree = (function() {
             }).join('');
 
             const puStyle = isCrossMSPU
-              ? 'margin-left: 1.5rem; padding: 0.75rem; background: linear-gradient(135deg, #fef6e8 0%, #f4e4c1 100%); border-left: 3px dashed #c4941f; border-right: 3px dashed #c4941f; margin-top: 0.75rem; border-radius: 0.375rem; box-shadow: 0 2px 6px rgba(196, 148, 31,0.3); position: relative;'
-              : 'margin-left: 1.5rem; padding: 0.75rem; background: #ffebee; border-left: 3px solid #e74c3c; margin-top: 0.75rem; border-radius: 0.375rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08);';
+              ? 'margin-left: 1.5rem; padding: 0.75rem; background: #faf6ec; border-left: 3px dashed #c4941f; border-right: 3px dashed #c4941f; margin-top: 0.75rem; border-radius: 0.2rem; position: relative;'
+              : 'margin-left: 1.5rem; padding: 0.75rem; background: #ffebee; border-left: 3px solid #e74c3c; margin-top: 0.75rem; border-radius: 0.2rem;';
 
             const crossMSIndicator = isCrossMSPU
               ? `<div style="position: absolute; top: 0.5rem; right: 0.5rem; background: #c4941f; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.25rem;">SPANS ${puMsList.length} MSS</div>
@@ -275,7 +275,7 @@ window.ExploreHierarchicalTree = (function() {
           }).join('');
 
           return `
-            <div class="manuscript-tree-item" data-ms-id="${msId}" data-ms-title="${ms.title.replace(/"/g, '&quot;')}" style="padding: 1.25rem; background: linear-gradient(135deg, #e3f2fd 0%, #f0f7ff 100%); border-left: 5px solid ${metrics.complexityScore > 100 ? '#e74c3c' : '#3498db'}; margin-bottom: 1.25rem; border-radius: 0.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+            <div class="manuscript-tree-item" data-ms-id="${msId}" data-ms-title="${ms.title.replace(/"/g, '&quot;')}" style="padding: 1.25rem; background: #f7f9fb; border-left: 3px solid ${metrics.complexityScore > 100 ? '#e74c3c' : '#3498db'}; margin-bottom: 1.25rem; border-radius: 0.2rem;">
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
                 <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                   <span style="font-size: 0.9rem; color: #999; font-weight: 700;">MS #${msIdx + 1}</span>
@@ -317,11 +317,11 @@ window.ExploreHierarchicalTree = (function() {
             ${treeHTML}
             ${remainingCount > 0 ? `
               <div style="text-align: center; margin-top: 1.5rem;">
-                <button id="tree-show-more" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #d4af37 0%, #c4941f 100%); color: white; border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">Show More (${remainingCount} remaining)</button>
+                <button id="tree-show-more" class="explore-action-btn explore-action-btn--primary">Show More (${remainingCount} remaining)</button>
               </div>
             ` : displayedTree.length > 10 ? `
               <div style="text-align: center; margin-top: 1.5rem;">
-                <button id="tree-show-less" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%); color: white; border: none; border-radius: 0.375rem; font-weight: 600; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s;">Show Less</button>
+                <button id="tree-show-less" class="explore-action-btn">Show Less</button>
               </div>
             ` : ''}
           </div>

@@ -14,7 +14,11 @@ This module uses manuscript image regions and ALTO HTR exports to isolate recurr
 
 The current public profiles are generated only for scribes whose Heurist records, IIIF manifests, and ALTO transcriptions can be linked reliably enough to produce reviewable grapheme crops. Manuscripts are included when they have one production unit and either one scribal unit, or multiple scribal units with precise folio ranges that can be matched to IIIF canvas labels. Multi-scribe manuscripts are processed by scribal unit so samples from different hands are not mixed.
 
-The profile list below is therefore intentionally conservative. Collaborative manuscripts without mappable folio ranges are excluded for now, because their crops could mix the work of different scribes. Generic low-attribution records labelled as unidentified hands, unidentified women, unidentified nuns, or similar placeholders are also excluded from the public fingerprint pages. The module keeps named women and curated inferred identities, including scholarly labels such as institutional scriptrix groups or numbered nuns identified in secondary scholarship. Use the [quality audit]({{ '/scribal-fingerprints/audit/' | relative_url }}) to review sample counts, missing graphemes, and profiles that need closer checking.
+The profile list below is therefore intentionally conservative. Collaborative manuscripts without mappable folio ranges are excluded for now, because their crops could mix the work of different scribes. Generic low-attribution records labelled as unidentified hands, unidentified women, unidentified nuns, or similar placeholders are also excluded from the public fingerprint pages. The module keeps named women and curated inferred identities, including scholarly labels such as institutional scriptrix groups or numbered nuns identified in secondary scholarship.
+
+127 ALTO and IIIF annotation manuscript folders were available for fingerprint extraction, 131 manuscript search chunks were generated from all searchable ALTO transcriptions, and 73 conservative public scribal fingerprint profiles were produced after excluding generic unidentified hands. Profiles from multi-scribe manuscripts display the folio range used for extraction.
+
+Use the [quality audit]({{ '/scribal-fingerprints/audit/' | relative_url }}) to review sample counts, missing graphemes, and profiles that need closer checking.
 
 <style>
   .fingerprint-tools{
@@ -32,13 +36,22 @@ The profile list below is therefore intentionally conservative. Collaborative ma
     border-radius:.35rem;
     padding:.45rem .55rem;
   }
-  .fingerprint-card{ border:1px solid #e5e5e5; border-radius:.5rem; padding:1rem; height:100%; }
+  .fingerprint-card{ border:1px solid #e5e5e5; border-radius:.2rem; padding:1rem; height:100%; }
   .fingerprint-meta{ color:#666; font-size:.92rem; margin-bottom:.75rem; }
   .fingerprint-tags{ display:flex; flex-wrap:wrap; gap:.35rem; margin:.5rem 0 .75rem; }
-.fingerprint-tags span{ border:1px solid #e2e2e2; border-radius:999px; padding:.15rem .45rem; font-size:.82rem; color:#555; }
+.fingerprint-tags span{ border:1px solid #ddd6c7; border-radius:.15rem; padding:.15rem .4rem; background:#f7f5ef; font-size:.82rem; color:#555; }
   .fingerprint-resource-links{ display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0 1.5rem; }
   .method-grid{ display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:1rem; margin-top:1rem; }
-  .method-block{ border-left:4px solid #d4af37; padding:.75rem 1rem; background:#faf9f5; }
+  .method-block{
+    padding:.8rem 0;
+    color:#4b5260;
+    background:transparent;
+    border:0;
+    border-top:1px solid #b9a46c;
+    border-bottom:1px solid #e4e1db;
+  }
+  .method-block h4{ margin-top:0; color:#303847; font-size:.86rem; letter-spacing:.035em; text-transform:uppercase; }
+  .method-block p:last-child{ margin-bottom:0; }
   @media (max-width: 900px){
     .fingerprint-tools{ grid-template-columns:1fr; }
     .method-grid{ grid-template-columns:1fr; }
@@ -141,10 +154,6 @@ The profile list below is therefore intentionally conservative. Collaborative ma
 
 <div class="method-grid">
   <div class="method-block">
-    <h4>Source Data</h4>
-    <p>Profiles are generated from manuscripts that have IIIF manifests, ALTO exports, and Heurist records linking manuscripts, scribal units, production units, and historical people. During the June 2026 refresh, 127 ALTO and IIIF annotation manuscript folders were available for fingerprint extraction, 131 manuscript search chunks were generated from all searchable ALTO transcriptions, and 73 conservative public scribal fingerprint profiles were produced after excluding generic unidentified hands. Profiles from multi-scribe manuscripts display the folio range used for extraction.</p>
-  </div>
-  <div class="method-block">
     <h4>Image Selection</h4>
     <p>The extractor skips a percentage of the opening and closing pages, filters to the central text area, rejects suspiciously small, large, or distorted crop boxes, and samples across each manuscript so the displayed crops are not all taken from the same page.</p>
   </div>
@@ -153,16 +162,12 @@ The profile list below is therefore intentionally conservative. Collaborative ma
     <p>ALTO glyph coordinates are used first. ALTO word coordinates are used only when glyph coordinates are absent. Each profile displays up to 10 examples per grapheme per manuscript, grouped by source manuscript.</p>
   </div>
   <div class="method-block">
-    <h4>Interpretation</h4>
-    <p>The crops are candidates for paleographical comparison. They should be read as a reviewable visual dossier, not as final proof of scribal identity. Profile pages include optional crop metadata so weak or misplaced samples can be identified during visual quality control.</p>
-  </div>
-  <div class="method-block">
     <h4>Community Review</h4>
-    <p>Individual crops can be flagged for review from each scribe profile. Public submissions are stored for moderation through a Netlify Function; exports of submitted flags require the private <code>FINGERPRINT_FLAGS_ADMIN_TOKEN</code> environment variable.</p>
+    <p>Individual crops can be flagged for review from each scribe profile. Public submissions are stored for moderation.</p>
   </div>
   <div class="method-block">
     <h4>Data Reuse</h4>
-    <p>The crop index is available as CSV and JSON. These files include IIIF crop URLs and metadata rather than bundled image files, so users can inspect or download images directly from the holding institutions' IIIF services.</p>
+    <p>The crop index is available as CSV and JSON. These files include IIIF crop URLs and metadata, so users can inspect or download images directly from the holding institutions' IIIF services.</p>
   </div>
 </div>
 

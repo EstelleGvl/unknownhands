@@ -7,20 +7,17 @@ permalink: /chatbot/
 <div class="container">
   <h1>Ask about the Unknown Hands corpus</h1>
   <p>Ask analytical questions about the medieval manuscripts, scribes, and colophons in our corpus.</p>
-  <p style="font-size: 13px; color: #666; font-style: italic; margin-top: -10px; margin-bottom: 20px;">
-    Please verify AI-generated conclusions against the referenced manuscripts, as automated synthesis may contain errors.
-  </p>
+  <p class="chatbot-editorial-note"><strong>Verification note:</strong> Please verify AI-generated conclusions against the referenced manuscripts, as automated synthesis may contain errors.</p>
   
   <div class="chatbot-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column;">
     
     <!-- Chat log -->
-    <div id="chat-messages" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; min-height: 400px; max-height: 600px; overflow-y: auto; margin-bottom: 20px; background-color: #f9f9f9;">
+    <div id="chat-messages">
       
-      <div class="bot-message" style="margin-bottom: 15px; padding: 12px; background-color: #e3f2fd; border-radius: 8px;">
-        <strong>Assistant:</strong> Hello! I am the AI assistant for the Unknown Hands corpus.<br><br>
-        I have analyzed all available manuscript colophons and texts using Retrieval-Augmented Generation (RAG).<br><br>
+      <div class="bot-message">
+        <strong>Assistant:</strong> I can retrieve and summarize indexed colophon material.<br><br>
         
-        <strong style="color: #007bff;">Ask me analytical questions such as:</strong>
+        <strong>Example questions:</strong>
         <ul style="font-size: 14px; margin-top: 5px; margin-bottom: 0;">
           <li>"How do these female scribes express humility?"</li>
           <li>"How do these scribes describe their sins?"</li>
@@ -31,35 +28,51 @@ permalink: /chatbot/
     </div>
     
     <!-- Input area -->
-    <div style="display: flex; gap: 10px;">
+    <div class="chatbot-input-row">
       <input 
         type="text" 
         id="user-input" 
         placeholder="Ask a question about the colophons..." 
-        style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;"
         onkeypress="if(event.key === 'Enter') sendMessage()"
       >
       <button 
         onclick="sendMessage()" 
-        style="padding: 12px 24px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 500;"
+        class="chatbot-send-btn"
       >
         Send
       </button>
     </div>
     
     <div id="loading-indicator" style="display: none; text-align: center; margin-top: 10px; color: #666; font-style: italic;">
-      <span>Analyzing corpus and generating response...</span>
+      <span>Retrieving sources…</span>
     </div>
 
   </div>
 </div>
 
 <style>
+.chatbot-editorial-note {
+  margin: 1rem 0 1.5rem;
+  padding: 0.8rem 0;
+  color: #4b5260;
+  border-top: 1px solid #9ca8ba;
+  border-bottom: 1px solid #e4e7ec;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+.chatbot-editorial-note strong {
+  margin-right: 0.35rem;
+  color: #303847;
+  font-size: 0.76rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
 .bot-message {
   margin-bottom: 15px;
   padding: 12px;
-  background-color: #e3f2fd;
-  border-radius: 8px;
+  background-color: #f5f6f8;
+  border-left: 2px solid #9ca8ba;
+  border-radius: 2px;
   line-height: 1.5;
 }
 
@@ -67,7 +80,7 @@ permalink: /chatbot/
   margin-bottom: 15px;
   padding: 12px;
   background-color: #f5f5f5;
-  border-radius: 8px;
+  border-radius: 2px;
   text-align: right;
   font-weight: 500;
 }
@@ -95,12 +108,49 @@ permalink: /chatbot/
 }
 .source-badge {
   display: inline-block;
-  background-color: #cce5ff;
-  color: #004085;
+  background-color: #f5f6f8;
+  color: #445064;
+  border: 1px solid #d8dde5;
   padding: 3px 8px;
-  border-radius: 12px;
+  border-radius: 2px;
   margin-right: 5px;
   margin-bottom: 5px;
+}
+#chat-messages {
+  border: 1px solid #d8dde5;
+  border-radius: 2px;
+  padding: 1.25rem;
+  min-height: 400px;
+  max-height: 600px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+.chatbot-input-row {
+  display: flex;
+  gap: 0.625rem;
+}
+#user-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #c8ced8;
+  border-radius: 2px;
+  font-size: 1rem;
+}
+.chatbot-send-btn {
+  padding: 0.75rem 1.5rem;
+  background: #9a6b08;
+  color: #fff;
+  border: 1px solid #9a6b08;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.chatbot-send-btn:hover,
+.chatbot-send-btn:focus-visible {
+  background: #785305;
+  border-color: #785305;
 }
 </style>
 

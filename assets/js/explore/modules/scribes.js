@@ -328,19 +328,19 @@ function renderOverviewTab(mount, data) {
       
       <!-- Key Statistics -->
       <div class="stat-grid explore-metric-grid">
-        <div class="stat-tile explore-metric-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+        <div class="stat-tile explore-metric-card">
           <div class="stat-value">${data.totalScribes}</div>
           <div style="font-size: 0.875rem; opacity: 0.95;">Total Female Scribes</div>
         </div>
-        <div class="stat-tile explore-metric-card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
+        <div class="stat-tile explore-metric-card">
           <div class="stat-value">${data.totalSUs}</div>
           <div style="font-size: 0.875rem; opacity: 0.95;">Total Scribal Units by Women</div>
         </div>
-        <div class="stat-tile explore-metric-card" style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);">
+        <div class="stat-tile explore-metric-card">
           <div class="stat-value">${data.avgSUsPerScribe}</div>
           <div style="font-size: 0.875rem; opacity: 0.95;">Avg SUs per Female Scribe</div>
         </div>
-        <div class="stat-tile explore-metric-card" style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);">
+        <div class="stat-tile explore-metric-card">
           <div class="stat-value">${data.multilingualScribes}</div>
           <div style="font-size: 0.875rem; opacity: 0.95;">Multilingual Female Scribes</div>
         </div>
@@ -397,18 +397,18 @@ function renderUnseenSpeciesTab(mount, data) {
     <div class="mount-with-padding card-panel--wide">
       <div class="flex-space-between" style="margin-bottom:1.5rem;">
         <h2 class="section-title">Unseen Species Analysis</h2>
-        <button id="unseen-species-info" class="chip btn-info">Methodology &amp; References</button>
+        <button id="unseen-species-info" class="explore-action-btn explore-action-btn--secondary explore-action-btn--compact">Method and references</button>
       </div>
       
       <!-- Experiment Selection -->
-      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.5rem;">
+      <div class="explore-panel-card" style="margin-bottom: 1.5rem;">
         <h3 style="margin: 0 0 1rem 0; color: #2c3e50; font-size: 1.125rem;">Select Experiment</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
           <button class="experiment-btn" data-experiment="high-certainty" style="padding: 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; background: white; cursor: pointer; text-align: left; transition: all 0.2s;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Experiment 1</div>
             <div style="font-size: 0.875rem; color: #64748b;">High Certainty Attributions</div>
           </button>
-          <button class="experiment-btn active" data-experiment="entire-corpus" style="padding: 1rem; border: 2px solid #f59e0b; border-radius: 0.5rem; background: #fffbeb; cursor: pointer; text-align: left; transition: all 0.2s; box-shadow: 0 2px 4px rgba(245,158,11,0.2);">
+          <button class="experiment-btn active" data-experiment="entire-corpus" style="padding: 1rem; border: 2px solid #b88916; border-radius: 0.2rem; background: #fff; cursor: pointer; text-align: left; transition: border-color 0.2s;">
             <div style="font-weight: 600; color: #1e293b; margin-bottom: 0.25rem;">Experiment 2</div>
             <div style="font-size: 0.875rem; color: #64748b;">Entire Corpus (Default)</div>
           </button>
@@ -424,7 +424,7 @@ function renderUnseenSpeciesTab(mount, data) {
       </div>
       
       <!-- Results Container -->
-      <div id="unseen-species-results" style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem; border-left: 4px solid #f59e0b;">
+      <div id="unseen-species-results" class="explore-panel-card">
         <div id="unseen-species-content"></div>
       </div>
     </div>
@@ -438,12 +438,10 @@ function renderUnseenSpeciesTab(mount, data) {
       experimentButtons.forEach(b => {
         b.style.border = '2px solid #e2e8f0';
         b.style.background = 'white';
-        b.style.boxShadow = 'none';
         b.classList.remove('active');
       });
       btn.style.border = '2px solid #f59e0b';
       btn.style.background = '#fffbeb';
-      btn.style.boxShadow = '0 2px 4px rgba(245,158,11,0.2)';
       btn.classList.add('active');
       
       // Run the selected experiment
@@ -537,10 +535,10 @@ function renderBrowseTab(mount, data) {
     <div style="padding: 1.5rem; max-width: 1400px; margin: 0 auto;">
       <h2 style="margin-bottom: 1.5rem; color: #1a1a1a;">Browse All Scribes</h2>
       
-      <div style="background: white; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); padding: 1.5rem;">
+      <div class="explore-panel-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
           <h3 style="margin: 0; color: #2c3e50; font-size: 1.25rem;">All Scribes</h3>
-          <button id="export-scribes-csv" class="chip" style="background: #28a745; color: white; padding: 0.5rem 1rem;">
+          <button id="export-scribes-csv" class="explore-action-btn explore-action-btn--secondary explore-action-btn--compact">
             Export CSV
           </button>
         </div>
@@ -913,7 +911,7 @@ function buildScribeProductivityDistribution(distribution) {
           ${label}
         </div>
         <div class="explore-proportion-track" style="height: ${barHeight}px;">
-          <div style="background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%); height: 100%; width: ${percentage}%; border-radius: 0.25rem;"></div>
+          <div style="background:#3f8067;height:100%;width:${percentage}%;border-radius:0.15rem;"></div>
         </div>
         <div class="explore-proportion-value" style="font-size: 0.875rem; font-weight: 600; color: #475569;">
           ${d.scribeCount} · ${percentage.toFixed(1)}% <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">${d.scribeCount === 1 ? 'scribe' : 'scribes'}</span>
@@ -955,7 +953,7 @@ function buildProductivityDistribution(distribution) {
           ${label}
         </div>
         <div class="explore-proportion-track" style="height: ${barHeight}px;">
-          <div style="background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); height: 100%; width: ${percentage}%; border-radius: 0.25rem;"></div>
+          <div style="background:#b88912;height:100%;width:${percentage}%;border-radius:0.15rem;"></div>
         </div>
         <div class="explore-proportion-value" style="font-size: 0.875rem; font-weight: 600; color: #475569;">
           ${d.msCount} · ${percentage.toFixed(1)}% <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">${d.msCount === 1 ? 'manuscript' : 'manuscripts'}</span>
@@ -1374,19 +1372,19 @@ function buildUnseenSpeciesComparison(productivityDist, observed, container, tit
     
     <!-- Key Metrics -->
     <div class="explore-metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Observed Scribes</div>
         <div style="font-size: 2rem; font-weight: 700;">${observed}</div>
       </div>
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Chao1 Estimate</div>
         <div style="font-size: 2rem; font-weight: 700;">${Math.round(chao1.estimate)}</div>
       </div>
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Jackknife Estimate</div>
         <div style="font-size: 2rem; font-weight: 700;">${Math.round(jackknife.estimate)}</div>
       </div>
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Gamma-Poisson Est.</div>
         <div style="font-size: 2rem; font-weight: 700;">${Math.round(gammaPoisson.estimate)}</div>
       </div>
@@ -1399,7 +1397,7 @@ function buildUnseenSpeciesComparison(productivityDist, observed, container, tit
     </div>
     
     <!-- Interpretation -->
-    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #f59e0b; margin-bottom: 1rem;">
+    <div class="editorial-note">
       <div style="font-size: 0.875rem; color: #475569; line-height: 1.6;">
         <strong>Interpretation:</strong> The three estimators provide different estimates of the total scribe population.
         <strong>Chao1</strong> estimates ${Math.round(chao1.estimate)} total scribes (${Math.round(chao1.estimate - observed)} unseen),
@@ -1409,14 +1407,14 @@ function buildUnseenSpeciesComparison(productivityDist, observed, container, tit
     </div>
     
     <!-- Explanation of Differences -->
-    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #f59e0b; margin-bottom: 2rem;">
+    <div class="editorial-note">
       <div style="font-size: 0.875rem; color: #92400e; line-height: 1.6;">
         <strong style="color: #78350f;">Why do estimates differ?</strong><br>
         Each estimator makes different assumptions:<br>
         • <strong>Chao1</strong> (most conservative): Assumes all scribes have equal detection probability. Best when most scribes are rare (many singletons).<br>
         • <strong>Jackknife</strong> (moderate): Accounts for sampling effort and is more robust to sample size. Reliable for well-sampled populations.<br>
         • <strong>Gamma-Poisson</strong> (most liberal): Assumes heterogeneous detection rates (some scribes easier to find). Better for uneven survival rates.<br><br>
-        <strong style="color: #78350f;">Which is most reliable?</strong> For manuscript studies with highly uneven survival (many single-manuscript scribes), <strong>Chao1 is generally preferred</strong> as it's most conservative and has been validated for cultural heritage data (Kestemont et al. 2021). The range between estimators reflects genuine uncertainty about unobserved scribes.
+        No estimator recovers a known historical total. Chao1 gives the most conservative estimate here; the spread between methods shows sensitivity to their assumptions and to uneven documentary survival (Kestemont et al. 2021).
       </div>
     </div>
     
@@ -1471,26 +1469,26 @@ function buildUnseenSpeciesEstimates(productivityDistribution, observedScribes) 
   
   container.innerHTML = `
     <div class="explore-metric-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Observed Scribes</div>
         <div style="font-size: 2rem; font-weight: 700;">${observedScribes}</div>
       </div>
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Estimated Total (Chao1)</div>
         <div style="font-size: 2rem; font-weight: 700;">${Math.round(chao1Estimate)}</div>
         <div style="font-size: 0.75rem; opacity: 0.85; margin-top: 0.25rem;">95% CI: ${Math.round(chao1Lower)}–${Math.round(chao1Upper)}</div>
       </div>
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Estimated Unseen</div>
         <div style="font-size: 2rem; font-weight: 700;">${unseenEstimate}</div>
       </div>
-      <div class="explore-metric-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.25rem; border-radius: 0.5rem;">
+      <div class="explore-metric-card">
         <div style="font-size: 0.75rem; opacity: 0.9; margin-bottom: 0.25rem;">Sample Coverage</div>
         <div style="font-size: 2rem; font-weight: 700;">${coverage}%</div>
       </div>
     </div>
     
-    <div style="background: #fffbeb; padding: 1rem; border-radius: 0.375rem; border-left: 3px solid #f59e0b;">
+    <div class="editorial-note">
       <div style="font-size: 0.875rem; color: #475569; line-height: 1.6;">
         <strong>Interpretation:</strong> Based on the observed distribution of scribe productivity, 
         we estimate there were approximately <strong>${Math.round(chao1Estimate)}</strong> female scribes in total,
@@ -1801,7 +1799,7 @@ function showMethodologyModal(f1, f2, observed, chao1Est, jackknifeEst, gammaPoi
         <p style="margin: 0.5rem 0;">
           The Chao1 estimator uses the frequency of rare species (singletons and doubletons) to estimate total richness.
         </p>
-        <div style="background: #fffbeb; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', monospace; margin: 0.75rem 0; border-left: 3px solid #f59e0b;">
+        <div class="editorial-note" style="font-family:'Courier New',monospace;">
           S<sub>est</sub> = S<sub>obs</sub> + f₁² / (2 × f₂)
         </div>
         <ul style="margin: 0.5rem 0; font-size: 0.875rem;">
@@ -1818,7 +1816,7 @@ function showMethodologyModal(f1, f2, observed, chao1Est, jackknifeEst, gammaPoi
           The Jackknife estimator uses a resampling approach, accounting for sample size effects.
           We use the second-order jackknife when doubletons are available.
         </p>
-        <div style="background: #fff7ed; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', monospace; margin: 0.75rem 0; border-left: 3px solid #fb923c;">
+        <div class="editorial-note" style="font-family:'Courier New',monospace;">
           S<sub>jack2</sub> = S<sub>obs</sub> + f₁(2n-3)/n - f₂(n-2)²/(n(n-1))
         </div>
         <ul style="margin: 0.5rem 0; font-size: 0.875rem;">
@@ -1833,7 +1831,7 @@ function showMethodologyModal(f1, f2, observed, chao1Est, jackknifeEst, gammaPoi
           A mixture model that accounts for heterogeneity in detection probability across species.
           Uses low-frequency counts to estimate total diversity.
         </p>
-        <div style="background: #fefce8; padding: 1rem; border-radius: 0.375rem; font-family: 'Courier New', monospace; margin: 0.75rem 0; border-left: 3px solid #eab308;">
+        <div class="editorial-note" style="font-family:'Courier New',monospace;">
           Uses frequency ratios and gamma distribution parameters
         </div>
         <ul style="margin: 0.5rem 0; font-size: 0.875rem;">
@@ -1863,7 +1861,7 @@ function showMethodologyModal(f1, f2, observed, chao1Est, jackknifeEst, gammaPoi
         </li>
       </ol>
       
-      <div style="background: #f0f9ff; border-left: 3px solid #3b82f6; padding: 1rem; border-radius: 0.375rem; margin-top: 1.5rem;">
+      <div class="editorial-note">
         <p style="margin: 0; font-size: 0.875rem; color: #1e40af;">
           <strong>Note:</strong> Different estimators reflect different assumptions about species diversity and detection probability. 
           The range of estimates provides insight into model uncertainty. Chao1 is most conservative, 
@@ -2110,10 +2108,10 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
       </div>
       <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
         <div style="display: flex; gap: 0.5rem; background: #f1f5f9; padding: 0.375rem; border-radius: 0.5rem;">
-          <button class="collab-layout-toggle-btn is-active" data-layout="radial" style="padding: 0.5rem 1rem; border: none; background: white; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-size: 0.75rem;">
+          <button class="collab-layout-toggle-btn is-active" data-layout="radial" style="padding: 0.5rem 1rem; border: 1px solid #b88916; background: white; border-radius: 0.2rem; font-weight: 600; cursor: pointer; transition: border-color 0.2s; font-size: 0.75rem;">
             Radial
           </button>
-          <button class="collab-layout-toggle-btn" data-layout="force" style="padding: 0.5rem 1rem; border: none; background: transparent; border-radius: 0.375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #64748b; font-size: 0.75rem;">
+          <button class="collab-layout-toggle-btn" data-layout="force" style="padding: 0.5rem 1rem; border: 1px solid transparent; background: transparent; border-radius: 0.2rem; font-weight: 600; cursor: pointer; transition: border-color 0.2s; color: #64748b; font-size: 0.75rem;">
             Force
           </button>
         </div>
@@ -2398,7 +2396,7 @@ function buildCollaborationNetwork(collaborativeManuscripts, collaborations, scr
       layoutBtns.forEach(b => {
         b.classList.toggle('is-active', b === btn);
         b.style.background = b === btn ? 'white' : 'transparent';
-        b.style.boxShadow = b === btn ? '0 1px 3px rgba(0,0,0,0.1)' : 'none';
+        b.style.borderColor = b === btn ? '#b88916' : 'transparent';
         b.style.color = b === btn ? '#1e293b' : '#64748b';
       });
       
@@ -2517,7 +2515,7 @@ function buildInstitutionsChart(institutions) {
         </div>
         <div class="explore-proportion-row" style="grid-template-columns:minmax(60px,1fr) minmax(95px,auto);">
           <div class="explore-proportion-track" style="height:${barHeight}px;">
-            <div style="background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%); height:100%; width:${percentage}%; border-radius:0.25rem;"></div>
+            <div style="background:#b88912;height:100%;width:${percentage}%;border-radius:0.15rem;"></div>
           </div>
           <div class="explore-proportion-value" style="font-size: 0.75rem; color: #64748b;">
             ${inst.scribeCount} · ${percentage.toFixed(1)}% · ${inst.suCount} SUs
@@ -2547,7 +2545,7 @@ function buildCitiesChart(cities) {
         </div>
         <div class="explore-proportion-row" style="grid-template-columns:minmax(60px,1fr) minmax(115px,auto);">
           <div class="explore-proportion-track" style="height:${barHeight}px;">
-            <div style="background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); height:100%; width:${percentage}%; border-radius:0.25rem;"></div>
+            <div style="background:#3b82a0;height:100%;width:${percentage}%;border-radius:0.15rem;"></div>
           </div>
           <div class="explore-proportion-value" style="font-size: 0.75rem; color:#64748b;">
             ${city.scribeCount} · ${percentage.toFixed(1)}% · ${city.institutionCount} institution${city.institutionCount > 1 ? 's' : ''}

@@ -2,63 +2,48 @@
 
 This module provides TF-IDF analysis, PCA visualization, and stylometric comparison for manuscript transcriptions.
 
-## New: Client-Side Analysis (No Server Required!)
+## Client-Side Analysis
 
 The text analysis page now runs **entirely in your browser** using JavaScript. No Python server needed for basic usage!
 
 - Works on any device with a modern browser
 - No installation required
 - Privacy-friendly (data never leaves your computer)
-- Instant results
+- Loads only the manuscript files selected for analysis
 
 Just visit the page and start analyzing: `/text-analysis/`
 
 ## Features
 
 - **TF-IDF Analysis**: Character or word n-gram frequency analysis
-- **PCA Visualization**: 3D scatter plots showing text similarity
-- **Classification**: Automatic scribe/author attribution with accuracy metrics
-- **Feature Analysis**: View most discriminative n-grams per text
+- **PCA Visualization**: 2D or 3D plots of selected text samples
+- **Hierarchical clustering**: Complete-sample dendrograms with configurable distance and linkage
+- **Bootstrap consensus**: `stylo`-style unrooted majority-rule consensus trees assembled from repeated cluster analyses over cumulative MFW and culling settings
+- **Scribal samples**: Attributed scribal units grouped by scribe and linked to their mapped folios
+- **Rolling comparison**: Compare overlapping test windows with two reference corpora using Burrows’ Classic Delta, Eder’s Delta, Argamon’s Linear Delta, Eder’s Simple, cosine, Canberra, Manhattan, or Euclidean distance
+- **Dual rolling views**: Inspect both the signed A-versus-B contrast and the two absolute distance curves
+- **Feature Analysis**: View high-variance n-grams in the selected corpus
 - **Flexible Input**: Use database transcriptions or upload custom texts
 
-## Setup
+## Local Setup
 
-### 1. Install Python Dependencies
-
-```bash
-cd scripts/analysis
-pip install -r requirements.txt
-```
-
-Or if using conda:
-```bash
-conda install flask flask-cors scikit-learn pandas numpy scipy
-```
-
-### 2. Start the API Server
+No Python analysis server is required for the website module. Build and serve the Jekyll site:
 
 ```bash
-python scripts/analysis/api.py
-```
-
-The API will start at `http://localhost:5001`
-
-### 3. Build and Serve Jekyll Site
-
-In another terminal:
-```bash
-jekyll serve
+BUNDLE_IGNORE_CONFIG=1 bundle exec jekyll serve --config _config.yml,_config_dev.yml
 ```
 
 Then visit `http://localhost:4000/unknownhands/text-analysis/`
+
+The Flask files in this directory are retained for experimental and batch workflows; the public page does not call them.
 
 ## Usage
 
 ### Analyzing Database Transcriptions
 
-1. Navigate to **Explore → Text Analysis**
-2. In the "From Database" section, select manuscripts with transcriptions
-3. Click "Load Selected Manuscripts"
+1. Navigate to **Text Analysis**
+2. Open a scribe heading and select one or more mapped scribal samples, or expand **Manuscript text bodies**
+3. Add the selected samples to the corpus
 4. Configure analysis parameters (defaults work well)
 5. Click "Run Analysis"
 
@@ -83,11 +68,23 @@ Then visit `http://localhost:4000/unknownhands/text-analysis/`
 
 - **Min/Max Document Frequency**: Filter out rare or very common features
 
-- **Chunk Size**: Split long texts into chunks (2000 characters typical)
+- **Chunk Size**: Split long texts into word-count chunks (2,000 words is the default)
 
 - **PCA Components**: Number of dimensions (2-3 for visualization)
 
-## API Endpoints
+### Scribal ranges and collaborations
+
+Run `python3 scripts/analysis/build_scribe_text_index.py` after changing scribe profiles, manuscript mappings, or transcription indexes. The generated `assets/analysis/scribe-text-index.json` joins catalogue folio ranges to IIIF canvas labels and then to the page IDs used by the transcription corpus.
+
+User-facing manuscript labels come from the separate holding-institution and call-number columns in `data/manuscripts.csv`; internal `ms-…` slugs remain identifiers only.
+
+All project-supplied samples are canvas-bounded. Whole-text and “main text” attributions begin with the canvas containing f. 1r and end with the last transcribed folio. For repositories that expose the manuscript body as a numbered IIIF sequence between named binding canvases, page 1 through the last transcribed numbered canvas is used. A manuscript without either defensible boundary is omitted from whole-text selection. This avoids silently including covers, pastedowns, flyleaves, rulers, colour cards, and other material outside the foliated body.
+
+For multi-hand manuscripts, only lines attached to canvases inside the mapped range are loaded. If two scribal ranges include the same canvas, that page is excluded from both samples: page-level IIIF annotation or ALTO text cannot separate hands that share a folio. Such pages require line- or region-level hand attribution before they can be assigned safely.
+
+## Optional Experimental Flask API
+
+The following endpoints belong to `api.py`; they are not used by the public Jekyll page. To experiment with them locally, install `requirements.txt` and run `python scripts/analysis/api.py`.
 
 ### `GET /api/health`
 Health check - returns `{"status": "ok"}`
@@ -153,12 +150,14 @@ Run TF-IDF + PCA analysis
 
 ## Example Use Cases
 
-### 1. Scribe Attribution
-Compare known scribes to attribute anonymous manuscripts:
+### 1. Scribe Comparison
+Explore whether an anonymous manuscript resembles reference manuscripts:
 - Load transcriptions from known scribes (Diemut, Scribe A, etc.)
 - Load anonymous manuscript
 - Run analysis with character 4-grams
-- Check which cluster the anonymous text falls into
+- Inspect where the anonymous text falls in the exploratory plot
+
+This visualization is exploratory and does not by itself establish authorship or scribal identity.
 
 ### 2. Historical Period Detection
 Compare texts from different centuries:
@@ -186,9 +185,9 @@ Compare manuscripts from different scriptoria:
 - Check port 5001 isn't in use: `lsof -i :5001`
 
 ### "Could not load manuscripts" Error
-- Ensure API is running: `python scripts/analysis/api.py`
-- Check CORS is enabled (flask-cors installed)
-- Verify transcriptions exist in `assets/search/transcriptions.json`
+- Verify `assets/search/manuscripts/index.json` exists
+- Verify the selected per-manuscript JSON file exists
+- Check the browser network panel for a failed static-file request
 
 ### Analysis Fails
 - Need at least 2 texts
@@ -251,12 +250,13 @@ fig.show()
 
 ## Future Enhancements
 
-- [ ] Rolling stylometry (windowed analysis)
-- [ ] Delta distance metrics
-- [ ] Dendrogram clustering
+- [x] Rolling stylometry (exploratory windowed comparison)
+- [x] Hierarchical cluster analysis
+- [x] Frequency-band bootstrap consensus with node support
 - [ ] Export results (CSV, JSON)
 - [ ] Save/load analysis sessions
-- [ ] Burrows Delta implementation
+- [x] Delta-family distances for rolling comparison and multi-sample clustering
+- [ ] Burrows’ Delta as a validated supervised classifier with manuscript-level train/test separation
 - [ ] Support for more languages
 - [ ] Batch comparison mode
 

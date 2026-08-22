@@ -12,14 +12,14 @@ banner:
 
 # Compare Fingerprints
 
-Use this view to compare two scribes or two manuscripts for the same grapheme. The panels use the same crop metadata as the individual fingerprint profiles.
+Use this view to compare two scribes or two manuscripts for the same grapheme.
 
 <style>
   .compare-tools{ display:grid; grid-template-columns:repeat(5, minmax(140px, 1fr)); gap:.75rem; align-items:end; margin:1.25rem 0; }
   .compare-tools label{ display:block; font-weight:600; font-size:.9rem; margin-bottom:.25rem; }
-  .compare-tools select{ width:100%; border:1px solid #d8d8d8; border-radius:.35rem; padding:.45rem .55rem; }
+  .compare-tools select{ width:100%; border:1px solid #d8d8d8; border-radius:2px; padding:.45rem .55rem; }
   .compare-grid{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; }
-  .compare-panel{ border:1px solid #e2e2e2; border-radius:.5rem; padding:1rem; min-height:240px; }
+  .compare-panel{ border:1px solid #e2e2e2; border-radius:2px; padding:1rem; min-height:240px; }
   .compare-crops{ display:flex; flex-wrap:wrap; gap:.5rem; }
   .compare-crop{ width:104px; border:1px solid #ddd; padding:2px; background:#fff; }
   .compare-crop img{ width:100%; height:92px; object-fit:contain; background:#f5f5f5; display:block; }
