@@ -316,18 +316,20 @@ window.ExploreCodicology = (function() {
 
       mount.querySelector('.codicology-scatter-colour-select')?.addEventListener('change', event => {
         dimensionColorMode = event.target.value;
-        renderMaterials(mount);
+        render('materials', mount);
       });
     }
 
+    const research = window.ExploreCodicologyResearch.create(Core, {controlled, centuries, countries, materials, quireTypes, numeric, resource, esc, known, colors: COLORS});
+
     function renderMaterials(mount) {
-      const pus = Core.DATA.pu || [];
-      const manuscripts = Core.DATA.ms || [];
+      const pus = research.records();
+      const manuscripts = research.manuscripts();
       const materialValues = pus.flatMap(materials);
       const dimensions = manuscripts.map(ms => ({ record: ms, width: numeric(ms, 'Codex width'), height: numeric(ms, 'Codex height') }))
         .filter(item => item.width && item.height);
-      const materialRows = byMembership(pus, centuries, materials)
-        .filter(row => row.label >= 8 && row.label <= 16).sort((a, b) => a.label - b.label);
+      const materialRows = byMembership(pus, pu => research.memberships(pu, 'century').map(Number), materials)
+        .sort((a, b) => a.label - b.label);
       const categories = sortedEntries(countBy(materialValues)).map(([name]) => name);
       const scatter = dimensions;
       const maxH = Math.max(1, ...scatter.map(item => item.height));
@@ -343,7 +345,7 @@ window.ExploreCodicology = (function() {
       const dimensionCategories = item => {
         const relatedPUs = pusByManuscript.get(String(item.record.rec_ID)) || [];
         if (dimensionColorMode === 'century') {
-          return [...new Set(relatedPUs.flatMap(centuries).map(value => `${value}th`))].sort((a, b) => Number(a.replace(/\D/g, '')) - Number(b.replace(/\D/g, '')));
+          return [...new Set(relatedPUs.flatMap(pu => research.memberships(pu, 'century')).map(value => `${value}th`))].sort((a, b) => Number(a.replace(/\D/g, '')) - Number(b.replace(/\D/g, '')));
         }
         if (dimensionColorMode === 'country') {
           return [...new Set(relatedPUs.flatMap(countries))].sort();
@@ -409,10 +411,10 @@ window.ExploreCodicology = (function() {
     }
 
     function renderQuires(mount) {
-      const pus = Core.DATA.pu || [];
+      const pus = research.records();
       const values = pus.flatMap(quireTypes);
       const categories = sortedEntries(countBy(values)).map(([name]) => name);
-      const centuryRows = byMembership(pus, centuries, quireTypes).filter(row => row.label >= 8 && row.label <= 16).sort((a, b) => a.label - b.label);
+      const centuryRows = byMembership(pus, pu => research.memberships(pu, 'century').map(Number), quireTypes).sort((a, b) => a.label - b.label);
       const countryRows = byMembership(pus, countries, quireTypes).sort((a, b) => {
         const total = row => [...row.counts.values()].reduce((sum, value) => sum + value, 0);
         return total(b) - total(a);
@@ -436,8 +438,8 @@ window.ExploreCodicology = (function() {
     }
 
     function renderLayout(mount) {
-      const pus = Core.DATA.pu || [];
-      const manuscripts = Core.DATA.ms || [];
+      const pus = research.records();
+      const manuscripts = research.manuscripts();
       const msDimensions = new Map(manuscripts.map(ms => [String(ms.rec_ID), {
         height: numeric(ms, 'Codex height'), width: numeric(ms, 'Codex width')
       }]));
@@ -472,12 +474,12 @@ window.ExploreCodicology = (function() {
     }
 
     function renderPractices(mount) {
-      const pus = Core.DATA.pu || [];
+      const pus = research.records();
       const rulingValues = pus.flatMap(pu => controlled(pu, ['ruling_type', 'Ruling']));
       const rulingObserved = pus.filter(pu => controlled(pu, ['ruling_type', 'Ruling']).length > 0).length;
       const rulingCategories = sortedEntries(countBy(rulingValues)).map(([name]) => name);
-      const rulingRows = byMembership(pus, centuries, pu => controlled(pu, ['ruling_type', 'Ruling']))
-        .filter(row => row.label >= 8 && row.label <= 16).sort((a, b) => a.label - b.label);
+      const rulingRows = byMembership(pus, pu => research.memberships(pu, 'century').map(Number), pu => controlled(pu, ['ruling_type', 'Ruling']))
+        .sort((a, b) => a.label - b.label);
       const booleanStats = ['Catchwords', 'Signatures'].map(label => {
         const field = label === 'Catchwords' ? 'catchwords' : 'signatures';
         const observations = pus.map(pu => explicitBoolean(pu, field)).filter(value => value !== null);
@@ -512,10 +514,15 @@ window.ExploreCodicology = (function() {
 
     function render(tab, mount) {
       if (!mount) return;
-      if (tab === 'materials') renderMaterials(mount);
+      if (tab === 'research') mount.innerHTML = research.content();
+      else if (tab === 'materials') renderMaterials(mount);
       else if (tab === 'quires') renderQuires(mount);
       else if (tab === 'layout') renderLayout(mount);
       else if (tab === 'practices') renderPractices(mount);
+      if (tab !== 'research') mount.querySelectorAll('.codicology-card').forEach(section => {
+        section.querySelector('.explore-viz-card-header')?.insertAdjacentHTML('afterend', `<p class="explore-chart-note">Sample: ${esc(research.describe())}</p>`);
+      });
+      research.attach(mount, () => render(tab, mount), tab);
     }
 
     return { render };

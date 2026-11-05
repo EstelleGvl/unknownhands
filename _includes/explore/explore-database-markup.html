@@ -74,7 +74,18 @@
             </label>
             <button id="advanced-add-condition" class="chip" type="button">Add condition</button>
           </div>
-          <p class="muted">Add conditions to a record, then follow a field or relationship to another record. You can keep adding steps or branches. All branches must match; conditions within a step apply to the same record. Relationship direction follows the catalogue’s source and target records.</p>
+          <details class="advanced-search-help">
+            <summary>How to use advanced search</summary>
+            <ol>
+              <li><strong>Choose what to return.</strong> For example, choose Manuscripts to get a list of manuscripts.</li>
+              <li><strong>Add conditions</strong> to describe the record you want: choose a field, how to match it, and a value.</li>
+              <li><strong>Follow a relationship</strong> to search a connected record. Choose a link, click Follow relationship, then add conditions to the new step. You can repeat this as often as you need.</li>
+              <li><strong>Click Apply advanced search</strong> to see the results. After changing your search, click Apply again.</li>
+            </ol>
+            <p><strong>Example:</strong> to find manuscripts containing a text by a female author, start with Manuscripts, follow the Manuscript field to Production Units, then Contains to Texts, then author of to Historical People. At the person step, set Gender to equals Female.</p>
+            <p><strong>Choosing a direction:</strong> links work both ways. Source → target follows the catalogue’s stored link; target → source follows it back. For example, Manuscript (target → source) takes you from a manuscript to its production units.</p>
+            <p><strong>Combining conditions:</strong> All or Any applies to conditions within one step. Those conditions describe the same record. Adding several relationships from a step creates branches; every branch must match. For example, put catchwords on the PU step and genre on its text step to keep them connected.</p>
+          </details>
           <div id="advanced-condition-list" class="advanced-condition-list"></div>
           <div class="advanced-search-actions">
             <span id="advanced-search-status" class="muted"></span>
@@ -415,6 +426,7 @@
           <button type="button" class="tree-tab-btn" data-tab="quires">Quire Construction</button>
           <button type="button" class="tree-tab-btn" data-tab="layout">Page Layout</button>
           <button type="button" class="tree-tab-btn" data-tab="practices">Production Practices</button>
+          <button type="button" class="tree-tab-btn" data-tab="research">Research Comparisons</button>
         </div>
         <div class="viz-body explore-module-content explore-module-body explore-tool-body">
           <section id="tree-structure-panel">

@@ -2344,6 +2344,12 @@ html.embed-mode svg {
 }
 
 /* A path step scopes its conditions and branches to one catalogue record. */
+.advanced-search-help{margin:.9rem 0;border:1px solid #d8dde5;border-radius:.5rem;padding:.65rem .8rem;}
+.advanced-search-help summary{cursor:pointer;font-weight:600;}
+.advanced-search-help summary:focus-visible{outline:2px solid #2563eb;outline-offset:4px;}
+.advanced-search-help p,.advanced-search-help ol{margin:.7rem 0 0;line-height:1.6;}
+.advanced-search-help ol{padding-left:1.4rem;}
+.advanced-search-help li+li{margin-top:.35rem;}
 .path-step{border:1px solid #d8dde5;border-radius:.5rem;padding:.75rem;min-width:0;background:#fff;}
 .path-head,.path-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
 .path-head{margin-bottom:.65rem;}
@@ -2355,3 +2361,24 @@ html.embed-mode svg {
 .path-step .advanced-condition{grid-template-columns:minmax(100px,1fr) minmax(100px,1fr) minmax(100px,1fr) auto;}
 .path-edge{flex:1;}
 @media(max-width:900px){.path-step .advanced-condition{grid-template-columns:1fr;}.path-children{margin-left:0;padding-left:.4rem;}}
+
+.codicology-research-controls{border:1px solid #d8dde5;border-radius:.6rem;background:#f8faf9;padding:1rem;margin-bottom:1.5rem;}
+.codicology-research-controls h2{margin:0 0 .5rem;font-size:1.25rem;}
+.codicology-research-controls fieldset{border:1px solid #d8dde5;border-radius:.4rem;padding:.65rem;margin:.8rem 0;}
+.codicology-century-options,.codicology-research-actions{display:flex;flex-wrap:wrap;gap:.65rem;align-items:end;}
+.codicology-century-options label{display:flex;align-items:center;gap:.35rem;padding:.2rem .4rem;}
+.codicology-research-actions{margin:.8rem 0;}
+.codicology-research-actions label,.codicology-research-controls>label{display:flex;flex-direction:column;gap:.3rem;font-weight:600;}
+.codicology-research-actions select,.codicology-research-controls select{max-width:100%;min-width:0;padding:.5rem;border:1px solid #cbd5e1;border-radius:.3rem;background:white;font:inherit;}
+.codicology-research-actions button,.codicology-filter-row button{padding:.5rem .75rem;border:1px solid #b9c9c5;border-radius:.3rem;background:white;color:#134e4a;cursor:pointer;font:inherit;}
+.codicology-filter-row{display:flex;gap:.75rem;align-items:center;margin:.5rem 0;}
+.codicology-research-controls details summary{cursor:pointer;font-weight:600;}
+.codicology-research-controls details p{line-height:1.6;max-width:90ch;}
+.codicology-boxplot{width:100%;min-width:650px;font-size:11px;}
+.codicology-research-scatter{width:100%;height:auto;font-size:11px;}
+.codicology-research-scatter circle:focus{stroke:#111827;stroke-width:2;outline:none;}
+#codicology-research-comparison .codicology-bar-row{margin:.7rem 0;}
+#codicology-research-comparison caption{padding:.65rem;text-align:left;font-weight:600;}
+@media(max-width:600px){.codicology-research-actions>label{width:100%;}.codicology-research-actions select{width:100%;}}
+.codicology-prevalence-row{display:grid;grid-template-columns:minmax(90px,1fr) minmax(100px,4fr) minmax(110px,1fr);gap:.65rem;align-items:center;margin:.35rem 0;font-size:.875rem;}
+@media(max-width:600px){.codicology-prevalence-row{grid-template-columns:1fr;}}

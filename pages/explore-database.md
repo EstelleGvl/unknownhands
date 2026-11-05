@@ -67,6 +67,7 @@ window.ExploreHeadConfig = {
 <script src="{{ '/assets/js/explore/modules/timeline.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/network.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/analytics.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/explore/modules/codicology-research.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/codicology.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/hierarchical-tree.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/multilingualism.js' | relative_url }}"></script>
