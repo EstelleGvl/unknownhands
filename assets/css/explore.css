@@ -2382,3 +2382,20 @@ html.embed-mode svg {
 @media(max-width:600px){.codicology-research-actions>label{width:100%;}.codicology-research-actions select{width:100%;}}
 .codicology-prevalence-row{display:grid;grid-template-columns:minmax(90px,1fr) minmax(100px,4fr) minmax(110px,1fr);gap:.65rem;align-items:center;margin:.35rem 0;font-size:.875rem;}
 @media(max-width:600px){.codicology-prevalence-row{grid-template-columns:1fr;}}
+
+/* Lead with a comparison and period; disclose research controls on demand. */
+.codicology-research-controls{background:#fafbf9;padding:.85rem 1rem;margin-bottom:1rem;}
+.codicology-sample-heading{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem 1.25rem;}
+.codicology-sample-heading label{display:flex;align-items:center;gap:.65rem;font-weight:600;}
+.codicology-sample-heading [role="status"]{margin-left:auto;color:#52615c;font-size:.9rem;}
+.codicology-sample-heading button{border:0;background:transparent;color:#47675d;text-decoration:underline;cursor:pointer;font:inherit;font-size:.875rem;}
+.codicology-disclosure{margin:.75rem 0;border-top:1px solid #e2e8e5;padding-top:.65rem;}
+.codicology-disclosure>summary{cursor:pointer;color:#34594c;font-weight:600;font-size:.9rem;}
+.codicology-disclosure>summary:focus-visible{outline:2px solid #2563eb;outline-offset:4px;}
+.codicology-disclosure[open]>summary{margin-bottom:.75rem;}
+.codicology-disclosure .codicology-disclosure{margin-left:.6rem;}
+.codicology-comparison-picker{margin:.75rem 0 1rem;}
+.codicology-comparison-picker label{display:flex;flex-direction:column;gap:.4rem;font-weight:600;}
+.codicology-comparison-picker select{width:100%;max-width:40rem;border:1px solid #b9c9c5;border-radius:.4rem;padding:.7rem;background:#fff;font:inherit;color:#163e32;}
+.codicology-sample-description{margin:.6rem 0 0;font-size:.85rem;}
+@media(max-width:600px){.codicology-sample-heading [role="status"]{margin-left:0;}.codicology-sample-heading label{width:100%;}.codicology-sample-heading select{flex:1;}}

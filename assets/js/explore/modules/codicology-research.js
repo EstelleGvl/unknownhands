@@ -2,7 +2,7 @@
 window.ExploreCodicologyResearch = (function() {
   const UNKNOWN = 'Unknown / unrecorded';
   function create(Core, H) {
-    const state = {centuries:null, dating:'possible', filters:[], row:'century', column:'material', metric:'count', scale:'row', missing:'exclude', x:'pageSize', y:'blank', facet:'none', filterField:'material'};
+    const state = {centuries:null, dating:'possible', filters:[], row:'century', column:'material', metric:'count', scale:'row', missing:'exclude', x:'pageSize', y:'blank', facet:'none', filterField:'material', preset:'chronology', disclosures:{}};
     const {controlled, centuries, countries, materials, quireTypes, numeric, resource, esc, known} = H;
     const unique = values => [...new Set(values)];
     const all = () => Core.DATA.pu || [];
@@ -124,18 +124,38 @@ window.ExploreCodicologyResearch = (function() {
       const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
     }
     const cohortDescription = () => `${state.centuries===null?'All centuries (including undated)':state.centuries.length?'Centuries '+state.centuries.join(', '):'No centuries selected'}; ${state.dating==='single'?'single-century dating only':'all plausible centuries'}; ${[...new Set(state.filters.map(f=>f.field))].map(field=>`${dims.get(field)?.label} in (${state.filters.filter(f=>f.field===field).map(f=>f.value).join(' or ')})`).join('; ') || 'no additional filters'}`;
+    const presets = {
+      chronology:{label:'How do materials change over time?',settings:['century','material','count']},
+      region:{label:'How do materials vary by country?',settings:['country','material','count']},
+      size:{label:'Does page size vary by material?',settings:['material','all','pageSize']},
+      margins:{label:'Do margins vary by material?',settings:['material','all','blank']},
+      quires:{label:'How are quires related to material?',settings:['quire','material','count']},
+      quireSize:{label:'How do quire size groups compare?',settings:['quireSize','material','count']},
+      texts:{label:'Which text subgenres use each material?',settings:['subgenre','material','count']}
+    };
+    const disclosure = name => `data-disclosure="${name}"${state.disclosures[name]?' open':''}`;
+    function selectComparison(name) {
+      state.preset=name;
+      if (presets[name]) {
+        [state.row,state.column,state.metric]=presets[name].settings;
+        state.scale=name==='texts'?'columnUnits':'row';
+      } else state.disclosures.custom=true;
+    }
     function toolbar() {
       refreshDimensions();
       const centuryOptions=sorted(all().flatMap(pu=>centuries(pu).map(String))).map(Number);
       return `<section class="codicology-research-controls" aria-label="Codicology research filters">
-        <h2>Choose your research sample</h2><p>These filters apply to all four codicology views and Research Comparisons. The Structure Explorer keeps its own controls.</p>
+        <div class="codicology-sample-heading"><label>Period <select data-period>${options([['all','All centuries'],['late','14th–16th centuries'],['custom','Choose centuries…']],state.centuries===null?'all':state.centuries.join(',')==='14,15,16'?'late':'custom')}</select></label><span role="status">${records().length} of ${all().length} Production Units</span><button type="button" data-reset-sample>Reset filters</button></div>
+        <details class="codicology-disclosure codicology-sample-refinements" ${disclosure('sample')}><summary>Refine sample${state.filters.length ? ` (${state.filters.length} active filters)` : ''}</summary>
+        <details class="codicology-disclosure" ${disclosure('centuries')}><summary>Choose individual centuries</summary>
         <fieldset><legend>Centuries</legend><div class="codicology-century-options">${centuryOptions.map(c=>`<label><input type="checkbox" data-century="${c}"${state.centuries===null || state.centuries.includes(c)?' checked':''}> ${c}</label>`).join('')}</div>
-        <div class="codicology-research-actions"><button type="button" data-preset="all">All / include undated</button><button type="button" data-preset="late">14th–16th centuries</button><button type="button" data-preset="none">Clear centuries</button></div></fieldset>
+        <div class="codicology-research-actions"><button type="button" data-preset="all">All / include undated</button><button type="button" data-preset="late">14th–16th centuries</button><button type="button" data-preset="none">Clear centuries</button></div></fieldset></details>
+        <details class="codicology-disclosure" ${disclosure('filters')}><summary>More filters${state.filters.length ? ` (${state.filters.length} active)` : ''}</summary>
         <label>Uncertain dates <select data-setting="dating">${options([['possible','Include every plausible century'],['single','Single-century dating only']],state.dating)}</select></label>
         <div class="codicology-filter-list">${state.filters.map((f,i)=>`<div class="codicology-filter-row"><span>${esc(dims.get(f.field)?.label)} = ${esc(f.value)}</span><button type="button" data-remove-filter="${i}" aria-label="Remove ${esc(dims.get(f.field)?.label)} filter">Remove</button></div>`).join('')}</div>
-        <div class="codicology-research-actions"><label>Filter variable <select data-filter-field>${options(dimOptions().filter(([key])=>key!=='century' && key!=='all'),state.filterField)}</select></label><label>Value <select data-filter-value></select></label><button type="button" data-add-filter>Add filter</button><button type="button" data-reset-sample>Reset sample</button></div>
-        <p role="status"><strong>${records().length} / ${all().length} Production Units selected.</strong> ${esc(cohortDescription())}</p>
-        <details><summary>How counts and missing values work</summary><p>Different filter variables are combined with AND; several values of the same variable are combined with OR. Text genre and subgenre filters must match the same linked text. A Production Unit is counted once per table cell, regardless of how many texts give it that category. Multiple plausible centuries or countries contribute to every matching category; totals across categories can therefore exceed the number of distinct units. Single-century mode excludes multi-century and undated records.</p><p>Numerical comparisons use Production Units. Page-based comparisons require one unambiguous linked Manuscript; units linked to several Manuscripts are excluded from these measurements. Page dimensions recur when it has several selected Production Units. Missing or non-positive measurements are excluded. Blank-page fraction requires text height and width to fit within the manuscript page; it is an area estimate, not a measurement of actual blank space. Quire size groups use fewer than 4 bifolia (small), 4 (standard), 5 or more (large); Varia is separate, and folios or fragments remain Other. Results describe the current catalogue, which may differ from the paper’s dataset.</p></details>
+        <div class="codicology-research-actions"><label>Filter variable <select data-filter-field>${options(dimOptions().filter(([key])=>key!=='century' && key!=='all'),state.filterField)}</select></label><label>Value <select data-filter-value></select></label><button type="button" data-add-filter>Add filter</button></div>
+        </details><p class="explore-chart-note codicology-sample-description">${esc(cohortDescription())}. Applies across the codicology tabs.</p>
+        <details class="codicology-disclosure" ${disclosure('methods')}><summary>About the data and counting methods</summary><p>Different filter variables are combined with AND; several values of the same variable are combined with OR. Text genre and subgenre filters must match the same linked text. A Production Unit is counted once per table cell, regardless of how many texts give it that category. Multiple plausible centuries or countries contribute to every matching category; totals across categories can therefore exceed the number of distinct units. Single-century mode excludes multi-century and undated records.</p><p>Numerical comparisons use Production Units. Page-based comparisons require one unambiguous linked Manuscript; units linked to several Manuscripts are excluded from these measurements. Page dimensions recur when it has several selected Production Units. Missing or non-positive measurements are excluded. Blank-page fraction requires text height and width to fit within the manuscript page; it is an area estimate, not a measurement of actual blank space. Quire size groups use fewer than 4 bifolia (small), 4 (standard), 5 or more (large); Varia is separate, and folios or fragments remain Other. Results describe the current catalogue, which may differ from the paper’s dataset.</p></details></details>
       </section>`;
     }
     function table(result) {
@@ -201,17 +221,19 @@ window.ExploreCodicologyResearch = (function() {
     function content() {
       refreshDimensions();
       const result=comparison();
-      return `<header class="codicology-intro"><h2>Research Comparisons</h2><p>Compare materials, chronology, regional production, quire construction, textual contents and page format within your selected sample.</p></header>
-      <details class="advanced-search-help"><summary>How to compare variables</summary><p>Choose a sample above, then use a preset or select your own rows and columns. Choose Production Unit counts for a cross-tabulation, or a numerical measure for box plots and summary statistics. The paired-measurement plot below lets you choose two measurements and split the plot into panels. Every change updates the results immediately; CSV downloads preserve your sample description.</p></details>
-      <div class="codicology-research-actions" aria-label="Comparison presets"><span>Start with:</span><button type="button" data-comparison-preset="chronology">Materials over time</button><button type="button" data-comparison-preset="region">Regional materials</button><button type="button" data-comparison-preset="size">Size by material</button><button type="button" data-comparison-preset="margins">Margins by material</button><button type="button" data-comparison-preset="quires">Quires and material</button><button type="button" data-comparison-preset="quireSize">Quire size groups</button><button type="button" data-comparison-preset="texts">Text subgenres and material</button></div>
+      return `<header class="codicology-intro"><h2>Compare manuscript features</h2><p>Choose a question to explore. Adjust the period above to focus your comparison.</p></header>
+      <div class="codicology-comparison-picker"><label>What would you like to explore? <select data-comparison-select>${options([...Object.entries(presets).map(([key,preset])=>[key,preset.label]),['custom','Build a custom comparison…']],state.preset)}</select></label></div>
+      <details class="codicology-disclosure" ${disclosure('custom')}><summary>Customise this comparison</summary>
       <div class="codicology-research-actions"><label>Rows <select data-setting="row">${options(dimOptions(),state.row)}</select></label><label>Columns <select data-setting="column">${options(dimOptions(),state.column)}</select></label><label>Measure <select data-setting="metric">${options([['count','Production Unit counts'],...measureOptions()],state.metric)}</select></label><label>Table display <select data-setting="scale">${options([['count','Counts'],['row','Counts + row %'],['column','Counts + column %'],['columnUnits','Counts + column PU prevalence %'],['total','Counts + all-cell %']],state.scale)}</select></label><label>Missing categories <select data-setting="missing">${options([['exclude','Exclude'],['include','Show unknown / unrecorded']],state.missing)}</select></label></div>
-      <section id="codicology-research-comparison" class="explore-visualization-card"><div class="explore-viz-card-header"><h3>${esc(dims.get(state.row).label)} × ${esc(dims.get(state.column).label)}</h3>${Core.createExportButton('codicology-research-comparison','codicology-comparison.png')}</div><p>${esc(cohortDescription())}</p><p><strong>${result.included} / ${result.total} distinct selected Production Units included;</strong> ${result.total-result.included} excluded for missing categories or measurements.</p>${chart(result)}${table(result)}${numericTable(result)}<p class="explore-chart-note">Percentages use category memberships: row % divides by all cells in that row; column % by all cells in that column; all-cell % by all table cells. Multi-valued categories can repeat units across cells. Zero means observed count zero; — means no numerical observation. Column PU prevalence % instead divides by distinct units in that column with any recorded row category, as in the paper’s subgenre comparison. Numerical tables report medians, not percentages.</p></section>
-      <div class="codicology-research-actions"><button type="button" data-export-table>Download comparison CSV</button><button type="button" data-export-records>Download selected records CSV</button></div>
-      <section id="codicology-research-scatter" class="explore-visualization-card"><div class="explore-viz-card-header"><h3>Explore paired measurements</h3>${Core.createExportButton('codicology-research-scatter','codicology-measurements.png')}</div><div class="codicology-research-actions"><label>X <select data-setting="x">${options(measureOptions(),state.x)}</select></label><label>Y <select data-setting="y">${options(measureOptions(),state.y)}</select></label><label>Panels <select data-setting="facet">${options([['none','One panel'],...dimOptions()],state.facet)}</select></label></div><p>${esc(cohortDescription())}</p>${scatter(records())}</section>
-      <details class="codicology-record-inspection"><summary>Inspect selected Production Units (${records().length})</summary><p>The first 50 units are listed below. Download selected records CSV for the complete sample and measurements. Record links open in a new tab.</p><div class="codicology-table-wrap"><table class="codicology-matrix"><thead><tr><th>Production Unit</th><th>Century</th><th>Material</th><th>Country</th><th>Manuscript IDs</th></tr></thead><tbody>${records().slice(0,50).map(pu=>`<tr><th scope="row"><a href="?mode=browse&amp;type=pu&amp;id=${encodeURIComponent(pu.rec_ID)}" target="_blank" rel="noopener">${esc(pu.rec_Title || pu.rec_ID)}</a></th><td>${esc(memberships(pu,'century',false).join(', ') || UNKNOWN)}</td><td>${esc(materials(pu).join(', ') || UNKNOWN)}</td><td>${esc(countries(pu).join(', ') || UNKNOWN)}</td><td>${esc(manuscriptIds(pu).join(', ') || '—')}</td></tr>`).join('')}</tbody></table></div></details>`;
+      </details><section id="codicology-research-comparison" class="explore-visualization-card"><div class="explore-viz-card-header"><h3>${esc(dims.get(state.row).label)} × ${esc(dims.get(state.column).label)}</h3>${Core.createExportButton('codicology-research-comparison','codicology-comparison.png')}</div><p>${esc(cohortDescription())}</p><p><strong>${result.included} / ${result.total} distinct selected Production Units included;</strong> ${result.total-result.included} excluded for missing categories or measurements.</p>${chart(result)}</section>
+      <details class="codicology-disclosure" ${disclosure('table')}><summary>View data table and download</summary>${table(result)}${numericTable(result)}<p class="explore-chart-note">Percentages use category memberships: row % divides by all cells in that row; column % by all cells in that column; all-cell % by all table cells. Multi-valued categories can repeat units across cells. Zero means observed count zero; — means no numerical observation. Column PU prevalence % instead divides by distinct units in that column with any recorded row category, as in the paper’s subgenre comparison. Numerical tables report medians, not percentages.</p>
+      <div class="codicology-research-actions"><button type="button" data-export-table>Download comparison CSV</button></div></details>
+      <details class="codicology-disclosure" ${disclosure('tools')}><summary>More research tools</summary><details class="codicology-disclosure" ${disclosure('scatter')}><summary>Compare two measurements</summary><section id="codicology-research-scatter" class="explore-visualization-card"><div class="explore-viz-card-header"><h3>Explore paired measurements</h3>${Core.createExportButton('codicology-research-scatter','codicology-measurements.png')}</div><div class="codicology-research-actions"><label>X <select data-setting="x">${options(measureOptions(),state.x)}</select></label><label>Y <select data-setting="y">${options(measureOptions(),state.y)}</select></label><label>Panels <select data-setting="facet">${options([['none','One panel'],...dimOptions()],state.facet)}</select></label></div><p>${esc(cohortDescription())}</p>${scatter(records())}</section></details>
+      <details class="codicology-record-inspection codicology-disclosure" ${disclosure('records')}><summary>Inspect selected Production Units (${records().length})</summary><p>The first 50 units are listed below. Download selected records CSV for the complete sample and measurements. Record links open in a new tab.</p><div class="codicology-research-actions"><button type="button" data-export-records>Download selected records CSV</button></div><div class="codicology-table-wrap"><table class="codicology-matrix"><thead><tr><th>Production Unit</th><th>Century</th><th>Material</th><th>Country</th><th>Manuscript IDs</th></tr></thead><tbody>${records().slice(0,50).map(pu=>`<tr><th scope="row"><a href="?mode=browse&amp;type=pu&amp;id=${encodeURIComponent(pu.rec_ID)}" target="_blank" rel="noopener">${esc(pu.rec_Title || pu.rec_ID)}</a></th><td>${esc(memberships(pu,'century',false).join(', ') || UNKNOWN)}</td><td>${esc(materials(pu).join(', ') || UNKNOWN)}</td><td>${esc(countries(pu).join(', ') || UNKNOWN)}</td><td>${esc(manuscriptIds(pu).join(', ') || '—')}</td></tr>`).join('')}</tbody></table></div></details></details>`;
     }
     function attach(mount,rerender,tab) {
       const host=document.createElement('div');host.innerHTML=toolbar();mount.prepend(host);
+      mount.querySelectorAll('[data-disclosure]').forEach(element=>{element.addEventListener('toggle',()=>{if(element.isConnected)state.disclosures[element.dataset.disclosure]=element.open;});});
       const values=()=>{
         const key=host.querySelector('[data-filter-field]').value;
         host.querySelector('[data-filter-value]').innerHTML=options([...sorted(all().flatMap(pu=>memberships(pu,key,false))),UNKNOWN].map(v=>[v,v]),'');
@@ -219,19 +241,20 @@ window.ExploreCodicologyResearch = (function() {
       host.querySelector('[data-filter-field]').addEventListener('change',event=>{state.filterField=event.target.value;values();});
       mount.onchange=event=>{
         const setting=event.target.dataset.setting;
-        if(setting){state[setting]=event.target.value;rerender();}
-        if(event.target.dataset.century){state.centuries=[...host.querySelectorAll('[data-century]:checked')].map(input=>Number(input.dataset.century));rerender();}
+        if(event.target.hasAttribute('data-comparison-select')){selectComparison(event.target.value);rerender();}
+        if(event.target.hasAttribute('data-period')){
+          state.centuries=event.target.value==='all'?null:event.target.value==='late'?[14,15,16]:sorted(all().flatMap(pu=>centuries(pu).map(String))).map(Number);
+          state.disclosures.centuries=event.target.value==='custom';if(state.disclosures.centuries)state.disclosures.sample=true;rerender();
+        }
+        if(setting){state[setting]=event.target.value;if(['row','column','metric'].includes(setting))state.preset='custom';rerender();}
+        if(event.target.dataset.century){state.disclosures.centuries=true;state.centuries=[...host.querySelectorAll('[data-century]:checked')].map(input=>Number(input.dataset.century));rerender();}
       };
       mount.onclick=event=>{
         const button=event.target.closest('button');if(!button)return;
-        if(button.dataset.comparisonPreset){
-          const presets={chronology:['century','material','count'],region:['country','material','count'],size:['material','all','pageSize'],margins:['material','all','blank'],quires:['quire','material','count'],quireSize:['quireSize','material','count'],texts:['subgenre','material','count']};
-          [state.row,state.column,state.metric]=presets[button.dataset.comparisonPreset];state.scale=button.dataset.comparisonPreset==='texts'?'columnUnits':'row';rerender();
-        }
         if(button.dataset.preset){state.centuries=button.dataset.preset==='all'?null:button.dataset.preset==='late'?[14,15,16]:[];rerender();}
-        if(button.hasAttribute('data-add-filter')){state.filters.push({field:host.querySelector('[data-filter-field]').value,value:host.querySelector('[data-filter-value]').value});rerender();}
+        if(button.hasAttribute('data-add-filter')){state.disclosures.filters=true;state.filters.push({field:host.querySelector('[data-filter-field]').value,value:host.querySelector('[data-filter-value]').value});rerender();}
         if(button.hasAttribute('data-remove-filter')){state.filters.splice(Number(button.dataset.removeFilter),1);rerender();}
-        if(button.hasAttribute('data-reset-sample')){state.centuries=null;state.dating='possible';state.filters=[];rerender();}
+        if(button.hasAttribute('data-reset-sample')){state.centuries=null;state.dating='possible';state.filters=[];state.disclosures.sample=false;state.disclosures.centuries=false;state.disclosures.filters=false;rerender();}
         if(button.hasAttribute('data-export-table')){
           const result=comparison(),rows=[['Sample',cohortDescription()],['Rows',dims.get(state.row).label],['Columns',dims.get(state.column).label],['Measure',state.metric==='count'?'Production Units':measures.get(state.metric).label],['Included distinct PUs',result.included],['Selected PUs',result.total],['Counting','Distinct PU per cell; multiple memberships across cells'],['Row','Column','n','Row %','Column %','All-cell %','Column distinct PUs','Column PU prevalence %','Min','Q1','Median','Q3','Max']];
           const total=[...result.cells.values()].reduce((sum,cell)=>sum+cell.size,0);
@@ -242,7 +265,7 @@ window.ExploreCodicologyResearch = (function() {
           ...records().map(pu=>[pu.rec_ID,pu.rec_Title,manuscriptIds(pu).join('; '),centuries(pu).join('; '),...dimOptions().filter(([k])=>k!=='century').map(([k])=>memberships(pu,k,false).join('; ')),...measureOptions().map(([k])=>measures.get(k).value(pu))])]);
       };
     }
-    return {describe:cohortDescription,state,records,manuscripts,active,content,attach,comparison,summarize,texts,memberships,measures,dims};
+    return {toolbar,selectComparison,describe:cohortDescription,state,records,manuscripts,active,content,attach,comparison,summarize,texts,memberships,measures,dims};
   }
   return {create};
 })();

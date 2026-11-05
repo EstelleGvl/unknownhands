@@ -64,3 +64,11 @@ const ambiguous={rec_ID:'ambiguous',details:[detail('Manuscript',{id:'m1'}),deta
 IDX.ms.m1={details:[detail('Codex height',200),detail('Codex width',150)]};IDX.ms.m2={details:[detail('Codex height',500),detail('Codex width',300)]};
 assert.equal(research.measures.get('pageSize').value(ambiguous),null,'Do not choose arbitrary dimensions when a PU spans manuscripts');
 console.log('PASS: page measurements exclude ambiguous multiple-manuscript links.');
+research.state.centuries=[14,15,16];research.state.filters=[];research.state.disclosures={};
+research.selectComparison('size');assert.equal(research.state.metric,'pageSize');assert.equal(research.state.row,'material');assert.equal(research.state.centuries.join(','),'14,15,16');
+research.selectComparison('texts');assert.equal(research.state.scale,'columnUnits');
+research.selectComparison('custom');assert.equal(research.state.disclosures.custom,true);
+research.state.disclosures={};research.selectComparison('chronology');
+assert(!/<details[^>]*\sopen(?:\s|>)/.test(research.content()),'Additional tools start collapsed');
+fs.writeFileSync('/private/tmp/codicology-simplified.html',research.toolbar()+research.content());
+console.log('PASS: question presets preserve the selected sample; custom controls open on request; additional tools start collapsed.');
