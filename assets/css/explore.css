@@ -2342,3 +2342,16 @@ html.embed-mode svg {
     padding: 0.75rem;
   }
 }
+
+/* A path step scopes its conditions and branches to one catalogue record. */
+.path-step{border:1px solid #d8dde5;border-radius:.5rem;padding:.75rem;min-width:0;background:#fff;}
+.path-head,.path-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;}
+.path-head{margin-bottom:.65rem;}
+.path-head strong{margin-right:auto;}
+.path-conditions{display:grid;gap:.5rem;margin-bottom:.65rem;}
+.path-children{display:grid;gap:.75rem;margin:.75rem 0 0 .75rem;border-left:2px solid #b3d6ff;padding-left:.75rem;}
+.path-children:empty{display:none;}
+.path-step select,.path-step input{max-width:100%;min-width:0;padding:.45rem;border:1px solid #ddd;border-radius:.4rem;background:white;}
+.path-step .advanced-condition{grid-template-columns:minmax(100px,1fr) minmax(100px,1fr) minmax(100px,1fr) auto;}
+.path-edge{flex:1;}
+@media(max-width:900px){.path-step .advanced-condition{grid-template-columns:1fr;}.path-children{margin-left:0;padding-left:.4rem;}}

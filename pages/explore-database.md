@@ -77,4 +77,5 @@ window.ExploreHeadConfig = {
 <script src="{{ '/assets/js/explore/modules/path-finding.js' | relative_url }}"></script>
 
 <!-- Engine Orchestrator -->
+<script src="{{ '/assets/js/explore/components/relationship-paths.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/app.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

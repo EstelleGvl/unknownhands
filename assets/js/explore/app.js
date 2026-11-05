@@ -40,7 +40,6 @@ const $btnExport = document.getElementById('btn-export');
 const $btnAdvanced = document.getElementById('btn-advanced-search');
 const $advancedPanel = document.getElementById('advanced-search-panel');
 const $advancedResultType = document.getElementById('advanced-result-type');
-const $advancedMatchMode = document.getElementById('advanced-match-mode');
 const $advancedAdd = document.getElementById('advanced-add-condition');
 const $advancedList = document.getElementById('advanced-condition-list');
 const $advancedApply = document.getElementById('advanced-apply');
@@ -529,7 +528,6 @@ const ENTITY_LABELS = {
   rel: 'Relationship Metadata'
 };
 const RESULT_ENTITY_TYPES = ['ms', 'pu', 'su', 'hi', 'mi', 'hp', 'tx'];
-const CONDITION_ENTITY_TYPES = ['ms', 'pu', 'su', 'hi', 'mi', 'hp', 'tx', 'rel'];
 const ADVANCED_OPERATORS = [
   ['contains', 'contains'],
   ['equals', 'equals'],
@@ -542,11 +540,17 @@ const ADVANCED_OPERATORS = [
 ];
 let advancedSearchActive = false;
 let advancedFieldCache = {};
-let relatedRecordCache = new Map();
+let pathEngine = null;
+let pathCatalogue = null;
+let pathNodeId = 0;
+function getPathEngine(){
+  if (!pathEngine) pathEngine = window.ExplorePaths.create(pathCatalogue || DATA, {...REC_TYPE_TO_ENTITY, 1: 'rel'});
+  return pathEngine;
+}
 
 function resetAdvancedCaches(){
+  pathEngine = null;
   advancedFieldCache = {};
-  relatedRecordCache = new Map();
 }
 
 function fieldLabel(field){
@@ -558,10 +562,10 @@ function fieldLabel(field){
 function fieldsForEntity(type){
   if (advancedFieldCache[type]) return advancedFieldCache[type];
   const fields = new Set(['__all', '__title']);
-  (DATA[type] || []).forEach(rec => {
+  ((pathCatalogue || DATA)[type] || []).forEach(rec => {
     (rec.details || []).forEach(d => {
       const name = (d.fieldName || '').trim();
-      if (name && !HIDE_FIELDS.has(name)) fields.add(name);
+      if (name) fields.add(name);
     });
   });
   advancedFieldCache[type] = Array.from(fields)
@@ -586,7 +590,7 @@ function controlledOptionsForField(type, field){
   const options = new Set();
   let controlledSignal = false;
 
-  (DATA[type] || []).forEach(rec => {
+  ((pathCatalogue || DATA)[type] || []).forEach(rec => {
     getDetailsAll(rec, field).forEach(d => {
       if (d.termLabel || (d.value && typeof d.value === 'object' && d.value.title)) controlledSignal = true;
       const value = detailValueString(d).trim();
@@ -611,75 +615,6 @@ function inferRecordType(rec){
   return REC_TYPE_TO_ENTITY[String(rec.rec_RecTypeID)] || null;
 }
 
-function addGraphNeighbor(map, type, id, rec){
-  if (!type || !id || !rec) return;
-  map.set(recordKey(type, id), { type, rec });
-}
-
-function getGraphNeighbors(type, rec){
-  const neighbors = new Map();
-
-  (rec.details || []).forEach(d => {
-    const v = d?.value;
-    if (v && typeof v === 'object' && v.id && v.type) {
-      const toType = REC_TYPE_TO_ENTITY[String(v.type)];
-      addGraphNeighbor(neighbors, toType, v.id, IDX[toType]?.[String(v.id)]);
-    }
-  });
-
-  (INBOUND[type]?.[String(rec.rec_ID)] || []).forEach(ptr => {
-    addGraphNeighbor(neighbors, ptr.fromType, ptr.fromId, IDX[ptr.fromType]?.[String(ptr.fromId)]);
-  });
-
-  const recId = String(rec.rec_ID);
-  const rels = type === 'rel' ? [rec] : [
-    ...(REL_INDEX.bySource[recId] || []),
-    ...(REL_INDEX.byTarget[recId] || [])
-  ];
-
-  rels.forEach(rel => {
-    if (type !== 'rel') addGraphNeighbor(neighbors, 'rel', rel.rec_ID, rel);
-    const src = getRes(rel, 'Source record');
-    const tgt = getRes(rel, 'Target record');
-    const srcType = REC_TYPE_TO_ENTITY[String(src?.type)];
-    const tgtType = REC_TYPE_TO_ENTITY[String(tgt?.type)];
-    if (srcType) addGraphNeighbor(neighbors, srcType, src.id, IDX[srcType]?.[String(src.id)]);
-    if (tgtType) addGraphNeighbor(neighbors, tgtType, tgt.id, IDX[tgtType]?.[String(tgt.id)]);
-  });
-
-  return Array.from(neighbors.values());
-}
-
-function getConnectedRecords(rootType, rec, targetType, maxDepth = 3){
-  if (!rec) return [];
-  if (rootType === targetType) return [rec];
-  const cacheKey = `${rootType}:${rec.rec_ID}:${targetType}:${maxDepth}`;
-  if (relatedRecordCache.has(cacheKey)) return relatedRecordCache.get(cacheKey);
-
-  const found = [];
-  const seen = new Set([recordKey(rootType, rec.rec_ID)]);
-  let frontier = [{ type: rootType, rec, depth: 0 }];
-
-  while (frontier.length) {
-    const next = [];
-    frontier.forEach(node => {
-      if (node.depth >= maxDepth) return;
-      getGraphNeighbors(node.type, node.rec).forEach(neighbor => {
-        const key = recordKey(neighbor.type, neighbor.rec.rec_ID);
-        if (seen.has(key)) return;
-        seen.add(key);
-        if (neighbor.type === targetType) found.push(neighbor.rec);
-        next.push({ ...neighbor, depth: node.depth + 1 });
-      });
-    });
-    frontier = next;
-  }
-
-  const deduped = uniqBy(found, r => String(r.rec_ID));
-  relatedRecordCache.set(cacheKey, deduped);
-  return deduped;
-}
-
 function valueTextsForField(rec, field){
   if (!rec) return [];
   if (field === '__title') return [rec.rec_Title || ''];
@@ -687,7 +622,7 @@ function valueTextsForField(rec, field){
     const type = inferRecordType(rec);
     return [type && MAP[type]?.flat ? MAP[type].flat(rec) : flat(rec)];
   }
-  return getValsAll(rec, field);
+  return getDetailsAll(rec, field).map(detailValueString).filter(value => value !== '');
 }
 
 function valueTextForField(rec, field){
@@ -714,7 +649,7 @@ function recordMatchesAdvancedCondition(rec, condition){
   if (op === 'equals') return values.some(v => v === needle);
   if (op === 'not_contains') return values.every(v => !v.includes(needle));
 
-  const actualYear = numericYearForValue(value);
+  const actualYear = numericYearForValue(valueTextForField(rec, condition.field));
   if (actualYear == null) return false;
   if (op === 'before') return actualYear <= parseFloat(needle);
   if (op === 'after') return actualYear >= parseFloat(needle);
@@ -726,36 +661,35 @@ function recordMatchesAdvancedCondition(rec, condition){
   return haystack.includes(needle);
 }
 
+function readPathNode(step){
+  return {
+    id:step.dataset.nodeId,
+    entity:step.dataset.entity,
+    edge:step.dataset.edge || '',
+    mode:step.querySelector(':scope > .path-head .path-match').value,
+    conditions:[...step.querySelectorAll(':scope > .path-conditions > .advanced-condition')].map(row => ({
+      field:row.querySelector('.condition-field').value,
+      operator:row.querySelector('.condition-operator').value,
+      value:row.querySelector('.condition-value').value
+    })).filter(conditionIsMeaningful),
+    children:[...step.querySelectorAll(':scope > .path-children > .path-step')].map(readPathNode)
+  };
+}
+
 function readAdvancedConditions(){
-  if (!$advancedList) return [];
-  return [...$advancedList.querySelectorAll('.advanced-condition')].map(row => ({
-    entity: row.querySelector('.condition-entity')?.value || ENTITY,
-    field: row.querySelector('.condition-field')?.value || '__all',
-    operator: row.querySelector('.condition-operator')?.value || 'contains',
-    value: row.querySelector('.condition-value')?.value || ''
-  })).filter(c => c.entity && c.field);
+  const root = $advancedList?.querySelector('.path-step');
+  return root ? [readPathNode(root)] : [];
 }
 
 function conditionIsMeaningful(condition){
   return ['present', 'empty'].includes(condition.operator) || String(condition.value || '').trim().length > 0;
 }
 
-function recordMatchesAdvancedSearch(rec, rootType, conditions, matchMode){
-  const meaningful = conditions.filter(conditionIsMeaningful);
-  if (!meaningful.length) return true;
-  const checks = meaningful.map(condition => {
-    const candidates = getConnectedRecords(rootType, rec, condition.entity, 3);
-    return candidates.some(candidate => recordMatchesAdvancedCondition(candidate, condition));
-  });
-  return matchMode === 'any' ? checks.some(Boolean) : checks.every(Boolean);
-}
-
 function applyAdvancedSearch(list){
   if (!advancedSearchActive) return list;
-  const conditions = readAdvancedConditions();
-  if (!conditions.some(conditionIsMeaningful)) return list;
-  const matchMode = $advancedMatchMode?.value || 'all';
-  return list.filter(rec => recordMatchesAdvancedSearch(rec, ENTITY, conditions, matchMode));
+  const query = readAdvancedConditions()[0];
+  if (!query || query.entity !== ENTITY) return list;
+  return list.filter(rec => getPathEngine().matches(ENTITY, rec, query, recordMatchesAdvancedCondition));
 }
 
 function populateAdvancedSelect(select, options, selected){
@@ -771,14 +705,15 @@ function populateAdvancedSelect(select, options, selected){
 }
 
 function updateConditionValueControl(row, selectedValue = ''){
-  const entity = row.querySelector('.condition-entity')?.value || ENTITY;
+  const entity = row.closest('.path-step')?.dataset.entity || ENTITY;
   const field = row.querySelector('.condition-field')?.value || '__all';
   const oldControl = row.querySelector('.condition-value');
   if (!oldControl) return;
 
   const vocab = controlledOptionsForField(entity, field);
   let nextControl;
-  if (vocab && vocab.length) {
+  const operator = row.querySelector('.condition-operator')?.value || 'equals';
+  if (vocab && vocab.length && operator === 'equals') {
     nextControl = document.createElement('select');
     const blank = document.createElement('option');
     blank.value = '';
@@ -796,6 +731,7 @@ function updateConditionValueControl(row, selectedValue = ''){
     nextControl.placeholder = 'Value, word, date, or range';
   }
 
+  nextControl.disabled = ['present', 'empty'].includes(operator);
   nextControl.className = 'condition-value';
   nextControl.setAttribute('aria-label', 'Condition value');
   nextControl.value = selectedValue || oldControl.value || '';
@@ -803,43 +739,68 @@ function updateConditionValueControl(row, selectedValue = ''){
 }
 
 function populateConditionFields(row, selected, selectedValue = ''){
-  const entity = row.querySelector('.condition-entity')?.value || ENTITY;
+  const entity = row.closest('.path-step')?.dataset.entity || ENTITY;
   const fieldSelect = row.querySelector('.condition-field');
   const options = fieldsForEntity(entity).map(field => [field, fieldLabel(field)]);
   populateAdvancedSelect(fieldSelect, options, selected && fieldsForEntity(entity).includes(selected) ? selected : '__all');
   updateConditionValueControl(row, selectedValue);
 }
 
-function addAdvancedCondition(condition = {}){
-  if (!$advancedList) return;
+function addAdvancedCondition(condition = {}, step = $advancedList?.querySelector('.path-step')){
+  if (!step) return;
   const row = document.createElement('div');
   row.className = 'advanced-condition';
-  row.innerHTML = `
-    <select class="condition-entity" aria-label="Condition entity"></select>
-    <select class="condition-field" aria-label="Condition field"></select>
+  row.innerHTML = `<select class="condition-field" aria-label="Condition field"></select>
     <select class="condition-operator" aria-label="Condition operator"></select>
-    <input class="condition-value" type="search" aria-label="Condition value" placeholder="Value, word, date, or range" />
-    <button class="chip condition-remove" type="button" aria-label="Remove condition">Remove</button>
-  `;
-  populateAdvancedSelect(
-    row.querySelector('.condition-entity'),
-    CONDITION_ENTITY_TYPES.map(type => [type, ENTITY_LABELS[type]]),
-    condition.entity || ENTITY
-  );
-  populateAdvancedSelect(row.querySelector('.condition-operator'), ADVANCED_OPERATORS, condition.operator || 'contains');
+    <input class="condition-value" type="search" aria-label="Condition value" />
+    <button class="chip condition-remove" type="button">Remove condition</button>`;
+  step.querySelector(':scope > .path-conditions').appendChild(row);
+  populateAdvancedSelect(row.querySelector('.condition-operator'), ADVANCED_OPERATORS, condition.operator || 'equals');
   populateConditionFields(row, condition.field, condition.value);
-  row.querySelector('.condition-value').value = condition.value || '';
-  $advancedList.appendChild(row);
+}
+
+function addPathStep(entity, parent, edge = ''){
+  const step = document.createElement('div');
+  step.className = 'path-step';
+  step.dataset.entity = entity;
+  step.dataset.edge = edge;
+  step.dataset.nodeId = String(++pathNodeId);
+  const heading = document.createElement('strong');
+  heading.textContent = edge ? pathEdgeLabel(edge) : `Return ${ENTITY_LABELS[entity]}`;
+  step.innerHTML = `<div class="path-head"><select class="path-match" aria-label="Match conditions on this record"><option value="all">All conditions on this record</option><option value="any">Any condition on this record</option></select></div>
+    <div class="path-conditions"></div>
+    <div class="path-actions"><button type="button" class="chip path-add-condition">Add condition</button>
+    <select class="path-edge" aria-label="Relationship to follow"></select>
+    <button type="button" class="chip path-add-step">Follow relationship</button></div>
+    <div class="path-children"></div>`;
+  step.querySelector('.path-head').prepend(heading);
+  if (edge) {
+    const remove = document.createElement('button');
+    remove.type = 'button'; remove.className = 'chip path-remove'; remove.textContent = 'Remove step';
+    step.querySelector('.path-head').appendChild(remove);
+  }
+  populateAdvancedSelect(step.querySelector('.path-edge'), getPathEngine().options(entity)
+    .map(([token]) => [token, pathEdgeLabel(token)]).sort((a,b) => a[1].localeCompare(b[1])));
+  if (!step.querySelector('.path-edge').options.length) step.querySelector('.path-add-step').disabled = true;
+  parent.appendChild(step);
+  addAdvancedCondition({}, step);
+  return step;
+}
+
+function pathEdgeLabel(token){
+  const edge = JSON.parse(token);
+  const direction = edge.direction === 'out' ? 'source → target' : 'target → source';
+  return `${edge.label} (${direction}; ${edge.kind === 'pointer' ? 'field' : 'relationship'}) → ${ENTITY_LABELS[edge.entity]}`;
+}
+
+function resetPathSearch(){
+  $advancedList.innerHTML = '';
+  addPathStep($advancedResultType?.value || ENTITY, $advancedList);
 }
 
 function updateAdvancedStatus(){
   if (!$advancedStatus) return;
-  if (!advancedSearchActive) {
-    $advancedStatus.textContent = '';
-    return;
-  }
-  const count = readAdvancedConditions().filter(conditionIsMeaningful).length;
-  $advancedStatus.textContent = count ? `Advanced search active: ${count} condition${count === 1 ? '' : 's'}` : '';
+  $advancedStatus.textContent = advancedSearchActive ? 'Advanced relationship search active' : '';
 }
 
 function setAdvancedSearchActive(active){
@@ -855,7 +816,7 @@ function initAdvancedSearchUI(){
     RESULT_ENTITY_TYPES.map(type => [type, ENTITY_LABELS[type]]),
     ENTITY
   );
-  if (!$advancedList.children.length) addAdvancedCondition({ entity: ENTITY });
+  if (!$advancedList.children.length) resetPathSearch();
 }
 
 /* ---------- Facets UI ---------- */
@@ -2117,7 +2078,7 @@ function render(list, type, selectId=null){
 function computeList(){
   const cfg  = FACETS[ENTITY];
   const map  = MAP[ENTITY];
-  let list = DATA[ENTITY] || [];
+  let list = (advancedSearchActive ? (pathCatalogue || DATA) : DATA)[ENTITY] || [];
   list = applyFacets(list, cfg);
   list = applySearch(list, map, $search.value.trim(), $field.value);
   list = applyAdvancedSearch(list);
@@ -2136,7 +2097,7 @@ function recompute(clearFacets = false){
   }
   
   const prevState = clearFacets ? {} : readFacetState(cfg);
-  const fullList = DATA[ENTITY] || []; // Use full unfiltered data for facet counts
+  const fullList = (advancedSearchActive ? (pathCatalogue || DATA) : DATA)[ENTITY] || []; // Use full unfiltered data for facet counts
   const filteredList = computeList(); // Use filtered data for results
   buildFacets(fullList, cfg, prevState); // Build facets from full dataset
   render(filteredList, ENTITY); // Render filtered results
@@ -2298,6 +2259,8 @@ function switchEntity(ent){
   document.querySelectorAll('#entity-switch .entity-btn').forEach(c=>c.classList.toggle('is-on', c.dataset.entity===ent));
   $search.value=''; $field.value=''; $sort.value='';
   if ($advancedResultType) $advancedResultType.value = ent;
+  setAdvancedSearchActive(false);
+  if ($advancedList) resetPathSearch();
   page=1;
   recompute(true); // Clear facets when switching entities
   updateAvailableViews();
@@ -2578,68 +2541,52 @@ function exportMapAsPng(containerId, filename) {
   const originalCursor = mapElement.style.cursor;
   mapElement.style.cursor = 'wait';
   
-  // Store current map view to restore later
-  const currentZoom = window.globalMap ? window.globalMap.getZoom() : null;
-  const currentCenter = window.globalMap ? window.globalMap.getCenter() : null;
-  
-  // Reset map to show all bounds before exporting to prevent coordinate misplacement
-  if (window.globalMap && window.globalMapBounds) {
-    window.globalMap.fitBounds(window.globalMapBounds, { padding: [50, 50], animate: false });
-    
-    // Wait for map to finish rendering at new bounds
-    // Listen for moveend event to know when map has finished repositioning
-    const handleMoveEnd = () => {
-      window.globalMap.off('moveend', handleMoveEnd);
-      
-      // Additional wait for tiles to load
-      setTimeout(() => {
-        captureAndExport();
-      }, 800);
-    };
-    
-    window.globalMap.on('moveend', handleMoveEnd);
-    
-    // Fallback timeout in case moveend doesn't fire
-    setTimeout(() => {
-      window.globalMap.off('moveend', handleMoveEnd);
-      captureAndExport();
-    }, 2000);
-  } else {
-    // No bounds available, capture as-is
-    setTimeout(() => {
-      captureAndExport();
-    }, 500);
-  }
-  
-  function captureAndExport() {
-    // Use html2canvas to capture the map
-    html2canvas(mapElement, {
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: '#ffffff',
-      scale: 3, // 3x scale for ~300 DPI
-      logging: false
-    }).then(canvas => {
-      canvas.toBlob(function(blob) {
-        downloadFile(blob, filename, 'image/png');
-        mapElement.style.cursor = originalCursor;
-        
-        // Restore original view
-        if (window.globalMap && currentZoom && currentCenter) {
-          window.globalMap.setView(currentCenter, currentZoom, { animate: false });
-        }
-      }, 'image/png');
-    }).catch(error => {
-      mapElement.style.cursor = originalCursor;
-      
-      // Restore original view on error too
-      if (window.globalMap && currentZoom && currentCenter) {
-        window.globalMap.setView(currentCenter, currentZoom, { animate: false });
-      }
-      
-      alert('Failed to export map. Please try again or use a screenshot tool.');
-    });
-  }
+  // Capture the visible viewport once. Re-fitting bounds changes both the
+  // requested view and Leaflet's pane offsets during capture.
+  const rect = mapElement.getBoundingClientRect();
+  const svgSnapshots = Array.from(mapElement.querySelectorAll('svg')).map(svg => {
+    const bounds = svg.getBoundingClientRect();
+    const standalone = svg.cloneNode(true);
+    standalone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    standalone.setAttribute('width', bounds.width);
+    standalone.setAttribute('height', bounds.height);
+    standalone.style.transform = 'none';
+    standalone.style.position = 'static';
+    return { left: bounds.left - rect.left, top: bounds.top - rect.top,
+      width: bounds.width, height: bounds.height,
+      markup: new XMLSerializer().serializeToString(standalone) };
+  });
+  html2canvas(mapElement, {
+    useCORS: true,
+    allowTaint: false,
+    backgroundColor: '#ffffff',
+    scale: 3,
+    logging: false,
+    onclone: clonedDocument => {
+      const clone = clonedDocument.getElementById(containerId);
+      // html2canvas mishandles Leaflet's transformed SVG viewport. Flatten
+      // each SVG to an image at its measured container position in the clone.
+      clone.querySelectorAll('svg').forEach((svg, index) => {
+        const snapshot = svgSnapshots[index];
+        const image = clonedDocument.createElement('img');
+        image.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(snapshot.markup);
+        image.style.cssText = `position:absolute;left:${snapshot.left}px;top:${snapshot.top}px;width:${snapshot.width}px;height:${snapshot.height}px;max-width:none;z-index:450;pointer-events:none`;
+        svg.remove();
+        clone.appendChild(image);
+      });
+    }
+  }).then(canvas => new Promise((resolve, reject) => {
+    canvas.toBlob(blob => {
+      if (!blob) return reject(new Error('The browser could not create the PNG file.'));
+      downloadFile(blob, filename, 'image/png');
+      resolve();
+    }, 'image/png');
+  })).catch(error => {
+    console.error('Failed to export map:', error);
+    alert('Failed to export map. Please try again.');
+  }).finally(() => {
+    mapElement.style.cursor = originalCursor;
+  });
 }
 
 /**
@@ -3249,24 +3196,25 @@ function initEventListeners() {
     });
   }
 
+  $advancedResultType?.addEventListener('change', () => {
+    resetPathSearch();
+    setAdvancedSearchActive(false);
+    page = 1; recompute(); updateAvailableViews();
+  });
   if ($advancedList) {
     $advancedList.addEventListener('change', e => {
       const row = e.target.closest('.advanced-condition');
-      if (!row) return;
-      if (e.target.classList.contains('condition-entity')) {
-        populateConditionFields(row);
-      } else if (e.target.classList.contains('condition-field')) {
-        updateConditionValueControl(row);
-      }
+      if (row && (e.target.classList.contains('condition-field') || e.target.classList.contains('condition-operator'))) updateConditionValueControl(row);
     });
     $advancedList.addEventListener('click', e => {
-      const btn = e.target.closest('.condition-remove');
-      if (!btn) return;
-      const row = btn.closest('.advanced-condition');
-      if (row) row.remove();
-      if (!$advancedList.children.length) addAdvancedCondition({ entity: $advancedResultType?.value || ENTITY });
-      updateAdvancedStatus();
-      if (advancedSearchActive) { page = 1; recompute(); updateAvailableViews(); }
+      const step = e.target.closest('.path-step');
+      if (!step) return;
+      if (e.target.closest('.path-add-condition')) addAdvancedCondition({}, step);
+      else if (e.target.closest('.path-add-step')) {
+        const token = step.querySelector(':scope > .path-actions .path-edge').value;
+        if (token) addPathStep(JSON.parse(token).entity, step.querySelector(':scope > .path-children'), token);
+      } else if (e.target.closest('.condition-remove')) e.target.closest('.advanced-condition').remove();
+      else if (e.target.closest('.path-remove')) step.remove();
     });
   }
 
@@ -3290,8 +3238,7 @@ function initEventListeners() {
     $advancedClear.addEventListener('click', () => {
       setAdvancedSearchActive(false);
       if ($advancedList) {
-        $advancedList.innerHTML = '';
-        addAdvancedCondition({ entity: $advancedResultType?.value || ENTITY });
+        resetPathSearch();
       }
       page = 1;
       recompute();
@@ -3856,6 +3803,9 @@ async function boot(){
   DATA = { su:dedupeById(su), ms:dedupeById(ms), pu:dedupeById(pu), hi:dedupeById(hi), mi:dedupeById(mi), hp:dedupeById(hp), tx:dedupeById(tx), rel:dedupeById(rel) };
   indexAll(); buildTypeMap(); indexPointers(); indexRelationships();
   
+  // Preserve the complete catalogue for arbitrary advanced-search paths.
+  pathCatalogue = {...DATA};
+
   // Filter Historical People to only show those linked to Scribal Units via "scribe of" relationship
   const linkedHPIds = new Set();
   DATA.rel.forEach(rel => {
@@ -3938,6 +3888,11 @@ async function boot(){
   
   // Re-index after filtering
   indexAll(); buildTypeMap(); indexPointers();
+  // Keep detail lookup available for authors and other records returned only
+  // by advanced search, even when the default browse list is restricted.
+  Object.entries(pathCatalogue).forEach(([type, records]) => {
+    if (type !== 'rel') records.forEach(rec => { IDX[type][String(rec.rec_ID)] = rec; });
+  });
   resetAdvancedCaches();
   
   // Initialize all event listeners
