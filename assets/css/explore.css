@@ -2399,3 +2399,10 @@ html.embed-mode svg {
 .codicology-comparison-picker select{width:100%;max-width:40rem;border:1px solid #b9c9c5;border-radius:.4rem;padding:.7rem;background:#fff;font:inherit;color:#163e32;}
 .codicology-sample-description{margin:.6rem 0 0;font-size:.85rem;}
 @media(max-width:600px){.codicology-sample-heading [role="status"]{margin-left:0;}.codicology-sample-heading label{width:100%;}.codicology-sample-heading select{flex:1;}}
+
+/* Focused comparisons: three fixed views and one century filter. */
+.codicology-simple-period{padding:.5rem 0 1rem;border-bottom:1px solid #e2e8e5;margin-bottom:1rem;}
+.codicology-simple-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0;}
+.codicology-simple-tabs button{padding:.6rem .85rem;border:1px solid #cbd5d0;border-radius:.35rem;background:white;color:#34594c;font:inherit;cursor:pointer;}
+.codicology-simple-tabs button[aria-pressed="true"],.codicology-simple-period button[aria-pressed="true"]{background:#e6eee9;border-color:#6c907b;color:#173e2c;font-weight:600;}
+.codicology-simple-period .codicology-disclosure{border:0;padding:0;margin:.6rem 0;}
