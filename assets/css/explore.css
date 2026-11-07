@@ -2406,3 +2406,12 @@ html.embed-mode svg {
 .codicology-simple-tabs button{padding:.6rem .85rem;border:1px solid #cbd5d0;border-radius:.35rem;background:white;color:#34594c;font:inherit;cursor:pointer;}
 .codicology-simple-tabs button[aria-pressed="true"],.codicology-simple-period button[aria-pressed="true"]{background:#e6eee9;border-color:#6c907b;color:#173e2c;font-weight:600;}
 .codicology-simple-period .codicology-disclosure{border:0;padding:0;margin:.6rem 0;}
+
+/* Keep the period controls together; the optional picker opens beneath them. */
+.codicology-simple-period>.codicology-research-actions{align-items:center;margin:.25rem 0;}
+.codicology-inline-centuries{position:relative;align-self:center;}
+.codicology-inline-centuries>summary{white-space:nowrap;}
+.codicology-inline-centuries>.codicology-century-options{position:absolute;left:0;top:calc(100% + .5rem);width:320px;max-width:80vw;padding:.9rem;background:#fff;border:1px solid #cbd5d0;border-radius:.4rem;box-shadow:0 6px 20px #163e3220;z-index:20;}
+.codicology-simple-period .codicology-inline-centuries[open]>summary{margin-bottom:0;}
+.codicology-period-status{margin:0 0 0 auto;font-size:.85rem;}
+@media(max-width:600px){.codicology-period-status{margin-left:0;flex-basis:100%;}.codicology-inline-centuries>.codicology-century-options{position:static;box-shadow:none;margin-top:.5rem;}}

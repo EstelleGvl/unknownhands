@@ -1835,6 +1835,7 @@ const EXPLORE_TAB_SELECTORS = {
   'text-genres': '.genre-tab-btn'
 };
 const EXPLORE_TAB_ALIASES = {
+  tree: {research:'materials'},
   'colophon-analysis': {
     sentiment: 'overview',
     themes: 'overview',

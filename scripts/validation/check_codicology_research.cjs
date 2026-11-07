@@ -76,3 +76,15 @@ console.log('PASS: three fixed views preserve the selected sample; unsupported v
 assert(!/<select\b/.test(research.toolbar()+research.content()),'The simplified interface contains no dropdowns');
 assert(!/Customise|More research tools|Filter variable/.test(research.content()));
 console.log('PASS: no dropdowns or general comparison builder in the simplified interface.');
+research.state.centuries=[14,15,16];research.state.filters=[];
+for(const key of ['subgenre','quireTime','quireCountry','quireMaterial','margins','regionalSize','catchwordTime','signatureTime']){
+ research.selectComparison(key);assert.equal(research.state.preset,key);
+ assert(research.dims.has(research.state.row));assert(research.dims.has(research.state.column));
+ assert(!/NaN|Infinity|undefined/.test(research.content({navigation:false})),key);
+ assert(!/data-comparison=/.test(research.content({navigation:false})),'No duplicate navigation inside a topic');
+}
+const themes=window.ExploreCodicology.init(Core).topics;
+assert.equal(Object.keys(themes).join(','),'materials,quires,layout,practices');
+const keys=Object.values(themes).flatMap(topic=>topic.views.map(v=>v.key));assert.equal(new Set(keys).size,keys.length,'Each comparison has one home');
+fs.writeFileSync('/private/tmp/codicology-reorganised.html',research.toolbar()+research.content({navigation:false}));
+console.log('PASS: restored comparisons render with valid dimensions; unique topic placement; no duplicate comparison navigation.');

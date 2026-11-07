@@ -316,7 +316,7 @@ window.ExploreCodicology = (function() {
 
       mount.querySelector('.codicology-scatter-colour-select')?.addEventListener('change', event => {
         dimensionColorMode = event.target.value;
-        render('materials', mount);
+        render('layout', mount);
       });
     }
 
@@ -512,20 +512,70 @@ window.ExploreCodicology = (function() {
         <aside class="codicology-crosslink"><h3>Scribal collaboration</h3><p>Collaboration and collaboration-sequence typologies remain in the Scribes research theme because their primary unit is scribal participation. They are linked here as a complementary production context.</p><a class="explore-action-btn explore-action-btn--primary" href="?mode=scribes&amp;tab=collaboration">Open Scribes → Collaborations</a></aside>`;
     }
 
+    const topics = {
+      materials: {title:'Materials', views:[
+        {key:'chronology', label:'Materials over time'},
+        {key:'materialDistribution', label:'Material distribution', legacy:'codicology-material-distribution'},
+        {key:'region', label:'Materials by country'},
+        {key:'subgenre', label:'Text subgenres'},
+        {key:'colophons', label:'Colophons', legacy:'codicology-colophon-material'}
+      ]},
+      quires: {title:'Quire Construction', views:[
+        {key:'quireTime', label:'Quires over time'},
+        {key:'quireDistribution', label:'Quire types', legacy:'codicology-quire-distribution'},
+        {key:'quireCountry', label:'Quires by country'},
+        {key:'quireMaterial', label:'Quires by material'},
+        {key:'quireTexts', label:'Text subgenres', legacy:'codicology-quire-subgenre'}
+      ]},
+      layout: {title:'Page Size & Layout', views:[
+        {key:'size', label:'Page size by material'},
+        {key:'regionalSize', label:'Page size by country'},
+        {key:'dimensions', label:'Height & width', legacy:'codicology-format-scatter', renderer:'materials'},
+        {key:'margins', label:'Margins by material'},
+        {key:'writingArea', label:'Writing area', legacy:'codicology-layout-ratio'},
+        {key:'writingMaterial', label:'Writing area by material', legacy:'codicology-layout-material'}
+      ]},
+      practices: {title:'Production Practices', views:[
+        {key:'ruling', label:'Ruling over time', legacy:'codicology-ruling-century'},
+        {key:'rulingMethods', label:'Ruling methods', legacy:'codicology-ruling-distribution'},
+        {key:'catchwordTime', label:'Catchwords over time'},
+        {key:'signatureTime', label:'Signatures over time'},
+        {key:'presence', label:'Catchwords & signatures', legacy:'codicology-production-presence'}
+      ]}
+    };
+    const renderers = {materials:renderMaterials, quires:renderQuires, layout:renderLayout, practices:renderPractices};
     function render(tab, mount) {
       if (!mount) return;
-      if (tab === 'research') mount.innerHTML = research.content();
-      else if (tab === 'materials') renderMaterials(mount);
-      else if (tab === 'quires') renderQuires(mount);
-      else if (tab === 'layout') renderLayout(mount);
-      else if (tab === 'practices') renderPractices(mount);
-      if (tab !== 'research') mount.querySelectorAll('.codicology-card').forEach(section => {
-        section.querySelector('.explore-viz-card-header')?.insertAdjacentHTML('afterend', `<p class="explore-chart-note">Sample: ${esc(research.describe())}</p>`);
-      });
+      tab = tab === 'research' ? 'materials' : tab;
+      const topic = topics[tab];
+      if (!topic) return;
+      research.state.topicViews ||= {};
+      const view = topic.views.find(item => item.key === research.state.topicViews[tab]) || topic.views[0];
+      research.state.topicViews[tab] = view.key;
+      if (view.legacy) {
+        renderers[view.renderer || tab](mount);
+        const section = mount.querySelector('#'+view.legacy);
+        mount.innerHTML = section ? section.outerHTML : '<p>No observations available.</p>';
+        mount.querySelector('.explore-viz-card-header')?.insertAdjacentHTML('afterend', `<p class="explore-chart-note">${esc(research.describe())}</p>`);
+      } else {
+        research.selectComparison(view.key);
+        mount.innerHTML = research.content({navigation:false});
+      }
+      const heading = document.createElement('header');
+      heading.className = 'codicology-intro';
+      heading.innerHTML = `<h2>${esc(topic.title)}</h2>`;
+      const navigation = document.createElement('div');
+      navigation.className = 'codicology-simple-tabs';
+      navigation.setAttribute('role','group');
+      navigation.setAttribute('aria-label',topic.title+' views');
+      navigation.innerHTML = topic.views.map(item => `<button type="button" data-topic-view="${item.key}" aria-pressed="${item.key === view.key}">${esc(item.label)}</button>`).join('');
+      mount.prepend(navigation);
+      mount.prepend(heading);
       research.attach(mount, () => render(tab, mount), tab);
+      if (view.key === 'dimensions') bindDimensionScatter(mount);
     }
 
-    return { render };
+    return { render, topics };
   }
 
   return { init };

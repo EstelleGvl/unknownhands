@@ -127,14 +127,23 @@ window.ExploreCodicologyResearch = (function() {
     const presets = {
       chronology:{label:'Materials over time',settings:['century','material','count']},
       region:{label:'Materials by country',settings:['country','material','count']},
-      size:{label:'Page size by material',settings:['material','all','pageSize']}
+      size:{label:'Page size by material',settings:['material','all','pageSize']},
+      subgenre:{label:'Text subgenres by material',settings:['subgenre','material','count'],scale:'columnUnits'},
+      quireTime:{label:'Quires over time',settings:['century','quire','count']},
+      quireCountry:{label:'Quires by country',settings:['country','quire','count']},
+      quireMaterial:{label:'Quires by material',settings:['quire','material','count']},
+      margins:{label:'Margins by material',settings:['material','all','blank']},
+      regionalSize:{label:'Page size by country',settings:['country','material','pageSize']},
+      catchwordTime:{label:'Catchwords over time',settings:['century','field:catchwords','count']},
+      signatureTime:{label:'Signatures over time',settings:['century','field:signatures','count']}
+
     };
     const disclosure = name => `data-disclosure="${name}"${state.disclosures[name]?' open':''}`;
     function selectComparison(name) {
       if (!presets[name]) return;
       state.preset=name;
       [state.row,state.column,state.metric]=presets[name].settings;
-      state.scale='row';
+      state.scale=presets[name].scale || 'row';
     }
     function toolbar() {
       const available=sorted(all().flatMap(pu=>centuries(pu).map(String))).map(Number);
@@ -142,16 +151,15 @@ window.ExploreCodicologyResearch = (function() {
         <div class="codicology-research-actions"><strong>Period</strong>
           <button type="button" data-preset="all" aria-pressed="${state.centuries===null}">All centuries</button>
           <button type="button" data-preset="late" aria-pressed="${state.centuries?.join(',')==='14,15,16'}">14th–16th centuries</button>
-        </div>
-        <details class="codicology-disclosure" ${disclosure('centuries')}><summary>Choose individual centuries</summary>
+        <details class="codicology-disclosure codicology-inline-centuries" ${disclosure('centuries')}><summary>Choose individual centuries</summary>
           <div class="codicology-century-options">${available.map(c=>`<label><input type="checkbox" data-century="${c}"${state.centuries===null || state.centuries.includes(c)?' checked':''}> ${c}</label>`).join('')}</div>
         </details>
-        <p class="explore-chart-note" role="status">${state.centuries===null?'All centuries':state.centuries.length?'Centuries '+state.centuries.join(', '):'No centuries selected'} · ${records().length} Production Units</p>
+        <p class="explore-chart-note codicology-period-status" role="status">${state.centuries===null?'All centuries':state.centuries.length?'Centuries '+state.centuries.join(', '):'No centuries selected'} · ${records().length} Production Units</p></div>
       </section>`;
     }
     function table(result) {
       const {rows,columns,cells}=result;
-      if(!rows.length) return '<p class="explore-empty-state">No observations match this selection. Change the filters or include unknown categories.</p>';
+      if(!rows.length) return '<p class="explore-empty-state">No observations match this period. Try another century selection.</p>';
       const counts=(r,c)=>cells.get(JSON.stringify([r,c]))?.size || 0;
       const cell=(r,c)=>{
         const n=counts(r,c);
@@ -178,7 +186,7 @@ window.ExploreCodicologyResearch = (function() {
       const groups=[];
       result.rows.forEach(r=>result.columns.forEach(c=>{
         const values=[...(result.cells.get(JSON.stringify([r,c]))?.values() || [])];
-        if(values.length) groups.push({label:`${r} / ${c}`,values,...summarize(values)});
+        if(values.length) groups.push({label:state.column==='all'?String(r):`${r} / ${c}`,values,...summarize(values)});
       }));
       const lo=Math.min(...groups.map(g=>g.min)),hi=Math.max(...groups.map(g=>g.max)),span=hi-lo || 1;
       const x=v=>240+(v-lo)/span*490;
@@ -194,13 +202,13 @@ window.ExploreCodicologyResearch = (function() {
         return s.n?`<tr><th scope="row">${esc(r)} / ${esc(c)}</th>${['n','min','q1','median','q3','max'].map(k=>`<td>${fmt(s[k])}</td>`).join('')}</tr>`:'';
       })).join('')}</tbody></table></div>`;
     }
-    function content() {
+    function content({navigation=true} = {}) {
       refreshDimensions();
       const result=comparison();
-      return `<header class="codicology-intro"><h2>Materials and page size</h2><p>Three views of the same selected period.</p></header>
-        <div class="codicology-simple-tabs" aria-label="Comparison">${Object.entries(presets).map(([key,preset])=>`<button type="button" data-comparison="${key}" aria-pressed="${state.preset===key}">${esc(preset.label)}</button>`).join('')}</div>
+      return `${navigation ? `<header class="codicology-intro"><h2>Materials and page size</h2></header>
+        <div class="codicology-simple-tabs" aria-label="Comparison">${['chronology','region','size'].map(key=>`<button type="button" data-comparison="${key}" aria-pressed="${state.preset===key}">${esc(presets[key].label)}</button>`).join('')}</div>` : ''}
         <section id="codicology-research-comparison" class="explore-visualization-card">
-          <div class="explore-viz-card-header"><h3>${esc(presets[state.preset]?.label || 'Comparison')}</h3>${Core.createExportButton('codicology-research-comparison','codicology-comparison.png')}</div>
+          <div class="explore-viz-card-header"><h3>${esc(presets[state.preset]?.label || 'Comparison')}</h3>${Core.createExportButton('codicology-research-comparison',`codicology-${state.preset}.png`)}</div>
           <p class="explore-chart-note">${esc(cohortDescription())}</p>
           <p>${result.included} Production Units with the required information${result.total-result.included ? `; ${result.total-result.included} without it` : ''}.</p>
           ${chart(result)}
@@ -208,13 +216,15 @@ window.ExploreCodicologyResearch = (function() {
         <details class="codicology-disclosure" ${disclosure('table')}><summary>View data table</summary>
           ${table(result)}${numericTable(result)}
           <div class="codicology-research-actions"><button type="button" data-export-table>Download CSV</button></div>
-          <p class="explore-chart-note">Each unit is counted once per cell. Uncertain dates and countries can appear in more than one group. Percentages show each row’s composition. Page-size comparisons use height + width from a single linked manuscript; the same manuscript can supply measurements to several units. Missing measurements are excluded.</p>
+          <p class="explore-chart-note">Each unit is counted once per cell. Uncertain dates and countries can appear in more than one group. ${state.scale==='columnUnits'?'Percentages use distinct units in each material with at least one recorded subgenre. A unit can have several subgenres, so percentages across subgenres can exceed 100%.':'Percentages show each row’s composition.'} ${state.metric==='blank'?'Blank-page fraction is 1 minus the writing-area share of the page; it estimates area, rather than measuring actual blank space.':state.metric==='pageSize'?'Page size is height + width.':''} ${state.metric!=='count'?'Page measurements require one linked manuscript; its dimensions can recur across several units. Missing or invalid measurements are excluded.':''}</p>
         </details>`;
     }
 
     function attach(mount,rerender,tab) {
+      state.topicViews ||= {};
       const host=document.createElement('div');host.innerHTML=toolbar();mount.prepend(host);
       mount.querySelectorAll('[data-disclosure]').forEach(element=>{element.addEventListener('toggle',()=>{if(element.isConnected)state.disclosures[element.dataset.disclosure]=element.open;});});
+      mount.onkeydown=event=>{if(event.key==='Escape'){const picker=mount.querySelector('.codicology-inline-centuries');if(picker?.open){picker.open=false;state.disclosures.centuries=false;picker.querySelector('summary').focus();}}};
       mount.onchange=event=>{
         if(event.target.dataset.century){
           state.disclosures.centuries=true;
@@ -225,11 +235,12 @@ window.ExploreCodicologyResearch = (function() {
       mount.onclick=event=>{
         const button=event.target.closest('button');if(!button)return;
         if(button.dataset.comparison){selectComparison(button.dataset.comparison);rerender();}
-        if(button.dataset.preset){state.centuries=button.dataset.preset==='all'?null:[14,15,16];rerender();}
+        if(button.dataset.topicView){state.topicViews[tab]=button.dataset.topicView;rerender();}
+        if(button.dataset.preset){state.disclosures.centuries=false;state.centuries=button.dataset.preset==='all'?null:[14,15,16];rerender();}
         if(button.hasAttribute('data-export-table')){
           const result=comparison(),rows=[['Sample',cohortDescription()],['Rows',dims.get(state.row).label],['Columns',dims.get(state.column).label],['Measure',state.metric==='count'?'Production Units':measures.get(state.metric).label],['Included distinct PUs',result.included],['Selected PUs',result.total],['Counting','Distinct PU per cell; multiple memberships across cells'],['Row','Column','n','Row %','Column %','All-cell %','Column distinct PUs','Column PU prevalence %','Min','Q1','Median','Q3','Max']];
           const total=[...result.cells.values()].reduce((sum,cell)=>sum+cell.size,0);
-          result.rows.forEach(r=>result.columns.forEach(c=>{const s=summarize([...(result.cells.get(JSON.stringify([r,c]))?.values() || [])]);const rowTotal=result.columns.reduce((sum,x)=>sum+(result.cells.get(JSON.stringify([r,x]))?.size || 0),0),colTotal=result.rows.reduce((sum,x)=>sum+(result.cells.get(JSON.stringify([x,c]))?.size || 0),0);rows.push([r,c,s.n,rowTotal?s.n/rowTotal*100:'',colTotal?s.n/colTotal*100:'',total?s.n/total*100:'',result.columnUnits.get(c)?.size || 0,result.columnUnits.get(c)?.size?s.n/result.columnUnits.get(c).size*100:'',...['min','q1','median','q3','max'].map(k=>state.metric==='count'?'':s[k])]);}));download('codicology-comparison.csv',rows);
+          result.rows.forEach(r=>result.columns.forEach(c=>{const s=summarize([...(result.cells.get(JSON.stringify([r,c]))?.values() || [])]);const rowTotal=result.columns.reduce((sum,x)=>sum+(result.cells.get(JSON.stringify([r,x]))?.size || 0),0),colTotal=result.rows.reduce((sum,x)=>sum+(result.cells.get(JSON.stringify([x,c]))?.size || 0),0);rows.push([r,c,s.n,rowTotal?s.n/rowTotal*100:'',colTotal?s.n/colTotal*100:'',total?s.n/total*100:'',result.columnUnits.get(c)?.size || 0,result.columnUnits.get(c)?.size?s.n/result.columnUnits.get(c).size*100:'',...['min','q1','median','q3','max'].map(k=>state.metric==='count'?'':s[k])]);}));download(`codicology-${state.preset}.csv`,rows);
         }
 
       };
