@@ -25,13 +25,9 @@ This teaching pack introduces students to the recovery of women’s scribal labo
 
 ## 2. Scholarly Framing — Discovering Female Scribes through Data
 
-For a long time, the history of medieval writing was told primarily through authors, texts, and intellectual movements, while the labor of copying and compiling books remained largely invisible. Women’s participation in manuscript culture was especially difficult to trace: many scribes did not sign their work, catalogues often privileged authorship over production, and institutional histories tended to foreground male clerical networks. Over the past decades, however, manuscript studies, gender history, and book history have begun to shift this perspective by asking new questions about who produced books, under what conditions, and how scribal activity shaped the transmission of knowledge. The Unknown Hands project emerges from this scholarly transformation, treating scribes not as marginal figures but as central agents in cultural production.
+The catalogue links manuscripts with recorded scribal contributions, institutions, languages, and texts. These connections support comparison across manuscripts while retaining links to individual records and images.
 
-The database offers a way to approach these questions through structured evidence. Instead of encountering a single manuscript or individual in isolation, students can explore connections between scribes, institutions, languages, genres, and forms of attribution. This approach reflects a broader methodological turn in the humanities toward relational and data-driven research, in which patterns of collaboration, multilingualism, and textual circulation become visible across large corpora. At the same time, the interface reminds us that data is never neutral. Every category — “scribe,” “production unit,” “genre,” or “evidence type” — represents an interpretive decision shaped by modern scholarship as much as by medieval practice. Working with the database therefore invites students to think not only about medieval women’s writing but also about how historians construct knowledge through classification.
-
-Recovering female scribes is particularly suited to this kind of critical exploration. Many of the women represented here appear only through indirect traces: colophons requesting prayers, marginal notes, dialectal features, or institutional records. Their visibility depends on careful scholarly inference and on the aggregation of dispersed evidence. When students filter, compare, or trace relationships within the platform, they are effectively reenacting the research process that makes these figures legible. The activity highlights both the power and the limits of digital infrastructures: while the database can reveal clusters and patterns that are difficult to perceive in individual manuscripts, it can also flatten ambiguity, obscuring uncertainty or reducing complex identities to discrete fields.
-
-Engaging with Unknown Hands in the classroom therefore means working at two levels simultaneously. On one level, students encounter the historical reality of women’s scribal labor — the multilingual environments of convents, the collaborative nature of book production, and the diverse textual cultures that shaped devotional and intellectual life. On another level, they confront the epistemological questions raised by digital humanities: What counts as evidence? How do interfaces guide interpretation? Which voices remain absent even in projects designed to recover them? By moving between historical inquiry and methodological reflection, this teaching pack encourages students to see scholarly infrastructure itself as an argument about the past — one that opens new possibilities for understanding medieval women’s cultural work while remaining attentive to the silences that still structure the archive.
+Classroom analysis should distinguish direct identification from attribution, missing data from recorded absence, and manuscript counts from counts of Production Units or Scribal Units. The activities pair catalogue observations with inspection of their source evidence.
 
 ## 3. Guided Activity - Exploring Female Scribes through the Unknown Hands Interface
 This activity follows the structure of the Explore Database page so that students learn how scholarly arguments emerge from the platform’s organization of records, filters, and relationships.
@@ -76,15 +72,6 @@ Choose one scribe discovered during the activity and write a short analytical re
 - Clarity of historical argument
 
 
-## 5. Materials
-**Slides:**
-- Intro to Unknown Hands
-- What is a Scribe?
-- Reading Database Entries
+## 5. Source material
 
-**Dataset:**
-- Curated CSV subset (10–20 female scribes)
-
-**Worksheet:**
-- Guided observation questions
-- Discussion prompts
+The activity uses the public catalogue, linked manuscript images, and the selected record export. Source references, attribution details, and search conditions form part of the submitted analysis.

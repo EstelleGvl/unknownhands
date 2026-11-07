@@ -28,7 +28,7 @@ Women’s contributions to manuscript culture are substantially understudied. Na
   - **Geography & period:** Western Christian Europe, pre-1600 (monastic and lay contexts).
   - **Materials:** Manuscripts and fragments; documentary items when they witness scribal labor.
   - **Inclusions:** Named female scribes; anonymous hands plausibly attributable to women; collaborative production where women’s roles can be argued from evidence.
-  - **Exclusions:** Hebrew, Arabic, Syriac and other non-Western European languages for now (by design, due to language coverage and project scale); documents of the practice (charters when not bound as a book, letters, etc.); printed books.
+  - **Exclusions:** Hebrew, Arabic, Syriac and other non-Western European languages (outside the project’s language coverage); documents of the practice (charters when not bound as a book, letters, etc.); printed books.
 
 Data are compiled from catalogues, archival descriptions, published scholarship, institutional records, and first-hand examination where possible. Each claim includes, where feasible:
   -	citation(s) and, where feasible, page/folio references;
@@ -74,7 +74,7 @@ We aim to represent people’s work accurately and respectfully. When records in
 
 # Get Involved
   - Share corrections or new evidence.
-  -	Contribute records from your collection.
+  -	Contribute collection records.
   -	Collaborate on case studies, teaching modules, or visualization ideas.
 
  We aim to develop collaborations and we welcome participation of scholars working on subjects beyond the scope of this project. Feel free to share with us data about languages and periods not currently included in the dataset.

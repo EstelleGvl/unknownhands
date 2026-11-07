@@ -38,7 +38,7 @@ permalink: /contact/
       </label>
       <label class="form-field form-field--full">
         <span>Message</span>
-        <textarea name="message" rows="6" required placeholder="What would you like to share or correct?"></textarea>
+        <textarea name="message" rows="6" required placeholder="Record, correction, or enquiry"></textarea>
       </label>
     </div>
     <!-- Honeypot (spam protection) -->
@@ -49,6 +49,6 @@ permalink: /contact/
     <input type="hidden" name="_subject" value="[Unknown Hands] New message">
     <input type="hidden" name="_next" value="{{ '/contact/thanks/' | relative_url }}">
     <button type="submit" class="btn-primary">Send message</button>
-    <p class="contact-privacy">By sending this form you consent to being contacted about your message. We do not share your details.</p>
+    <p class="contact-privacy">Submission authorises a response about this enquiry. Contact details are not shared.</p>
   </form>
 </div>

@@ -1,28 +1,26 @@
-# Validation Scripts
+# Validation
 
-This folder contains Python scripts used during development for data validation, exploration, and quality assurance. These scripts were used to verify data integrity and explore the Heurist database structure.
+Commands run from the repository root. Catalogue exports are read from `data/heurist/`. Validation does not alter source records.
 
-## Scripts
+```bash
+python3 scripts/validation/check_catalogue.py
+node scripts/validation/check_explore_search.cjs
+node scripts/validation/check_explore_map_export.cjs
+node scripts/validation/check_codicology_research.cjs
+bundle exec rake site:check_explore_cards
+bundle exec jekyll build
+```
 
-### Data Analysis
-- **analyze_complete.py** - Complete data analysis across all entity types
-- **analyze_data.py** - Sample data exploration for holding/monastic institutions
-- **analyze_relationships.py** - Relationship traversal analysis
+| Check | Coverage |
+| --- | --- |
+| `check_catalogue.py` | Distinct records by type, unresolved pointers, manuscript links, and recorded colophon coverage |
+| `check_explore_search.cjs` | Explicit search paths, direction, same-record conditions, branching, long paths, and catalogue link discovery |
+| `check_explore_map_export.cjs` | Viewport preservation, a single capture, vector-overlay positions, and cursor restoration |
+| `check_codicology_research.cjs` | Century filters, category counts, repeated text links, denominators, measurements, numerical summaries, and data-table coverage |
+| `check_explore_card_styles.rb` | Shared chart and card markup conventions |
 
-### Data Validation
-- **check_colophons.py** - Verify colophon presence flags vs actual transcriptions
-- **check_counts.py** - Count validation for production units
-- **check_correct_counts.py** - Verify correct record counts
-- **check_explore_card_styles.rb** - Prevent unclassified legacy statistic cards in Explore modules
-- **check_pu_ms_links.py** - Validate production unit ↔ manuscript linkages
-- **verify_colophons.py** - Additional colophon validation
+Unresolved pointers and missing observations are reported as coverage information. They can reflect records outside the public export. The catalogue summary does not assume a fixed expected record count or treat every missing field as an error.
 
-### Data Processing
-- **build_vocabulary.py** - Build term vocabulary mappings (generates vocabulary.json)
-- **colophon_manuscript_overlap.py** - Analyze colophon-manuscript relationships
+`build_vocabulary.py` is a data-preparation utility rather than a test. It reads Heurist category labels and writes vocabulary files; execution changes generated data.
 
-## Usage
-
-These scripts were primarily used during development for data exploration and quality checks. Most require the Heurist JSON data files in `assets/data/`.
-
-**Note**: These scripts are kept for reference but are not part of the active build pipeline. For active data processing scripts, see the parent [scripts/](../) folder.
+Browser verification covers topic and sub-tab navigation, period controls, table/chart agreement, downloads, manuscript images, keyboard operation, and narrow-screen layouts. External image-service availability requires a separate access check through `scripts/audit_iiif_transcriptions.py`.

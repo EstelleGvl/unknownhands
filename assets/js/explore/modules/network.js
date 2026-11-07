@@ -393,7 +393,7 @@ function buildSubsetNetwork(subsetType) {
           </div>
           <div class="info-panel info-warning" style="margin:1rem 0;">
             <div style="font-weight:600;margin-bottom:0.5rem;">Network too large to visualize</div>
-            <div style="font-size:0.875rem;color:#666;">Visualizing ${totalNodes.toLocaleString()} nodes would overwhelm your browser.</div>
+            <div style="font-size:0.875rem;color:#666;">Visualizing ${totalNodes.toLocaleString()} nodes can exceed browser capacity.</div>
           </div>
           <div style="margin-top:1rem;">
             <div style="font-weight:600;margin-bottom:0.75rem;">Recommended approaches:</div>

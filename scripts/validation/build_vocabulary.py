@@ -8,14 +8,14 @@ def extract_vocabulary():
     field_vocab = {}  # fieldName → {term_id → label}
     
     entity_files = [
-        'assets/data/manuscripts.json',
-        'assets/data/production_units.json',
-        'assets/data/scribal_units.json',
-        'assets/data/texts.json',
-        'assets/data/historical_people.json',
-        'assets/data/holding_institutions.json',
-        'assets/data/monastic_institutions.json',
-        'assets/data/relationships.json'
+        'data/heurist/manuscripts.json',
+        'data/heurist/production_units.json',
+        'data/heurist/scribal_units.json',
+        'data/heurist/texts.json',
+        'data/heurist/historical_people.json',
+        'data/heurist/holding_institutions.json',
+        'data/heurist/monastic_institutions.json',
+        'data/heurist/relationships.json'
     ]
     
     for filepath in entity_files:

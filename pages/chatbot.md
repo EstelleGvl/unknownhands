@@ -6,8 +6,8 @@ permalink: /chatbot/
 
 <div class="container">
   <h1>Ask about the Unknown Hands corpus</h1>
-  <p>Ask analytical questions about the medieval manuscripts, scribes, and colophons in our corpus.</p>
-  <p class="chatbot-editorial-note"><strong>Verification note:</strong> Please verify AI-generated conclusions against the referenced manuscripts, as automated synthesis may contain errors.</p>
+  <p>Ask analytical questions about the medieval manuscripts, scribes, and colophons in the corpus.</p>
+  <p class="chatbot-editorial-note"><strong>Verification note:</strong> Responses are produced by an automated language model and require checking against the referenced manuscripts; synthesis can contain errors.</p>
   
   <div class="chatbot-container" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column;">
     
@@ -15,7 +15,7 @@ permalink: /chatbot/
     <div id="chat-messages">
       
       <div class="bot-message">
-        <strong>Assistant:</strong> I can retrieve and summarize indexed colophon material.<br><br>
+        <strong>Assistant:</strong> Indexed colophon passages are retrieved with source references.<br><br>
         
         <strong>Example questions:</strong>
         <ul style="font-size: 14px; margin-top: 5px; margin-bottom: 0;">
@@ -172,7 +172,7 @@ function appendLabel(parent, label) {
 function appendUserMessage(chatMessages, message) {
   const userDiv = document.createElement('div');
   userDiv.className = 'user-message';
-  appendLabel(userDiv, 'You:');
+  appendLabel(userDiv, 'Question:');
   userDiv.appendChild(document.createTextNode(' ' + message));
   chatMessages.appendChild(userDiv);
 }

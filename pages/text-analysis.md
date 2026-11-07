@@ -300,7 +300,7 @@ show_title: false
 <div class="analysis-container">
   <h1 style="font-size: 1.65rem; margin: 0.8rem 0 0.3rem;">Text Analysis</h1>
   <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.8rem;">
-    Explore patterns and changes in the project’s available manuscript transcriptions. All processing happens in your browser.
+    Explore patterns and changes in the project’s available manuscript transcriptions. Calculations run in the browser.
   </p>
   <div class="notice notice-warning">
     <strong>Transcription comparability:</strong> the corpus combines transcriptions produced through different HTR models and workflows. Their conventions are not consistently diplomatic or normalized. Apparent differences may therefore reflect transcription practice or recognition error as well as language, text, exemplar, place, date, or scribe.
@@ -336,7 +336,7 @@ show_title: false
       <details class="method-sheet"><summary>Method sheet</summary><dl>
         <dt>Question</dt><dd>Which selected text chunks share the strongest frequency patterns?</dd>
         <dt>Unit</dt><dd>Equal-length word chunks drawn from mapped scribal samples or manuscript text bodies.</dd>
-        <dt>Output</dt><dd>A new PCA coordinate system calculated from the current corpus; map distance is exploratory.</dd>
+        <dt>Output</dt><dd>Coordinates calculated from the selected corpus; map distance is exploratory.</dd>
         <dt>Main risk</dt><dd>Genre, exemplar, language, transcription practice, and unequal sampling can structure the axes.</dd>
         <dt>Reference</dt><dd>Eder, Rybicki, and Kestemont (2016), “Stylometry with R: A Package for Computational Text Analysis.”</dd>
       </dl></details>
@@ -410,7 +410,7 @@ show_title: false
             </div>
             <div class="form-group">
               <label>Text Content</label>
-              <textarea id="tfidf-custom-text" placeholder="Paste or type your text here..."></textarea>
+              <textarea id="tfidf-custom-text" placeholder="Transcription text"></textarea>
             </div>
             <button class="btn btn-secondary" onclick="addCustomTextTFIDF()" style="width: 100%;">
               Add text

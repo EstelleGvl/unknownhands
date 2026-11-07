@@ -12,13 +12,8 @@ permalink: /teach/
 
 # Teaching with Unknown Hands
 
-Teaching with Unknown Hands invites instructors and students to explore medieval women’s scribal culture through a living scholarly infrastructure. The database was designed not only as a research tool but also as a pedagogical space where questions about authorship, labor, gender, multilingualism, and textual production can be examined through data, manuscripts, and digital methods.
-
-The teaching packs gathered here offer ready-to-use modules that integrate browsing, analysis, and critical reflection. Each pack combines guided activities within the platform, assignments, curated datasets, and classroom resources that can be adapted across disciplines, from medieval studies and literary history to digital humanities, archival studies, gender studies, and computational approaches to culture. Rather than presenting digital tools as neutral interfaces, these materials encourage students to think critically about how scholarly infrastructures shape what we can see, measure, and narrate about the past.
+Teaching materials connect manuscript evidence with catalogue searches, visual comparisons, and source criticism. Activities address women’s scribal work, attribution, multilingualism, and the limits of catalogue coverage.
 
 ## List of packs:
 
 - [Discovering Female Scribes through Data]({{ '/pack1/' | relative_url }})
-- [Networks and Cultural Production]({{ '/pack2/' | relative_url }})
-
-The planned *Voices in the Colophon* pack will be added when its materials are ready.

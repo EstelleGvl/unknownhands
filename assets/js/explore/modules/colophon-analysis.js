@@ -776,7 +776,7 @@ async function buildExploreFormulae(mount) {
     const listDiv = document.getElementById('formula-list');
     
     if (pageFormulas.length === 0) {
-      listDiv.innerHTML = '<div style="text-align: center; padding: 3rem; color: #666; background: white; border-radius: 0.5rem;">No formulas match your filters.</div>';
+      listDiv.innerHTML = '<div style="text-align: center; padding: 3rem; color: #666; background: white; border-radius: 0.5rem;">No formulae match the selected filters.</div>';
       document.getElementById('formula-count-top').textContent = 'No formulas found';
       document.getElementById('formula-count-bottom').textContent = 'No formulas found.';
       document.getElementById('formula-pagination-top').innerHTML = '';

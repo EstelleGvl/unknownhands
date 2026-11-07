@@ -65,7 +65,7 @@ title: Participate
       </fieldset>
 
       <fieldset class="form-field form-field--full">
-        <legend>How would you like to be involved?</legend>
+        <legend>Areas of participation</legend>
         <label><input type="checkbox" name="involvement[]" value="Updates"> Receive project updates (mailing list)</label>
         <label><input type="checkbox" name="involvement[]" value="Corrections"> Contribute corrections/additions</label>
         <label><input type="checkbox" name="involvement[]" value="Working group"> Join a working group</label>
@@ -75,7 +75,7 @@ title: Participate
 
       <label class="form-field form-field--full">
         <span>Notes (optional)</span>
-        <textarea name="notes" rows="6" placeholder="Share specific interests, ideas, or corrections you’d like us to consider."></textarea>
+        <textarea name="notes" rows="6" placeholder="Research interests, proposals, or corrections"></textarea>
       </label>
 
       <label class="form-field form-field--full">
@@ -95,7 +95,7 @@ title: Participate
 
     <button type="submit" class="btn-primary">Sign up</button>
     <p class="contact-privacy">
-      We store your details securely and do not share them. You can request deletion at any time.
+      Contact details are used for project correspondence and are not shared. Deletion requests can be sent through the contact form.
     </p>
   </form>
 </div>

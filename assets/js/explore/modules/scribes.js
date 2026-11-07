@@ -253,7 +253,7 @@ function buildScribes() {
     window.scribeTabsInitialized = true;
   }
   
-  // Compute and render (tabs just scroll to sections for now)
+  // Compute and render (tabs scroll to sections)
   computeScribeData();
 }
 

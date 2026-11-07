@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Thank you
+title: Message received
 permalink: /contact/thanks/
 show_title: true
 ---
 
-Your message has been sent. I usually reply within a few days.  
+The message has been sent.
 Back to the <a href="{{ '/' | relative_url }}">home page</a>.

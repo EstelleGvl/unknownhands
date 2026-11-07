@@ -327,6 +327,18 @@ window.ExploreHierarchicalTree = (function() {
           </div>
         `;
 
+        const tableRows = sortedEntries.flatMap(([msId, ms]) => Object.entries(ms.children).flatMap(([puId, pu]) => {
+          const units = Object.entries(pu.children);
+          return (units.length ? units : [['', {title:''}]]).map(([suId, su]) => [msId,ms.title,puId,pu.title,suId,su.title]);
+        }));
+        const headers = ['Manuscript ID','Manuscript','Production Unit ID','Production Unit','Scribal Unit ID','Scribal Unit'];
+        mount.insertAdjacentHTML('beforeend', `<details class="codicology-disclosure"><summary>View data table</summary><p>All filtered manuscripts are included. Each row represents a manuscript–production-unit–scribal-unit connection; records with several connections appear in several rows.</p><div class="codicology-table-wrap"><table class="codicology-matrix"><thead><tr>${headers.map(value => `<th scope="col">${Core.esc(value)}</th>`).join('')}</tr></thead><tbody>${tableRows.map(row => `<tr>${row.map(value => `<td>${Core.esc(value)}</td>`).join('')}</tr>`).join('')}</tbody></table></div><button type="button" class="chip tree-table-csv">Download CSV</button></details>`);
+        mount.querySelector('.tree-table-csv')?.addEventListener('click', () => {
+          const csv = [['Manuscript search',searchQuery],['Structure filters',[filterMultiPU?'3+ Production Units':'',filterCrossMSPU?'Units across manuscripts':'',filterCrossPUSU?'Scribal Units across Production Units':''].filter(Boolean).join('; ') || 'None'],headers,...tableRows].map(row => row.map(value => '"'+(/^[=+@\-\t\r]/.test(String(value)) ? "'"+String(value) : String(value)).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+          const url = URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));
+          const link = document.createElement('a');link.href=url;link.download='manuscript-structure.csv';document.body.appendChild(link);link.click();link.remove();setTimeout(() => URL.revokeObjectURL(url),1000);
+        });
+
         const showMoreBtn = document.getElementById('tree-show-more');
         const showLessBtn = document.getElementById('tree-show-less');
 

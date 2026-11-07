@@ -58,7 +58,6 @@ for(const metric of ['count',...research.measures.keys()]){
  assert(!/NaN|Infinity|undefined/.test(research.content()),`Valid output for ${metric}`);
 }
 research.state.metric='count';
-fs.writeFileSync('/private/tmp/codicology-research-generated.html',research.content());
 console.log('PASS: per-column distinct-PU denominators, missing text categories, OR within a variable, and generated output for all numerical measures.');
 const ambiguous={rec_ID:'ambiguous',details:[detail('Manuscript',{id:'m1'}),detail('Manuscript',{id:'m2'})]};
 IDX.ms.m1={details:[detail('Codex height',200),detail('Codex width',150)]};IDX.ms.m2={details:[detail('Codex height',500),detail('Codex width',300)]};
@@ -70,7 +69,6 @@ research.selectComparison('region');assert.equal(research.state.row,'country');
 research.selectComparison('custom');assert.equal(research.state.preset,'region');
 research.state.disclosures={};research.selectComparison('chronology');
 assert(!/<details[^>]*\sopen(?:\s|>)/.test(research.content()),'Additional tools start collapsed');
-fs.writeFileSync('/private/tmp/codicology-simplified.html',research.toolbar()+research.content());
 console.log('PASS: three fixed views preserve the selected sample; unsupported views are ignored; tables start collapsed.');
 
 assert(!/<select\b/.test(research.toolbar()+research.content()),'The simplified interface contains no dropdowns');
@@ -86,5 +84,12 @@ for(const key of ['subgenre','quireTime','quireCountry','quireMaterial','margins
 const themes=window.ExploreCodicology.init(Core).topics;
 assert.equal(Object.keys(themes).join(','),'materials,quires,layout,practices');
 const keys=Object.values(themes).flatMap(topic=>topic.views.map(v=>v.key));assert.equal(new Set(keys).size,keys.length,'Each comparison has one home');
-fs.writeFileSync('/private/tmp/codicology-reorganised.html',research.toolbar()+research.content({navigation:false}));
 console.log('PASS: restored comparisons render with valid dimensions; unique topic placement; no duplicate comparison navigation.');
+const codicology=window.ExploreCodicology.init(Core);
+research.state.centuries=null;research.state.filters=[];
+const alreadyTables=new Set(['codicology-quire-subgenre','codicology-layout-material','codicology-production-presence']);
+for(const topic of Object.values(codicology.topics))for(const view of topic.views){
+ if(view.legacy && !alreadyTables.has(view.legacy))assert(/<table\b/.test(codicology.legacyData(view)),`Data table for ${view.key}`);
+ if(!view.legacy){research.selectComparison(view.key);assert(/<table\b/.test(research.content({navigation:false})),`Data table for ${view.key}`);}
+}
+console.log('PASS: every codicological view has a matching data table.');

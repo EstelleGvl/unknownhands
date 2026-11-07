@@ -10,7 +10,7 @@ banner:
 permalink: /data/
 ---
 
-These interactive views provide an overview of the current *Unknown Hands* data export. Unknown and TBC values are excluded. When a production place or date is uncertain between several named values, the record contributes once to each named country or century.
+These interactive views provide an overview of the *Unknown Hands* catalogue export. Unknown and TBC values are excluded. When a production place or date is uncertain between several named values, the record contributes once to each named country or century.
 
 <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -122,7 +122,7 @@ These interactive views provide an overview of the current *Unknown Hands* data 
         plot_bgcolor: 'transparent'
       }, plotConfig);
 
-      status.textContent = `${productionUnits.length.toLocaleString()} production units in the current export; charts include only records with known values.`;
+      status.textContent = `${productionUnits.length.toLocaleString()} production units in the catalogue export; charts include only records with known values.`;
     })
     .catch(error => {
       console.error('Unable to load production data:', error);

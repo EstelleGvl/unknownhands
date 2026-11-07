@@ -20,7 +20,14 @@ jobs:
         run: bundle exec jekyll build
       - name: Check JavaScript syntax
         run: |
-          for file in assets/js/*.js assets/js/explore/*.js assets/js/explore/core/*.js assets/js/explore/modules/*.js assets/js/explore/components/*.js netlify/functions/*.js; do
+          for file in assets/js/*.js assets/js/explore/*.js assets/js/explore/modules/*.js assets/js/explore/components/*.js netlify/functions/*.js; do
             [ -e "$file" ] || continue
             node --check "$file"
           done
+      - name: Check Explore calculations and exports
+        run: |
+          node scripts/validation/check_explore_search.cjs
+          node scripts/validation/check_explore_map_export.cjs
+          node scripts/validation/check_codicology_research.cjs
+      - name: Check Explore card markup
+        run: bundle exec rake site:check_explore_cards

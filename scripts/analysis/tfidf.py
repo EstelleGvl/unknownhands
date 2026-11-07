@@ -10,7 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.decomposition import TruncatedSVD   # use SVD on sparse
-from scipy.sparse import csr_matrix, vstack      # <-- you were missing csr_matrix
+from scipy.sparse import csr_matrix, vstack
 import plotly.express as px
 import matplotlib.pyplot as plt
 

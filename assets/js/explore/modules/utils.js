@@ -86,7 +86,7 @@ window.ExploreUtils = (function(){
       Core.buildFacets(browseList, cfg, {});
       Core.updateAvailableViews();
 
-      // Now render with the selected record
+      // Render the selected record.
       const selIndex = indexOfRecord(browseList, id);
       if (selIndex >= 0) Core.page = Math.floor(selIndex / Core.pageSize) + 1;
       Core.render(browseList, type, String(id));

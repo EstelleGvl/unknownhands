@@ -512,6 +512,61 @@ window.ExploreCodicology = (function() {
         <aside class="codicology-crosslink"><h3>Scribal collaboration</h3><p>Collaboration and collaboration-sequence typologies remain in the Scribes research theme because their primary unit is scribal participation. They are linked here as a complementary production context.</p><a class="explore-action-btn explore-action-btn--primary" href="?mode=scribes&amp;tab=collaboration">Open Scribes → Collaborations</a></aside>`;
     }
 
+    function dataTable(columns, rows, caption) {
+      return `<div class="codicology-table-wrap"><table class="codicology-matrix"><caption>${esc(caption)}</caption><thead><tr>${columns.map(label => `<th scope="col">${esc(label)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map((value,index) => index ? `<td>${esc(value ?? '—')}</td>` : `<th scope="row">${esc(value ?? '—')}</th>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    }
+
+    function legacyData(view) {
+      const pus = research.records();
+      if (view.key === 'dimensions') {
+        const rows = research.manuscripts().map(ms => ({ms, height:numeric(ms,'Codex height'), width:numeric(ms,'Codex width')}))
+          .filter(item => item.height && item.width)
+          .map(({ms,height,width}) => [ms.rec_ID, ms.rec_Title, height, width, height*width/100]);
+        return dataTable(['Manuscript ID','Manuscript','Height (mm)','Width (mm)','Page area (cm²)'], rows, 'Manuscript page dimensions');
+      }
+      if (view.key === 'colophons') {
+        const groups = new Map();
+        pus.forEach(pu => {
+          const value = explicitBoolean(pu,['Colophon Presence','Colophon presence']);
+          if (value === null) return;
+          materials(pu).forEach(material => {
+            const row = groups.get(material) || {present:0,observed:0};
+            row.observed++; if (value) row.present++; groups.set(material,row);
+          });
+        });
+        return dataTable(['Material','Colophon present','Observed units','Present (%)'], [...groups].map(([name,row]) => [name,row.present,row.observed,(row.present/row.observed*100).toFixed(1)]), 'Colophons by material');
+      }
+      if (view.key === 'ruling') {
+        const rows = byMembership(pus, pu => research.memberships(pu,'century').map(Number), pu => controlled(pu,['ruling_type','Ruling'])).sort((a,b) => a.label-b.label);
+        return dataTable(['Century','Ruling method','Units','Within-century (%)'], rows.flatMap(row => {
+          const total = [...row.counts.values()].reduce((sum,n) => sum+n,0);
+          return [...row.counts].map(([name,n]) => [row.label,name,n,(n/total*100).toFixed(1)]);
+        }), 'Ruling methods by century');
+      }
+      let values;
+      if (view.key === 'materialDistribution') values = pus.flatMap(materials);
+      if (view.key === 'quireDistribution') values = pus.flatMap(quireTypes);
+      if (view.key === 'rulingMethods') values = pus.flatMap(pu => controlled(pu,['ruling_type','Ruling']));
+      if (view.key === 'writingArea') values = pus.map(pu => {
+        const ms = Core.IDX.ms?.[String(resource(pu,'Manuscript')?.id)];
+        const h = numeric(ms,'Codex height'), w = numeric(ms,'Codex width');
+        const th = numeric(pu,'justification : height (mm)'), tw = numeric(pu,'justification : width (mm)');
+        const ratio = h && w && th && tw ? th*tw/(h*w) : null;
+        if (!Number.isFinite(ratio) || ratio < .1 || ratio > .9) return null;
+        return ratio < .4 ? 'Under 40%' : ratio < .55 ? '40–54%' : ratio < .7 ? '55–69%' : '70% and over';
+      }).filter(Boolean);
+      if (values) return dataTable(['Category','Units','Share (%)'], sortedEntries(countBy(values)).map(([name,n]) => [name,n,(n/Math.max(1,values.length)*100).toFixed(1)]), view.label);
+      return '';
+    }
+
+    function exportTable(table, filename) {
+      const rows = [['Sample',research.describe()],['Table',table.caption?.textContent || filename],...[...table.rows].map(row => [...row.cells].map(cell => cell.textContent.trim()))];
+      const csv = rows.map(row => row.map(value => '"'+(/^[=+@\-\t\r]/.test(value) ? "'"+value : value).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+      const url = URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}));
+      const link = document.createElement('a'); link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();
+      setTimeout(() => URL.revokeObjectURL(url),1000);
+    }
+
     const topics = {
       materials: {title:'Materials', views:[
         {key:'chronology', label:'Materials over time'},
@@ -556,6 +611,17 @@ window.ExploreCodicology = (function() {
         renderers[view.renderer || tab](mount);
         const section = mount.querySelector('#'+view.legacy);
         mount.innerHTML = section ? section.outerHTML : '<p>No observations available.</p>';
+        const existingTable = mount.querySelector('table');
+        const tableHost = document.createElement(existingTable ? 'div' : 'details');
+        if (!existingTable) {
+          tableHost.className = 'codicology-disclosure';
+          tableHost.dataset.disclosure = 'table';
+          tableHost.open = Boolean(research.state.disclosures.table);
+          tableHost.innerHTML = `<summary>View data table</summary>${legacyData(view)}`;
+        }
+        const button = document.createElement('button');button.type='button';button.className='chip';button.textContent='Download CSV';
+        tableHost.appendChild(button);mount.appendChild(tableHost);
+        button.addEventListener('click', () => {const table=existingTable || tableHost.querySelector('table');if(table)exportTable(table,`codicology-${view.key}.csv`);});
         mount.querySelector('.explore-viz-card-header')?.insertAdjacentHTML('afterend', `<p class="explore-chart-note">${esc(research.describe())}</p>`);
       } else {
         research.selectComparison(view.key);
@@ -575,7 +641,7 @@ window.ExploreCodicology = (function() {
       if (view.key === 'dimensions') bindDimensionScatter(mount);
     }
 
-    return { render, topics };
+    return { render, topics, legacyData };
   }
 
   return { init };

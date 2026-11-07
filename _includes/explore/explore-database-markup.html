@@ -42,7 +42,7 @@
 
       <!-- MAIN (center) + VIZ (right) wrapper for controls and content -->
       <div class="db-main-viz-wrapper">
-        <!-- Controls - now spanning both middle and right panels -->
+        <!-- Controls spanning the middle and right panels -->
         <div class="db-controls">
           <input id="db-search" type="search" placeholder="Search…" aria-label="Search records" />
           <select id="db-field" aria-label="Search field">
@@ -78,12 +78,12 @@
             <summary>How to use advanced search</summary>
             <ol>
               <li><strong>Choose what to return.</strong> For example, choose Manuscripts to get a list of manuscripts.</li>
-              <li><strong>Add conditions</strong> to describe the record you want: choose a field, how to match it, and a value.</li>
-              <li><strong>Follow a relationship</strong> to search a connected record. Choose a link, click Follow relationship, then add conditions to the new step. You can repeat this as often as you need.</li>
-              <li><strong>Click Apply advanced search</strong> to see the results. After changing your search, click Apply again.</li>
+              <li><strong>Add conditions</strong> to describe a record: choose a field, how to match it, and a value.</li>
+              <li><strong>Follow a relationship</strong> to search a connected record. Choose a link, click Follow relationship, then add conditions to the new step. Further steps can follow further links.</li>
+              <li><strong>Click Apply advanced search</strong> to see the results. Apply again after editing the search.</li>
             </ol>
             <p><strong>Example:</strong> to find manuscripts containing a text by a female author, start with Manuscripts, follow the Manuscript field to Production Units, then Contains to Texts, then author of to Historical People. At the person step, set Gender to equals Female.</p>
-            <p><strong>Choosing a direction:</strong> links work both ways. Source → target follows the catalogue’s stored link; target → source follows it back. For example, Manuscript (target → source) takes you from a manuscript to its production units.</p>
+            <p><strong>Choosing a direction:</strong> links work both ways. Source → target follows the catalogue’s stored link; target → source follows it back. For example, Manuscript (target → source) leads from a manuscript to its production units.</p>
             <p><strong>Combining conditions:</strong> All or Any applies to conditions within one step. Those conditions describe the same record. Adding several relationships from a step creates branches; every branch must match. For example, put catchwords on the PU step and genre on its text step to keep them connected.</p>
           </details>
           <div id="advanced-condition-list" class="advanced-condition-list"></div>

@@ -996,7 +996,7 @@ function readFacetState(config){
   const st={};
   config.forEach(f=>{
     if (f.type==='enum'){
-      // Now using checkboxes for multi-select
+      // Checkboxes support multiple selections.
       const onCbs=[...document.querySelectorAll(`input[type="checkbox"][data-fkey="${f.key}"]:checked`)].map(n=>n.value);
       st[f.key]={type:f.type, values:new Set(onCbs)};
     } else if (f.type==='enum-multi' || f.type==='century' || f.type==='relationship-enum-multi' || f.type==='related-record-enum'){
@@ -1113,7 +1113,7 @@ function jumpTo(type, id){
   buildFacets(browseList, cfg, {});
   updateAvailableViews();
   
-  // Now render with the selected record
+  // Render the selected record.
   const selIndex = indexOfRecord(browseList, id);
   if (selIndex >= 0) page = Math.floor(selIndex / pageSize) + 1;
   render(browseList, type, String(id));
@@ -2107,8 +2107,8 @@ function recompute(clearFacets = false){
 /* ---------- Views (Results / Map / Timeline / Network) ---------- */
 let ACTIVE_VIEW = 'results';
 
-function supportsMap(entity){ return true; } // Map now supports all entity types (view selector handles different data)
-function supportsTimeline(entity){ return true; } // Timeline now supports all entity types (view selector handles different data)
+function supportsMap(entity){ return true; } // Map supports all entity types (view selector handles different data)
+function supportsTimeline(entity){ return true; } // Timeline supports all entity types (view selector handles different data)
 function supportsNetwork(entity){ return true; } // All entities support network view
 function supportsAnalytics(entity){ return true; } // Analytics available for all entities
 
@@ -2640,7 +2640,7 @@ function exportAnalyticsVisualization(format) {
             });
           };
           script.onerror = () => {
-            alert('Failed to load export library. Please check your internet connection.');
+            alert('Failed to load export library. Check the network connection.');
           };
           document.head.appendChild(script);
         } else {
