@@ -97,6 +97,10 @@ Counting and measurement rules:
 - Blank-page fraction estimates the share outside the recorded writing area. Text height and width must fit within the page. The writing-area distribution retains ratios between 10% and 90% of page area.
 - Box plots show quartiles and the median, with minimum-to-maximum whiskers. Numerical summaries accompany the plots.
 
+### Publication settings
+
+`explore_hidden_tabs` in `_config.yml` controls research-tab visibility. The listed tabs are omitted from navigation and the user guide; direct links display the module overview. Rendering guards prevent a hidden tab from being restored through remembered interface state. Removing a tab from this setting restores its navigation and rendering without replacing its implementation.
+
 ### Navigation and graphics
 
 Primary modes and topic tabs are represented in the page URL. The century selection and individual chart selection are held in the browser session; they are not encoded in shared links. The `tree&tab=research` route resolves to Materials.

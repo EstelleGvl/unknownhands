@@ -121,3 +121,8 @@ window.ExploreConfig = {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = window.ExploreConfig;
 }
+
+// Publication settings are shared by navigation, direct links, and renderers.
+window.ExploreConfig.isTabHidden = function(mode, tab) {
+  return (window.ExploreHeadConfig?.HIDDEN_TABS?.[mode] || []).includes(tab);
+};

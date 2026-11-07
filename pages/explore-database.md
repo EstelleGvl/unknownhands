@@ -45,6 +45,7 @@ banner:
 <script>
 
 window.ExploreHeadConfig = {
+  HIDDEN_TABS: {{ site.explore_hidden_tabs | jsonify }},
   SU_ENDPOINT: "{{ site.heurist.su_json | default: '/data/heurist/scribal_units.json' | relative_url }}",
   MS_ENDPOINT: "{{ site.heurist.ms_json | default: '/data/heurist/manuscripts.json' | relative_url }}",
   PU_ENDPOINT: "{{ site.heurist.pu_json | default: '/data/heurist/production_units.json' | relative_url }}",
@@ -57,7 +58,7 @@ window.ExploreHeadConfig = {
 };
 </script>
 <!-- Core utilities (used by all modules) -->
-<script src="{{ '/assets/js/explore/config.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/explore/config.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
 <!-- Core utilities -->
 <script src="{{ '/assets/js/explore/modules/utils.js' | relative_url }}"></script>
@@ -71,8 +72,8 @@ window.ExploreHeadConfig = {
 <script src="{{ '/assets/js/explore/modules/codicology.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/hierarchical-tree.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/multilingualism.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/explore/modules/scribes.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/explore/modules/colophon-analysis.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/explore/modules/scribes.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+<script src="{{ '/assets/js/explore/modules/colophon-analysis.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 <script src="{{ '/assets/js/explore/modules/text-genres.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/export.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/explore/modules/path-finding.js' | relative_url }}"></script>

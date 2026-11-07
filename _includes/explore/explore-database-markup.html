@@ -507,7 +507,9 @@
         <div class="scribe-tabs genre-tabs explore-module-tabs">
           <button type="button" class="scribe-tab-btn is-on" data-tab="overview">Overview</button>
           <button type="button" class="scribe-tab-btn" data-tab="productivity">Productivity Patterns</button>
+          {% unless site.explore_hidden_tabs['scribes'] contains 'unseen-species' %}
           <button type="button" class="scribe-tab-btn" data-tab="unseen-species">Unseen Species Analysis</button>
+          {% endunless %}
           <button type="button" class="scribe-tab-btn" data-tab="collaboration">Collaborations</button>
           <button type="button" class="scribe-tab-btn" data-tab="geography">Geography</button>
           <button type="button" class="scribe-tab-btn" data-tab="browse">Browse All</button>
@@ -548,7 +550,9 @@
         <div class="colophon-tabs explore-module-tabs">
           <button type="button" class="colophon-tab-btn is-on" data-tab="overview">Overview &amp; Method</button>
           <button type="button" class="colophon-tab-btn" data-tab="browse">Browse &amp; Read</button>
+          {% unless site.explore_hidden_tabs['colophon-analysis'] contains 'formulae' %}
           <button type="button" class="colophon-tab-btn" data-tab="formulae">Formulae</button>
+          {% endunless %}
           <button type="button" class="colophon-tab-btn" data-tab="contexts">Contexts</button>
         </div>
         <div id="colophon-mount" class="explore-module-content explore-module-body" style="overflow: auto; min-height: 60vh;">

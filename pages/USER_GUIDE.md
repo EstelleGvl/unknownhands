@@ -159,7 +159,9 @@ Uncertain centuries and countries can contribute to several groups. A Production
 
 **Overview** and **Productivity Patterns** describe recorded scribal activity. **Collaborations** examines manuscripts with several scribal contributions and their recorded roles. **Geography** uses recorded places; **Browse All** provides paginated records.
 
+{% unless site.explore_hidden_tabs.scribes contains 'unseen-species' %}
 **Unseen Species Analysis** estimates how many scribes might be absent from the recorded sample using the distribution of observed activity. These are model-based estimates, not identified people. Their assumptions and the catalogue’s uneven coverage require attention.
+{% endunless %}
 
 ## Multilingualism
 
@@ -171,7 +173,9 @@ Language relationships connect texts, scribal contributions, and institutions. A
 
 - **Overview & Method** describes coverage and the recorded evidence.
 - **Browse & Read** provides available transcriptions and translations, including repeated colophon fields as separate readable entries.
+{% unless site.explore_hidden_tabs['colophon-analysis'] contains 'formulae' %}
 - **Formulae** groups recurring expressions.
+{% endunless %}
 - **Contexts** compares recorded languages, places, dates, and other catalogue features.
 
 An English translation is a reading aid rather than the manuscript wording. Formulaic language and contextual interpretation should be checked against the transcription and images. The module does not treat translation punctuation, sentiment, or translation length as measurements of medieval scribal behaviour.

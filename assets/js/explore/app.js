@@ -1955,7 +1955,8 @@ function applyExploreLocation() {
     const tabSelector = EXPLORE_TAB_SELECTORS[mode];
     if (tabSelector) {
       const buttons = Array.from(document.querySelectorAll(tabSelector));
-      const targetTab = EXPLORE_TAB_ALIASES[mode]?.[requestedTab] || requestedTab || 'overview';
+      const resolvedTab = EXPLORE_TAB_ALIASES[mode]?.[requestedTab] || requestedTab || 'overview';
+      const targetTab = window.ExploreConfig?.isTabHidden(mode, resolvedTab) ? 'overview' : resolvedTab;
       const button = buttons.find(candidate => candidate.dataset.tab === targetTab) || buttons[0];
       if (button && !button.classList.contains('is-on')) button.click();
     }

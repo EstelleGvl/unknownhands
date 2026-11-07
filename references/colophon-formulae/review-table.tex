@@ -1,0 +1,12 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[landscape,margin=16mm]{geometry}
+\usepackage{fontspec}
+\usepackage{longtable,array,booktabs}
+\setmainfont{lmroman10-regular.otf}[ItalicFont=lmroman10-italic.otf,BoldFont=lmroman10-bold.otf,BoldItalicFont=lmroman10-bolditalic.otf]
+\setlength{\parindent}{0pt}
+\newcommand{\FormulaChapterCite}[1]{\texttt{\detokenize{#1}}}
+\begin{document}
+\section*{Colophon formulae: source and attribution review}
+This table is based solely on the supplied chapter. Scholarly association is distinguished from first identification. Review notes retain unresolved attribution, language, and transcription questions. Expressions in working notes and short markers are not automatically evidence of recurrent formulae. A complete evidence list and citation keys accompany the table in \texttt{review.md}.
+\input{formulae-table.tex}
+\end{document}

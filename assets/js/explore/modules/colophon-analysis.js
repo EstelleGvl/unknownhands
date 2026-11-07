@@ -80,7 +80,8 @@ const COLOPHON_TAB_ALIASES = {
 };
 
 function normalizeColophonTab(tab) {
-  return COLOPHON_TAB_ALIASES[tab] || tab || 'overview';
+  const resolved = COLOPHON_TAB_ALIASES[tab] || tab || 'overview';
+  return window.ExploreConfig?.isTabHidden('colophon-analysis', resolved) ? 'overview' : resolved;
 }
 
 // Colophon Analysis Main Entry Point

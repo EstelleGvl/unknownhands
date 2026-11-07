@@ -21,6 +21,12 @@ description:      'Female Scribes in Pre-Modern Europe'
 url:              'https://estellegueville.com'
 baseurl:          '/unknownhands'
 copyright:        'Estelle Guéville, 2025'
+
+# Research tabs excluded from the published interface; implementations are retained.
+explore_hidden_tabs:
+  colophon-analysis: [formulae]
+  scribes: [unseen-species]
+
 logo:             '/assets/img/sticker.webp'
 default_thumb:    '/assets/img/sticker.webp'
 

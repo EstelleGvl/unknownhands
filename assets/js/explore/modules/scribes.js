@@ -286,6 +286,10 @@ function initScribeTabs() {
 
 // Scroll to section based on tab
 function scrollToScribeSection(tab) {
+  if (window.ExploreConfig?.isTabHidden('scribes', tab)) {
+    tab = 'overview';
+    CURRENT_SCRIBE_TAB = tab;
+  }
   const mount = document.getElementById('scribes-mount');
   if (!mount) return;
   
