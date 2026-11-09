@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const ANSWER_MODEL = 'gemini-3.5-flash-lite';
+const FUNCTION_REVISION = 'flash-lite-diagnostics-1';
 
 function cosineSimilarity(vecA, vecB) {
   let dotProduct = 0.0, normA = 0.0, normB = 0.0;
@@ -33,10 +35,23 @@ exports.handler = async (event, context) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-store'
   };
 
   if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers, body: '' };
+  if (event.httpMethod === 'GET') {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        model: ANSWER_MODEL,
+        revision: FUNCTION_REVISION,
+        site: process.env.SITE_NAME || null
+      })
+    };
+  }
   if (event.httpMethod !== 'POST') return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method Not Allowed' }) };
 
   try {
@@ -99,7 +114,7 @@ ${contextText}
 Question: "${query}"`;
 
     // 3. Generate Answer
-    const genRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`, {
+    const genRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${ANSWER_MODEL}:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -134,7 +149,7 @@ Question: "${query}"`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ answer: finalAnswer, sources: uniqueSources })
+      body: JSON.stringify({ answer: finalAnswer, sources: uniqueSources, model: ANSWER_MODEL, modelVersion: genData.modelVersion || null, revision: FUNCTION_REVISION })
     };
   } catch (error) {
     console.error("Backend Error:", error);
